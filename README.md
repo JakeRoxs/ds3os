@@ -1,9 +1,9 @@
 ![Dark Souls 3 - Open Server](./Resources/banner.png?raw=true)
 
-![GitHub license](https://img.shields.io/github/license/TLeonardUK/ds3os)
-![GitHub release](https://img.shields.io/github/release/TLeonardUK/ds3os)
-![GitHub downloads](https://img.shields.io/github/downloads/TLeonardUK/ds3os/total)
-[![Discord](https://img.shields.io/discord/937318023495303188?label=Discord)](https://discord.gg/pBmquc9Jkj)
+![GitHub license](https://img.shields.io/github/license/JakeRoxs/ds3os)
+![GitHub release](https://img.shields.io/github/release/JakeRoxs/ds3os)
+![GitHub downloads](https://img.shields.io/github/downloads/JakeRoxs/ds3os/total)
+
 
 <div align="center">
 
@@ -11,12 +11,14 @@ English | [简体中文](./README_zhCN.md)
 
 </div>
 
+# Note:
+This is a fork of dark souls open server that currently just implements a few open PRs from the original repo.
+
+
 # What is this project?
 An open source implementation of the game servers for dark souls 2 (SOTFS) and 3. 
 
 This project exists to provide an alternative to playing online with mods without the risk of being banned, or just for people who want to play privately and not deal with cheaters/invasions/etc.
-
-If you have any trouble join the discord for tech-support: https://discord.gg/pBmquc9Jkj
 
 # Can I use it with a pirated game?
 No, the server authenticates steam tickets. Please do not ask about piracy, steam emulators or the like, we have no interest in supporting them. 
@@ -24,7 +26,7 @@ No, the server authenticates steam tickets. Please do not ask about piracy, stea
 FROM SOFTWARE deserves your support too for the excellent work they do, please buy their games if you can.
 
 # Where can I download it?
-Downloads are available on the github releases page - https://github.com/TLeonardUK/ds3os/releases
+Downloads are available on the github releases page - https://github.com/JakeRoxs/ds3os/releases
 
 # How do I use it?
 Once built you should have a folder called Bin, there are 2 subfolders of relevance. Loader and Server. 
@@ -89,12 +91,12 @@ We don't provide an automation option to copy ds3os saves back to retail saves f
 ## Can I run the server via docker?
 Yes, there are 2 docker containers currently published for DSOS, these are automatically updated each time a new release is made:
 
-timleonarduk/ds3os - This is the main server and the one you almost certainly want.
-timleonarduk/ds3os-master - This is for the master server, unless you are making a fork of ds3os, you probably don't need this.
+jakeroxs/ds3os - This is the main server and the one you almost certainly want.
+jakeroxs/ds3os-master - This is for the master server, unless you are making a fork of ds3os, you probably don't need this.
 
 If you want a quick one-liner to run the server, you can use this. Note that it mounts the Saved folder to the host filesystem at /opt/ds3os/Saved, making it easier to modify the configuration files. Access /opt/ds3os/Saved to view and modify the configuration files.
 
-`sudo mkdir -p /opt/ds3os/Saved && sudo chown 1000:1000 /opt/ds3os/Saved && sudo docker run -d -m 2G --restart always --net host --mount type=bind,source=/opt/ds3os/Saved,target=/opt/ds3os/Saved timleonarduk/ds3os:latest`
+`sudo mkdir -p /opt/ds3os/Saved && sudo chown 1000:1000 /opt/ds3os/Saved && sudo docker run -d -m 2G --restart always --net host --mount type=bind,source=/opt/ds3os/Saved,target=/opt/ds3os/Saved jakeroxs/ds3os:latest`
 
 ## I launch the game but its unable to connect?
 There are a few different causes of this, the simplest one is to make sure you're running as admin, the launcher needs to patch the games memory to get it to connect to the new server, this requires admin privileges.
@@ -110,7 +112,7 @@ If the server is being hosted by yourself and the above doesn't solve your issue
 ## What do all the properties in the config file mean?
 The settings are all documented in the source code in this file, in future I'll write some more detailed documentation.
 
-https://github.com/TLeonardUK/ds3os/blob/main/Source/Server/Config/RuntimeConfig.h
+https://github.com/JakeRoxs/ds3os/blob/main/Source/Server/Config/RuntimeConfig.h
 
 # How do I build it?
 Currently the project uses visual studio 2022 and C++17 for compilation.
@@ -123,11 +125,11 @@ Once generated the project files are stored in the intermediate folder, at this 
 
 ```sh
 # to build a package
-nix build github:TLeonardUK/ds3os
+nix build github:JakeRoxs/ds3os
 # to run it directly
-nix run github:TLeonardUK/ds3os
+nix run github:JakeRoxs/ds3os
 # to run master-server
-nix run github:TLonardUK/ds3os#master-server
+nix run github:JakeRoxs/ds3os#master-server
 ```
 
 The nix version stores the configs in `${XDG_CONFIG_HOME:-$HOME/.config}/ds3os`
