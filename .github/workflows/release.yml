@@ -180,13 +180,13 @@ jobs:
     steps:
     - name: Download windows artifact
       id: download-windows-artifact
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v8
       with:
         name: windows
 
     - name: Download linux artifact
       id: download-linux-artifact
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v8
       with:
         name: linux
 
