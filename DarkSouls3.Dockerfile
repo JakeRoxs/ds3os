@@ -17,9 +17,11 @@ RUN steamcmd +login anonymous +quit
 FROM ubuntu@sha256:d1e2e92c075e5ca139d51a140fff46f84315c0fdce203eab2807c7e495eff4f9 AS runtime
 
 RUN mkdir -p /opt/ds3os/Saved \
-    && useradd -r -s /bin/bash -u 1000 ds3os \
+    && if ! id ds3os >/dev/null 2>&1; then \
+           useradd -r -s /bin/bash ds3os; \
+       fi \
     && chown ds3os:ds3os /opt/ds3os/Saved \
-    && chown ds3os:ds3os /opt/ds3os \    
+    && chown ds3os:ds3os /opt/ds3os \
     && chmod 755 /opt/ds3os/Saved \
     && chmod 755 /opt/ds3os \
     && apt update \
@@ -34,4 +36,5 @@ ENV LD_LIBRARY_PATH="/opt/ds3os"
 
 USER ds3os
 WORKDIR /opt/ds3os
-ENTRYPOINT /opt/ds3os/Server 
+ENTRYPOINT ["/opt/ds3os/Server"]
+CMD [] 

@@ -17,9 +17,11 @@ RUN steamcmd +login anonymous +quit
 FROM ubuntu@sha256:d1e2e92c075e5ca139d51a140fff46f84315c0fdce203eab2807c7e495eff4f9 AS runtime
 
 RUN mkdir -p /opt/ds2os/Saved \
-    && useradd -r -s /bin/bash -u 1100 ds2os \
+    && if ! id ds2os >/dev/null 2>&1; then \
+           useradd -r -s /bin/bash ds2os; \
+       fi \
     && chown ds2os:ds2os /opt/ds2os/Saved \
-    && chown ds2os:ds2os /opt/ds2os \    
+    && chown ds2os:ds2os /opt/ds2os \
     && chmod 755 /opt/ds2os/Saved \
     && chmod 755 /opt/ds2os \
     && apt update \
@@ -34,4 +36,5 @@ ENV LD_LIBRARY_PATH="/opt/ds2os"
 
 USER ds2os
 WORKDIR /opt/ds2os
-ENTRYPOINT /opt/ds2os/Server 
+ENTRYPOINT ["/opt/ds2os/Server"]
+CMD [] 
