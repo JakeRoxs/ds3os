@@ -166,8 +166,11 @@ inline void HandleAreaChange(PlayerState& state, const std::shared_ptr<GameClien
     // choose the correct online-area enum depending on which game state we
     // are operating on.  We avoid naming DS2_OnlineAreaId in builds that don't
     // have the DS2 headers available by using an if constexpr instead of
-    // std::conditional_t.
+    // std::conditional_t.  We also guard the DS3-specific branch with
+    // BUILD_DARKSOULS3 so that the enum member reference doesn't trigger a
+    // parse error in DS2-only builds where only a forward declaration exists.
     
+#ifdef BUILD_DARKSOULS3
     if constexpr (std::is_same_v<PlayerState, DS3_PlayerState>)
     {
         DS3_OnlineAreaId AreaId = static_cast<DS3_OnlineAreaId>(
@@ -179,8 +182,10 @@ inline void HandleAreaChange(PlayerState& state, const std::shared_ptr<GameClien
             state.SetCurrentArea(AreaId);
         }
     }
+#endif
+
 #ifdef BUILD_DARKSOULS2
-    else if constexpr (std::is_same_v<PlayerState, DS2_PlayerState>)
+    if constexpr (std::is_same_v<PlayerState, DS2_PlayerState>)
     {
         // DS2 path: only compiled when PlayerState matches exactly.  We
         // also guard the whole block with BUILD_DARKSOULS2 so that the
@@ -197,11 +202,10 @@ inline void HandleAreaChange(PlayerState& state, const std::shared_ptr<GameClien
             state.SetCurrentArea(AreaId);
         }
     }
-    #endif
-    else
-    {
-        // Unknown state type; nothing to do.
-    }
+#endif
+
+    // If neither branch matched (other state types) we simply do nothing.
+
 
     if constexpr (std::is_same_v<PlayerState, DS2_PlayerState>)
     {
