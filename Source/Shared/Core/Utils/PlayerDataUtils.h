@@ -179,13 +179,12 @@ inline void HandleAreaChange(PlayerState& state, const std::shared_ptr<GameClien
             state.SetCurrentArea(AreaId);
         }
     }
-    else
+    else if constexpr (std::is_same_v<PlayerState, DS2_PlayerState>)
     {
-        // DS2 path: DS2_OnlineAreaId is guaranteed to be defined when the DS2
-        // headers are available (we included DS2_GameIds.h above inside
-        // __has_include guard).  This branch will be discarded when building
-        // for DS3 since the condition is false, so a missing DS2 type won't be
-        // an error.
+        // DS2 path: only compiled when PlayerState matches exactly.
+        // DS2_OnlineAreaId will be defined in DS2 builds; in DS3 builds
+        // this branch is ignored entirely so the forward declaration above
+        // (which lacks enum values) is not referenced.
         using AreaIdType = DS2_OnlineAreaId;
         AreaIdType AreaId = static_cast<AreaIdType>(
             state.GetPlayerStatus().player_location().online_area_id());
@@ -195,6 +194,10 @@ inline void HandleAreaChange(PlayerState& state, const std::shared_ptr<GameClien
                      GetEnumString(AreaId).c_str(), AreaId);
             state.SetCurrentArea(AreaId);
         }
+    }
+    else
+    {
+        // Unknown state type; nothing to do.
     }
 
     if constexpr (std::is_same_v<PlayerState, DS2_PlayerState>)
