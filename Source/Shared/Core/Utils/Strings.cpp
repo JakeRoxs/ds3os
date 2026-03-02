@@ -8,11 +8,58 @@
  */
 
 #include "Shared/Core/Utils/Strings.h"
+#include "Shared/Core/Utils/Logging.h"  // for Error()/Warning() macros
 
+#include <cstdarg>
 #include <sstream>
 #include <iomanip>
 #include <string>
 #include <cassert>
+
+#ifdef _WIN32
+#include <windows.h> // WideCharToMultiByte, CP_UTF8
+#endif
+
+// public helper defined in the header; attr macro ensures compile-time
+// checks on GNU compilers.
+std::string StringFormat(const char* format, ...)
+{
+    va_list args;
+    va_start(args, format);
+
+    // vsnprintf consumes the va_list, so we either need to copy it or restart
+    // it before the second call.  Use va_copy for portability and simplicity.
+    va_list args_copy;
+    va_copy(args_copy, args);
+
+    // determine required buffer length; vsnprintf returns a signed int and
+    // negative indicates an encoding/format error.  guard against that to
+    // avoid huge allocations when casting to size_t.
+    int needed = vsnprintf(nullptr, 0, format, args_copy);
+    va_end(args_copy);
+    if (needed < 0)
+    {
+        // formatting failed; log and return empty string rather than crashing
+        Error("StringFormat failed in vsnprintf length query (return=%d) format=[%s]", needed, format);
+        va_end(args);
+        return std::string();
+    }
+
+    size_t size = static_cast<size_t>(needed) + 1;
+    std::unique_ptr<char[]> buffer(new char[size]);
+    int written = vsnprintf(buffer.get(), size, format, args);
+    if (written < 0)
+    {
+        // should be rare since we already sized buffer based on first call.
+        Error("StringFormat failed in vsnprintf write (return=%d) format=[%s]", written, format);
+        va_end(args);
+        return std::string();
+    }
+
+    va_end(args);
+    return std::string(buffer.get(), buffer.get() + size - 1);
+}
+
 
 std::string BytesToHex(const std::vector<uint8_t>& Bytes)
 {
@@ -106,14 +153,18 @@ std::string NarrowString(const std::wstring& input)
     std::string result;
 
     int result_length = WideCharToMultiByte(CP_UTF8, 0, input.data(), static_cast<int>(input.length()), nullptr, 0, nullptr, nullptr);
-    assert(result_length > 0);
     if (result_length <= 0)
     {
+        Error("NarrowString failed converting wide string; WideCharToMultiByte returned %d", result_length);
         return "";
     }
 
     result.resize(result_length);
-    WideCharToMultiByte(CP_UTF8, 0, input.data(), static_cast<int>(input.length()), result.data(), static_cast<int>(result.length()), nullptr, nullptr);
+    int written = WideCharToMultiByte(CP_UTF8, 0, input.data(), static_cast<int>(input.length()), result.data(), static_cast<int>(result.length()), nullptr, nullptr);
+    if (written != result_length)
+    {
+        Error("NarrowString write mismatch: expected %d bytes but got %d", result_length, written);
+    }
 
     return result;
 }
@@ -129,9 +180,9 @@ std::wstring WidenString(const std::string& input)
     result.resize(input.size());
 
     int result_length = MultiByteToWideChar(CP_UTF8, 0, input.data(), static_cast<int>(input.length()), result.data(), static_cast<int>(result.length()));
-    assert(result_length > 0);
     if (result_length <= 0)
     {
+        Error("WidenString failed converting narrow string; MultiByteToWideChar returned %d", result_length);
         return L"";
     }
 

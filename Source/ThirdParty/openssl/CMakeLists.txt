@@ -26,7 +26,9 @@
 
 set( CMAKE_LEGACY_CYGWIN_WIN32 0 )
 project( openssl )
-cmake_minimum_required( VERSION 3.1.0 )
+# Require at least 3.5 to match the project-wide minimum CMake version
+# specified in the root CMakeLists.txt; the original subproject asked for 3.1.
+cmake_minimum_required( VERSION 3.5 )
 
 set( CMAKE_DISABLE_SOURCE_CHANGES ON )
 set( CMAKE_DISABLE_IN_SOURCE_BUILD ON )

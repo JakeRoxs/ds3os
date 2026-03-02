@@ -124,11 +124,36 @@ The settings are all documented in the source code in this file, in future I'll 
 https://github.com/jakeroxs/ds3os/blob/main/Source/Server/Config/RuntimeConfig.h
 
 # How do I build it?
-Currently the project uses visual studio 2022 and C++17 for compilation.
+The project is written in C++17 and targets Visual Studio 2022 on Windows, but the build
+system itself is powered by CMake so other generators (Ninja, Xcode, etc.) are
+supported as long as the required dependencies are installed.
 
-We use cmake for generating project files. You can either use the cmake frontend to generate the project files, or you can use one of the generate_* shell scripts inside the Tools folder.
+## Prerequisites
+* [CMake](https://cmake.org/download/) (3.20+ recommended)
+* Visual Studio 2022 (or another C++ compiler supported by CMake)
+* .NET SDK 5.0 or later (`dotnet` command) – used by the WinForms loader project (project currently targets net5.0-windows)
+* Node.js & npm (only if you intend to build the master server, which is
+  managed separately with npm)
 
-Once generated the project files are stored in the intermediate folder, at this point you can just open them and build the project.
+The loader target is a SDK‑style .NET project with NuGet dependencies. CMake now
+includes a pre‑build step that runs `dotnet restore` using the same
+`BaseIntermediateOutputPath` and configuration that MSBuild will use, so you
+should **not** have to run `dotnet restore` manually. A clean checkout can be
+configured and built end‑to‑end with a single invocation of CMake:
+
+```powershell
+# from repo root
+cmake -S . -B build -G "Ninja"               # or your preferred generator
+cmake --build build --config Debug --target ALL_BUILD
+```
+
+If you prefer to use the generated project files directly, run one of the
+`Tools/generate_*` scripts (Windows, WSL, etc.) and open the resulting
+solution in Visual Studio. The loader target will restore its NuGet packages
+automatically when you build.
+
+Once generated the project files are stored in the intermediate folder, at this
+point you can just open them and build the project.
 
 ## Using nix
 

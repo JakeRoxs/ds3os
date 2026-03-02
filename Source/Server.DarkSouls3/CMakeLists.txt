@@ -87,7 +87,19 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     "${CMAKE_CURRENT_SOURCE_DIR}/../Server"
 )
 
-target_compile_definitions(${PROJECT_NAME} PRIVATE -D_CRT_SECURE_NO_WARNINGS -D_WINSOCK_DEPRECATED_NO_WARNINGS -D_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS)
+# the following warnings-suppressing definitions are only meaningful on
+# MSVC/Windows; other platforms don’t need them (and including unknown
+# macros confuses certain toolchains).
+if(MSVC OR WIN32)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE
+        _CRT_SECURE_NO_WARNINGS
+        _WINSOCK_DEPRECATED_NO_WARNINGS
+        _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS
+    )
+endif()
+
+# always define the game-specific flag regardless of platform
+target_compile_definitions(${PROJECT_NAME} PRIVATE BUILD_DARKSOULS3)
 
 target_link_libraries(
     ${PROJECT_NAME}

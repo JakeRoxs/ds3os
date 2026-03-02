@@ -11,10 +11,19 @@
 #include "Server/Server.h"
 #include "Server/GameService/GameClient.h"
 
-// DS2 headers aren't present when only building the DS3 target; use
-// __has_include so the shared utilities can be compiled by either project
-// without forcing the DS2 include path to be added globally.
-#if __has_include("Server/GameService/DS2_PlayerState.h")
+// These utilities are shared by both server targets. The build system is
+// responsible for defining BUILD_DARKSOULS2 / BUILD_DARKSOULS3 for the
+// appropriate targets (see Source/Server.DarkSouls2/CMakeLists.txt and
+// Source/Server.DarkSouls3/CMakeLists.txt where these macros are set). When
+// neither macro is defined, this header intentionally does not guess the
+// active game based on available headers; instead it falls back to forward
+// declarations below so that generic tooling can still parse the file
+// without affecting the actual build configuration. Game selection is driven
+// solely by explicit build flags rather than filesystem probes; the previous
+// __has_include-based filesystem checks were removed because they caused
+// subtle configuration and toolchain-dependent build bugs.
+
+#ifdef BUILD_DARKSOULS2
 #  include "Server/GameService/DS2_PlayerState.h"
 #  include "Server/Streams/DS2_Frpg2ReliableUdpMessage.h"
 #  include "Server/GameService/Utils/DS2_GameIds.h"  // needed for DS2_OnlineAreaId etc.
@@ -28,9 +37,8 @@ namespace DS2_Frpg2PlayerData {
 enum class DS2_OnlineAreaId : int;
 #endif
 
-// DS3 headers may also be absent when only building the DS2 target; mirror
-// the DS2 pattern above so this header stays self-contained.
-#if __has_include("Server/GameService/DS3_PlayerState.h")
+// Similarly guard the DS3 side with a build macro.
+#ifdef BUILD_DARKSOULS3
 #  include "Server/GameService/DS3_PlayerState.h"
 #  include "Server/Streams/DS3_Frpg2ReliableUdpMessage.h"
 #else
@@ -41,6 +49,14 @@ namespace DS3_Frpg2PlayerData {
 }
 enum class DS3_OnlineAreaId : int;
 #endif
+
+// STL utilities: used by multiple helpers in this header for managing
+// collections of player/visitor data (std::vector) and for lookups
+// such as std::find. Kept here rather than relying on transitive
+// includes so these utilities remain self-contained.
+
+#include <vector>
+#include <algorithm>
 
 #include "Shared/Core/Utils/Logging.h"
 #include "Shared/Core/Utils/Strings.h"
@@ -76,8 +92,8 @@ inline void MaybeSendBonfireDiscord(Server* server,
 // forward declarations for traits
 template<typename PlayerState, typename AllStatus> struct StatusClearer;
 
-// DS3 specialization (only if DS3 headers are present)
-#if __has_include("Server/GameService/DS3_PlayerState.h")
+// DS3 specialization (only compiled in the DS3 target)
+#ifdef BUILD_DARKSOULS3
 template<>
 struct StatusClearer<DS3_PlayerState, DS3_Frpg2PlayerData::AllStatus>
 {
@@ -99,8 +115,8 @@ struct StatusClearer<DS3_PlayerState, DS3_Frpg2PlayerData::AllStatus>
 };
 #endif
 
-// DS2 specialization (only available if DS2 headers were included above)
-#if __has_include("Server/GameService/DS2_PlayerState.h")
+// DS2 specialization (only compiled in the DS2 target)
+#ifdef BUILD_DARKSOULS2
 template<>
 struct StatusClearer<DS2_PlayerState, DS2_Frpg2PlayerData::AllStatus>
 {
@@ -282,6 +298,7 @@ inline void RenameConnectionIfCharacterNameChanged(PlayerStateType& state,
 }
 
 // Determine visitor pool for DS2.
+#ifdef BUILD_DARKSOULS2
 inline DS2_Frpg2RequestMessage::VisitorType DetermineVisitorPool(const DS2_PlayerState& state)
 {
     DS2_Frpg2RequestMessage::VisitorType pool = DS2_Frpg2RequestMessage::VisitorType::VisitorType_None;
@@ -306,8 +323,10 @@ inline DS2_Frpg2RequestMessage::VisitorType DetermineVisitorPool(const DS2_Playe
     }
     return pool;
 }
+#endif
 
 // Determine visitor pool for DS3.
+#ifdef BUILD_DARKSOULS3
 inline DS3_Frpg2RequestMessage::VisitorPool DetermineVisitorPool(const DS3_PlayerState& state)
 {
     DS3_Frpg2RequestMessage::VisitorPool pool = DS3_Frpg2RequestMessage::VisitorPool::VisitorPool_None;
@@ -333,6 +352,7 @@ inline DS3_Frpg2RequestMessage::VisitorPool DetermineVisitorPool(const DS3_Playe
     }
     return pool;
 }
+#endif
 
 // -----------------------------------------------------------------------------
 // Bonfire processing helpers
@@ -346,12 +366,47 @@ inline DS3_Frpg2RequestMessage::VisitorPool DetermineVisitorPool(const DS3_Playe
 // MaybeSendBonfireDiscord
 
 template<typename PlayerState> struct BonfireEnumFor;
+
+// When only one game target is built the other’s enum types are unavailable,
+// which would break the templated helpers below.  The Dummy namespace contains
+// harmless standins so that the file still parses for IDEs or in a mixed
+// workspace; the real enum is used during the actual DS2/DS3 build.
+namespace Dummy {
+#ifdef BUILD_DARKSOULS3
+    /* nothing */
+#else
+    enum class DS3_BonfireId : unsigned {};
+#endif
+#ifdef BUILD_DARKSOULS2
+    /* nothing */
+#else
+    enum class DS2_BonfireId : unsigned {};
+#endif
+}
+
+// specializations always declared; choose real or dummy type via inner #ifdefs
+
+#ifdef BUILD_DARKSOULS3
+// real enum specialization for DS3 build
 template<> struct BonfireEnumFor<DS3_PlayerState> { using type = DS3_BonfireId; };
+#else
+// dummy specialization keeps the template name valid during IDE parsing
+// when the DS3 target isn’t part of the build.  The type itself is only
+// forward‑declared above so no members are required here.
+template<> struct BonfireEnumFor<DS3_PlayerState> { using type = Dummy::DS3_BonfireId; };
+#endif
+
+#ifdef BUILD_DARKSOULS2
 template<> struct BonfireEnumFor<DS2_PlayerState> { using type = DS2_BonfireId; };
+#else
+template<> struct BonfireEnumFor<DS2_PlayerState> { using type = Dummy::DS2_BonfireId; };
+#endif
 
 // extracts the list of currently unlocked/lit bonfire IDs for the state
 
 template<typename PlayerState> struct BonfireAccessor;
+
+#ifdef BUILD_DARKSOULS3
 
 template<>
 struct BonfireAccessor<DS3_PlayerState>
@@ -369,6 +424,17 @@ struct BonfireAccessor<DS3_PlayerState>
     }
 };
 
+#else
+// stub for IDE parsing when only the opposite game is active
+template<>
+struct BonfireAccessor<DS3_PlayerState>
+{
+    static void Collect(const DS3_PlayerState&, std::vector<uint32_t>&) {}
+};
+#endif
+
+#ifdef BUILD_DARKSOULS2
+
 template<>
 struct BonfireAccessor<DS2_PlayerState>
 {
@@ -380,6 +446,15 @@ struct BonfireAccessor<DS2_PlayerState>
             out.push_back(state.GetPlayerStatus().stats_info().unlocked_bonfires(i));
     }
 };
+
+#else
+// stub for DS2 when it isn’t built
+template<>
+struct BonfireAccessor<DS2_PlayerState>
+{
+    static void Collect(const DS2_PlayerState&, std::vector<uint32_t>&) {}
+};
+#endif
 
 // public template used by the managers
 

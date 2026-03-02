@@ -13,23 +13,34 @@
 #include <vector>
 #include <memory>
 
+// Portable wrapper for GCC/Clang's printf-style checking attribute.
+// On GNU compilers FORMAT_PRINTF(a,b) expands to
+// __attribute__((format(printf,a,b))), otherwise it is empty.
+//
+// To make the check fire at call sites we expose a plain varargs function
+// (`StringFormat`), which delegates to a va_list helper in Strings.cpp.
+// Templates don't work reliably for this purpose.
+//
+// Parameters are the 1-based index of the format string and the first
+// variadic argument.
+
+#if defined(__GNUC__)
+#  define FORMAT_PRINTF(a,b) __attribute__((format(printf,a,b)))
+#else
+#  define FORMAT_PRINTF(a,b)
+#endif
+
+// Public API. Definition in Strings.cpp uses va_list/vsnprintf.
+std::string StringFormat(const char* format, ...) FORMAT_PRINTF(1, 2);
+
 std::string BytesToHex(const std::vector<uint8_t>& Bytes);
 
 // Generates a hex editor style layout.
 std::string BytesToString(const std::vector<uint8_t>& Bytes, const std::string& LinePrefix);
 
-/** @todo */
-template<typename... Args>
-std::string StringFormat(const char* format, Args... args)
-{
-    size_t size = static_cast<size_t>(snprintf(nullptr, 0, format, args ...)) + 1; // Extra space for '\0'
-
-    std::unique_ptr<char[]> buffer(new char[size]);
-    snprintf(buffer.get(), size, format, args ...);
-
-
-    return std::string(buffer.get(), buffer.get() + size - 1); // We don't want the '\0' inside
-}
+// legacy implementation moved to cpp; see StringFormat in Strings.cpp
+// for the definition using va_list.  The templated version was removed because
+// it prevented the FORMAT_PRINTF attribute from being effective.
 
 std::string TrimString(const std::string& input);
 
