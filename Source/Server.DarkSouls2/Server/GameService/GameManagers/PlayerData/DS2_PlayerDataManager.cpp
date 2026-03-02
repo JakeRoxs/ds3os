@@ -13,7 +13,7 @@
 #include "Server/Streams/Frpg2ReliableUdpMessage.h"
 #include "Server/Streams/Frpg2ReliableUdpMessageStream.h"
 #include "Server/Streams/DS2_Frpg2ReliableUdpMessage.h"
-#include "Server/GameService//Utils/DS2_GameIds.h"
+#include "Server/GameService/Utils/DS2_GameIds.h"
 
 #include "Config/RuntimeConfig.h"
 #include "Server/Server.h"
@@ -21,6 +21,7 @@
 #include "Shared/Core/Utils/Logging.h"
 #include "Shared/Core/Utils/Strings.h"
 #include "Shared/Core/Utils/DiffTracker.h"
+#include "Shared/Core/Utils/PlayerDataUtils.h"
 
 #include "Shared/Core/Network/NetConnection.h"
 
@@ -140,117 +141,22 @@ MessageHandleResult DS2_PlayerDataManager::Handle_RequestUpdatePlayerStatus(Game
         return MessageHandleResult::Handled;
     }
 
-    // MergeFrom combines arrays, so we need to do some fuckyness here to handle this.
-    if (status.has_player_status() && status.player_status().played_areas_size() > 0)
-    {
-        State.GetPlayerStatus_Mutable().mutable_player_status()->clear_played_areas();
-    }
-    if (status.has_stats_info())
-    {
-        State.GetPlayerStatus_Mutable().mutable_stats_info()->clear_bonfire_levels();
-        State.GetPlayerStatus_Mutable().mutable_stats_info()->clear_phantom_type_count_6();
-        State.GetPlayerStatus_Mutable().mutable_stats_info()->clear_phantom_type_count_7();
-        State.GetPlayerStatus_Mutable().mutable_stats_info()->clear_phantom_type_count_8();
-        State.GetPlayerStatus_Mutable().mutable_stats_info()->clear_phantom_type_count_9();
-        State.GetPlayerStatus_Mutable().mutable_stats_info()->clear_unknown_11();
-        State.GetPlayerStatus_Mutable().mutable_stats_info()->clear_unlocked_bonfires();
-        State.GetPlayerStatus_Mutable().mutable_stats_info()->clear_unknown_21();
-    }
-    State.GetPlayerStatus_Mutable().MergeFrom(status);
+    MergePlayerStatusDelta(State, status);
 
-    // Keep track of the players character name, useful for logging.
-    if (State.GetPlayerStatus().player_status().has_name())
-    {
-        std::string NewCharacterName = State.GetPlayerStatus().player_status().name();
-        if (State.GetCharacterName() != NewCharacterName)
-        {
-            State.SetCharacterName(NewCharacterName);
+    // Keep track of the player's character name and rename connection if it changed.
+    RenameConnectionIfCharacterNameChanged(State, Client->shared_from_this());
 
-            std::string NewConnectionName = StringFormat("%i:%s", State.GetPlayerId(), State.GetCharacterName().c_str());
+    // Print a log and update area state.
+    HandleAreaChange(State, Client->shared_from_this());
 
-            LogS(Client->GetName().c_str(), "Renaming connection to '%s'.", NewConnectionName.c_str());
-
-            // Rename connection after this point as it easier to keep track of than ip:port pairs.
-            Client->Connection->Rename(NewConnectionName);
-        }
-    }
-
-    // Print a log if user has changed online location.
-    if (State.GetPlayerStatus().has_player_location())
-    {
-        DS2_OnlineAreaId AreaId = static_cast<DS2_OnlineAreaId>(State.GetPlayerStatus().player_location().online_area_id());
-        if (AreaId != State.GetCurrentArea() && AreaId != DS2_OnlineAreaId::None)
-        {
-            VerboseS(Client->GetName().c_str(), "User has entered '%s' (0x%08x)", GetEnumString(AreaId).c_str(), AreaId);
-            State.SetCurrentArea(AreaId);
-        }
-
-        if (State.GetPlayerStatus().player_location().has_online_activity_area_id())
-        {
-            int OnlineActivityAreaId = State.GetPlayerStatus().player_location().online_activity_area_id();
-            if (OnlineActivityAreaId != State.GetCurrentOnlineActivityArea())
-            {
-                VerboseS(Client->GetName().c_str(), "User has entered online activity area (0x%08x)", OnlineActivityAreaId);
-                State.SetCurrentOnlineActivityArea(OnlineActivityAreaId);
-            }
-        }
-
-//        LogS(Client->GetName().c_str(), "MapID:0x%08x CellId:0x%08x", State.GetPlayerStatus().player_location().unknown_3(), State.GetPlayerStatus().player_location().cell_id());
-    }
-
-    // Grab some matchmaking values.
-    if (State.GetPlayerStatus().has_player_status())
-    {
-        // Grab invadability state.
-        bool NewState = true;
-        if (State.GetPlayerStatus().player_status().sitting_at_bonfire() ||
-            State.GetPlayerStatus().player_status().human_effigy_burnt() || 
-            State.GetCurrentOnlineActivityArea() == 0)
-        {
-            NewState = false;
-        }
-
-        if (NewState != State.GetIsInvadable())
-        {
-            VerboseS(Client->GetName().c_str(), "User is now %s", NewState ? "invadable" : "no longer invadable");
-            State.SetIsInvadable(NewState);
-        }
-
-        // Grab soul level / weapon level.
-        if (State.GetPlayerStatus().player_status().has_soul_level())
-        {
-            State.SetSoulLevel(State.GetPlayerStatus().player_status().soul_level());
-        }
-    }
+    // Update matchmaking-related state (invadable, levels).
+    UpdateMatchmakingState(State);
 
     if (State.GetPlayerStatus().has_item_using_info() && 
         State.GetPlayerStatus().has_player_status() && 
         State.GetPlayerStatus().player_status().has_covenant())
     {
-        // Grab whatever visitor pool they should be in.
-        DS2_Frpg2RequestMessage::VisitorType NewVisitorPool = DS2_Frpg2RequestMessage::VisitorType::VisitorType_None;
-        if (State.GetPlayerStatus().item_using_info().has_guardians_seal() && 
-            State.GetPlayerStatus().item_using_info().guardians_seal() &&
-            State.GetPlayerStatus().player_status().covenant() == (int)DS2_CovenantId::Blue_Sentinels &&
-            State.GetCurrentOnlineActivityArea() != 0)
-        {
-            NewVisitorPool = DS2_Frpg2RequestMessage::VisitorType::VisitorType_BlueSentinels;
-        }
-        if (State.GetPlayerStatus().item_using_info().has_bell_keepers_seal() && 
-            State.GetPlayerStatus().item_using_info().bell_keepers_seal() &&
-            State.GetPlayerStatus().player_status().covenant() == (int)DS2_CovenantId::Bell_Keepers &&
-            // Belfry luna/sol id's
-            (State.GetCurrentOnlineActivityArea() == 0x18e3e || State.GetCurrentOnlineActivityArea() == 0x18d08))
-        {
-            NewVisitorPool = DS2_Frpg2RequestMessage::VisitorType::VisitorType_BellKeepers;
-        }
-        if (State.GetPlayerStatus().player_status().covenant() != (int)DS2_CovenantId::Rat_King_Covenant &&
-            // Doors of pharros area.
-            State.GetCurrentOnlineActivityArea() == 0x193f2)
-        {
-            NewVisitorPool = DS2_Frpg2RequestMessage::VisitorType::VisitorType_Rat;
-        }
-
+        auto NewVisitorPool = DetermineVisitorPool(State);
         if (NewVisitorPool != State.GetVisitorPool())
         {
             LogS(Client->GetName().c_str(), "User changed visitor pool to '%i'", (int)NewVisitorPool);
@@ -317,35 +223,8 @@ MessageHandleResult DS2_PlayerDataManager::Handle_RequestUpdatePlayerStatus(Game
 
 #endif
 
-    // Send discord notification when the user lights a bonfire.
-    if (State.GetPlayerStatus().has_stats_info())
-    {
-        std::vector<uint32_t>& litBonfires = State.GetLitBonfires_Mutable();
-
-        for (size_t i = 0; i < State.GetPlayerStatus().stats_info().unlocked_bonfires_size(); i++)
-        {
-            uint32_t bonfireId = State.GetPlayerStatus().stats_info().unlocked_bonfires(i);
-            if (auto Iter = std::find(litBonfires.begin(), litBonfires.end(), bonfireId); Iter == litBonfires.end())
-            {
-                if (State.GetHasInitialState())
-                {
-                    std::string BonfireName = GetEnumString<DS2_BonfireId>((DS2_BonfireId)bonfireId);
-
-                    LogS(Client->GetName().c_str(), "Has lit bonfire %i (%s).", bonfireId, BonfireName.c_str());
-
-                    if (!BonfireName.empty())
-                    {
-                        ServerInstance->SendDiscordNotice(Client->shared_from_this(), DiscordNoticeType::BonfireLit,
-                            StringFormat("Lit the '%s' bonfire.", BonfireName.c_str())
-                        );
-                    }
-                }
-
-                litBonfires.push_back(bonfireId);
-            }
-        }
-    }
-
+    // Process any bonfires that were lit since last status.
+    ProcessBonfires(State, ServerInstance, Client->shared_from_this());
     State.SetHasInitialState(true);
 
     return MessageHandleResult::Handled;

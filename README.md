@@ -1,8 +1,8 @@
 ![Dark Souls 3 - Open Server](./Resources/banner.png?raw=true)
 
-![GitHub license](https://img.shields.io/github/license/JakeRoxs/ds3os)
-![GitHub release](https://img.shields.io/github/release/JakeRoxs/ds3os)
-![GitHub downloads](https://img.shields.io/github/downloads/JakeRoxs/ds3os/total)
+![GitHub license](https://img.shields.io/github/license/jakeroxs/ds3os)
+![GitHub release](https://img.shields.io/github/release/jakeroxs/ds3os)
+![GitHub downloads](https://img.shields.io/github/downloads/jakeroxs/ds3os/total)
 
 
 <div align="center">
@@ -26,7 +26,7 @@ No, the server authenticates steam tickets. Please do not ask about piracy, stea
 FROM SOFTWARE deserves your support too for the excellent work they do, please buy their games if you can.
 
 # Where can I download it?
-Downloads are available on the github releases page - https://github.com/JakeRoxs/ds3os/releases
+Downloads are available on the github releases page - https://github.com/jakeroxs/ds3os/releases
 
 # How do I use it?
 Once built you should have a folder called Bin, there are 2 subfolders of relevance. Loader and Server. 
@@ -121,7 +121,7 @@ If the server is being hosted by yourself and the above doesn't solve your issue
 ## What do all the properties in the config file mean?
 The settings are all documented in the source code in this file, in future I'll write some more detailed documentation.
 
-https://github.com/JakeRoxs/ds3os/blob/main/Source/Server/Config/RuntimeConfig.h
+https://github.com/jakeroxs/ds3os/blob/main/Source/Server/Config/RuntimeConfig.h
 
 # How do I build it?
 Currently the project uses visual studio 2022 and C++17 for compilation.
@@ -134,11 +134,11 @@ Once generated the project files are stored in the intermediate folder, at this 
 
 ```sh
 # to build a package
-nix build github:JakeRoxs/ds3os
+nix build github:jakeroxs/ds3os
 # to run it directly
-nix run github:JakeRoxs/ds3os
+nix run github:jakeroxs/ds3os
 # to run master-server
-nix run github:JakeRoxs/ds3os#master-server
+nix run github:jakeroxs/ds3os#master-server
 ```
 
 The nix version stores the configs in `${XDG_CONFIG_HOME:-$HOME/.config}/ds3os`

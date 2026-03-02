@@ -1,6 +1,6 @@
 -------------------------------------------------------------------------
  Dark Souls - Open Server
- https://github.com/JakeRoxs/ds3os
+ https://github.com/jakeroxs/ds3os
 -------------------------------------------------------------------------
 
 Before running any executables, please install the files in Prerequisites 
@@ -8,7 +8,7 @@ first, these are C++ runtimes required to run the executables, without
 them they may not run.
 
 For up to date documentation please read the information on the github readme.
-https://github.com/JakeRoxs/ds3os
+https://github.com/jakeroxs/ds3os
 
 Contained within are 2 folders:
 

@@ -202,29 +202,35 @@ jobs:
       run: ls -R
 
     - name: Create GitHub release
-      uses: softprops/action-gh-release@v2
+      id: create_release
+      uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: v${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}
-        name: Release v${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}
+        release_name: Release v${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}
         body: Preview build, not officially supported yet.
         draft: false
         prerelease: true
 
     - name: Upload Windows ZIP
-      uses: softprops/action-gh-release@v2
+      uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: v${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}
-        files: windows-${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}.zip
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: windows-${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}.zip
+        asset_name: windows-${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}.zip
+        asset_content_type: application/zip
 
     - name: Upload Linux ZIP
-      uses: softprops/action-gh-release@v2
+      uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: v${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}
-        files: linux-${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}.zip
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: linux-${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}.zip
+        asset_name: linux-${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}.zip
+        asset_content_type: application/zip
+
         

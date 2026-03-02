@@ -56,7 +56,7 @@ let
         NIX_CFLAGS_COMPILE = [ "-Wno-format-security" "-Wno-non-pod-varargs" ];
 
         meta = {
-            homepage = "https://github.com/JakeRoxs/ds3os";
+            homepage = "https://github.com/jakeroxs/ds3os";
             license = licenses.mit;
             platforms = [ "x86_64-linux" ];
         };

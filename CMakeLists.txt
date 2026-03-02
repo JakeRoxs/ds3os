@@ -13,6 +13,11 @@ include(common)
 
 project(ds3os C CXX)
 
+# Always generate a compile_commands.json database for tools such as
+# the VS Code C/C++ extension.
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE BOOL "Export compile commands for IDEs" FORCE)
+
+
 add_subdirectory(Source)
 
 
