@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2021 The OpenSSL Project Authors. All Rights Reserved.
+ * Copyright 2019-2022 The OpenSSL Project Authors. All Rights Reserved.
  *
  * Licensed under the Apache License 2.0 (the "License").  You may not use
  * this file except in compliance with the License.  You can obtain a copy
@@ -150,6 +150,56 @@ static int field_tests_ecp_mont(void)
 }
 
 #ifndef OPENSSL_NO_EC2M
+/* Test that decoding of invalid GF2m field parameters fails. */
+static int ec2m_field_sanity(void)
+{
+    int ret = 0;
+    BN_CTX *ctx = BN_CTX_new();
+    BIGNUM *p, *a, *b;
+    EC_GROUP *group1 = NULL, *group2 = NULL, *group3 = NULL;
+
+    TEST_info("Testing GF2m hardening\n");
+
+    BN_CTX_start(ctx);
+    p = BN_CTX_get(ctx);
+    a = BN_CTX_get(ctx);
+    if (!TEST_ptr(b = BN_CTX_get(ctx))
+        || !TEST_true(BN_one(a))
+        || !TEST_true(BN_one(b)))
+        goto out;
+
+    /* Even pentanomial value should be rejected */
+    if (!TEST_true(BN_set_word(p, 0xf2)))
+        goto out;
+    if (!TEST_ptr_null(group1 = EC_GROUP_new_curve_GF2m(p, a, b, ctx)))
+        TEST_error("Zero constant term accepted in GF2m polynomial");
+
+    /* Odd hexanomial should also be rejected */
+    if (!TEST_true(BN_set_word(p, 0xf3)))
+        goto out;
+    if (!TEST_ptr_null(group2 = EC_GROUP_new_curve_GF2m(p, a, b, ctx)))
+        TEST_error("Hexanomial accepted as GF2m polynomial");
+
+    /* Excessive polynomial degree should also be rejected */
+    if (!TEST_true(BN_set_word(p, 0x71))
+        || !TEST_true(BN_set_bit(p, OPENSSL_ECC_MAX_FIELD_BITS + 1)))
+        goto out;
+    if (!TEST_ptr_null(group3 = EC_GROUP_new_curve_GF2m(p, a, b, ctx)))
+        TEST_error("GF2m polynomial degree > %d accepted",
+                   OPENSSL_ECC_MAX_FIELD_BITS);
+
+    ret = group1 == NULL && group2 == NULL && group3 == NULL;
+
+ out:
+    EC_GROUP_free(group1);
+    EC_GROUP_free(group2);
+    EC_GROUP_free(group3);
+    BN_CTX_end(ctx);
+    BN_CTX_free(ctx);
+
+    return ret;
+}
+
 /* test EC_GF2m_simple_method directly */
 static int field_tests_ec2_simple(void)
 {
@@ -181,6 +231,39 @@ static int field_tests_default(int n)
     if (ctx != NULL)
         BN_CTX_free(ctx);
     return ret;
+}
+
+/*
+ * Tests behavior of the EC_KEY_set_private_key
+ */
+static int set_private_key(void)
+{
+    EC_KEY *key = NULL, *aux_key = NULL;
+    int testresult = 0;
+
+    key = EC_KEY_new_by_curve_name(NID_secp224r1);
+    aux_key = EC_KEY_new_by_curve_name(NID_secp224r1);
+    if (!TEST_ptr(key)
+        || !TEST_ptr(aux_key)
+        || !TEST_int_eq(EC_KEY_generate_key(key), 1)
+        || !TEST_int_eq(EC_KEY_generate_key(aux_key), 1))
+        goto err;
+
+    /* Test setting a valid private key */
+    if (!TEST_int_eq(EC_KEY_set_private_key(key, aux_key->priv_key), 1))
+        goto err;
+
+    /* Test compliance with legacy behavior for NULL private keys */
+    if (!TEST_int_eq(EC_KEY_set_private_key(key, NULL), 0)
+        || !TEST_ptr_null(key->priv_key))
+        goto err;
+
+    testresult = 1;
+
+ err:
+    EC_KEY_free(key);
+    EC_KEY_free(aux_key);
+    return testresult;
 }
 
 /*
@@ -334,9 +417,11 @@ int setup_tests(void)
     ADD_TEST(field_tests_ecp_simple);
     ADD_TEST(field_tests_ecp_mont);
 #ifndef OPENSSL_NO_EC2M
+    ADD_TEST(ec2m_field_sanity);
     ADD_TEST(field_tests_ec2_simple);
 #endif
     ADD_ALL_TESTS(field_tests_default, crv_len);
+    ADD_TEST(set_private_key);
     ADD_TEST(decoded_flag_test);
     ADD_ALL_TESTS(ecpkparams_i2d2i_test, crv_len);
 

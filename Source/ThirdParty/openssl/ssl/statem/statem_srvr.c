@@ -1,5 +1,5 @@
 /*
- * Copyright 1995-2021 The OpenSSL Project Authors. All Rights Reserved.
+ * Copyright 1995-2022 The OpenSSL Project Authors. All Rights Reserved.
  * Copyright (c) 2002, Oracle and/or its affiliates. All rights reserved
  * Copyright 2005 Nokia. All rights reserved.
  *
@@ -2403,9 +2403,8 @@ int tls_construct_server_hello(SSL *s, WPACKET *pkt)
      * so the following won't overwrite an ID that we're supposed
      * to send back.
      */
-    if (s->session->not_resumable ||
-        (!(s->ctx->session_cache_mode & SSL_SESS_CACHE_SERVER)
-         && !s->hit))
+    if (!(s->ctx->session_cache_mode & SSL_SESS_CACHE_SERVER)
+         && !s->hit)
         s->session->session_id_length = 0;
 
     if (usetls13) {
@@ -3820,15 +3819,24 @@ int tls_construct_server_certificate(SSL *s, WPACKET *pkt)
 static int create_ticket_prequel(SSL *s, WPACKET *pkt, uint32_t age_add,
                                  unsigned char *tick_nonce)
 {
+    uint32_t timeout = (uint32_t)s->session->timeout;
+
     /*
-     * Ticket lifetime hint: For TLSv1.2 this is advisory only and we leave this
-     * unspecified for resumed session (for simplicity).
+     * Ticket lifetime hint:
      * In TLSv1.3 we reset the "time" field above, and always specify the
-     * timeout.
+     * timeout, limited to a 1 week period per RFC8446.
+     * For TLSv1.2 this is advisory only and we leave this unspecified for
+     * resumed session (for simplicity).
      */
-    if (!WPACKET_put_bytes_u32(pkt,
-                               (s->hit && !SSL_IS_TLS13(s))
-                               ? 0 : s->session->timeout)) {
+#define ONE_WEEK_SEC (7 * 24 * 60 * 60)
+
+    if (SSL_IS_TLS13(s)) {
+        if (s->session->timeout > ONE_WEEK_SEC)
+            timeout = ONE_WEEK_SEC;
+    } else if (s->hit)
+        timeout = 0;
+
+    if (!WPACKET_put_bytes_u32(pkt, timeout)) {
         SSLfatal(s, SSL_AD_INTERNAL_ERROR, SSL_F_CREATE_TICKET_PREQUEL,
                  ERR_R_INTERNAL_ERROR);
         return 0;

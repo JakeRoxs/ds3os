@@ -27,7 +27,12 @@ while (<FD>) {
         $beta    = $ver & 0xf;
         $version = "$v1.$v2.$v3";
         if ( $beta == 0xf ) {
-            $version .= chr( ord('a') + $v4 - 1 ) if ($v4);
+            if ( $v4 < 26 ) {
+		$version .= chr( ord('a') + $v4 - 1 );
+	    }
+	    else {
+		$version .= 'z' . chr( ord('a') + $v4 - 26 );
+	    }
         } elsif ( $beta == 0 ) {
             $version .= "-dev";
         } else {
