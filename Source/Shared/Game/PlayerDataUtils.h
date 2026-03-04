@@ -108,6 +108,7 @@ inline void RenameConnectionIfCharacterNameChanged(PlayerStateType& state,
 template<typename PlayerState> struct BonfireEnumFor;
 
 // forward-declare the actual enum types used by the two games.
+enum class DS2_BonfireId : int;
 enum class DS3_BonfireId : int;
 
 
