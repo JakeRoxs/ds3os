@@ -27,7 +27,7 @@ struct StubHook : public Hook
         return "StubHook";
     }
 
-    DWORD InstallErrorCode = ERROR_SUCCESS;
+    HookError InstallErrorCode = HookError::Success;
     bool Installed = false;
     bool Uninstalled = false;
 };
@@ -59,7 +59,7 @@ struct SearchCallbackHook : public Hook
         return "SearchCallbackHook";
     }
 
-    DWORD InstallErrorCode = ERROR_SUCCESS;
+    HookError InstallErrorCode = HookError::Success;
     bool Installed = false;
     bool Uninstalled = false;
 
