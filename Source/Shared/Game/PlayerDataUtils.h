@@ -5,6 +5,7 @@
 
 #include "Server/Server.h"
 #include "Server/GameService/GameClient.h"
+#include "Shared/Core/Network/NetConnection.h"
 
 // forward declarations for the two game player-state types;
 // concrete headers are included in the files that instantiate templates.
