@@ -37,15 +37,19 @@ var ShardingAllowList = (function()
     const env = process.env.SHARDING_ALLOWLIST;
     if (!env || env.trim().length === 0)
     {
-        return defaults;
+        const list = defaults;
+        console.log(`Sharding allowlist (default): ${list.join(', ')}`);
+        return list;
     }
 
     const envEntries = env.split(',')
         .map(s => s.trim().toLowerCase())
         .filter(Boolean);
 
-    // Merge defaults + env list (deduped)
-    return Array.from(new Set(defaults.concat(envEntries)));
+    // Env overrides defaults entirely (no merge) so that users can fully control what is allowed.
+    const list = envEntries;
+    console.log(`Sharding allowlist (env override): ${list.join(', ')}`);
+    return list;
 })();
 
 var GOldestSupportedVersion = 2;
@@ -152,6 +156,11 @@ function AddServer(Id, IpAddress, hostname, private_hostname, description, name,
     {
         console.log(`Dropped server, marked to allow sharding but not whitelisted: id=${Id} ip=${IpAddress} port=${port} type=${game_type} name=${name}`);
         return;
+    }
+
+    if (allow_sharding)
+    {
+        console.log(`Sharding enabled & allowed for server: id=${Id} hostname=${hostname} ip=${IpAddress} port=${port} type=${game_type} name=${name}`);
     }
 
     if (IsServerFilter(ServerObj))
