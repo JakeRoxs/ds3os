@@ -27,9 +27,26 @@ var GCensors = [
 ];
 
 // List of public hostnames that are allowed to mark their servers as supporting sharding.
-var ShardingAllowList = [
-    "172.105.11.166"
-];
+// This can be overridden via the SHARDING_ALLOWLIST environment variable (comma-separated).
+var ShardingAllowList = (function()
+{
+    const defaults = [
+        "172.105.11.166"
+    ];
+
+    const env = process.env.SHARDING_ALLOWLIST;
+    if (!env || env.trim().length === 0)
+    {
+        return defaults;
+    }
+
+    const envEntries = env.split(',')
+        .map(s => s.trim().toLowerCase())
+        .filter(Boolean);
+
+    // Merge defaults + env list (deduped)
+    return Array.from(new Set(defaults.concat(envEntries)));
+})();
 
 var GOldestSupportedVersion = 2;
 
@@ -133,7 +150,7 @@ function AddServer(Id, IpAddress, hostname, private_hostname, description, name,
 
     if (!IsServerAllowedToShard(ServerObj) && allow_sharding)
     {
-        console.log(`Dropped server, marked to allow sharding but not whitelsited: id=${Id} ip=${IpAddress} port=${port} type=${game_type} name=${name}`);
+        console.log(`Dropped server, marked to allow sharding but not whitelisted: id=${Id} ip=${IpAddress} port=${port} type=${game_type} name=${name}`);
         return;
     }
 
@@ -231,7 +248,7 @@ router.get('/', async (req, res) => {
 });
 
 // @route POST api/v1/servers/:id/public_key
-// @description Get the public kley of a given server.
+// @description Get the public key of a given server.
 // @access Public
 router.post('/:id/public_key', async (req, res) => { 
     if (!('password' in req.body))

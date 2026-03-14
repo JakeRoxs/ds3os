@@ -1,17 +1,37 @@
 services:
-  dsos-server:
-    image: jakeroxs/ds3os:latest
-    container_name: dsos-server
+  dsos-server-ds3:
+    image: jakeroxs/ds3os:latest        # For Dark Souls 3 server
+    container_name: dsos-server-ds3
     ports:
       - "50000:50000/udp"   # auth
       - "50010:50010/udp"   # game
       - "50050:50050/udp"   # login
       - "50005:50005"     # admin WebUI
     volumes:
-      - ./Saved:/opt/ds3os/Saved
-    environment:
-      # Enable sharding mode
-      - SUPPORT_SHARDING=true
+      - ./Saved-ds3:/opt/ds3os/Saved
+    # Uncomment to enable sharding mode:
+    # environment:
+    #  - SUPPORT_SHARDING=true
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL","curl -fsS http://localhost:50005/ || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  dsos-server-ds2:                   # For Dark Souls 2 server
+    image: jakeroxs/ds2os:latest
+    container_name: dsos-server-ds2
+    ports:
+      - "51000:50000/udp"   # auth
+      - "51010:50010/udp"   # game
+      - "51050:50050/udp"   # login
+      - "51005:50005"       # admin WebUI
+    volumes:
+      - ./Saved-ds2:/opt/ds2os/Saved
+    # Uncomment to enable sharding mode:
+    # environment:
+    #  - SUPPORT_SHARDING=true
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL","curl -fsS http://localhost:50005/ || exit 1"]
@@ -24,6 +44,9 @@ services:
   #   container_name: dsos-master
   #   ports:
   #     - "50020:50020"
+  #   environment:
+  #     # Comma-separated list of hostnames/IPs that are allowed to report sharding.
+  #     - SHARDING_ALLOWLIST=192.168.1.50,192.168.1.51
   #   restart: unless-stopped
   #   healthcheck:
   #     test: ["CMD-SHELL","curl -fsS http://localhost:50020/api/v1/servers || exit 1"]
