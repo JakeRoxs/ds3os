@@ -188,6 +188,9 @@ jobs:
       contents: write
 
     steps:
+    - name: Checkout repository
+      uses: actions/checkout@v6
+
     - name: Download windows artifact
       id: download-windows-artifact
       uses: actions/download-artifact@v8
@@ -202,9 +205,6 @@ jobs:
 
     - name: Display artifacts
       run: ls -R
-
-    - name: Checkout repository
-      uses: actions/checkout@v6
 
     - name: Publish release via GitHub CLI
       env:
