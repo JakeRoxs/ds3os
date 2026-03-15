@@ -81,7 +81,7 @@ jobs:
         # your codebase is analyzed, see https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/codeql-code-scanning-for-compiled-languages
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     # Compute a stable cache key based on source/CI files (including this workflow).
     # This avoids running hashFiles twice and ensures cache invalidation when the workflow changes.
@@ -92,7 +92,7 @@ jobs:
 
     # Cache CodeQL database + trap caches across runs to avoid rebuilding the DB from scratch.
     - name: Cache CodeQL database + trap caches
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         path: |
           ${{ runner.temp }}/codeql_databases
@@ -104,7 +104,7 @@ jobs:
     # Cache the CodeQL autobuild working directory for C/C++ to avoid rebuilding from scratch.
     - name: Cache CodeQL autobuild directory
       if: matrix.language == 'c-cpp'
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         path: _codeql_build_dir
         key: codeql-cpp-autobuild-${{ runner.os }}-${{ steps.cachekey.outputs.SOURCE_HASH }}
