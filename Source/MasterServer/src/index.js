@@ -31,7 +31,19 @@ const limiter = rateLimit({
 });
 
 const corsOptions = {
-	origin: config.corsOrigin,
+	origin: (origin, callback) => {
+		// Allow requests with no Origin (curl, server-to-server, same-origin).
+		if (!origin) return callback(null, true);
+
+		// When configured with '*', allow any origin (open CORS policy).
+		if (config.corsOrigins.includes('*')) return callback(null, '*');
+
+		if (config.corsOrigins.includes(origin)) {
+			return callback(null, origin);
+		}
+
+		callback(new Error('Not allowed by CORS'));
+	},
 	optionsSuccessStatus: 200,
 };
 

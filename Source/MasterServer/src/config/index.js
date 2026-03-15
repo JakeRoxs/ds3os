@@ -26,11 +26,38 @@ const serverTimeoutMs = (() => {
 	return parsePositiveInt(env, fileConfig.server_timeout_ms);
 })();
 
-const corsOrigin = (process.env.MASTER_SERVER_CORS_ORIGIN || fileConfig.cors_origin || '*');
+/**
+ * Parse a configured CORS origin list.
+ *
+ * The configuration can be provided as:
+ * - An array of origins (from JSON config)
+ * - A comma-separated string of origins (from ENV)
+ *
+ * Returns a clean array of non-empty trimmed origins.
+ */
+function parseCorsOrigins(value) {
+	if (!value) return [];
+	if (Array.isArray(value)) {
+		return value
+			.map((v) => (v || '').toString().trim())
+			.filter(Boolean);
+	}
+	return value
+		.toString()
+		.split(',')
+		.map((s) => s.trim())
+		.filter(Boolean);
+}
+
+const corsOrigins = (() => {
+	const env = process.env.MASTER_SERVER_CORS_ORIGINS;
+	const fileCorsOrigins = fileConfig.cors_origins;
+	return parseCorsOrigins(env ?? fileCorsOrigins);
+})();
 
 module.exports = {
 	port,
 	pollIntervalMs,
 	serverTimeoutMs,
-	corsOrigin,
+	corsOrigins,
 };

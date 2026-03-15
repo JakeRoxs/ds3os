@@ -423,7 +423,6 @@ function getStatus() {
 	pruneStaleServers();
 	return {
 		activeServerCount: activeServers.size,
-		serverTimeoutMs: serverTimeoutMs,
 		uptime: formatDuration(process.uptime() * 1000),
 		shardingAllowList: shardingAllowList,
 		filters: filters,

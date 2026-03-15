@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<title>DS3OS Master Server</title>
+	<title>DSOS Master Server</title>
 	<style>
 		:root {
-			--bg: #0a0e17;
+			--bg: radial-gradient(circle at top, rgba(255,108,61,0.22) 0%, transparent 45%),
+				linear-gradient(195deg, rgba(7, 10, 18, 1) 0%, rgba(14, 18, 34, 1) 55%, rgba(5, 8, 16, 1) 100%);
 			--card: rgba(255, 255, 255, 0.08);
 			--card-border: rgba(255, 255, 255, 0.12);
 			--text: #e6edf7;
@@ -18,7 +19,8 @@
 		}
 
 		.light {
-			--bg: #f5f7ff;
+			--bg: radial-gradient(circle at top, rgba(255, 255, 255, 0.6) 0%, transparent 45%),
+				linear-gradient(195deg, rgba(248, 250, 255, 1) 0%, rgba(240, 243, 255, 1) 55%, rgba(245, 247, 255, 1) 100%);
 			--card: rgba(12, 16, 24, 0.06);
 			--card-border: rgba(20, 26, 38, 0.14);
 			--text: #0f172a;
@@ -32,8 +34,7 @@
 		body {
 			margin: 0;
 			min-height: 100vh;
-			background: radial-gradient(circle at top, rgba(255,108,61,0.22) 0%, transparent 45%),
-				linear-gradient(195deg, rgba(7, 10, 18, 1) 0%, rgba(14, 18, 34, 1) 55%, rgba(5, 8, 16, 1) 100%);
+			background: var(--bg);
 			color: var(--text);
 			font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 		}
@@ -211,11 +212,11 @@
 </head>
 <body>
 	<header>
-		<h1>DS3OS Master Server</h1>
-		<p class="subtitle">A lightweight public dashboard for self-hosted or community master server instances.</p>
+		<h1>DSOS Master Server</h1>
+		<p class="subtitle">Master server status dashboard</p>
 		<button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle light/dark theme">
 			<span class="sr-only">Toggle light/dark theme</span>
-			<span aria-hidden="true">🌙</span>
+			<span id="themeToggleIcon" aria-hidden="true">🌙</span>
 		</button>
 	</header>
 
@@ -228,21 +229,9 @@
 			</article>
 
 			<article class="card">
-				<p class="label">Server port</p>
-				<p class="value" id="serverPort"><%= port %></p>
-				<small>Listening for incoming requests</small>
-			</article>
-
-			<article class="card">
 				<p class="label">Uptime</p>
 				<p class="value" id="uptime"><%= uptime %></p>
 				<small>Since process start</small>
-			</article>
-
-			<article class="card">
-				<p class="label">Timeout</p>
-				<p class="value" id="timeoutMs"><%= status.serverTimeoutMs %>ms</p>
-				<small>Inactive servers are purged after this window.</small>
 			</article>
 		</div>
 
@@ -261,15 +250,17 @@
 		const getTheme = () => localStorage.getItem(THEME_KEY) || 'dark';
 		const setTheme = (theme) => {
 			document.documentElement.classList.toggle('light', theme === 'light');
-			const icon = button.querySelector('[aria-hidden="true"]');
+			const icon = document.getElementById('themeToggleIcon');
 			if (icon) icon.textContent = theme === 'light' ? '☀️' : '🌙';
-			button.setAttribute('aria-label', theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
+			if (button) button.setAttribute('aria-label', theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
 			localStorage.setItem(THEME_KEY, theme);
 		};
 
-		button.addEventListener('click', () => {
-			setTheme(getTheme() === 'light' ? 'dark' : 'light');
-		});
+		if (button) {
+			button.addEventListener('click', () => {
+				setTheme(getTheme() === 'light' ? 'dark' : 'light');
+			});
+		}
 
 		const POLL_INTERVAL_MS = (() => {
 			const raw = document.getElementById('dashboard-config')?.textContent;
@@ -308,7 +299,6 @@
 		const updateStats = (data) => {
 			setTextIfExists('activeCount', data.activeServerCount);
 			setTextIfExists('uptime', data.uptime);
-			setTextIfExists('timeoutMs', `${data.serverTimeoutMs}ms`);
 			renderBadge('badgeAllowlist', 'Sharding allowlist', data.shardingAllowList);
 			renderBadge('badgeFilters', 'Filters', data.filters);
 			renderBadge('badgeCensors', 'Censors', data.censors);
