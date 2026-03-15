@@ -15,7 +15,7 @@ RUN sed -i 's/\r$//' ./generate_make_release.sh && \
 WORKDIR /build
 RUN cd intermediate/make && make -j$(nproc || echo 4)
 
-FROM steamcmd/steamcmd:latest@sha256:a367891bf4a266d05a6c704fc94149548474c304ea739c78c3047ac7431de6ab AS steam
+FROM steamcmd/steamcmd:latest@sha256:e5d7e8acdef9d99dbeff206df05b3762d3108a5ce58315be488ae199abca7b09 AS steam
 
 # Make steamcmd download steam client libraries so we can copy them later.
 RUN steamcmd +login anonymous +quit
