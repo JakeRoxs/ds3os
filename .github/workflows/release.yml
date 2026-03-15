@@ -147,7 +147,7 @@ jobs:
         image:
           - context: ./Source/MasterServer
             file: ./Source/MasterServer/Dockerfile
-            tag: ds3os-master:latest
+            tag: dsos-master:latest
           - context: .
             file: ./DarkSouls3.Dockerfile
             tag: ds3os:latest
@@ -176,7 +176,9 @@ jobs:
         file: ${{ matrix.image.file }}
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.image.tag }}
-        no-cache: ${{ matrix.image.tag != 'ds3os-master:latest' }}
+        # Enable BuildKit cache storage between workflow runs
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
                                   
   make-release:
     name: Make Release
@@ -186,6 +188,9 @@ jobs:
       contents: write
 
     steps:
+    - name: Checkout repository
+      uses: actions/checkout@v6
+
     - name: Download windows artifact
       id: download-windows-artifact
       uses: actions/download-artifact@v8
@@ -201,30 +206,22 @@ jobs:
     - name: Display artifacts
       run: ls -R
 
-    - name: Create GitHub release
-      uses: softprops/action-gh-release@v2
+    - name: Publish release via GitHub CLI
       env:
+        VERSION_TAG: v${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: v${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}
-        name: Release v${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}
-        body: Preview build, not officially supported yet.
-        draft: false
-        prerelease: true
+      run: |
+        if gh release view "$VERSION_TAG" >/dev/null 2>&1; then
+          echo "Release $VERSION_TAG already exists, will upload assets."
+        else
+          gh release create "$VERSION_TAG" \
+            --title "Release $VERSION_TAG" \
+            --notes "Preview build" \
+            --draft=false --prerelease=true
+        fi
+        gh release upload "$VERSION_TAG" \
+          windows-${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}.zip \
+          linux-${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}.zip
 
-    - name: Upload Windows ZIP
-      uses: softprops/action-gh-release@v2
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: v${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}
-        files: windows-${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}.zip
 
-    - name: Upload Linux ZIP
-      uses: softprops/action-gh-release@v2
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: v${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}
-        files: linux-${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}.zip
         

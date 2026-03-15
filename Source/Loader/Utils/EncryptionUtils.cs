@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Dark Souls 3 - Open Server
  * Copyright (C) 2021 Tim Leonard
  *
@@ -15,90 +15,90 @@ using System.Threading.Tasks;
 
 namespace Loader
 {
-    public static class EncryptionUtils
+  public static class EncryptionUtils
+  {
+    const int TEA_BLOCK_SIZE = 8;
+
+    // All this is super inefficient, should be rewritten when time allows.
+
+    public static byte[] Tea32Encrypt(byte[] data, uint[] key)
     {
-        const int TEA_BLOCK_SIZE = 8;
+      int length_rounded_to_block_size = ((data.Length + (TEA_BLOCK_SIZE - 1)) / TEA_BLOCK_SIZE) * TEA_BLOCK_SIZE;
 
-        // All this is super inefficient, should be rewritten when time allows.
+      byte[] output = new byte[length_rounded_to_block_size];
 
-        public static byte[] Tea32Encrypt(byte[] data, uint[] key)
-        {
-            int length_rounded_to_block_size = ((data.Length + (TEA_BLOCK_SIZE - 1)) / TEA_BLOCK_SIZE) * TEA_BLOCK_SIZE;
+      for (int block_offset = 0; block_offset < data.Length; block_offset += TEA_BLOCK_SIZE)
+      {
+        Tea32EncryptBlock(data, block_offset, output, block_offset, key);
+      }
 
-            byte[] output = new byte[length_rounded_to_block_size];
+      return output;
+    }
 
-            for (int block_offset = 0; block_offset < data.Length; block_offset += TEA_BLOCK_SIZE)
-            {
-                Tea32EncryptBlock(data, block_offset, output, block_offset, key);
-            }
+    public static byte[] Tea32Decrypt(byte[] data, uint[] key)
+    {
+      byte[] output = new byte[data.Length];
 
-            return output;
-        }
+      for (int block_offset = 0; block_offset < data.Length; block_offset += TEA_BLOCK_SIZE)
+      {
+        Tea32DecryptBlock(data, block_offset, output, block_offset, key);
+      }
 
-        public static byte[] Tea32Decrypt(byte[] data, uint[] key)
-        {
-            byte[] output = new byte[data.Length];
+      return output;
+    }
 
-            for (int block_offset = 0; block_offset < data.Length; block_offset += TEA_BLOCK_SIZE)
-            {
-                Tea32DecryptBlock(data, block_offset, output, block_offset, key);
-            }
-
-            return output;
-        }
-
-        public static void Tea32EncryptBlock(byte[] input, int input_offset, byte[] output, int output_offset, uint[] key)
-        {
-            uint[] v = {
+    public static void Tea32EncryptBlock(byte[] input, int input_offset, byte[] output, int output_offset, uint[] key)
+    {
+      uint[] v = {
                 input_offset + 4 > input.Length ? 0 : BitConverter.ToUInt32(input, input_offset),
                 input_offset + 8 > input.Length ? 0 : BitConverter.ToUInt32(input, input_offset + 4)
             };
 
-            uint v0 = v[0], v1 = v[1], sum = 0, i;
-            uint delta = 0x9E3779B9;
-            uint k0 = key[0], k1 = key[1], k2 = key[2], k3 = key[3];
-            for (i = 0; i < 32; i++)
-            {
-                sum += delta;
-                v0 += ((v1 << 4) + k0) ^ (v1 + sum) ^ ((v1 >> 5) + k1);
-                v1 += ((v0 << 4) + k2) ^ (v0 + sum) ^ ((v0 >> 5) + k3);
-            }
-            v[0] = v0; v[1] = v1;
+      uint v0 = v[0], v1 = v[1], sum = 0, i;
+      uint delta = 0x9E3779B9;
+      uint k0 = key[0], k1 = key[1], k2 = key[2], k3 = key[3];
+      for (i = 0; i < 32; i++)
+      {
+        sum += delta;
+        v0 += ((v1 << 4) + k0) ^ (v1 + sum) ^ ((v1 >> 5) + k1);
+        v1 += ((v0 << 4) + k2) ^ (v0 + sum) ^ ((v0 >> 5) + k3);
+      }
+      v[0] = v0; v[1] = v1;
 
-            ToBytes(v0, output, output_offset);
-            ToBytes(v1, output, output_offset + 4);
-        }
+      ToBytes(v0, output, output_offset);
+      ToBytes(v1, output, output_offset + 4);
+    }
 
-        public static void Tea32DecryptBlock(byte[] input, int input_offset, byte[] output, int output_offset, uint[] key)
-        {
-            uint[] v = { 
-                BitConverter.ToUInt32(input, input_offset), 
-                BitConverter.ToUInt32(input, input_offset + 4) 
+    public static void Tea32DecryptBlock(byte[] input, int input_offset, byte[] output, int output_offset, uint[] key)
+    {
+      uint[] v = {
+                BitConverter.ToUInt32(input, input_offset),
+                BitConverter.ToUInt32(input, input_offset + 4)
             };
 
-            uint v0 = v[0], v1 = v[1], sum = 0xC6EF3720, i;
-            uint delta = 0x9E3779B9;
-            uint k0 = key[0], k1 = key[1], k2 = key[2], k3 = key[3];  
-            for (i = 0; i < 32; i++)
-            {
-                v1 -= ((v0 << 4) + k2) ^ (v0 + sum) ^ ((v0 >> 5) + k3);
-                v0 -= ((v1 << 4) + k0) ^ (v1 + sum) ^ ((v1 >> 5) + k1);
-                sum -= delta;
-            }
+      uint v0 = v[0], v1 = v[1], sum = 0xC6EF3720, i;
+      uint delta = 0x9E3779B9;
+      uint k0 = key[0], k1 = key[1], k2 = key[2], k3 = key[3];
+      for (i = 0; i < 32; i++)
+      {
+        v1 -= ((v0 << 4) + k2) ^ (v0 + sum) ^ ((v0 >> 5) + k3);
+        v0 -= ((v1 << 4) + k0) ^ (v1 + sum) ^ ((v1 >> 5) + k1);
+        sum -= delta;
+      }
 
-            ToBytes(v0, output, output_offset);
-            ToBytes(v1, output, output_offset + 4);
-        }
+      ToBytes(v0, output, output_offset);
+      ToBytes(v1, output, output_offset + 4);
+    }
 
-        // Faster inplace version of BitCoverter.ToBytes
-        static unsafe void ToBytes(uint value, byte[] array, int offset)
-        {
-            fixed (byte* ptr = &array[offset])
-                *(uint*)ptr = value;
-        }
+    // Faster inplace version of BitCoverter.ToBytes
+    static unsafe void ToBytes(uint value, byte[] array, int offset)
+    {
+      fixed (byte* ptr = &array[offset])
+        *(uint*)ptr = value;
+    }
 
-        // Just for testing remove.
-        public static byte[] RetailServerInfoBlob = new byte[] {
+    // Just for testing remove.
+    public static byte[] RetailServerInfoBlob = new byte[] {
                0x40,
                0x77,
                0x0c,
@@ -1168,5 +1168,5 @@ namespace Loader
                 0x27,
                 0xca,*/
         };
-    }
+  }
 }

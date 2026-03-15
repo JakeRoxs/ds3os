@@ -16,12 +16,58 @@
 
 void main();
 
+// DllMain can request injector shutdown when the DLL is unloaded.
+// This uses a shared shutdown signal rather than global singleton state.
+
+// Scope that allocates a console and redirects stdin/stdout/stderr so logs
+// and printf output are visible during injection.
+struct ConsoleScope
+{
+    ConsoleScope()
+    {
+        FILE* dummy;
+        if (!AllocConsole())
+        {
+            // Continue without a console; output may not be visible.
+            OutputDebugStringA("ds3os: failed to allocate console\n");
+            return;
+        }
+
+        if (errno_t Err = freopen_s(&dummy, "CONIN$", "r", stdin); Err != 0)
+        {
+            Error("Failed to redirect stdin to console (error=%d)", Err);
+            OutputDebugStringA("ds3os: failed to redirect stdin to console\n");
+        }
+        if (errno_t Err = freopen_s(&dummy, "CONOUT$", "w", stderr); Err != 0)
+        {
+            Error("Failed to redirect stderr to console (error=%d)", Err);
+            OutputDebugStringA("ds3os: failed to redirect stderr to console\n");
+        }
+        if (errno_t Err = freopen_s(&dummy, "CONOUT$", "w", stdout); Err != 0)
+        {
+            Error("Failed to redirect stdout to console (error=%d)", Err);
+            OutputDebugStringA("ds3os: failed to redirect stdout to console\n");
+        }
+    }
+
+    ~ConsoleScope()
+    {
+        FreeConsole();
+    }
+};
+
 BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)
 {
     switch (fdwReason)
     {
     case DLL_PROCESS_ATTACH:
         CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)main, NULL, 0, NULL);
+        break;
+
+    case DLL_PROCESS_DETACH:
+        // If the injector is still running when the DLL is unloaded (e.g. game exit),
+        // request a clean shutdown so we can uninstall hooks gracefully.
+        InjectorShutdown::RequestShutdown();
         break;
     }
 
@@ -30,12 +76,8 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)
 
 void main()
 {
-    // Alloc a new console and redirect standard IO to it.
-    FILE* dummy;
-    AllocConsole();
-    freopen_s(&dummy, "CONIN$", "r", stdin);
-    freopen_s(&dummy, "CONOUT$", "w", stderr);
-    freopen_s(&dummy, "CONOUT$", "w", stdout);
+    // Allocate a console for output (useful when running in a GUI process).
+    ConsoleScope consoleScope;
 
     Log(R"--(    ____             __      _____             __    )--");
     Log(R"--(   / __ \____ ______/ /__   / ___/____  __  __/ /____)--");
@@ -48,33 +90,39 @@ void main()
     Log(R"--(\____/ .___/\___/_/ /_/   /____/\___/_/    |___/\___/_/       )--");
     Log(R"--(    /_/                                                       )--");
     Log("");
-    Log("https://github.com/tleonarduk/ds3os");
+    Log("https://github.com/jakeroxs/ds3os");
     Log("");
 
-    if (!PlatformInit())
+    struct PlatformScope
+    {
+        bool Initialized;
+        PlatformScope() : Initialized(PlatformInit()) {}
+        ~PlatformScope() { if (Initialized) PlatformTerm(); }
+    } platformScope;
+
+    if (!platformScope.Initialized)
     {
         Error("Failed to initialize platform specific functionality.");
-        return;
+        MessageBoxA(nullptr, "Failed to initialize DS3OS platform components.\n\nGame will now be terminated to avoid playing on a partially patched game which may trigger bans.", "DS3OS Error", MB_OK|MB_ICONEXCLAMATION);
+        std::abort();
     }
 
     Injector InjectorInstance;
+
     if (!InjectorInstance.Init())
     {
         Error("Injector failed to initialize.");
         MessageBoxA(nullptr, "Failed to initialize DS3OS.\n\nGame will now be terminated to avoid playing on a partially patched game which may trigger bans.", "DS3OS Error", MB_OK|MB_ICONEXCLAMATION);
         std::abort();
-        return;
     }
+
+    // DllMain may already have requested shutdown before we start the loop.
+    // InjectorShutdown is a global signal; no further action is required here.
+
     InjectorInstance.RunUntilQuit();
     if (!InjectorInstance.Term())
     {
         Error("Injector failed to terminate.");
-        return;
-    }
-
-    if (!PlatformTerm())
-    {
-        Error("Failed to tidy up platform specific functionality.");
         return;
     }
 }

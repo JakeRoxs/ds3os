@@ -8,7 +8,6 @@
  */
 
 #include "Injector/Hooks/Shared/ChangeSaveGameFilenameHook.h"
-#include "Injector/Injector/Injector.h"
 #include "Shared/Core/Utils/Logging.h"
 #include "Shared/Core/Utils/Strings.h"
 #include "ThirdParty/detours/src/detours.h"
@@ -44,14 +43,14 @@ namespace
     }
 };
 
-bool ChangeSaveGameFilenameHook::Install(Injector& injector)
+HookError ChangeSaveGameFilenameHook::Install(const InjectorContext& /*context*/)
 {
     DetourTransactionBegin();
     DetourUpdateThread(GetCurrentThread());
     DetourAttach(&(PVOID&)s_original_create_file, CreateFileHook);
-    DetourTransactionCommit();
+    LONG result = DetourTransactionCommit();
 
-    return true;
+    return (result == NO_ERROR) ? HookError::Success : HookError::DetourFailed;
 }
 
 void ChangeSaveGameFilenameHook::Uninstall()

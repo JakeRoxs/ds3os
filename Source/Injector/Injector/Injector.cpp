@@ -8,6 +8,7 @@
  */
 
 #include "Injector/Injector.h"
+#include "Injector/InjectorContext.h"
 #include "Injector/Config/BuildConfig.h"
 #include "Shared/Core/Utils/Logging.h"
 #include "Shared/Core/Utils/File.h"
@@ -28,6 +29,7 @@
 #include <thread>
 #include <chrono>
 #include <fstream>
+#include <cassert>
 
 #include "ThirdParty/nlohmann/json.hpp"
 
@@ -43,60 +45,84 @@ namespace
     }
 };
 
-Injector& Injector::Instance()
-{
-    return *s_instance;
-}
-
 Injector::Injector()
 {
-    s_instance = this;
 }
 
 Injector::~Injector()
 {
-    s_instance = nullptr;
 }
 
-bool Injector::Init()
+bool Injector::Init(const std::filesystem::path& configPathOverride)
 {
     Log("Initializing injector ...");
+    LastInitError.clear();
 
     // Grab the dll path based on the location of static function.
     HMODULE moduleHandle = nullptr;
-    wchar_t modulePath[MAX_PATH] = {};
     if (GetModuleHandleEx(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
                           reinterpret_cast<LPCTSTR>(&dummyFunction),
                           &moduleHandle) == 0)
     {
-        Error("Failed to get dll handle, GetLastError=%u", GetLastError());
-        return false;
-    }
-    if (GetModuleFileNameW(moduleHandle, modulePath, sizeof(modulePath)) == 0)
-    {
-        Error("Failed to get dll path, GetLastError=%u", GetLastError());
+        DWORD err = GetLastError();
+        Error("Failed to get dll handle, GetLastError=%u", err);
+        LastInitError = "Failed to get dll handle: " + std::to_string(err);
         return false;
     }
 
-    std::wstring modulePathWide = modulePath;
+    // GetModuleFileNameW can silently truncate when the path is longer than MAX_PATH.
+    // Retry with a larger buffer to support long paths.
+    std::wstring modulePathWide;
+    size_t bufferSize = MAX_PATH;
+    while (true)
+    {
+        modulePathWide.resize(bufferSize);
+        DWORD len = GetModuleFileNameW(moduleHandle, modulePathWide.data(), static_cast<DWORD>(bufferSize));
+        if (len == 0)
+        {
+            DWORD err = GetLastError();
+            Error("Failed to get dll path, GetLastError=%u", err);
+            LastInitError = "Failed to get dll path: " + std::to_string(err);
+            return false;
+        }
+
+        if (len < bufferSize)
+        {
+            modulePathWide.resize(len);
+            break;
+        }
+
+        // Buffer was too small; grow and retry.
+        bufferSize *= 2;
+        if (bufferSize > 32768)
+        {
+            Error("DLL path is unexpectedly long.");
+            LastInitError = "DLL path is unexpectedly long.";
+            return false;
+        }
+    }
+
     DllPath = modulePathWide;
     DllPath = DllPath.parent_path();
 
     Log("DLL Path: %s", NarrowString(DllPath.generic_wstring()).c_str());
 
-    // TODO: Move this stuff into a RuntimeConfig type class.
-    ConfigPath = DllPath / std::filesystem::path("Injector.config");
+    // Use RuntimeConfig helpers to determine the config file location.
+    // This keeps file path logic centralized and enables overriding for tests.
+    const auto cfgPath = (configPathOverride.empty() ? RuntimeConfig::GetConfigPath(DllPath) : configPathOverride);
 
     // Load configuration.
-    if (!Config.Load(ConfigPath))
+    if (!Config.Load(cfgPath))
     {
-        Error("Failed to load configuration file: %s", ConfigPath.string().c_str());
+        Error("Failed to load configuration file: %s", cfgPath.string().c_str());
+        LastInitError = "Failed to load configuration file: " + cfgPath.string();
         return false;
     }
 
     if (!ParseGameType(Config.ServerGameType.c_str(), CurrentGameType))
     {
         Error("Unknown game type in configuration file: %s", Config.ServerGameType.c_str());
+        LastInitError = "Unknown game type: " + Config.ServerGameType;
         return false;
     }
 
@@ -126,6 +152,7 @@ bool Injector::Init()
     if (ModuleRegion.first == 0)
     {
         Error("Failed to get module region for DarkSoulsIII.exe.");
+        LastInitError = "Failed to locate game module in process.";
         return false;
     }
 
@@ -136,7 +163,7 @@ bool Injector::Init()
         {
             if (!BuildConfig::DO_NOT_REDIRECT)
             {
-                Hooks.push_back(std::make_unique<DS3_ReplaceServerAddressHook>());
+                Hooks.AddHook(std::make_unique<DS3_ReplaceServerAddressHook>());
             }
             break;
         }
@@ -144,11 +171,11 @@ bool Injector::Init()
         {
             if (!BuildConfig::DO_NOT_REDIRECT)
             {
-                Hooks.push_back(std::make_unique<DS2_ReplaceServerAddressHook>());
+                Hooks.AddHook(std::make_unique<DS2_ReplaceServerAddressHook>());
             }
 
 #ifdef _DEBUG
-            Hooks.push_back(std::make_unique<DS2_LogProtobufsHook>());
+            Hooks.AddHook(std::make_unique<DS2_LogProtobufsHook>());
 #endif
             break;
         }
@@ -156,34 +183,30 @@ bool Injector::Init()
 
     if (!BuildConfig::DO_NOT_REDIRECT)
     {
-        Hooks.push_back(std::make_unique<ReplaceServerPortHook>());
+        Hooks.AddHook(std::make_unique<ReplaceServerPortHook>());
     }
 
     if (Config.EnableSeperateSaveFiles)
     {
         if (!BuildConfig::DO_NOT_REDIRECT)
         {
-            Hooks.push_back(std::make_unique<ChangeSaveGameFilenameHook>());
+            Hooks.AddHook(std::make_unique<ChangeSaveGameFilenameHook>());
         }
     }
 
     Log("Installing hooks ...");
-    bool AllInstalled = true;
-    for (auto& hook : Hooks)
-    {
-        if (hook->Install(*this))
-        {
-            Success("\t%s: Success", hook->GetName());
-            InstalledHooks.push_back(hook.get());
-        }
-        else
-        {
-            Error("\t%s: Failed", hook->GetName());
-            AllInstalled = false;
-        }
-    }
 
-    if (!AllInstalled)
+    InjectorContext ctx{
+        Config,
+        CurrentGameType,
+        ModuleRegion.first,
+        [this](const std::vector<AOBByte>& pattern) { return SearchAOB(pattern); },
+        [this](const std::string& s) { return SearchString(s); },
+        [this](const std::wstring& s) { return SearchString(s); },
+    };
+
+    DWORD installResult = Hooks.InstallAll(ctx);
+    if (installResult != ERROR_SUCCESS)
     {
         return false;
     }
@@ -194,11 +217,7 @@ bool Injector::Init()
 bool Injector::Term()
 {
     Log("Uninstalling hooks ...");
-    for (auto& hook : InstalledHooks)
-    {
-        Error("\t%s", hook->GetName());
-    }
-    InstalledHooks.clear();
+    Hooks.UninstallAll();
 
     Log("Terminating injector ...");
 
@@ -210,21 +229,35 @@ void Injector::RunUntilQuit()
     Log("");
     Success("Injector is now running.");
 
-    // We should really do this event driven ...
-    // This suffices for now.
-    while (!QuitReceived)
+    // Prefer event-driven shutdown rather than tight polling.
+    InjectorShutdown::RegisterNotifier(QuitMutex, QuitCv);
+
+    std::unique_lock<std::mutex> Lock(QuitMutex);
+    while (!QuitRequested && !InjectorShutdown::IsShutdownRequested())
     {
         // TODO: Do any polling we need to do here ...
-
-        std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        QuitCv.wait_for(Lock, std::chrono::milliseconds(100));
     }
+
+    InjectorShutdown::UnregisterNotifier();
+}
+
+void Injector::RequestShutdown()
+{
+    InjectorShutdown::RequestShutdown();
+}
+
+bool Injector::IsShutdownRequested() const
+{
+    return InjectorShutdown::IsShutdownRequested();
 }
 
 void Injector::SaveConfig()
 {
-    if (!Config.Save(ConfigPath))
+    const auto cfgPath = RuntimeConfig::GetConfigPath(DllPath);
+    if (!Config.Save(cfgPath))
     {
-        Error("Failed to save configuration file: %s", ConfigPath.string().c_str());
+        Error("Failed to save configuration file: %s", cfgPath.string().c_str());
     }
 }
 
@@ -237,7 +270,19 @@ std::vector<intptr_t> Injector::SearchAOB(const std::vector<AOBByte>& pattern)
 {
     std::vector<intptr_t> Matches;
 
-    size_t ScanLength = ModuleRegion.second - pattern.size();
+    if (pattern.empty())
+    {
+        return Matches;
+    }
+
+    size_t ScanLength = ModuleRegion.second;
+    if (ScanLength < pattern.size())
+    {
+        return Matches;
+    }
+
+    // Allow matching at the very end of the module region.
+    ScanLength = ScanLength - pattern.size() + 1;
 
     for (size_t Offset = 0; Offset < ScanLength; Offset++)
     {

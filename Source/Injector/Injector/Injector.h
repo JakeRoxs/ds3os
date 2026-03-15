@@ -13,7 +13,8 @@
 #include "Shared/Game/GameType.h"
 #include "Config/RuntimeConfig.h"
 
-#include "Injector/Hooks/Hook.h"
+#include "Injector/HookManager.h"
+#include "Injector/ShutdownSignal.h"
 
 #include <memory>
 #include <vector>
@@ -21,6 +22,8 @@
 #include <queue>
 #include <unordered_map>
 #include <optional>
+#include <mutex>
+#include <condition_variable>
 
 // Core of this application, manages all the 
 // network services that ds3 uses. 
@@ -28,14 +31,17 @@
 class Injector
 {
 public:
-    static Injector& Instance();
-
     Injector();
     ~Injector();
 
-    bool Init();
+    bool Init(const std::filesystem::path& configPath = {});
     bool Term();
     void RunUntilQuit();
+
+    const std::string& GetLastInitError() const { return LastInitError; }
+
+    void RequestShutdown();
+    bool IsShutdownRequested() const;
 
     void SaveConfig();
 
@@ -52,12 +58,12 @@ public:
 
 private:
 
-    bool QuitReceived = false;
+    bool QuitRequested = false;
+    mutable std::mutex QuitMutex;
+    std::condition_variable QuitCv;
 
-    static inline Injector* s_instance = nullptr;
 
     std::filesystem::path DllPath;
-    std::filesystem::path ConfigPath;
 
     GameType CurrentGameType;
 
@@ -65,7 +71,7 @@ private:
 
     RuntimeConfig Config;
 
-    std::vector<std::unique_ptr<Hook>> Hooks;
-    std::vector<Hook*> InstalledHooks;
+    HookManager Hooks;
 
+    std::string LastInitError;
 };

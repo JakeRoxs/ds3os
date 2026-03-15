@@ -48,6 +48,21 @@ bool RuntimeConfig::Load(const std::filesystem::path& Path)
     return true;
 }
 
+std::filesystem::path RuntimeConfig::GetConfigPath(const std::filesystem::path& RootDirectory)
+{
+    return RootDirectory / ConfigFileName;
+}
+
+bool RuntimeConfig::LoadFromDirectory(const std::filesystem::path& RootDirectory)
+{
+    return Load(GetConfigPath(RootDirectory));
+}
+
+bool RuntimeConfig::SaveToDirectory(const std::filesystem::path& RootDirectory)
+{
+    return Save(GetConfigPath(RootDirectory));
+}
+
 template <typename DataType>
 void SerializeVar(nlohmann::json& Json, const char* Name, DataType& Value, bool Loading)
 {

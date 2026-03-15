@@ -101,12 +101,20 @@ bool PlatformInit()
     return true;
 }
 
+static FILE* g_LogFile = nullptr;
+
 bool PlatformTerm()
 {
     if (int Result = WSACleanup(); Result != 0)
     {
         Error("WSACleanup failed with error 0x%08x.", Result);
         return false;
+    }
+
+    if (g_LogFile)
+    {
+        fclose(g_LogFile);
+        g_LogFile = nullptr;
     }
 
     UnloadSymbols();
@@ -130,10 +138,34 @@ void WriteToConsole(ConsoleColor Color, const char* Message)
         07  // Grey
     };
 
-    SetConsoleTextAttribute(ConsoleHandle, ColorTextAttributes[(int)Color]);
-
+    // Always emit debug output (works even when no console is attached).
     OutputDebugStringA(Message);
-    printf("%s", Message);
+
+    // If we have an actual console, also write to it. Otherwise, fall back to a file.
+    if (ConsoleHandle != INVALID_HANDLE_VALUE && ConsoleHandle != nullptr)
+    {
+        SetConsoleTextAttribute(ConsoleHandle, ColorTextAttributes[(int)Color]);
+        printf("%s", Message);
+        return;
+    }
+
+    // Fallback log file path (temporary directory).
+    if (!g_LogFile)
+    {
+        char tempPath[MAX_PATH];
+        if (GetTempPathA(MAX_PATH, tempPath) > 0)
+        {
+            char logPath[MAX_PATH];
+            snprintf(logPath, MAX_PATH, "%sds3os_injector.log", tempPath);
+            g_LogFile = fopen(logPath, "a");
+        }
+    }
+
+    if (g_LogFile)
+    {
+        fprintf(g_LogFile, "%s", Message);
+        fflush(g_LogFile);
+    }
 }
 
 double GetSeconds()

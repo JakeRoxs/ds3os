@@ -280,6 +280,11 @@ endif()
 
 add_library( crypto ${LIBSRC} ${OBJECTS_SRC} )
 
+if( MSVC )
+  # Suppress upstream OpenSSL warnings that are benign in our build.
+  target_compile_options(crypto PRIVATE /wd4005 /wd4133)
+endif()
+
 util_setup_folder_structure(crypto SOURCES "ThirdParty")
 
 target_include_directories( crypto PUBLIC ${PROJECT_BINARY_DIR}/include )

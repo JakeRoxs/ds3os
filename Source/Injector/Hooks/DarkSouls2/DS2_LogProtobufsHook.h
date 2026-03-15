@@ -15,12 +15,12 @@
 class DS2_LogProtobufsHook : public Hook
 {
 public:
-    virtual bool Install(Injector& injector) override;
+    virtual HookError Install(const InjectorContext& context) override;
     virtual void Uninstall() override;
     virtual const char* GetName() override;
 
 private:
-    bool Install_SerializeWithCachedSizesToArray(Injector& injector);
-    bool Install_ParseFromArray(Injector& injector);
+    HookError Install_SerializeWithCachedSizesToArray(const InjectorContext& context);
+    HookError Install_ParseFromArray(const InjectorContext& context);
 
 };

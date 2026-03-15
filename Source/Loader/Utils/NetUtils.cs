@@ -1,56 +1,58 @@
-﻿using System;
-using System.Net;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
-using System.Net.Sockets;
 
 namespace Loader
 {
-    public static class NetUtils
+  public static class NetUtils
+  {
+    public static string HostnameToIPv4(string Hostname)
     {
-        public static string HostnameToIPv4(string Hostname)
+      try
+      {
+        IPAddress[] Addresses = Dns.GetHostAddresses(Hostname);
+        foreach (IPAddress Addr in Addresses)
         {
-            try
-            {
-                IPAddress[] Addresses = Dns.GetHostAddresses(Hostname);
-                foreach (IPAddress Addr in Addresses)
-                {
-                    if (Addr.AddressFamily == AddressFamily.InterNetwork)
-                    {
-                        return Addr.ToString();
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                // Shitty catch all exception ...
-            }
-            return "";
+          if (Addr.AddressFamily == AddressFamily.InterNetwork)
+          {
+            return Addr.ToString();
+          }
         }
-
-        public static string GetMachineIPv4(bool GetPublicAddress)
-        {
-            try
-            { 
-                if (GetPublicAddress)
-                {
-                    using (WebClient client = new WebClient())
-                    {
-                        return client.DownloadString("http://api.ipify.org");
-                    }
-                }
-                else
-                {
-                    return HostnameToIPv4(Dns.GetHostName());
-                }
-            }
-            catch (Exception)
-            {
-                // Shitty catch all exception ...
-            }
-            return "";
-        }
+      }
+      catch (Exception)
+      {
+        // Shitty catch all exception ...
+      }
+      return "";
     }
+
+    public static string GetMachineIPv4(bool GetPublicAddress)
+    {
+      try
+      {
+        if (GetPublicAddress)
+        {
+          using (HttpClient client = new HttpClient())
+          {
+            // synchronous call for simplicity
+            return client.GetStringAsync("http://api.ipify.org").GetAwaiter().GetResult();
+          }
+        }
+        else
+        {
+          return HostnameToIPv4(Dns.GetHostName());
+        }
+      }
+      catch (Exception)
+      {
+        // Shitty catch all exception ...
+      }
+      return "";
+    }
+  }
 }

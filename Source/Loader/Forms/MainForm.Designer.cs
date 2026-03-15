@@ -52,7 +52,6 @@ namespace Loader
             BuildInfoLabel = new System.Windows.Forms.Label();
             ContinualUpdateTimer = new System.Windows.Forms.Timer(components);
             panel1 = new System.Windows.Forms.Panel();
-            DiscordLink = new System.Windows.Forms.LinkLabel();
             GithubLink = new System.Windows.Forms.LinkLabel();
             serverListRefreshTimer = new System.Windows.Forms.Timer(components);
             RefreshButton = new System.Windows.Forms.Button();
@@ -175,23 +174,11 @@ namespace Loader
             // 
             resources.ApplyResources(panel1, "panel1");
             panel1.BackColor = System.Drawing.Color.Black;
-            panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            panel1.Controls.Add(DiscordLink);
+            panel1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             panel1.Controls.Add(GithubLink);
             panel1.Name = "panel1";
             // 
-            // DiscordLink
-            // 
-            resources.ApplyResources(DiscordLink, "DiscordLink");
-            DiscordLink.ActiveLinkColor = System.Drawing.Color.White;
-            DiscordLink.BackColor = System.Drawing.Color.Transparent;
-            DiscordLink.Cursor = System.Windows.Forms.Cursors.Hand;
-            DiscordLink.ForeColor = System.Drawing.Color.White;
-            DiscordLink.LinkColor = System.Drawing.Color.White;
-            DiscordLink.Name = "DiscordLink";
-            DiscordLink.TabStop = true;
-            DiscordLink.VisitedLinkColor = System.Drawing.Color.Gray;
-            DiscordLink.LinkClicked += OnClickDiscordLink;
             // 
             // GithubLink
             // 
@@ -375,7 +362,6 @@ namespace Loader
         private System.Windows.Forms.NumericUpDown minimumPlayersBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox hidePasswordedBox;
-        private System.Windows.Forms.LinkLabel DiscordLink;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;

@@ -12,6 +12,7 @@
 
 #include <csignal>
 #include <cstdio>
+#include <unistd.h>
 #include <uuid/uuid.h>
 #include <execinfo.h>
 #include <signal.h>
@@ -81,13 +82,42 @@ bool PlatformInit()
     return true; 
 }
 
+static FILE* g_LogFile = nullptr;
+
 bool PlatformTerm() 
 { 
+    if (g_LogFile)
+    {
+        fclose(g_LogFile);
+        g_LogFile = nullptr;
+    }
     return true; 
 }
 
 void WriteToConsole(ConsoleColor Color, const char *Message) 
 {
+    // If stdout is not a terminal (e.g. running as a daemon), still write to a log file.
+    if (!isatty(fileno(stdout)))
+    {
+        if (!g_LogFile)
+        {
+            const char* tmp = getenv("TMPDIR");
+            if (!tmp)
+            {
+                tmp = "/tmp";
+            }
+            std::string logPath = std::string(tmp) + "/ds3os_injector.log";
+            g_LogFile = fopen(logPath.c_str(), "a");
+        }
+
+        if (g_LogFile)
+        {
+            fprintf(g_LogFile, "%s", Message);
+            fflush(g_LogFile);
+            return;
+        }
+    }
+
     printf("%s", Message);
 }
 

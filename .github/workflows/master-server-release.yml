@@ -29,4 +29,4 @@ jobs:
         context: ./Source/MasterServer/
         file: ./Source/MasterServer/Dockerfile
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/ds3os-master:latest 
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/dsos-master:latest 

@@ -15,7 +15,7 @@
 class ChangeSaveGameFilenameHook : public Hook
 {
 public:
-    virtual bool Install(Injector& injector) override;
+    virtual HookError Install(const InjectorContext& context) override;
     virtual void Uninstall() override;
     virtual const char* GetName() override;
 

@@ -36,10 +36,19 @@ public:
     // If we should use seperate saves from the retail ones.
     bool EnableSeperateSaveFiles = true;
 
+    // Name of the configuration file used by the injector.
+    static constexpr const char* ConfigFileName = "Injector.config";
+
 public:
 
     bool Save(const std::filesystem::path& Path);
     bool Load(const std::filesystem::path& Path);
+
+    // Convenience helpers that use the config filename.
+    static std::filesystem::path GetConfigPath(const std::filesystem::path& RootDirectory);
+    bool LoadFromDirectory(const std::filesystem::path& RootDirectory);
+    bool SaveToDirectory(const std::filesystem::path& RootDirectory);
+
     bool Serialize(nlohmann::json& Json, bool Loading);
 
 };

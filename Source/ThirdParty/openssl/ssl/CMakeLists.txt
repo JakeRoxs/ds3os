@@ -45,6 +45,11 @@ include_directories( BEFORE SYSTEM
 
 add_library( ssl ${LIBSRC} )
 
+if( MSVC )
+  # Suppress upstream OpenSSL warnings that are benign in our build.
+  target_compile_options(ssl PRIVATE /wd4005 /wd4133)
+endif()
+
 util_setup_folder_structure(ssl SOURCES "ThirdParty")
 
 target_include_directories( ssl PUBLIC ${PROJECT_BINARY_DIR}/include )

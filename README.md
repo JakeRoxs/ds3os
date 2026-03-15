@@ -1,8 +1,8 @@
 ![Dark Souls 3 - Open Server](./Resources/banner.png?raw=true)
 
-![GitHub license](https://img.shields.io/github/license/JakeRoxs/ds3os)
-![GitHub release](https://img.shields.io/github/release/JakeRoxs/ds3os)
-![GitHub downloads](https://img.shields.io/github/downloads/JakeRoxs/ds3os/total)
+![GitHub license](https://img.shields.io/github/license/jakeroxs/ds3os)
+![GitHub release](https://img.shields.io/github/release/jakeroxs/ds3os)
+![GitHub downloads](https://img.shields.io/github/downloads/jakeroxs/ds3os/total)
 
 
 <div align="center">
@@ -26,7 +26,7 @@ No, the server authenticates steam tickets. Please do not ask about piracy, stea
 FROM SOFTWARE deserves your support too for the excellent work they do, please buy their games if you can.
 
 # Where can I download it?
-Downloads are available on the github releases page - https://github.com/JakeRoxs/ds3os/releases
+Downloads are available on the github releases page - https://github.com/jakeroxs/ds3os/releases
 
 # How do I use it?
 Once built you should have a folder called Bin, there are 2 subfolders of relevance. Loader and Server. 
@@ -92,7 +92,7 @@ We don't provide an automation option to copy ds3os saves back to retail saves f
 Yes, there are 2 docker containers currently published for DSOS, these are automatically updated each time a new release is made:
 
 jakeroxs/ds3os - This is the main server and the one you almost certainly want.
-jakeroxs/ds3os-master - This is for the master server, unless you are making a fork of ds3os, you probably don't need this.
+jakeroxs/dsos-master - This is for the master server, unless you are making a fork of ds3os, you probably don't need this.
 
 If you want a quick one-liner to run the server, you can use this. Note that it mounts the Saved folder to the host filesystem at /opt/ds3os/Saved, making it easier to modify the configuration files. Access /opt/ds3os/Saved to view and modify the configuration files.
 
@@ -121,24 +121,49 @@ If the server is being hosted by yourself and the above doesn't solve your issue
 ## What do all the properties in the config file mean?
 The settings are all documented in the source code in this file, in future I'll write some more detailed documentation.
 
-https://github.com/JakeRoxs/ds3os/blob/main/Source/Server/Config/RuntimeConfig.h
+https://github.com/jakeroxs/ds3os/blob/main/Source/Server/Config/RuntimeConfig.h
 
 # How do I build it?
-Currently the project uses visual studio 2022 and C++17 for compilation.
+The project is written in C++17 and targets Visual Studio 2022 on Windows, but the build
+system itself is powered by CMake so other generators (Ninja, Xcode, etc.) are
+supported as long as the required dependencies are installed.
 
-We use cmake for generating project files. You can either use the cmake frontend to generate the project files, or you can use one of the generate_* shell scripts inside the Tools folder.
+## Prerequisites
+* [CMake](https://cmake.org/download/) (3.20+ recommended)
+* Visual Studio 2022 (or another C++ compiler supported by CMake)
+* .NET SDK 5.0 or later (`dotnet` command) – used by the WinForms loader project (project currently targets net5.0-windows)
+* Node.js & npm (only if you intend to build the master server, which is
+  managed separately with npm)
 
-Once generated the project files are stored in the intermediate folder, at this point you can just open them and build the project.
+The loader target is a SDK‑style .NET project with NuGet dependencies. CMake now
+includes a pre‑build step that runs `dotnet restore` using the same
+`BaseIntermediateOutputPath` and configuration that MSBuild will use, so you
+should **not** have to run `dotnet restore` manually. A clean checkout can be
+configured and built end‑to‑end with a single invocation of CMake:
+
+```powershell
+# from repo root
+cmake -S . -B build -G "Ninja"               # or your preferred generator
+cmake --build build --config Debug --target ALL_BUILD
+```
+
+If you prefer to use the generated project files directly, run one of the
+`Tools/generate_*` scripts (Windows, WSL, etc.) and open the resulting
+solution in Visual Studio. The loader target will restore its NuGet packages
+automatically when you build.
+
+Once generated the project files are stored in the intermediate folder, at this
+point you can just open them and build the project.
 
 ## Using nix
 
 ```sh
 # to build a package
-nix build github:JakeRoxs/ds3os
+nix build github:jakeroxs/ds3os
 # to run it directly
-nix run github:JakeRoxs/ds3os
+nix run github:jakeroxs/ds3os
 # to run master-server
-nix run github:JakeRoxs/ds3os#master-server
+nix run github:jakeroxs/ds3os#master-server
 ```
 
 The nix version stores the configs in `${XDG_CONFIG_HOME:-$HOME/.config}/ds3os`

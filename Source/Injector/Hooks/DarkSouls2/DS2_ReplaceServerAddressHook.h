@@ -18,12 +18,12 @@
 class DS2_ReplaceServerAddressHook : public Hook
 {
 public:
-    virtual bool Install(Injector& injector) override;
+    virtual HookError Install(const InjectorContext& context) override;
     virtual void Uninstall() override;
     virtual const char* GetName() override;
 
 private:
-    bool PatchKey(Injector& injector);
-    bool PatchHostname(Injector& injector);
+    HookError PatchKey(const InjectorContext& context);
+    HookError PatchHostname(const InjectorContext& context);
 
 };

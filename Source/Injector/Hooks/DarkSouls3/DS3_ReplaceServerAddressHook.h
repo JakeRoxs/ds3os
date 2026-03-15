@@ -18,8 +18,18 @@
 class DS3_ReplaceServerAddressHook : public Hook
 {
 public:
-    virtual bool Install(Injector& injector) override;
+    virtual HookError Install(const InjectorContext& context) override;
     virtual void Uninstall() override;
     virtual const char* GetName() override;
 
+    // Exposed for the detour callback to access config values without global statics.
+    const std::string& ServerHostname() const { return m_serverHostname; }
+    std::string& ServerHostname() { return m_serverHostname; }
+
+    const std::string& ServerPublicKey() const { return m_serverPublicKey; }
+    std::string& ServerPublicKey() { return m_serverPublicKey; }
+
+private:
+    std::string m_serverHostname;
+    std::string m_serverPublicKey;
 };

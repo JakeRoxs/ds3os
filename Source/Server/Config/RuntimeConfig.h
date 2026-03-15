@@ -133,6 +133,9 @@ struct RuntimeConfigSoulMemoryMatchingParameters
 class RuntimeConfig
 {
 public:
+    // Apply overrides from environment variables. If an environment variable is set, it will
+    // take precedence over the values loaded from the runtime config JSON.
+    void ApplyEnvironmentOverrides();
 
     // Type of the game this server should run.
     // DS3, DS2
@@ -157,7 +160,12 @@ public:
 
     // If Advertise is set this is the master server that it will be registered to.
     // Be careful changing this, typically only one server should exist.
-    std::string MasterServerIp = "ds3os-master.timleonard.uk";
+    //
+    // These values are loaded from the runtime config file, but can be overridden
+    // at runtime via environment variables (e.g. for containerized deployments):
+    //   MASTER_SERVER_IP
+    //   MASTER_SERVER_PORT
+    std::string MasterServerIp = "dsos.jakesws.xyz";
 
     // Port the master server lists for connections at MasterServerIp;
     int MasterServerPort = 50020;
@@ -217,7 +225,7 @@ public:
 
     // Announcements that show up when a user joins the game.
     std::vector<RuntimeConfigAnnouncement> Announcements = {
-        { "Welcome to DSOS", "\nYou have connected to an unofficial, work-in-progress, Dark Souls server. Stability is not guaranteed, but welcome!\n\nMore information on this project is available here:\nhttps://github.com/tleonarduk/ds3os" }
+        { "Welcome to DSOS", "\nYou have connected to an unofficial, work-in-progress, Dark Souls server. Stability is not guaranteed, but welcome!\n\nMore information on this project is available here:\nhttps://github.com/jakeroxs/ds3os" }
     };
 
     // How often (in seconds) between each database trim.
@@ -565,6 +573,9 @@ public:
 
     // Send notifications when a quick match begins.
     bool SendDiscordNotice_QuickMatch = true;
+
+    // Send notifications when a player lights a bonfire.
+    bool SendDiscordNotice_BonfireLit = true;
 
     // Send notifications when a bell is rung.
     bool SendDiscordNotice_Bell = true;

@@ -21,8 +21,130 @@
 #include "Shared/Core/Utils/Logging.h"
 #include "Shared/Core/Utils/Strings.h"
 #include "Shared/Core/Utils/DiffTracker.h"
+#include "Shared/Game/PlayerDataUtils.h"
 
 #include "Shared/Core/Network/NetConnection.h"
+
+namespace {
+
+void UpdateCharacterId(DS3_PlayerState& state)
+{
+    if (state.GetPlayerStatus().player_status().has_character_id())
+        state.SetCharacterId(state.GetPlayerStatus().player_status().character_id());
+}
+
+void UpdateMatchmakingState(DS3_PlayerState& state)
+{
+    if (!state.GetPlayerStatus().has_player_status())
+        return;
+
+    if (state.GetPlayerStatus().player_status().has_is_invadable())
+    {
+        bool NewState = state.GetPlayerStatus().player_status().is_invadable();
+        if (NewState != state.GetIsInvadable())
+        {
+            VerboseS("", "User is now %s", NewState ? "invadable" : "no longer invadable");
+            state.SetIsInvadable(NewState);
+        }
+    }
+
+    if (state.GetPlayerStatus().player_status().has_soul_level())
+        state.SetSoulLevel(state.GetPlayerStatus().player_status().soul_level());
+
+    if (state.GetPlayerStatus().player_status().has_max_weapon_level())
+        state.SetMaxWeaponLevel(state.GetPlayerStatus().player_status().max_weapon_level());
+}
+
+} // anonymous namespace
+
+// template specialization for DS3
+
+template<>
+inline void HandleAreaChange<DS3_PlayerState>(DS3_PlayerState& state,
+                                               const std::shared_ptr<GameClient>& client)
+{
+    if (!state.GetPlayerStatus().has_player_location())
+        return;
+
+    DS3_OnlineAreaId AreaId = static_cast<DS3_OnlineAreaId>(
+        state.GetPlayerStatus().player_location().online_area_id());
+    if (AreaId != state.GetCurrentArea() && AreaId != DS3_OnlineAreaId::None)
+    {
+        VerboseS(client->GetName().c_str(), "User has entered '%s' (0x%08x)",
+                 GetEnumString(AreaId).c_str(), AreaId);
+        state.SetCurrentArea(AreaId);
+    }
+}
+
+// status clearer specialization for DS3
+
+template<>
+struct StatusClearer<DS3_PlayerState, DS3_Frpg2PlayerData::AllStatus>
+{
+    static void Clear(DS3_PlayerState& state, const DS3_Frpg2PlayerData::AllStatus& status)
+    {
+        if (status.has_player_status() && status.player_status().played_areas_size() > 0)
+        {
+            state.GetPlayerStatus_Mutable().mutable_player_status()->clear_played_areas();
+        }
+        if (status.has_player_status() && status.player_status().unknown_18_size() > 0)
+        {
+            state.GetPlayerStatus_Mutable().mutable_player_status()->clear_unknown_18();
+        }
+        if (status.has_player_status() && status.player_status().anticheat_data_size() > 0)
+        {
+            state.GetPlayerStatus_Mutable().mutable_player_status()->clear_anticheat_data();
+        }
+    }
+};
+
+// bonfire trait specialisations for DS3
+
+template<> struct BonfireEnumFor<DS3_PlayerState> { using type = DS3_BonfireId; };
+
+template<>
+struct BonfireAccessor<DS3_PlayerState>
+{
+    static void Collect(const DS3_PlayerState& state, std::vector<uint32_t>& out)
+    {
+        if (!state.GetPlayerStatus().has_play_data())
+            return;
+        for (int i = 0; i < state.GetPlayerStatus().play_data().bonfire_info_size(); ++i)
+        {
+            const auto& bon = state.GetPlayerStatus().play_data().bonfire_info(i);
+            if (bon.has_been_lit())
+                out.push_back(bon.bonfire_id());
+        }
+    }
+};
+
+// DS3 visitor pool remains free because only DS3 uses it
+
+DS3_Frpg2RequestMessage::VisitorPool DetermineVisitorPool(const DS3_PlayerState& state)
+{
+    DS3_Frpg2RequestMessage::VisitorPool pool = DS3_Frpg2RequestMessage::VisitorPool::VisitorPool_None;
+    if (state.GetPlayerStatus().player_status().has_can_summon_for_way_of_blue() &&
+        state.GetPlayerStatus().player_status().can_summon_for_way_of_blue())
+    {
+        pool = DS3_Frpg2RequestMessage::VisitorPool::VisitorPool_Way_of_Blue;
+    }
+    if (state.GetPlayerStatus().player_status().has_can_summon_for_watchdog_of_farron() &&
+        state.GetPlayerStatus().player_status().can_summon_for_watchdog_of_farron())
+    {
+        pool = DS3_Frpg2RequestMessage::VisitorPool::VisitorPool_Watchdog_of_Farron;
+    }
+    if (state.GetPlayerStatus().player_status().has_can_summon_for_aldritch_faithful() &&
+        state.GetPlayerStatus().player_status().can_summon_for_aldritch_faithful())
+    {
+        pool = DS3_Frpg2RequestMessage::VisitorPool::VisitorPool_Aldrich_Faithful;
+    }
+    if (state.GetPlayerStatus().player_status().has_can_summon_for_spear_of_church() &&
+        state.GetPlayerStatus().player_status().can_summon_for_spear_of_church())
+    {
+        pool = DS3_Frpg2RequestMessage::VisitorPool::VisitorPool_Spear_of_the_Church;
+    }
+    return pool;
+}
 
 DS3_PlayerDataManager::DS3_PlayerDataManager(Server* InServerInstance)
     : ServerInstance(InServerInstance)
@@ -118,102 +240,24 @@ MessageHandleResult DS3_PlayerDataManager::Handle_RequestUpdatePlayerStatus(Game
         return MessageHandleResult::Handled;
     }
 
-    // MergeFrom combines arrays, so we need to do some fuckyness here to handle this.
-    if (status.has_player_status() && status.player_status().played_areas_size() > 0)
+    MergePlayerStatusDelta(State, status);
+
+    // Update character id field if present.
+    UpdateCharacterId(State);
+
+    // Keep track of the player's character name and possibly rename the connection.
+    RenameConnectionIfCharacterNameChanged(State, Client->shared_from_this());
+
+    // Print a log and update area state.
+    HandleAreaChange(State, Client->shared_from_this());
+    // Update matchmaking-related state (invadable, levels).
+    UpdateMatchmakingState(State);
+
+    // Determine correct visitor pool via shared helper.
+    auto NewVisitorPool = DetermineVisitorPool(State);
+    if (NewVisitorPool != State.GetVisitorPool())
     {
-        State.GetPlayerStatus_Mutable().mutable_player_status()->clear_played_areas();
-    }
-    if (status.has_player_status() && status.player_status().unknown_18_size() > 0)
-    {
-        State.GetPlayerStatus_Mutable().mutable_player_status()->clear_unknown_18();
-    }
-    if (status.has_player_status() && status.player_status().anticheat_data_size() > 0)
-    {
-        State.GetPlayerStatus_Mutable().mutable_player_status()->clear_anticheat_data();
-    }
-    State.GetPlayerStatus_Mutable().MergeFrom(status);
-
-    // Keep track of the players character id.
-    if (State.GetPlayerStatus().player_status().has_character_id())
-    {
-        State.SetCharacterId(State.GetPlayerStatus().player_status().character_id());
-    }
-
-    // Keep track of the players character name, useful for logging.
-    if (State.GetPlayerStatus().player_status().has_name())
-    {
-        std::string NewCharacterName = State.GetPlayerStatus().player_status().name();
-        if (State.GetCharacterName() != NewCharacterName)
-        {
-            State.SetCharacterName(NewCharacterName);
-
-            std::string NewConnectionName = StringFormat("%i:%s", State.GetPlayerId(), State.GetCharacterName().c_str());
-
-            LogS(Client->GetName().c_str(), "Renaming connection to '%s'.", NewConnectionName.c_str());
-
-            // Rename connection after this point as it easier to keep track of than ip:port pairs.
-            Client->Connection->Rename(NewConnectionName);
-        }
-    }
-
-    // Print a log if user has changed online location.
-    if (State.GetPlayerStatus().has_player_location())
-    {
-        DS3_OnlineAreaId AreaId = static_cast<DS3_OnlineAreaId>(State.GetPlayerStatus().player_location().online_area_id());
-        if (AreaId != State.GetCurrentArea() && AreaId != DS3_OnlineAreaId::None)
-        {
-            VerboseS(Client->GetName().c_str(), "User has entered '%s' (0x%08x)", GetEnumString(AreaId).c_str(), AreaId);
-            State.SetCurrentArea(AreaId);
-        }
-    }
-
-    // Grab some matchmaking values.
-    if (State.GetPlayerStatus().has_player_status())
-    {
-        // Grab invadability state.
-        if (State.GetPlayerStatus().player_status().has_is_invadable())
-        {
-            bool NewState = State.GetPlayerStatus().player_status().is_invadable();
-            if (NewState != State.GetIsInvadable())
-            {
-                VerboseS(Client->GetName().c_str(), "User is now %s", NewState ? "invadable" : "no longer invadable");
-                State.SetIsInvadable(NewState);
-            }
-        }
-
-        // Grab soul level / weapon level.
-        if (State.GetPlayerStatus().player_status().has_soul_level())
-        {
-            State.SetSoulLevel(State.GetPlayerStatus().player_status().soul_level());
-        }
-        if (State.GetPlayerStatus().player_status().has_max_weapon_level())
-        {
-            State.SetMaxWeaponLevel(State.GetPlayerStatus().player_status().max_weapon_level());
-        }
-
-        // Grab whatever visitor pool they should be in.
-        DS3_Frpg2RequestMessage::VisitorPool NewVisitorPool = DS3_Frpg2RequestMessage::VisitorPool::VisitorPool_None;
-        if (State.GetPlayerStatus().player_status().has_can_summon_for_way_of_blue() && State.GetPlayerStatus().player_status().can_summon_for_way_of_blue())
-        {
-            NewVisitorPool = DS3_Frpg2RequestMessage::VisitorPool::VisitorPool_Way_of_Blue;
-        }
-        if (State.GetPlayerStatus().player_status().has_can_summon_for_watchdog_of_farron() && State.GetPlayerStatus().player_status().can_summon_for_watchdog_of_farron())
-        {
-            NewVisitorPool = DS3_Frpg2RequestMessage::VisitorPool::VisitorPool_Watchdog_of_Farron;
-        }
-        if (State.GetPlayerStatus().player_status().has_can_summon_for_aldritch_faithful() && State.GetPlayerStatus().player_status().can_summon_for_aldritch_faithful())
-        {
-            NewVisitorPool = DS3_Frpg2RequestMessage::VisitorPool::VisitorPool_Aldrich_Faithful;
-        }
-        if (State.GetPlayerStatus().player_status().has_can_summon_for_spear_of_church() && State.GetPlayerStatus().player_status().can_summon_for_spear_of_church())
-        {
-            NewVisitorPool = DS3_Frpg2RequestMessage::VisitorPool::VisitorPool_Spear_of_the_Church;
-        }
-
-        if (NewVisitorPool != State.GetVisitorPool())
-        {
-            State.SetVisitorPool(NewVisitorPool);
-        }
+        State.SetVisitorPool(NewVisitorPool);
     }
 
 #if 0//def _DEBUG
@@ -254,39 +298,8 @@ MessageHandleResult DS3_PlayerDataManager::Handle_RequestUpdatePlayerStatus(Game
         return MessageHandleResult::Error;
     }
 
-    // Send discord notification when the user lights a bonfire.
-    if (State.GetPlayerStatus().has_play_data())
-    {
-        std::vector<uint32_t>& litBonfires = State.GetLitBonfires_Mutable();
-
-        for (size_t i = 0; i < State.GetPlayerStatus().play_data().bonfire_info_size(); i++)
-        {
-            auto& bonfireInfo = State.GetPlayerStatus().play_data().bonfire_info(i);
-            if (bonfireInfo.has_been_lit())
-            {
-                uint32_t bonfireId = bonfireInfo.bonfire_id();
-                if (auto Iter = std::find(litBonfires.begin(), litBonfires.end(), bonfireId); Iter == litBonfires.end())
-                {
-                    if (State.GetHasInitialState())
-                    {
-                        LogS(Client->GetName().c_str(), "Has lit bonfire %i.", bonfireId);
-
-                        std::string BonfireName = GetEnumString<DS3_BonfireId>((DS3_BonfireId)bonfireId);
-
-                        if (!BonfireName.empty())
-                        {
-                            ServerInstance->SendDiscordNotice(Client->shared_from_this(), DiscordNoticeType::BonfireLit,
-                                StringFormat("Lit the '%s' bonfire.", BonfireName.c_str())
-                            );
-                        }
-                    }
-
-                    litBonfires.push_back(bonfireId);
-                }
-            }
-        }
-    }
-
+    // Process any bonfires that were lit since last status.
+    ProcessBonfires(State, ServerInstance, Client->shared_from_this());
     State.SetHasInitialState(true);
 
     return MessageHandleResult::Handled;

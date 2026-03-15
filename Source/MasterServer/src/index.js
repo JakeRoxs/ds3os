@@ -10,27 +10,60 @@
 process.env.UV_THREADPOOL_SIZE = 2;
 
 const express = require('express');
-const rateLimit = require('express-rate-limit')
+const rateLimit = require('express-rate-limit');
 const cors = require('cors');
+const path = require('path');
 
 const servers = require('./routes/api/v1/servers');
+const { formatDuration } = require('./utils/helpers');
+const config = require('./config');
 
-const config = require("./config/config.json")
+const port = config.port;
 
 const app = express();
+app.set('trust proxy', true);
 
 const limiter = rateLimit({
-	windowMs: 1 * 60 * 1000, 
-	max: 300, 
-	standardHeaders: true, 
+	windowMs: 1 * 60 * 1000,
+	max: 300,
+	standardHeaders: true,
 	legacyHeaders: false,
 });
 
-app.use(cors());
+const corsOptions = {
+	origin: (origin, callback) => {
+		// Allow requests with no Origin (curl, server-to-server, same-origin).
+		if (!origin) return callback(null, true);
+
+		// When configured with '*', allow any origin (open CORS policy).
+		if (config.corsOrigins.includes('*')) return callback(null, '*');
+
+		if (config.corsOrigins.includes(origin)) {
+			return callback(null, origin);
+		}
+
+		callback(new Error('Not allowed by CORS'));
+	},
+	optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json({}));
 app.use(limiter);
 
-app.get('/', (req, res) => { res.send('Please use the appropriate API\'s to access this service.'); });
+const serverStartTime = Date.now();
+const pollIntervalMs = config.pollIntervalMs;
+
+app.set('views', path.join(__dirname, 'templates'));
+app.set('view engine', 'ejs');
+
+app.get('/', (req, res) => {
+	const status = servers.getStatus();
+	const uptime = formatDuration(Date.now() - serverStartTime);
+
+	res.render('dashboard', { status, uptime, port, pollIntervalMs });
+});
+
 app.use('/api/v1/servers', servers);
 
-app.listen(config.port, () => { console.log(`This service is now listening on port ${config.port}!`); }); 
+app.listen(port, () => { console.log(`This service is now listening on port ${port}!`); }); 

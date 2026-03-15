@@ -61,6 +61,7 @@ SET(SOURCES
     
     Game/GameType.cpp
     Game/GameType.h
+    Game/PlayerDataUtils.h
 
     Platform/Platform.h
 )
@@ -101,3 +102,6 @@ target_link_libraries(
 )
 
 util_setup_folder_structure(${PROJECT_NAME} SOURCES "DS3OS")
+
+# build unit tests for shared utilities (if any)
+add_subdirectory(Tests)

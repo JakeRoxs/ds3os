@@ -35,9 +35,9 @@ RUN mkdir -p /opt/ds3os/Saved \
     && chmod 755 /opt/ds3os/Saved \
     && chmod 755 /opt/ds3os \
     && apt update \
-    && apt install -y --no-install-recommends --reinstall ca-certificates \
+    # Healthcheck needs curl to check the server
+    && apt install -y --no-install-recommends --reinstall ca-certificates curl \
     && rm -rf /var/lib/apt/lists/*
-
 # expose the various ports the game server uses so operators can easily publish them
 #   50000/udp – DS3 game traffic (also used for quickmatch/arena)
 #   50010/udp – DS2 game traffic
@@ -45,6 +45,9 @@ RUN mkdir -p /opt/ds3os/Saved \
 # and the HTTP/admin API port
 EXPOSE 50000/udp 50010/udp 50050/udp
 EXPOSE 50005/tcp
+
+HEALTHCHECK --interval=30s --timeout=5s --retries=3 \
+  CMD curl -fsS http://localhost:50005/ || exit 1
 
 # write the AppID from build arg
 ENV STEAM_APP_ID=${STEAM_APP_ID}

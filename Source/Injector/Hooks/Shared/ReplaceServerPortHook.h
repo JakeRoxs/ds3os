@@ -15,8 +15,17 @@
 class ReplaceServerPortHook : public Hook
 {
 public:
-    virtual bool Install(Injector& injector) override;
+    virtual HookError Install(const InjectorContext& context) override;
     virtual void Uninstall() override;
     virtual const char* GetName() override;
 
+    const GameType& GetGameType() const { return m_gameType; }
+    GameType& GetGameType() { return m_gameType; }
+
+    int GetServerPort() const { return m_serverPort; }
+    int& GetServerPort() { return m_serverPort; }
+
+private:
+    GameType m_gameType = GameType::Unknown;
+    int m_serverPort = 0;
 };

@@ -9,7 +9,6 @@
 
 #include "Injector/Hooks/DarkSouls2/DS2_LogProtobufsHook.h"
 #include "Injector/Config/BuildConfig.h"
-#include "Injector/Injector/Injector.h"
 #include "Shared/Core/Utils/Logging.h"
 #include "Shared/Core/Utils/Strings.h"
 #include "Shared/Core/Utils/Rtti.h"
@@ -105,10 +104,10 @@ namespace
     }
 };
 
-bool DS2_LogProtobufsHook::Install_SerializeWithCachedSizesToArray(Injector& injector)
+HookError DS2_LogProtobufsHook::Install_SerializeWithCachedSizesToArray(const InjectorContext& context)
 {
     // This is the prolog of SerializeWithCachedSizesToArray
-    std::vector<intptr_t> matches = injector.SearchAOB({
+    std::vector<intptr_t> matches = context.SearchAOB({
         0x40, 0x55,
         0x56,
         0x57,
@@ -134,7 +133,7 @@ bool DS2_LogProtobufsHook::Install_SerializeWithCachedSizesToArray(Injector& inj
     if (matches.size() == 0)
     {
         Error("Failed to find injection point for logging protobufs.");
-        return false;
+        return HookError::NotFound;
     }
 
     DetourTransactionBegin();
@@ -143,15 +142,14 @@ bool DS2_LogProtobufsHook::Install_SerializeWithCachedSizesToArray(Injector& inj
     s_original_SerializeWithCachedSizesToArray = reinterpret_cast<SerializeWithCachedSizesToArray_p>(matches[0]);
     DetourAttach(&(PVOID&)s_original_SerializeWithCachedSizesToArray, SerializeWithCachedSizesToArrayHook);
 
-    DetourTransactionCommit();
-
-    return true;
+    LONG result = DetourTransactionCommit();
+    return (result == NO_ERROR) ? HookError::Success : HookError::DetourFailed;
 }
 
-bool DS2_LogProtobufsHook::Install_ParseFromArray(Injector& injector)
+HookError DS2_LogProtobufsHook::Install_ParseFromArray(const InjectorContext& context)
 {
     // This is the prolog of ParseFromArray
-    std::vector<intptr_t> matches = injector.SearchAOB({
+    std::vector<intptr_t> matches = context.SearchAOB({
         0x49, 0x8b, 0xc0,
         0x4c, 0x8b, 0xca,
         0x4c, 0x8b, 0xc1,
@@ -164,7 +162,7 @@ bool DS2_LogProtobufsHook::Install_ParseFromArray(Injector& injector)
     if (matches.size() == 0)
     {
         Error("Failed to find injection point for logging protobufs.");
-        return false;
+        return HookError::NotFound;
     }
 
     DetourTransactionBegin();
@@ -173,15 +171,18 @@ bool DS2_LogProtobufsHook::Install_ParseFromArray(Injector& injector)
     s_original_ParseFromArray = reinterpret_cast<ParseFromArray_p>(matches[0]);
     DetourAttach(&(PVOID&)s_original_ParseFromArray, ParseFromArrayHook);
 
-    DetourTransactionCommit();
-
-    return true;
+    LONG result = DetourTransactionCommit();
+    return (result == NO_ERROR) ? HookError::Success : HookError::DetourFailed;
 }
 
-bool DS2_LogProtobufsHook::Install(Injector& injector)
+HookError DS2_LogProtobufsHook::Install(const InjectorContext& context)
 {
-    return Install_SerializeWithCachedSizesToArray(injector) &&
-           Install_ParseFromArray(injector);
+    HookError result = Install_SerializeWithCachedSizesToArray(context);
+    if (result != HookError::Success)
+    {
+        return result;
+    }
+    return Install_ParseFromArray(context);
 }
 
 void DS2_LogProtobufsHook::Uninstall()

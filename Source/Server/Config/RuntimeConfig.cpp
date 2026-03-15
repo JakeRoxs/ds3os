@@ -9,6 +9,7 @@
 
 #include "Config/RuntimeConfig.h"
 #include "Shared/Core/Utils/File.h"
+#include "Shared/Core/Utils/Logging.h"
 
 #include <cfloat>
 
@@ -45,7 +46,187 @@ bool RuntimeConfig::Load(const std::filesystem::path& Path)
         return false;
     }
 
+    ApplyEnvironmentOverrides();
     return true;
+}
+
+namespace
+{
+    bool ReadEnvString(const char* Name, std::string& OutValue)
+    {
+        const char* Value = std::getenv(Name);
+        if (!Value || *Value == '\0')
+        {
+            return false;
+        }
+        OutValue = Value;
+        return true;
+    }
+
+    static char ToLowerAscii(char c)
+    {
+        // std::tolower expects either EOF or an unsigned char cast to int.
+        // Casting through unsigned char avoids undefined behavior on platforms
+        // where `char` is signed.
+        return static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+    }
+
+    bool ReadEnvBool(const char* Name, bool& OutValue)
+    {
+        std::string Value;
+        if (!ReadEnvString(Name, Value))
+        {
+            return false;
+        }
+
+        std::transform(Value.begin(), Value.end(), Value.begin(), ToLowerAscii);
+        if (Value == "1" || Value == "true" || Value == "yes" || Value == "on")
+        {
+            OutValue = true;
+            return true;
+        }
+        if (Value == "0" || Value == "false" || Value == "no" || Value == "off")
+        {
+            OutValue = false;
+            return true;
+        }
+
+        Warning("Invalid value for %s environment variable: '%s'", Name, Value.c_str());
+        return false;
+    }
+
+    bool ReadEnvInt(const char* Name, int& OutValue)
+    {
+        std::string Value;
+        if (!ReadEnvString(Name, Value))
+        {
+            return false;
+        }
+
+        try
+        {
+            OutValue = std::stoi(Value);
+            return true;
+        }
+        catch (const std::exception& e)
+        {
+            Warning("Invalid integer value for %s environment variable '%s': %s", Name, Value.c_str(), e.what());
+            return false;
+        }
+        catch (...)
+        {
+            Warning("Invalid integer value for %s environment variable '%s'", Name, Value.c_str());
+            return false;
+        }
+    }
+
+    bool ReadEnvFloat(const char* Name, float& OutValue)
+    {
+        std::string Value;
+        if (!ReadEnvString(Name, Value))
+        {
+            return false;
+        }
+
+        try
+        {
+            OutValue = std::stof(Value);
+            return true;
+        }
+        catch (const std::exception& e)
+        {
+            Warning("Invalid float value for %s environment variable '%s': %s", Name, Value.c_str(), e.what());
+            return false;
+        }
+        catch (...)
+        {
+            Warning("Invalid float value for %s environment variable '%s'", Name, Value.c_str());
+            return false;
+        }
+    }
+}
+
+void RuntimeConfig::ApplyEnvironmentOverrides()
+{
+    // Master server settings (legacy env vars kept for backwards compatibility).
+    if (ReadEnvString("MASTER_SERVER_IP", MasterServerIp))
+    {
+        Log("Overriding MasterServerIp from environment: %s", MasterServerIp.c_str());
+    }
+    if (ReadEnvInt("MASTER_SERVER_PORT", MasterServerPort))
+    {
+        Log("Overriding MasterServerPort from environment: %d", MasterServerPort);
+    }
+
+    // General runtime configuration overrides.
+    if (ReadEnvString("SERVER_NAME", ServerName))
+    {
+        Log("Overriding ServerName from environment: %s", ServerName.c_str());
+    }
+    if (ReadEnvString("SERVER_DESCRIPTION", ServerDescription))
+    {
+        Log("Overriding ServerDescription from environment: %s", ServerDescription.c_str());
+    }
+    if (ReadEnvString("SERVER_HOSTNAME", ServerHostname))
+    {
+        Log("Overriding ServerHostname from environment: %s", ServerHostname.c_str());
+    }
+    if (ReadEnvString("SERVER_PRIVATE_HOSTNAME", ServerPrivateHostname))
+    {
+        Log("Overriding ServerPrivateHostname from environment: %s", ServerPrivateHostname.c_str());
+    }
+
+    if (ReadEnvBool("QUIET_LOGGING", QuietLogging))
+    {
+        Log("Overriding QuietLogging from environment: %s", QuietLogging ? "true" : "false");
+    }
+    if (ReadEnvBool("ADVERTISE", Advertise))
+    {
+        Log("Overriding Advertise from environment: %s", Advertise ? "true" : "false");
+    }
+    if (ReadEnvFloat("ADVERTISE_HEARTBEAT_TIME", AdvertiseHearbeatTime))
+    {
+        Log("Overriding AdvertiseHeartbeatTime from environment: %.2f", AdvertiseHearbeatTime);
+    }
+    if (ReadEnvBool("SUPPORT_SHARDING", SupportSharding))
+    {
+        Log("Overriding SupportSharding from environment: %s", SupportSharding ? "true" : "false");
+    }
+
+    if (ReadEnvString("PASSWORD", Password))
+    {
+        Log("Overriding Password from environment.");
+    }
+
+    if (ReadEnvString("MODS_WHITELIST", ModsWhitelist))
+    {
+        Log("Overriding ModsWhitelist from environment: %s", ModsWhitelist.c_str());
+    }
+    if (ReadEnvString("MODS_BLACKLIST", ModsBlacklist))
+    {
+        Log("Overriding ModsBlacklist from environment: %s", ModsBlacklist.c_str());
+    }
+    if (ReadEnvString("MODS_REQUIRED_LIST", ModsRequiredList))
+    {
+        Log("Overriding ModsRequiredList from environment: %s", ModsRequiredList.c_str());
+    }
+
+    if (ReadEnvInt("LOGIN_SERVER_PORT", LoginServerPort))
+    {
+        Log("Overriding LoginServerPort from environment: %d", LoginServerPort);
+    }
+    if (ReadEnvInt("AUTH_SERVER_PORT", AuthServerPort))
+    {
+        Log("Overriding AuthServerPort from environment: %d", AuthServerPort);
+    }
+    if (ReadEnvInt("GAME_SERVER_PORT", GameServerPort))
+    {
+        Log("Overriding GameServerPort from environment: %d", GameServerPort);
+    }
+    if (ReadEnvInt("WEBUI_SERVER_PORT", WebUIServerPort))
+    {
+        Log("Overriding WebUIServerPort from environment: %d", WebUIServerPort);
+    }
 }
 
 template <typename DataType>
@@ -304,7 +485,6 @@ bool RuntimeConfig::Serialize(nlohmann::json& Json, bool Loading)
     SERIALIZE_VAR(BloodstainPrimeCountPerArea);
     SERIALIZE_VAR(BloodstainMemoryCacheOnly);
     SERIALIZE_VAR(GhostMaxLivePoolEntriesPerArea);
-    SERIALIZE_VAR(GhostPrimeCountPerArea);
     SERIALIZE_VAR(GhostPrimeCountPerArea);
     SERIALIZE_VAR(GhostMemoryCacheOnly);
     SERIALIZE_VAR(GhostMaxDatabaseEntries);
