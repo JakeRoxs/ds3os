@@ -14,8 +14,26 @@ name: "CodeQL Advanced"
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - 'Source/**'
+      - 'Protobuf/**'
+      - 'CMakeLists.txt'
+      - '**/CMakeLists.txt'
+      - '**/*.sln'
+      - '**/*.csproj'
+      - '**/*.proto'
+      - '.github/workflows/codeql.yml'
   pull_request:
     branches: [ "main" ]
+    paths:
+      - 'Source/**'
+      - 'Protobuf/**'
+      - 'CMakeLists.txt'
+      - '**/CMakeLists.txt'
+      - '**/*.sln'
+      - '**/*.csproj'
+      - '**/*.proto'
+      - '.github/workflows/codeql.yml'
   schedule:
     - cron: '44 1 * * 3'
 
@@ -64,6 +82,29 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+
+    # Cache CodeQL database + TRAP cache across runs to avoid rebuilding the DB from scratch.
+    # CodeQL uses `${{ env.RUNNER_TEMP }}/codeql_databases` and `${{ env.RUNNER_TEMP }}/trapCaches` by default.
+    # Caching these allows incremental analysis (reusing extracted results) between workflow runs.
+    - name: Cache CodeQL database + trap caches
+      uses: actions/cache@v4
+      with:
+        path: |
+          ${{ runner.temp }}/codeql_databases
+          ${{ runner.temp }}/trapCaches
+        key: codeql-${{ runner.os }}-${{ matrix.language }}-${{ hashFiles('Source/**','Protobuf/**','**/CMakeLists.txt','**/*.sln','**/*.csproj') }}
+        restore-keys: |
+          codeql-${{ runner.os }}-${{ matrix.language }}-
+
+    # Cache the CodeQL autobuild working directory for C/C++ to avoid rebuilding from scratch.
+    - name: Cache CodeQL autobuild directory
+      if: matrix.language == 'c-cpp'
+      uses: actions/cache@v4
+      with:
+        path: _codeql_build_dir
+        key: codeql-cpp-autobuild-${{ runner.os }}-${{ hashFiles('Source/**','Protobuf/**','**/CMakeLists.txt','**/*.sln','**/*.csproj') }}
+        restore-keys: |
+          codeql-cpp-autobuild-${{ runner.os }}-
 
     # Add any setup steps before running the `github/codeql-action/init` action.
     # This includes steps like installing compilers or runtimes (`actions/setup-node`

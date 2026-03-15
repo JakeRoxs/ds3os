@@ -1,0 +1,59 @@
+name: Copilot Setup Steps
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/copilot-setup-steps.yml'
+  pull_request:
+    paths:
+      - '.github/workflows/copilot-setup-steps.yml'
+
+jobs:
+  copilot-setup-steps:
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
+    strategy:
+      matrix:
+        include:
+          - name: windows-msbuild
+            os: windows-latest
+            buildType: msbuild
+          - name: linux-make
+            os: ubuntu-latest
+            buildType: make
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Generate build files (Windows)
+        if: matrix.buildType == 'msbuild'
+        shell: cmd
+        run: |
+          cd "%GITHUB_WORKSPACE%\Tools"
+          "%GITHUB_WORKSPACE%\Tools\generate_vs2022.bat"
+
+      - name: Generate build files (Linux)
+        if: matrix.buildType == 'make'
+        shell: bash
+        run: |
+          cd "${{ github.workspace }}/Tools"
+          "${{ github.workspace }}/Tools/generate_make_release.sh"
+
+      - name: Add MSBuild to PATH
+        if: matrix.buildType == 'msbuild'
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Build (Windows)
+        if: matrix.buildType == 'msbuild'
+        working-directory: ${{ github.workspace }}
+        run: msbuild /m /p:Configuration=Release ./intermediate/vs2022/ds3os.sln /t:Restore,Build
+
+      - name: Build (Linux Make)
+        if: matrix.buildType == 'make'
+        run: |
+          mkdir -p intermediate/make
+          cd intermediate/make
+          make -j$(nproc)

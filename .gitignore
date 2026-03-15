@@ -75,6 +75,8 @@ Tools/Deploy/
 
 # for nix build .
 result
+
+# Build and IDE files
 /.vscode
 /build
 /out/build/x64-Debug
@@ -82,6 +84,8 @@ result
 # Copilot stuff
 AGENTS.md
 copilot-instructions.md
+/.github/agents
+/.github/instructions
 /.github/skills
 /todos
 /docs
