@@ -50,9 +50,23 @@ jobs:
         path: |
           **/intermediate
           ~/.nuget/packages
-        key: ${{ runner.os }}-build-${{ hashFiles('**/*.csproj','**/CMakeLists.txt') }}
+        key: ${{ runner.os }}-build-${{ github.repository }}-${{ hashFiles('**/*.csproj','**/CMakeLists.txt') }}
         restore-keys: |
           ${{ runner.os }}-build-
+
+    - name: Clean stale CMake cache (Linux)
+      if: matrix.buildType == 'make'
+      shell: bash
+      run: |
+        rm -f intermediate/make/CMakeCache.txt
+        rm -rf intermediate/make/CMakeFiles
+
+    - name: Clean stale CMake cache (Windows)
+      if: matrix.buildType == 'msbuild'
+      shell: cmd
+      run: |
+        if exist intermediate\vs2022\CMakeCache.txt del /f /q intermediate\vs2022\CMakeCache.txt
+        if exist intermediate\vs2022\CMakeFiles rmdir /s /q intermediate\vs2022\CMakeFiles
 
     - name: Generate Solution (Windows)
       if: matrix.buildType == 'msbuild'

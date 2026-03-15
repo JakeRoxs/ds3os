@@ -83,16 +83,21 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    # Cache CodeQL database + TRAP cache across runs to avoid rebuilding the DB from scratch.
-    # CodeQL uses `${{ env.RUNNER_TEMP }}/codeql_databases` and `${{ env.RUNNER_TEMP }}/trapCaches` by default.
-    # Caching these allows incremental analysis (reusing extracted results) between workflow runs.
+    # Compute a stable cache key based on source/CI files (including this workflow).
+    # This avoids running hashFiles twice and ensures cache invalidation when the workflow changes.
+    - name: Compute cache key
+      id: cachekey
+      run: |
+        echo "SOURCE_HASH=${{ hashFiles('Source/**','Protobuf/**','**/CMakeLists.txt','**/*.sln','**/*.csproj','.github/workflows/codeql.yml') }}" >> $GITHUB_OUTPUT
+
+    # Cache CodeQL database + trap caches across runs to avoid rebuilding the DB from scratch.
     - name: Cache CodeQL database + trap caches
       uses: actions/cache@v4
       with:
         path: |
           ${{ runner.temp }}/codeql_databases
           ${{ runner.temp }}/trapCaches
-        key: codeql-${{ runner.os }}-${{ matrix.language }}-${{ hashFiles('Source/**','Protobuf/**','**/CMakeLists.txt','**/*.sln','**/*.csproj') }}
+        key: codeql-${{ runner.os }}-${{ matrix.language }}-${{ steps.cachekey.outputs.SOURCE_HASH }}
         restore-keys: |
           codeql-${{ runner.os }}-${{ matrix.language }}-
 
@@ -102,7 +107,7 @@ jobs:
       uses: actions/cache@v4
       with:
         path: _codeql_build_dir
-        key: codeql-cpp-autobuild-${{ runner.os }}-${{ hashFiles('Source/**','Protobuf/**','**/CMakeLists.txt','**/*.sln','**/*.csproj') }}
+        key: codeql-cpp-autobuild-${{ runner.os }}-${{ steps.cachekey.outputs.SOURCE_HASH }}
         restore-keys: |
           codeql-cpp-autobuild-${{ runner.os }}-
 
