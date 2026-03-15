@@ -11,6 +11,21 @@ const express = require('express');
 const router = express.Router();
 
 const config = require("../../../config/config.json")
+// Allow overriding the expiration timeout via environment variable.
+const serverTimeoutMs = (() => {
+    const env = process.env.MASTER_SERVER_TIMEOUT_MS;
+    if (env)
+    {
+        const parsed = parseInt(env, 10);
+        if (!Number.isNaN(parsed) && parsed > 0)
+        {
+            return parsed;
+        }
+        console.warn(`Invalid MASTER_SERVER_TIMEOUT_MS=\"${env}\"; falling back to config.server_timeout_ms=${config.server_timeout_ms}`);
+    }
+
+    return config.server_timeout_ms;
+})();
 
 var GActiveServers = [];
 
@@ -48,7 +63,7 @@ var ShardingAllowList = (function()
 
     // Env overrides defaults entirely (no merge) so that users can fully control what is allowed.
     const list = envEntries;
-    console.log(`Sharding allowlist (env override): ${list.join(', ')}`);
+    console.log(`Sharding allowlist (env): ${list.join(', ')}`);
     return list;
 })();
 
@@ -191,7 +206,7 @@ function AddServer(Id, IpAddress, hostname, private_hostname, description, name,
 function RemoveTimedOutServers()
 {
     var TimeoutOccured = false;
-    var TimeoutDate = new Date(Date.now() - config.server_timeout_ms);
+    var TimeoutDate = new Date(Date.now() - serverTimeoutMs);
     for (var i = 0; i < GActiveServers.length; )
     {
         if (GActiveServers[i].UpdatedTime < TimeoutDate)

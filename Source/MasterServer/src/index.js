@@ -17,6 +17,21 @@ const servers = require('./routes/api/v1/servers');
 
 const config = require("./config/config.json")
 
+// Allow overriding the port via environment variables (useful for containers).
+const port = (() => {
+    const env = process.env.MASTER_SERVER_PORT;
+    if (env)
+    {
+        const parsed = parseInt(env, 10);
+        if (!Number.isNaN(parsed) && parsed > 0)
+        {
+            return parsed;
+        }
+        console.warn(`Invalid MASTER_SERVER_PORT=\"${env}\"; falling back to config.port=${config.port}`);
+    }
+    return config.port;
+})();
+
 const app = express();
 
 const limiter = rateLimit({
@@ -33,4 +48,4 @@ app.use(limiter);
 app.get('/', (req, res) => { res.send('Please use the appropriate API\'s to access this service.'); });
 app.use('/api/v1/servers', servers);
 
-app.listen(config.port, () => { console.log(`This service is now listening on port ${config.port}!`); }); 
+app.listen(port, () => { console.log(`This service is now listening on port ${port}!`); }); 
