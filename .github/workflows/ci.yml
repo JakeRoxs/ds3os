@@ -6,6 +6,14 @@ on:
     branches:
       - main
       - development
+  pull_request:
+    branches:
+      - main
+      - development
+
+concurrency:
+  group: ci-${{ github.ref_name }}-${{ github.event_name }}
+  cancel-in-progress: true
 
 env:
   # Path to the solution file relative to the root of the project.
@@ -13,8 +21,79 @@ env:
   BUILD_CONFIGURATION: Release
 
 jobs:
+  check:
+    name: Determine whether CI should run
+    runs-on: ubuntu-latest
+    outputs:
+      skipped: ${{ steps.determine.outputs.skipped }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Determine whether CI should run
+        id: determine
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # Determine the range to diff (push vs PR)
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE_SHA=${{ github.event.pull_request.base.sha }}
+            HEAD_SHA=${{ github.event.pull_request.head.sha }}
+          else
+            BASE_SHA=${{ github.event.before }}
+            HEAD_SHA=${{ github.sha }}
+          fi
+
+          # If there's no valid base commit (new branch / force push), run CI.
+          if [ -z "$BASE_SHA" ] || [ "$BASE_SHA" = "0000000000000000000000000000000000000000" ]; then
+            echo "::notice::No base commit available; running CI."
+            echo "skipped=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "Comparing $BASE_SHA..$HEAD_SHA"
+
+          if ! CHANGED=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA"); then
+            echo "::warning::git diff failed; running CI by default."
+            echo "skipped=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          printf "Changed files:\n%s\n" "$CHANGED"
+
+          real=0
+          while IFS= read -r f; do
+            case "$f" in
+              *.md)
+                continue
+                ;;
+              .github/workflows/ci.yml)
+                real=1
+                break
+                ;;
+              .github/workflows/*)
+                continue
+                ;;
+              *)
+                real=1
+                break
+                ;;
+            esac
+          done < <(printf '%s\n' "$CHANGED")
+
+          if [ "$real" -eq 0 ]; then
+            echo "::notice::Skipping CI: only docs/workflow files changed."
+            echo "skipped=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skipped=false" >> "$GITHUB_OUTPUT"
+          fi
   build:
     name: Build (matrix)
+    needs: check
+    if: needs.check.outputs.skipped != 'true'
     runs-on: ${{ matrix.os }}
     permissions:
       contents: read
@@ -32,83 +111,82 @@ jobs:
             os: ubuntu-latest
             nixTarget: clang
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v6
-      with:
-        submodules: recursive
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
+      - name: Cache build artifacts
+        if: matrix.name == 'windows-msbuild' || matrix.name == 'linux-make'
+        uses: actions/cache@v5
+        with:
+          path: |
+            **/intermediate
+            ~/.nuget/packages
+          key: ${{ runner.os }}-build-${{ github.repository }}-${{ hashFiles('**/*.csproj','**/CMakeLists.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-build-
 
-    - name: Cache build artifacts
-      if: matrix.name == 'windows-msbuild' || matrix.name == 'linux-make'
-      uses: actions/cache@v5
-      with:
-        path: |
-          **/intermediate
-          ~/.nuget/packages
-        key: ${{ runner.os }}-build-${{ github.repository }}-${{ hashFiles('**/*.csproj','**/CMakeLists.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-build-
+      - name: Clean stale CMake cache (Linux)
+        if: matrix.name == 'linux-make'
+        shell: bash
+        run: |
+          rm -f intermediate/make/CMakeCache.txt
+          rm -rf intermediate/make/CMakeFiles
 
-    - name: Clean stale CMake cache (Linux)
-      if: matrix.name == 'linux-make'
-      shell: bash
-      run: |
-        rm -f intermediate/make/CMakeCache.txt
-        rm -rf intermediate/make/CMakeFiles
+      - name: Clean stale CMake cache (Windows)
+        if: matrix.name == 'windows-msbuild'
+        shell: cmd
+        run: |
+          if exist intermediate\vs2022\CMakeCache.txt del /f /q intermediate\vs2022\CMakeCache.txt
+          if exist intermediate\vs2022\CMakeFiles rmdir /s /q intermediate\vs2022\CMakeFiles
 
-    - name: Clean stale CMake cache (Windows)
-      if: matrix.name == 'windows-msbuild'
-      shell: cmd
-      run: |
-        if exist intermediate\vs2022\CMakeCache.txt del /f /q intermediate\vs2022\CMakeCache.txt
-        if exist intermediate\vs2022\CMakeFiles rmdir /s /q intermediate\vs2022\CMakeFiles
+      - name: Generate Solution (Windows)
+        if: matrix.name == 'windows-msbuild'
+        shell: cmd
+        run: |
+          cd "%GITHUB_WORKSPACE%\Tools"
+          "%GITHUB_WORKSPACE%\Tools\generate_vs2022.bat"
 
-    - name: Generate Solution (Windows)
-      if: matrix.name == 'windows-msbuild'
-      shell: cmd
-      run: |
-        cd "%GITHUB_WORKSPACE%\Tools"
-        "%GITHUB_WORKSPACE%\Tools\generate_vs2022.bat"
+      - name: Generate Solution (Linux)
+        if: matrix.name == 'linux-make'
+        shell: bash
+        run: |
+          cd "${{ github.workspace }}/Tools"
+          "${{ github.workspace }}/Tools/generate_make_release.sh"
 
-    - name: Generate Solution (Linux)
-      if: matrix.name == 'linux-make'
-      shell: bash
-      run: |
-        cd "${{ github.workspace }}/Tools"
-        "${{ github.workspace }}/Tools/generate_make_release.sh"
+      - name: Add MSBuild to PATH
+        if: matrix.name == 'windows-msbuild'
+        uses: microsoft/setup-msbuild@v2
 
-    - name: Add MSBuild to PATH
-      if: matrix.name == 'windows-msbuild'
-      uses: microsoft/setup-msbuild@v2
+      - name: Build on Windows
+        if: matrix.name == 'windows-msbuild'
+        working-directory: ${{github.workspace}}
+        run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}} /t:Restore,Build
 
-    - name: Build on Windows
-      if: matrix.name == 'windows-msbuild'
-      working-directory: ${{github.workspace}}
-      run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}} /t:Restore,Build
+      - name: Install uuid development package
+        if: matrix.name == 'linux-make'
+        run: |
+          set -euxo pipefail
+          sudo apt-get update
+          sudo apt-get install -y uuid-dev || sudo apt-get install -y libuuid-dev
 
-    - name: Install uuid development package
-      if: matrix.name == 'linux-make'
-      run: |
-        set -euxo pipefail
-        sudo apt-get update
-        sudo apt-get install -y uuid-dev || sudo apt-get install -y libuuid-dev
+      - name: Build on Linux
+        if: matrix.name == 'linux-make'
+        working-directory: ${{github.workspace}}/intermediate/make
+        run: make -j$(nproc)
 
-    - name: Build on Linux
-      if: matrix.name == 'linux-make'
-      working-directory: ${{github.workspace}}/intermediate/make
-      run: make -j$(nproc)
+      - name: Install Nix
+        if: startsWith(matrix.name, 'nix-')
+        uses: DeterminateSystems/nix-installer-action@main
 
-    - name: Install Nix
-      if: startsWith(matrix.name, 'nix-')
-      uses: DeterminateSystems/nix-installer-action@main
+      - name: Setup nix cache
+        if: startsWith(matrix.name, 'nix-')
+        uses: DeterminateSystems/magic-nix-cache-action@main
+        with:
+          use-flakehub: false
 
-    - name: Setup nix cache
-      if: startsWith(matrix.name, 'nix-')
-      uses: DeterminateSystems/magic-nix-cache-action@main
-      with:
-        use-flakehub: false
-
-    - name: Build with nix
-      if: startsWith(matrix.name, 'nix-')
-      run: |
-        target="${{ matrix.nixTarget == 'default' && '.' || matrix.nixTarget == 'clang' && '.#clang' || matrix.nixTarget }}"
-        nix build -L "$target"
+      - name: Build with nix
+        if: startsWith(matrix.name, 'nix-')
+        run: |
+          target="${{ matrix.nixTarget == 'default' && '.' || matrix.nixTarget == 'clang' && '.#clang' || matrix.nixTarget }}"
+          nix build -L "$target"

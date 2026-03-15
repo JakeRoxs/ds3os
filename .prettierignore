@@ -1,0 +1,9 @@
+# Ignore third-party (vendored) YAML/other files
+ThirdParty/**
+Source/ThirdParty/**
+**/ThirdParty/**
+
+# Ignore build outputs
+bin/**
+build/**
+Intermediate/**
