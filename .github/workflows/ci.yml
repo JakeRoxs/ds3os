@@ -67,19 +67,34 @@ jobs:
           real=0
           while IFS= read -r f; do
             case "$f" in
-              *.md)
-                continue
-                ;;
+              # Always run CI if we change the CI workflow itself.
               .github/workflows/ci.yml)
                 real=1
                 break
                 ;;
-              .github/workflows/*)
-                continue
-                ;;
-              *)
+
+              # Build-relevant changes (run CI)
+              CMakeLists.txt)
                 real=1
                 break
+                ;;
+              Source/*)
+                real=1
+                break
+                ;;
+              Protobuf/*)
+                real=1
+                break
+                ;;
+              Resources/*)
+                real=1
+                break
+                ;;
+
+              # Everything else is considered non-build (docs/tooling/etc.)
+              # and will not trigger the full matrix.
+              *)
+                continue
                 ;;
             esac
           done < <(printf '%s\n' "$CHANGED")
