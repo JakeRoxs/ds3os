@@ -1,16 +1,16 @@
 name: Release
 
-on: 
+on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version'     
+        description: "Version"
         required: true
-        default: '1.0.0.0'
+        default: "1.0.0.0"
       version_postfix:
-        description: 'Version Postfix'     
+        description: "Version Postfix"
         required: true
-        default: '-preview'
+        default: "-preview"
 
 env:
   # Path to the solution file relative to the root of the project.
@@ -42,99 +42,99 @@ jobs:
           - os: ubuntu-latest
             platform: linux
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v6
-      with:
-        submodules: recursive
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
 
-    - name: Cache build artifacts
-      uses: actions/cache@v5
-      with:
-        path: |
-          **/intermediate
-          ~/.nuget/packages
-        key: ${{ runner.os }}-release-${{ hashFiles('**/*.csproj','**/CMakeLists.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-release-
+      - name: Cache build artifacts
+        uses: actions/cache@v5
+        with:
+          path: |
+            **/intermediate
+            ~/.nuget/packages
+          key: ${{ runner.os }}-release-${{ hashFiles('**/*.csproj','**/CMakeLists.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-release-
 
-    - name: Generate Solution (Windows)
-      if: matrix.platform == 'windows'
-      shell: cmd
-      run: |
-        cd "%GITHUB_WORKSPACE%\Tools"
-        "%GITHUB_WORKSPACE%\Tools\generate_vs2022.bat"
+      - name: Generate Solution (Windows)
+        if: matrix.platform == 'windows'
+        shell: cmd
+        run: |
+          cd "%GITHUB_WORKSPACE%\Tools"
+          "%GITHUB_WORKSPACE%\Tools\generate_vs2022.bat"
 
-    - name: Generate Solution (Linux)
-      if: matrix.platform == 'linux'
-      shell: bash
-      run: |
-        cd "${{ github.workspace }}/Tools"
-        "${{ github.workspace }}/Tools/generate_make_release.sh"
+      - name: Generate Solution (Linux)
+        if: matrix.platform == 'linux'
+        shell: bash
+        run: |
+          cd "${{ github.workspace }}/Tools"
+          "${{ github.workspace }}/Tools/generate_make_release.sh"
 
-    - name: Set up environment
-      if: matrix.platform == 'windows'
-      uses: actions/setup-dotnet@v5
-      with:
-        dotnet-version: 5.0.x
+      - name: Set up environment
+        if: matrix.platform == 'windows'
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 5.0.x
 
-    - name: Add MSBuild to PATH
-      if: matrix.platform == 'windows'
-      uses: microsoft/setup-msbuild@v2
+      - name: Add MSBuild to PATH
+        if: matrix.platform == 'windows'
+        uses: microsoft/setup-msbuild@v2
 
-    - name: Restore Dependencies (Windows)
-      if: matrix.platform == 'windows'
-      working-directory: ${{github.workspace}}
-      run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}} /t:Restore
+      - name: Restore Dependencies (Windows)
+        if: matrix.platform == 'windows'
+        working-directory: ${{github.workspace}}
+        run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}} /t:Restore
 
-    - name: Build Windows
-      if: matrix.platform == 'windows'
-      shell: pwsh
-      run: |
-        dotnet publish ./Source/Loader/Loader.csproj `
-        -r win-x64 -c Release `
-        --output ${{github.workspace}}/Bin/Loader/Package/ `
-        /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true `
-        /p:Version=${{env.VERSION_NUMBER}}${{env.VERSION_NUMBER_POSTFIX}} `
-        /p:FileVersion=${{env.VERSION_NUMBER}} /p:AssemblyVersion=${{env.VERSION_NUMBER}}
-        msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}} /t:Build
+      - name: Build Windows
+        if: matrix.platform == 'windows'
+        shell: pwsh
+        run: |
+          dotnet publish ./Source/Loader/Loader.csproj `
+          -r win-x64 -c Release `
+          --output ${{github.workspace}}/Bin/Loader/Package/ `
+          /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true `
+          /p:Version=${{env.VERSION_NUMBER}}${{env.VERSION_NUMBER_POSTFIX}} `
+          /p:FileVersion=${{env.VERSION_NUMBER}} /p:AssemblyVersion=${{env.VERSION_NUMBER}}
+          msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}} /t:Build
 
-    - name: Install uuid development package
-      if: matrix.platform == 'linux'
-      run: |
-        set -euxo pipefail
-        sudo apt-get update
-        sudo apt-get install -y uuid-dev || sudo apt-get install -y libuuid-dev
+      - name: Install uuid development package
+        if: matrix.platform == 'linux'
+        run: |
+          set -euxo pipefail
+          sudo apt-get update
+          sudo apt-get install -y uuid-dev || sudo apt-get install -y libuuid-dev
 
-    - name: Build Linux
-      if: matrix.platform == 'linux'
-      working-directory: ${{github.workspace}}/intermediate/make
-      run: make -j$(nproc)
+      - name: Build Linux
+        if: matrix.platform == 'linux'
+        working-directory: ${{github.workspace}}/intermediate/make
+        run: make -j$(nproc)
 
-    - name: Package Release (Windows)
-      if: matrix.platform == 'windows'
-      shell: pwsh
-      run: |
-        cd "${{ github.workspace }}"
-        ./Tools/generate_package_windows.bat
+      - name: Package Release (Windows)
+        if: matrix.platform == 'windows'
+        shell: pwsh
+        run: |
+          cd "${{ github.workspace }}"
+          ./Tools/generate_package_windows.bat
 
-    - name: Package Release (Linux)
-      if: matrix.platform == 'linux'
-      shell: bash
-      run: |
-        cd "${{ github.workspace }}"
-        "${{ github.workspace }}/Tools/generate_package_linux.sh"
+      - name: Package Release (Linux)
+        if: matrix.platform == 'linux'
+        shell: bash
+        run: |
+          cd "${{ github.workspace }}"
+          "${{ github.workspace }}/Tools/generate_package_linux.sh"
 
-    - name: Zip Release
-      uses: vimtor/action-zip@v1
-      with:
-        files: DS3OS/
-        dest: ${{ matrix.platform }}-${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}.zip
+      - name: Zip Release
+        uses: vimtor/action-zip@v1
+        with:
+          files: DS3OS/
+          dest: ${{ matrix.platform }}-${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}.zip
 
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v7
-      with:
-        path: ${{ matrix.platform }}-${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}.zip
-        name: ${{ matrix.platform }}
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v7
+        with:
+          path: ${{ matrix.platform }}-${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}.zip
+          name: ${{ matrix.platform }}
 
   build-docker:
     name: Build Docker Images
@@ -155,73 +155,70 @@ jobs:
             file: ./DarkSouls2.Dockerfile
             tag: ds2os:latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v6
-      with:
-        submodules: recursive
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
 
-    - name: Login to DockerHub
-      uses: docker/login-action@v4 
-      with:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Login to DockerHub
+        uses: docker/login-action@v4
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v4
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
 
-    - name: Build and push ${{ matrix.image.tag }}
-      uses: docker/build-push-action@v7
-      with:
-        context: ${{ matrix.image.context }}
-        file: ${{ matrix.image.file }}
-        push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.image.tag }}
-        # Enable BuildKit cache storage between workflow runs
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
-                                  
+      - name: Build and push ${{ matrix.image.tag }}
+        uses: docker/build-push-action@v7
+        with:
+          context: ${{ matrix.image.context }}
+          file: ${{ matrix.image.file }}
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.image.tag }}
+          # Enable BuildKit cache storage between workflow runs
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
   make-release:
     name: Make Release
-    needs: [ build, build-docker ]
+    needs: [build, build-docker]
     runs-on: ubuntu-latest
     permissions:
       contents: write
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v6
+      - name: Checkout repository
+        uses: actions/checkout@v6
 
-    - name: Download windows artifact
-      id: download-windows-artifact
-      uses: actions/download-artifact@v8
-      with:
-        name: windows
+      - name: Download windows artifact
+        id: download-windows-artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: windows
 
-    - name: Download linux artifact
-      id: download-linux-artifact
-      uses: actions/download-artifact@v8
-      with:
-        name: linux
+      - name: Download linux artifact
+        id: download-linux-artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: linux
 
-    - name: Display artifacts
-      run: ls -R
+      - name: Display artifacts
+        run: ls -R
 
-    - name: Publish release via GitHub CLI
-      env:
-        VERSION_TAG: v${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        if gh release view "$VERSION_TAG" >/dev/null 2>&1; then
-          echo "Release $VERSION_TAG already exists, will upload assets."
-        else
-          gh release create "$VERSION_TAG" \
-            --title "Release $VERSION_TAG" \
-            --notes "Preview build" \
-            --draft=false --prerelease=true
-        fi
-        gh release upload "$VERSION_TAG" \
-          windows-${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}.zip \
-          linux-${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}.zip
-
-
-        
+      - name: Publish release via GitHub CLI
+        env:
+          VERSION_TAG: v${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if gh release view "$VERSION_TAG" >/dev/null 2>&1; then
+            echo "Release $VERSION_TAG already exists, will upload assets."
+          else
+            gh release create "$VERSION_TAG" \
+              --title "Release $VERSION_TAG" \
+              --notes "Preview build" \
+              --draft=false --prerelease=true
+          fi
+          gh release upload "$VERSION_TAG" \
+            windows-${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}.zip \
+            linux-${{ env.VERSION_NUMBER }}${{ env.VERSION_NUMBER_POSTFIX }}.zip
