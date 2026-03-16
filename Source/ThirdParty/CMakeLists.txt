@@ -21,6 +21,10 @@ else()
     # (NTLM/SSPI) to reduce the surface for security scanners.
     set(CURL_DISABLE_NTLM ON CACHE BOOL "Disable NTLM support in curl" FORCE)
 
+    # Prevent curl's own test suite from being built in CI (requires Perl and
+    # produces extra executables that we don't need for dsos).
+    set(CURL_DISABLE_TESTS ON CACHE BOOL "Disable curl test suite" FORCE)
+
     FetchContent_Declare(
         curl
         URL https://curl.se/download/curl-8.1.0.tar.xz
