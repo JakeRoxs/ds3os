@@ -23,8 +23,10 @@ import subprocess
 import sys
 import time
 import traceback
+import unittest
+from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Callable, Dict, List, Optional
 
 
 def _parse_git_remote_url(url: str) -> Optional[tuple[str, str]]:
@@ -80,14 +82,84 @@ def run_gh_api(owner: str, repo: str, state: str, per_page: int) -> Any:
         f"/repos/{owner}/{repo}/code-scanning/alerts{query}",
     ]
 
-    try:
-        output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
-    except subprocess.CalledProcessError as e:
-        print("ERROR: failed to run gh api", file=sys.stderr)
-        print(e.output.decode(errors="replace"), file=sys.stderr)
-        raise
 
-    return json.loads(output)
+def get_last_scan_workflow_run_time(
+    owner: str,
+    repo: str,
+    workflow_files: List[str] | str = "codeql.yml",
+    check_output_fn: Callable[..., str] | None = None,
+) -> Optional[float]:
+    """Return the Unix timestamp of the last successful scan workflow run.
+
+    Uses the GitHub Actions API via `gh api` to fetch the latest completed, successful
+    workflow run for one or more workflow files.
+
+    Args:
+        owner: GitHub repo owner.
+        repo: GitHub repo name.
+        workflow_files: A workflow filename or comma-separated list of workflow filenames
+            (e.g. codeql.yml, sonar.yml) to consider.
+
+    Returns:
+        Unix timestamp (seconds) of the most recent run across all workflows, or None if unknown.
+    """
+
+    if isinstance(workflow_files, str):
+        workflow_files = [wf.strip() for wf in workflow_files.split(",") if wf.strip()]
+
+    latest_ts: Optional[float] = None
+    if check_output_fn is None:
+        check_output_fn = subprocess.check_output
+
+    for workflow_file in workflow_files:
+        try:
+            cmd = [
+                "gh",
+                "api",
+                "-H",
+                "Accept: application/vnd.github+json",
+                f"/repos/{owner}/{repo}/actions/workflows/{workflow_file}/runs?status=completed&conclusion=success&per_page=1",
+            ]
+            # Allow injection of a custom check_output-like function for testing.
+            # Some callables may not accept `stderr`/`text`, so fall back if needed.
+            try:
+                output = check_output_fn(cmd, stderr=subprocess.STDOUT, text=True)
+            except TypeError:
+                output = check_output_fn(cmd)
+            payload = json.loads(output)
+            runs = payload.get("workflow_runs") or []
+            if not runs:
+                # No completed, successful runs for this workflow; try the next one.
+                continue
+            latest = runs[0]
+            updated_at = latest.get("updated_at") or latest.get("created_at")
+            if not updated_at:
+                continue
+
+            # GitHub timestamps are ISO 8601 with 'Z' (UTC) and may include fractional seconds.
+            # Example: 2024-03-15T18:37:12.345Z
+            try:
+                # datetime.fromisoformat does not accept a trailing 'Z', so normalize it to '+00:00'.
+                if updated_at.endswith("Z"):
+                    updated_at = updated_at[:-1] + "+00:00"
+                dt = datetime.fromisoformat(updated_at)
+                ts = dt.astimezone(timezone.utc).timestamp()
+                if latest_ts is None or ts > latest_ts:
+                    latest_ts = ts
+            except ValueError as e:
+                print(
+                    f"WARNING: failed to parse timestamp from workflow '{workflow_file}' response: {e}",
+                    file=sys.stderr,
+                )
+                continue
+        except (subprocess.CalledProcessError, json.JSONDecodeError) as e:
+            print(
+                f"WARNING: failed to query GitHub Actions API for workflow '{workflow_file}': {e}",
+                file=sys.stderr,
+            )
+            continue
+
+    return latest_ts
 
 
 def safe_value(v: Any) -> str:
@@ -343,6 +415,17 @@ def main(argv: Optional[List[str]] = None) -> int:
         help="Time in seconds before cached response is considered stale",
     )
     parser.add_argument(
+        "--no-cache-based-on-codeql",
+        dest="cache_based_on_codeql",
+        action="store_false",
+        help="Do not treat the cache as stale based on the latest successful CodeQL workflow run (enabled by default)",
+    )
+    parser.add_argument(
+        "--scan-workflows",
+        default="codeql.yml",
+        help="Comma-separated list of workflow filenames (e.g. CodeQL, SonarQube) used to determine cache freshness",
+    )
+    parser.add_argument(
         "--force",
         action="store_true",
         help="Force re-fetching alerts from the API even if cache is fresh",
@@ -398,9 +481,18 @@ def main(argv: Optional[List[str]] = None) -> int:
         try:
             if not os.path.exists(cache_path):
                 return None
+
+            # Treat cache as stale if CodeQL has run since the cache was written.
+            if args.cache_based_on_codeql:
+                last_scan = get_last_scan_workflow_run_time(owner, repo, args.scan_workflows)
+                if last_scan is not None and last_scan > os.path.getmtime(cache_path):
+                    return None
+
+            # TTL-based freshness
             age = time.time() - os.path.getmtime(cache_path)
             if age > cache_ttl:
                 return None
+
             with open(cache_path, "r", encoding="utf-8") as f:
                 return json.load(f)
         except Exception as e:
@@ -473,6 +565,59 @@ def main(argv: Optional[List[str]] = None) -> int:
         return 0
 
     return 0
+
+
+class GetLastScanWorkflowRunTimeTests(unittest.TestCase):
+    def _make_payload(self, updated_at: str) -> str:
+        return json.dumps({"workflow_runs": [{"updated_at": updated_at}]})
+
+    def test_returns_timestamp_for_single_workflow(self):
+        payload = self._make_payload("2026-03-15T12:00:00Z")
+        ts = get_last_scan_workflow_run_time(
+            "owner", "repo", "codeql.yml", check_output_fn=lambda *args, **kwargs: payload
+        )
+        expected = datetime.fromisoformat("2026-03-15T12:00:00+00:00").timestamp()
+        self.assertEqual(ts, expected)
+
+    def test_returns_latest_timestamp_across_multiple_workflows(self):
+        payloads = [
+            self._make_payload("2026-03-15T12:00:00Z"),
+            self._make_payload("2026-03-15T13:00:00Z"),
+        ]
+        it = iter(payloads)
+
+        def side_effect(*args, **kwargs):
+            try:
+                return next(it)
+            except StopIteration:
+                raise AssertionError("check_output called more times than expected")
+
+        ts = get_last_scan_workflow_run_time(
+            "owner",
+            "repo",
+            "codeql.yml,sonar.yml",
+            check_output_fn=side_effect,
+        )
+        expected = datetime.fromisoformat("2026-03-15T13:00:00+00:00").timestamp()
+        self.assertEqual(ts, expected)
+
+    def test_returns_none_when_no_runs(self):
+        ts = get_last_scan_workflow_run_time(
+            "owner", "repo", "codeql.yml", check_output_fn=lambda *args, **kwargs: json.dumps({"workflow_runs": []})
+        )
+        self.assertIsNone(ts)
+
+    def test_ignores_invalid_timestamp_values(self):
+        ts = get_last_scan_workflow_run_time(
+            "owner",
+            "repo",
+            "codeql.yml",
+            check_output_fn=lambda *args, **kwargs: json.dumps({
+                "workflow_runs": [{"updated_at": "not-a-time"}]
+            }),
+        )
+        self.assertIsNone(ts)
+
 
 if __name__ == "__main__":
     raise SystemExit(main())
