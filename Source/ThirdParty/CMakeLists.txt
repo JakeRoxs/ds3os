@@ -12,6 +12,9 @@ add_subdirectory(steam)
 add_subdirectory(zlib)
 
 option(DSOS_USE_VENDORED_CURL "Build curl from the vendored Source/ThirdParty/curl sources" OFF)
+
+set(DSOS_CURL_SOURCE_DIR "" CACHE PATH "Path to a local curl source tree to use instead of downloading it")
+
 if(DSOS_USE_VENDORED_CURL)
     add_subdirectory(curl)
 else()
@@ -25,11 +28,18 @@ else()
     # produces extra executables that we don't need for dsos).
     set(CURL_DISABLE_TESTS ON CACHE BOOL "Disable curl test suite" FORCE)
 
-    FetchContent_Declare(
-        curl
-        URL https://curl.se/download/curl-8.1.0.tar.xz
-        URL_HASH SHA256=6bd80ad4f07187015911216ee7185b90d285ac5162aed1bded144f9f93232a3c
-    )
+    if(DSOS_CURL_SOURCE_DIR)
+        FetchContent_Declare(
+            curl
+            SOURCE_DIR "${DSOS_CURL_SOURCE_DIR}"
+        )
+    else()
+        FetchContent_Declare(
+            curl
+            URL https://curl.se/download/curl-8.1.0.tar.xz
+            URL_HASH SHA256=6bd80ad4f07187015911216ee7185b90d285ac5162aed1bded144f9f93232a3c
+        )
+    endif()
     FetchContent_MakeAvailable(curl)
 
     if(NOT TARGET libcurl)

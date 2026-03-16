@@ -6,6 +6,8 @@
     , removeReferencesTo
     , writeShellApplication
     , jq
+    , fetchurl
+    , xz
 }:
 
 # build deps
@@ -26,10 +28,20 @@ let
             fileset = unions [ ./CMakeLists.txt ./Source ./Tools/Build ];
         };
 
-        nativeBuildInputs = [ cmake pkg-config removeReferencesTo ];
+        curlSrc = fetchurl {
+            url = "https://curl.se/download/curl-8.1.0.tar.xz";
+            sha256 = "6bd80ad4f07187015911216ee7185b90d285ac5162aed1bded144f9f93232a3c";
+        };
+
+        nativeBuildInputs = [ cmake pkg-config removeReferencesTo xz ];
         buildInputs = [ libuuid ];
 
         enableParallelBuilding = true;
+
+        preConfigure = ''
+            mkdir -p "$PWD/curl_src"
+            tar -xJf "${curlSrc}" -C curl_src --strip-components=1
+        '';
 
         installPhase = ''
             install -Dm755 ../bin/x64_release/libsteam_api.so $out/lib/libsteam_api.so
@@ -39,15 +51,20 @@ let
             '';
 
         # google's generated protobuf headers puts absolute file path garbage into the binaries
-        # which will break reproducible builds
+        # which will break reproducible builds. Also strip any references to the local curl
+        # source checkout used during the build.
         fixupPhase = ''
             find "$out" -type f -exec remove-references-to -t "${src}" '{}' +
+            find "$out" -type f -exec remove-references-to -t "$PWD/curl_src" '{}' +
             '';
 
         cmakeFlags = [
             # Fix third party builds
             "-DCMAKE_C_STANDARD=99"
             "-DCMAKE_C_FLAGS=-Wno-implicit-function-declaration"
+
+            # Use a local curl source tree (pre-fetched by Nix) instead of FetchContent
+            "-DDSOS_CURL_SOURCE_DIR=$PWD/curl_src"
         ];
 
         # Can't pass multiple flags through cmakeFlags *sigh*
