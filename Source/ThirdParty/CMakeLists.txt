@@ -115,67 +115,113 @@ if(DSOS_USE_VENDORED_SQLITE)
     dsos_append_dep_status("sqlite: vendored (forced)")
     add_subdirectory(sqlite)
 else()
-    find_package(SQLite3 QUIET)
+    # Allow overriding sqlite with a local source tree, matching other vendored deps.
+    # This is useful when building offline or using a custom sqlite snapshot.
+    set(DSOS_SQLITE_SOURCE_DIR_USED FALSE)
+    if(DSOS_SQLITE_SOURCE_DIR)
+        if(EXISTS "${DSOS_SQLITE_SOURCE_DIR}/CMakeLists.txt")
+            message(STATUS "Building sqlite from local source: ${DSOS_SQLITE_SOURCE_DIR}")
+            dsos_append_dep_status("sqlite: local source")
+            add_subdirectory(${DSOS_SQLITE_SOURCE_DIR})
+            set(DSOS_SQLITE_SOURCE_DIR_USED TRUE)
+        else()
+            message(WARNING "DSOS_SQLITE_SOURCE_DIR=${DSOS_SQLITE_SOURCE_DIR} does not appear to be a CMake-enabled sqlite tree; continuing system detection")
+        endif()
+    endif()
 
-    # Some FindSQLite3 implementations can claim success but not define a target.
-    # Try to recover by creating a usable target from either:
-    #  * SQLite::SQLite3 (preferred)
-    #  * SQLite3::SQLite3
-    #  * pkg-config output (sqlite3)
-    if(NOT SQLite3_FOUND)
+    if(NOT DSOS_SQLITE_SOURCE_DIR_USED)
+        # Prefer the system sqlite package when available. On some platforms the
+        # FindSQLite3 module only sets variables (no imported targets), and on others
+        # the imported target may exist even if SQLite3_FOUND is unset.
+        find_package(SQLite3 QUIET)
+        message(STATUS "After find_package(SQLite3): SQLite3_FOUND=${SQLite3_FOUND} SQLite3_LIBRARY='${SQLite3_LIBRARY}' SQLite3_LIBRARIES='${SQLite3_LIBRARIES}' SQLite3_INCLUDE_DIR='${SQLite3_INCLUDE_DIR}' SQLite3_INCLUDE_DIRS='${SQLite3_INCLUDE_DIRS}'")
+
+    # Normalize older FindSQLite3 outputs (singular vars) into the newer plural vars.
+    if(NOT DEFINED SQLite3_LIBRARIES OR NOT SQLite3_LIBRARIES)
+        if(DEFINED SQLite3_LIBRARY AND SQLite3_LIBRARY)
+            set(SQLite3_LIBRARIES "${SQLite3_LIBRARY}")
+        endif()
+    endif()
+    if(NOT DEFINED SQLite3_INCLUDE_DIRS OR NOT SQLite3_INCLUDE_DIRS)
+        if(DEFINED SQLite3_INCLUDE_DIR AND SQLite3_INCLUDE_DIR)
+            set(SQLite3_INCLUDE_DIRS "${SQLite3_INCLUDE_DIR}")
+        endif()
+    endif()
+
+    message(STATUS "Normalized SQLite variables: SQLite3_LIBRARIES='${SQLite3_LIBRARIES}' SQLite3_INCLUDE_DIRS='${SQLite3_INCLUDE_DIRS}'")
+
+    # Some FindSQLite3 implementations claim success but do not define a target.
+    # Try to recover by emitting a usable target via pkg-config.
+    set(DSOS_SQLITE_HAS_TARGET FALSE)
+    if(TARGET SQLite::SQLite3 OR TARGET SQLite3::SQLite3)
+        set(DSOS_SQLITE_HAS_TARGET TRUE)
+    endif()
+
+    set(DSOS_SQLITE_HAS_LIBS FALSE)
+    if(DEFINED SQLite3_LIBRARIES AND SQLite3_LIBRARIES)
+        set(DSOS_SQLITE_HAS_LIBS TRUE)
+    endif()
+
+    set(DSOS_SQLITE_AVAILABLE FALSE)
+    if(SQLite3_FOUND OR DSOS_SQLITE_HAS_TARGET OR DSOS_SQLITE_HAS_LIBS)
+        set(DSOS_SQLITE_AVAILABLE TRUE)
+    endif()
+
+    if(NOT DSOS_SQLITE_AVAILABLE)
         find_package(PkgConfig QUIET)
         if(PKG_CONFIG_FOUND)
             pkg_check_modules(_sqlite3_pc sqlite3)
             if(_sqlite3_pc_FOUND)
+                message(STATUS "pkg-config sqlite3 found: libs='${_sqlite3_pc_LIBRARIES}' includes='${_sqlite3_pc_INCLUDE_DIRS}'")
                 set(SQLite3_FOUND TRUE)
                 set(SQLite3_LIBRARIES "${_sqlite3_pc_LIBRARIES}")
                 set(SQLite3_INCLUDE_DIRS "${_sqlite3_pc_INCLUDE_DIRS}")
+                set(DSOS_SQLITE_HAS_LIBS TRUE)
+                set(DSOS_SQLITE_AVAILABLE TRUE)
             endif()
         endif()
     endif()
 
-    if(SQLite3_FOUND)
-        message(STATUS "SQLite3_FOUND=TRUE; SQLite3_LIBRARY='${SQLite3_LIBRARY}' SQLite3_LIBRARIES='${SQLite3_LIBRARIES}' SQLite3_INCLUDE_DIR='${SQLite3_INCLUDE_DIR}' SQLite3_INCLUDE_DIRS='${SQLite3_INCLUDE_DIRS}'")
+    if(DSOS_SQLITE_AVAILABLE)
+        message(STATUS "Using system sqlite: SQLite3_FOUND=${SQLite3_FOUND} SQLite3_LIBRARIES='${SQLite3_LIBRARIES}' SQLite3_INCLUDE_DIRS='${SQLite3_INCLUDE_DIRS}'")
 
-        # Create a consistent, imported target for consumers.
-        if(NOT TARGET SQLite::SQLite3 AND NOT TARGET SQLite3::SQLite3)
-            if(DEFINED SQLite3_LIBRARIES AND SQLite3_LIBRARIES)
-                add_library(SQLite::SQLite3 UNKNOWN IMPORTED)
-                set_target_properties(SQLite::SQLite3 PROPERTIES
-                    IMPORTED_LOCATION "${SQLite3_LIBRARIES}"
-                    INTERFACE_INCLUDE_DIRECTORIES "${SQLite3_INCLUDE_DIRS}"
-                )
+        # Ensure we have a usable library variable when FindSQLite3 reports success.
+        if(SQLite3_FOUND AND (NOT DEFINED SQLite3_LIBRARIES OR NOT SQLite3_LIBRARIES))
+            message(WARNING "SQLite3_FOUND=TRUE but no SQLite3_LIBRARIES set; attempting to use SQLite3_LIBRARY")
+            if(DEFINED SQLite3_LIBRARY AND SQLite3_LIBRARY)
+                set(SQLite3_LIBRARIES "${SQLite3_LIBRARY}")
+                set(DSOS_SQLITE_HAS_LIBS TRUE)
             endif()
         endif()
 
-        if(TARGET SQLite::SQLite3)
-            add_library(sqlite ALIAS SQLite::SQLite3)
-        elseif(TARGET SQLite3::SQLite3)
-            add_library(sqlite ALIAS SQLite3::SQLite3)
+        # Provide a consistent, portable target name for consumers.
+        # Some systems already provide a `SQLite::SQLite3` / `SQLite3::SQLite3` target.
+        # Other environments may only supply variables (e.g., pkg-config).
+        if(NOT TARGET sqlite)
+            if(TARGET SQLite::SQLite3)
+                add_library(sqlite ALIAS SQLite::SQLite3)
+            elseif(TARGET SQLite3::SQLite3)
+                add_library(sqlite ALIAS SQLite3::SQLite3)
+            elseif(DSOS_SQLITE_HAS_LIBS)
+                add_library(sqlite INTERFACE)
+                target_link_libraries(sqlite INTERFACE ${SQLite3_LIBRARIES})
+                if(DEFINED SQLite3_INCLUDE_DIRS AND SQLite3_INCLUDE_DIRS)
+                    target_include_directories(sqlite INTERFACE ${SQLite3_INCLUDE_DIRS})
+                endif()
+            endif()
         endif()
 
-        if(TARGET sqlite)
-            dsos_append_dep_status("sqlite: system")
+        # Provide the canonical CMake target name if it is missing.
+        if(TARGET sqlite AND NOT TARGET SQLite::SQLite3)
+            add_library(SQLite::SQLite3 ALIAS sqlite)
         endif()
-    else()
-        message(STATUS "SQLite3_FOUND=FALSE")
     endif()
 
+    # If we still don't have a usable SQLite target, fall back to the vendored build.
     if(NOT TARGET sqlite)
-        message(WARNING "sqlite target still missing after FindSQLite3; falling back to vendored sqlite")
-        dsos_append_dep_status("sqlite: vendored (fallback)")
+        message(WARNING "Could not locate a usable SQLite target; falling back to vendored sqlite")
+        dsos_append_dep_status("sqlite: vendored")
         add_subdirectory(sqlite)
-    endif()
-endif()
-
-# Provide a consistent, portable target name for consumers.
-# Some platforms/systems may provide only `SQLite::SQLite3` or `SQLite3::SQLite3` (from FindSQLite3),
-# others may provide a `sqlite` target (vendored build). Ensure `sqlite` always exists.
-if(NOT TARGET sqlite)
-    if(TARGET SQLite::SQLite3)
-        add_library(sqlite ALIAS SQLite::SQLite3)
-    elseif(TARGET SQLite3::SQLite3)
-        add_library(sqlite ALIAS SQLite3::SQLite3)
     endif()
 endif()
 
