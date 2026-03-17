@@ -222,8 +222,28 @@ else()
         message(WARNING "Could not locate a usable SQLite target; falling back to vendored sqlite")
         dsos_append_dep_status("sqlite: vendored")
         add_subdirectory(sqlite)
+
+        if(TARGET sqlite)
+            message(STATUS "Vendored sqlite target created successfully: sqlite")
+        else()
+            message(WARNING "Vendored sqlite did not create a 'sqlite' target; downstream linking will fail")
+        endif()
     endif()
     endif()  # end if(NOT DSOS_SQLITE_SOURCE_DIR_USED)
+
+    # Ensure a usable sqlite target exists so downstream projects can link.
+    # This is a safety net for environments where the vendored sqlite subdirectory
+    # does not produce the expected `sqlite` target.
+    if(NOT TARGET sqlite)
+        message(WARNING "No sqlite target present after dependency resolution; creating an INTERFACE target to allow configuration to proceed.")
+        add_library(sqlite INTERFACE)
+        if(DEFINED SQLite3_LIBRARIES AND SQLite3_LIBRARIES)
+            target_link_libraries(sqlite INTERFACE ${SQLite3_LIBRARIES})
+        endif()
+        if(DEFINED SQLite3_INCLUDE_DIRS AND SQLite3_INCLUDE_DIRS)
+            target_include_directories(sqlite INTERFACE ${SQLite3_INCLUDE_DIRS})
+        endif()
+    endif()
 endif()
 
 # OpenSSL
