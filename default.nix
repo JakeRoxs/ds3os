@@ -52,9 +52,10 @@ let
             "-DCMAKE_C_STANDARD=99"
             "-DCMAKE_C_FLAGS=-Wno-implicit-function-declaration"
 
-            # Prefer using vendored third-party sources to avoid network fetches
-            "-DDSOS_USE_VENDORED_CURL=ON"
-            "-DDSOS_USE_VENDORED_CIVETWEB=ON"
+            # Prefer using FetchContent to download third-party sources at configure time
+            # (falls back to system libraries if available and/or uses vendored sources only when explicitly requested).
+            "-DDSOS_USE_VENDORED_CURL=OFF"
+            "-DDSOS_USE_VENDORED_CIVETWEB=OFF"
             # Use system sqlite (from nixpkgs) instead of the vendored copy
             "-DDSOS_USE_VENDORED_SQLITE=OFF"
             # Use system OpenSSL (from nixpkgs) instead of the vendored copy

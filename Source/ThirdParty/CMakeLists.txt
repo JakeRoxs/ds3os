@@ -95,17 +95,21 @@ else()
             # Disable civetweb unit tests / external project downloads (e.g., check-unit-test-framework).
             set(CIVETWEB_BUILD_TESTING OFF CACHE BOOL "Disable CivetWeb unit tests" FORCE)
 
+            # Enable the C++ wrapper library so downstream code can link against the
+            # CivetHandler/CivetServer C++ API.
+            set(CIVETWEB_ENABLE_CXX ON CACHE BOOL "Enable the CivetWeb C++ wrapper" FORCE)
+
             add_subdirectory(${civetweb_SOURCE_DIR} ${civetweb_BINARY_DIR})
-            # Upstream civetweb uses a different target name (e.g. civetweb-c-library).
-            # Provide a consistent alias so consumers can continue linking against "civetweb".
-            if(TARGET civetweb-c-library AND NOT TARGET civetweb)
+            # Upstream civetweb provides a C++ wrapper target (civetweb-cpp) that
+            # includes CivetHandler/CivetServer. If present, prefer it as the
+            # canonical "civetweb" target. Otherwise, fall back to the C API library.
+            if(TARGET civetweb-cpp AND NOT TARGET civetweb)
+                add_library(civetweb ALIAS civetweb-cpp)
+            elseif(TARGET civetweb-c-library AND NOT TARGET civetweb)
                 add_library(civetweb ALIAS civetweb-c-library)
             endif()
         else()
-            message(WARNING "Failed to download CivetWeb archive (${_civetweb_url}); falling back to vendored source")
-            dsos_append_dep_status("civetweb: vendored")
-            file(REMOVE "${_civetweb_archive}")
-            add_subdirectory(civetweb)
+            message(FATAL_ERROR "Failed to download CivetWeb archive (${_civetweb_url}); cannot continue without FetchContent. To build from vendored sources instead, set -DDSOS_USE_VENDORED_CIVETWEB=ON.")
         endif()
     endif()
 endif()
@@ -310,13 +314,7 @@ else()
             target_link_libraries(openssl INTERFACE ssl crypto)
             target_include_directories(openssl INTERFACE "${openssl_cmake_source_dir}/include")
         else()
-            message(WARNING "Failed to download OpenSSL archive (${_openssl_url}); falling back to vendored OpenSSL")
-            dsos_append_dep_status("openssl: vendored")
-            file(REMOVE "${_openssl_archive}")
-            add_subdirectory(openssl)
-            add_library(openssl INTERFACE)
-            target_link_libraries(openssl INTERFACE ssl crypto)
-            target_include_directories(openssl INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/openssl/include")
+            message(FATAL_ERROR "Failed to download OpenSSL archive (${_openssl_url}); cannot continue without FetchContent. To build from vendored sources instead, set -DDSOS_USE_VENDORED_OPENSSL=ON.")
         endif()
     endif()
 endif()
@@ -360,10 +358,7 @@ else()
             )
             FetchContent_MakeAvailable(curl)
         else()
-            message(WARNING "Failed to download curl archive (${_curl_url}); falling back to vendored curl")
-            dsos_append_dep_status("curl: vendored")
-            file(REMOVE "${_curl_archive}")
-            add_subdirectory(curl)
+            message(FATAL_ERROR "Failed to download curl archive (${_curl_url}); cannot continue without FetchContent. To build from vendored sources instead, set -DDSOS_USE_VENDORED_CURL=ON.")
         endif()
     endif()
 
