@@ -135,6 +135,8 @@ else()
     endif()
 
     if(SQLite3_FOUND)
+        message(STATUS "SQLite3_FOUND=TRUE; SQLite3_LIBRARY='${SQLite3_LIBRARY}' SQLite3_LIBRARIES='${SQLite3_LIBRARIES}' SQLite3_INCLUDE_DIR='${SQLite3_INCLUDE_DIR}' SQLite3_INCLUDE_DIRS='${SQLite3_INCLUDE_DIRS}'")
+
         # Create a consistent, imported target for consumers.
         if(NOT TARGET SQLite::SQLite3 AND NOT TARGET SQLite3::SQLite3)
             if(DEFINED SQLite3_LIBRARIES AND SQLite3_LIBRARIES)
@@ -155,11 +157,14 @@ else()
         if(TARGET sqlite)
             dsos_append_dep_status("sqlite: system")
         endif()
+    else()
+        message(STATUS "SQLite3_FOUND=FALSE")
     endif()
 
     if(NOT TARGET sqlite)
-        message(FATAL_ERROR "Could not find a SQLite library target (expected \"sqlite\" or \"SQLite::SQLite3\").\n" \
-                        "Install the system sqlite dev package (e.g., libsqlite3-dev) or set DSOS_USE_VENDORED_SQLITE=ON to use the vendored copy.")
+        message(WARNING "sqlite target still missing after FindSQLite3; falling back to vendored sqlite")
+        dsos_append_dep_status("sqlite: vendored (fallback)")
+        add_subdirectory(sqlite)
     endif()
 endif()
 
