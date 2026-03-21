@@ -18,6 +18,8 @@ set(DSOS_SQLITE_SOURCE_DIR "" CACHE PATH "Path to a local sqlite source tree to 
 option(DSOS_USE_VENDORED_OPENSSL "Build OpenSSL from the vendored Source/ThirdParty/openssl sources" OFF)
 set(DSOS_OPENSSL_SOURCE_DIR "" CACHE PATH "Path to a local openssl source tree to use instead of downloading it")
 
+# Keep vendored curl as a legacy fallback for offline or locked-down environments.
+# Default behavior is external FetchContent-based curl fetching.
 option(DSOS_USE_VENDORED_CURL "Build curl from the vendored Source/ThirdParty/curl sources" OFF)
 
 set(DSOS_CURL_SOURCE_DIR "" CACHE PATH "Path to a local curl source tree to use instead of downloading it")
@@ -333,19 +335,18 @@ endif()
 
 # Curl
 if(DSOS_USE_VENDORED_CURL)
-    dsos_append_dep_status("curl: vendored (forced)")
-    add_subdirectory(curl)
-else()
+    message(WARNING "DSOS_USE_VENDORED_CURL=ON is deprecated; Source/ThirdParty/curl has been removed from repo. Using DSOS_CURL_SOURCE_DIR or FetchContent instead.")
+    dsos_append_dep_status("curl: vendored requested but unsupported; fallback to fetch")
+endif()
 
-    # When building curl via FetchContent, disable legacy/weak auth mechanisms
-    # (NTLM/SSPI) to reduce the surface for security scanners.
-    set(CURL_DISABLE_NTLM ON CACHE BOOL "Disable NTLM support in curl" FORCE)
+# When building curl via FetchContent, disable legacy/weak auth mechanisms
+set(CURL_DISABLE_NTLM ON CACHE BOOL "Disable NTLM support in curl" FORCE)
 
-    # Prevent curl's own test suite from being built in CI (requires Perl and
-    # produces extra executables that we don't need for dsos).
-    set(CURL_DISABLE_TESTS ON CACHE BOOL "Disable curl test suite" FORCE)
+# Prevent curl's own test suite from being built in CI (requires Perl and
+# produces extra executables that we don't need for dsos).
+set(CURL_DISABLE_TESTS ON CACHE BOOL "Disable curl test suite" FORCE)
 
-    if(DSOS_CURL_SOURCE_DIR)
+if(DSOS_CURL_SOURCE_DIR)
         FetchContent_Declare(
             curl
             SOURCE_DIR "${DSOS_CURL_SOURCE_DIR}"
@@ -386,7 +387,6 @@ else()
             add_library(libcurl ALIAS CURL::libcurl)
         endif()
     endif()
-endif()
 
 if (WIN32)
     add_subdirectory(detours)
