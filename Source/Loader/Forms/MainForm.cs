@@ -10,22 +10,14 @@
 #nullable enable
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Security.AccessControl;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using Loader.Services;
-
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace Loader
 {
@@ -140,13 +132,6 @@ namespace Loader
         ExeLocationTextBox.BackColor = System.Drawing.SystemColors.Control;
       }
 
-      bool HasSelectedManualServer = false;
-      if (ImportedServerListView.SelectedIndices.Count > 0)
-      {
-        HasSelectedManualServer = GetConfigFromId((ImportedServerListView.SelectedItems[0].Tag as ServerConfig)!.Id)!.ManualImport;
-      }
-      //RemoveButton.Enabled = HasSelectedManualServer;
-
       if (ImportedServerListView.SelectedItems.Count <= 0)
       {
         LaunchEnabled = false;
@@ -205,11 +190,6 @@ namespace Loader
 
       // create manager now that we have loaded the list
       serverManager = new ServerListManager(ServerList, CurrentGameType);
-
-#if false//DEBUG
-            ProgramSettings.Default.Reset();
-            ProgramSettings.Default.master_server_url = "http://127.0.0.1:50020";
-#endif
 
       // Strip out any old config files downloaded from the server, we will be querying them
       // shortly anyway.
@@ -650,20 +630,17 @@ List<ServerConfig>? servers;
 
     private bool ShouldRunContinualUpdate()
     {
-      /*
       if (RunningProcessHandle != IntPtr.Zero)
       {
-          return true;
+        return true;
       }
 
       if (!SteamUtils.IsSteamRunningAndLoggedIn())
       {
-          return true;
+        return true;
       }
 
       return false;
-      */
-      return true;
     }
 
     // Kills the named mutex that dark souls 3 uses to only open a single instance.
@@ -691,7 +668,7 @@ List<ServerConfig>? servers;
 
       ValidateUI();
 
-      //ContinualUpdateTimer.Enabled = ShouldRunContinualUpdate();
+      ContinualUpdateTimer.Enabled = ShouldRunContinualUpdate();
     }
 
     private async void OnServerRefreshTimer(object sender, EventArgs e)
