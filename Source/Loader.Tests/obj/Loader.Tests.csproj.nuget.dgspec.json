@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Jake\\source\\repos\\ds3os\\Source\\Loader.Tests\\Loader.Tests.csproj": {}
+    "C:\\Users\\Jake\\source\\repos\\dsos\\Source\\Loader.Tests\\Loader.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Jake\\source\\repos\\ds3os\\Source\\Loader.Tests\\Loader.Tests.csproj": {
+    "C:\\Users\\Jake\\source\\repos\\dsos\\Source\\Loader.Tests\\Loader.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Jake\\source\\repos\\ds3os\\Source\\Loader.Tests\\Loader.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\Jake\\source\\repos\\dsos\\Source\\Loader.Tests\\Loader.Tests.csproj",
         "projectName": "Loader.Tests",
-        "projectPath": "C:\\Users\\Jake\\source\\repos\\ds3os\\Source\\Loader.Tests\\Loader.Tests.csproj",
+        "projectPath": "C:\\Users\\Jake\\source\\repos\\dsos\\Source\\Loader.Tests\\Loader.Tests.csproj",
         "packagesPath": "C:\\Users\\Jake\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Jake\\source\\repos\\ds3os\\Source\\Loader.Tests\\obj\\",
+        "outputPath": "C:\\Users\\Jake\\source\\repos\\dsos\\Source\\Loader.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -33,8 +33,8 @@
           "net10.0-windows7.0": {
             "targetAlias": "net10.0-windows",
             "projectReferences": {
-              "C:\\Users\\Jake\\source\\repos\\ds3os\\Source\\Loader\\Loader.csproj": {
-                "projectPath": "C:\\Users\\Jake\\source\\repos\\ds3os\\Source\\Loader\\Loader.csproj"
+              "C:\\Users\\Jake\\source\\repos\\dsos\\Source\\Loader\\Loader.csproj": {
+                "projectPath": "C:\\Users\\Jake\\source\\repos\\dsos\\Source\\Loader\\Loader.csproj"
               }
             }
           }
@@ -377,14 +377,14 @@
         }
       }
     },
-    "C:\\Users\\Jake\\source\\repos\\ds3os\\Source\\Loader\\Loader.csproj": {
+    "C:\\Users\\Jake\\source\\repos\\dsos\\Source\\Loader\\Loader.csproj": {
       "version": "1.0.0.2",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Jake\\source\\repos\\ds3os\\Source\\Loader\\Loader.csproj",
+        "projectUniqueName": "C:\\Users\\Jake\\source\\repos\\dsos\\Source\\Loader\\Loader.csproj",
         "projectName": "Dark Souls III - Open Server Launcher",
-        "projectPath": "C:\\Users\\Jake\\source\\repos\\ds3os\\Source\\Loader\\Loader.csproj",
+        "projectPath": "C:\\Users\\Jake\\source\\repos\\dsos\\Source\\Loader\\Loader.csproj",
         "packagesPath": "C:\\Users\\Jake\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Jake\\source\\repos\\ds3os\\Source\\Loader\\..\\..\\Intermediate\\_Release\\",
+        "outputPath": "C:\\Users\\Jake\\source\\repos\\dsos\\Source\\Loader\\..\\..\\Intermediate\\_\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
