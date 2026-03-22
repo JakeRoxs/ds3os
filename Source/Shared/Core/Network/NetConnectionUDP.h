@@ -12,9 +12,10 @@
 #include "Shared/Core/Network/NetConnection.h"
 
 #if defined(_WIN32)
-#include <windows.h>
-#include <ws2tcpip.h>
+// Winsock2 must be included before windows.h to avoid redefinition/linkage errors.
 #include <winsock2.h>
+#include <ws2tcpip.h>
+#include <windows.h>
 #else
 #include <unistd.h>
 #include <sys/socket.h>
