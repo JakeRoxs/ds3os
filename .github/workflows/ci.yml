@@ -38,6 +38,8 @@ jobs:
       - name: Determine whether CI should run
         id: determine
         shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
 
@@ -101,6 +103,11 @@ jobs:
                 real=1
                 break
                 ;;
+              Tools/*)
+                real=1
+                break
+                ;;
+
 
               # Everything else is considered non-build (docs/tooling/etc.)
               # and will not trigger the full matrix.
@@ -113,12 +120,17 @@ jobs:
           if [ "$real" -eq 0 ]; then
             # If the last completed workflow run on this branch failed, re-run CI.
             # (This ensures we don't silently skip CI if a prior run failed and no build-relevant changes were made.)
-            prev_conclusion=$(curl -sSfL -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $GITHUB_TOKEN" "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/runs?branch=$BRANCH&event=${{ github.event_name }}&per_page=5" 2>/dev/null | python -c 'import json,sys; runs=json.load(sys.stdin).get("workflow_runs", []); current=int(sys.argv[1]); print(next((r.get("conclusion", "") for r in runs if r.get("id") != current and r.get("status") == "completed"), ""))' "$GITHUB_RUN_ID" 2>/dev/null || true)
+          if [ -z "${GITHUB_TOKEN:-}" ]; then
+            echo "::notice::GITHUB_TOKEN is unavailable; forcing CI to run (safe default)."
+            real=1
+          else
+            prev_conclusion=$(curl -sSfL -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $GITHUB_TOKEN" "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/runs?branch=$BRANCH&per_page=5" 2>/dev/null | python -c 'import json,sys; runs=json.load(sys.stdin).get("workflow_runs", []); current=int(sys.argv[1]); print(next((r.get("conclusion", "") for r in runs if r.get("id") != current and r.get("status") == "completed"), ""))' "$GITHUB_RUN_ID" 2>/dev/null || true)
 
             if [ -n "$prev_conclusion" ] && [ "$prev_conclusion" != "success" ]; then
               echo "::notice::Previous CI run on branch '$BRANCH' concluded as '$prev_conclusion'; running CI."
               real=1
             fi
+          fi
           fi
 
           if [ "$real" -eq 0 ]; then
