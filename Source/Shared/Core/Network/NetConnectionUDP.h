@@ -12,6 +12,13 @@
 #include "Shared/Core/Network/NetConnection.h"
 
 #if defined(_WIN32)
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+
 // Winsock2 must be included before windows.h to avoid redefinition/linkage errors.
 #include <winsock2.h>
 #include <ws2tcpip.h>
