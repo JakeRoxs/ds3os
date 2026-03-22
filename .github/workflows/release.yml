@@ -79,7 +79,7 @@ jobs:
 
       - name: Add MSBuild to PATH
         if: matrix.platform == 'windows'
-        uses: microsoft/setup-msbuild@v2
+        uses: microsoft/setup-msbuild@v3
 
       - name: Restore Dependencies (Windows)
         if: matrix.platform == 'windows'
