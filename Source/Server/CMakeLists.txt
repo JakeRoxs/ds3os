@@ -169,6 +169,8 @@ target_link_libraries(
     steam
 )
 
+target_include_directories(${PROJECT_NAME} PRIVATE $<TARGET_PROPERTY:civetweb,INTERFACE_INCLUDE_DIRECTORIES>)
+
 # Copy some important files over to our output directory.
 foreach(config ${CMAKE_CONFIGURATION_TYPES})
     string(TOUPPER ${config} config_upper)
@@ -203,6 +205,10 @@ add_executable(ServerClientConfigTests
 target_include_directories(ServerClientConfigTests PUBLIC
     "${CMAKE_CURRENT_SOURCE_DIR}"
 )
+
+if(TARGET ServerClientConfigTests)
+    target_include_directories(ServerClientConfigTests PRIVATE $<TARGET_PROPERTY:civetweb,INTERFACE_INCLUDE_DIRECTORIES>)
+endif()
 
 target_link_libraries(ServerClientConfigTests PRIVATE
     Shared
