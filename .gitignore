@@ -83,6 +83,7 @@ result
 # Build and IDE files
 /.vscode
 /build*
+/compile_commands.json
 /out/build/x64-Debug
 
 # Copilot stuff

@@ -137,38 +137,19 @@ https://github.com/jakeroxs/ds3os/blob/main/Source/Server/Config/RuntimeConfig.h
 
 # How do I build it?
 
-The project is written in C++17 and uses CMake for cross-platform builds. Ninja is
-preferred for local usage and CI; Visual Studio is supported on Windows if installed.
+The project is written in C++17 and uses CMake for cross-platform builds. On Windows,
+using the Visual Studio generator is recommended when Visual Studio/Clang-cl is available.
 
-Ninja is the preferred generator for local builds because it is fast, cross-platform
-and works well in CI environments. If Ninja is not available, adjust the generator
-for your installed tooling.
+Prefer a local generator you have installed, such as:
 
-### Preferred (Ninja)
-
-```powershell
-cmake -S . -B build -G "Ninja"
-cmake --build build --config Debug --target ALL_BUILD
-```
-
-If system sqlite is not present, you can force an external fetch from upstream:
-
-```powershell
-cmake -S . -B build -G "Ninja" -DDSOS_SQLITE_ARCHIVE="https://github.com/sqlite/sqlite/archive/refs/heads/master.tar.gz"
-cmake --build build --config Debug --target ALL_BUILD
-```
-
-### Alternative (Visual Studio)
-
-```powershell
-cmake -S . -B build -G "Visual Studio 17 2022"
-cmake --build build --config Release --target ALL_BUILD
-```
+- `Visual Studio 18 2026` (MSVC / Clang-CL)
+- `Visual Studio 17 2022` (if available)
+- `Ninja` (fallback for cross-platform CLI usage)
 
 ## Prerequisites
 
 - [CMake](https://cmake.org/download/) (3.20+ recommended)
-- Visual Studio 2022 or Ninja + clang/gcc (or another C++ compiler supported by CMake)
+- Visual Studio 2026 or 2022 + optional Clang-cl, or another CMake-compatible toolchain
 - .NET SDK 5.0 or later (`dotnet` command) – used by the WinForms loader project (project currently targets net5.0-windows)
 - Node.js & npm (only if you intend to build the master server, which is
   managed separately with npm)
@@ -181,7 +162,8 @@ configured and built end‑to‑end with a single invocation of CMake:
 
 ```powershell
 # from repo root
-cmake -S . -B build -G "Ninja"               # or your preferred generator
+cmake -S . -B build -G "Visual Studio 18 2026" -A x64  # or your preferred generator
+# Optional: append -T ClangCL if you have Visual Studio ClangCL toolset installed
 cmake --build build --config Debug --target ALL_BUILD
 ```
 
@@ -192,6 +174,26 @@ automatically when you build.
 
 Once generated the project files are stored in the intermediate folder, at this
 point you can just open them and build the project.
+
+## Recommended local build helper
+
+If you want a consistent path across environments, use the provided helper script:
+
+```powershell
+pwsh .\Tools\build-cmake.ps1 -BuildType Release
+```
+
+The script automatically picks the first available supported generator:
+
+- Ninja if installed
+- Visual Studio (via vswhere) if installed
+
+You can override explicitly:
+
+```powershell
+pwsh .\Tools\build-cmake.ps1 -Generator "Ninja" -BuildType Debug
+pwsh .\Tools\build-cmake.ps1 -Generator "Visual Studio 18 2026" -BuildType Release
+```
 
 ## Using nix
 

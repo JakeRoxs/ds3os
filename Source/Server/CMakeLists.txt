@@ -98,7 +98,15 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     "${CMAKE_CURRENT_SOURCE_DIR}/../"
 )
 
-target_compile_definitions(${PROJECT_NAME} PRIVATE -D_CRT_SECURE_NO_WARNINGS -D_WINSOCK_DEPRECATED_NO_WARNINGS -D_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS)
+target_compile_definitions(${PROJECT_NAME} PRIVATE
+    _CRT_SECURE_NO_WARNINGS
+    _WINSOCK_DEPRECATED_NO_WARNINGS
+    _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS
+    WIN32_LEAN_AND_MEAN
+    NOMINMAX
+    _WINSOCKAPI_
+    _WIN32_WINNT=0x0A00
+)
 
 # Prefer the modern FindSQLite3 target if available.
 # ThirdParty/CMakeLists.txt is responsible for providing a usable `sqlite` target.

@@ -68,13 +68,7 @@ let
             "-DCMAKE_C_FLAGS=-Wno-implicit-function-declaration"
 
             # Prefer using FetchContent to download third-party sources at configure time
-            # (falls back to system libraries if available and/or uses vendored sources only when explicitly requested).
-            "-DDSOS_USE_VENDORED_CURL=OFF"
-            "-DDSOS_USE_VENDORED_CIVETWEB=OFF"
-            # Use system sqlite (from nixpkgs) instead of the vendored copy
-            "-DDSOS_USE_VENDORED_SQLITE=OFF"
-            # Use system OpenSSL (from nixpkgs) instead of the vendored copy
-            "-DDSOS_USE_VENDORED_OPENSSL=OFF"
+            # (falls back to system libraries if available).
             # When using Nix, supply the pre-fetched archive paths so CMake doesn't need network access.
             "-DDSOS_CIVETWEB_ARCHIVE=file://${civetwebArchive}"
             "-DDSOS_OPENSSL_ARCHIVE=file://${opensslArchive}"

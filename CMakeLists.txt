@@ -2,14 +2,62 @@
 #  DS3OS
 #  Copyright (C) 2021 Tim Leonard
 # ================================================================================================
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.20)
 
 # Environment settings that all projects inherit.
-set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Tools/Build/build;${CMAKE_MODULE_PATH}")
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Tools/Build;${CMAKE_MODULE_PATH}")
 set(ENV_ROOT_PATH "${CMAKE_CURRENT_SOURCE_DIR}")
 
 # Common configuration for all projects.
 include(common)
+
+# Windows SDK/VS tools sanity checks.
+if(MSVC)
+    include(CheckIncludeFileCXX)
+    include(CheckLibraryExists)
+
+    check_include_file_cxx("Windows.h" DSOS_HAS_WINDOWS_H)
+    if(NOT DSOS_HAS_WINDOWS_H)
+        message(FATAL_ERROR "MSVC could not find Windows SDK headers. Install Windows 10/11 SDK and run from the Developer Command Prompt, or set CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION to a valid SDK version (e.g., 10.0.22621.0).")
+    endif()
+
+    check_include_file_cxx("stdlib.h" DSOS_HAS_STDLIB_H)
+    if(NOT DSOS_HAS_STDLIB_H)
+        message(FATAL_ERROR "MSVC could not find C runtime headers (stdlib.h). Ensure you run this from a Developer Command Prompt or that VCToolsInstallDir and WindowsSDKDir are correctly set in the environment. Example: \"C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Auxiliary/Build/vcvars64.bat\".")
+    endif()
+
+    # Add explicit linker search directories for the MSVC/Windows SDK libraries in case the environment lacks LIB paths.
+    if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+        set(_arch x64)
+    else()
+        set(_arch x86)
+    endif()
+
+    file(GLOB _global_sdk_um "C:/Program Files (x86)/Windows Kits/10/Lib/*/um/${_arch}")
+    file(GLOB _global_sdk_ucrt "C:/Program Files (x86)/Windows Kits/10/Lib/*/ucrt/${_arch}")
+    file(GLOB _global_msvc_lib "C:/Program Files/Microsoft Visual Studio/*/*/VC/Tools/MSVC/*/lib/${_arch}")
+    file(GLOB _global_msvc_lib_x86 "C:/Program Files (x86)/Microsoft Visual Studio/*/*/VC/Tools/MSVC/*/lib/${_arch}")
+
+    set(_global_link_dirs ${_global_sdk_um} ${_global_sdk_ucrt} ${_global_msvc_lib} ${_global_msvc_lib_x86})
+    if(_global_link_dirs)
+        # Apply to all targets in all directories.
+        set_property(GLOBAL PROPERTY LINK_DIRECTORIES ${_global_link_dirs})
+        link_directories(${_global_link_dirs})
+    endif()
+
+    check_library_exists(kernel32 "GetModuleHandleA" "Windows.h" DSOS_HAS_KERNEL32)
+    if(NOT DSOS_HAS_KERNEL32)
+        message(FATAL_ERROR "MSVC could not find kernel32.lib. Ensure Windows SDK installation is complete and the Windows SDK lib path is available to MSVC.")
+    endif()
+
+    # Automatically use installed Windows SDK version if not explicitly requested.
+    if(NOT DEFINED CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION)
+        if(DEFINED ENV{WindowsSDKVersion} AND NOT "" STREQUAL "$ENV{WindowsSDKVersion}")
+            set(CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION "$ENV{WindowsSDKVersion}" CACHE STRING "Windows SDK version" FORCE)
+            message(STATUS "Auto-set CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION=$ENV{WindowsSDKVersion}")
+        endif()
+    endif()
+endif()
 
 # OpenSSL's bundled CMakeLists has its own `cmake_minimum_required(3.5)`,
 # which triggers a policy error on newer CMake versions when the effective
@@ -25,10 +73,30 @@ endif()
 
 project(ds3os C CXX)
 
+if(NOT CMAKE_C_COMPILER OR NOT CMAKE_CXX_COMPILER)
+    message(FATAL_ERROR "No C/C++ compiler found. Install a compatible toolchain (e.g., Ninja with gcc/clang, or Visual Studio 2022/2026) and retry. Ensure CMake is invoked with -G Ninja or -G 'Visual Studio 18 2026' when appropriate.")
+endif()
+
 # Always generate a compile_commands.json database for tools such as
 # the VS Code C/C++ extension.
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE BOOL "Export compile commands for IDEs" FORCE)
 
+# Keep a stable IDE lookup location outside of the build folder
+# (root path is safer when `build/` gets removed by clean/reconfigure).
+set(DSOS_COMPILE_COMMANDS_SOURCE "${CMAKE_BINARY_DIR}/compile_commands.json")
+set(DSOS_COMPILE_COMMANDS_DEST "${CMAKE_SOURCE_DIR}/compile_commands.json")
+
+set(DSOS_COMPILE_COMMANDS_SYNC_SCRIPT "${CMAKE_BINARY_DIR}/dsos_sync_compile_commands.cmake")
+file(WRITE "${DSOS_COMPILE_COMMANDS_SYNC_SCRIPT}"
+"if(EXISTS \"${DSOS_COMPILE_COMMANDS_SOURCE}\")\n"
+"  file(COPY \"${DSOS_COMPILE_COMMANDS_SOURCE}\" DESTINATION \"${CMAKE_SOURCE_DIR}\")\n"
+"endif()\n"
+)
+
+add_custom_target(dsos_sync_compile_commands ALL
+    COMMAND ${CMAKE_COMMAND} -P "${DSOS_COMPILE_COMMANDS_SYNC_SCRIPT}"
+    COMMENT "Sync compile_commands.json into workspace root for VS Code"
+)
 
 add_subdirectory(Source)
 
