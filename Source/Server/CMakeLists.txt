@@ -206,6 +206,7 @@ target_include_directories(ServerClientConfigTests PUBLIC
 
 target_link_libraries(ServerClientConfigTests PRIVATE
     Shared
+    steam
 )
 
 add_test(NAME ServerClientConfigTests COMMAND ServerClientConfigTests)
