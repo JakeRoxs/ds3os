@@ -62,7 +62,6 @@ public:
     ~Client();
 
     bool Init(bool disablePersistentData = false, size_t instanceId = 0);
-    bool Init();
     bool Term();
     void RunUntilQuit();
 

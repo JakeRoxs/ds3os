@@ -67,11 +67,7 @@ bool Client::Init(bool inDisablePersistentData, size_t inInstanceId)
 {
     Config.DisablePersistentData = inDisablePersistentData;
     Config.InstanceId = inInstanceId;
-    return Init();
-}
 
-bool Client::Init()
-{
     ClientStreamId = StringFormat("%016llx", SteamUser()->GetSteamID().ConvertToUint64());
 
     if (Config.DisablePersistentData)
@@ -151,7 +147,7 @@ bool Client::Term()
         }
     }
 
-    if (!DisablePersistentData)
+    if (!Config.DisablePersistentData)
     {
         if (!Database.Close())
         {
