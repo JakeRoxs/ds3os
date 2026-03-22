@@ -194,5 +194,9 @@ target_include_directories(ServerClientConfigTests PUBLIC
     "${CMAKE_CURRENT_SOURCE_DIR}"
 )
 
+target_link_libraries(ServerClientConfigTests PRIVATE
+    Shared
+)
+
 add_test(NAME ServerClientConfigTests COMMAND ServerClientConfigTests)
 
