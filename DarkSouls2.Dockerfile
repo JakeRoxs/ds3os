@@ -4,7 +4,7 @@ FROM ubuntu@sha256:d1e2e92c075e5ca139d51a140fff46f84315c0fdce203eab2807c7e495eff
 # install build dependencies without recommendations and clean apt cache in same layer
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -q -y --no-install-recommends \
-        g++ make curl zip unzip tar binutils cmake git yasm libuuid1 uuid-dev uuid-runtime && \
+        g++ make curl zip unzip tar binutils cmake git yasm ninja-build libuuid1 uuid-dev uuid-runtime && \
     rm -rf /var/lib/apt/lists/*
 
 COPY ./ /build
