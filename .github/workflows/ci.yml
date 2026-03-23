@@ -263,12 +263,16 @@ jobs:
               echo Warning: vcvars64.bat not found in default location. Proceeding without it.
             )
           )
-          $jobs = 0
-          if ([int]::TryParse($Env:NUMBER_OF_PROCESSORS, [ref]$jobs) -and $jobs -gt 0) {
-            ninja -j $jobs
-          } else {
+          if defined NUMBER_OF_PROCESSORS (
+            set /A JOBS=%NUMBER_OF_PROCESSORS%
+            if %JOBS% GTR 0 (
+              ninja -j %JOBS%
+            ) else (
+              ninja
+            )
+          ) else (
             ninja
-          }
+          )
       - name: Install required development packages (Linux)
         if: matrix.name == 'linux-ninja'
         run: |
