@@ -265,11 +265,11 @@ jobs:
           )
           if defined NUMBER_OF_PROCESSORS (
             set /A JOBS=%NUMBER_OF_PROCESSORS%
-            if %JOBS% GTR 0 (
-              ninja -j %JOBS%
-            ) else (
-              ninja
-            )
+          ) else (
+            set /A JOBS=0
+          )
+          if %JOBS% GTR 0 (
+            ninja -j %JOBS%
           ) else (
             ninja
           )
