@@ -824,6 +824,9 @@ else()
                 CONFIGURE_COMMAND ${_openssl_configure_cmd}
                 BUILD_COMMAND ${_openssl_build_cmd}
                 INSTALL_COMMAND ${_openssl_install_cmd}
+                BUILD_BYPRODUCTS
+                    "${_openssl_crypto_lib_path}"
+                    "${_openssl_ssl_lib_path}"
                 LOG_CONFIGURE TRUE
                 LOG_BUILD TRUE
                 LOG_INSTALL TRUE
