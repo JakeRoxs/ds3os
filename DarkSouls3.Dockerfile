@@ -14,7 +14,7 @@ WORKDIR /build/Tools
 RUN sed -i 's/\r$//' ./generate_make_release.sh && \
     ./generate_make_release.sh
 WORKDIR /build
-RUN cd intermediate/make && make -j$(nproc || echo 4)
+RUN cd intermediate/make && (if [ -f build.ninja ]; then ninja -j$(nproc || echo 4); else make -j$(nproc || echo 4); fi)
 
 FROM steamcmd/steamcmd:latest@sha256:e5d7e8acdef9d99dbeff206df05b3762d3108a5ce58315be488ae199abca7b09 AS steam
 
