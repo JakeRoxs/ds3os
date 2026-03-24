@@ -41,8 +41,10 @@ jobs:
         include:
           - os: windows-latest
             platform: windows
+            generator: Ninja
           - os: ubuntu-latest
             platform: linux
+            generator: Ninja
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -62,6 +64,8 @@ jobs:
       - name: Generate Solution (Windows)
         if: matrix.platform == 'windows'
         shell: cmd
+        env:
+          GENERATOR: ${{ matrix.generator }}
         run: |
           cd "%GITHUB_WORKSPACE%\Tools"
           "%GITHUB_WORKSPACE%\Tools\generate_vs2022.bat"
@@ -93,6 +97,8 @@ jobs:
       - name: Generate Solution (Linux)
         if: matrix.platform == 'linux'
         shell: bash
+        env:
+          GENERATOR: ${{ matrix.generator }}
         run: |
           cd "${{ github.workspace }}/Tools"
           "${{ github.workspace }}/Tools/generate_make_release.sh"

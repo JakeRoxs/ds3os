@@ -82,6 +82,17 @@ function Resolve-Repo {
     }
 
     try {
+        Write-Verbose "Attempting gh repo view to resolve repository"
+        $ghRepo = gh repo view --json nameWithOwner --jq '.nameWithOwner' 2>$null | Out-String
+        if ($LASTEXITCODE -eq 0 -and $ghRepo.Trim()) {
+            return $ghRepo.Trim()
+        }
+    }
+    catch {
+        Write-Verbose "gh repo view failed: $($_)"
+    }
+
+    try {
         $origin = git remote get-url origin 2>$null
     }
     catch {
@@ -105,44 +116,85 @@ function Get-RunJson {
 
     $fields = 'id,status,conclusion,event,createdAt,updatedAt,headBranch,headSha,workflow,name,url,jobs'
 
-    try {
-        $result = gh run view $RunId --repo $Repo --json $fields 2>&1 | Out-String
+    Write-Verbose "Fetching run metadata for run ID '$RunId' in repo '$Repo'"
+
+    # Prefer gh run view first (avoids API 404 on odd API path details).
+    $result = $null
+
+    if ($Repo) {
+        Write-Verbose "gh run view --repo $Repo --json $fields $RunId"
+        $result = gh run view --repo $Repo --json $fields $RunId 2>&1 | Out-String
         if ($LASTEXITCODE -eq 0 -and $result.Trim()) {
             return $result
         }
-        throw 'gh run view failed'
+        Write-Verbose "gh run view (--repo) failed (exit $LASTEXITCODE): $result"
     }
-    catch {
-        Write-Verbose "run view fallback scenario: $($_)"
-        Write-Warning "gh run view failed, trying fallback to gh api: $($_)"
+
+    Write-Verbose "gh run view --json $fields $RunId"
+    $result = gh run view --json $fields $RunId 2>&1 | Out-String
+    if ($LASTEXITCODE -eq 0 -and $result.Trim()) {
+        return $result
+    }
+    Write-Verbose "gh run view (no repo) failed (exit $LASTEXITCODE): $result"
+
+    # Most cases should now be handled, but if we have a repo claim we can still try API fallback.
+    if ($Repo) {
+        Write-Warning "gh run view failed; trying fallback to gh api for repo $Repo"
         try {
-            $result = gh api repos/$Repo/actions/runs/$RunId --jq '{ id, status, conclusion, event, created_at, updated_at, head_branch, head_sha, workflow_id, name, html_url, jobs }' 2>&1 | Out-String
+            Write-Verbose "gh api repos/$Repo/actions/runs/$RunId --jq '{ id, status, conclusion, event, created_at, updated_at, head_branch, head_sha, workflow_id, name, html_url, jobs }'"
+            $result = gh api "repos/$Repo/actions/runs/$RunId" --jq '{ id, status, conclusion, event, created_at, updated_at, head_branch, head_sha, workflow_id, name, html_url, jobs }' 2>&1 | Out-String
             if ($LASTEXITCODE -eq 0 -and $result.Trim()) {
                 return $result
             }
-            Fail 'Failed to fetch run data from GitHub API (gh api).'
+            Fail "gh api failed (exit $LASTEXITCODE). Output: $result"
         }
         catch {
             Fail "Unable to fetch run data from GitHub: $($_)"
         }
     }
+
+    Fail "Unable to fetch run data from GitHub. Last run view output: $result"
 }
 
 function Get-JobsData {
     param(
         [Parameter(Mandatory = $true)]
         [string]$RunId,
-        [Parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $false)]
         [string]$Repo
     )
 
     try {
-        $jobsRaw = gh api repos/$Repo/actions/runs/$RunId/jobs 2>&1 | Out-String
+        if ($Repo) {
+            $jobsRaw = gh api repos/$Repo/actions/runs/$RunId/jobs 2>&1 | Out-String
+        }
+        else {
+            Write-Verbose "No repo context for jobs API; using gh run view --json jobs"
+            $jobsRaw = gh run view --json jobs $RunId 2>&1 | Out-String
+        }
+
         if ($LASTEXITCODE -eq 0 -and $jobsRaw.Trim()) {
             $jobsData = $jobsRaw | ConvertFrom-Json
-            Write-Verbose "Fetched jobs list, total: $($jobsData.total_count)"
+            if (-not $jobsData.jobs -and $jobsData.PSObject.Properties.Name -contains 'job') {
+                # Handle plain job list for old formats
+                $jobsData = @{ jobs = $jobsData.job }
+            }
+
+            $count = $null
+            if ($jobsData.total_count) {
+                $count = $jobsData.total_count
+            }
+            elseif ($jobsData.jobs) {
+                $count = $jobsData.jobs.Count
+            }
+            else {
+                $count = 0
+            }
+
+            Write-Verbose "Fetched jobs list, total: $count"
             return $jobsData
         }
+
         Write-Warning 'Could not fetch detailed jobs list; using run job summary only.'
         return $null
     }
@@ -296,19 +348,46 @@ elseif ($normalizedRun.jobs -and $normalizedRun.jobs.jobs) {
 
 $failedLogSnippet = @()
 if (-not $ExcludeFailedLog) {
-    try {
-        $fullLogs = gh run view $RunId --repo $Repo --log-failed 2>&1 | Out-String
-        if ($fullLogs.Trim()) {
-            $lines = $fullLogs -split "`n"
-            $interesting = $lines | Where-Object { $_ -match '(?i)error|failed|cmake|build|step|failed to solve' }
-            if ($interesting.Count -gt $FailedLogLines) {
-                $interesting = $interesting[ - $FailedLogLines..-1]
+    # First pass: structured data from jobs[]/steps[] if available
+    if ($jobsData -and $jobsData.jobs) {
+        foreach ($job in $jobsData.jobs) {
+            if ($job.steps) {
+                foreach ($step in $job.steps) {
+                    if ($step.conclusion -and $step.conclusion -ne 'success') {
+                        $failedLogSnippet += "job=$($job.name);step=$($step.name);conclusion=$($step.conclusion);number=$($step.number)"
+                    }
+                }
             }
-            $failedLogSnippet = $interesting
         }
     }
-    catch {
-        Write-Warning "Could not fetch failed run logs: $($_)"
+    elseif ($normalizedRun.jobs -and $normalizedRun.jobs.jobs) {
+        foreach ($job in $normalizedRun.jobs.jobs) {
+            if ($job.steps) {
+                foreach ($step in $job.steps) {
+                    if ($step.conclusion -and $step.conclusion -ne 'success') {
+                        $failedLogSnippet += "job=$($job.name);step=$($step.name);conclusion=$($step.conclusion);number=$($step.number)"
+                    }
+                }
+            }
+        }
+    }
+
+    # Fallback to text grep log extraction when no structured failed steps were found or if we still want full failure lines
+    if ($failedLogSnippet.Count -eq 0) {
+        try {
+            $fullLogs = gh run view $RunId --repo $Repo --log-failed 2>&1 | Out-String
+            if ($fullLogs.Trim()) {
+                $lines = $fullLogs -split "`n"
+                $interesting = $lines | Where-Object { $_ -match '(?i)error|failed|cmake|build|step|failed to solve' }
+                if ($interesting.Count -gt $FailedLogLines) {
+                    $interesting = $interesting[ - $FailedLogLines..-1]
+                }
+                $failedLogSnippet = $interesting
+            }
+        }
+        catch {
+            Write-Warning "Could not fetch failed run logs: $($_)"
+        }
     }
 }
 
