@@ -51,14 +51,18 @@ if exist "%OUTPUT_ROOT%\WebUI" (
 )
 if exist "%OUTPUT_ROOT%\Server.exe" (
     xcopy /s "%OUTPUT_ROOT%\Server.exe" DS3OS\Server\
+) else if exist "intermediate\vs2022\Source\Server\Server.exe" (
+    xcopy /s "intermediate\vs2022\Source\Server\Server.exe" DS3OS\Server\
 ) else (
-    echo WARNING: Server.exe not found in %OUTPUT_ROOT%
+    echo WARNING: Server.exe not found in %OUTPUT_ROOT% or intermediate\vs2022\Source\Server
     set ERR=1
 )
 if exist "%OUTPUT_ROOT%\Server.pdb" (
     xcopy /s "%OUTPUT_ROOT%\Server.pdb" DS3OS\Server\
+) else if exist "intermediate\vs2022\Source\Server\Server.pdb" (
+    xcopy /s "intermediate\vs2022\Source\Server\Server.pdb" DS3OS\Server\
 ) else (
-    echo WARNING: Server.pdb not found in %OUTPUT_ROOT%
+    echo WARNING: Server.pdb not found in %OUTPUT_ROOT% or intermediate\vs2022\Source\Server
     set ERR=1
 )
 
@@ -66,16 +70,20 @@ if exist "%OUTPUT_ROOT%\Injector.pdb" (
     xcopy /s "%OUTPUT_ROOT%\Injector.pdb" DS3OS\Loader\
 ) else if exist "Source\Injector\bin\x64_release\Injector.pdb" (
     xcopy /s "Source\Injector\bin\x64_release\Injector.pdb" DS3OS\Loader\
+) else if exist "build\Source\Injector\Injector.pdb" (
+    xcopy /s "build\Source\Injector\Injector.pdb" DS3OS\Loader\
 ) else (
-    echo WARNING: Injector.pdb not found in %OUTPUT_ROOT% or source bin path
+    echo WARNING: Injector.pdb not found in %OUTPUT_ROOT% or source/bin/build paths
     set ERR=1
 )
 if exist "%OUTPUT_ROOT%\Injector.dll" (
     xcopy /s "%OUTPUT_ROOT%\Injector.dll" DS3OS\Loader\
 ) else if exist "Source\Injector\bin\x64_release\Injector.dll" (
     xcopy /s "Source\Injector\bin\x64_release\Injector.dll" DS3OS\Loader\
+) else if exist "build\Source\Injector\Injector.dll" (
+    xcopy /s "build\Source\Injector\Injector.dll" DS3OS\Loader\
 ) else (
-    echo WARNING: Injector.dll not found in %OUTPUT_ROOT% or source bin path
+    echo WARNING: Injector.dll not found in %OUTPUT_ROOT% or source/bin/build paths
     set ERR=1
 )
 

@@ -43,8 +43,10 @@ fi
 
 if [ -f "$OUTPUT_ROOT/Server" ]; then
   cp "$OUTPUT_ROOT/Server" DS3OS/Server/
+elif [ -f "intermediate/make/Source/Server/Server" ]; then
+  cp "intermediate/make/Source/Server/Server" DS3OS/Server/
 else
-  echo "WARNING: Server executable not found in $OUTPUT_ROOT"
+  echo "WARNING: Server executable not found in $OUTPUT_ROOT or intermediate/make/Source/Server"
   ERR=1
 fi
 
