@@ -146,7 +146,27 @@ function sanitizeField(value, maxLength = 256) {
     sanitized = sanitized.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]+/g, "");
 
     // Remove possible HTML tag constructs to reduce risk of stored XSS by bug.
-    sanitized = sanitized.replace(/<[^>]*>/g, "");
+    let inTag = false;
+    let filtered = "";
+    for (const ch of sanitized) {
+        if (ch === "<") {
+            inTag = true;
+            continue;
+        }
+
+        if (ch === ">") {
+            inTag = false;
+            continue;
+        }
+
+        if (!inTag) {
+            filtered += ch;
+        }
+    }
+    sanitized = filtered;
+
+    // Remove any remaining angle brackets (e.g. incomplete tags like <script or >foo) to prevent bypass.
+    sanitized = sanitized.replace(/[<>]+/g, "");
 
     if (sanitized.length > maxLength) {
         sanitized = sanitized.slice(0, maxLength);

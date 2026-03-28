@@ -55,16 +55,19 @@ HEALTHCHECK --interval=30s --timeout=5s --retries=3 \
 ENV STEAM_APP_ID=${STEAM_APP_ID}
 RUN echo "$STEAM_APP_ID" >> /opt/ds2os/steam_appid.txt
 
-# Copy the build stage output into the runtime stage.
-COPY --from=build /build /build
-
-RUN ls -al /build && find /build -maxdepth 5 -type f -print
-
+# Copy only the built runtime outputs from the build stage into the runtime image.
+# Avoid copying the full /build tree to keep image size small.
 RUN if [ -d /build/bin/x64_release ]; then \
       cp -a /build/bin/x64_release/. /opt/ds2os/; \
     else \
       echo "Error: canonical build output directory /build/bin/x64_release not found"; exit 1; \
     fi
+
+# Optional debug output during build (comment out in production):
+# RUN ls -al /opt/ds2os && find /opt/ds2os -maxdepth 4 -type f -print
+
+# Uncomment this to preserve full /build for inspection.
+# COPY --from=build /build /build
 COPY --from=steam /root/.local/share/Steam/steamcmd/linux64/steamclient.so /opt/ds2os/steamclient.so
 
 ENV LD_LIBRARY_PATH="/opt/ds2os"

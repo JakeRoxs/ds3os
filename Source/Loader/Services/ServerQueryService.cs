@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Loader.Services
 {
-  public class ServerQueryService
+  public class ServerQueryService : IDisposable
   {
     private Task<List<ServerConfig>?>? _currentQueryTask;
     private CancellationTokenSource? _internalCts;
+    private bool _disposed;
 
     public bool IsQueryInProgress => _currentQueryTask != null && !_currentQueryTask.IsCompleted;
 
@@ -29,9 +30,10 @@ namespace Loader.Services
       }
 
       _internalCts?.Cancel();
+      _internalCts?.Dispose();
       _internalCts = new CancellationTokenSource();
-      var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, _internalCts.Token);
 
+      using var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, _internalCts.Token);
       _currentQueryTask = QueryServersFromMasterAsync(linkedCts.Token);
 
       try
@@ -44,7 +46,6 @@ namespace Loader.Services
       }
       finally
       {
-        linkedCts.Dispose();
         if (_currentQueryTask != null && _currentQueryTask.IsCompleted)
         {
           _currentQueryTask = null;
@@ -55,6 +56,21 @@ namespace Loader.Services
     public void Cancel()
     {
       _internalCts?.Cancel();
+    }
+
+    public void Dispose()
+    {
+      if (_disposed)
+      {
+        return;
+      }
+
+      _internalCts?.Cancel();
+      _internalCts?.Dispose();
+      _internalCts = null;
+
+      _disposed = true;
+      GC.SuppressFinalize(this);
     }
   }
 }

@@ -124,25 +124,19 @@ if (WIN32)
         if(NOT _found_${_lib})
             find_library(_found_${_lib} NAMES ${_lib})
         endif()
-        if(NOT _found_${_lib})
+
+        set(_found_var "_found_${_lib}")
+        if(DEFINED ${_found_var} AND NOT "${${_found_var}}" STREQUAL "")
+            list(APPEND PLATFORM_LIBRARIES "${${_found_var}}")
+        else()
             message(WARNING "${_lib}.lib not found in SDK paths; using unqualified name (may fail if LIB path is missing).")
+            list(APPEND PLATFORM_LIBRARIES "${_lib}.lib")
         endif()
-        list(APPEND PLATFORM_LIBRARIES ${_lib}.lib)
     endforeach()
-    file(GLOB _windows_kit_lib_dirs
-        "C:/Program Files (x86)/Windows Kits/10/Lib/*/um/${_dbghelp_arch}"
-        "C:/Program Files/Windows Kits/10/Lib/*/um/${_dbghelp_arch}"
-        "C:/Program Files (x86)/Windows Kits/10/Lib/*/ucrt/${_dbghelp_arch}"
-        "C:/Program Files/Windows Kits/10/Lib/*/ucrt/${_dbghelp_arch}"
-    )
-    file(GLOB _msvc_lib_dirs
-        "C:/Program Files/Microsoft Visual Studio/*/*/VC/Tools/MSVC/*/lib/${_dbghelp_arch}"
-        "C:/Program Files (x86)/Microsoft Visual Studio/*/*/VC/Tools/MSVC/*/lib/${_dbghelp_arch}"
-    )
-    list(APPEND _windows_kit_lib_dirs ${_msvc_lib_dirs})
-    if(_windows_kit_lib_dirs)
-        link_directories(${_windows_kit_lib_dirs})
-    endif()
+
+    # Avoid global link_directories; use target_link_directories for the shared library target.
+    # The _system_link_paths are already set above and reused by the target_link_directories call later.
+
 elseif (UNIX)
     SET(PLATFORM_SOURCES
         Platform/Linux/LinuxPlatform.cpp
@@ -174,8 +168,17 @@ else()
 endif()
 
 message(STATUS "PLATFORM_LIBRARIES=${PLATFORM_LIBRARIES}")
-if(WIN32 AND _system_link_paths)
-    target_link_directories(${PROJECT_NAME} PRIVATE ${_system_link_paths})
+if(WIN32)
+    list(REMOVE_DUPLICATES PLATFORM_LIBRARIES)
+
+    # Prevent implicit unqualified system libraries from being appended to the link line,
+    # which can fail in environments without LIB path configured.
+    set(CMAKE_CXX_STANDARD_LIBRARIES "")
+    set(CMAKE_C_STANDARD_LIBRARIES "")
+
+    if(_system_link_paths)
+        target_link_directories(${PROJECT_NAME} PRIVATE ${_system_link_paths})
+    endif()
 endif()
 
 target_link_libraries(

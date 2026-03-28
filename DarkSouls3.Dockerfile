@@ -54,17 +54,19 @@ HEALTHCHECK --interval=30s --timeout=5s --retries=3 \
 ENV STEAM_APP_ID=${STEAM_APP_ID}
 RUN echo "$STEAM_APP_ID" >> /opt/ds3os/steam_appid.txt
 
-# Copy the built outputs from the build stage into the runtime image.
-# The runtime stage originally had no /build contents, so this COPY is required.
-COPY --from=build /build /build
-
-RUN ls -al /build && find /build -maxdepth 5 -type f -print
-
+# Copy only the built runtime outputs from the build stage into the runtime image.
+# Keep the runtime image small by avoiding a full /build copy.
 RUN if [ -d /build/bin/x64_release ]; then \
       cp -a /build/bin/x64_release/. /opt/ds3os/; \
     else \
       echo "Error: canonical build output directory /build/bin/x64_release not found"; exit 1; \
     fi
+
+# Diagnostic helper (optional, can be removed in final image).
+# RUN ls -al /opt/ds3os && find /opt/ds3os -maxdepth 4 -type f -print
+
+# If you intentionally want to keep /build for debug, uncomment the following:
+# COPY --from=build /build /build
 COPY --from=steam /root/.local/share/Steam/steamcmd/linux64/steamclient.so /opt/ds3os/steamclient.so
 
 ENV LD_LIBRARY_PATH="/opt/ds3os"

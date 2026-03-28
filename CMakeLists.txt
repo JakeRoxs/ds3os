@@ -40,9 +40,11 @@ if(MSVC)
 
     set(_global_link_dirs ${_global_sdk_um} ${_global_sdk_ucrt} ${_global_msvc_lib} ${_global_msvc_lib_x86})
     if(_global_link_dirs)
-        # Apply to all targets in all directories.
-        set_property(GLOBAL PROPERTY LINK_DIRECTORIES ${_global_link_dirs})
-        link_directories(${_global_link_dirs})
+        # Prefer to keep linking behavior local to MSVC generator; avoid global link_directories()
+        # because it can affect unrelated targets and is brittle across custom installs.
+        # Use CMAKE_LIBRARY_PATH as a fallback for find_library checks in this project.
+        list(APPEND CMAKE_LIBRARY_PATH ${_global_link_dirs})
+        message(STATUS "Added fallback MSVC/Windows SDK library paths to CMAKE_LIBRARY_PATH")
     endif()
 
     check_library_exists(kernel32 "GetModuleHandleA" "Windows.h" DSOS_HAS_KERNEL32)
