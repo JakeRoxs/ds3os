@@ -415,6 +415,27 @@ def safe_filename(name: str) -> str:
     return name
 
 
+try:
+    from send2trash import send2trash
+except ImportError:
+    send2trash = None
+
+
+def _safe_delete(path: str) -> None:
+    """Delete a file via Recycle Bin if possible, otherwise unlink directly."""
+    if send2trash is not None:
+        try:
+            send2trash(path)
+            return
+        except Exception as e:
+            print(f"WARNING: send2trash failed for {path}, falling back to os.remove: {e}", file=sys.stderr)
+
+    try:
+        os.remove(path)
+    except Exception as e:
+        print(f"ERROR: failed to remove file {path}: {e}", file=sys.stderr)
+
+
 def next_issue_id(todo_root: str) -> str:
     """Compute the next sequential issue id (3-digit) for a new todo file."""
 
@@ -493,17 +514,17 @@ def main(argv: Optional[List[str]] = None) -> int:
     parser.add_argument(
         "--write-todos",
         action="store_true",
-        help="Write todo markdown files under the provided directory (default: todos/)",
+        help="Write todo markdown files under the provided directory (default: todos/). This is implied when no output mode is specified.",
     )
     parser.add_argument(
         "--todo-dir",
-        default="todos",
-        help="Root directory to write todo files when --write-todos is enabled",
+        default="todos/code-scanning",
+        help="Root directory to write code scanning todo files when --write-todos is enabled (default: todos/code-scanning)",
     )
     parser.add_argument(
         "--clean",
         action="store_true",
-        help="Remove previously-generated todo files under --todo-dir before writing new ones",
+        help="Remove previously-generated code scanning todo files under --todo-dir before writing new ones",
     )
     parser.add_argument(
         "--group-by",
@@ -574,52 +595,59 @@ def main(argv: Optional[List[str]] = None) -> int:
         # Cache the raw data for faster subsequent runs
         _save_cache(data)
 
-    if args.preview_todos or args.write_todos:
-        if not isinstance(data, list):
-            print("ERROR: expected a list of alerts from the API", file=sys.stderr)
-            return 1
+    if not isinstance(data, list):
+        print("ERROR: expected a list of alerts from the API", file=sys.stderr)
+        return 1
 
-        groups = group_alerts(data, group_by=args.group_by)
-        print(f"Found {len(data)} alerts in {len(groups)} groups (grouped by {args.group_by}).")
-        for k, v in sorted(groups.items(), key=lambda i: (-len(i[1]), i[0])):
-            print(f" - {len(v):4d} alerts in group '{k}'")
+    groups = group_alerts(data, group_by=args.group_by)
+    print(f"Found {len(data)} alerts in {len(groups)} groups (grouped by {args.group_by}).")
+    for k, v in sorted(groups.items(), key=lambda i: (-len(i[1]), i[0])):
+        print(f" - {len(v):4d} alerts in group '{k}'")
 
-        if args.write_todos:
-            todo_root = os.path.abspath(args.todo_dir)
-            os.makedirs(todo_root, exist_ok=True)
+    if args.preview_todos and args.write_todos:
+        parser.error("Cannot use --preview-todos and --write-todos together. Choose one.")
 
-            if args.clean:
-                # Remove generated todo files (e.g. 001-pending-*.md) recursively.
-                # This matches the same scope used by next_issue_id(), preventing stale todos or issue ID collisions.
-                pattern = os.path.join(todo_root, "**", "[0-9][0-9][0-9]-*.md")
-                for existing in glob.glob(pattern, recursive=True):
-                    try:
-                        os.remove(existing)
-                    except OSError:
-                        pass
-
-            issue_id = next_issue_id(todo_root)
-            for group_key, alerts in groups.items():
-                if not alerts:
-                    # Defensive: skip empty groups (should not happen under normal operation)
-                    continue
-                filename = safe_filename(group_key)
-                first_alert = alerts[0]
-                severity = (first_alert.get("rule", {}) or {}).get("severity")
-                todo_path = os.path.join(
-                    todo_root,
-                    f"{issue_id}-pending-{severity_to_priority(severity)}-{filename}.md",
-                )
-                with open(todo_path, "w", encoding="utf-8") as f:
-                    f.write(render_todo_body(issue_id, group_key, alerts))
-                issue_id = f"{int(issue_id) + 1:03d}"
-
-            print(f"Wrote {len(groups)} todo file(s) to {todo_root}")
-            return 0
-
-        # Preview only
+    if args.preview_todos:
+        # Preview only; no writing.
         return 0
 
+    # Default is to write todos unless preview is explicitly requested.
+    todo_root = os.path.abspath(args.todo_dir)
+
+    # Safety check: do not clean arbitrary parent directories.
+    # This script is intended for code scanning todos only.
+    if args.clean and os.path.abspath(todo_root) in (
+        os.path.abspath("todos"),
+        os.path.abspath("."),
+    ):
+        parser.error("--clean on top-level dirs is not allowed. Use --todo-dir todos/code-scanning (default).")
+
+    os.makedirs(todo_root, exist_ok=True)
+
+    if args.clean:
+        # Remove generated code scanning todo files (e.g. 001-pending-*.md) recursively.
+        # This matches the same scope used by next_issue_id(), preventing stale todos or issue ID collisions.
+        pattern = os.path.join(todo_root, "**", "[0-9][0-9][0-9]-*.md")
+        for existing in glob.glob(pattern, recursive=True):
+            _safe_delete(existing)
+
+    issue_id = next_issue_id(todo_root)
+    for group_key, alerts in groups.items():
+        if not alerts:
+            # Defensive: skip empty groups (should not happen under normal operation)
+            continue
+        filename = safe_filename(group_key)
+        first_alert = alerts[0]
+        severity = (first_alert.get("rule", {}) or {}).get("severity")
+        todo_path = os.path.join(
+            todo_root,
+            f"{issue_id}-pending-{severity_to_priority(severity)}-{filename}.md",
+        )
+        with open(todo_path, "w", encoding="utf-8") as f:
+            f.write(render_todo_body(issue_id, group_key, alerts))
+        issue_id = f"{int(issue_id) + 1:03d}"
+
+    print(f"Wrote {len(groups)} todo file(s) to {todo_root}")
     return 0
 
 
@@ -733,3 +761,7 @@ class AlertGroupingAndTodoRenderingTests(unittest.TestCase):
         self.assertIn("**Recommendation:** Do something", body)
         self.assertIn("**More info:** https://example.com/docs", body)
         self.assertIn("`Source/Main.cs:10`", body)
+
+
+if __name__ == "__main__":
+    sys.exit(main())
