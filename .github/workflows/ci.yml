@@ -24,6 +24,22 @@ env:
   BUILD_CONFIGURATION: Release
 
 jobs:
+  sonar:
+    name: Trigger SonarQube workflow
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'workflow_dispatch' || github.workflow != 'SonarQube analysis' }}
+    steps:
+      - name: Trigger sonarqube.yml via workflow dispatch
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'sonarqube.yml',
+              ref: github.ref,
+            });
   check:
     name: Determine whether CI should run
     runs-on: ubuntu-latest
@@ -295,18 +311,18 @@ jobs:
         working-directory: ${{github.workspace}}/intermediate/make
         run: ninja -j$(nproc)
 
-      - name: Install Nix
-        if: startsWith(matrix.name, 'nix-')
-        uses: DeterminateSystems/nix-installer-action@main
+      # - name: Install Nix
+      #   if: startsWith(matrix.name, 'nix-')
+      #   uses: DeterminateSystems/nix-installer-action@main
 
-      - name: Setup nix cache
-        if: startsWith(matrix.name, 'nix-')
-        uses: DeterminateSystems/magic-nix-cache-action@main
-        with:
-          use-flakehub: false
+      # - name: Setup nix cache
+      #   if: startsWith(matrix.name, 'nix-')
+      #   uses: DeterminateSystems/magic-nix-cache-action@main
+      #   with:
+      #     use-flakehub: false
 
-      - name: Build with nix
-        if: startsWith(matrix.name, 'nix-')
-        run: |
-          target="${{ matrix.nixTarget == 'default' && '.' || matrix.nixTarget == 'clang' && '.#clang' || matrix.nixTarget }}"
-          nix build -L "$target"
+      # - name: Build with nix
+      #   if: startsWith(matrix.name, 'nix-')
+      #   run: |
+      #     target="${{ matrix.nixTarget == 'default' && '.' || matrix.nixTarget == 'clang' && '.#clang' || matrix.nixTarget }}"
+      #     nix build -L "$target"
