@@ -27,14 +27,13 @@ jobs:
   sonar:
     name: Trigger SonarQube workflow
     runs-on: ubuntu-latest
-    if: ${{ github.event_name != 'workflow_dispatch' || github.workflow != 'SonarQube analysis' }}
     steps:
       - name: Trigger sonarqube.yml via workflow dispatch
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            await github.actions.createWorkflowDispatch({
+            await github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: 'sonarqube.yml',
