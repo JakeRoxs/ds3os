@@ -34,11 +34,14 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            await github.rest.actions.createWorkflowDispatch({
+            const branch = github.context.ref.startsWith('refs/heads/')
+              ? github.context.ref.replace('refs/heads/', '')
+              : 'main';
+            await github.request('POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches', {
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: 'sonarqube.yml',
-              ref: github.ref,
+              ref: branch,
             });
   check:
     name: Determine whether CI should run
