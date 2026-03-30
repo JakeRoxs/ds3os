@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: ["main"]
   workflow_dispatch:
+    inputs:
+      branch:
+        description: "Branch name that triggered analysis from upstream workflow"
+        required: false
+        default: "main"
 
 permissions:
   pull-requests: read # allows SonarQube to decorate PRs with analysis results
@@ -16,6 +21,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Show dispatch tracing info
+        run: |
+          echo "Triggered on ref: ${{ github.ref }}"
+          echo "Requested branch input: ${{ github.event.inputs.branch }}"
+
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
