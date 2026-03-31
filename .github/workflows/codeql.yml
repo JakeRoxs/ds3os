@@ -83,34 +83,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      # Compute a stable cache key based on source/CI files (including this workflow).
-      # This avoids running hashFiles twice and ensures cache invalidation when the workflow changes.
-      - name: Compute cache key
-        id: cachekey
-        run: |
-          echo "SOURCE_HASH=${{ hashFiles('Source/**','Protobuf/**','**/CMakeLists.txt','**/*.sln','**/*.csproj','.github/workflows/codeql.yml') }}" >> $GITHUB_OUTPUT
-
-      # Cache CodeQL database + trap caches across runs to avoid rebuilding the DB from scratch.
-      - name: Cache CodeQL database + trap caches
-        uses: actions/cache@v5
-        with:
-          path: |
-            ${{ runner.temp }}/codeql_databases
-            ${{ runner.temp }}/trapCaches
-          key: codeql-${{ runner.os }}-${{ matrix.language }}-${{ steps.cachekey.outputs.SOURCE_HASH }}
-          restore-keys: |
-            codeql-${{ runner.os }}-${{ matrix.language }}-
-
-      # Cache the CodeQL autobuild working directory for C/C++ to avoid rebuilding from scratch.
-      - name: Cache CodeQL autobuild directory
-        if: matrix.language == 'c-cpp'
-        uses: actions/cache@v5
-        with:
-          path: _codeql_build_dir
-          key: codeql-cpp-autobuild-${{ runner.os }}-${{ steps.cachekey.outputs.SOURCE_HASH }}
-          restore-keys: |
-            codeql-cpp-autobuild-${{ runner.os }}-
-
       # Add any setup steps before running the `github/codeql-action/init` action.
       # This includes steps like installing compilers or runtimes (`actions/setup-node`
       # or others). This is typically only required for manual builds.

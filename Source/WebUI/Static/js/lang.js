@@ -51,8 +51,8 @@ function updatePageText(data) {
 }
 
 function init() {
-    var browserLang = navigator.language || navigator.userLanguage;
-    var userLang = localStorage.getItem("userLang");
+    let browserLang = navigator.language || navigator.userLanguage;
+    let userLang = localStorage.getItem("userLang");
     if (userLang == null) {
         userLang = browserLang;
         saveLanguage(browserLang);
@@ -82,3 +82,4 @@ function generateJson() {
     // Print a well-formed JSON object that can be copied into a locale file
     console.log(JSON.stringify(translations, null, 2));
 }
+

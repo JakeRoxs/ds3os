@@ -7,23 +7,23 @@
  * If not, see <https://opensource.org/licenses/MIT>.
  */
 
-var gRefreshStatisticsInterval;
-var gRefreshPlayersInterval;
-var gRefreshBansInterval;
-var gRefreshDebugInterval;
+let gRefreshStatisticsInterval;
+let gRefreshPlayersInterval;
+let gRefreshBansInterval;
+let gRefreshDebugInterval;
 
-var gActivePlayersChart;
+let gActivePlayersChart;
 
 // store received game type so we can rebuild title after language switches
-var gCurrentGameType = null;
+let gCurrentGameType = null;
 
 function updateTitleWithGameType(type) {
     // grab translated base title (lang.js already applied translation)
-    var base = document.querySelector('[data-i18n="html_title"]');
-    var prefix = base ? base.textContent : "Dark Souls Open Server";
-    var dynamic = `${prefix} - ${type}`;
+    let base = document.querySelector('[data-i18n="html_title"]');
+    let prefix = base ? base.textContent : "Dark Souls Open Server";
+    let dynamic = `${prefix} - ${type}`;
     document.title = dynamic;
-    var hdr = document.querySelector('.mdl-layout-title');
+    let hdr = document.querySelector('.mdl-layout-title');
     if (hdr) hdr.textContent = dynamic;
 }
 
@@ -41,10 +41,10 @@ window.onload = function()
 // Sets a cookie by name.
 function setCookie(cname, cvalue, exdays) 
 {
-    var d = new Date();
+    let d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
 
-    var expires = "expires="+ d.toUTCString();
+    let expires = "expires="+ d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
@@ -64,14 +64,14 @@ function getCookie(name)
 // and begins refreshing the relevant data.
 function onDocumentLoaded()
 {
-    var logoutButton = document.querySelector('#logout-button');    
+    let logoutButton = document.querySelector('#logout-button');    
     logoutButton.addEventListener('click', function() 
     {
         storeAuthToken("");
         reauthenticate();
     });
     
-    var playersChart = document.querySelector('#players-chart');    
+    let playersChart = document.querySelector('#players-chart');    
     gActivePlayersChart = new Chart(playersChart, {
         type: 'line',
         data: {
@@ -148,7 +148,7 @@ function checkAuthState()
 
 function authenticate(username, password)
 {
-    var dialog = document.querySelector("#auth-dialog");
+    let dialog = document.querySelector("#auth-dialog");
 
     fetch("/auth", 
     {
@@ -197,10 +197,10 @@ function reauthenticate()
 
     storeAuthToken("");
 
-    var dialog = document.querySelector("#auth-dialog");   
-    var button = document.querySelector('#auth-login-button');
-    var usernameBox = document.querySelector('#auth-username');
-    var passwordBox = document.querySelector('#auth-password');
+    let dialog = document.querySelector("#auth-dialog");   
+    let button = document.querySelector('#auth-login-button');
+    let usernameBox = document.querySelector('#auth-username');
+    let passwordBox = document.querySelector('#auth-password');
     
     button.disabled = false;
     if (!dialog.showModal) 
@@ -209,7 +209,7 @@ function reauthenticate()
     }
     dialog.showModal();
 
-    var handler = function() 
+    let handler = function() 
     {
         button.removeEventListener('client', handler);
         button.disabled = true;
@@ -343,10 +343,10 @@ function sendUserMessageInternal(playerId, message)
 
 function sendUserMessage(playerId)
 {    
-    var dialog = document.querySelector("#send-message-dialog");   
-    var sendButton = document.querySelector('#send-message-button');   
-    var cancelButton = document.querySelector('#cancel-send-message-button');
-    var messageBox = document.querySelector('#send-message-text');
+    let dialog = document.querySelector("#send-message-dialog");   
+    let sendButton = document.querySelector('#send-message-button');   
+    let cancelButton = document.querySelector('#cancel-send-message-button');
+    let messageBox = document.querySelector('#send-message-text');
     
     if (!dialog.showModal) 
     {
@@ -354,13 +354,13 @@ function sendUserMessage(playerId)
     }
     dialog.showModal();
 
-    var sendHandler = function() 
+    let sendHandler = function() 
     {
         sendButton.removeEventListener('click', sendHandler);
         sendUserMessageInternal(playerId, messageBox.value);
         dialog.close();
     };
-    var cancelHandler = function() 
+    let cancelHandler = function() 
     {
         cancelButton.removeEventListener('click', cancelHandler);
         dialog.close();
@@ -372,10 +372,10 @@ function sendUserMessage(playerId)
 
 function sendMessageToAllUsers()
 {
-    var dialog = document.querySelector("#send-message-dialog");   
-    var sendButton = document.querySelector('#send-message-button');   
-    var cancelButton = document.querySelector('#cancel-send-message-button');
-    var messageBox = document.querySelector('#send-message-text');
+    let dialog = document.querySelector("#send-message-dialog");   
+    let sendButton = document.querySelector('#send-message-button');   
+    let cancelButton = document.querySelector('#cancel-send-message-button');
+    let messageBox = document.querySelector('#send-message-text');
     
     if (!dialog.showModal) 
     {
@@ -383,13 +383,13 @@ function sendMessageToAllUsers()
     }
     dialog.showModal();
 
-    var sendHandler = function() 
+    let sendHandler = function() 
     {
         sendButton.removeEventListener('click', sendHandler);
         sendUserMessageInternal(0, messageBox.value);
         dialog.close();
     };
-    var cancelHandler = function() 
+    let cancelHandler = function() 
     {
         cancelButton.removeEventListener('click', cancelHandler);
         dialog.close();
@@ -418,10 +418,10 @@ function refreshStatisticsTab()
     .then(function (data) 
     {
         // Update active players chart.
-        var chartLabels = [];
-        var chartData = [];
+        let chartLabels = [];
+        let chartData = [];
 
-        for (var i = 0; i < data.activePlayerSamples.length; i++)
+        for (let i = 0; i < data.activePlayerSamples.length; i++)
         {
             chartLabels.push(data.activePlayerSamples[i].time);
             chartData.push(data.activePlayerSamples[i].players);
@@ -432,12 +432,12 @@ function refreshStatisticsTab()
         gActivePlayersChart.update();
 
         // Update the statistics list.        
-        var statisticsTable = document.querySelector("#statistic-table-body");   
-        var newHtml = "";
+        let statisticsTable = document.querySelector("#statistic-table-body");   
+        let newHtml = "";
 
-        for (var i = 0; i < data.statistics.length; i++) 
+        for (let i = 0; i < data.statistics.length; i++) 
         {
-            var stat = data.statistics[i];
+            let stat = data.statistics[i];
             newHtml += `        
                 <tr>
                     <td class="mdl-data-table__cell--non-numeric">${stat["name"]}</td>
@@ -449,12 +449,12 @@ function refreshStatisticsTab()
         statisticsTable.innerHTML = newHtml;
 
         // Update populated areas list.
-        var populatedAreasTable = document.querySelector("#populated-areas-table-body");   
+        let populatedAreasTable = document.querySelector("#populated-areas-table-body");   
         newHtml = "";
 
-        for (var i = 0; i < data.populatedAreas.length; i++) 
+        for (let i = 0; i < data.populatedAreas.length; i++) 
         {
-            var stat = data.populatedAreas[i];
+            let stat = data.populatedAreas[i];
             newHtml += `        
                 <tr>
                     <td class="mdl-data-table__cell--non-numeric">${stat["areaName"]}</td>
@@ -490,12 +490,12 @@ function refreshPlayersTab()
     })
     .then(function (data) 
     {
-        var table = document.querySelector("#players-table-body");    
-        var newHtml = "";
+        let table = document.querySelector("#players-table-body");    
+        let newHtml = "";
 
-        for (var i = 0; i < data.players.length; i++) 
+        for (let i = 0; i < data.players.length; i++) 
         {
-            var player = data.players[i];
+            let player = data.players[i];
             newHtml += `        
                 <tr>
                     <td class="mdl-data-table__cell--non-numeric"><a href="https://steamcommunity.com/profiles/${player["steamId64"]}">${player["characterName"]}</a></td>
@@ -549,12 +549,12 @@ function refreshBansTab()
     })
     .then(function (data) 
     {
-        var table = document.querySelector("#bans-table-body");    
-        var newHtml = "";
+        let table = document.querySelector("#bans-table-body");    
+        let newHtml = "";
 
-        for (var i = 0; i < data.bans.length; i++)
+        for (let i = 0; i < data.bans.length; i++)
         {
-            var ban = data.bans[i];
+            let ban = data.bans[i];
             newHtml += `        
                 <tr>
                     <td class="mdl-data-table__cell--non-numeric"><a href="https://steamcommunity.com/profiles/${ban["steamId64"]}">${ban["steamId64"]}</a></td>
@@ -666,28 +666,28 @@ function saveSettings()
 
 function deleteThisAnnouncementBlock(button)
 {
-    var parentElement = button.parentNode;
+    let parentElement = button.parentNode;
     parentElement.parentNode.removeChild(parentElement); 
 }
 
 function createNewAnnouncementBlock(where)
 {
-    var element = document.querySelector("#announcements");
-    var index = element.children.length;
+    let element = document.querySelector("#announcements");
+    let index = element.children.length;
 
     const classes = ['mdl-textfield','mdl-js-textfield','mdl-textfield--floating-label','fullWidth'];
 
-    var nab = document.createElement('div');
+    let nab = document.createElement('div');
     nab.classList.add('fullWidth');
     nab.id = `announcement-${index}`;
 
-    var addBefore = document.createElement('button');
+    let addBefore = document.createElement('button');
     addBefore.textContent = String.fromCodePoint(0x2795);
     addBefore.onclick = function(){createNewAnnouncementBlock(nab)};
     addBefore.title = "Add an announcement block before this one";
     nab.appendChild(addBefore);
 
-    var announcementHeader = document.createElement('div');
+    let announcementHeader = document.createElement('div');
     announcementHeader.classList.add.apply(announcementHeader.classList, classes);
     announcementHeader.innerHTML = `
     <input class="mdl-textfield__input" type="text" id="announcement-${index}-header">
@@ -695,7 +695,7 @@ function createNewAnnouncementBlock(where)
     `;
     nab.appendChild(announcementHeader);
 
-    var announcementBody = document.createElement('div');
+    let announcementBody = document.createElement('div');
     announcementBody.classList.add.apply(announcementBody.classList, classes);
     announcementBody.innerHTML = `
     <textarea  class="mdl-textfield__input" rows="5" cols="80" id="announcement-${index}-body"></textarea>
@@ -703,7 +703,7 @@ function createNewAnnouncementBlock(where)
     `;
     nab.appendChild(announcementBody);
 
-    var deleteButton = document.createElement('button');
+    let deleteButton = document.createElement('button');
     deleteButton.textContent = String.fromCodePoint(0x1F5D1);
     deleteButton.onclick = function() { nab.parentElement.removeChild(nab); };
     deleteButton.title = "Delete this announcement block";
@@ -727,7 +727,10 @@ function createNewAnnouncementBlock(where)
 function setAnnouncements(element,announcements)
 {
     element.innerHTML = '';
-    for(var i= 0; i < announcements.length; i++)
+    let announcement;
+    let announcementHeader;
+    let announcementBody;
+    for(let i= 0; i < announcements.length; i++)
     {
         createNewAnnouncementBlock(null);
         announcement = announcements[i];
@@ -743,13 +746,13 @@ function setAnnouncements(element,announcements)
 
 function getAnnouncements(element)
 {
-    announcementList = []
-    var children = element.children;
-    for(var i = 0; i < children.length; i++)
+    let announcementList = [];
+    let children = element.children;
+    for(let i = 0; i < children.length; i++)
     {
-        var child = children[i];
-        announcementHeader = document.querySelector(`#${child.id}-header`);
-        announcementBody = document.querySelector(`#${child.id}-body`);
+        let child = children[i];
+        let announcementHeader = document.querySelector(`#${child.id}-header`);
+        let announcementBody = document.querySelector(`#${child.id}-body`);
         announcementList.push({header: announcementHeader.value, body: announcementBody.value});
     }
     return announcementList;
@@ -792,15 +795,15 @@ function refreshDebugTab()
     })
     .then(function (data) 
     {
-        var timerTable = document.querySelector("#debug-timer-table-body");   
-        var counterTable = document.querySelector("#debug-counter-table-body");   
-        var logTable = document.querySelector("#debug-log-table-body");   
+        let timerTable = document.querySelector("#debug-timer-table-body");   
+        let counterTable = document.querySelector("#debug-counter-table-body");   
+        let logTable = document.querySelector("#debug-log-table-body");   
 
         // Update the timer list.      
-        var newHtml = "";
-        for (var i = 0; i < data.timers.length; i++) 
+        let newHtml = "";
+        for (let i = 0; i < data.timers.length; i++) 
         {
-            var stat = data.timers[i];
+            let stat = data.timers[i];
             newHtml += `        
                 <tr>
                     <td class="mdl-data-table__cell--non-numeric">${stat["name"]}</td>
@@ -814,9 +817,9 @@ function refreshDebugTab()
         
         // Update the counter list.      
         newHtml = "";
-        for (var i = 0; i < data.counters.length; i++) 
+        for (let i = 0; i < data.counters.length; i++) 
         {
-            var stat = data.counters[i];
+            let stat = data.counters[i];
             newHtml += `        
                 <tr>
                     <td class="mdl-data-table__cell--non-numeric">${stat["name"]}</td>
@@ -829,9 +832,9 @@ function refreshDebugTab()
         
         // Update the debug log list.    
         newHtml = "";
-        for (var i = 0; i < data.logs.length; i++) 
+        for (let i = 0; i < data.logs.length; i++) 
         {
-            var stat = data.logs[i];
+            let stat = data.logs[i];
             newHtml += `        
                 <tr>
                     <td class="mdl-data-table__cell--non-numeric">${stat["level"]}</td>

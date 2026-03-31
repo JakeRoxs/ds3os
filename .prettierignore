@@ -7,3 +7,6 @@ Source/ThirdParty/**
 bin/**
 build/**
 Intermediate/**
+
+# Ignore enum include tables that are not valid Prettier syntax
+Source/**/*.inc

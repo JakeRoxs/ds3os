@@ -339,15 +339,21 @@ function Get-JobsData {
                 $jobsData = @{ jobs = $jobsData.job }
             }
 
-            $count = $null
-            if ($jobsData.total_count) {
+            $count = 0
+            if ($null -ne $jobsData.total_count) {
                 $count = $jobsData.total_count
             }
-            elseif ($jobsData.jobs) {
-                $count = $jobsData.jobs.Count
-            }
-            else {
-                $count = 0
+            elseif ($null -ne $jobsData.jobs) {
+                if ($jobsData.jobs -is [System.Collections.ICollection]) {
+                    $count = $jobsData.jobs.Count
+                }
+                elseif ($jobsData.jobs -is [System.Object[]]) {
+                    $count = $jobsData.jobs.Length
+                }
+                else {
+                    # jobs can be a single object when only one job exists
+                    $count = 1
+                }
             }
 
             Write-Verbose "Fetched jobs list, total: $count"
@@ -387,9 +393,19 @@ function ConvertTo-RunFields {
 
     if (-not $status) {
         Write-Warning "Run status is missing in the run payload for $runId"
+        Write-Verbose "Run object: $($Run | ConvertTo-Json -Depth 6)"
     }
+
     if (-not $conclusion) {
-        Write-Warning "Run conclusion is missing in the run payload for $runId"
+        # Some workflow runs (in_progress) may omit conclusion; normalize to status for visibility
+        if ($status -and $status -ne 'completed') {
+            $conclusion = $status
+            Write-Verbose "Run conclusion missing; using status as conclusion: $conclusion"
+        }
+        else {
+            Write-Warning "Run conclusion is missing in the run payload for $runId"
+            Write-Verbose "Run object: $($Run | ConvertTo-Json -Depth 6)"
+        }
     }
 
     return [pscustomobject]@{
@@ -493,8 +509,19 @@ $failedSteps = @()
 $jobCount = 0
 
 if ($jobsData -and $jobsData.jobs) {
-    $jobCount = $jobsData.total_count
-    foreach ($job in $jobsData.jobs) {
+    $jobCount = @($jobsData.jobs).Count
+    if ($null -ne $jobsData.total_count) { $jobCount = $jobsData.total_count }
+    elseif (-not $jobCount -and $null -ne $jobsData.jobs) {
+        if ($jobsData.jobs -is [System.Collections.ICollection]) { $jobCount = $jobsData.jobs.Count }
+        elseif ($jobsData.jobs -is [System.Object[]]) { $jobCount = $jobsData.jobs.Length }
+        else { $jobCount = 1 }
+    }
+
+    $jobList = @()
+    if ($jobsData.jobs -is [System.Collections.IEnumerable]) { $jobList = $jobsData.jobs }
+    elseif ($null -ne $jobsData.jobs) { $jobList = @($jobsData.jobs) }
+
+    foreach ($job in $jobList) {
         $jobEntries += "$($job.id)|$($job.name)|$($job.status)|$($job.conclusion)|$($job.started_at)|$($job.completed_at)"
 
         if ($job.conclusion -and $job.conclusion -ne 'success') {
@@ -510,9 +537,25 @@ if ($jobsData -and $jobsData.jobs) {
         }
     }
 }
-elseif ($normalizedRun.jobs -and $normalizedRun.jobs.jobs) {
-    $jobCount = $normalizedRun.jobs.jobs.Count
-    foreach ($job in $normalizedRun.jobs.jobs) {
+elseif ($normalizedRun.jobs) {
+    $jobList = @()
+    if ($normalizedRun.jobs -is [System.Collections.ICollection]) {
+        $jobCount = @($normalizedRun.jobs).Count
+        $jobList = $normalizedRun.jobs
+    }
+    elseif ($normalizedRun.jobs -is [System.Object[]]) {
+        $jobCount = $normalizedRun.jobs.Length
+        $jobList = $normalizedRun.jobs
+    }
+    else {
+        $jobCount = @($normalizedRun.jobs).Count
+        if (-not $jobCount -or $jobCount -eq 0) {
+            $jobCount = 1
+        }
+        $jobList = @($normalizedRun.jobs)
+    }
+
+    foreach ($job in $jobList) {
         $jobEntries += "$($job.id)|$($job.name)|$($job.status)|$($job.conclusion)||"
 
         if ($job.conclusion -and $job.conclusion -ne 'success') {
@@ -537,8 +580,16 @@ $failedJobIds = @()
 if ($jobsData -and $jobsData.jobs) {
     $failedJobIds = $jobsData.jobs | Where-Object { $_.conclusion -and $_.conclusion -ne 'success' } | Select-Object -ExpandProperty id
 }
-elseif ($normalizedRun.jobs -and $normalizedRun.jobs.jobs) {
-    $failedJobIds = $normalizedRun.jobs.jobs | Where-Object { $_.conclusion -and $_.conclusion -ne 'success' } | Select-Object -ExpandProperty id
+elseif ($normalizedRun.jobs) {
+    $normJobList = @()
+    if ($normalizedRun.jobs -is [System.Collections.IEnumerable]) {
+        $normJobList = $normalizedRun.jobs
+    }
+    else {
+        $normJobList = @($normalizedRun.jobs)
+    }
+
+    $failedJobIds = $normJobList | Where-Object { $_.conclusion -and $_.conclusion -ne 'success' } | Select-Object -ExpandProperty id
 }
 
 $failedLogSnippet = @()
@@ -555,8 +606,16 @@ if (-not $ExcludeFailedLog) {
             }
         }
     }
-    elseif ($normalizedRun.jobs -and $normalizedRun.jobs.jobs) {
-        foreach ($job in $normalizedRun.jobs.jobs) {
+    elseif ($normalizedRun.jobs) {
+        $normJobList = @()
+        if ($normalizedRun.jobs -is [System.Collections.IEnumerable]) {
+            $normJobList = $normalizedRun.jobs
+        }
+        else {
+            $normJobList = @($normalizedRun.jobs)
+        }
+
+        foreach ($job in $normJobList) {
             if ($job.steps) {
                 foreach ($step in $job.steps) {
                     if ($step.conclusion -and $step.conclusion -ne 'success') {
@@ -580,17 +639,18 @@ if (-not $ExcludeFailedLog) {
         }
     }
     # Otherwise, if we did not have structured details, keep the most relevant lines.
-    elseif ($failedLogSnippet.Count -eq 0) {
+    elseif (@($failedLogSnippet).Count -eq 0) {
         try {
             $fullLogs = gh run view $RunId --repo $Repo --log-failed 2>&1 | Out-String
             if ($fullLogs.Trim()) {
                 $lines = $fullLogs -split "`n"
 
                 $interesting = $lines | Where-Object { $_ -match '(?i)error|failed|cmake|build|step|failed to solve' }
-                if ($interesting.Count -gt $FailedLogLines) {
-                    $interesting = $interesting[ - $FailedLogLines..-1]
+                $interestingCount = @($interesting).Count
+                if ($interestingCount -gt $FailedLogLines) {
+                    $interesting = @($interesting)[ - $FailedLogLines..-1]
                 }
-                $failedLogSnippet = $interesting
+                $failedLogSnippet = @($interesting)
             }
         }
         catch {
@@ -606,6 +666,8 @@ $lines.Add('TOON:github_actions_run')
 $lines.Add((ToonLine -k 'run_id' -v $normalizedRun.id))
 $lines.Add((ToonLine -k 'status' -v $normalizedRun.status))
 $lines.Add((ToonLine -k 'conclusion' -v $normalizedRun.conclusion))
+$runState = if ($normalizedRun.status -eq 'completed') { 'complete' } else { 'incomplete' }
+$lines.Add((ToonLine -k 'run_state' -v $runState))
 $lines.Add((ToonLine -k 'event' -v $normalizedRun.event))
 $lines.Add((ToonLine -k 'attempt' -v $normalizedRun.attempt))
 $lines.Add((ToonLine -k 'workflow_name' -v $normalizedRun.workflow_name))
@@ -621,12 +683,14 @@ $lines.Add((ToonLine -k 'head_sha' -v $normalizedRun.head_sha))
 $lines.Add((ToonLine -k 'job_count' -v $jobCount))
 $lines.Add((ToonLine -k 'failed_job_count' -v $failedJobsCount))
 $lines.Add((ToonLine -k 'failed_step_count' -v $failedStepsCount))
-if ($failedJobIds.Count -gt 0) {
-    $lines.Add((ToonLine -k 'failed_job_ids' -v ($failedJobIds -join ',')))
+$failedJobIdsCount = @($failedJobIds).Count
+if ($failedJobIdsCount -gt 0) {
+    $lines.Add((ToonLine -k 'failed_job_ids' -v (@($failedJobIds) -join ',')))
 }
 
-if ($failedLogSnippet.Count -gt 0) {
-    $lines.Add("failed_log_snippet[$($failedLogSnippet.Count)]:")
+$failedLogSnippetCount = @($failedLogSnippet).Count
+if ($failedLogSnippetCount -gt 0) {
+    $lines.Add("failed_log_snippet[$failedLogSnippetCount]:")
     foreach ($line in $failedLogSnippet) {
         $lines.Add("  $line")
     }
@@ -649,8 +713,8 @@ if ($failedStepsCount -gt 0) {
 }
 
 $autoDrillJobIds = @()
-if (-not $JobId -and $failedJobIds.Count -gt 0) {
-    $autoDrillJobIds = $failedJobIds
+if (-not $JobId -and @($failedJobIds).Count -gt 0) {
+    $autoDrillJobIds = @($failedJobIds)
 }
 elseif ($JobId) {
     $autoDrillJobIds = @($JobId)
@@ -661,8 +725,16 @@ foreach ($drillId in $autoDrillJobIds) {
     if ($jobsData -and $jobsData.jobs) {
         $selectedJob = $jobsData.jobs | Where-Object { $_.id -eq [long]$drillId }
     }
-    elseif ($normalizedRun.jobs -and $normalizedRun.jobs.jobs) {
-        $selectedJob = $normalizedRun.jobs.jobs | Where-Object { $_.id -eq [long]$drillId }
+    elseif ($normalizedRun.jobs) {
+        $normJobList = @()
+        if ($normalizedRun.jobs -is [System.Collections.IEnumerable]) {
+            $normJobList = $normalizedRun.jobs
+        }
+        else {
+            $normJobList = @($normalizedRun.jobs)
+        }
+
+        $selectedJob = $normJobList | Where-Object { $_.id -eq [long]$drillId }
     }
 
     if (-not $selectedJob) {
@@ -679,7 +751,8 @@ foreach ($drillId in $autoDrillJobIds) {
     $lines.Add("job_completed_at:$($selectedJob.completed_at)")
 
     if ($selectedJob.steps) {
-        $lines.Add("job_steps[$($selectedJob.steps.Count)]{name,status,conclusion,number,started_at,completed_at}:")
+        $stepCount = @($selectedJob.steps).Count
+        $lines.Add("job_steps[$stepCount]{name,status,conclusion,number,started_at,completed_at}:")
         foreach ($step in $selectedJob.steps) {
             $lines.Add("  $($step.name),$($step.status),$($step.conclusion),$($step.number),$($step.started_at),$($step.completed_at)")
         }

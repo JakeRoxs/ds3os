@@ -1,0 +1,27 @@
+# Node and npm
+node_modules
+npm-debug.log
+
+# Git metadata
+.git
+.gitignore
+
+# Editor / tooling
+.vscode
+.idea
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Sensitive local files or config
+*.env
+*.local
+
+# Docker artifacts
+docker-compose.override.yml
+
+# Build artifacts
+dist
+build

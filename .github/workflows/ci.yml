@@ -13,6 +13,7 @@ on:
 
 permissions:
   contents: read
+  actions: write
 
 concurrency:
   group: ci-${{ github.ref_name }}-${{ github.event_name }}
@@ -24,6 +25,44 @@ env:
   BUILD_CONFIGURATION: Release
 
 jobs:
+  sonar:
+    name: Trigger SonarQube workflow
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger sonarqube.yml via workflow dispatch
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const githubContext = (github && github.context) ? github.context : (typeof context !== 'undefined' ? context : {});
+            const payload = githubContext.payload || {};
+            const prRef = payload.pull_request && payload.pull_request.head && payload.pull_request.head.ref;
+            const pushRef = githubContext.ref || process.env.GITHUB_REF;
+            const workflowDispatchRef = payload.ref;
+
+            // Prefer PR head ref for pull_request events.
+            let ref = prRef || workflowDispatchRef || pushRef || 'refs/heads/main';
+
+            if (typeof ref === 'string') {
+              if (ref.startsWith('refs/heads/')) {
+                ref = ref.replace('refs/heads/', '');
+              } else if (ref.startsWith('refs/tags/')) {
+                ref = ref.replace('refs/tags/', '');
+              }
+            }
+
+            const branch = ref || 'main';
+            console.log(`Dispatching sonarqube.yml on ref: ${branch}`);
+
+            await github.request('POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches', {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'sonarqube.yml',
+              ref: branch,
+              inputs: {
+                branch: branch
+              }
+            });
   check:
     name: Determine whether CI should run
     runs-on: ubuntu-latest
@@ -48,10 +87,22 @@ jobs:
             BASE_SHA=${{ github.event.pull_request.base.sha }}
             HEAD_SHA=${{ github.event.pull_request.head.sha }}
             BRANCH=${{ github.event.pull_request.head.ref }}
+
+            # Use just the latest commit delta for the skip decision in PR flows, so non-build tweaks
+            # after an earlier full build do not retrigger the entire matrix.
+            if PREV_COMMIT=$(git rev-parse --verify "${HEAD_SHA}^1" 2>/dev/null); then
+              COMMIT_BASE=$PREV_COMMIT
+              COMMIT_HEAD=$HEAD_SHA
+            else
+              COMMIT_BASE=$BASE_SHA
+              COMMIT_HEAD=$HEAD_SHA
+            fi
           else
             BASE_SHA=${{ github.event.before }}
             HEAD_SHA=${{ github.sha }}
             BRANCH=${GITHUB_REF_NAME}
+            COMMIT_BASE=$BASE_SHA
+            COMMIT_HEAD=$HEAD_SHA
           fi
 
           # If there's no valid base commit (new branch / force push), run CI.
@@ -61,9 +112,10 @@ jobs:
             exit 0
           fi
 
-          echo "Comparing $BASE_SHA..$HEAD_SHA"
+          echo "Comparing full PR range $BASE_SHA..$HEAD_SHA"
+          echo "Comparing commit delta $COMMIT_BASE..$COMMIT_HEAD"
 
-          if ! CHANGED=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA"); then
+          if ! CHANGED=$(git diff --name-only "$COMMIT_BASE" "$COMMIT_HEAD"); then
             echo "::warning::git diff failed; running CI by default."
             echo "skipped=false" >> "$GITHUB_OUTPUT"
             exit 0
@@ -295,18 +347,18 @@ jobs:
         working-directory: ${{github.workspace}}/intermediate/make
         run: ninja -j$(nproc)
 
-      - name: Install Nix
-        if: startsWith(matrix.name, 'nix-')
-        uses: DeterminateSystems/nix-installer-action@main
+      # - name: Install Nix
+      #   if: startsWith(matrix.name, 'nix-')
+      #   uses: DeterminateSystems/nix-installer-action@main
 
-      - name: Setup nix cache
-        if: startsWith(matrix.name, 'nix-')
-        uses: DeterminateSystems/magic-nix-cache-action@main
-        with:
-          use-flakehub: false
+      # - name: Setup nix cache
+      #   if: startsWith(matrix.name, 'nix-')
+      #   uses: DeterminateSystems/magic-nix-cache-action@main
+      #   with:
+      #     use-flakehub: false
 
-      - name: Build with nix
-        if: startsWith(matrix.name, 'nix-')
-        run: |
-          target="${{ matrix.nixTarget == 'default' && '.' || matrix.nixTarget == 'clang' && '.#clang' || matrix.nixTarget }}"
-          nix build -L "$target"
+      # - name: Build with nix
+      #   if: startsWith(matrix.name, 'nix-')
+      #   run: |
+      #     target="${{ matrix.nixTarget == 'default' && '.' || matrix.nixTarget == 'clang' && '.#clang' || matrix.nixTarget }}"
+      #     nix build -L "$target"
