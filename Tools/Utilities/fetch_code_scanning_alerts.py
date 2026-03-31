@@ -2,7 +2,14 @@
 """Fetch GitHub Code Scanning alerts via gh and generate todo files.
 
 This script is intended for developers to generate file-todo entries from current
-open alerts in a GitHub repository. It uses the `gh` CLI tool to query the Code Scanning alerts API
+open alerts on GitHub or SonarQube. It supports:
+
+- `--source github` (default) using `gh api /repos/{owner}/{repo}/code-scanning/alerts`
+- `--source sonarqube` using SonarQube API (`/api/issues/search`)
+- SonarQube config via CLI args or `mcp.json` (`servers.sonarqube.env.SONARQUBE_*`)
+- Fallback to `sonar-project.properties` for `sonar.projectKey`
+- `--group-by thirdparty` to use repository name (e.g. `dsos`) for in-repo code, and library folder for `Source/ThirdParty`
+- De-dup/update behavior: existing todo file is updated if content changed, otherwise left alone
 
 Usage:
   python Tools/Utilities/fetch_code_scanning_alerts.py \
@@ -121,6 +128,14 @@ def load_sonar_properties_project_key(properties_path: str) -> str:
     return ""
 
 
+def _mask_token(token: str) -> str:
+    if not token:
+        return ""
+    if len(token) <= 8:
+        return "*" * len(token)
+    return f"{token[:4]}{'*' * (len(token) - 8)}{token[-4:]}"
+
+
 def resolve_sonarqube_settings(args: Any, parser: argparse.ArgumentParser) -> bool:
     """Resolve SonarQube settings from legacy sources and validate required fields."""
     if args.source != "sonarqube":
@@ -141,6 +156,11 @@ def resolve_sonarqube_settings(args: Any, parser: argparse.ArgumentParser) -> bo
         parser.error("--sonarqube-token is required for --source sonar")
     if not args.sonarqube_project_key:
         parser.error("--sonarqube-project-key is required for --source sonar")
+
+    # log resolved values for debugging, hiding sensitive token segments
+    print(
+        f"Resolved SonarQube config: url={args.sonarqube_url}, token={_mask_token(args.sonarqube_token)}, project_key={args.sonarqube_project_key}"
+    )
 
     return True
 
@@ -163,6 +183,14 @@ def get_alert_data(args: Any, owner_str: str, repo_str: str, cache_path: str) ->
             data = run_gh_api(owner_str, repo_str, args.state, args.per_page)
             _save_cache(cache_path, data)
         else:
+            # Sanity check the key is loaded from sonar-project.properties if missing in mcp
+            if not args.sonarqube_project_key:
+                args.sonarqube_project_key = load_sonar_properties_project_key(args.sonarqube_properties)
+
+            print(
+                f"Fetching SonarQube issues with url={args.sonarqube_url}, token={_mask_token(args.sonarqube_token)}, project_key={args.sonarqube_project_key}"
+            )
+
             sonar_issues = run_sonarqube_api(
                 args.sonarqube_url,
                 args.sonarqube_project_key,
@@ -393,25 +421,7 @@ def run_sonarqube_api(
         query = (
             f"componentKeys={project_key}&statuses={state}&ps={page_size}&p={page}"
         )
-        cmd = [
-            "curl",
-            "-s",
-            "-u",
-            f"{token}:",
-            f"{api_endpoint}?{query}",
-        ]
-
-        try:
-            output = subprocess.check_output(cmd, stderr=subprocess.STDOUT, text=True)
-            payload = json.loads(output)
-        except subprocess.CalledProcessError as e:
-            print(f"ERROR: failed to run SonarQube API: {e}", file=sys.stderr)
-            traceback.print_exc(file=sys.stderr)
-            raise SystemExit(1)
-        except json.JSONDecodeError as e:
-            print(f"ERROR: failed to parse JSON from SonarQube API output: {e}", file=sys.stderr)
-            traceback.print_exc(file=sys.stderr)
-            raise SystemExit(1)
+        payload = _fetch_sonarqube_page(api_endpoint, token, query)
 
         page_issues = payload.get("issues", [])
         if not isinstance(page_issues, list):
@@ -429,6 +439,44 @@ def run_sonarqube_api(
     return issues
 
 
+def _fetch_sonarqube_page(api_endpoint: str, token: str, query: str) -> Dict[str, Any]:
+    cmd = [
+        "curl",
+        "-s",
+        "-u",
+        f"{token}:",
+        f"{api_endpoint}?{query}",
+    ]
+
+    try:
+        result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    except subprocess.SubprocessError as e:
+        print(f"ERROR: failed to run SonarQube API: {e}", file=sys.stderr)
+        traceback.print_exc(file=sys.stderr)
+        raise SystemExit(1)
+
+    if result.returncode != 0:
+        print(
+            f"ERROR: SonarQube API call failed (exit {result.returncode}). stderr: {result.stderr.strip()}",
+            file=sys.stderr,
+        )
+        raise SystemExit(1)
+
+    output = result.stdout.strip()
+    if not output:
+        print("ERROR: SonarQube API returned empty response.", file=sys.stderr)
+        raise SystemExit(1)
+
+    try:
+        return json.loads(output)
+    except json.JSONDecodeError:
+        print("ERROR: failed to parse JSON from SonarQube API output:", file=sys.stderr)
+        print(output, file=sys.stderr)
+        traceback.print_exc(file=sys.stderr)
+        raise SystemExit(1)
+
+
+
 def _sonarqube_issue_to_alert(issue: Dict[str, Any], sonar_url: str, project_key: str) -> Dict[str, Any]:
     component = issue.get("component", "")
     path = component.split(":", 1)[1] if ":" in component else component
@@ -439,6 +487,7 @@ def _sonarqube_issue_to_alert(issue: Dict[str, Any], sonar_url: str, project_key
         "rule": {
             "name": issue.get("rule", ""),
             "severity": issue.get("severity", ""),
+            "type": issue.get("type", ""),
             "description": issue.get("message", ""),
             "help": issue.get("message", ""),
             "helpUri": None,
@@ -648,16 +697,33 @@ def group_alerts(alerts: List[Dict[str, Any]], group_by: str = "rule") -> Dict[s
 
 
 def severity_to_priority(severity: str | None) -> str:
-    """Map CodeQL severity to file-todos priority."""
+    """Map severity to file-todos priority.
+
+    Supports CodeQL and SonarQube severities.
+    SonarQube: BLOCKER -> p1, CRITICAL -> p1, MAJOR -> p2, MINOR -> p3, INFO -> p3.
+    CodeQL: error -> p1, warning -> p2, note/recommendation -> p3.
+    """
     if not severity:
         return "p2"
-    sev = severity.lower()
+
+    sev = severity.strip().lower()
+    # SonarQube severity names
+    if sev in ("blocker", "critical"):
+        return "p1"
+    if sev == "major":
+        return "p2"
+    if sev in ("minor", "info"):
+        return "p3"
+
+    # CodeQL severity names
     if sev == "error":
         return "p1"
     if sev == "warning":
         return "p2"
     if sev in ("note", "recommendation"):
         return "p3"
+
+    # fallback
     return "p2"
 
 
@@ -707,29 +773,38 @@ def render_todo_body(
     ]
 
     for a in alerts:
-        num = a.get("number")
-        url = a.get("html_url")
-        rule = (a.get("rule", {}) or {}).get("name")
-        desc = (a.get("rule", {}) or {}).get("description")
-        inst = (a.get("most_recent_instance", {}) or {})
-        loc = (inst.get("location", {}) or {})
-        path = loc.get("path")
-        line = loc.get("start_line")
-        msg = (inst.get("message", {}) or {}).get("text")
-
-        help_text, help_uri = _rule_help_fields(a.get("rule"))
-
-        lines.append(f"- **#{num}** [{rule}]({url}) — {desc}")
-        if path:
-            lines.append(f"  - `{path}:{line}`")
-        if msg:
-            lines.append(f"  - {msg}")
-        if help_text:
-            lines.append(f"  - **Recommendation:** {help_text}")
-        if help_uri:
-            lines.append(f"  - **More info:** {help_uri}")
+        lines.extend(_render_todo_alert(a))
 
     return "\n".join(lines) + "\n"
+
+
+def _render_todo_alert(alert: Dict[str, Any]) -> List[str]:
+    num = alert.get("number")
+    url = alert.get("html_url")
+    rule = (alert.get("rule", {}) or {}).get("name")
+    desc = (alert.get("rule", {}) or {}).get("description")
+    inst = (alert.get("most_recent_instance", {}) or {})
+    loc = (inst.get("location", {}) or {})
+    path = loc.get("path")
+    line = loc.get("start_line")
+    msg = (inst.get("message", {}) or {}).get("text")
+
+    help_text, help_uri = _rule_help_fields(alert.get("rule"))
+    category = (alert.get("rule", {}) or {}).get("type")
+
+    out = [f"- **#{num}** [{rule}]({url}) — {desc}"]
+    if category:
+        out.append(f"  - **Category/Type:** {category}")
+    if path:
+        out.append(f"  - `{path}:{line}`")
+    if msg:
+        out.append(f"  - {msg}")
+    if help_text:
+        out.append(f"  - **Recommendation:** {help_text}")
+    if help_uri:
+        out.append(f"  - **More info:** {help_uri}")
+
+    return out
 
 
 def safe_filename(name: str) -> str:
@@ -922,7 +997,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     cache_path = os.path.abspath(args.cache_file)
 
     data = get_alert_data(args, owner_str, repo_str, cache_path)
-    return run_todo_generation(args, data, parser)
+    run_todo_generation(args, data, parser)
+    return 0
 
 
 class GetLastScanWorkflowRunTimeTests(unittest.TestCase):
@@ -1022,6 +1098,7 @@ class AlertGroupingAndTodoRenderingTests(unittest.TestCase):
                     "name": "ExampleRule",
                     "description": "Example description",
                     "severity": "warning",
+                    "type": "CODE_SMELL",
                     "help": {"text": "Do something"},
                     "helpUri": "https://example.com/docs",
                 },
@@ -1032,6 +1109,7 @@ class AlertGroupingAndTodoRenderingTests(unittest.TestCase):
             }
         ]
         body = render_todo_body("100", "ExampleRule", alerts)
+        self.assertIn("**Category/Type:** CODE_SMELL", body)
         self.assertIn("**Recommendation:** Do something", body)
         self.assertIn("**More info:** https://example.com/docs", body)
         self.assertIn("`Source/Main.cs:10`", body)
