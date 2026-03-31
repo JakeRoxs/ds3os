@@ -50,9 +50,6 @@ jobs:
           mkdir -p build
           cmake -B build -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
-      - name: Build C++ project
-        run: cmake --build build
-
       - name: SonarScanner begin
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
