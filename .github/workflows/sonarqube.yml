@@ -40,6 +40,22 @@ jobs:
         with:
           dotnet-version: "8.0.x"
 
+      - name: Cache SonarQube scanner plugins
+        uses: actions/cache@v4
+        with:
+          path: ~/.sonar/cache
+          key: sonar-plugin-cache-${{ runner.os }}-${{ hashFiles('**/dotnet-tools.json') }}
+          restore-keys: |
+            sonar-plugin-cache-${{ runner.os }}-
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: nuget-${{ runner.os }}-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            nuget-${{ runner.os }}-
+
       - name: Install SonarScanner for .NET
         run: |
           dotnet tool install --global dotnet-sonarscanner
