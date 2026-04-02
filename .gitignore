@@ -81,7 +81,8 @@ __pycache__/
 result
 
 # Build and IDE files
-/.vscode
+rekindled.code-workspace
+*.vscode*
 /build*
 /compile_commands.json
 /out/build/x64-Debug

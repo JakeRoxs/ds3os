@@ -9,6 +9,6 @@
     <PackageReference Include="MSTest.TestFramework" Version="3.0.2" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Loader\Loader.csproj" />
+    <ProjectReference Include="..\Loader.csproj" />
   </ItemGroup>
 </Project>

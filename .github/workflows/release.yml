@@ -32,7 +32,7 @@ jobs:
       contents: read
     env:
       LOADER_PROJECT_PATH: Source/Loader/Loader.csproj
-      LOADER_TESTS_PROJECT_PATH: Source/Loader.Tests/Loader.Tests.csproj
+      LOADER_TESTS_PROJECT_PATH: Source/Loader/Tests/Loader.Tests.csproj
     strategy:
       fail-fast: false
       matrix:

@@ -32,7 +32,7 @@ jobs:
       - name: Restore Loader projects
         run: |
           dotnet restore Source/Loader/Loader.csproj -p:EnableWindowsTargeting=true
-          dotnet restore Source/Loader.Tests/Loader.Tests.csproj -p:EnableWindowsTargeting=true
+          dotnet restore Source/Loader/Tests/Loader.Tests.csproj -p:EnableWindowsTargeting=true
 
       - name: Install SonarScanner for .NET
         run: |
@@ -49,11 +49,12 @@ jobs:
             /n:"rekindled-server-loader" \
             /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}" \
             /d:sonar.login="${{ secrets.SONAR_TOKEN }}" \
-            /d:sonar.sources="Source/Loader,Source/Loader.Tests" \
+            /d:sonar.sources="Source/Loader" \
             /d:sonar.exclusions="Source/ThirdParty/**,Protobuf/**,build/**" \
             /d:sonar.sourceEncoding="UTF-8"
-          dotnet build Source/Loader/Loader.csproj Source/Loader.Tests/Loader.Tests.csproj --configuration Release -p:EnableWindowsTargeting=true
-          dotnet test Source/Loader.Tests/Loader.Tests.csproj --configuration Release --no-build -p:EnableWindowsTargeting=true
+          dotnet build Source/Loader/Loader.csproj --configuration Release -p:EnableWindowsTargeting=true
+          dotnet build Source/Loader/Tests/Loader.Tests.csproj --configuration Release -p:EnableWindowsTargeting=true
+          dotnet test Source/Loader/Tests/Loader.Tests.csproj --configuration Release --no-build -p:EnableWindowsTargeting=true
           dotnet sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
 
   sonar-server:
@@ -88,7 +89,7 @@ jobs:
             -Dsonar.projectKey=${{ vars.SONAR_SERVER_PROJECT_KEY }}
             -Dsonar.projectName=rekindled-server
             -Dsonar.sources=.
-            -Dsonar.exclusions=Source/ThirdParty/**,Protobuf/**,build/**,Source/Loader/**,Source/Loader.Tests/**
+            -Dsonar.exclusions=Source/ThirdParty/**,Protobuf/**,build/**,Source/Loader/**
             -Dsonar.cfamily.compile-commands=build/compile_commands.json
             -Dsonar.cfamily.threads=4
             -Dsonar.sourceEncoding=UTF-8

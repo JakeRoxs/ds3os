@@ -301,11 +301,11 @@ jobs:
 
       - name: Build Loader tests project
         if: matrix.name == 'windows-ninja'
-        run: dotnet build Source/Loader.Tests/Loader.Tests.csproj --configuration Release --no-restore
+        run: dotnet build Source/Loader/Tests/Loader.Tests.csproj --configuration Release --no-restore
 
       - name: Run Loader tests
         if: matrix.name == 'windows-ninja'
-        run: dotnet test Source/Loader.Tests/Loader.Tests.csproj --configuration Release --verbosity normal
+        run: dotnet test Source/Loader/Tests/Loader.Tests.csproj --configuration Release --verbosity normal
 
       - name: Build on Windows (Ninja)
         if: matrix.name == 'windows-ninja'
