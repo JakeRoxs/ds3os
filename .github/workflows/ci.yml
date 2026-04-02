@@ -236,6 +236,8 @@ jobs:
           rm -f intermediate/make/build.ninja
           rm -f intermediate/make/cmake_install.cmake
           rm -rf intermediate/make/CMakeFiles
+          rm -rf intermediate/make/_deps/civetweb-subbuild
+          rm -rf intermediate/make/_deps/civetweb-tmp
 
       - name: Clean stale CMake cache (Windows)
         if: matrix.name == 'windows-ninja'

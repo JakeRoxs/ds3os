@@ -55,8 +55,8 @@ jobs:
       - name: Run SonarScanner (Loader C#)
         run: |
           dotnet sonarscanner begin \
-            /k:"$SONAR_LOADER_PROJECT_KEY" \
-            /n:"rekindled-server-loader" \
+            /k:"$SONAR_SERVER_PROJECT_KEY" \
+            /n:"rekindled-server" \
             /d:sonar.host.url="$SONAR_HOST_URL" \
             /d:sonar.login="$SONAR_TOKEN" \
             /d:sonar.exclusions="Source/ThirdParty/**,Protobuf/**,build/**" \
