@@ -216,7 +216,7 @@ jobs:
           #   os: ubuntu-latest
           #   nixTarget: clang
     steps:
-      - name: Checkout repositoryres
+      - name: Checkout repository
         uses: actions/checkout@v6
         with:
           submodules: recursive
@@ -293,7 +293,7 @@ jobs:
 
       - name: Restore Loader NuGet packages
         if: matrix.name == 'windows-ninja'
-        run: dotnet restore Source/Loader/Loader.csproj --configuration Release
+        run: dotnet restore Source/Loader/Loader.csproj
 
       - name: Build Loader project
         if: matrix.name == 'windows-ninja'

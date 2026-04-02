@@ -112,7 +112,7 @@ jobs:
 
       - name: Restore Loader NuGet packages
         if: matrix.name == 'windows-ninja'
-        run: dotnet restore Source/Loader/Loader.csproj --configuration Release
+        run: dotnet restore Source/Loader/Loader.csproj
 
       - name: Build Loader project
         if: matrix.name == 'windows-ninja'

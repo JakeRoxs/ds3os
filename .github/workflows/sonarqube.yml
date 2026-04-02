@@ -16,16 +16,50 @@ permissions:
   pull-requests: read
 
 jobs:
-  build:
-    name: Build and analyze
+  sonar-loader:
+    name: SonarQube Loader (C#)
     runs-on: ubuntu-latest
-
     steps:
-      - name: Show dispatch tracing info
-        run: |
-          echo "Triggered on ref: ${{ github.ref }}"
-          echo "Requested branch input: ${{ github.event.inputs.branch }}"
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Restore Loader projects
+        run: |
+          dotnet restore Source/Loader/Loader.csproj
+          dotnet restore Source/Loader.Tests/Loader.Tests.csproj
+
+      - name: Install SonarScanner for .NET
+        run: |
+          dotnet tool install --global dotnet-sonarscanner --version 5.13.0
+          echo "$HOME/.dotnet/tools" >> "$GITHUB_PATH"
+
+      - name: Run SonarScanner (Loader C#)
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        run: |
+          dotnet sonarscanner begin \
+            /k:"${{ vars.SONAR_LOADER_PROJECT_KEY }}" \
+            /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}" \
+            /d:sonar.login="${{ secrets.SONAR_TOKEN }}" \
+            /d:sonar.projectName="rekindled-server-loader" \
+            /d:sonar.sources="Source/Loader,Source/Loader.Tests" \
+            /d:sonar.exclusions="Source/ThirdParty/**,Protobuf/**,build/**" \
+            /d:sonar.sourceEncoding="UTF-8"
+          dotnet build Source/Loader/Loader.csproj Source/Loader.Tests/Loader.Tests.csproj --configuration Release
+          dotnet test Source/Loader.Tests/Loader.Tests.csproj --configuration Release --no-build
+          dotnet sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+
+  sonar-server:
+    name: SonarQube Server (C++)
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -51,7 +85,7 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         with:
           args: >
-            -Dsonar.projectKey=${{ vars.SONAR_PROJECT_KEY }}
+            -Dsonar.projectKey=${{ vars.SONAR_SERVER_PROJECT_KEY }}
             -Dsonar.projectName=rekindled-server
             -Dsonar.sources=.
             -Dsonar.exclusions=Source/ThirdParty/**,Protobuf/**,build/**
