@@ -146,15 +146,6 @@ if(NOT TARGET sqlite)
     endif()
 endif()
 
-# If the target is still missing, attempt to directly bring in the vendored sqlite
-# directory (for CI/host scenarios where ThirdParty did not create it).
-if(NOT TARGET sqlite)
-    if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../ThirdParty/sqlite/CMakeLists.txt")
-        message(STATUS "sqlite target still missing; adding ThirdParty/sqlite subdirectory directly")
-        add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/../ThirdParty/sqlite")
-    endif()
-endif()
-
 if(NOT TARGET sqlite)
     # Diagnostic output to help troubleshoot why sqlite is missing.
     get_cmake_property(_all_targets TARGETS)
@@ -208,8 +199,6 @@ foreach(config ${CMAKE_CONFIGURATION_TYPES})
         message(WARNING "WebUI folder not found, skipping copy: ${CMAKE_CURRENT_SOURCE_DIR}/../WebUI")
     endif()
 endforeach()
-
-util_setup_folder_structure(${PROJECT_NAME} SOURCES "Rekindled Server")
 
 #-----------------------------------------------------------------------------#
 # Client emulator config unit tests

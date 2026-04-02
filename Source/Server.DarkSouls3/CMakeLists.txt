@@ -110,5 +110,3 @@ target_link_libraries(
     sqlite
     steam
 )
-
-util_setup_folder_structure(${PROJECT_NAME} SOURCES "Games")

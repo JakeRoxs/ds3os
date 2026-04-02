@@ -44,5 +44,3 @@ endif()
 target_compile_definitions(${PROJECT_NAME} PRIVATE -D_CRT_NONSTDC_NO_DEPRECATE=1 -D_CRT_SECURE_NO_WARNINGS=1)
 
 target_include_directories(${PROJECT_NAME} PUBLIC ./)
-
-util_setup_folder_structure(${PROJECT_NAME} SOURCES "ThirdParty")

@@ -35,5 +35,3 @@ if (CMAKE_SYSTEM_PROCESSOR MATCHES "(x86_64|AMD64|i386|i686)")
         message(STATUS "clang-cl detected; AES/SSSE3/SSE4.1 support should be set through MSVC-compatible flags if required.")
     endif()
 endif()
-
-util_setup_folder_structure(${PROJECT_NAME} SOURCES "ThirdParty")

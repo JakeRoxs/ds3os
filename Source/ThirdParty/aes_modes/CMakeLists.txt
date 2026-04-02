@@ -15,5 +15,3 @@ SET(SOURCES
 add_library(${PROJECT_NAME} STATIC ${SOURCES})
 
 target_include_directories(${PROJECT_NAME} PUBLIC ../aes ./)
-
-util_setup_folder_structure(${PROJECT_NAME} SOURCES "ThirdParty")

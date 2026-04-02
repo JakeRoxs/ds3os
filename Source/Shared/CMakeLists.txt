@@ -207,7 +207,5 @@ endif()
 # Avoid direct legacy link names (crypto/ssl) in case target import names differ on MSVC.
 # ThirdParty creates the correct openssl interface target with proper OpenSSL::Crypto/OpenSSL::SSL mapping.
 
-util_setup_folder_structure(${PROJECT_NAME} SOURCES "Rekindled Server")
-
 # build unit tests for shared utilities (if any)
 add_subdirectory(Tests)

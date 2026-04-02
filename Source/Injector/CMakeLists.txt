@@ -67,7 +67,6 @@ foreach(target IN ITEMS InjectorCore ${PROJECT_NAME})
         )
     endif()
     target_link_libraries(${target} PUBLIC Shared detours)
-    util_setup_folder_structure(${target} SOURCES "Rekindled Server")
 endforeach()
 
 
