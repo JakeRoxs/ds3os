@@ -53,12 +53,12 @@
 
 namespace google {
 namespace protobuf {
-  namespace io {
-    class CodedInputStream;      // coded_stream.h
-    class CodedOutputStream;     // coded_stream.h
-  }
-  class UnknownFieldSet;         // unknown_field_set.h
-}
+namespace io {
+class CodedInputStream;  // coded_stream.h
+class CodedOutputStream; // coded_stream.h
+} // namespace io
+class UnknownFieldSet; // unknown_field_set.h
+} // namespace protobuf
 
 namespace protobuf {
 namespace internal {
@@ -73,8 +73,7 @@ namespace internal {
 //
 // This class is really a namespace that contains only static methods
 class LIBPROTOBUF_EXPORT WireFormat {
- public:
-
+public:
   // Given a field return its WireType
   static inline WireFormatLite::WireType WireTypeForField(
       const FieldDescriptor* field);
@@ -172,7 +171,6 @@ class LIBPROTOBUF_EXPORT WireFormat {
   static int ComputeUnknownMessageSetItemsSize(
       const UnknownFieldSet& unknown_fields);
 
-
   // Helper functions for encoding and decoding tags.  (Inlined below and in
   // _inl.h)
   //
@@ -184,13 +182,13 @@ class LIBPROTOBUF_EXPORT WireFormat {
   // after the tag.
   static bool ParseAndMergeField(
       uint32 tag,
-      const FieldDescriptor* field,        // May be NULL for unknown
+      const FieldDescriptor* field, // May be NULL for unknown
       Message* message,
       io::CodedInputStream* input);
 
   // Serialize a single field.
   static void SerializeFieldWithCachedSizes(
-      const FieldDescriptor* field,        // Cannot be NULL
+      const FieldDescriptor* field, // Cannot be NULL
       const Message& message,
       io::CodedOutputStream* output);
 
@@ -198,7 +196,7 @@ class LIBPROTOBUF_EXPORT WireFormat {
   // will call ByteSize() for the embedded message, insuring that it caches
   // its size.
   static int FieldByteSize(
-      const FieldDescriptor* field,        // Cannot be NULL
+      const FieldDescriptor* field, // Cannot be NULL
       const Message& message);
 
   // Parse/serialize a MessageSet::Item group.  Used with messages that use
@@ -219,7 +217,7 @@ class LIBPROTOBUF_EXPORT WireFormat {
   // length, but for other length-delimited types, the size of the length is
   // included.
   static int FieldDataOnlyByteSize(
-      const FieldDescriptor* field,        // Cannot be NULL
+      const FieldDescriptor* field, // Cannot be NULL
       const Message& message);
 
   enum Operation {
@@ -238,7 +236,7 @@ class LIBPROTOBUF_EXPORT WireFormat {
                                          Operation op,
                                          const char* field_name);
 
- private:
+private:
   // Verifies that a string field is valid UTF8, logging an error if not.
   static void VerifyUTF8StringFallback(
       const char* data,
@@ -257,14 +255,12 @@ class LIBPROTOBUF_EXPORT WireFormat {
                                            Message* message,
                                            io::CodedInputStream* input);
 
-
-
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(WireFormat);
 };
 
 // Subclass of FieldSkipper which saves skipped fields to an UnknownFieldSet.
 class LIBPROTOBUF_EXPORT UnknownFieldSetFieldSkipper : public FieldSkipper {
- public:
+public:
   UnknownFieldSetFieldSkipper(UnknownFieldSet* unknown_fields)
       : unknown_fields_(unknown_fields) {}
   virtual ~UnknownFieldSetFieldSkipper() {}
@@ -274,7 +270,7 @@ class LIBPROTOBUF_EXPORT UnknownFieldSetFieldSkipper : public FieldSkipper {
   virtual bool SkipMessage(io::CodedInputStream* input);
   virtual void SkipUnknownEnum(int field_number, int value);
 
- protected:
+protected:
   UnknownFieldSet* unknown_fields_;
 };
 
@@ -295,7 +291,7 @@ inline WireFormatLite::WireType WireFormat::WireTypeForFieldType(
   // int first.
   return WireFormatLite::WireTypeForFieldType(
       static_cast<WireFormatLite::FieldType>(
-        implicit_cast<int>(type)));
+          implicit_cast<int>(type)));
 }
 
 inline uint32 WireFormat::MakeTag(const FieldDescriptor* field) {
@@ -306,17 +302,19 @@ inline int WireFormat::TagSize(int field_number, FieldDescriptor::Type type) {
   // Some compilers don't like enum -> enum casts, so we implicit_cast to
   // int first.
   return WireFormatLite::TagSize(field_number,
-      static_cast<WireFormatLite::FieldType>(
-        implicit_cast<int>(type)));
+                                 static_cast<WireFormatLite::FieldType>(
+                                     implicit_cast<int>(type)));
 }
 
 inline void WireFormat::VerifyUTF8String(const char* data, int size,
-    WireFormat::Operation op) {
+                                         WireFormat::Operation op) {
 #ifdef GOOGLE_PROTOBUF_UTF8_VALIDATION_ENABLED
   WireFormat::VerifyUTF8StringFallback(data, size, op, NULL);
 #else
   // Avoid the compiler warning about unsued variables.
-  (void)data; (void)size; (void)op;
+  (void)data;
+  (void)size;
+  (void)op;
 #endif
 }
 
@@ -328,9 +326,8 @@ inline void WireFormat::VerifyUTF8StringNamedField(
 #endif
 }
 
+} // namespace internal
+} // namespace protobuf
 
-}  // namespace internal
-}  // namespace protobuf
-
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_WIRE_FORMAT_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_WIRE_FORMAT_H__

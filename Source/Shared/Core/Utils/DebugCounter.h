@@ -16,32 +16,30 @@
 
 #include "Shared/Platform/Platform.h"
 
-class DebugCounter
-{
+class DebugCounter {
 public:
-    DebugCounter(const std::string& name);
-    ~DebugCounter();
+  DebugCounter(const std::string& name);
+  ~DebugCounter();
 
-    std::string GetName();
-    double GetAverageRate();
-    double GetTotalLifetime();
+  std::string GetName();
+  double GetAverageRate();
+  double GetTotalLifetime();
 
-    void Add(double Value);
+  void Add(double Value);
 
-    void Poll();
+  void Poll();
 
-    static std::vector<DebugCounter*> GetCounters();
-    static void PollAll();
+  static std::vector<DebugCounter*> GetCounters();
+  static void PollAll();
 
 private:
-    inline static std::vector<DebugCounter*> Registry;    
+  inline static std::vector<DebugCounter*> Registry;
 
-    std::string Name;
+  std::string Name;
 
-    double LifetimeTotal = 0.0f;
+  double LifetimeTotal = 0.0f;
 
-    double Average = 0.0;
-    double AverageTimer = 0.0;
-    double AverageSum = 0.0;
-
+  double Average = 0.0;
+  double AverageTimer = 0.0;
+  double AverageSum = 0.0;
 };

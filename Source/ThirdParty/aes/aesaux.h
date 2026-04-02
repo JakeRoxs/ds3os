@@ -29,31 +29,37 @@ Issue Date: 25/09/2018
 #include "brg_types.h"
 
 #if defined(__cplusplus)
-extern "C"
-{
+extern "C" {
 #endif
 
-#define FALSE   0
-#define TRUE    1
+#define FALSE 0
+#define TRUE 1
 
-enum line_type { bad_line = 0, block_len, key_len, test_no, iv_val, key_val, pt_val, ct_val };
-#define NO_LTYPES   8
-#define BADL_STR    "BADLINE="
-#define BLEN_STR    "BLOCKSIZE="
-#define KLEN_STR    "KEYSIZE=  "
-#define TEST_STR    "TEST= "
-#define IV_STR      "IV=   "
-#define KEY_STR     "KEY=  "
-#define PT_STR      "PT=   "
-#define CT_STR      "CT=   "
+enum line_type { bad_line = 0,
+                 block_len,
+                 key_len,
+                 test_no,
+                 iv_val,
+                 key_val,
+                 pt_val,
+                 ct_val };
+#define NO_LTYPES 8
+#define BADL_STR "BADLINE="
+#define BLEN_STR "BLOCKSIZE="
+#define KLEN_STR "KEYSIZE=  "
+#define TEST_STR "TEST= "
+#define IV_STR "IV=   "
+#define KEY_STR "KEY=  "
+#define PT_STR "PT=   "
+#define CT_STR "CT=   "
 
-char *file_name(char* buf, size_t len, const unsigned long type, const unsigned long blen, const unsigned long klen);
-const char *pos(const char *s);
+char* file_name(char* buf, size_t len, const unsigned long type, const unsigned long blen, const unsigned long klen);
+const char* pos(const char* s);
 int to_hex(int ch);
-int get_line(FILE *inf, char s[], int max_len);
-char *copy_str(char *s, const char *fstr);
-const char *df_string(const char *p);
-int block_in(unsigned char l[], const char *p);
+int get_line(FILE* inf, char s[], int max_len);
+char* copy_str(char* s, const char* fstr);
+const char* df_string(const char* p);
+int block_in(unsigned char l[], const char* p);
 void block_clear(unsigned char l[], const unsigned long len);
 void block_reverse(unsigned char l[], const unsigned long len);
 void block_copy(unsigned char l[], const unsigned char r[], const unsigned long len);
@@ -62,19 +68,19 @@ int block_cmp(const unsigned char l[], const unsigned char r[], const unsigned l
 uint32_t rand32(void);
 unsigned char rand8(void);
 void block_rndfill(unsigned char l[], unsigned long len);
-void put_dec(char *s, unsigned long val);
-unsigned long get_dec(const char *s);
-int cmp_nocase(const char *s1, const char *s2);
-int test_args(int argc, char *argv[], char des_chr, char tst_chr);
-int find_string(const char *s1, const char s2[]);
-enum line_type find_line(FILE *inf, char str[]);
-void block_out(const enum line_type ty, const unsigned char b[], FILE *outf, const unsigned long len);
-#if defined( DLL_IMPORT ) && defined(  DLL_DYNAMIC_LOAD  )
-  HINSTANCE init_dll(fn_ptrs *fn);
+void put_dec(char* s, unsigned long val);
+unsigned long get_dec(const char* s);
+int cmp_nocase(const char* s1, const char* s2);
+int test_args(int argc, char* argv[], char des_chr, char tst_chr);
+int find_string(const char* s1, const char s2[]);
+enum line_type find_line(FILE* inf, char str[]);
+void block_out(const enum line_type ty, const unsigned char b[], FILE* outf, const unsigned long len);
+#if defined(DLL_IMPORT) && defined(DLL_DYNAMIC_LOAD)
+HINSTANCE init_dll(fn_ptrs* fn);
 #endif
 
-#if !defined( _MSC_VER )
-  int fopen_s(FILE** pFile, const char *filename, const char *mode);
+#if !defined(_MSC_VER)
+int fopen_s(FILE** pFile, const char* filename, const char* mode);
 #endif
 
 #if defined(__cplusplus)

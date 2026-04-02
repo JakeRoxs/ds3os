@@ -50,7 +50,6 @@ namespace protobuf {
 namespace compiler {
 namespace java {
 
-
 JavaGenerator::JavaGenerator() {}
 JavaGenerator::~JavaGenerator() {}
 
@@ -65,8 +64,7 @@ bool JavaGenerator::Generate(const FileDescriptor* file,
   // per line.
   string output_list_file;
 
-
-  vector<pair<string, string> > options;
+  vector<pair<string, string>> options;
   ParseGeneratorParameter(parameter, &options);
 
   bool generate_immutable_code = false;
@@ -95,7 +93,6 @@ bool JavaGenerator::Generate(const FileDescriptor* file,
   }
 
   // -----------------------------------------------------------------
-
 
   vector<string> all_files;
 
@@ -152,7 +149,7 @@ bool JavaGenerator::Generate(const FileDescriptor* file,
   return true;
 }
 
-}  // namespace java
-}  // namespace compiler
-}  // namespace protobuf
-}  // namespace google
+} // namespace java
+} // namespace compiler
+} // namespace protobuf
+} // namespace google

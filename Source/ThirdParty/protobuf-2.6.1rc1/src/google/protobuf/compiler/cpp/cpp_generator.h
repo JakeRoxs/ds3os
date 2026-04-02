@@ -50,7 +50,7 @@ namespace cpp {
 // it to support C++ output, you can do so by registering an instance of this
 // CodeGenerator with the CommandLineInterface in your main() function.
 class LIBPROTOC_EXPORT CppGenerator : public CodeGenerator {
- public:
+public:
   CppGenerator();
   ~CppGenerator();
 
@@ -60,13 +60,13 @@ class LIBPROTOC_EXPORT CppGenerator : public CodeGenerator {
                 GeneratorContext* generator_context,
                 string* error) const;
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(CppGenerator);
 };
 
-}  // namespace cpp
-}  // namespace compiler
-}  // namespace protobuf
+} // namespace cpp
+} // namespace compiler
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_CPP_GENERATOR_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_COMPILER_CPP_GENERATOR_H__

@@ -41,20 +41,20 @@
 
 namespace google {
 namespace protobuf {
-  namespace compiler {
-    namespace java {
-      class Context;           // context.h
-      class ClassNameResolver; // name_resolver.h
-    }
-  }
-}
+namespace compiler {
+namespace java {
+class Context;           // context.h
+class ClassNameResolver; // name_resolver.h
+} // namespace java
+} // namespace compiler
+} // namespace protobuf
 
 namespace protobuf {
 namespace compiler {
 namespace java {
 
 class ImmutableMessageFieldGenerator : public ImmutableFieldGenerator {
- public:
+public:
   explicit ImmutableMessageFieldGenerator(
       const FieldDescriptor* descriptor, int messageBitIndex,
       int builderBitIndex, Context* context);
@@ -80,7 +80,7 @@ class ImmutableMessageFieldGenerator : public ImmutableFieldGenerator {
 
   string GetBoxedType() const;
 
- protected:
+protected:
   const FieldDescriptor* descriptor_;
   map<string, string> variables_;
   const int messageBitIndex_;
@@ -89,19 +89,19 @@ class ImmutableMessageFieldGenerator : public ImmutableFieldGenerator {
   ClassNameResolver* name_resolver_;
 
   void PrintNestedBuilderCondition(io::Printer* printer,
-      const char* regular_case, const char* nested_builder_case) const;
+                                   const char* regular_case, const char* nested_builder_case) const;
   void PrintNestedBuilderFunction(io::Printer* printer,
-      const char* method_prototype, const char* regular_case,
-      const char* nested_builder_case,
-      const char* trailing_code) const;
+                                  const char* method_prototype, const char* regular_case,
+                                  const char* nested_builder_case,
+                                  const char* trailing_code) const;
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ImmutableMessageFieldGenerator);
 };
 
 class ImmutableMessageOneofFieldGenerator
     : public ImmutableMessageFieldGenerator {
- public:
+public:
   ImmutableMessageOneofFieldGenerator(
       const FieldDescriptor* descriptor, int messageBitIndex,
       int builderBitIndex, Context* context);
@@ -115,12 +115,12 @@ class ImmutableMessageOneofFieldGenerator
   void GenerateSerializationCode(io::Printer* printer) const;
   void GenerateSerializedSizeCode(io::Printer* printer) const;
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ImmutableMessageOneofFieldGenerator);
 };
 
 class RepeatedImmutableMessageFieldGenerator : public ImmutableFieldGenerator {
- public:
+public:
   explicit RepeatedImmutableMessageFieldGenerator(
       const FieldDescriptor* descriptor, int messageBitIndex,
       int builderBitIndex, Context* context);
@@ -146,7 +146,7 @@ class RepeatedImmutableMessageFieldGenerator : public ImmutableFieldGenerator {
 
   string GetBoxedType() const;
 
- protected:
+protected:
   const FieldDescriptor* descriptor_;
   map<string, string> variables_;
   const int messageBitIndex_;
@@ -155,19 +155,19 @@ class RepeatedImmutableMessageFieldGenerator : public ImmutableFieldGenerator {
   ClassNameResolver* name_resolver_;
 
   void PrintNestedBuilderCondition(io::Printer* printer,
-      const char* regular_case, const char* nested_builder_case) const;
+                                   const char* regular_case, const char* nested_builder_case) const;
   void PrintNestedBuilderFunction(io::Printer* printer,
-      const char* method_prototype, const char* regular_case,
-      const char* nested_builder_case,
-      const char* trailing_code) const;
+                                  const char* method_prototype, const char* regular_case,
+                                  const char* nested_builder_case,
+                                  const char* trailing_code) const;
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(RepeatedImmutableMessageFieldGenerator);
 };
 
-}  // namespace java
-}  // namespace compiler
-}  // namespace protobuf
+} // namespace java
+} // namespace compiler
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_JAVA_MESSAGE_FIELD_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_COMPILER_JAVA_MESSAGE_FIELD_H__

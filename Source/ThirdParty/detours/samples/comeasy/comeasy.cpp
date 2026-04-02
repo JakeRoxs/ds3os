@@ -13,56 +13,55 @@
 
 //////////////////////////////////////////////////////////////////////////////
 //
-int __cdecl main(int argc, char **argv)
-{
-    HRESULT hr;
+int __cdecl main(int argc, char** argv) {
+  HRESULT hr;
 
-    (void)argc;
-    (void)argv;
+  (void)argc;
+  (void)argv;
 
-    LPSTREAM pStream = NULL;
-    ULARGE_INTEGER ul;
-    LARGE_INTEGER li;
+  LPSTREAM pStream = NULL;
+  ULARGE_INTEGER ul;
+  LARGE_INTEGER li;
 
-    printf("comeasy.exe: Starting (at %p).\n", main);
+  printf("comeasy.exe: Starting (at %p).\n", main);
 
-    CoInitialize(NULL);
+  CoInitialize(NULL);
 
-    hr = CreateStreamOnHGlobal(NULL, TRUE, &pStream);
+  hr = CreateStreamOnHGlobal(NULL, TRUE, &pStream);
 
-    ul.QuadPart = 512;
-    hr = pStream->SetSize(ul);
+  ul.QuadPart = 512;
+  hr = pStream->SetSize(ul);
 
-    li.QuadPart = 0;
-    hr = pStream->Seek(li, STREAM_SEEK_SET, NULL);
+  li.QuadPart = 0;
+  hr = pStream->Seek(li, STREAM_SEEK_SET, NULL);
 
-    printf("comeasy.exe: First write.\n");
-    fflush(stdout);
+  printf("comeasy.exe: First write.\n");
+  fflush(stdout);
 
-    li.QuadPart = 0;
-    hr = pStream->Write(&ul, sizeof(ul), NULL);
+  li.QuadPart = 0;
+  hr = pStream->Write(&ul, sizeof(ul), NULL);
 
-    printf("comeasy.exe: Second write.\n");
-    fflush(stdout);
+  printf("comeasy.exe: Second write.\n");
+  fflush(stdout);
 
-    li.QuadPart = 1;
-    hr = pStream->Write(&li, sizeof(li), NULL);
+  li.QuadPart = 1;
+  hr = pStream->Write(&li, sizeof(li), NULL);
 
-    printf("comeasy.exe: Third write.\n");
-    fflush(stdout);
+  printf("comeasy.exe: Third write.\n");
+  fflush(stdout);
 
-    li.QuadPart = 2;
-    hr = pStream->Write(&li, sizeof(li), NULL);
+  li.QuadPart = 2;
+  hr = pStream->Write(&li, sizeof(li), NULL);
 
-    pStream->Release();
-    pStream = NULL;
+  pStream->Release();
+  pStream = NULL;
 
-    CoUninitialize();
+  CoUninitialize();
 
-    printf("comeasy.exe: Exiting.\n\n");
-    fflush(stdout);
+  printf("comeasy.exe: Exiting.\n\n");
+  fflush(stdout);
 
-    return 0;
+  return 0;
 }
 
 //

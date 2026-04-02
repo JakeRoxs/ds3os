@@ -60,8 +60,8 @@ TEST(JavaDocCommentTest, Escaping) {
 //   as it allows the reviewer to see clearly how the generated code is
 //   changing.
 
-}  // namespace
-}  // namespace java
-}  // namespace compiler
-}  // namespace protobuf
-}  // namespace google
+} // namespace
+} // namespace java
+} // namespace compiler
+} // namespace protobuf
+} // namespace google

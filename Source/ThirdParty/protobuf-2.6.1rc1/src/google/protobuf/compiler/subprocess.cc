@@ -120,12 +120,12 @@ void Subprocess::Start(const string& program, SearchMode search_mode) {
 
   if (CreateProcessA((search_mode == SEARCH_PATH) ? NULL : program.c_str(),
                      (search_mode == SEARCH_PATH) ? name_copy : NULL,
-                     NULL,  // process security attributes
-                     NULL,  // thread security attributes
-                     TRUE,  // inherit handles?
-                     0,     // obscure creation flags
-                     NULL,  // environment (inherit from parent)
-                     NULL,  // current directory (inherit from parent)
+                     NULL, // process security attributes
+                     NULL, // thread security attributes
+                     TRUE, // inherit handles?
+                     0,    // obscure creation flags
+                     NULL, // environment (inherit from parent)
+                     NULL, // current directory (inherit from parent)
                      &startup_info,
                      &process_info)) {
     child_handle_ = process_info.hProcess;
@@ -260,10 +260,10 @@ string Subprocess::Win32ErrorMessage(DWORD error_code) {
 
   // WTF?
   FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER |
-                FORMAT_MESSAGE_FROM_SYSTEM |
-                FORMAT_MESSAGE_IGNORE_INSERTS,
+                    FORMAT_MESSAGE_FROM_SYSTEM |
+                    FORMAT_MESSAGE_IGNORE_INSERTS,
                 NULL, error_code, 0,
-                (LPTSTR)&message,  // NOT A BUG!
+                (LPTSTR)&message, // NOT A BUG!
                 0, NULL);
 
   string result = message;
@@ -273,7 +273,7 @@ string Subprocess::Win32ErrorMessage(DWORD error_code) {
 
 // ===================================================================
 
-#else  // _WIN32
+#else // _WIN32
 
 Subprocess::Subprocess()
     : child_pid_(-1), child_stdin_(-1), child_stdout_(-1) {}
@@ -298,7 +298,7 @@ void Subprocess::Start(const string& program, SearchMode search_mode) {
   GOOGLE_CHECK(pipe(stdin_pipe) != -1);
   GOOGLE_CHECK(pipe(stdout_pipe) != -1);
 
-  char* argv[2] = { strdup(program.c_str()), NULL };
+  char* argv[2] = {strdup(program.c_str()), NULL};
 
   child_pid_ = fork();
   if (child_pid_ == -1) {
@@ -314,12 +314,12 @@ void Subprocess::Start(const string& program, SearchMode search_mode) {
     close(stdout_pipe[1]);
 
     switch (search_mode) {
-      case SEARCH_PATH:
-        execvp(argv[0], argv);
-        break;
-      case EXACT_NAME:
-        execv(argv[0], argv);
-        break;
+    case SEARCH_PATH:
+      execvp(argv[0], argv);
+      break;
+    case EXACT_NAME:
+      execv(argv[0], argv);
+      break;
     }
 
     // Write directly to STDERR_FILENO to avoid stdio code paths that may do
@@ -328,7 +328,7 @@ void Subprocess::Start(const string& program, SearchMode search_mode) {
     ignored = write(STDERR_FILENO, argv[0], strlen(argv[0]));
     const char* message = ": program not found or is not executable\n";
     ignored = write(STDERR_FILENO, message, strlen(message));
-    (void) ignored;
+    (void)ignored;
 
     // Must use _exit() rather than exit() to avoid flushing output buffers
     // that will also be flushed by the parent.
@@ -384,7 +384,7 @@ bool Subprocess::Communicate(const Message& input, Message* output,
 
     if (child_stdin_ != -1 && FD_ISSET(child_stdin_, &write_fds)) {
       int n = write(child_stdin_, input_data.data() + input_pos,
-                                  input_data.size() - input_pos);
+                    input_data.size() - input_pos);
       if (n < 0) {
         // Child closed pipe.  Presumably it will report an error later.
         // Pretend we're done for now.
@@ -456,8 +456,8 @@ bool Subprocess::Communicate(const Message& input, Message* output,
   return true;
 }
 
-#endif  // !_WIN32
+#endif // !_WIN32
 
-}  // namespace compiler
-}  // namespace protobuf
-}  // namespace google
+} // namespace compiler
+} // namespace protobuf
+} // namespace google

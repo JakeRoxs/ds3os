@@ -8,4 +8,4 @@
  * If not, see <https://opensource.org/licenses/MIT>.
  */
 
-ENTRY(Host,                                                     "Host",                                                0)
+ENTRY(Host, "Host", 0)

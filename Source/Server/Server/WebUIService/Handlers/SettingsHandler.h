@@ -20,19 +20,17 @@
 //		GET		- Gets current settings state for server.
 //		POST	- Sets current settings state for server.
 
-class SettingsHandler : public WebUIHandler
-{
+class SettingsHandler : public WebUIHandler {
 public:
-	SettingsHandler(WebUIService* InService);
+  SettingsHandler(WebUIService* InService);
 
-	virtual bool handleGet(CivetServer* Server, struct mg_connection* Connection) override;
-	virtual bool handlePost(CivetServer* Server, struct mg_connection* Connection) override;
+  virtual bool handleGet(CivetServer* Server, struct mg_connection* Connection) override;
+  virtual bool handlePost(CivetServer* Server, struct mg_connection* Connection) override;
 
-	virtual void Register(CivetServer* Server) override;
+  virtual void Register(CivetServer* Server) override;
 
 protected:
-	bool IsWeaponLevelMatchingDisabled();
-	bool IsSoulLevelMatchingDisabled();
-    bool IsSoulMemoryMatchingDisabled();
-
+  bool IsWeaponLevelMatchingDisabled();
+  bool IsSoulLevelMatchingDisabled();
+  bool IsSoulMemoryMatchingDisabled();
 };

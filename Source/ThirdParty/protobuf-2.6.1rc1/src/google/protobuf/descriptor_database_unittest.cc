@@ -60,7 +60,8 @@ static void AddToDatabase(SimpleDescriptorDatabase* database,
 static void ExpectContainsType(const FileDescriptorProto& proto,
                                const string& type_name) {
   for (int i = 0; i < proto.message_type_size(); i++) {
-    if (proto.message_type(i).name() == type_name) return;
+    if (proto.message_type(i).name() == type_name)
+      return;
   }
   ADD_FAILURE() << "\"" << proto.name()
                 << "\" did not contain expected type \""
@@ -79,7 +80,7 @@ static void ExpectContainsType(const FileDescriptorProto& proto,
 // The parameterized test runs against a DescriptarDatabaseTestCase.  We have
 // implementations for each of the three classes we want to test.
 class DescriptorDatabaseTestCase {
- public:
+public:
   virtual ~DescriptorDatabaseTestCase() {}
 
   virtual DescriptorDatabase* GetDatabase() = 0;
@@ -91,7 +92,7 @@ typedef DescriptorDatabaseTestCase* DescriptorDatabaseTestCaseFactory();
 
 // Specialization for SimpleDescriptorDatabase.
 class SimpleDescriptorDatabaseTestCase : public DescriptorDatabaseTestCase {
- public:
+public:
   static DescriptorDatabaseTestCase* New() {
     return new SimpleDescriptorDatabaseTestCase;
   }
@@ -105,13 +106,13 @@ class SimpleDescriptorDatabaseTestCase : public DescriptorDatabaseTestCase {
     return database_.Add(file);
   }
 
- private:
+private:
   SimpleDescriptorDatabase database_;
 };
 
 // Specialization for EncodedDescriptorDatabase.
 class EncodedDescriptorDatabaseTestCase : public DescriptorDatabaseTestCase {
- public:
+public:
   static DescriptorDatabaseTestCase* New() {
     return new EncodedDescriptorDatabaseTestCase;
   }
@@ -127,13 +128,13 @@ class EncodedDescriptorDatabaseTestCase : public DescriptorDatabaseTestCase {
     return database_.AddCopy(data.data(), data.size());
   }
 
- private:
+private:
   EncodedDescriptorDatabase database_;
 };
 
 // Specialization for DescriptorPoolDatabase.
 class DescriptorPoolDatabaseTestCase : public DescriptorDatabaseTestCase {
- public:
+public:
   static DescriptorDatabaseTestCase* New() {
     return new EncodedDescriptorDatabaseTestCase;
   }
@@ -148,7 +149,7 @@ class DescriptorPoolDatabaseTestCase : public DescriptorDatabaseTestCase {
     return pool_.BuildFile(file);
   }
 
- private:
+private:
   DescriptorPool pool_;
   DescriptorPoolDatabase database_;
 };
@@ -157,7 +158,7 @@ class DescriptorPoolDatabaseTestCase : public DescriptorDatabaseTestCase {
 
 class DescriptorDatabaseTest
     : public testing::TestWithParam<DescriptorDatabaseTestCaseFactory*> {
- protected:
+protected:
   virtual void SetUp() {
     test_case_.reset(GetParam()());
     database_ = test_case_->GetDatabase();
@@ -181,11 +182,11 @@ class DescriptorDatabaseTest
 
 TEST_P(DescriptorDatabaseTest, FindFileByName) {
   AddToDatabase(
-    "name: \"foo.proto\" "
-    "message_type { name:\"Foo\" }");
+      "name: \"foo.proto\" "
+      "message_type { name:\"Foo\" }");
   AddToDatabase(
-    "name: \"bar.proto\" "
-    "message_type { name:\"Bar\" }");
+      "name: \"bar.proto\" "
+      "message_type { name:\"Bar\" }");
 
   {
     FileDescriptorProto file;
@@ -210,27 +211,26 @@ TEST_P(DescriptorDatabaseTest, FindFileByName) {
 
 TEST_P(DescriptorDatabaseTest, FindFileContainingSymbol) {
   AddToDatabase(
-    "name: \"foo.proto\" "
-    "message_type { "
-    "  name: \"Foo\" "
-    "  field { name:\"qux\" }"
-    "  nested_type { name: \"Grault\" } "
-    "  enum_type { name: \"Garply\" } "
-    "} "
-    "enum_type { "
-    "  name: \"Waldo\" "
-    "  value { name:\"FRED\" } "
-    "} "
-    "extension { name: \"plugh\" } "
-    "service { "
-    "  name: \"Xyzzy\" "
-    "  method { name: \"Thud\" } "
-    "}"
-    );
+      "name: \"foo.proto\" "
+      "message_type { "
+      "  name: \"Foo\" "
+      "  field { name:\"qux\" }"
+      "  nested_type { name: \"Grault\" } "
+      "  enum_type { name: \"Garply\" } "
+      "} "
+      "enum_type { "
+      "  name: \"Waldo\" "
+      "  value { name:\"FRED\" } "
+      "} "
+      "extension { name: \"plugh\" } "
+      "service { "
+      "  name: \"Xyzzy\" "
+      "  method { name: \"Thud\" } "
+      "}");
   AddToDatabase(
-    "name: \"bar.proto\" "
-    "package: \"corge\" "
-    "message_type { name: \"Bar\" }");
+      "name: \"bar.proto\" "
+      "package: \"corge\" "
+      "message_type { name: \"Bar\" }");
 
   {
     FileDescriptorProto file;
@@ -316,24 +316,24 @@ TEST_P(DescriptorDatabaseTest, FindFileContainingSymbol) {
 
 TEST_P(DescriptorDatabaseTest, FindFileContainingExtension) {
   AddToDatabase(
-    "name: \"foo.proto\" "
-    "message_type { "
-    "  name: \"Foo\" "
-    "  extension_range { start: 1 end: 1000 } "
-    "  extension { name:\"qux\" label:LABEL_OPTIONAL type:TYPE_INT32 number:5 "
-    "              extendee: \".Foo\" }"
-    "}");
+      "name: \"foo.proto\" "
+      "message_type { "
+      "  name: \"Foo\" "
+      "  extension_range { start: 1 end: 1000 } "
+      "  extension { name:\"qux\" label:LABEL_OPTIONAL type:TYPE_INT32 number:5 "
+      "              extendee: \".Foo\" }"
+      "}");
   AddToDatabase(
-    "name: \"bar.proto\" "
-    "package: \"corge\" "
-    "dependency: \"foo.proto\" "
-    "message_type { "
-    "  name: \"Bar\" "
-    "  extension_range { start: 1 end: 1000 } "
-    "} "
-    "extension { name:\"grault\" extendee: \".Foo\"       number:32 } "
-    "extension { name:\"garply\" extendee: \".corge.Bar\" number:70 } "
-    "extension { name:\"waldo\"  extendee: \"Bar\"        number:56 } ");
+      "name: \"bar.proto\" "
+      "package: \"corge\" "
+      "dependency: \"foo.proto\" "
+      "message_type { "
+      "  name: \"Bar\" "
+      "  extension_range { start: 1 end: 1000 } "
+      "} "
+      "extension { name:\"grault\" extendee: \".Foo\"       number:32 } "
+      "extension { name:\"garply\" extendee: \".corge.Bar\" number:70 } "
+      "extension { name:\"waldo\"  extendee: \"Bar\"        number:56 } ");
 
   {
     FileDescriptorProto file;
@@ -385,24 +385,24 @@ TEST_P(DescriptorDatabaseTest, FindFileContainingExtension) {
 
 TEST_P(DescriptorDatabaseTest, FindAllExtensionNumbers) {
   AddToDatabase(
-    "name: \"foo.proto\" "
-    "message_type { "
-    "  name: \"Foo\" "
-    "  extension_range { start: 1 end: 1000 } "
-    "  extension { name:\"qux\" label:LABEL_OPTIONAL type:TYPE_INT32 number:5 "
-    "              extendee: \".Foo\" }"
-    "}");
+      "name: \"foo.proto\" "
+      "message_type { "
+      "  name: \"Foo\" "
+      "  extension_range { start: 1 end: 1000 } "
+      "  extension { name:\"qux\" label:LABEL_OPTIONAL type:TYPE_INT32 number:5 "
+      "              extendee: \".Foo\" }"
+      "}");
   AddToDatabase(
-    "name: \"bar.proto\" "
-    "package: \"corge\" "
-    "dependency: \"foo.proto\" "
-    "message_type { "
-    "  name: \"Bar\" "
-    "  extension_range { start: 1 end: 1000 } "
-    "} "
-    "extension { name:\"grault\" extendee: \".Foo\"       number:32 } "
-    "extension { name:\"garply\" extendee: \".corge.Bar\" number:70 } "
-    "extension { name:\"waldo\"  extendee: \"Bar\"        number:56 } ");
+      "name: \"bar.proto\" "
+      "package: \"corge\" "
+      "dependency: \"foo.proto\" "
+      "message_type { "
+      "  name: \"Bar\" "
+      "  extension_range { start: 1 end: 1000 } "
+      "} "
+      "extension { name:\"grault\" extendee: \".Foo\"       number:32 } "
+      "extension { name:\"garply\" extendee: \".corge.Bar\" number:70 } "
+      "extension { name:\"waldo\"  extendee: \"Bar\"        number:56 } ");
 
   {
     vector<int> numbers;
@@ -436,49 +436,49 @@ TEST_P(DescriptorDatabaseTest, FindAllExtensionNumbers) {
 
 TEST_P(DescriptorDatabaseTest, ConflictingFileError) {
   AddToDatabase(
-    "name: \"foo.proto\" "
-    "message_type { "
-    "  name: \"Foo\" "
-    "}");
+      "name: \"foo.proto\" "
+      "message_type { "
+      "  name: \"Foo\" "
+      "}");
   AddToDatabaseWithError(
-    "name: \"foo.proto\" "
-    "message_type { "
-    "  name: \"Bar\" "
-    "}");
+      "name: \"foo.proto\" "
+      "message_type { "
+      "  name: \"Bar\" "
+      "}");
 }
 
 TEST_P(DescriptorDatabaseTest, ConflictingTypeError) {
   AddToDatabase(
-    "name: \"foo.proto\" "
-    "message_type { "
-    "  name: \"Foo\" "
-    "}");
+      "name: \"foo.proto\" "
+      "message_type { "
+      "  name: \"Foo\" "
+      "}");
   AddToDatabaseWithError(
-    "name: \"bar.proto\" "
-    "message_type { "
-    "  name: \"Foo\" "
-    "}");
+      "name: \"bar.proto\" "
+      "message_type { "
+      "  name: \"Foo\" "
+      "}");
 }
 
 TEST_P(DescriptorDatabaseTest, ConflictingExtensionError) {
   AddToDatabase(
-    "name: \"foo.proto\" "
-    "extension { name:\"foo\" label:LABEL_OPTIONAL type:TYPE_INT32 number:5 "
-    "            extendee: \".Foo\" }");
+      "name: \"foo.proto\" "
+      "extension { name:\"foo\" label:LABEL_OPTIONAL type:TYPE_INT32 number:5 "
+      "            extendee: \".Foo\" }");
   AddToDatabaseWithError(
-    "name: \"bar.proto\" "
-    "extension { name:\"bar\" label:LABEL_OPTIONAL type:TYPE_INT32 number:5 "
-    "            extendee: \".Foo\" }");
+      "name: \"bar.proto\" "
+      "extension { name:\"bar\" label:LABEL_OPTIONAL type:TYPE_INT32 number:5 "
+      "            extendee: \".Foo\" }");
 }
 
 INSTANTIATE_TEST_CASE_P(Simple, DescriptorDatabaseTest,
-    testing::Values(&SimpleDescriptorDatabaseTestCase::New));
+                        testing::Values(&SimpleDescriptorDatabaseTestCase::New));
 INSTANTIATE_TEST_CASE_P(MemoryConserving, DescriptorDatabaseTest,
-    testing::Values(&EncodedDescriptorDatabaseTestCase::New));
+                        testing::Values(&EncodedDescriptorDatabaseTestCase::New));
 INSTANTIATE_TEST_CASE_P(Pool, DescriptorDatabaseTest,
-    testing::Values(&DescriptorPoolDatabaseTestCase::New));
+                        testing::Values(&DescriptorPoolDatabaseTestCase::New));
 
-#endif  // GTEST_HAS_PARAM_TEST
+#endif // GTEST_HAS_PARAM_TEST
 
 TEST(EncodedDescriptorDatabaseExtraTest, FindNameOfFileContainingSymbol) {
   // Create two files, one of which is in two parts.
@@ -517,38 +517,38 @@ TEST(EncodedDescriptorDatabaseExtraTest, FindNameOfFileContainingSymbol) {
 // ===================================================================
 
 class MergedDescriptorDatabaseTest : public testing::Test {
- protected:
+protected:
   MergedDescriptorDatabaseTest()
-    : forward_merged_(&database1_, &database2_),
-      reverse_merged_(&database2_, &database1_) {}
+      : forward_merged_(&database1_, &database2_),
+        reverse_merged_(&database2_, &database1_) {}
 
   virtual void SetUp() {
     AddToDatabase(&database1_,
-      "name: \"foo.proto\" "
-      "message_type { name:\"Foo\" extension_range { start: 1 end: 100 } } "
-      "extension { name:\"foo_ext\" extendee: \".Foo\" number:3 "
-      "            label:LABEL_OPTIONAL type:TYPE_INT32 } ");
+                  "name: \"foo.proto\" "
+                  "message_type { name:\"Foo\" extension_range { start: 1 end: 100 } } "
+                  "extension { name:\"foo_ext\" extendee: \".Foo\" number:3 "
+                  "            label:LABEL_OPTIONAL type:TYPE_INT32 } ");
     AddToDatabase(&database2_,
-      "name: \"bar.proto\" "
-      "message_type { name:\"Bar\" extension_range { start: 1 end: 100 } } "
-      "extension { name:\"bar_ext\" extendee: \".Bar\" number:5 "
-      "            label:LABEL_OPTIONAL type:TYPE_INT32 } ");
+                  "name: \"bar.proto\" "
+                  "message_type { name:\"Bar\" extension_range { start: 1 end: 100 } } "
+                  "extension { name:\"bar_ext\" extendee: \".Bar\" number:5 "
+                  "            label:LABEL_OPTIONAL type:TYPE_INT32 } ");
 
     // baz.proto exists in both pools, with different definitions.
     AddToDatabase(&database1_,
-      "name: \"baz.proto\" "
-      "message_type { name:\"Baz\" extension_range { start: 1 end: 100 } } "
-      "message_type { name:\"FromPool1\" } "
-      "extension { name:\"baz_ext\" extendee: \".Baz\" number:12 "
-      "            label:LABEL_OPTIONAL type:TYPE_INT32 } "
-      "extension { name:\"database1_only_ext\" extendee: \".Baz\" number:13 "
-      "            label:LABEL_OPTIONAL type:TYPE_INT32 } ");
+                  "name: \"baz.proto\" "
+                  "message_type { name:\"Baz\" extension_range { start: 1 end: 100 } } "
+                  "message_type { name:\"FromPool1\" } "
+                  "extension { name:\"baz_ext\" extendee: \".Baz\" number:12 "
+                  "            label:LABEL_OPTIONAL type:TYPE_INT32 } "
+                  "extension { name:\"database1_only_ext\" extendee: \".Baz\" number:13 "
+                  "            label:LABEL_OPTIONAL type:TYPE_INT32 } ");
     AddToDatabase(&database2_,
-      "name: \"baz.proto\" "
-      "message_type { name:\"Baz\" extension_range { start: 1 end: 100 } } "
-      "message_type { name:\"FromPool2\" } "
-      "extension { name:\"baz_ext\" extendee: \".Baz\" number:12 "
-      "            label:LABEL_OPTIONAL type:TYPE_INT32 } ");
+                  "name: \"baz.proto\" "
+                  "message_type { name:\"Baz\" extension_range { start: 1 end: 100 } } "
+                  "message_type { name:\"FromPool2\" } "
+                  "extension { name:\"baz_ext\" extendee: \".Baz\" number:12 "
+                  "            label:LABEL_OPTIONAL type:TYPE_INT32 } ");
   }
 
   SimpleDescriptorDatabase database1_;
@@ -643,7 +643,7 @@ TEST_F(MergedDescriptorDatabaseTest, FindFileContainingSymbol) {
     // Can't find non-existent symbol.
     FileDescriptorProto file;
     EXPECT_FALSE(
-      forward_merged_.FindFileContainingSymbol("NoSuchType", &file));
+        forward_merged_.FindFileContainingSymbol("NoSuchType", &file));
   }
 }
 
@@ -652,7 +652,7 @@ TEST_F(MergedDescriptorDatabaseTest, FindFileContainingExtension) {
     // Can find file that is only in database1_.
     FileDescriptorProto file;
     EXPECT_TRUE(
-      forward_merged_.FindFileContainingExtension("Foo", 3, &file));
+        forward_merged_.FindFileContainingExtension("Foo", 3, &file));
     EXPECT_EQ("foo.proto", file.name());
     ExpectContainsType(file, "Foo");
   }
@@ -661,7 +661,7 @@ TEST_F(MergedDescriptorDatabaseTest, FindFileContainingExtension) {
     // Can find file that is only in database2_.
     FileDescriptorProto file;
     EXPECT_TRUE(
-      forward_merged_.FindFileContainingExtension("Bar", 5, &file));
+        forward_merged_.FindFileContainingExtension("Bar", 5, &file));
     EXPECT_EQ("bar.proto", file.name());
     ExpectContainsType(file, "Bar");
   }
@@ -670,7 +670,7 @@ TEST_F(MergedDescriptorDatabaseTest, FindFileContainingExtension) {
     // In forward_merged_, database1_'s baz.proto takes precedence.
     FileDescriptorProto file;
     EXPECT_TRUE(
-      forward_merged_.FindFileContainingExtension("Baz", 12, &file));
+        forward_merged_.FindFileContainingExtension("Baz", 12, &file));
     EXPECT_EQ("baz.proto", file.name());
     ExpectContainsType(file, "FromPool1");
   }
@@ -679,7 +679,7 @@ TEST_F(MergedDescriptorDatabaseTest, FindFileContainingExtension) {
     // In reverse_merged_, database2_'s baz.proto takes precedence.
     FileDescriptorProto file;
     EXPECT_TRUE(
-      reverse_merged_.FindFileContainingExtension("Baz", 12, &file));
+        reverse_merged_.FindFileContainingExtension("Baz", 12, &file));
     EXPECT_EQ("baz.proto", file.name());
     ExpectContainsType(file, "FromPool2");
   }
@@ -696,7 +696,7 @@ TEST_F(MergedDescriptorDatabaseTest, FindFileContainingExtension) {
     // Can't find non-existent extension.
     FileDescriptorProto file;
     EXPECT_FALSE(
-      forward_merged_.FindFileContainingExtension("Foo", 6, &file));
+        forward_merged_.FindFileContainingExtension("Foo", 6, &file));
   }
 }
 
@@ -743,6 +743,6 @@ TEST_F(MergedDescriptorDatabaseTest, FindAllExtensionNumbers) {
   }
 }
 
-}  // anonymous namespace
-}  // namespace protobuf
-}  // namespace google
+} // anonymous namespace
+} // namespace protobuf
+} // namespace google

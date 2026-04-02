@@ -11,8 +11,5 @@
 #include "Server/GameService/GameManagers/AntiCheat/DS3_AntiCheatTrigger.h"
 
 DS3_AntiCheatTrigger::DS3_AntiCheatTrigger(DS3_AntiCheatManager* InCheatManager, Server* InServerInstance, GameService* InGameServiceInstance)
-    : Manager(InCheatManager)
-    , ServerInstance(InServerInstance)
-    , GameServiceInstance(InGameServiceInstance)
-{
+    : Manager(InCheatManager), ServerInstance(InServerInstance), GameServiceInstance(InGameServiceInstance) {
 }

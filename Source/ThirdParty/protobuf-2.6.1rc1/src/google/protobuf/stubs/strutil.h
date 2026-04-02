@@ -41,7 +41,7 @@ namespace google {
 namespace protobuf {
 
 #ifdef _MSC_VER
-#define strtoll  _strtoi64
+#define strtoll _strtoi64
 #define strtoull _strtoui64
 #elif defined(__DECCXX) && defined(__osf__)
 // HP C++ on Tru64 does not have strtoll, but strtol is already 64-bit.
@@ -133,19 +133,21 @@ LIBPROTOBUF_EXPORT void StripString(string* s, const char* remove,
 //    strings.
 // ----------------------------------------------------------------------
 
-inline void LowerString(string * s) {
+inline void LowerString(string* s) {
   string::iterator end = s->end();
   for (string::iterator i = s->begin(); i != end; ++i) {
     // tolower() changes based on locale.  We don't want this!
-    if ('A' <= *i && *i <= 'Z') *i += 'a' - 'A';
+    if ('A' <= *i && *i <= 'Z')
+      *i += 'a' - 'A';
   }
 }
 
-inline void UpperString(string * s) {
+inline void UpperString(string* s) {
   string::iterator end = s->end();
   for (string::iterator i = s->begin(); i != end; ++i) {
     // toupper() changes based on locale.  We don't want this!
-    if ('a' <= *i && *i <= 'z') *i += 'A' - 'a';
+    if ('a' <= *i && *i <= 'z')
+      *i += 'A' - 'a';
   }
 }
 
@@ -253,7 +255,7 @@ inline string JoinStrings(const vector<string>& components,
 
 LIBPROTOBUF_EXPORT int UnescapeCEscapeSequences(const char* source, char* dest);
 LIBPROTOBUF_EXPORT int UnescapeCEscapeSequences(const char* source, char* dest,
-                                                vector<string> *errors);
+                                                vector<string>* errors);
 
 // ----------------------------------------------------------------------
 // UnescapeCEscapeString()
@@ -272,7 +274,7 @@ LIBPROTOBUF_EXPORT int UnescapeCEscapeSequences(const char* source, char* dest,
 
 LIBPROTOBUF_EXPORT int UnescapeCEscapeString(const string& src, string* dest);
 LIBPROTOBUF_EXPORT int UnescapeCEscapeString(const string& src, string* dest,
-                                             vector<string> *errors);
+                                             vector<string>* errors);
 LIBPROTOBUF_EXPORT string UnescapeCEscapeString(const string& src);
 
 // ----------------------------------------------------------------------
@@ -303,7 +305,7 @@ LIBPROTOBUF_EXPORT string Utf8SafeCEscape(const string& src);
 
 // Like CEscape() but uses hex (\x) escapes instead of octals.
 LIBPROTOBUF_EXPORT string CHexEscape(const string& src);
-}  // namespace strings
+} // namespace strings
 
 // ----------------------------------------------------------------------
 // strto32()
@@ -315,19 +317,19 @@ LIBPROTOBUF_EXPORT string CHexEscape(const string& src);
 //    platforms, so using these is safer, from the point of view of
 //    overflow behavior, than using the standard libc functions.
 // ----------------------------------------------------------------------
-LIBPROTOBUF_EXPORT int32 strto32_adaptor(const char *nptr, char **endptr,
+LIBPROTOBUF_EXPORT int32 strto32_adaptor(const char* nptr, char** endptr,
                                          int base);
-LIBPROTOBUF_EXPORT uint32 strtou32_adaptor(const char *nptr, char **endptr,
+LIBPROTOBUF_EXPORT uint32 strtou32_adaptor(const char* nptr, char** endptr,
                                            int base);
 
-inline int32 strto32(const char *nptr, char **endptr, int base) {
+inline int32 strto32(const char* nptr, char** endptr, int base) {
   if (sizeof(int32) == sizeof(long))
     return strtol(nptr, endptr, base);
   else
     return strto32_adaptor(nptr, endptr, base);
 }
 
-inline uint32 strtou32(const char *nptr, char **endptr, int base) {
+inline uint32 strtou32(const char* nptr, char** endptr, int base) {
   if (sizeof(uint32) == sizeof(unsigned long))
     return strtoul(nptr, endptr, base);
   else
@@ -336,13 +338,13 @@ inline uint32 strtou32(const char *nptr, char **endptr, int base) {
 
 // For now, long long is 64-bit on all the platforms we care about, so these
 // functions can simply pass the call to strto[u]ll.
-inline int64 strto64(const char *nptr, char **endptr, int base) {
+inline int64 strto64(const char* nptr, char** endptr, int base) {
   GOOGLE_COMPILE_ASSERT(sizeof(int64) == sizeof(long long),
                         sizeof_int64_is_not_sizeof_long_long);
   return strtoll(nptr, endptr, base);
 }
 
-inline uint64 strtou64(const char *nptr, char **endptr, int base) {
+inline uint64 strtou64(const char* nptr, char** endptr, int base) {
   GOOGLE_COMPILE_ASSERT(sizeof(uint64) == sizeof(unsigned long long),
                         sizeof_uint64_is_not_sizeof_long_long);
   return strtoull(nptr, endptr, base);
@@ -385,28 +387,24 @@ static const int kFastToBufferSize = 32;
 
 LIBPROTOBUF_EXPORT char* FastInt32ToBuffer(int32 i, char* buffer);
 LIBPROTOBUF_EXPORT char* FastInt64ToBuffer(int64 i, char* buffer);
-char* FastUInt32ToBuffer(uint32 i, char* buffer);  // inline below
-char* FastUInt64ToBuffer(uint64 i, char* buffer);  // inline below
+char* FastUInt32ToBuffer(uint32 i, char* buffer); // inline below
+char* FastUInt64ToBuffer(uint64 i, char* buffer); // inline below
 LIBPROTOBUF_EXPORT char* FastHexToBuffer(int i, char* buffer);
 LIBPROTOBUF_EXPORT char* FastHex64ToBuffer(uint64 i, char* buffer);
 LIBPROTOBUF_EXPORT char* FastHex32ToBuffer(uint32 i, char* buffer);
 
 // at least 22 bytes long
 inline char* FastIntToBuffer(int i, char* buffer) {
-  return (sizeof(i) == 4 ?
-          FastInt32ToBuffer(i, buffer) : FastInt64ToBuffer(i, buffer));
+  return (sizeof(i) == 4 ? FastInt32ToBuffer(i, buffer) : FastInt64ToBuffer(i, buffer));
 }
 inline char* FastUIntToBuffer(unsigned int i, char* buffer) {
-  return (sizeof(i) == 4 ?
-          FastUInt32ToBuffer(i, buffer) : FastUInt64ToBuffer(i, buffer));
+  return (sizeof(i) == 4 ? FastUInt32ToBuffer(i, buffer) : FastUInt64ToBuffer(i, buffer));
 }
 inline char* FastLongToBuffer(long i, char* buffer) {
-  return (sizeof(i) == 4 ?
-          FastInt32ToBuffer(i, buffer) : FastInt64ToBuffer(i, buffer));
+  return (sizeof(i) == 4 ? FastInt32ToBuffer(i, buffer) : FastInt64ToBuffer(i, buffer));
 }
 inline char* FastULongToBuffer(unsigned long i, char* buffer) {
-  return (sizeof(i) == 4 ?
-          FastUInt32ToBuffer(i, buffer) : FastUInt64ToBuffer(i, buffer));
+  return (sizeof(i) == 4 ? FastUInt32ToBuffer(i, buffer) : FastUInt64ToBuffer(i, buffer));
 }
 
 // ----------------------------------------------------------------------
@@ -495,7 +493,7 @@ inline string ToString(int i) {
 inline string ToString(string a) {
   return a;
 }
-}  // namespace internal
+} // namespace internal
 
 // ----------------------------------------------------------------------
 // StrCat()
@@ -505,20 +503,20 @@ template <typename T1, typename T2, typename T3, typename T4, typename T5>
 string StrCat(
     const T1& a, const T2& b, const T3& c, const T4& d, const T5& e) {
   return internal::ToString(a) + internal::ToString(b) +
-      internal::ToString(c) + internal::ToString(d) + internal::ToString(e);
+         internal::ToString(c) + internal::ToString(d) + internal::ToString(e);
 }
 
 template <typename T1, typename T2, typename T3, typename T4>
 string StrCat(
     const T1& a, const T2& b, const T3& c, const T4& d) {
   return internal::ToString(a) + internal::ToString(b) +
-      internal::ToString(c) + internal::ToString(d);
+         internal::ToString(c) + internal::ToString(d);
 }
 
 template <typename T1, typename T2, typename T3>
 string StrCat(const T1& a, const T2& b, const T3& c) {
   return internal::ToString(a) + internal::ToString(b) +
-      internal::ToString(c);
+         internal::ToString(c);
 }
 
 template <typename T1, typename T2>
@@ -556,7 +554,7 @@ string Join(const Range& components,
 // ----------------------------------------------------------------------
 LIBPROTOBUF_EXPORT string ToHex(uint64 num);
 
-}  // namespace protobuf
-}  // namespace google
+} // namespace protobuf
+} // namespace google
 
-#endif  // GOOGLE_PROTOBUF_STUBS_STRUTIL_H__
+#endif // GOOGLE_PROTOBUF_STUBS_STRUTIL_H__

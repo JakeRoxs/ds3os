@@ -22,15 +22,12 @@
 //		params: username, password
 //		returns: token, or 401 if not valid
 
-class AuthHandler : public WebUIHandler
-{
+class AuthHandler : public WebUIHandler {
 public:
-	AuthHandler(WebUIService* InService);
+  AuthHandler(WebUIService* InService);
 
-	virtual bool handleGet(CivetServer* Server, struct mg_connection* Connection) override;
-	virtual bool handlePost(CivetServer* Server, struct mg_connection* Connection) override;
+  virtual bool handleGet(CivetServer* Server, struct mg_connection* Connection) override;
+  virtual bool handlePost(CivetServer* Server, struct mg_connection* Connection) override;
 
-	virtual void Register(CivetServer* Server) override;
-
-
+  virtual void Register(CivetServer* Server) override;
 };

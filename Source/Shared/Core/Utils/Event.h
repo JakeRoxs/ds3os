@@ -10,12 +10,12 @@
 
 // This file contains a very basic set of types for primitive
 // event registering and dispatch.
-// 
+//
 // You can use it roughly like this:
-// 
+//
 //   using MyDelegate = Delegate<int>;
 //   using MyEvent = Event<MyDelegate>;
-// 
+//
 //   MyEvent OnSomething;
 //   MyEvent::DelegatePtr ptr = OnSomething.Register(Callback);
 //   OnSomething.Broadcast(1);
@@ -30,135 +30,114 @@
 #include <mutex>
 
 template <typename... Parameters>
-class Delegate
-{
+class Delegate {
 public:
-    using CallbackFunctionType = std::function<void(Parameters...)>;
-    using Ptr = std::shared_ptr<Delegate>;
+  using CallbackFunctionType = std::function<void(Parameters...)>;
+  using Ptr = std::shared_ptr<Delegate>;
 
-    Delegate(const CallbackFunctionType& InCallback)
-        : Callback(InCallback)
-    {
-    }
+  Delegate(const CallbackFunctionType& InCallback)
+      : Callback(InCallback) {
+  }
 
-    void Invoke(Parameters... Args)
-    {
-        Callback(Args...);
-    }
+  void Invoke(Parameters... Args) {
+    Callback(Args...);
+  }
 
 private:
-    CallbackFunctionType Callback;
-
+  CallbackFunctionType Callback;
 };
 
 template <typename DelegateClass>
-class Event
-{
+class Event {
 public:
-    using DelegatePtr = typename DelegateClass::Ptr;
-    using HookFunction = std::function<void()>;
+  using DelegatePtr = typename DelegateClass::Ptr;
+  using HookFunction = std::function<void()>;
 
-    DelegatePtr Register(const typename DelegateClass::CallbackFunctionType& Function)
-    {
-        auto Deleter = [this](DelegateClass* ToDelete) mutable {
-            std::scoped_lock lock(Mutex);
+  DelegatePtr Register(const typename DelegateClass::CallbackFunctionType& Function) {
+    auto Deleter = [this](DelegateClass* ToDelete) mutable {
+      std::scoped_lock lock(Mutex);
 
-            if (auto iter = DelegateSet.find(ToDelete); iter != DelegateSet.end())
-            {
-                DelegateSet.erase(iter);
-            }
+      if (auto iter = DelegateSet.find(ToDelete); iter != DelegateSet.end()) {
+        DelegateSet.erase(iter);
+      }
 
-            delete ToDelete;
+      delete ToDelete;
 
-            if (DelegateSet.size() == 0)
-            {
-                OnLastUnregistered();
-            }
-        };
+      if (DelegateSet.size() == 0) {
+        OnLastUnregistered();
+      }
+    };
 
-        std::scoped_lock lock(Mutex);
+    std::scoped_lock lock(Mutex);
 
-        DelegatePtr Result(new DelegateClass(Function), Deleter);
+    DelegatePtr Result(new DelegateClass(Function), Deleter);
 
-        DelegateSet.insert(Result.get());
+    DelegateSet.insert(Result.get());
 
-        if (DelegateSet.size() == 1)
-        {
-            OnFirstRegistered();
-        }
-
-        return Result;
+    if (DelegateSet.size() == 1) {
+      OnFirstRegistered();
     }
 
-    template<typename... Parameters>
-    void Broadcast(Parameters... Args)
-    {
-        std::scoped_lock lock(Mutex);
+    return Result;
+  }
 
-        // We generate a copy of the map before iterating over it to prevent issues in situations
-        // where we unregister during the invokation. This needs handling in a better way, this
-        // is a waste of performance. 
-        std::unordered_set<DelegateClass*> DelegateSetCopy = DelegateSet;
-        for (DelegateClass* Delegate : DelegateSetCopy)
-        {   
-            Delegate->Invoke(Args...);
-        }
+  template <typename... Parameters>
+  void Broadcast(Parameters... Args) {
+    std::scoped_lock lock(Mutex);
+
+    // We generate a copy of the map before iterating over it to prevent issues in situations
+    // where we unregister during the invokation. This needs handling in a better way, this
+    // is a waste of performance.
+    std::unordered_set<DelegateClass*> DelegateSetCopy = DelegateSet;
+    for (DelegateClass* Delegate : DelegateSetCopy) {
+      Delegate->Invoke(Args...);
     }
+  }
 
-    void HookFirstRegistered(const HookFunction& Function)
-    {
-        std::scoped_lock lock(Mutex);
+  void HookFirstRegistered(const HookFunction& Function) {
+    std::scoped_lock lock(Mutex);
 
-        FirstRegisteredHook = Function;
-    }
+    FirstRegisteredHook = Function;
+  }
 
-    void UnhookFirstRegistered()
-    {
-        std::scoped_lock lock(Mutex);
+  void UnhookFirstRegistered() {
+    std::scoped_lock lock(Mutex);
 
-        FirstRegisteredHook = nullptr;
-    }
+    FirstRegisteredHook = nullptr;
+  }
 
-    void HookLastUnregistered(const HookFunction& Function)
-    {
-        std::scoped_lock lock(Mutex);
+  void HookLastUnregistered(const HookFunction& Function) {
+    std::scoped_lock lock(Mutex);
 
-        LastUnregisteredHook = Function;
-    }
+    LastUnregisteredHook = Function;
+  }
 
-    void UnhookLastUnregistered()
-    {
-        std::scoped_lock lock(Mutex);
+  void UnhookLastUnregistered() {
+    std::scoped_lock lock(Mutex);
 
-        LastUnregisteredHook = nullptr;
-    }
+    LastUnregisteredHook = nullptr;
+  }
 
 protected:
+  void OnFirstRegistered() {
+    std::scoped_lock lock(Mutex);
 
-    void OnFirstRegistered() 
-    {
-        std::scoped_lock lock(Mutex);
-
-        if (FirstRegisteredHook)
-        {
-            FirstRegisteredHook();
-        }
+    if (FirstRegisteredHook) {
+      FirstRegisteredHook();
     }
-    
-    void OnLastUnregistered()
-    {
-        std::scoped_lock lock(Mutex);
+  }
 
-        if (LastUnregisteredHook)
-        {
-            LastUnregisteredHook();
-        }
+  void OnLastUnregistered() {
+    std::scoped_lock lock(Mutex);
+
+    if (LastUnregisteredHook) {
+      LastUnregisteredHook();
     }
+  }
 
 private:
-    std::recursive_mutex Mutex;
-    std::unordered_set<DelegateClass*> DelegateSet;
-    HookFunction FirstRegisteredHook;
-    HookFunction LastUnregisteredHook;
-
+  std::recursive_mutex Mutex;
+  std::unordered_set<DelegateClass*> DelegateSet;
+  HookFunction FirstRegisteredHook;
+  HookFunction LastUnregisteredHook;
 };

@@ -26,9 +26,9 @@
 // variadic argument.
 
 #if defined(__GNUC__)
-#  define FORMAT_PRINTF(a,b) __attribute__((format(printf,a,b)))
+#define FORMAT_PRINTF(a, b) __attribute__((format(printf, a, b)))
 #else
-#  define FORMAT_PRINTF(a,b)
+#define FORMAT_PRINTF(a, b)
 #endif
 
 // Public API. Definition in Strings.cpp uses va_list/vsnprintf.

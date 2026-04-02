@@ -43,8 +43,8 @@ namespace io {
 // uses a dot as the decimal separator.
 double NoLocaleStrtod(const char* str, char** endptr);
 
-}  // namespace io
-}  // namespace protobuf
+} // namespace io
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_IO_STRTOD_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_IO_STRTOD_H__

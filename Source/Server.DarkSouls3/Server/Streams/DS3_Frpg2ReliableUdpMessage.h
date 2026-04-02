@@ -18,14 +18,13 @@
 
 #include "Protobuf/SharedProtobufs.h"
 
-enum class DS3_Frpg2ReliableUdpMessageType : int
-{
-    Reply = 0x0,
-    Push = 0x0320,
+enum class DS3_Frpg2ReliableUdpMessageType : int {
+  Reply = 0x0,
+  Push = 0x0320,
 
-#define DEFINE_REQUEST_RESPONSE(OpCode, Type, ProtobufClass, ResponseProtobufClass)         Type = OpCode,
-#define DEFINE_MESSAGE(OpCode, Type, ProtobufClass)                                         Type = OpCode,
-#define DEFINE_PUSH_MESSAGE(OpCode, Type, ProtobufClass)                                    /* Do Nothing */
+#define DEFINE_REQUEST_RESPONSE(OpCode, Type, ProtobufClass, ResponseProtobufClass) Type = OpCode,
+#define DEFINE_MESSAGE(OpCode, Type, ProtobufClass) Type = OpCode,
+#define DEFINE_PUSH_MESSAGE(OpCode, Type, ProtobufClass) /* Do Nothing */
 #include "Server.DarkSouls3/Server/Streams/DS3_Frpg2ReliableUdpMessageTypes.inc"
 #undef DEFINE_PUSH_MESSAGE
 #undef DEFINE_MESSAGE

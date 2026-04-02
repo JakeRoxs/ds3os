@@ -48,12 +48,11 @@ typedef Atomic32 (*LinuxKernelCmpxchgFunc)(Atomic32 old_value,
                                            Atomic32 new_value,
                                            volatile Atomic32* ptr);
 LinuxKernelCmpxchgFunc pLinuxKernelCmpxchg __attribute__((weak)) =
-    (LinuxKernelCmpxchgFunc) 0xffff0fc0;
+    (LinuxKernelCmpxchgFunc)0xffff0fc0;
 
 typedef void (*LinuxKernelMemoryBarrierFunc)(void);
 LinuxKernelMemoryBarrierFunc pLinuxKernelMemoryBarrier __attribute__((weak)) =
-    (LinuxKernelMemoryBarrierFunc) 0xffff0fa0;
-
+    (LinuxKernelMemoryBarrierFunc)0xffff0fa0;
 
 inline Atomic32 NoBarrier_CompareAndSwap(volatile Atomic32* ptr,
                                          Atomic32 old_value,
@@ -144,8 +143,8 @@ inline Atomic32 Release_Load(volatile const Atomic32* ptr) {
   return *ptr;
 }
 
-}  // namespace internal
-}  // namespace protobuf
-}  // namespace google
+} // namespace internal
+} // namespace protobuf
+} // namespace google
 
-#endif  // GOOGLE_PROTOBUF_ATOMICOPS_INTERNALS_ARM_GCC_H_
+#endif // GOOGLE_PROTOBUF_ATOMICOPS_INTERNALS_ARM_GCC_H_

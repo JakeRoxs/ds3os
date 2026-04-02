@@ -20,27 +20,25 @@ class GameService;
 // having their own manager.
 
 class DS3_MiscManager
-    : public GameManager
-{
-public:    
-    DS3_MiscManager(Server* InServerInstance, GameService* InGameServiceInstance);
+    : public GameManager {
+public:
+  DS3_MiscManager(Server* InServerInstance, GameService* InGameServiceInstance);
 
-    virtual MessageHandleResult OnMessageReceived(GameClient* Client, const Frpg2ReliableUdpMessage& Message) override;
+  virtual MessageHandleResult OnMessageReceived(GameClient* Client, const Frpg2ReliableUdpMessage& Message) override;
 
-    virtual void Poll() override;
-    
-    virtual std::string GetName() override;
+  virtual void Poll() override;
+
+  virtual std::string GetName() override;
 
 protected:
-    MessageHandleResult Handle_RequestNotifyRingBell(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestSendMessageToPlayers(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestMeasureUploadBandwidth(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestMeasureDownloadBandwidth(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestGetOnlineShopItemList(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestBenchmarkThroughput(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestNotifyRingBell(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestSendMessageToPlayers(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestMeasureUploadBandwidth(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestMeasureDownloadBandwidth(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestGetOnlineShopItemList(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestBenchmarkThroughput(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
 
 private:
-    Server* ServerInstance;
-    GameService* GameServiceInstance;
-
+  Server* ServerInstance;
+  GameService* GameServiceInstance;
 };

@@ -69,7 +69,6 @@
 #include <google/protobuf/stubs/map_util.h>
 #include <google/protobuf/stubs/stl_util.h>
 
-
 namespace google {
 namespace protobuf {
 namespace compiler {
@@ -77,10 +76,10 @@ namespace compiler {
 #if defined(_WIN32)
 #define mkdir(name, mode) mkdir(name)
 #ifndef W_OK
-#define W_OK 02  // not defined by MSVC for whatever reason
+#define W_OK 02 // not defined by MSVC for whatever reason
 #endif
 #ifndef F_OK
-#define F_OK 00  // not defined by MSVC for whatever reason
+#define F_OK 00 // not defined by MSVC for whatever reason
 #endif
 #ifndef STDIN_FILENO
 #define STDIN_FILENO 0
@@ -94,7 +93,7 @@ namespace compiler {
 #ifdef _O_BINARY
 #define O_BINARY _O_BINARY
 #else
-#define O_BINARY 0     // If this isn't defined, the platform doesn't need it.
+#define O_BINARY 0 // If this isn't defined, the platform doesn't need it.
 #endif
 #endif
 
@@ -146,7 +145,8 @@ void AddTrailingSlash(string* path) {
 }
 
 bool VerifyDirectoryExists(const string& path) {
-  if (path.empty()) return true;
+  if (path.empty())
+    return true;
 
   if (access(path.c_str(), F_OK) == -1) {
     cerr << path << ": " << strerror(errno) << endl;
@@ -179,14 +179,14 @@ bool TryCreateParentDirectory(const string& prefix, const string& filename) {
   return true;
 }
 
-}  // namespace
+} // namespace
 
 // A MultiFileErrorCollector that prints errors to stderr.
 class CommandLineInterface::ErrorPrinter : public MultiFileErrorCollector,
                                            public io::ErrorCollector {
- public:
-  ErrorPrinter(ErrorFormat format, DiskSourceTree *tree = NULL)
-    : format_(format), tree_(tree) {}
+public:
+  ErrorPrinter(ErrorFormat format, DiskSourceTree* tree = NULL)
+      : format_(format), tree_(tree) {}
   ~ErrorPrinter() {}
 
   // implements MultiFileErrorCollector ------------------------------
@@ -208,12 +208,12 @@ class CommandLineInterface::ErrorPrinter : public MultiFileErrorCollector,
     if (line != -1) {
       // Allow for both GCC- and Visual-Studio-compatible output.
       switch (format_) {
-        case CommandLineInterface::ERROR_FORMAT_GCC:
-          cerr << ":" << (line + 1) << ":" << (column + 1);
-          break;
-        case CommandLineInterface::ERROR_FORMAT_MSVS:
-          cerr << "(" << (line + 1) << ") : error in column=" << (column + 1);
-          break;
+      case CommandLineInterface::ERROR_FORMAT_GCC:
+        cerr << ":" << (line + 1) << ":" << (column + 1);
+        break;
+      case CommandLineInterface::ERROR_FORMAT_MSVS:
+        cerr << "(" << (line + 1) << ") : error in column=" << (column + 1);
+        break;
       }
     }
 
@@ -225,9 +225,9 @@ class CommandLineInterface::ErrorPrinter : public MultiFileErrorCollector,
     AddError("input", line, column, message);
   }
 
- private:
+private:
   const ErrorFormat format_;
-  DiskSourceTree *tree_;
+  DiskSourceTree* tree_;
 };
 
 // -------------------------------------------------------------------
@@ -235,7 +235,7 @@ class CommandLineInterface::ErrorPrinter : public MultiFileErrorCollector,
 // A GeneratorContext implementation that buffers files in memory, then dumps
 // them all to disk on demand.
 class CommandLineInterface::GeneratorContextImpl : public GeneratorContext {
- public:
+public:
   GeneratorContextImpl(const vector<const FileDescriptor*>& parsed_files);
   ~GeneratorContextImpl();
 
@@ -260,7 +260,7 @@ class CommandLineInterface::GeneratorContextImpl : public GeneratorContext {
     *output = parsed_files_;
   }
 
- private:
+private:
   friend class MemoryOutputStream;
 
   // map instead of hash_map so that files are written in order (good when
@@ -272,7 +272,7 @@ class CommandLineInterface::GeneratorContextImpl : public GeneratorContext {
 
 class CommandLineInterface::MemoryOutputStream
     : public io::ZeroCopyOutputStream {
- public:
+public:
   MemoryOutputStream(GeneratorContextImpl* directory, const string& filename,
                      bool append_mode);
   MemoryOutputStream(GeneratorContextImpl* directory, const string& filename,
@@ -281,10 +281,10 @@ class CommandLineInterface::MemoryOutputStream
 
   // implements ZeroCopyOutputStream ---------------------------------
   virtual bool Next(void** data, int* size) { return inner_->Next(data, size); }
-  virtual void BackUp(int count)            {        inner_->BackUp(count);    }
-  virtual int64 ByteCount() const           { return inner_->ByteCount();      }
+  virtual void BackUp(int count) { inner_->BackUp(count); }
+  virtual int64 ByteCount() const { return inner_->ByteCount(); }
 
- private:
+private:
   // Where to insert the string when it's done.
   GeneratorContextImpl* directory_;
   string filename_;
@@ -337,7 +337,7 @@ bool CommandLineInterface::GeneratorContextImpl::WriteAllToDisk(
     int file_descriptor;
     do {
       file_descriptor =
-        open(filename.c_str(), O_WRONLY | O_CREAT | O_TRUNC | O_BINARY, 0666);
+          open(filename.c_str(), O_WRONLY | O_CREAT | O_TRUNC | O_BINARY, 0666);
     } while (file_descriptor < 0 && errno == EINTR);
 
     if (file_descriptor < 0) {
@@ -397,7 +397,7 @@ bool CommandLineInterface::GeneratorContextImpl::WriteAllToZip(
   int file_descriptor;
   do {
     file_descriptor =
-      open(filename.c_str(), O_WRONLY | O_CREAT | O_TRUNC | O_BINARY, 0666);
+        open(filename.c_str(), O_WRONLY | O_CREAT | O_TRUNC | O_BINARY, 0666);
   } while (file_descriptor < 0 && errno == EINTR);
 
   if (file_descriptor < 0) {
@@ -548,7 +548,8 @@ CommandLineInterface::MemoryOutputStream::~MemoryOutputStream() {
       // Calculate how much space we need.
       int indent_size = 0;
       for (int i = 0; i < data_.size(); i++) {
-        if (data_[i] == '\n') indent_size += indent_.size();
+        if (data_[i] == '\n')
+          indent_size += indent_.size();
       }
 
       // Make a hole for it.
@@ -573,7 +574,7 @@ CommandLineInterface::MemoryOutputStream::~MemoryOutputStream() {
       }
 
       GOOGLE_CHECK_EQ(target_ptr,
-          string_as_array(target) + pos + data_.size() + indent_size);
+                      string_as_array(target) + pos + data_.size() + indent_size);
     }
   }
 }
@@ -581,13 +582,13 @@ CommandLineInterface::MemoryOutputStream::~MemoryOutputStream() {
 // ===================================================================
 
 CommandLineInterface::CommandLineInterface()
-  : mode_(MODE_COMPILE),
-    print_mode_(PRINT_NONE),
-    error_format_(ERROR_FORMAT_GCC),
-    imports_in_descriptor_set_(false),
-    source_info_in_descriptor_set_(false),
-    disallow_services_(false),
-    inputs_are_proto_path_relative_(false) {}
+    : mode_(MODE_COMPILE),
+      print_mode_(PRINT_NONE),
+      error_format_(ERROR_FORMAT_GCC),
+      imports_in_descriptor_set_(false),
+      source_info_in_descriptor_set_(false),
+      disallow_services_(false),
+      inputs_are_proto_path_relative_(false) {}
 CommandLineInterface::~CommandLineInterface() {}
 
 void CommandLineInterface::RegisterGenerator(const string& flag_name,
@@ -620,12 +621,12 @@ void CommandLineInterface::AllowPlugins(const string& exe_name_prefix) {
 int CommandLineInterface::Run(int argc, const char* const argv[]) {
   Clear();
   switch (ParseArguments(argc, argv)) {
-    case PARSE_ARGUMENT_DONE_AND_EXIT:
-      return 0;
-    case PARSE_ARGUMENT_FAIL:
-      return 1;
-    case PARSE_ARGUMENT_DONE_AND_CONTINUE:
-      break;
+  case PARSE_ARGUMENT_DONE_AND_EXIT:
+    return 0;
+  case PARSE_ARGUMENT_FAIL:
+    return 1;
+  case PARSE_ARGUMENT_DONE_AND_CONTINUE:
+    break;
   }
 
   // Set up the source tree.
@@ -653,13 +654,15 @@ int CommandLineInterface::Run(int argc, const char* const argv[]) {
     importer.AddUnusedImportTrackFile(input_files_[i]);
     const FileDescriptor* parsed_file = importer.Import(input_files_[i]);
     importer.ClearUnusedImportTrackFiles();
-    if (parsed_file == NULL) return 1;
+    if (parsed_file == NULL)
+      return 1;
     parsed_files.push_back(parsed_file);
 
     // Enforce --disallow_services.
     if (disallow_services_ && parsed_file->service_count() > 0) {
       cerr << parsed_file->name() << ": This file contains services, but "
-              "--disallow_services was used." << endl;
+                                     "--disallow_services was used."
+           << endl;
       return 1;
     }
   }
@@ -743,18 +746,18 @@ int CommandLineInterface::Run(int argc, const char* const argv[]) {
 
   if (mode_ == MODE_PRINT) {
     switch (print_mode_) {
-      case PRINT_FREE_FIELDS:
-        for (int i = 0; i < parsed_files.size(); ++i) {
-          const FileDescriptor* fd = parsed_files[i];
-          for (int j = 0; j < fd->message_type_count(); ++j) {
-            PrintFreeFieldNumbers(fd->message_type(j));
-          }
+    case PRINT_FREE_FIELDS:
+      for (int i = 0; i < parsed_files.size(); ++i) {
+        const FileDescriptor* fd = parsed_files[i];
+        for (int j = 0; j < fd->message_type_count(); ++j) {
+          PrintFreeFieldNumbers(fd->message_type(j));
         }
-        break;
-      case PRINT_NONE:
-        GOOGLE_LOG(ERROR) << "If the code reaches here, it usually means a bug of "
-                     "flag parsing in the CommonadLineInterface.";
-        return 1;
+      }
+      break;
+    case PRINT_NONE:
+      GOOGLE_LOG(ERROR) << "If the code reaches here, it usually means a bug of "
+                           "flag parsing in the CommonadLineInterface.";
+      return 1;
 
       // Do not add a default case.
     }
@@ -786,33 +789,36 @@ bool CommandLineInterface::MakeInputsBeProtoPathRelative(
     string virtual_file, shadowing_disk_file;
     switch (source_tree->DiskFileToVirtualFile(
         input_files_[i], &virtual_file, &shadowing_disk_file)) {
-      case DiskSourceTree::SUCCESS:
-        input_files_[i] = virtual_file;
-        break;
-      case DiskSourceTree::SHADOWED:
-        cerr << input_files_[i] << ": Input is shadowed in the --proto_path "
-                "by \"" << shadowing_disk_file << "\".  Either use the latter "
-                "file as your input or reorder the --proto_path so that the "
-                "former file's location comes first." << endl;
-        return false;
-      case DiskSourceTree::CANNOT_OPEN:
-        cerr << input_files_[i] << ": " << strerror(errno) << endl;
-        return false;
-      case DiskSourceTree::NO_MAPPING:
-        // First check if the file exists at all.
-        if (access(input_files_[i].c_str(), F_OK) < 0) {
-          // File does not even exist.
-          cerr << input_files_[i] << ": " << strerror(ENOENT) << endl;
-        } else {
-          cerr << input_files_[i] << ": File does not reside within any path "
-                  "specified using --proto_path (or -I).  You must specify a "
-                  "--proto_path which encompasses this file.  Note that the "
-                  "proto_path must be an exact prefix of the .proto file "
-                  "names -- protoc is too dumb to figure out when two paths "
-                  "(e.g. absolute and relative) are equivalent (it's harder "
-                  "than you think)." << endl;
-        }
-        return false;
+    case DiskSourceTree::SUCCESS:
+      input_files_[i] = virtual_file;
+      break;
+    case DiskSourceTree::SHADOWED:
+      cerr << input_files_[i] << ": Input is shadowed in the --proto_path "
+                                 "by \""
+           << shadowing_disk_file << "\".  Either use the latter "
+                                     "file as your input or reorder the --proto_path so that the "
+                                     "former file's location comes first."
+           << endl;
+      return false;
+    case DiskSourceTree::CANNOT_OPEN:
+      cerr << input_files_[i] << ": " << strerror(errno) << endl;
+      return false;
+    case DiskSourceTree::NO_MAPPING:
+      // First check if the file exists at all.
+      if (access(input_files_[i].c_str(), F_OK) < 0) {
+        // File does not even exist.
+        cerr << input_files_[i] << ": " << strerror(ENOENT) << endl;
+      } else {
+        cerr << input_files_[i] << ": File does not reside within any path "
+                                   "specified using --proto_path (or -I).  You must specify a "
+                                   "--proto_path which encompasses this file.  Note that the "
+                                   "proto_path must be an exact prefix of the .proto file "
+                                   "names -- protoc is too dumb to figure out when two paths "
+                                   "(e.g. absolute and relative) are equivalent (it's harder "
+                                   "than you think)."
+             << endl;
+      }
+      return false;
     }
   }
 
@@ -829,7 +835,7 @@ CommandLineInterface::ParseArguments(int argc, const char* const argv[]) {
 
     if (ParseArgument(argv[i], &name, &value)) {
       // Returned true => Use the next argument as the flag value.
-      if (i + 1 == argc || argv[i+1][0] == '-') {
+      if (i + 1 == argc || argv[i + 1][0] == '-') {
         cerr << "Missing value for flag: " << name << endl;
         if (name == "--decode") {
           cerr << "To decode an unknown message, use --decode_raw." << endl;
@@ -870,11 +876,13 @@ CommandLineInterface::ParseArguments(int argc, const char* const argv[]) {
   }
   if (imports_in_descriptor_set_ && descriptor_set_name_.empty()) {
     cerr << "--include_imports only makes sense when combined with "
-            "--descriptor_set_out." << endl;
+            "--descriptor_set_out."
+         << endl;
   }
   if (source_info_in_descriptor_set_ && descriptor_set_name_.empty()) {
     cerr << "--include_source_info only makes sense when combined with "
-            "--descriptor_set_out." << endl;
+            "--descriptor_set_out."
+         << endl;
   }
 
   return PARSE_ARGUMENT_DONE_AND_CONTINUE;
@@ -948,9 +956,11 @@ CommandLineInterface::InterpretArgument(const string& name,
     // Not a flag.  Just a filename.
     if (value.empty()) {
       cerr << "You seem to have passed an empty string as one of the "
-              "arguments to " << executable_name_ << ".  This is actually "
-              "sort of hard to do.  Congrats.  Unfortunately it is not valid "
-              "input so the program is going to die now." << endl;
+              "arguments to "
+           << executable_name_ << ".  This is actually "
+                                  "sort of hard to do.  Congrats.  Unfortunately it is not valid "
+                                  "input so the program is going to die now."
+           << endl;
       return PARSE_ARGUMENT_FAIL;
     }
 
@@ -978,7 +988,8 @@ CommandLineInterface::InterpretArgument(const string& name,
 
       if (disk_path.empty()) {
         cerr << "--proto_path passed empty directory name.  (Use \".\" for "
-                "current directory.)" << endl;
+                "current directory.)"
+             << endl;
         return PARSE_ARGUMENT_FAIL;
       }
 
@@ -1004,7 +1015,8 @@ CommandLineInterface::InterpretArgument(const string& name,
     }
     if (mode_ != MODE_COMPILE) {
       cerr << "Cannot use --encode or --decode and generate descriptors at the "
-              "same time." << endl;
+              "same time."
+           << endl;
       return PARSE_ARGUMENT_FAIL;
     }
     descriptor_set_name_ = value;
@@ -1025,7 +1037,7 @@ CommandLineInterface::InterpretArgument(const string& name,
 
   } else if (name == "-h" || name == "--help") {
     PrintHelpText();
-    return PARSE_ARGUMENT_DONE_AND_EXIT;  // Exit without running compiler.
+    return PARSE_ARGUMENT_DONE_AND_EXIT; // Exit without running compiler.
 
   } else if (name == "--version") {
     if (!version_info_.empty()) {
@@ -1034,7 +1046,7 @@ CommandLineInterface::InterpretArgument(const string& name,
     cout << "libprotoc "
          << protobuf::internal::VersionString(GOOGLE_PROTOBUF_VERSION)
          << endl;
-    return PARSE_ARGUMENT_DONE_AND_EXIT;  // Exit without running compiler.
+    return PARSE_ARGUMENT_DONE_AND_EXIT; // Exit without running compiler.
 
   } else if (name == "--disallow_services") {
     disallow_services_ = true;
@@ -1137,7 +1149,8 @@ CommandLineInterface::InterpretArgument(const string& name,
       // It's an output flag.  Add it to the output directives.
       if (mode_ != MODE_COMPILE) {
         cerr << "Cannot use --encode, --decode or print .proto info and "
-                "generate code at the same time." << endl;
+                "generate code at the same time."
+             << endl;
         return PARSE_ARGUMENT_FAIL;
       }
 
@@ -1169,58 +1182,58 @@ CommandLineInterface::InterpretArgument(const string& name,
 
 void CommandLineInterface::PrintHelpText() {
   // Sorry for indentation here; line wrapping would be uglier.
-  cerr <<
-"Usage: " << executable_name_ << " [OPTION] PROTO_FILES\n"
-"Parse PROTO_FILES and generate output based on the options given:\n"
-"  -IPATH, --proto_path=PATH   Specify the directory in which to search for\n"
-"                              imports.  May be specified multiple times;\n"
-"                              directories will be searched in order.  If not\n"
-"                              given, the current working directory is used.\n"
-"  --version                   Show version info and exit.\n"
-"  -h, --help                  Show this text and exit.\n"
-"  --encode=MESSAGE_TYPE       Read a text-format message of the given type\n"
-"                              from standard input and write it in binary\n"
-"                              to standard output.  The message type must\n"
-"                              be defined in PROTO_FILES or their imports.\n"
-"  --decode=MESSAGE_TYPE       Read a binary message of the given type from\n"
-"                              standard input and write it in text format\n"
-"                              to standard output.  The message type must\n"
-"                              be defined in PROTO_FILES or their imports.\n"
-"  --decode_raw                Read an arbitrary protocol message from\n"
-"                              standard input and write the raw tag/value\n"
-"                              pairs in text format to standard output.  No\n"
-"                              PROTO_FILES should be given when using this\n"
-"                              flag.\n"
-"  -oFILE,                     Writes a FileDescriptorSet (a protocol buffer,\n"
-"    --descriptor_set_out=FILE defined in descriptor.proto) containing all of\n"
-"                              the input files to FILE.\n"
-"  --include_imports           When using --descriptor_set_out, also include\n"
-"                              all dependencies of the input files in the\n"
-"                              set, so that the set is self-contained.\n"
-"  --include_source_info       When using --descriptor_set_out, do not strip\n"
-"                              SourceCodeInfo from the FileDescriptorProto.\n"
-"                              This results in vastly larger descriptors that\n"
-"                              include information about the original\n"
-"                              location of each decl in the source file as\n"
-"                              well as surrounding comments.\n"
-"  --error_format=FORMAT       Set the format in which to print errors.\n"
-"                              FORMAT may be 'gcc' (the default) or 'msvs'\n"
-"                              (Microsoft Visual Studio format).\n"
-"  --print_free_field_numbers  Print the free field numbers of the messages\n"
-"                              defined in the given proto files. Groups share\n"
-"                              the same field number space with the parent \n"
-"                              message. Extension ranges are counted as \n"
-"                              occupied fields numbers."  << endl;
+  cerr << "Usage: " << executable_name_ << " [OPTION] PROTO_FILES\n"
+                                           "Parse PROTO_FILES and generate output based on the options given:\n"
+                                           "  -IPATH, --proto_path=PATH   Specify the directory in which to search for\n"
+                                           "                              imports.  May be specified multiple times;\n"
+                                           "                              directories will be searched in order.  If not\n"
+                                           "                              given, the current working directory is used.\n"
+                                           "  --version                   Show version info and exit.\n"
+                                           "  -h, --help                  Show this text and exit.\n"
+                                           "  --encode=MESSAGE_TYPE       Read a text-format message of the given type\n"
+                                           "                              from standard input and write it in binary\n"
+                                           "                              to standard output.  The message type must\n"
+                                           "                              be defined in PROTO_FILES or their imports.\n"
+                                           "  --decode=MESSAGE_TYPE       Read a binary message of the given type from\n"
+                                           "                              standard input and write it in text format\n"
+                                           "                              to standard output.  The message type must\n"
+                                           "                              be defined in PROTO_FILES or their imports.\n"
+                                           "  --decode_raw                Read an arbitrary protocol message from\n"
+                                           "                              standard input and write the raw tag/value\n"
+                                           "                              pairs in text format to standard output.  No\n"
+                                           "                              PROTO_FILES should be given when using this\n"
+                                           "                              flag.\n"
+                                           "  -oFILE,                     Writes a FileDescriptorSet (a protocol buffer,\n"
+                                           "    --descriptor_set_out=FILE defined in descriptor.proto) containing all of\n"
+                                           "                              the input files to FILE.\n"
+                                           "  --include_imports           When using --descriptor_set_out, also include\n"
+                                           "                              all dependencies of the input files in the\n"
+                                           "                              set, so that the set is self-contained.\n"
+                                           "  --include_source_info       When using --descriptor_set_out, do not strip\n"
+                                           "                              SourceCodeInfo from the FileDescriptorProto.\n"
+                                           "                              This results in vastly larger descriptors that\n"
+                                           "                              include information about the original\n"
+                                           "                              location of each decl in the source file as\n"
+                                           "                              well as surrounding comments.\n"
+                                           "  --error_format=FORMAT       Set the format in which to print errors.\n"
+                                           "                              FORMAT may be 'gcc' (the default) or 'msvs'\n"
+                                           "                              (Microsoft Visual Studio format).\n"
+                                           "  --print_free_field_numbers  Print the free field numbers of the messages\n"
+                                           "                              defined in the given proto files. Groups share\n"
+                                           "                              the same field number space with the parent \n"
+                                           "                              message. Extension ranges are counted as \n"
+                                           "                              occupied fields numbers."
+       << endl;
   if (!plugin_prefix_.empty()) {
-    cerr <<
-"  --plugin=EXECUTABLE         Specifies a plugin executable to use.\n"
-"                              Normally, protoc searches the PATH for\n"
-"                              plugins, but you may specify additional\n"
-"                              executables not in the path using this flag.\n"
-"                              Additionally, EXECUTABLE may be of the form\n"
-"                              NAME=PATH, in which case the given plugin name\n"
-"                              is mapped to the given executable even if\n"
-"                              the executable's own name differs." << endl;
+    cerr << "  --plugin=EXECUTABLE         Specifies a plugin executable to use.\n"
+            "                              Normally, protoc searches the PATH for\n"
+            "                              plugins, but you may specify additional\n"
+            "                              executables not in the path using this flag.\n"
+            "                              Additionally, EXECUTABLE may be of the form\n"
+            "                              NAME=PATH, in which case the given plugin name\n"
+            "                              is mapped to the given executable even if\n"
+            "                              the executable's own name differs."
+         << endl;
   }
 
   for (GeneratorMap::iterator iter = generators_by_flag_name_.begin();
@@ -1229,7 +1242,7 @@ void CommandLineInterface::PrintHelpText() {
     //   but fixing this nicely (e.g. splitting on spaces) is probably more
     //   trouble than it's worth.
     cerr << "  " << iter->first << "=OUT_DIR "
-         << string(19 - iter->first.size(), ' ')  // Spaces for alignment.
+         << string(19 - iter->first.size(), ' ') // Spaces for alignment.
          << iter->second.help_text << endl;
   }
 }
@@ -1243,12 +1256,12 @@ bool CommandLineInterface::GenerateOutput(
   if (output_directive.generator == NULL) {
     // This is a plugin.
     GOOGLE_CHECK(HasPrefixString(output_directive.name, "--") &&
-          HasSuffixString(output_directive.name, "_out"))
+                 HasSuffixString(output_directive.name, "_out"))
         << "Bad name for plugin generator: " << output_directive.name;
 
     // Strip the "--" and "_out" and add the plugin prefix.
     string plugin_name = plugin_prefix_ + "gen-" +
-        output_directive.name.substr(2, output_directive.name.size() - 6);
+                         output_directive.name.substr(2, output_directive.name.size() - 6);
 
     if (!GeneratePluginOutput(parsed_files, plugin_name,
                               output_directive.parameter,
@@ -1297,7 +1310,7 @@ bool CommandLineInterface::GeneratePluginOutput(
   for (int i = 0; i < parsed_files.size(); i++) {
     request.add_file_to_generate(parsed_files[i]->name());
     GetTransitiveDependencies(parsed_files[i],
-                              true,  // Include source code info.
+                              true, // Include source code info.
                               &already_seen, request.mutable_proto_file());
   }
 
@@ -1337,8 +1350,8 @@ bool CommandLineInterface::GeneratePluginOutput(
       current_output.reset(generator_context->Open(output_file.name()));
     } else if (current_output == NULL) {
       *error = strings::Substitute(
-        "$0: First file chunk returned by plugin did not specify a file name.",
-        plugin_name);
+          "$0: First file chunk returned by plugin did not specify a file name.",
+          plugin_name);
       return false;
     }
 
@@ -1563,7 +1576,8 @@ void FormatFreeFieldNumbers(const string& name,
        i != ranges.end(); ++i) {
     // This happens when groups re-use parent field numbers, in which
     // case we skip the FieldRange entirely.
-    if (next_free_number >= i->second) continue;
+    if (next_free_number >= i->second)
+      continue;
 
     if (next_free_number < i->first) {
       if (next_free_number + 1 == i->first) {
@@ -1582,7 +1596,7 @@ void FormatFreeFieldNumbers(const string& name,
   cout << output << endl;
 }
 
-}  // namespace
+} // namespace
 
 void CommandLineInterface::PrintFreeFieldNumbers(
     const Descriptor* descriptor) {
@@ -1596,8 +1610,6 @@ void CommandLineInterface::PrintFreeFieldNumbers(
   FormatFreeFieldNumbers(descriptor->full_name(), ranges);
 }
 
-
-
-}  // namespace compiler
-}  // namespace protobuf
-}  // namespace google
+} // namespace compiler
+} // namespace protobuf
+} // namespace google

@@ -48,7 +48,6 @@
 #include <google/protobuf/stubs/common.h>
 #include <google/protobuf/stubs/stl_util.h>
 
-
 namespace google {
 namespace protobuf {
 namespace io {
@@ -56,7 +55,7 @@ namespace io {
 #ifdef _WIN32
 // Win32 lseek is broken:  If invoked on a non-seekable file descriptor, its
 // return value is undefined.  We re-define it to always produce an error.
-#define lseek(fd, offset, origin) ((off_t)-1)
+#define lseek(fd, offset, origin) ((off_t) - 1)
 #endif
 
 namespace {
@@ -70,14 +69,13 @@ int close_no_eintr(int fd) {
   return result;
 }
 
-}  // namespace
-
+} // namespace
 
 // ===================================================================
 
 FileInputStream::FileInputStream(int file_descriptor, int block_size)
-  : copying_input_(file_descriptor),
-    impl_(&copying_input_, block_size) {
+    : copying_input_(file_descriptor),
+      impl_(&copying_input_, block_size) {
 }
 
 FileInputStream::~FileInputStream() {}
@@ -104,11 +102,11 @@ int64 FileInputStream::ByteCount() const {
 
 FileInputStream::CopyingFileInputStream::CopyingFileInputStream(
     int file_descriptor)
-  : file_(file_descriptor),
-    close_on_delete_(false),
-    is_closed_(false),
-    errno_(0),
-    previous_seek_failed_(false) {
+    : file_(file_descriptor),
+      close_on_delete_(false),
+      is_closed_(false),
+      errno_(0),
+      previous_seek_failed_(false) {
 }
 
 FileInputStream::CopyingFileInputStream::~CopyingFileInputStream() {
@@ -172,8 +170,8 @@ int FileInputStream::CopyingFileInputStream::Skip(int count) {
 // ===================================================================
 
 FileOutputStream::FileOutputStream(int file_descriptor, int block_size)
-  : copying_output_(file_descriptor),
-    impl_(&copying_output_, block_size) {
+    : copying_output_(file_descriptor),
+      impl_(&copying_output_, block_size) {
 }
 
 FileOutputStream::~FileOutputStream() {
@@ -203,10 +201,10 @@ int64 FileOutputStream::ByteCount() const {
 
 FileOutputStream::CopyingFileOutputStream::CopyingFileOutputStream(
     int file_descriptor)
-  : file_(file_descriptor),
-    close_on_delete_(false),
-    is_closed_(false),
-    errno_(0) {
+    : file_(file_descriptor),
+      close_on_delete_(false),
+      is_closed_(false),
+      errno_(0) {
 }
 
 FileOutputStream::CopyingFileOutputStream::~CopyingFileOutputStream() {
@@ -270,8 +268,8 @@ bool FileOutputStream::CopyingFileOutputStream::Write(
 // ===================================================================
 
 IstreamInputStream::IstreamInputStream(istream* input, int block_size)
-  : copying_input_(input),
-    impl_(&copying_input_, block_size) {
+    : copying_input_(input),
+      impl_(&copying_input_, block_size) {
 }
 
 IstreamInputStream::~IstreamInputStream() {}
@@ -294,7 +292,7 @@ int64 IstreamInputStream::ByteCount() const {
 
 IstreamInputStream::CopyingIstreamInputStream::CopyingIstreamInputStream(
     istream* input)
-  : input_(input) {
+    : input_(input) {
 }
 
 IstreamInputStream::CopyingIstreamInputStream::~CopyingIstreamInputStream() {}
@@ -312,8 +310,8 @@ int IstreamInputStream::CopyingIstreamInputStream::Read(
 // ===================================================================
 
 OstreamOutputStream::OstreamOutputStream(ostream* output, int block_size)
-  : copying_output_(output),
-    impl_(&copying_output_, block_size) {
+    : copying_output_(output),
+      impl_(&copying_output_, block_size) {
 }
 
 OstreamOutputStream::~OstreamOutputStream() {
@@ -334,7 +332,7 @@ int64 OstreamOutputStream::ByteCount() const {
 
 OstreamOutputStream::CopyingOstreamOutputStream::CopyingOstreamOutputStream(
     ostream* output)
-  : output_(output) {
+    : output_(output) {
 }
 
 OstreamOutputStream::CopyingOstreamOutputStream::~CopyingOstreamOutputStream() {
@@ -350,7 +348,7 @@ bool OstreamOutputStream::CopyingOstreamOutputStream::Write(
 
 ConcatenatingInputStream::ConcatenatingInputStream(
     ZeroCopyInputStream* const streams[], int count)
-  : streams_(streams), stream_count_(count), bytes_retired_(0) {
+    : streams_(streams), stream_count_(count), bytes_retired_(0) {
 }
 
 ConcatenatingInputStream::~ConcatenatingInputStream() {
@@ -358,7 +356,8 @@ ConcatenatingInputStream::~ConcatenatingInputStream() {
 
 bool ConcatenatingInputStream::Next(const void** data, int* size) {
   while (stream_count_ > 0) {
-    if (streams_[0]->Next(data, size)) return true;
+    if (streams_[0]->Next(data, size))
+      return true;
 
     // That stream is done.  Advance to the next one.
     bytes_retired_ += streams_[0]->ByteCount();
@@ -383,7 +382,8 @@ bool ConcatenatingInputStream::Skip(int count) {
     // Assume that ByteCount() can be used to find out how much we actually
     // skipped when Skip() fails.
     int64 target_byte_count = streams_[0]->ByteCount() + count;
-    if (streams_[0]->Skip(count)) return true;
+    if (streams_[0]->Skip(count))
+      return true;
 
     // Hit the end of the stream.  Figure out how many more bytes we still have
     // to skip.
@@ -408,23 +408,25 @@ int64 ConcatenatingInputStream::ByteCount() const {
   }
 }
 
-
 // ===================================================================
 
 LimitingInputStream::LimitingInputStream(ZeroCopyInputStream* input,
                                          int64 limit)
-  : input_(input), limit_(limit) {
+    : input_(input), limit_(limit) {
   prior_bytes_read_ = input_->ByteCount();
 }
 
 LimitingInputStream::~LimitingInputStream() {
   // If we overshot the limit, back up.
-  if (limit_ < 0) input_->BackUp(-limit_);
+  if (limit_ < 0)
+    input_->BackUp(-limit_);
 }
 
 bool LimitingInputStream::Next(const void** data, int* size) {
-  if (limit_ <= 0) return false;
-  if (!input_->Next(data, size)) return false;
+  if (limit_ <= 0)
+    return false;
+  if (!input_->Next(data, size))
+    return false;
 
   limit_ -= *size;
   if (limit_ < 0) {
@@ -446,12 +448,14 @@ void LimitingInputStream::BackUp(int count) {
 
 bool LimitingInputStream::Skip(int count) {
   if (count > limit_) {
-    if (limit_ < 0) return false;
+    if (limit_ < 0)
+      return false;
     input_->Skip(limit_);
     limit_ = 0;
     return false;
   } else {
-    if (!input_->Skip(count)) return false;
+    if (!input_->Skip(count))
+      return false;
     limit_ -= count;
     return true;
   }
@@ -465,9 +469,8 @@ int64 LimitingInputStream::ByteCount() const {
   }
 }
 
-
 // ===================================================================
 
-}  // namespace io
-}  // namespace protobuf
-}  // namespace google
+} // namespace io
+} // namespace protobuf
+} // namespace google

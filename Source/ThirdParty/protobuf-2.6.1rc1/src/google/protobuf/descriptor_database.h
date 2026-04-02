@@ -63,7 +63,7 @@ class MergedDescriptorDatabase;
 // can be created which wraps a DescriptorDatabase and only builds particular
 // descriptors when they are needed.
 class LIBPROTOBUF_EXPORT DescriptorDatabase {
- public:
+public:
   inline DescriptorDatabase() {}
   virtual ~DescriptorDatabase();
 
@@ -101,8 +101,7 @@ class LIBPROTOBUF_EXPORT DescriptorDatabase {
     return false;
   }
 
-
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(DescriptorDatabase);
 };
 
@@ -128,7 +127,7 @@ class LIBPROTOBUF_EXPORT DescriptorDatabase {
 // types.  You only need to worry if you are constructing FileDescriptorProtos
 // yourself, or are calling compiler::Parser directly.
 class LIBPROTOBUF_EXPORT SimpleDescriptorDatabase : public DescriptorDatabase {
- public:
+public:
   SimpleDescriptorDatabase();
   ~SimpleDescriptorDatabase();
 
@@ -152,7 +151,7 @@ class LIBPROTOBUF_EXPORT SimpleDescriptorDatabase : public DescriptorDatabase {
   bool FindAllExtensionNumbers(const string& extendee_type,
                                vector<int>* output);
 
- private:
+private:
   // So that it can use DescriptorIndex.
   friend class EncodedDescriptorDatabase;
 
@@ -160,7 +159,7 @@ class LIBPROTOBUF_EXPORT SimpleDescriptorDatabase : public DescriptorDatabase {
   // some sort of values.
   template <typename Value>
   class DescriptorIndex {
-   public:
+  public:
     // Helpers to recursively add particular descriptors and all their contents
     // to the index.
     bool AddFile(const FileDescriptorProto& file,
@@ -177,7 +176,7 @@ class LIBPROTOBUF_EXPORT SimpleDescriptorDatabase : public DescriptorDatabase {
     bool FindAllExtensionNumbers(const string& containing_type,
                                  vector<int>* output);
 
-   private:
+  private:
     map<string, Value> by_name_;
     map<string, Value> by_symbol_;
     map<pair<string, int>, Value> by_extension_;
@@ -248,7 +247,6 @@ class LIBPROTOBUF_EXPORT SimpleDescriptorDatabase : public DescriptorDatabase {
     bool ValidateSymbolName(const string& name);
   };
 
-
   DescriptorIndex<const FileDescriptorProto*> index_;
   vector<const FileDescriptorProto*> files_to_delete_;
 
@@ -266,7 +264,7 @@ class LIBPROTOBUF_EXPORT SimpleDescriptorDatabase : public DescriptorDatabase {
 // The same caveats regarding FindFileContainingExtension() apply as with
 // SimpleDescriptorDatabase.
 class LIBPROTOBUF_EXPORT EncodedDescriptorDatabase : public DescriptorDatabase {
- public:
+public:
   EncodedDescriptorDatabase();
   ~EncodedDescriptorDatabase();
 
@@ -297,8 +295,8 @@ class LIBPROTOBUF_EXPORT EncodedDescriptorDatabase : public DescriptorDatabase {
   bool FindAllExtensionNumbers(const string& extendee_type,
                                vector<int>* output);
 
- private:
-  SimpleDescriptorDatabase::DescriptorIndex<pair<const void*, int> > index_;
+private:
+  SimpleDescriptorDatabase::DescriptorIndex<pair<const void*, int>> index_;
   vector<void*> files_to_delete_;
 
   // If encoded_file.first is non-NULL, parse the data into *output and return
@@ -311,7 +309,7 @@ class LIBPROTOBUF_EXPORT EncodedDescriptorDatabase : public DescriptorDatabase {
 
 // A DescriptorDatabase that fetches files from a given pool.
 class LIBPROTOBUF_EXPORT DescriptorPoolDatabase : public DescriptorDatabase {
- public:
+public:
   DescriptorPoolDatabase(const DescriptorPool& pool);
   ~DescriptorPoolDatabase();
 
@@ -326,7 +324,7 @@ class LIBPROTOBUF_EXPORT DescriptorPoolDatabase : public DescriptorDatabase {
   bool FindAllExtensionNumbers(const string& extendee_type,
                                vector<int>* output);
 
- private:
+private:
   const DescriptorPool& pool_;
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(DescriptorPoolDatabase);
 };
@@ -334,7 +332,7 @@ class LIBPROTOBUF_EXPORT DescriptorPoolDatabase : public DescriptorDatabase {
 // A DescriptorDatabase that wraps two or more others.  It first searches the
 // first database and, if that fails, tries the second, and so on.
 class LIBPROTOBUF_EXPORT MergedDescriptorDatabase : public DescriptorDatabase {
- public:
+public:
   // Merge just two databases.  The sources remain property of the caller.
   MergedDescriptorDatabase(DescriptorDatabase* source1,
                            DescriptorDatabase* source2);
@@ -357,13 +355,12 @@ class LIBPROTOBUF_EXPORT MergedDescriptorDatabase : public DescriptorDatabase {
   bool FindAllExtensionNumbers(const string& extendee_type,
                                vector<int>* output);
 
-
- private:
+private:
   vector<DescriptorDatabase*> sources_;
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(MergedDescriptorDatabase);
 };
 
-}  // namespace protobuf
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_DESCRIPTOR_DATABASE_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_DESCRIPTOR_DATABASE_H__

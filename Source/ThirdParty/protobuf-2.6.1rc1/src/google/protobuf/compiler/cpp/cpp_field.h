@@ -44,10 +44,10 @@
 
 namespace google {
 namespace protobuf {
-  namespace io {
-    class Printer;             // printer.h
-  }
+namespace io {
+class Printer; // printer.h
 }
+} // namespace protobuf
 
 namespace protobuf {
 namespace compiler {
@@ -65,7 +65,7 @@ void SetCommonOneofFieldVariables(const FieldDescriptor* descriptor,
                                   map<string, string>* variables);
 
 class FieldGenerator {
- public:
+public:
   FieldGenerator() {}
   virtual ~FieldGenerator();
 
@@ -86,13 +86,13 @@ class FieldGenerator {
   // Generate inline definitions of accessor functions for this field.
   // These are placed inside the header after all class definitions.
   virtual void GenerateInlineAccessorDefinitions(
-    io::Printer* printer) const = 0;
+      io::Printer* printer) const = 0;
 
   // Generate definitions of accessors that aren't inlined.  These are
   // placed somewhere in the .cc file.
   // Most field types don't need this, so the default implementation is empty.
   virtual void GenerateNonInlineAccessorDefinitions(
-    io::Printer* printer) const {}
+      io::Printer* printer) const {}
 
   // Generate lines of code (statements, not declarations) which clear the
   // field.  This is used to define the clear_$name$() method as well as
@@ -154,21 +154,21 @@ class FieldGenerator {
   // are placed in the message's ByteSize() method.
   virtual void GenerateByteSize(io::Printer* printer) const = 0;
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(FieldGenerator);
 };
 
 // Convenience class which constructs FieldGenerators for a Descriptor.
 class FieldGeneratorMap {
- public:
+public:
   explicit FieldGeneratorMap(const Descriptor* descriptor, const Options& options);
   ~FieldGeneratorMap();
 
   const FieldGenerator& get(const FieldDescriptor* field) const;
 
- private:
+private:
   const Descriptor* descriptor_;
-  scoped_array<scoped_ptr<FieldGenerator> > field_generators_;
+  scoped_array<scoped_ptr<FieldGenerator>> field_generators_;
 
   static FieldGenerator* MakeGenerator(const FieldDescriptor* field,
                                        const Options& options);
@@ -176,10 +176,9 @@ class FieldGeneratorMap {
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(FieldGeneratorMap);
 };
 
+} // namespace cpp
+} // namespace compiler
+} // namespace protobuf
 
-}  // namespace cpp
-}  // namespace compiler
-}  // namespace protobuf
-
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_CPP_FIELD_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_COMPILER_CPP_FIELD_H__

@@ -16,21 +16,18 @@
 #include "Shared/Core/Utils/Logging.h"
 
 template <typename T>
-inline std::string GetEnumString(T Input)
-{
-    return "";
+inline std::string GetEnumString(T Input) {
+  return "";
 }
 
 template <typename T>
-inline T GetEnumValue(const std::string& Input)
-{
-    Ensure(false);
-    return T();
+inline T GetEnumValue(const std::string& Input) {
+  Ensure(false);
+  return T();
 }
 
 template <typename T>
-inline const std::vector<T>* GetEnumValues()
-{
-    Ensure(false);
-    return nullptr;
+inline const std::vector<T>* GetEnumValues() {
+  Ensure(false);
+  return nullptr;
 }

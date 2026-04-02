@@ -53,47 +53,47 @@ string EscapeJavadoc(const string& input) {
   for (string::size_type i = 0; i < input.size(); i++) {
     char c = input[i];
     switch (c) {
-      case '*':
-        // Avoid "/*".
-        if (prev == '/') {
-          result.append("&#42;");
-        } else {
-          result.push_back(c);
-        }
-        break;
-      case '/':
-        // Avoid "*/".
-        if (prev == '*') {
-          result.append("&#47;");
-        } else {
-          result.push_back(c);
-        }
-        break;
-      case '@':
-        // '@' starts javadoc tags including the @deprecated tag, which will
-        // cause a compile-time error if inserted before a declaration that
-        // does not have a corresponding @Deprecated annotation.
-        result.append("&#64;");
-        break;
-      case '<':
-        // Avoid interpretation as HTML.
-        result.append("&lt;");
-        break;
-      case '>':
-        // Avoid interpretation as HTML.
-        result.append("&gt;");
-        break;
-      case '&':
-        // Avoid interpretation as HTML.
-        result.append("&amp;");
-        break;
-      case '\\':
-        // Java interprets Unicode escape sequences anywhere!
-        result.append("&#92;");
-        break;
-      default:
+    case '*':
+      // Avoid "/*".
+      if (prev == '/') {
+        result.append("&#42;");
+      } else {
         result.push_back(c);
-        break;
+      }
+      break;
+    case '/':
+      // Avoid "*/".
+      if (prev == '*') {
+        result.append("&#47;");
+      } else {
+        result.push_back(c);
+      }
+      break;
+    case '@':
+      // '@' starts javadoc tags including the @deprecated tag, which will
+      // cause a compile-time error if inserted before a declaration that
+      // does not have a corresponding @Deprecated annotation.
+      result.append("&#64;");
+      break;
+    case '<':
+      // Avoid interpretation as HTML.
+      result.append("&lt;");
+      break;
+    case '>':
+      // Avoid interpretation as HTML.
+      result.append("&gt;");
+      break;
+    case '&':
+      // Avoid interpretation as HTML.
+      result.append("&amp;");
+      break;
+    case '\\':
+      // Java interprets Unicode escape sequences anywhere!
+      result.append("&#92;");
+      break;
+    default:
+      result.push_back(c);
+      break;
     }
 
     prev = c;
@@ -104,8 +104,7 @@ string EscapeJavadoc(const string& input) {
 
 static void WriteDocCommentBodyForLocation(
     io::Printer* printer, const SourceLocation& location) {
-  string comments = location.leading_comments.empty() ?
-      location.trailing_comments : location.leading_comments;
+  string comments = location.leading_comments.empty() ? location.trailing_comments : location.leading_comments;
   if (!comments.empty()) {
     // TODO(kenton):  Ideally we should parse the comment text as Markdown and
     //   write it back as HTML, but this requires a Markdown parser.  For now
@@ -164,9 +163,9 @@ static string FirstLineOf(const string& value) {
 
 void WriteMessageDocComment(io::Printer* printer, const Descriptor* message) {
   printer->Print(
-    "/**\n"
-    " * Protobuf type {@code $fullname$}\n",
-    "fullname", EscapeJavadoc(message->full_name()));
+      "/**\n"
+      " * Protobuf type {@code $fullname$}\n",
+      "fullname", EscapeJavadoc(message->full_name()));
   WriteDocCommentBody(printer, message);
   printer->Print(" */\n");
 }
@@ -181,18 +180,18 @@ void WriteFieldDocComment(io::Printer* printer, const FieldDescriptor* field) {
   // This communicates a lot of information about the field in a small space.
   // If the field is a group, the debug string might end with {.
   printer->Print(
-    "/**\n"
-    " * <code>$def$</code>\n",
-    "def", EscapeJavadoc(FirstLineOf(field->DebugString())));
+      "/**\n"
+      " * <code>$def$</code>\n",
+      "def", EscapeJavadoc(FirstLineOf(field->DebugString())));
   WriteDocCommentBody(printer, field);
   printer->Print(" */\n");
 }
 
 void WriteEnumDocComment(io::Printer* printer, const EnumDescriptor* enum_) {
   printer->Print(
-    "/**\n"
-    " * Protobuf enum {@code $fullname$}\n",
-    "fullname", EscapeJavadoc(enum_->full_name()));
+      "/**\n"
+      " * Protobuf enum {@code $fullname$}\n",
+      "fullname", EscapeJavadoc(enum_->full_name()));
   WriteDocCommentBody(printer, enum_);
   printer->Print(" */\n");
 }
@@ -200,9 +199,9 @@ void WriteEnumDocComment(io::Printer* printer, const EnumDescriptor* enum_) {
 void WriteEnumValueDocComment(io::Printer* printer,
                               const EnumValueDescriptor* value) {
   printer->Print(
-    "/**\n"
-    " * <code>$def$</code>\n",
-    "def", EscapeJavadoc(FirstLineOf(value->DebugString())));
+      "/**\n"
+      " * <code>$def$</code>\n",
+      "def", EscapeJavadoc(FirstLineOf(value->DebugString())));
   WriteDocCommentBody(printer, value);
   printer->Print(" */\n");
 }
@@ -210,9 +209,9 @@ void WriteEnumValueDocComment(io::Printer* printer,
 void WriteServiceDocComment(io::Printer* printer,
                             const ServiceDescriptor* service) {
   printer->Print(
-    "/**\n"
-    " * Protobuf service {@code $fullname$}\n",
-    "fullname", EscapeJavadoc(service->full_name()));
+      "/**\n"
+      " * Protobuf service {@code $fullname$}\n",
+      "fullname", EscapeJavadoc(service->full_name()));
   WriteDocCommentBody(printer, service);
   printer->Print(" */\n");
 }
@@ -220,14 +219,14 @@ void WriteServiceDocComment(io::Printer* printer,
 void WriteMethodDocComment(io::Printer* printer,
                            const MethodDescriptor* method) {
   printer->Print(
-    "/**\n"
-    " * <code>$def$</code>\n",
-    "def", EscapeJavadoc(FirstLineOf(method->DebugString())));
+      "/**\n"
+      " * <code>$def$</code>\n",
+      "def", EscapeJavadoc(FirstLineOf(method->DebugString())));
   WriteDocCommentBody(printer, method);
   printer->Print(" */\n");
 }
 
-}  // namespace java
-}  // namespace compiler
-}  // namespace protobuf
-}  // namespace google
+} // namespace java
+} // namespace compiler
+} // namespace protobuf
+} // namespace google

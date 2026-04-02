@@ -9,7 +9,6 @@
 
 static int value = 0;
 
-extern "C" void TestCodes()
-{
-    value++;
+extern "C" void TestCodes() {
+  value++;
 }

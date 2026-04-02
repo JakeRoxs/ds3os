@@ -44,7 +44,7 @@ const int DEFAULT_FILE_MODE = 0777;
 // Protocol buffer code only uses a couple static methods of File, and only
 // in tests.
 class File {
- public:
+public:
   // Check if the file exists.
   static bool Exists(const string& name);
 
@@ -87,11 +87,11 @@ class File {
     return WriteStringToFile(contents, name);
   }
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(File);
 };
 
-}  // namespace protobuf
-}  // namespace google
+} // namespace protobuf
+} // namespace google
 
-#endif  // GOOGLE_PROTOBUF_TESTING_FILE_H__
+#endif // GOOGLE_PROTOBUF_TESTING_FILE_H__

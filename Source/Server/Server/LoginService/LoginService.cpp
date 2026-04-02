@@ -22,73 +22,58 @@
 #include "Config/RuntimeConfig.h"
 
 LoginService::LoginService(Server* OwningServer, RSAKeyPair* InServerRSAKey)
-    : ServerInstance(OwningServer)
-    , ServerRSAKey(InServerRSAKey)
-{
+    : ServerInstance(OwningServer), ServerRSAKey(InServerRSAKey) {
 }
 
-LoginService::~LoginService()
-{
+LoginService::~LoginService() {
 }
 
-bool LoginService::Init()
-{
-    Connection = std::make_shared<NetConnectionTCP>("LoginService");
-    int Port = ServerInstance->GetConfig().LoginServerPort;
-    if (!Connection->Listen(Port))
-    {
-        Error("Login service failed to listen on port %i.", Port);
-        return false;
+bool LoginService::Init() {
+  Connection = std::make_shared<NetConnectionTCP>("LoginService");
+  int Port = ServerInstance->GetConfig().LoginServerPort;
+  if (!Connection->Listen(Port)) {
+    Error("Login service failed to listen on port %i.", Port);
+    return false;
+  }
+
+  Log("Login service is now listening on port %i.", Port);
+
+  return true;
+}
+
+bool LoginService::Term() {
+  return true;
+}
+
+void LoginService::Poll() {
+  DebugTimerScope Scope(Debug::LoginService_PollTime);
+
+  Connection->Pump();
+
+  while (std::shared_ptr<NetConnection> ClientConnection = Connection->Accept()) {
+    HandleClientConnection(ClientConnection);
+  }
+
+  for (auto iter = Clients.begin(); iter != Clients.end(); /* empty */) {
+    std::shared_ptr<LoginClient> Client = *iter;
+
+    if (Client->Poll()) {
+      iter = Clients.erase(iter);
+    } else {
+      iter++;
     }
-
-    Log("Login service is now listening on port %i.", Port);
-
-    return true;
+  }
 }
 
-bool LoginService::Term()
-{
-    return true;
+void LoginService::HandleClientConnection(std::shared_ptr<NetConnection> ClientConnection) {
+  LogS(ClientConnection->GetName().c_str(), "Client connected.");
+
+  Debug::LoginConnections.Add(1);
+
+  std::shared_ptr<LoginClient> Client = std::make_shared<LoginClient>(this, ClientConnection, ServerRSAKey);
+  Clients.push_back(Client);
 }
 
-void LoginService::Poll()
-{
-    DebugTimerScope Scope(Debug::LoginService_PollTime);
-
-    Connection->Pump();
-
-    while (std::shared_ptr<NetConnection> ClientConnection = Connection->Accept())
-    {
-        HandleClientConnection(ClientConnection);
-    }
-
-    for (auto iter = Clients.begin(); iter != Clients.end(); /* empty */)
-    {
-        std::shared_ptr<LoginClient> Client = *iter;
-
-        if (Client->Poll())
-        {
-            iter = Clients.erase(iter);
-        }
-        else
-        {
-            iter++;
-        }
-    }
+std::string LoginService::GetName() {
+  return "Login";
 }
-
-void LoginService::HandleClientConnection(std::shared_ptr<NetConnection> ClientConnection)
-{
-    LogS(ClientConnection->GetName().c_str(), "Client connected.");
-
-    Debug::LoginConnections.Add(1);
-
-    std::shared_ptr<LoginClient> Client = std::make_shared<LoginClient>(this, ClientConnection, ServerRSAKey);
-    Clients.push_back(Client);
-}
-
-std::string LoginService::GetName()
-{
-    return "Login";
-}
-

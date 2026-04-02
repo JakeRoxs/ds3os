@@ -64,7 +64,7 @@ string GetCapturedTestStderr();
 // For use with ScopedMemoryLog::GetMessages().  Inside Google the LogLevel
 // constants don't have the LOGLEVEL_ prefix, so the code that used
 // ScopedMemoryLog refers to LOGLEVEL_ERROR as just ERROR.
-#undef ERROR  // defend against promiscuous windows.h
+#undef ERROR // defend against promiscuous windows.h
 static const LogLevel ERROR = LOGLEVEL_ERROR;
 static const LogLevel WARNING = LOGLEVEL_WARNING;
 
@@ -77,15 +77,15 @@ static const LogLevel WARNING = LOGLEVEL_WARNING;
 // This is a dummy implementation which covers only what is used by protocol
 // buffer unit tests.
 class ScopedMemoryLog {
- public:
+public:
   ScopedMemoryLog();
   virtual ~ScopedMemoryLog();
 
   // Fetches all messages with the given severity level.
   const vector<string>& GetMessages(LogLevel error);
 
- private:
-  map<LogLevel, vector<string> > messages_;
+private:
+  map<LogLevel, vector<string>> messages_;
   LogHandler* old_handler_;
 
   static void HandleLog(LogLevel level, const char* filename, int line,
@@ -96,7 +96,7 @@ class ScopedMemoryLog {
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ScopedMemoryLog);
 };
 
-}  // namespace protobuf
-}  // namespace google
+} // namespace protobuf
+} // namespace google
 
-#endif  // GOOGLE_PROTOBUF_GOOGLETEST_H__
+#endif // GOOGLE_PROTOBUF_GOOGLETEST_H__

@@ -15,32 +15,25 @@
 #include <windows.h>
 #include <TlHelp32.h>
 
-std::pair<intptr_t, size_t> GetModuleBaseRegion(const char* ModuleName)
-{
-    HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE | TH32CS_SNAPMODULE32, GetCurrentProcessId());
+std::pair<intptr_t, size_t> GetModuleBaseRegion(const char* ModuleName) {
+  HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE | TH32CS_SNAPMODULE32, GetCurrentProcessId());
 
-    if (snapshot != INVALID_HANDLE_VALUE)
-    {
-        MODULEENTRY32 moduleEntry = {};
-        moduleEntry.dwSize = sizeof(MODULEENTRY32);
+  if (snapshot != INVALID_HANDLE_VALUE) {
+    MODULEENTRY32 moduleEntry = {};
+    moduleEntry.dwSize = sizeof(MODULEENTRY32);
 
-        if (Module32First(snapshot, &moduleEntry))
-        {
-            do 
-            {
-                if (_stricmp(moduleEntry.szModule, ModuleName) == 0)
-                {
-                    return { reinterpret_cast<intptr_t>(moduleEntry.modBaseAddr), moduleEntry.modBaseSize };
-                    
-                }
-            }
-            while (Module32Next(snapshot, &moduleEntry));
+    if (Module32First(snapshot, &moduleEntry)) {
+      do {
+        if (_stricmp(moduleEntry.szModule, ModuleName) == 0) {
+          return {reinterpret_cast<intptr_t>(moduleEntry.modBaseAddr), moduleEntry.modBaseSize};
         }
-
-        CloseHandle(snapshot);
+      } while (Module32Next(snapshot, &moduleEntry));
     }
 
-    return { 0, 0 };
+    CloseHandle(snapshot);
+  }
+
+  return {0, 0};
 }
 
 #endif

@@ -10,14 +10,13 @@
 
 #pragma once
 
-enum class GameType
-{
-    Unknown,
+enum class GameType {
+  Unknown,
 
-    DarkSouls2,
-    DarkSouls3,
+  DarkSouls2,
+  DarkSouls3,
 
-    COUNT
+  COUNT
 };
 
 inline const char* GameTypeStrings[(int)GameType::COUNT] = {

@@ -64,7 +64,7 @@ namespace compiler {
 //     stderr, where FOO is "1" if the supplied FileDescriptorProto has source
 //     code info, and "0" otherwise.
 class MockCodeGenerator : public CodeGenerator {
- public:
+public:
   MockCodeGenerator(const string& name);
   virtual ~MockCodeGenerator();
 
@@ -96,13 +96,13 @@ class MockCodeGenerator : public CodeGenerator {
                         GeneratorContext* context,
                         string* error) const;
 
- private:
+private:
   string name_;
 
   static string GetOutputFileContent(const string& generator_name,
                                      const string& parameter,
                                      const FileDescriptor* file,
-                                     GeneratorContext *context);
+                                     GeneratorContext* context);
   static string GetOutputFileContent(const string& generator_name,
                                      const string& parameter,
                                      const string& file,
@@ -110,8 +110,8 @@ class MockCodeGenerator : public CodeGenerator {
                                      const string& first_message_name);
 };
 
-}  // namespace compiler
-}  // namespace protobuf
+} // namespace compiler
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_MOCK_CODE_GENERATOR_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_COMPILER_MOCK_CODE_GENERATOR_H__

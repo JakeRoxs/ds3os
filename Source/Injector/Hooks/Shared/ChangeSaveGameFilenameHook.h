@@ -13,11 +13,9 @@
 #include "Injector/Hooks/Hook.h"
 
 // Hooks CreateFile and changes the savegame extension from sl2 to rekindled-server
-class ChangeSaveGameFilenameHook : public Hook
-{
+class ChangeSaveGameFilenameHook : public Hook {
 public:
-    virtual HookError Install(const InjectorContext& context) override;
-    virtual void Uninstall() override;
-    virtual const char* GetName() override;
-
+  virtual HookError Install(const InjectorContext& context) override;
+  virtual void Uninstall() override;
+  virtual const char* GetName() override;
 };

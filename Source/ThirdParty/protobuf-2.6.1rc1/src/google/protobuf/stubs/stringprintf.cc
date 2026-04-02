@@ -34,7 +34,7 @@
 
 #include <errno.h>
 #include <stdarg.h> // For va_list and related operations
-#include <stdio.h> // MSVC requires this for _vsnprintf
+#include <stdio.h>  // MSVC requires this for _vsnprintf
 #include <vector>
 #include <google/protobuf/stubs/common.h>
 #include <google/protobuf/testing/googletest.h>
@@ -89,7 +89,7 @@ void StringAppendV(string* dst, const char* format, va_list ap) {
 
   // Increase the buffer size to the size requested by vsnprintf,
   // plus one for the closing \0.
-  int length = result+1;
+  int length = result + 1;
   char* buf = new char[length];
 
   // Restore the va_list before we use it again
@@ -103,7 +103,6 @@ void StringAppendV(string* dst, const char* format, va_list ap) {
   }
   delete[] buf;
 }
-
 
 string StringPrintf(const char* format, ...) {
   va_list ap;
@@ -136,7 +135,7 @@ const int kStringPrintfVectorMaxArgs = 32;
 // An empty block of zero for filler arguments.  This is const so that if
 // printf tries to write to it (via %n) then the program gets a SIGSEGV
 // and we can fix the problem or protect against an attack.
-static const char string_printf_empty_block[256] = { '\0' };
+static const char string_printf_empty_block[256] = {'\0'};
 
 string StringPrintfVector(const char* format, const vector<string>& v) {
   GOOGLE_CHECK_LE(v.size(), kStringPrintfVectorMaxArgs)
@@ -171,5 +170,5 @@ string StringPrintfVector(const char* format, const vector<string>& v) {
                       cstr[25], cstr[26], cstr[27], cstr[28], cstr[29],
                       cstr[30], cstr[31]);
 }
-}  // namespace protobuf
-}  // namespace google
+} // namespace protobuf
+} // namespace google

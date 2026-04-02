@@ -50,11 +50,11 @@
 
 #ifndef PROTOBUF_USE_EXCEPTIONS
 #if defined(_MSC_VER) && defined(_CPPUNWIND)
-  #define PROTOBUF_USE_EXCEPTIONS 1
+#define PROTOBUF_USE_EXCEPTIONS 1
 #elif defined(__EXCEPTIONS)
-  #define PROTOBUF_USE_EXCEPTIONS 1
+#define PROTOBUF_USE_EXCEPTIONS 1
 #else
-  #define PROTOBUF_USE_EXCEPTIONS 0
+#define PROTOBUF_USE_EXCEPTIONS 0
 #endif
 #endif
 
@@ -79,31 +79,30 @@ inline BOOL GetMessage(
 }
 #endif
 
-
 namespace std {}
 
 namespace google {
 namespace protobuf {
 
 #undef GOOGLE_DISALLOW_EVIL_CONSTRUCTORS
-#define GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(TypeName)    \
-  TypeName(const TypeName&);                           \
+#define GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(TypeName) \
+  TypeName(const TypeName&);                        \
   void operator=(const TypeName&)
 
 #if defined(_MSC_VER) && defined(PROTOBUF_USE_DLLS)
-  #ifdef LIBPROTOBUF_EXPORTS
-    #define LIBPROTOBUF_EXPORT __declspec(dllexport)
-  #else
-    #define LIBPROTOBUF_EXPORT __declspec(dllimport)
-  #endif
-  #ifdef LIBPROTOC_EXPORTS
-    #define LIBPROTOC_EXPORT   __declspec(dllexport)
-  #else
-    #define LIBPROTOC_EXPORT   __declspec(dllimport)
-  #endif
+#ifdef LIBPROTOBUF_EXPORTS
+#define LIBPROTOBUF_EXPORT __declspec(dllexport)
 #else
-  #define LIBPROTOBUF_EXPORT
-  #define LIBPROTOC_EXPORT
+#define LIBPROTOBUF_EXPORT __declspec(dllimport)
+#endif
+#ifdef LIBPROTOC_EXPORTS
+#define LIBPROTOC_EXPORT __declspec(dllexport)
+#else
+#define LIBPROTOC_EXPORT __declspec(dllimport)
+#endif
+#else
+#define LIBPROTOBUF_EXPORT
+#define LIBPROTOC_EXPORT
 #endif
 
 namespace internal {
@@ -140,16 +139,16 @@ void LIBPROTOBUF_EXPORT VerifyVersion(int headerVersion, int minLibraryVersion,
 // Converts a numeric version number to a string.
 std::string LIBPROTOBUF_EXPORT VersionString(int version);
 
-}  // namespace internal
+} // namespace internal
 
 // Place this macro in your main() function (or somewhere before you attempt
 // to use the protobuf library) to verify that the version you link against
 // matches the headers you compiled against.  If a version mismatch is
 // detected, the process will abort.
-#define GOOGLE_PROTOBUF_VERIFY_VERSION                                    \
-  ::google::protobuf::internal::VerifyVersion(                            \
-    GOOGLE_PROTOBUF_VERSION, GOOGLE_PROTOBUF_MIN_LIBRARY_VERSION,         \
-    __FILE__)
+#define GOOGLE_PROTOBUF_VERIFY_VERSION                              \
+  ::google::protobuf::internal::VerifyVersion(                      \
+      GOOGLE_PROTOBUF_VERSION, GOOGLE_PROTOBUF_MIN_LIBRARY_VERSION, \
+      __FILE__)
 
 // ===================================================================
 // from google3/base/port.h
@@ -157,22 +156,22 @@ std::string LIBPROTOBUF_EXPORT VersionString(int version);
 typedef unsigned int uint;
 
 #ifdef _MSC_VER
-typedef __int8  int8;
+typedef __int8 int8;
 typedef __int16 int16;
 typedef __int32 int32;
 typedef __int64 int64;
 
-typedef unsigned __int8  uint8;
+typedef unsigned __int8 uint8;
 typedef unsigned __int16 uint16;
 typedef unsigned __int32 uint32;
 typedef unsigned __int64 uint64;
 #else
-typedef int8_t  int8;
+typedef int8_t int8;
 typedef int16_t int16;
 typedef int32_t int32;
 typedef int64_t int64;
 
-typedef uint8_t  uint8;
+typedef uint8_t uint8;
 typedef uint16_t uint16;
 typedef uint32_t uint32;
 typedef uint64_t uint64;
@@ -187,11 +186,11 @@ typedef uint64_t uint64;
 #ifdef _MSC_VER
 #define GOOGLE_LONGLONG(x) x##I64
 #define GOOGLE_ULONGLONG(x) x##UI64
-#define GOOGLE_LL_FORMAT "I64"  // As in printf("%I64d", ...)
+#define GOOGLE_LL_FORMAT "I64" // As in printf("%I64d", ...)
 #else
 #define GOOGLE_LONGLONG(x) x##LL
 #define GOOGLE_ULONGLONG(x) x##ULL
-#define GOOGLE_LL_FORMAT "ll"  // As in "%lld". Note that "q" is poor form also.
+#define GOOGLE_LL_FORMAT "ll" // As in "%lld". Note that "q" is poor form also.
 #endif
 
 static const int32 kint32max = 0x7FFFFFFF;
@@ -208,10 +207,10 @@ static const uint64 kuint64max = GOOGLE_ULONGLONG(0xFFFFFFFFFFFFFFFF);
 //   is not right for you.
 
 #ifndef GOOGLE_ATTRIBUTE_ALWAYS_INLINE
-#if defined(__GNUC__) && (__GNUC__ > 3 ||(__GNUC__ == 3 && __GNUC_MINOR__ >= 1))
+#if defined(__GNUC__) && (__GNUC__ > 3 || (__GNUC__ == 3 && __GNUC_MINOR__ >= 1))
 // For functions we want to force inline.
 // Introduced in gcc 3.1.
-#define GOOGLE_ATTRIBUTE_ALWAYS_INLINE __attribute__ ((always_inline))
+#define GOOGLE_ATTRIBUTE_ALWAYS_INLINE __attribute__((always_inline))
 #else
 // Other compilers will have to figure it out for themselves.
 #define GOOGLE_ATTRIBUTE_ALWAYS_INLINE
@@ -284,7 +283,7 @@ static const uint64 kuint64max = GOOGLE_ULONGLONG(0xFFFFFFFFFFFFFFFF);
 // Kudos to Jorg Brown for this simple and elegant implementation.
 
 #undef GOOGLE_ARRAYSIZE
-#define GOOGLE_ARRAYSIZE(a) \
+#define GOOGLE_ARRAYSIZE(a)     \
   ((sizeof(a) / sizeof(*(a))) / \
    static_cast<size_t>(!(sizeof(a) % sizeof(*(a)))))
 
@@ -307,8 +306,8 @@ namespace internal {
 // implicit_cast would have been part of the C++ standard library,
 // but the proposal was submitted too late.  It will probably make
 // its way into the language in the future.
-template<typename To, typename From>
-inline To implicit_cast(From const &f) {
+template <typename To, typename From>
+inline To implicit_cast(From const& f) {
   return f;
 }
 
@@ -330,8 +329,8 @@ inline To implicit_cast(From const &f) {
 //    if (dynamic_cast<Subclass2>(foo)) HandleASubclass2Object(foo);
 // You should design the code some other way not to need this.
 
-template<typename To, typename From>     // use like this: down_cast<T*>(foo);
-inline To down_cast(From* f) {                   // so we only accept pointers
+template <typename To, typename From> // use like this: down_cast<T*>(foo);
+inline To down_cast(From* f) {        // so we only accept pointers
   // Ensures that To is a sub-type of From *.  This test is here only
   // for compile-time type checking, and has no overhead in an
   // optimized build at run-time, as it will be optimized away
@@ -341,17 +340,17 @@ inline To down_cast(From* f) {                   // so we only accept pointers
   }
 
 #if !defined(NDEBUG) && !defined(GOOGLE_PROTOBUF_NO_RTTI)
-  assert(f == NULL || dynamic_cast<To>(f) != NULL);  // RTTI: debug mode only!
+  assert(f == NULL || dynamic_cast<To>(f) != NULL); // RTTI: debug mode only!
 #endif
   return static_cast<To>(f);
 }
 
-}  // namespace internal
+} // namespace internal
 
 // We made these internal so that they would show up as such in the docs,
 // but we don't want to stick "internal::" in front of them everywhere.
-using internal::implicit_cast;
 using internal::down_cast;
+using internal::implicit_cast;
 
 // The COMPILE_ASSERT macro can be used to verify that a compile time
 // expression is true. For example, you could use it to verify the
@@ -374,13 +373,12 @@ template <bool>
 struct CompileAssert {
 };
 
-}  // namespace internal
+} // namespace internal
 
 #undef GOOGLE_COMPILE_ASSERT
-#define GOOGLE_COMPILE_ASSERT(expr, msg) \
+#define GOOGLE_COMPILE_ASSERT(expr, msg)                            \
   typedef ::google::protobuf::internal::CompileAssert<(bool(expr))> \
-          msg[bool(expr) ? 1 : -1]
-
+      msg[bool(expr) ? 1 : -1]
 
 // Implementation details of COMPILE_ASSERT:
 //
@@ -432,8 +430,10 @@ namespace internal {
 //  implementation of the scoped_ptr class, and its closely-related brethren,
 //  scoped_array, scoped_ptr_malloc, and make_scoped_ptr.
 
-template <class C> class scoped_ptr;
-template <class C> class scoped_array;
+template <class C>
+class scoped_ptr;
+template <class C>
+class scoped_array;
 
 // A scoped_ptr<T> is like a T*, except that the destructor of scoped_ptr<T>
 // automatically deletes the pointer it holds (if any).
@@ -444,15 +444,14 @@ template <class C> class scoped_array;
 // sizeof(scoped_ptr<C>) == sizeof(C*)
 template <class C>
 class scoped_ptr {
- public:
-
+public:
   // The element type
   typedef C element_type;
 
   // Constructor.  Defaults to intializing with NULL.
   // There is no way to create an uninitialized scoped_ptr.
   // The input parameter must be allocated with new.
-  explicit scoped_ptr(C* p = NULL) : ptr_(p) { }
+  explicit scoped_ptr(C* p = NULL) : ptr_(p) {}
 
   // Destructor.  If there is a C object, delete it.
   // We don't need to test ptr_ == NULL because C++ does that for us.
@@ -478,7 +477,7 @@ class scoped_ptr {
     assert(ptr_ != NULL);
     return *ptr_;
   }
-  C* operator->() const  {
+  C* operator->() const {
     assert(ptr_ != NULL);
     return ptr_;
   }
@@ -508,14 +507,16 @@ class scoped_ptr {
     return retVal;
   }
 
- private:
+private:
   C* ptr_;
 
   // Forbid comparison of scoped_ptr types.  If C2 != C, it totally doesn't
   // make sense, and if C2 == C, it still doesn't make sense because you should
   // never have the same object owned by two different scoped_ptrs.
-  template <class C2> bool operator==(scoped_ptr<C2> const& p2) const;
-  template <class C2> bool operator!=(scoped_ptr<C2> const& p2) const;
+  template <class C2>
+  bool operator==(scoped_ptr<C2> const& p2) const;
+  template <class C2>
+  bool operator!=(scoped_ptr<C2> const& p2) const;
 
   // Disallow evil constructors
   scoped_ptr(const scoped_ptr&);
@@ -531,15 +532,14 @@ class scoped_ptr {
 // Size: sizeof(scoped_array<C>) == sizeof(C*)
 template <class C>
 class scoped_array {
- public:
-
+public:
   // The element type
   typedef C element_type;
 
   // Constructor.  Defaults to intializing with NULL.
   // There is no way to create an uninitialized scoped_array.
   // The input parameter must be allocated with new [].
-  explicit scoped_array(C* p = NULL) : array_(p) { }
+  explicit scoped_array(C* p = NULL) : array_(p) {}
 
   // Destructor.  If there is a C object, delete it.
   // We don't need to test ptr_ == NULL because C++ does that for us.
@@ -597,41 +597,43 @@ class scoped_array {
     return retVal;
   }
 
- private:
+private:
   C* array_;
 
   // Forbid comparison of different scoped_array types.
-  template <class C2> bool operator==(scoped_array<C2> const& p2) const;
-  template <class C2> bool operator!=(scoped_array<C2> const& p2) const;
+  template <class C2>
+  bool operator==(scoped_array<C2> const& p2) const;
+  template <class C2>
+  bool operator!=(scoped_array<C2> const& p2) const;
 
   // Disallow evil constructors
   scoped_array(const scoped_array&);
   void operator=(const scoped_array&);
 };
 
-}  // namespace internal
+} // namespace internal
 
 // We made these internal so that they would show up as such in the docs,
 // but we don't want to stick "internal::" in front of them everywhere.
-using internal::scoped_ptr;
 using internal::scoped_array;
+using internal::scoped_ptr;
 
 // ===================================================================
 // emulates google3/base/logging.h
 
 enum LogLevel {
-  LOGLEVEL_INFO,     // Informational.  This is never actually used by
-                     // libprotobuf.
-  LOGLEVEL_WARNING,  // Warns about issues that, although not technically a
-                     // problem now, could cause problems in the future.  For
-                     // example, a // warning will be printed when parsing a
-                     // message that is near the message size limit.
-  LOGLEVEL_ERROR,    // An error occurred which should never happen during
-                     // normal use.
-  LOGLEVEL_FATAL,    // An error occurred from which the library cannot
-                     // recover.  This usually indicates a programming error
-                     // in the code which calls the library, especially when
-                     // compiled in debug mode.
+  LOGLEVEL_INFO,    // Informational.  This is never actually used by
+                    // libprotobuf.
+  LOGLEVEL_WARNING, // Warns about issues that, although not technically a
+                    // problem now, could cause problems in the future.  For
+                    // example, a // warning will be printed when parsing a
+                    // message that is near the message size limit.
+  LOGLEVEL_ERROR,   // An error occurred which should never happen during
+                    // normal use.
+  LOGLEVEL_FATAL,   // An error occurred from which the library cannot
+                    // recover.  This usually indicates a programming error
+                    // in the code which calls the library, especially when
+                    // compiled in debug mode.
 
 #ifdef NDEBUG
   LOGLEVEL_DFATAL = LOGLEVEL_ERROR
@@ -645,7 +647,7 @@ namespace internal {
 class LogFinisher;
 
 class LIBPROTOBUF_EXPORT LogMessage {
- public:
+public:
   LogMessage(LogLevel level, const char* filename, int line);
   ~LogMessage();
 
@@ -658,7 +660,7 @@ class LIBPROTOBUF_EXPORT LogMessage {
   LogMessage& operator<<(unsigned long value);
   LogMessage& operator<<(double value);
 
- private:
+private:
   friend class LogFinisher;
   void Finish();
 
@@ -671,11 +673,11 @@ class LIBPROTOBUF_EXPORT LogMessage {
 // Used to make the entire "LOG(BLAH) << etc." expression have a void return
 // type and print a newline after each message.
 class LIBPROTOBUF_EXPORT LogFinisher {
- public:
+public:
   void operator=(LogMessage& other);
 };
 
-}  // namespace internal
+} // namespace internal
 
 // Undef everything in case we're being mixed with some other Google library
 // which already defined them itself.  Presumably all Google libraries will
@@ -703,10 +705,10 @@ class LIBPROTOBUF_EXPORT LogFinisher {
 #undef GOOGLE_DCHECK_GT
 #undef GOOGLE_DCHECK_GE
 
-#define GOOGLE_LOG(LEVEL)                                                 \
-  ::google::protobuf::internal::LogFinisher() =                           \
-    ::google::protobuf::internal::LogMessage(                             \
-      ::google::protobuf::LOGLEVEL_##LEVEL, __FILE__, __LINE__)
+#define GOOGLE_LOG(LEVEL)                       \
+  ::google::protobuf::internal::LogFinisher() = \
+      ::google::protobuf::internal::LogMessage( \
+          ::google::protobuf::LOGLEVEL_##LEVEL, __FILE__, __LINE__)
 #define GOOGLE_LOG_IF(LEVEL, CONDITION) \
   !(CONDITION) ? (void)0 : GOOGLE_LOG(LEVEL)
 
@@ -715,13 +717,13 @@ class LIBPROTOBUF_EXPORT LogFinisher {
 #define GOOGLE_CHECK_OK(A) GOOGLE_CHECK(A)
 #define GOOGLE_CHECK_EQ(A, B) GOOGLE_CHECK((A) == (B))
 #define GOOGLE_CHECK_NE(A, B) GOOGLE_CHECK((A) != (B))
-#define GOOGLE_CHECK_LT(A, B) GOOGLE_CHECK((A) <  (B))
+#define GOOGLE_CHECK_LT(A, B) GOOGLE_CHECK((A) < (B))
 #define GOOGLE_CHECK_LE(A, B) GOOGLE_CHECK((A) <= (B))
-#define GOOGLE_CHECK_GT(A, B) GOOGLE_CHECK((A) >  (B))
+#define GOOGLE_CHECK_GT(A, B) GOOGLE_CHECK((A) > (B))
 #define GOOGLE_CHECK_GE(A, B) GOOGLE_CHECK((A) >= (B))
 
 namespace internal {
-template<typename T>
+template <typename T>
 T* CheckNotNull(const char* /* file */, int /* line */,
                 const char* name, T* val) {
   if (val == NULL) {
@@ -729,7 +731,7 @@ T* CheckNotNull(const char* /* file */, int /* line */,
   }
   return val;
 }
-}  // namespace internal
+} // namespace internal
 #define GOOGLE_CHECK_NOTNULL(A) \
   internal::CheckNotNull(__FILE__, __LINE__, "'" #A "' must not be NULL", (A))
 
@@ -737,19 +739,21 @@ T* CheckNotNull(const char* /* file */, int /* line */,
 
 #define GOOGLE_DLOG GOOGLE_LOG_IF(INFO, false)
 
-#define GOOGLE_DCHECK(EXPRESSION) while(false) GOOGLE_CHECK(EXPRESSION)
+#define GOOGLE_DCHECK(EXPRESSION) \
+  while (false)                   \
+  GOOGLE_CHECK(EXPRESSION)
 #define GOOGLE_DCHECK_EQ(A, B) GOOGLE_DCHECK((A) == (B))
 #define GOOGLE_DCHECK_NE(A, B) GOOGLE_DCHECK((A) != (B))
-#define GOOGLE_DCHECK_LT(A, B) GOOGLE_DCHECK((A) <  (B))
+#define GOOGLE_DCHECK_LT(A, B) GOOGLE_DCHECK((A) < (B))
 #define GOOGLE_DCHECK_LE(A, B) GOOGLE_DCHECK((A) <= (B))
-#define GOOGLE_DCHECK_GT(A, B) GOOGLE_DCHECK((A) >  (B))
+#define GOOGLE_DCHECK_GT(A, B) GOOGLE_DCHECK((A) > (B))
 #define GOOGLE_DCHECK_GE(A, B) GOOGLE_DCHECK((A) >= (B))
 
-#else  // NDEBUG
+#else // NDEBUG
 
 #define GOOGLE_DLOG GOOGLE_LOG
 
-#define GOOGLE_DCHECK    GOOGLE_CHECK
+#define GOOGLE_DCHECK GOOGLE_CHECK
 #define GOOGLE_DCHECK_EQ GOOGLE_CHECK_EQ
 #define GOOGLE_DCHECK_NE GOOGLE_CHECK_NE
 #define GOOGLE_DCHECK_LT GOOGLE_CHECK_LT
@@ -757,7 +761,7 @@ T* CheckNotNull(const char* /* file */, int /* line */,
 #define GOOGLE_DCHECK_GT GOOGLE_CHECK_GT
 #define GOOGLE_DCHECK_GE GOOGLE_CHECK_GE
 
-#endif  // !NDEBUG
+#endif // !NDEBUG
 
 typedef void LogHandler(LogLevel level, const char* filename, int line,
                         const std::string& message);
@@ -785,7 +789,7 @@ LIBPROTOBUF_EXPORT LogHandler* SetLogHandler(LogHandler* new_func);
 // since messages are generally for debugging purposes only, this isn't
 // a big deal.  If you want to intercept log messages, use SetLogHandler().
 class LIBPROTOBUF_EXPORT LogSilencer {
- public:
+public:
   LogSilencer();
   ~LogSilencer();
 };
@@ -851,53 +855,55 @@ class LIBPROTOBUF_EXPORT LogSilencer {
 //   NewCallback(&Foo, my_str);  // WON'T WORK:  Can't use referecnes.
 // However, correctly-typed pointers will work just fine.
 class LIBPROTOBUF_EXPORT Closure {
- public:
+public:
   Closure() {}
   virtual ~Closure();
 
   virtual void Run() = 0;
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(Closure);
 };
 
 namespace internal {
 
 class LIBPROTOBUF_EXPORT FunctionClosure0 : public Closure {
- public:
+public:
   typedef void (*FunctionType)();
 
   FunctionClosure0(FunctionType function, bool self_deleting)
-    : function_(function), self_deleting_(self_deleting) {}
+      : function_(function), self_deleting_(self_deleting) {}
   ~FunctionClosure0();
 
   void Run() {
-    bool needs_delete = self_deleting_;  // read in case callback deletes
+    bool needs_delete = self_deleting_; // read in case callback deletes
     function_();
-    if (needs_delete) delete this;
+    if (needs_delete)
+      delete this;
   }
 
- private:
+private:
   FunctionType function_;
   bool self_deleting_;
 };
 
 template <typename Class>
 class MethodClosure0 : public Closure {
- public:
+public:
   typedef void (Class::*MethodType)();
 
   MethodClosure0(Class* object, MethodType method, bool self_deleting)
-    : object_(object), method_(method), self_deleting_(self_deleting) {}
+      : object_(object), method_(method), self_deleting_(self_deleting) {}
   ~MethodClosure0() {}
 
   void Run() {
-    bool needs_delete = self_deleting_;  // read in case callback deletes
+    bool needs_delete = self_deleting_; // read in case callback deletes
     (object_->*method_)();
-    if (needs_delete) delete this;
+    if (needs_delete)
+      delete this;
   }
 
- private:
+private:
   Class* object_;
   MethodType method_;
   bool self_deleting_;
@@ -905,22 +911,23 @@ class MethodClosure0 : public Closure {
 
 template <typename Arg1>
 class FunctionClosure1 : public Closure {
- public:
+public:
   typedef void (*FunctionType)(Arg1 arg1);
 
   FunctionClosure1(FunctionType function, bool self_deleting,
                    Arg1 arg1)
-    : function_(function), self_deleting_(self_deleting),
-      arg1_(arg1) {}
+      : function_(function), self_deleting_(self_deleting),
+        arg1_(arg1) {}
   ~FunctionClosure1() {}
 
   void Run() {
-    bool needs_delete = self_deleting_;  // read in case callback deletes
+    bool needs_delete = self_deleting_; // read in case callback deletes
     function_(arg1_);
-    if (needs_delete) delete this;
+    if (needs_delete)
+      delete this;
   }
 
- private:
+private:
   FunctionType function_;
   bool self_deleting_;
   Arg1 arg1_;
@@ -928,22 +935,23 @@ class FunctionClosure1 : public Closure {
 
 template <typename Class, typename Arg1>
 class MethodClosure1 : public Closure {
- public:
+public:
   typedef void (Class::*MethodType)(Arg1 arg1);
 
   MethodClosure1(Class* object, MethodType method, bool self_deleting,
                  Arg1 arg1)
-    : object_(object), method_(method), self_deleting_(self_deleting),
-      arg1_(arg1) {}
+      : object_(object), method_(method), self_deleting_(self_deleting),
+        arg1_(arg1) {}
   ~MethodClosure1() {}
 
   void Run() {
-    bool needs_delete = self_deleting_;  // read in case callback deletes
+    bool needs_delete = self_deleting_; // read in case callback deletes
     (object_->*method_)(arg1_);
-    if (needs_delete) delete this;
+    if (needs_delete)
+      delete this;
   }
 
- private:
+private:
   Class* object_;
   MethodType method_;
   bool self_deleting_;
@@ -952,22 +960,23 @@ class MethodClosure1 : public Closure {
 
 template <typename Arg1, typename Arg2>
 class FunctionClosure2 : public Closure {
- public:
+public:
   typedef void (*FunctionType)(Arg1 arg1, Arg2 arg2);
 
   FunctionClosure2(FunctionType function, bool self_deleting,
                    Arg1 arg1, Arg2 arg2)
-    : function_(function), self_deleting_(self_deleting),
-      arg1_(arg1), arg2_(arg2) {}
+      : function_(function), self_deleting_(self_deleting),
+        arg1_(arg1), arg2_(arg2) {}
   ~FunctionClosure2() {}
 
   void Run() {
-    bool needs_delete = self_deleting_;  // read in case callback deletes
+    bool needs_delete = self_deleting_; // read in case callback deletes
     function_(arg1_, arg2_);
-    if (needs_delete) delete this;
+    if (needs_delete)
+      delete this;
   }
 
- private:
+private:
   FunctionType function_;
   bool self_deleting_;
   Arg1 arg1_;
@@ -976,22 +985,23 @@ class FunctionClosure2 : public Closure {
 
 template <typename Class, typename Arg1, typename Arg2>
 class MethodClosure2 : public Closure {
- public:
+public:
   typedef void (Class::*MethodType)(Arg1 arg1, Arg2 arg2);
 
   MethodClosure2(Class* object, MethodType method, bool self_deleting,
                  Arg1 arg1, Arg2 arg2)
-    : object_(object), method_(method), self_deleting_(self_deleting),
-      arg1_(arg1), arg2_(arg2) {}
+      : object_(object), method_(method), self_deleting_(self_deleting),
+        arg1_(arg1), arg2_(arg2) {}
   ~MethodClosure2() {}
 
   void Run() {
-    bool needs_delete = self_deleting_;  // read in case callback deletes
+    bool needs_delete = self_deleting_; // read in case callback deletes
     (object_->*method_)(arg1_, arg2_);
-    if (needs_delete) delete this;
+    if (needs_delete)
+      delete this;
   }
 
- private:
+private:
   Class* object_;
   MethodType method_;
   bool self_deleting_;
@@ -999,7 +1009,7 @@ class MethodClosure2 : public Closure {
   Arg2 arg2_;
 };
 
-}  // namespace internal
+} // namespace internal
 
 // See Closure.
 inline Closure* NewCallback(void (*function)()) {
@@ -1056,7 +1066,7 @@ template <typename Arg1, typename Arg2>
 inline Closure* NewCallback(void (*function)(Arg1, Arg2),
                             Arg1 arg1, Arg2 arg2) {
   return new internal::FunctionClosure2<Arg1, Arg2>(
-    function, true, arg1, arg2);
+      function, true, arg1, arg2);
 }
 
 // See Closure.
@@ -1064,7 +1074,7 @@ template <typename Arg1, typename Arg2>
 inline Closure* NewPermanentCallback(void (*function)(Arg1, Arg2),
                                      Arg1 arg1, Arg2 arg2) {
   return new internal::FunctionClosure2<Arg1, Arg2>(
-    function, false, arg1, arg2);
+      function, false, arg1, arg2);
 }
 
 // See Closure.
@@ -1072,7 +1082,7 @@ template <typename Class, typename Arg1, typename Arg2>
 inline Closure* NewCallback(Class* object, void (Class::*method)(Arg1, Arg2),
                             Arg1 arg1, Arg2 arg2) {
   return new internal::MethodClosure2<Class, Arg1, Arg2>(
-    object, method, true, arg1, arg2);
+      object, method, true, arg1, arg2);
 }
 
 // See Closure.
@@ -1081,7 +1091,7 @@ inline Closure* NewPermanentCallback(
     Class* object, void (Class::*method)(Arg1, Arg2),
     Arg1 arg1, Arg2 arg2) {
   return new internal::MethodClosure2<Class, Arg1, Arg2>(
-    object, method, false, arg1, arg2);
+      object, method, false, arg1, arg2);
 }
 
 // A function which does nothing.  Useful for creating no-op callbacks, e.g.:
@@ -1097,7 +1107,7 @@ namespace internal {
 // may hold a mutex at a given time.  If T attempts to Lock() the same Mutex
 // while holding it, T will deadlock.
 class LIBPROTOBUF_EXPORT Mutex {
- public:
+public:
   // Create a Mutex that is not held by anybody.
   Mutex();
 
@@ -1114,7 +1124,7 @@ class LIBPROTOBUF_EXPORT Mutex {
   // May fail to crash when it should; will never crash when it should not.
   void AssertHeld();
 
- private:
+private:
   struct Internal;
   Internal* mInternal;
 
@@ -1123,11 +1133,12 @@ class LIBPROTOBUF_EXPORT Mutex {
 
 // MutexLock(mu) acquires mu when constructed and releases it when destroyed.
 class LIBPROTOBUF_EXPORT MutexLock {
- public:
-  explicit MutexLock(Mutex *mu) : mu_(mu) { this->mu_->Lock(); }
+public:
+  explicit MutexLock(Mutex* mu) : mu_(mu) { this->mu_->Lock(); }
   ~MutexLock() { this->mu_->Unlock(); }
- private:
-  Mutex *const mu_;
+
+private:
+  Mutex* const mu_;
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(MutexLock);
 };
 
@@ -1137,24 +1148,32 @@ typedef MutexLock WriterMutexLock;
 
 // MutexLockMaybe is like MutexLock, but is a no-op when mu is NULL.
 class LIBPROTOBUF_EXPORT MutexLockMaybe {
- public:
-  explicit MutexLockMaybe(Mutex *mu) :
-    mu_(mu) { if (this->mu_ != NULL) { this->mu_->Lock(); } }
-  ~MutexLockMaybe() { if (this->mu_ != NULL) { this->mu_->Unlock(); } }
- private:
-  Mutex *const mu_;
+public:
+  explicit MutexLockMaybe(Mutex* mu) : mu_(mu) {
+    if (this->mu_ != NULL) {
+      this->mu_->Lock();
+    }
+  }
+  ~MutexLockMaybe() {
+    if (this->mu_ != NULL) {
+      this->mu_->Unlock();
+    }
+  }
+
+private:
+  Mutex* const mu_;
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(MutexLockMaybe);
 };
 
-}  // namespace internal
+} // namespace internal
 
 // We made these internal so that they would show up as such in the docs,
 // but we don't want to stick "internal::" in front of them everywhere.
 using internal::Mutex;
 using internal::MutexLock;
+using internal::MutexLockMaybe;
 using internal::ReaderMutexLock;
 using internal::WriterMutexLock;
-using internal::MutexLockMaybe;
 
 // ===================================================================
 // from google3/util/utf8/public/unilib.h
@@ -1165,7 +1184,7 @@ namespace internal {
 // structurally_valid.cc.
 LIBPROTOBUF_EXPORT bool IsStructurallyValidUTF8(const char* buf, int len);
 
-}  // namespace internal
+} // namespace internal
 
 // ===================================================================
 // from google3/util/endian/endian.h
@@ -1194,11 +1213,11 @@ namespace internal {
 // Register a function to be called when ShutdownProtocolBuffers() is called.
 LIBPROTOBUF_EXPORT void OnShutdown(void (*func)());
 
-}  // namespace internal
+} // namespace internal
 
 #if PROTOBUF_USE_EXCEPTIONS
 class FatalException : public std::exception {
- public:
+public:
   FatalException(const char* filename, int line, const std::string& message)
       : filename_(filename), line_(line), message_(message) {}
   virtual ~FatalException() throw();
@@ -1209,7 +1228,7 @@ class FatalException : public std::exception {
   int line() const { return line_; }
   const std::string& message() const { return message_; }
 
- private:
+private:
   const char* filename_;
   const int line_;
   const std::string message_;
@@ -1218,9 +1237,9 @@ class FatalException : public std::exception {
 
 // This is at the end of the file instead of the beginning to work around a bug
 // in some versions of MSVC.
-using namespace std;  // Don't do this at home, kids.
+using namespace std; // Don't do this at home, kids.
 
-}  // namespace protobuf
-}  // namespace google
+} // namespace protobuf
+} // namespace google
 
-#endif  // GOOGLE_PROTOBUF_COMMON_H__
+#endif // GOOGLE_PROTOBUF_COMMON_H__

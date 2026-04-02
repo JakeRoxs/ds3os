@@ -21,56 +21,53 @@ class GameService;
 // Handles client requests for joining/leaving quick matches (undead matches)
 
 class DS3_QuickMatchManager
-    : public GameManager
-{
-public:    
-    DS3_QuickMatchManager(Server* InServerInstance, GameService* InGameServiceInstance);
+    : public GameManager {
+public:
+  DS3_QuickMatchManager(Server* InServerInstance, GameService* InGameServiceInstance);
 
-    virtual MessageHandleResult OnMessageReceived(GameClient* Client, const Frpg2ReliableUdpMessage& Message) override;
+  virtual MessageHandleResult OnMessageReceived(GameClient* Client, const Frpg2ReliableUdpMessage& Message) override;
 
-    virtual std::string GetName() override;
+  virtual std::string GetName() override;
 
-    virtual void Poll() override;
+  virtual void Poll() override;
 
-    virtual void OnLostPlayer(GameClient* Client) override;
-    
-    size_t GetLiveCount() { return Matches.size(); }
+  virtual void OnLostPlayer(GameClient* Client) override;
+
+  size_t GetLiveCount() { return Matches.size(); }
 
 protected:
-    MessageHandleResult Handle_RequestSearchQuickMatch(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestUnregisterQuickMatch(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestUpdateQuickMatch(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestJoinQuickMatch(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestAcceptQuickMatch(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestRejectQuickMatch(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestRegisterQuickMatch(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestSendQuickMatchStart(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestSendQuickMatchResult(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestSearchQuickMatch(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestUnregisterQuickMatch(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestUpdateQuickMatch(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestJoinQuickMatch(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestAcceptQuickMatch(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestRejectQuickMatch(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestRegisterQuickMatch(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestSendQuickMatchStart(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestSendQuickMatchResult(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
 
 private:
-    struct Match
-    {
-        uint32_t HostPlayerId;
-        std::string HostPlayerSteamId;
+  struct Match {
+    uint32_t HostPlayerId;
+    std::string HostPlayerSteamId;
 
-        DS3_Frpg2RequestMessage::QuickMatchGameMode GameMode;
-        DS3_Frpg2RequestMessage::MatchingParameter MatchingParams;
+    DS3_Frpg2RequestMessage::QuickMatchGameMode GameMode;
+    DS3_Frpg2RequestMessage::MatchingParameter MatchingParams;
 
-        uint32_t MapId;
-        DS3_OnlineAreaId AreaId;
+    uint32_t MapId;
+    DS3_OnlineAreaId AreaId;
 
-        bool HasStarted = false;
-    };
-
-private:
-    bool CanMatchWith(GameClient* Client, const DS3_Frpg2RequestMessage::RequestSearchQuickMatch& Request, const std::shared_ptr<Match>& Match);
-
-    std::shared_ptr<Match> GetMatchByHost(uint32_t HostPlayerId);
+    bool HasStarted = false;
+  };
 
 private:
-    Server* ServerInstance;
-    GameService* GameServiceInstance;
+  bool CanMatchWith(GameClient* Client, const DS3_Frpg2RequestMessage::RequestSearchQuickMatch& Request, const std::shared_ptr<Match>& Match);
 
-    std::vector<std::shared_ptr<Match>> Matches;
+  std::shared_ptr<Match> GetMatchByHost(uint32_t HostPlayerId);
 
+private:
+  Server* ServerInstance;
+  GameService* GameServiceInstance;
+
+  std::vector<std::shared_ptr<Match>> Matches;
 };

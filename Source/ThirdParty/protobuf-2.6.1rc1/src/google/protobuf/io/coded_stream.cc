@@ -45,7 +45,6 @@
 #include <google/protobuf/stubs/common.h>
 #include <google/protobuf/stubs/stl_util.h>
 
-
 namespace google {
 namespace protobuf {
 namespace io {
@@ -54,7 +53,6 @@ namespace {
 
 static const int kMaxVarintBytes = 10;
 static const int kMaxVarint32Bytes = 5;
-
 
 inline bool NextNonEmpty(ZeroCopyInputStream* input,
                          const void** data, int* size) {
@@ -65,7 +63,7 @@ inline bool NextNonEmpty(ZeroCopyInputStream* input,
   return success;
 }
 
-}  // namespace
+} // namespace
 
 // CodedInputStream ==================================================
 
@@ -81,7 +79,6 @@ CodedInputStream::~CodedInputStream() {
 
 // Static.
 int CodedInputStream::default_recursion_limit_ = 100;
-
 
 void CodedOutputStream::EnableAliasing(bool enabled) {
   aliasing_enabled_ = enabled && output_->AllowsAliasing();
@@ -150,7 +147,8 @@ void CodedInputStream::PopLimit(Limit limit) {
 }
 
 int CodedInputStream::BytesUntilLimit() const {
-  if (current_limit_ == INT_MAX) return -1;
+  if (current_limit_ == INT_MAX)
+    return -1;
   int current_position = CurrentPosition();
 
   return current_limit_ - current_position;
@@ -172,20 +170,23 @@ void CodedInputStream::SetTotalBytesLimit(
 }
 
 int CodedInputStream::BytesUntilTotalBytesLimit() const {
-  if (total_bytes_limit_ == INT_MAX) return -1;
+  if (total_bytes_limit_ == INT_MAX)
+    return -1;
   return total_bytes_limit_ - CurrentPosition();
 }
 
 void CodedInputStream::PrintTotalBytesLimitError() {
   GOOGLE_LOG(ERROR) << "A protocol message was rejected because it was too "
-                "big (more than " << total_bytes_limit_
-             << " bytes).  To increase the limit (or to disable these "
-                "warnings), see CodedInputStream::SetTotalBytesLimit() "
-                "in google/protobuf/io/coded_stream.h.";
+                       "big (more than "
+                    << total_bytes_limit_
+                    << " bytes).  To increase the limit (or to disable these "
+                       "warnings), see CodedInputStream::SetTotalBytesLimit() "
+                       "in google/protobuf/io/coded_stream.h.";
 }
 
 bool CodedInputStream::Skip(int count) {
-  if (count < 0) return false;  // security: count is often user-supplied
+  if (count < 0)
+    return false; // security: count is often user-supplied
 
   const int original_buffer_size = BufferSize();
 
@@ -222,7 +223,8 @@ bool CodedInputStream::Skip(int count) {
 }
 
 bool CodedInputStream::GetDirectBufferPointer(const void** data, int* size) {
-  if (BufferSize() == 0 && !Refresh()) return false;
+  if (BufferSize() == 0 && !Refresh())
+    return false;
 
   *data = buffer_;
   *size = BufferSize();
@@ -237,7 +239,8 @@ bool CodedInputStream::ReadRaw(void* buffer, int size) {
     buffer = reinterpret_cast<uint8*>(buffer) + current_buffer_size;
     size -= current_buffer_size;
     Advance(current_buffer_size);
-    if (!Refresh()) return false;
+    if (!Refresh())
+      return false;
   }
 
   memcpy(buffer, buffer_, size);
@@ -247,7 +250,8 @@ bool CodedInputStream::ReadRaw(void* buffer, int size) {
 }
 
 bool CodedInputStream::ReadString(string* buffer, int size) {
-  if (size < 0) return false;  // security: size is often user-supplied
+  if (size < 0)
+    return false; // security: size is often user-supplied
   return InternalReadStringInline(buffer, size);
 }
 
@@ -275,7 +279,8 @@ bool CodedInputStream::ReadStringFallback(string* buffer, int size) {
     }
     size -= current_buffer_size;
     Advance(current_buffer_size);
-    if (!Refresh()) return false;
+    if (!Refresh())
+      return false;
   }
 
   buffer->append(reinterpret_cast<const char*>(buffer_), size);
@@ -283,7 +288,6 @@ bool CodedInputStream::ReadStringFallback(string* buffer, int size) {
 
   return true;
 }
-
 
 bool CodedInputStream::ReadLittleEndian32Fallback(uint32* value) {
   uint8 bytes[sizeof(*value)];
@@ -295,7 +299,8 @@ bool CodedInputStream::ReadLittleEndian32Fallback(uint32* value) {
     Advance(sizeof(*value));
   } else {
     // Slow path:  Had to read past the end of the buffer.
-    if (!ReadRaw(bytes, sizeof(*value))) return false;
+    if (!ReadRaw(bytes, sizeof(*value)))
+      return false;
     ptr = bytes;
   }
   ReadLittleEndian32FromArray(ptr, value);
@@ -312,7 +317,8 @@ bool CodedInputStream::ReadLittleEndian64Fallback(uint64* value) {
     Advance(sizeof(*value));
   } else {
     // Slow path:  Had to read past the end of the buffer.
-    if (!ReadRaw(bytes, sizeof(*value))) return false;
+    if (!ReadRaw(bytes, sizeof(*value)))
+      return false;
     ptr = bytes;
   }
   ReadLittleEndian64FromArray(ptr, value);
@@ -330,39 +336,57 @@ inline const uint8* ReadVarint32FromArray(const uint8* buffer, uint32* value) {
   uint32 b;
   uint32 result;
 
-  b = *(ptr++); result  = b      ; if (!(b & 0x80)) goto done;
+  b = *(ptr++);
+  result = b;
+  if (!(b & 0x80))
+    goto done;
   result -= 0x80;
-  b = *(ptr++); result += b <<  7; if (!(b & 0x80)) goto done;
+  b = *(ptr++);
+  result += b << 7;
+  if (!(b & 0x80))
+    goto done;
   result -= 0x80 << 7;
-  b = *(ptr++); result += b << 14; if (!(b & 0x80)) goto done;
+  b = *(ptr++);
+  result += b << 14;
+  if (!(b & 0x80))
+    goto done;
   result -= 0x80 << 14;
-  b = *(ptr++); result += b << 21; if (!(b & 0x80)) goto done;
+  b = *(ptr++);
+  result += b << 21;
+  if (!(b & 0x80))
+    goto done;
   result -= 0x80 << 21;
-  b = *(ptr++); result += b << 28; if (!(b & 0x80)) goto done;
+  b = *(ptr++);
+  result += b << 28;
+  if (!(b & 0x80))
+    goto done;
   // "result -= 0x80 << 28" is irrevelant.
 
   // If the input is larger than 32 bits, we still need to read it all
   // and discard the high-order bits.
   for (int i = 0; i < kMaxVarintBytes - kMaxVarint32Bytes; i++) {
-    b = *(ptr++); if (!(b & 0x80)) goto done;
+    b = *(ptr++);
+    if (!(b & 0x80))
+      goto done;
   }
 
   // We have overrun the maximum size of a varint (10 bytes).  Assume
   // the data is corrupt.
   return NULL;
 
- done:
+done:
   *value = result;
   return ptr;
 }
 
-}  // namespace
+} // namespace
 
 bool CodedInputStream::ReadVarint32Slow(uint32* value) {
   uint64 result;
   // Directly invoke ReadVarint64Fallback, since we already tried to optimize
   // for one-byte varints.
-  if (!ReadVarint64Fallback(&result)) return false;
+  if (!ReadVarint64Fallback(&result))
+    return false;
   *value = (uint32)result;
   return true;
 }
@@ -373,7 +397,8 @@ bool CodedInputStream::ReadVarint32Fallback(uint32* value) {
       // with a byte that would terminate a varint.
       (buffer_end_ > buffer_ && !(buffer_end_[-1] & 0x80))) {
     const uint8* end = ReadVarint32FromArray(buffer_, value);
-    if (end == NULL) return false;
+    if (end == NULL)
+      return false;
     buffer_ = end;
     return true;
   } else {
@@ -406,7 +431,8 @@ uint32 CodedInputStream::ReadTagSlow() {
   // For the slow path, just do a 64-bit read. Try to optimize for one-byte tags
   // again, since we have now refreshed the buffer.
   uint64 result = 0;
-  if (!ReadVarint64(&result)) return 0;
+  if (!ReadVarint64(&result))
+    return 0;
   return static_cast<uint32>(result);
 }
 
@@ -450,9 +476,11 @@ bool CodedInputStream::ReadVarint64Slow(uint64* value) {
   uint32 b;
 
   do {
-    if (count == kMaxVarintBytes) return false;
+    if (count == kMaxVarintBytes)
+      return false;
     while (buffer_ == buffer_end_) {
-      if (!Refresh()) return false;
+      if (!Refresh())
+        return false;
     }
     b = *buffer_;
     result |= static_cast<uint64>(b & 0x7F) << (7 * count);
@@ -479,34 +507,64 @@ bool CodedInputStream::ReadVarint64Fallback(uint64* value) {
     // processors.
     uint32 part0 = 0, part1 = 0, part2 = 0;
 
-    b = *(ptr++); part0  = b      ; if (!(b & 0x80)) goto done;
+    b = *(ptr++);
+    part0 = b;
+    if (!(b & 0x80))
+      goto done;
     part0 -= 0x80;
-    b = *(ptr++); part0 += b <<  7; if (!(b & 0x80)) goto done;
+    b = *(ptr++);
+    part0 += b << 7;
+    if (!(b & 0x80))
+      goto done;
     part0 -= 0x80 << 7;
-    b = *(ptr++); part0 += b << 14; if (!(b & 0x80)) goto done;
+    b = *(ptr++);
+    part0 += b << 14;
+    if (!(b & 0x80))
+      goto done;
     part0 -= 0x80 << 14;
-    b = *(ptr++); part0 += b << 21; if (!(b & 0x80)) goto done;
+    b = *(ptr++);
+    part0 += b << 21;
+    if (!(b & 0x80))
+      goto done;
     part0 -= 0x80 << 21;
-    b = *(ptr++); part1  = b      ; if (!(b & 0x80)) goto done;
+    b = *(ptr++);
+    part1 = b;
+    if (!(b & 0x80))
+      goto done;
     part1 -= 0x80;
-    b = *(ptr++); part1 += b <<  7; if (!(b & 0x80)) goto done;
+    b = *(ptr++);
+    part1 += b << 7;
+    if (!(b & 0x80))
+      goto done;
     part1 -= 0x80 << 7;
-    b = *(ptr++); part1 += b << 14; if (!(b & 0x80)) goto done;
+    b = *(ptr++);
+    part1 += b << 14;
+    if (!(b & 0x80))
+      goto done;
     part1 -= 0x80 << 14;
-    b = *(ptr++); part1 += b << 21; if (!(b & 0x80)) goto done;
+    b = *(ptr++);
+    part1 += b << 21;
+    if (!(b & 0x80))
+      goto done;
     part1 -= 0x80 << 21;
-    b = *(ptr++); part2  = b      ; if (!(b & 0x80)) goto done;
+    b = *(ptr++);
+    part2 = b;
+    if (!(b & 0x80))
+      goto done;
     part2 -= 0x80;
-    b = *(ptr++); part2 += b <<  7; if (!(b & 0x80)) goto done;
+    b = *(ptr++);
+    part2 += b << 7;
+    if (!(b & 0x80))
+      goto done;
     // "part2 -= 0x80 << 7" is irrelevant because (0x80 << 7) << 56 is 0.
 
     // We have overrun the maximum size of a varint (10 bytes).  The data
     // must be corrupt.
     return false;
 
-   done:
+  done:
     Advance(ptr - buffer_);
-    *value = (static_cast<uint64>(part0)      ) |
+    *value = (static_cast<uint64>(part0)) |
              (static_cast<uint64>(part1) << 28) |
              (static_cast<uint64>(part2) << 56);
     return true;
@@ -534,13 +592,13 @@ bool CodedInputStream::Refresh() {
 
   if (total_bytes_warning_threshold_ >= 0 &&
       total_bytes_read_ >= total_bytes_warning_threshold_) {
-      GOOGLE_LOG(WARNING) << "Reading dangerously large protocol message.  If the "
-                      "message turns out to be larger than "
-                   << total_bytes_limit_ << " bytes, parsing will be halted "
-                      "for security reasons.  To increase the limit (or to "
-                      "disable these warnings), see "
-                      "CodedInputStream::SetTotalBytesLimit() in "
-                      "google/protobuf/io/coded_stream.h.";
+    GOOGLE_LOG(WARNING) << "Reading dangerously large protocol message.  If the "
+                           "message turns out to be larger than "
+                        << total_bytes_limit_ << " bytes, parsing will be halted "
+                                                 "for security reasons.  To increase the limit (or to "
+                                                 "disable these warnings), see "
+                                                 "CodedInputStream::SetTotalBytesLimit() in "
+                                                 "google/protobuf/io/coded_stream.h.";
 
     // Don't warn again for this stream, and print total size at the end.
     total_bytes_warning_threshold_ = -2;
@@ -583,12 +641,12 @@ bool CodedInputStream::Refresh() {
 // CodedOutputStream =================================================
 
 CodedOutputStream::CodedOutputStream(ZeroCopyOutputStream* output)
-  : output_(output),
-    buffer_(NULL),
-    buffer_size_(0),
-    total_bytes_(0),
-    had_error_(false),
-    aliasing_enabled_(false) {
+    : output_(output),
+      buffer_(NULL),
+      buffer_size_(0),
+      total_bytes_(0),
+      had_error_(false),
+      aliasing_enabled_(false) {
   // Eagerly Refresh() so buffer space is immediately available.
   Refresh();
   // The Refresh() may have failed. If the client doesn't write any data,
@@ -604,11 +662,13 @@ CodedOutputStream::~CodedOutputStream() {
 }
 
 bool CodedOutputStream::Skip(int count) {
-  if (count < 0) return false;
+  if (count < 0)
+    return false;
 
   while (count > buffer_size_) {
     count -= buffer_size_;
-    if (!Refresh()) return false;
+    if (!Refresh())
+      return false;
   }
 
   Advance(count);
@@ -616,7 +676,8 @@ bool CodedOutputStream::Skip(int count) {
 }
 
 bool CodedOutputStream::GetDirectBufferPointer(void** data, int* size) {
-  if (buffer_size_ == 0 && !Refresh()) return false;
+  if (buffer_size_ == 0 && !Refresh())
+    return false;
 
   *data = buffer_;
   *size = buffer_size_;
@@ -628,7 +689,8 @@ void CodedOutputStream::WriteRaw(const void* data, int size) {
     memcpy(buffer_, data, buffer_size_);
     size -= buffer_size_;
     data = reinterpret_cast<const uint8*>(data) + buffer_size_;
-    if (!Refresh()) return;
+    if (!Refresh())
+      return;
   }
 
   memcpy(buffer_, data, size);
@@ -641,10 +703,8 @@ uint8* CodedOutputStream::WriteRawToArray(
   return target + size;
 }
 
-
 void CodedOutputStream::WriteAliasedRaw(const void* data, int size) {
-  if (size < buffer_size_
-      ) {
+  if (size < buffer_size_) {
     WriteRaw(data, size);
   } else {
     if (buffer_size_ > 0) {
@@ -693,7 +753,7 @@ inline uint8* CodedOutputStream::WriteVarint32FallbackToArrayInline(
     uint32 value, uint8* target) {
   target[0] = static_cast<uint8>(value | 0x80);
   if (value >= (1 << 7)) {
-    target[1] = static_cast<uint8>((value >>  7) | 0x80);
+    target[1] = static_cast<uint8>((value >> 7) | 0x80);
     if (value >= (1 << 14)) {
       target[2] = static_cast<uint8>((value >> 14) | 0x80);
       if (value >= (1 << 21)) {
@@ -750,7 +810,7 @@ inline uint8* CodedOutputStream::WriteVarint64ToArrayInline(
     uint64 value, uint8* target) {
   // Splitting into 32-bit pieces gives better performance on 32-bit
   // processors.
-  uint32 part0 = static_cast<uint32>(value      );
+  uint32 part0 = static_cast<uint32>(value);
   uint32 part1 = static_cast<uint32>(value >> 28);
   uint32 part2 = static_cast<uint32>(value >> 56);
 
@@ -767,54 +827,74 @@ inline uint8* CodedOutputStream::WriteVarint64ToArrayInline(
     if (part1 == 0) {
       if (part0 < (1 << 14)) {
         if (part0 < (1 << 7)) {
-          size = 1; goto size1;
+          size = 1;
+          goto size1;
         } else {
-          size = 2; goto size2;
+          size = 2;
+          goto size2;
         }
       } else {
         if (part0 < (1 << 21)) {
-          size = 3; goto size3;
+          size = 3;
+          goto size3;
         } else {
-          size = 4; goto size4;
+          size = 4;
+          goto size4;
         }
       }
     } else {
       if (part1 < (1 << 14)) {
         if (part1 < (1 << 7)) {
-          size = 5; goto size5;
+          size = 5;
+          goto size5;
         } else {
-          size = 6; goto size6;
+          size = 6;
+          goto size6;
         }
       } else {
         if (part1 < (1 << 21)) {
-          size = 7; goto size7;
+          size = 7;
+          goto size7;
         } else {
-          size = 8; goto size8;
+          size = 8;
+          goto size8;
         }
       }
     }
   } else {
     if (part2 < (1 << 7)) {
-      size = 9; goto size9;
+      size = 9;
+      goto size9;
     } else {
-      size = 10; goto size10;
+      size = 10;
+      goto size10;
     }
   }
 
   GOOGLE_LOG(FATAL) << "Can't get here.";
 
-  size10: target[9] = static_cast<uint8>((part2 >>  7) | 0x80);
-  size9 : target[8] = static_cast<uint8>((part2      ) | 0x80);
-  size8 : target[7] = static_cast<uint8>((part1 >> 21) | 0x80);
-  size7 : target[6] = static_cast<uint8>((part1 >> 14) | 0x80);
-  size6 : target[5] = static_cast<uint8>((part1 >>  7) | 0x80);
-  size5 : target[4] = static_cast<uint8>((part1      ) | 0x80);
-  size4 : target[3] = static_cast<uint8>((part0 >> 21) | 0x80);
-  size3 : target[2] = static_cast<uint8>((part0 >> 14) | 0x80);
-  size2 : target[1] = static_cast<uint8>((part0 >>  7) | 0x80);
-  size1 : target[0] = static_cast<uint8>((part0      ) | 0x80);
+size10:
+  target[9] = static_cast<uint8>((part2 >> 7) | 0x80);
+size9:
+  target[8] = static_cast<uint8>((part2) | 0x80);
+size8:
+  target[7] = static_cast<uint8>((part1 >> 21) | 0x80);
+size7:
+  target[6] = static_cast<uint8>((part1 >> 14) | 0x80);
+size6:
+  target[5] = static_cast<uint8>((part1 >> 7) | 0x80);
+size5:
+  target[4] = static_cast<uint8>((part1) | 0x80);
+size4:
+  target[3] = static_cast<uint8>((part0 >> 21) | 0x80);
+size3:
+  target[2] = static_cast<uint8>((part0 >> 14) | 0x80);
+size2:
+  target[1] = static_cast<uint8>((part0 >> 7) | 0x80);
+size1:
+  target[0] = static_cast<uint8>((part0) | 0x80);
 
-  target[size-1] &= 0x7F;
+  target[size - 1] &= 0x7F;
   return target + size;
 }
 
@@ -909,6 +989,6 @@ uint8* CodedOutputStream::WriteStringWithSizeToArray(const string& str,
   return WriteStringToArray(str, target);
 }
 
-}  // namespace io
-}  // namespace protobuf
-}  // namespace google
+} // namespace io
+} // namespace protobuf
+} // namespace google

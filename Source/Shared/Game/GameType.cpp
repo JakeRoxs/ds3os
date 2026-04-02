@@ -13,16 +13,13 @@
 #include <memory>
 #include <cstring>
 
-bool ParseGameType(const char* text, GameType& Output)
-{
-    for (size_t i = 0; i < (int)GameType::COUNT; i++)
-    {
-        if (strcmp(text, GameTypeStrings[i]) == 0)
-        {
-            Output = (GameType)i;
-            return true;
-        }
+bool ParseGameType(const char* text, GameType& Output) {
+  for (size_t i = 0; i < (int)GameType::COUNT; i++) {
+    if (strcmp(text, GameTypeStrings[i]) == 0) {
+      Output = (GameType)i;
+      return true;
     }
+  }
 
-    return false;
+  return false;
 }

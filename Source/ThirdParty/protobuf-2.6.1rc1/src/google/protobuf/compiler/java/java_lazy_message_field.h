@@ -40,12 +40,12 @@
 
 namespace google {
 namespace protobuf {
-  namespace compiler {
-    namespace java {
-      class Context;  // context.h
-    }
-  }
+namespace compiler {
+namespace java {
+class Context; // context.h
 }
+} // namespace compiler
+} // namespace protobuf
 
 namespace protobuf {
 namespace compiler {
@@ -53,7 +53,7 @@ namespace java {
 
 class ImmutableLazyMessageFieldGenerator
     : public ImmutableMessageFieldGenerator {
- public:
+public:
   explicit ImmutableLazyMessageFieldGenerator(
       const FieldDescriptor* descriptor, int messageBitIndex,
       int builderBitIndex, Context* context);
@@ -70,13 +70,13 @@ class ImmutableLazyMessageFieldGenerator
   void GenerateSerializationCode(io::Printer* printer) const;
   void GenerateSerializedSizeCode(io::Printer* printer) const;
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ImmutableLazyMessageFieldGenerator);
 };
 
 class ImmutableLazyMessageOneofFieldGenerator
     : public ImmutableLazyMessageFieldGenerator {
- public:
+public:
   ImmutableLazyMessageOneofFieldGenerator(
       const FieldDescriptor* descriptor, int messageBitIndex,
       int builderBitIndex, Context* context);
@@ -90,13 +90,13 @@ class ImmutableLazyMessageOneofFieldGenerator
   void GenerateSerializationCode(io::Printer* printer) const;
   void GenerateSerializedSizeCode(io::Printer* printer) const;
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ImmutableLazyMessageOneofFieldGenerator);
 };
 
 class RepeatedImmutableLazyMessageFieldGenerator
     : public RepeatedImmutableMessageFieldGenerator {
- public:
+public:
   explicit RepeatedImmutableLazyMessageFieldGenerator(
       const FieldDescriptor* descriptor, int messageBitIndex,
       int builderBitIndex, Context* context);
@@ -109,13 +109,13 @@ class RepeatedImmutableLazyMessageFieldGenerator
   void GenerateSerializationCode(io::Printer* printer) const;
   void GenerateSerializedSizeCode(io::Printer* printer) const;
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(RepeatedImmutableLazyMessageFieldGenerator);
 };
 
-}  // namespace java
-}  // namespace compiler
-}  // namespace protobuf
+} // namespace java
+} // namespace compiler
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_JAVA_LAZY_MESSAGE_FIELD_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_COMPILER_JAVA_LAZY_MESSAGE_FIELD_H__

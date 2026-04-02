@@ -48,17 +48,18 @@
 namespace google {
 namespace protobuf {
 
-class Descriptor;            // descriptor.h
-class DescriptorPool;        // descriptor.h
-class FileDescriptor;        // descriptor.h
-class FileDescriptorProto;   // descriptor.pb.h
-template<typename T> class RepeatedPtrField;  // repeated_field.h
+class Descriptor;          // descriptor.h
+class DescriptorPool;      // descriptor.h
+class FileDescriptor;      // descriptor.h
+class FileDescriptorProto; // descriptor.pb.h
+template <typename T>
+class RepeatedPtrField; // repeated_field.h
 
 namespace compiler {
 
-class CodeGenerator;        // code_generator.h
-class GeneratorContext;      // code_generator.h
-class DiskSourceTree;       // importer.h
+class CodeGenerator;    // code_generator.h
+class GeneratorContext; // code_generator.h
+class DiskSourceTree;   // importer.h
 
 // This class implements the command-line interface to the protocol compiler.
 // It is designed to make it very easy to create a custom protocol compiler
@@ -89,7 +90,7 @@ class DiskSourceTree;       // importer.h
 //
 // For a full description of the command-line syntax, invoke it with --help.
 class LIBPROTOC_EXPORT CommandLineInterface {
- public:
+public:
   CommandLineInterface();
   ~CommandLineInterface();
 
@@ -183,8 +184,7 @@ class LIBPROTOC_EXPORT CommandLineInterface {
     version_info_ = text;
   }
 
-
- private:
+private:
   // -----------------------------------------------------------------
 
   class ErrorPrinter;
@@ -198,7 +198,7 @@ class LIBPROTOC_EXPORT CommandLineInterface {
   // directories in proto_path_.  Returns false if an error occurred.  This
   // is only used if inputs_are_proto_path_relative_ is false.
   bool MakeInputsBeProtoPathRelative(
-    DiskSourceTree* source_tree);
+      DiskSourceTree* source_tree);
 
   // Return status for ParseArguments() and InterpretArgument().
   enum ParseArgumentStatus {
@@ -231,7 +231,7 @@ class LIBPROTOC_EXPORT CommandLineInterface {
   void PrintHelpText();
 
   // Generate the given output file from the given input.
-  struct OutputDirective;  // see below
+  struct OutputDirective; // see below
   bool GenerateOutput(const vector<const FileDescriptor*>& parsed_files,
                       const OutputDirective& output_directive,
                       GeneratorContext* generator_context);
@@ -310,36 +310,36 @@ class LIBPROTOC_EXPORT CommandLineInterface {
 
   // Stuff parsed from command line.
   enum Mode {
-    MODE_COMPILE,  // Normal mode:  parse .proto files and compile them.
-    MODE_ENCODE,   // --encode:  read text from stdin, write binary to stdout.
-    MODE_DECODE,   // --decode:  read binary from stdin, write text to stdout.
-    MODE_PRINT,    // Print mode: print info of the given .proto files and exit.
+    MODE_COMPILE, // Normal mode:  parse .proto files and compile them.
+    MODE_ENCODE,  // --encode:  read text from stdin, write binary to stdout.
+    MODE_DECODE,  // --decode:  read binary from stdin, write text to stdout.
+    MODE_PRINT,   // Print mode: print info of the given .proto files and exit.
   };
 
   Mode mode_;
 
   enum PrintMode {
-    PRINT_NONE,               // Not in MODE_PRINT
-    PRINT_FREE_FIELDS,        // --print_free_fields
+    PRINT_NONE,        // Not in MODE_PRINT
+    PRINT_FREE_FIELDS, // --print_free_fields
   };
 
   PrintMode print_mode_;
 
   enum ErrorFormat {
-    ERROR_FORMAT_GCC,   // GCC error output format (default).
-    ERROR_FORMAT_MSVS   // Visual Studio output (--error_format=msvs).
+    ERROR_FORMAT_GCC, // GCC error output format (default).
+    ERROR_FORMAT_MSVS // Visual Studio output (--error_format=msvs).
   };
 
   ErrorFormat error_format_;
 
-  vector<pair<string, string> > proto_path_;  // Search path for proto files.
-  vector<string> input_files_;                // Names of the input proto files.
+  vector<pair<string, string>> proto_path_; // Search path for proto files.
+  vector<string> input_files_;              // Names of the input proto files.
 
   // output_directives_ lists all the files we are supposed to output and what
   // generator to use for each.
   struct OutputDirective {
-    string name;                // E.g. "--foo_out"
-    CodeGenerator* generator;   // NULL for plugins
+    string name;              // E.g. "--foo_out"
+    CodeGenerator* generator; // NULL for plugins
     string parameter;
     string output_location;
   };
@@ -371,8 +371,8 @@ class LIBPROTOC_EXPORT CommandLineInterface {
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(CommandLineInterface);
 };
 
-}  // namespace compiler
-}  // namespace protobuf
+} // namespace compiler
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_COMMAND_LINE_INTERFACE_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_COMPILER_COMMAND_LINE_INTERFACE_H__

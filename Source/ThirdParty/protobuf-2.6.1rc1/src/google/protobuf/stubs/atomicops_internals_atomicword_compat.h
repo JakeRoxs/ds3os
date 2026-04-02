@@ -89,7 +89,7 @@ inline AtomicWord Release_CompareAndSwap(volatile AtomicWord* ptr,
       reinterpret_cast<volatile Atomic32*>(ptr), old_value, new_value);
 }
 
-inline void NoBarrier_Store(volatile AtomicWord *ptr, AtomicWord value) {
+inline void NoBarrier_Store(volatile AtomicWord* ptr, AtomicWord value) {
   NoBarrier_Store(reinterpret_cast<volatile Atomic32*>(ptr), value);
 }
 
@@ -101,7 +101,7 @@ inline void Release_Store(volatile AtomicWord* ptr, AtomicWord value) {
   return Release_Store(reinterpret_cast<volatile Atomic32*>(ptr), value);
 }
 
-inline AtomicWord NoBarrier_Load(volatile const AtomicWord *ptr) {
+inline AtomicWord NoBarrier_Load(volatile const AtomicWord* ptr) {
   return NoBarrier_Load(reinterpret_cast<volatile const Atomic32*>(ptr));
 }
 
@@ -113,10 +113,10 @@ inline AtomicWord Release_Load(volatile const AtomicWord* ptr) {
   return Release_Load(reinterpret_cast<volatile const Atomic32*>(ptr));
 }
 
-}   // namespace internal
-}   // namespace protobuf
-}   // namespace google
+} // namespace internal
+} // namespace protobuf
+} // namespace google
 
-#endif  // !defined(GOOGLE_PROTOBUF_ARCH_64_BIT)
+#endif // !defined(GOOGLE_PROTOBUF_ARCH_64_BIT)
 
-#endif  // GOOGLE_PROTOBUF_ATOMICOPS_INTERNALS_ATOMICWORD_COMPAT_H_
+#endif // GOOGLE_PROTOBUF_ATOMICOPS_INTERNALS_ATOMICWORD_COMPAT_H_

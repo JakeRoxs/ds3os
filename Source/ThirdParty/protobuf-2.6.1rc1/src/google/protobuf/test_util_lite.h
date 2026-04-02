@@ -44,7 +44,7 @@ namespace unittest = protobuf_unittest;
 namespace unittest_import = protobuf_unittest_import;
 
 class TestUtilLite {
- public:
+public:
   // Set every field in the message to a unique value.
   static void SetAllFields(unittest::TestAllTypesLite* message);
   static void SetAllExtensions(unittest::TestAllExtensionsLite* message);
@@ -91,11 +91,11 @@ class TestUtilLite {
   static void ExpectPackedExtensionsClear(
       const unittest::TestPackedExtensionsLite& message);
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(TestUtilLite);
 };
 
-}  // namespace protobuf
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_TEST_UTIL_LITE_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_TEST_UTIL_LITE_H__

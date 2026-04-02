@@ -41,7 +41,6 @@
 #include <google/protobuf/stubs/shared_ptr.h>
 #endif
 
-
 namespace google {
 namespace protobuf {
 
@@ -104,9 +103,9 @@ PyObject* Extend(RepeatedScalarContainer* self, PyObject* value);
 void SetOwner(RepeatedScalarContainer* self,
               const shared_ptr<Message>& new_owner);
 
-}  // namespace repeated_scalar_container
-}  // namespace python
-}  // namespace protobuf
+} // namespace repeated_scalar_container
+} // namespace python
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_PYTHON_CPP_REPEATED_SCALAR_CONTAINER_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_PYTHON_CPP_REPEATED_SCALAR_CONTAINER_H__

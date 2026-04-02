@@ -130,8 +130,8 @@ inline Atomic64 NoBarrier_CompareAndSwap(volatile Atomic64* ptr,
 
 #endif // defined(__LP64__)
 
-}  // namespace internal
-}  // namespace protobuf
-}  // namespace google
+} // namespace internal
+} // namespace protobuf
+} // namespace google
 
-#endif  // GOOGLE_PROTOBUF_ATOMICOPS_INTERNALS_GENERIC_GCC_H_
+#endif // GOOGLE_PROTOBUF_ATOMICOPS_INTERNALS_GENERIC_GCC_H_

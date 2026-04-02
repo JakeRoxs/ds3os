@@ -7,7 +7,7 @@
  * You should have received a copy of the license along with this program.
  * If not, see <https://opensource.org/licenses/MIT>.
  */
- 
+
 TIMER(AllServerUpdateTime, "All Server Update Time")
 TIMER(UpdateTime, "Update Time")
 TIMER(WebUIService_PollTime, "Web UI Service (Poll Time)")

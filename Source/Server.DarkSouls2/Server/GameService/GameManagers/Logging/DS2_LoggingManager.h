@@ -19,29 +19,27 @@ class Server;
 // like item usage, game settngs, match results, etc.
 
 class DS2_LoggingManager
-    : public GameManager
-{
-public:    
-    DS2_LoggingManager(Server* InServerInstance);
+    : public GameManager {
+public:
+  DS2_LoggingManager(Server* InServerInstance);
 
-    virtual MessageHandleResult OnMessageReceived(GameClient* Client, const Frpg2ReliableUdpMessage& Message) override;
+  virtual MessageHandleResult OnMessageReceived(GameClient* Client, const Frpg2ReliableUdpMessage& Message) override;
 
-    virtual std::string GetName() override;
+  virtual std::string GetName() override;
 
 protected:
-    MessageHandleResult Handle_RequestNotifyBuyItem(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestNotifyDeath(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestNotifyDisconnectSession(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestNotifyJoinGuestPlayer(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestNotifyJoinSession(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestNotifyKillEnemy(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestNotifyKillPlayer(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestNotifyLeaveGuestPlayer(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestNotifyLeaveSession(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestNotifyMirrorKnight(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestNotifyOfflineDeathCount(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestNotifyBuyItem(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestNotifyDeath(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestNotifyDisconnectSession(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestNotifyJoinGuestPlayer(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestNotifyJoinSession(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestNotifyKillEnemy(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestNotifyKillPlayer(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestNotifyLeaveGuestPlayer(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestNotifyLeaveSession(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestNotifyMirrorKnight(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestNotifyOfflineDeathCount(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
 
 private:
-    Server* ServerInstance;
-
+  Server* ServerInstance;
 };

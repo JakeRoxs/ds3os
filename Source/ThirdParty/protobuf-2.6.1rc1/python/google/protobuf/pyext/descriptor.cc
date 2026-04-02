@@ -40,20 +40,19 @@
 #define C(str) const_cast<char*>(str)
 
 #if PY_MAJOR_VERSION >= 3
-  #define PyString_FromStringAndSize PyUnicode_FromStringAndSize
-  #define PyInt_FromLong PyLong_FromLong
-  #if PY_VERSION_HEX < 0x03030000
-    #error "Python 3.0 - 3.2 are not supported."
-  #else
-  #define PyString_AsString(ob) \
-    (PyUnicode_Check(ob)? PyUnicode_AsUTF8(ob): PyBytes_AS_STRING(ob))
-  #endif
+#define PyString_FromStringAndSize PyUnicode_FromStringAndSize
+#define PyInt_FromLong PyLong_FromLong
+#if PY_VERSION_HEX < 0x03030000
+#error "Python 3.0 - 3.2 are not supported."
+#else
+#define PyString_AsString(ob) \
+  (PyUnicode_Check(ob) ? PyUnicode_AsUTF8(ob) : PyBytes_AS_STRING(ob))
+#endif
 #endif
 
 namespace google {
 namespace protobuf {
 namespace python {
-
 
 #ifndef PyVarObject_HEAD_INIT
 #define PyVarObject_HEAD_INIT(type, size) PyObject_HEAD_INIT(type) size,
@@ -61,7 +60,6 @@ namespace python {
 #ifndef Py_TYPE
 #define Py_TYPE(ob) (((PyObject*)(ob))->ob_type)
 #endif
-
 
 static google::protobuf::DescriptorPool* g_descriptor_pool = NULL;
 
@@ -72,83 +70,82 @@ static void Dealloc(CFieldDescriptor* self) {
   Py_TYPE(self)->tp_free(reinterpret_cast<PyObject*>(self));
 }
 
-static PyObject* GetFullName(CFieldDescriptor* self, void *closure) {
+static PyObject* GetFullName(CFieldDescriptor* self, void* closure) {
   return PyString_FromStringAndSize(
       self->descriptor->full_name().c_str(),
       self->descriptor->full_name().size());
 }
 
-static PyObject* GetName(CFieldDescriptor *self, void *closure) {
+static PyObject* GetName(CFieldDescriptor* self, void* closure) {
   return PyString_FromStringAndSize(
       self->descriptor->name().c_str(),
       self->descriptor->name().size());
 }
 
-static PyObject* GetCppType(CFieldDescriptor *self, void *closure) {
+static PyObject* GetCppType(CFieldDescriptor* self, void* closure) {
   return PyInt_FromLong(self->descriptor->cpp_type());
 }
 
-static PyObject* GetLabel(CFieldDescriptor *self, void *closure) {
+static PyObject* GetLabel(CFieldDescriptor* self, void* closure) {
   return PyInt_FromLong(self->descriptor->label());
 }
 
-static PyObject* GetID(CFieldDescriptor *self, void *closure) {
+static PyObject* GetID(CFieldDescriptor* self, void* closure) {
   return PyLong_FromVoidPtr(self);
 }
 
 static PyGetSetDef Getters[] = {
-  { C("full_name"), (getter)GetFullName, NULL, "Full name", NULL},
-  { C("name"), (getter)GetName, NULL, "last name", NULL},
-  { C("cpp_type"), (getter)GetCppType, NULL, "C++ Type", NULL},
-  { C("label"), (getter)GetLabel, NULL, "Label", NULL},
-  { C("id"), (getter)GetID, NULL, "ID", NULL},
-  {NULL}
-};
+    {C("full_name"), (getter)GetFullName, NULL, "Full name", NULL},
+    {C("name"), (getter)GetName, NULL, "last name", NULL},
+    {C("cpp_type"), (getter)GetCppType, NULL, "C++ Type", NULL},
+    {C("label"), (getter)GetLabel, NULL, "Label", NULL},
+    {C("id"), (getter)GetID, NULL, "ID", NULL},
+    {NULL}};
 
-}  // namespace cfield_descriptor
+} // namespace cfield_descriptor
 
 PyTypeObject CFieldDescriptor_Type = {
-  PyVarObject_HEAD_INIT(&PyType_Type, 0)
-  C("google.protobuf.internal."
-    "_net_proto2___python."
-    "CFieldDescriptor"),                // tp_name
-  sizeof(CFieldDescriptor),             // tp_basicsize
-  0,                                    // tp_itemsize
-  (destructor)cfield_descriptor::Dealloc,  // tp_dealloc
-  0,                                    // tp_print
-  0,                                    // tp_getattr
-  0,                                    // tp_setattr
-  0,                                    // tp_compare
-  0,                                    // tp_repr
-  0,                                    // tp_as_number
-  0,                                    // tp_as_sequence
-  0,                                    // tp_as_mapping
-  0,                                    // tp_hash
-  0,                                    // tp_call
-  0,                                    // tp_str
-  0,                                    // tp_getattro
-  0,                                    // tp_setattro
-  0,                                    // tp_as_buffer
-  Py_TPFLAGS_DEFAULT,                   // tp_flags
-  C("A Field Descriptor"),              // tp_doc
-  0,                                    // tp_traverse
-  0,                                    // tp_clear
-  0,                                    // tp_richcompare
-  0,                                    // tp_weaklistoffset
-  0,                                    // tp_iter
-  0,                                    // tp_iternext
-  0,                                    // tp_methods
-  0,                                    // tp_members
-  cfield_descriptor::Getters,           // tp_getset
-  0,                                    // tp_base
-  0,                                    // tp_dict
-  0,                                    // tp_descr_get
-  0,                                    // tp_descr_set
-  0,                                    // tp_dictoffset
-  0,                                    // tp_init
-  PyType_GenericAlloc,                  // tp_alloc
-  PyType_GenericNew,                    // tp_new
-  PyObject_Del,                         // tp_free
+    PyVarObject_HEAD_INIT(&PyType_Type, 0)
+        C("google.protobuf.internal."
+          "_net_proto2___python."
+          "CFieldDescriptor"),              // tp_name
+    sizeof(CFieldDescriptor),               // tp_basicsize
+    0,                                      // tp_itemsize
+    (destructor)cfield_descriptor::Dealloc, // tp_dealloc
+    0,                                      // tp_print
+    0,                                      // tp_getattr
+    0,                                      // tp_setattr
+    0,                                      // tp_compare
+    0,                                      // tp_repr
+    0,                                      // tp_as_number
+    0,                                      // tp_as_sequence
+    0,                                      // tp_as_mapping
+    0,                                      // tp_hash
+    0,                                      // tp_call
+    0,                                      // tp_str
+    0,                                      // tp_getattro
+    0,                                      // tp_setattro
+    0,                                      // tp_as_buffer
+    Py_TPFLAGS_DEFAULT,                     // tp_flags
+    C("A Field Descriptor"),                // tp_doc
+    0,                                      // tp_traverse
+    0,                                      // tp_clear
+    0,                                      // tp_richcompare
+    0,                                      // tp_weaklistoffset
+    0,                                      // tp_iter
+    0,                                      // tp_iternext
+    0,                                      // tp_methods
+    0,                                      // tp_members
+    cfield_descriptor::Getters,             // tp_getset
+    0,                                      // tp_base
+    0,                                      // tp_dict
+    0,                                      // tp_descr_get
+    0,                                      // tp_descr_set
+    0,                                      // tp_dictoffset
+    0,                                      // tp_init
+    PyType_GenericAlloc,                    // tp_alloc
+    PyType_GenericNew,                      // tp_new
+    PyObject_Del,                           // tp_free
 };
 
 namespace cdescriptor_pool {
@@ -207,61 +204,60 @@ PyObject* FindExtensionByName(CDescriptorPool* self, PyObject* arg) {
 }
 
 static PyMethodDef Methods[] = {
-  { C("FindFieldByName"),
-    (PyCFunction)FindFieldByName,
-    METH_O,
-    C("Searches for a field descriptor by full name.") },
-  { C("FindExtensionByName"),
-    (PyCFunction)FindExtensionByName,
-    METH_O,
-    C("Searches for extension descriptor by full name.") },
-  {NULL}
-};
+    {C("FindFieldByName"),
+     (PyCFunction)FindFieldByName,
+     METH_O,
+     C("Searches for a field descriptor by full name.")},
+    {C("FindExtensionByName"),
+     (PyCFunction)FindExtensionByName,
+     METH_O,
+     C("Searches for extension descriptor by full name.")},
+    {NULL}};
 
-}  // namespace cdescriptor_pool
+} // namespace cdescriptor_pool
 
 PyTypeObject CDescriptorPool_Type = {
-  PyVarObject_HEAD_INIT(&PyType_Type, 0)
-  C("google.protobuf.internal."
-    "_net_proto2___python."
-    "CFieldDescriptor"),               // tp_name
-  sizeof(CDescriptorPool),             // tp_basicsize
-  0,                                   // tp_itemsize
-  (destructor)cdescriptor_pool::Dealloc,  // tp_dealloc
-  0,                                   // tp_print
-  0,                                   // tp_getattr
-  0,                                   // tp_setattr
-  0,                                   // tp_compare
-  0,                                   // tp_repr
-  0,                                   // tp_as_number
-  0,                                   // tp_as_sequence
-  0,                                   // tp_as_mapping
-  0,                                   // tp_hash
-  0,                                   // tp_call
-  0,                                   // tp_str
-  0,                                   // tp_getattro
-  0,                                   // tp_setattro
-  0,                                   // tp_as_buffer
-  Py_TPFLAGS_DEFAULT,                  // tp_flags
-  C("A Descriptor Pool"),              // tp_doc
-  0,                                   // tp_traverse
-  0,                                   // tp_clear
-  0,                                   // tp_richcompare
-  0,                                   // tp_weaklistoffset
-  0,                                   // tp_iter
-  0,                                   // tp_iternext
-  cdescriptor_pool::Methods,           // tp_methods
-  0,                                   // tp_members
-  0,                                   // tp_getset
-  0,                                   // tp_base
-  0,                                   // tp_dict
-  0,                                   // tp_descr_get
-  0,                                   // tp_descr_set
-  0,                                   // tp_dictoffset
-  0,                                   // tp_init
-  PyType_GenericAlloc,                 // tp_alloc
-  PyType_GenericNew,                   // tp_new
-  PyObject_Del,                        // tp_free
+    PyVarObject_HEAD_INIT(&PyType_Type, 0)
+        C("google.protobuf.internal."
+          "_net_proto2___python."
+          "CFieldDescriptor"),             // tp_name
+    sizeof(CDescriptorPool),               // tp_basicsize
+    0,                                     // tp_itemsize
+    (destructor)cdescriptor_pool::Dealloc, // tp_dealloc
+    0,                                     // tp_print
+    0,                                     // tp_getattr
+    0,                                     // tp_setattr
+    0,                                     // tp_compare
+    0,                                     // tp_repr
+    0,                                     // tp_as_number
+    0,                                     // tp_as_sequence
+    0,                                     // tp_as_mapping
+    0,                                     // tp_hash
+    0,                                     // tp_call
+    0,                                     // tp_str
+    0,                                     // tp_getattro
+    0,                                     // tp_setattro
+    0,                                     // tp_as_buffer
+    Py_TPFLAGS_DEFAULT,                    // tp_flags
+    C("A Descriptor Pool"),                // tp_doc
+    0,                                     // tp_traverse
+    0,                                     // tp_clear
+    0,                                     // tp_richcompare
+    0,                                     // tp_weaklistoffset
+    0,                                     // tp_iter
+    0,                                     // tp_iternext
+    cdescriptor_pool::Methods,             // tp_methods
+    0,                                     // tp_members
+    0,                                     // tp_getset
+    0,                                     // tp_base
+    0,                                     // tp_dict
+    0,                                     // tp_descr_get
+    0,                                     // tp_descr_set
+    0,                                     // tp_dictoffset
+    0,                                     // tp_init
+    PyType_GenericAlloc,                   // tp_alloc
+    PyType_GenericNew,                     // tp_new
+    PyObject_Del,                          // tp_free
 };
 
 google::protobuf::DescriptorPool* GetDescriptorPool() {
@@ -282,11 +278,10 @@ PyObject* Python_NewCDescriptorPool(PyObject* ignored, PyObject* args) {
   return reinterpret_cast<PyObject*>(cdescriptor_pool);
 }
 
-
 // Collects errors that occur during proto file building to allow them to be
 // propagated in the python exception instead of only living in ERROR logs.
 class BuildFileErrorCollector : public google::protobuf::DescriptorPool::ErrorCollector {
- public:
+public:
   BuildFileErrorCollector() : error_message(""), had_errors(false) {}
 
   void AddError(const string& filename, const string& element_name,
@@ -352,6 +347,6 @@ bool InitDescriptor() {
   return true;
 }
 
-}  // namespace python
-}  // namespace protobuf
-}  // namespace google
+} // namespace python
+} // namespace protobuf
+} // namespace google

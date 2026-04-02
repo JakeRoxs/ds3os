@@ -41,23 +41,23 @@
 
 namespace google {
 namespace protobuf {
-  namespace compiler {
-    namespace java {
-      class Context;           // context.h
-      class ClassNameResolver; // name_resolver.h
-    }
-  }
-  namespace io {
-    class Printer;             // printer.h
-  }
+namespace compiler {
+namespace java {
+class Context;           // context.h
+class ClassNameResolver; // name_resolver.h
+} // namespace java
+} // namespace compiler
+namespace io {
+class Printer; // printer.h
 }
+} // namespace protobuf
 
 namespace protobuf {
 namespace compiler {
 namespace java {
 
 class MessageGenerator {
- public:
+public:
   explicit MessageGenerator(const Descriptor* descriptor);
   virtual ~MessageGenerator();
 
@@ -80,15 +80,15 @@ class MessageGenerator {
   // ExtensionRegistry.
   virtual void GenerateExtensionRegistrationCode(io::Printer* printer) = 0;
 
- protected:
+protected:
   const Descriptor* descriptor_;
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(MessageGenerator);
 };
 
 class ImmutableMessageGenerator : public MessageGenerator {
- public:
+public:
   explicit ImmutableMessageGenerator(const Descriptor* descriptor,
                                      Context* context);
   virtual ~ImmutableMessageGenerator();
@@ -99,7 +99,7 @@ class ImmutableMessageGenerator : public MessageGenerator {
   virtual void GenerateStaticVariables(io::Printer* printer);
   virtual void GenerateStaticVariableInitializers(io::Printer* printer);
 
- private:
+private:
   enum UseMemoization {
     MEMOIZE,
     DONT_MEMOIZE
@@ -120,7 +120,7 @@ class ImmutableMessageGenerator : public MessageGenerator {
   void GenerateDescriptorMethods(io::Printer* printer);
   void GenerateBuilderParsingMethods(io::Printer* printer);
   void GenerateIsInitialized(io::Printer* printer,
-      UseMemoization useMemoization);
+                             UseMemoization useMemoization);
   void GenerateEqualsAndHashCode(io::Printer* printer);
   void GenerateParser(io::Printer* printer);
   void GenerateParsingConstructor(io::Printer* printer);
@@ -132,9 +132,9 @@ class ImmutableMessageGenerator : public MessageGenerator {
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ImmutableMessageGenerator);
 };
 
-}  // namespace java
-}  // namespace compiler
-}  // namespace protobuf
+} // namespace java
+} // namespace compiler
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_JAVA_MESSAGE_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_COMPILER_JAVA_MESSAGE_H__

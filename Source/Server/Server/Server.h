@@ -31,8 +31,8 @@
 #include <queue>
 #include <unordered_map>
 
-// Core of this application, manages all the 
-// network services that ds3 uses. 
+// Core of this application, manages all the
+// network services that ds3 uses.
 
 class Service;
 class NetHttpRequest;
@@ -41,143 +41,133 @@ class GameClient;
 class ServerManager;
 class Game;
 
-enum class DiscordNoticeType
-{
-    AntiCheat,
-    Bell,
-    DiedToBoss,
-    KilledBoss,
-    UndeadMatch,
-    SummonSign,
-    SummonSignPvP,
-    PvPKill,
-    BonfireLit
+enum class DiscordNoticeType {
+  AntiCheat,
+  Bell,
+  DiedToBoss,
+  KilledBoss,
+  UndeadMatch,
+  SummonSign,
+  SummonSignPvP,
+  PvPKill,
+  BonfireLit
 };
 
-class Server
-{
+class Server {
 public:
-    Server(const std::string& InServerId, const std::string& InServerName, const std::string& InServerPassword, GameType InType, ServerManager* InManager);
-    virtual ~Server();
+  Server(const std::string& InServerId, const std::string& InServerName, const std::string& InServerPassword, GameType InType, ServerManager* InManager);
+  virtual ~Server();
 
-    bool Init();
-    bool Term();
-    void Poll();
+  bool Init();
+  bool Term();
+  void Poll();
 
-    void SaveConfig();
+  void SaveConfig();
 
-    const RuntimeConfig& GetConfig()    { return Config; }
-    RuntimeConfig& GetMutableConfig()   { return Config; }
-    ServerDatabase& GetDatabase()       { return Database; }
+  const RuntimeConfig& GetConfig() { return Config; }
+  RuntimeConfig& GetMutableConfig() { return Config; }
+  ServerDatabase& GetDatabase() { return Database; }
 
-    NetIPAddress GetPublicIP()          { return PublicIP; }
-    NetIPAddress GetPrivateIP()         { return PrivateIP; }
+  NetIPAddress GetPublicIP() { return PublicIP; }
+  NetIPAddress GetPrivateIP() { return PrivateIP; }
 
-    std::string GetId()                 { return ServerId; }
-    bool IsDefaultServer()              { return ServerId == "default"; }
-    ServerManager& GetManager()         { return *Manager; }
+  std::string GetId() { return ServerId; }
+  bool IsDefaultServer() { return ServerId == "default"; }
+  ServerManager& GetManager() { return *Manager; }
 
-    GameType GetGameType()              { return ServerGameType; }
-    Game& GetGameInterface()            { return *GameInterface; }
+  GameType GetGameType() { return ServerGameType; }
+  Game& GetGameInterface() { return *GameInterface; }
 
-    std::filesystem::path GetSavedPath(){ return SavedPath; }
+  std::filesystem::path GetSavedPath() { return SavedPath; }
 
-    template <typename T>
-    std::shared_ptr<T> GetService()
-    {
-        for (auto Service : Services)
-        {
-            if (std::shared_ptr<T> Result = std::dynamic_pointer_cast<T>(Service))
-            {
-                return Result;
-            }
-        }
-
-        return nullptr;
+  template <typename T>
+  std::shared_ptr<T> GetService() {
+    for (auto Service : Services) {
+      if (std::shared_ptr<T> Result = std::dynamic_pointer_cast<T>(Service)) {
+        return Result;
+      }
     }
 
-    struct DiscordField
-    {
-        std::string name;
-        std::string value;
-        bool is_inline;
-    };
+    return nullptr;
+  }
 
-    void SendDiscordNotice(
-        std::shared_ptr<GameClient> origin, 
-        DiscordNoticeType noticeType, 
-        const std::string& message, 
-        uint32_t extraId = 0,
-        std::vector<DiscordField> customFields = {});
+  struct DiscordField {
+    std::string name;
+    std::string value;
+    bool is_inline;
+  };
 
-    size_t GetSecondsSinceLastActivity();
+  void SendDiscordNotice(
+      std::shared_ptr<GameClient> origin,
+      DiscordNoticeType noticeType,
+      const std::string& message,
+      uint32_t extraId = 0,
+      std::vector<DiscordField> customFields = {});
+
+  size_t GetSecondsSinceLastActivity();
 
 protected:
+  struct PendingDiscordNotice {
+    std::shared_ptr<GameClient> origin;
+    DiscordNoticeType type;
+    std::string message;
+    uint32_t extraId;
+    std::vector<DiscordField> customFields;
+  };
 
-    struct PendingDiscordNotice
-    {
-        std::shared_ptr<GameClient> origin;
-        DiscordNoticeType type;
-        std::string message;
-        uint32_t extraId;
-        std::vector<DiscordField> customFields;
-    };
+  void PollDiscordNotices();
 
-    void PollDiscordNotices();
-
-    void CancelServerAdvertisement();
-    void PollServerAdvertisement();
-    bool ParseServerAdvertisementResponse(std::shared_ptr<NetHttpResponse> Response, nlohmann::json& json);
+  void CancelServerAdvertisement();
+  void PollServerAdvertisement();
+  bool ParseServerAdvertisementResponse(std::shared_ptr<NetHttpResponse> Response, nlohmann::json& json);
 
 private:
+  RuntimeConfig Config;
 
-    RuntimeConfig Config;
+  std::vector<std::shared_ptr<Service>> Services;
 
-    std::vector<std::shared_ptr<Service>> Services;
+  std::unique_ptr<Game> GameInterface;
 
-    std::unique_ptr<Game> GameInterface;
+  GameType ServerGameType;
+  GameType DefaultServerGameType;
 
-    GameType ServerGameType;
-    GameType DefaultServerGameType;
+  ServerManager* Manager;
 
-    ServerManager* Manager;
+  ServerDatabase Database;
 
-    ServerDatabase Database;
+  double NextKeepAliveTime = 0.0;
 
-    double NextKeepAliveTime = 0.0;
+  std::string ServerId;
 
-    std::string ServerId;
+  std::string DefaultServerName;
+  std::string DefaultServerPassword;
 
-    std::string DefaultServerName;
-    std::string DefaultServerPassword;
+  std::filesystem::path SavedPath;
+  std::filesystem::path ConfigPath;
+  std::filesystem::path PrivateKeyPath;
+  std::filesystem::path PublicKeyPath;
+  std::filesystem::path RekindledConfigPath;
+  std::filesystem::path DatabasePath;
+  std::filesystem::path KeepAliveFilePath;
 
-    std::filesystem::path SavedPath;
-    std::filesystem::path ConfigPath;
-    std::filesystem::path PrivateKeyPath;
-    std::filesystem::path PublicKeyPath;
-    std::filesystem::path RekindledConfigPath;
-    std::filesystem::path DatabasePath;
-    std::filesystem::path KeepAliveFilePath;
+  NetIPAddress PublicIP;
+  NetIPAddress PrivateIP;
 
-    NetIPAddress PublicIP;
-    NetIPAddress PrivateIP;
+  RSAKeyPair PrimaryKeyPair;
 
-    RSAKeyPair PrimaryKeyPair;
+  double NextSpikeTime = 0.0;
 
-    double NextSpikeTime = 0.0;
+  double LastMasterServerUpdate = 0.0;
+  std::shared_ptr<NetHttpRequest> MasterServerUpdateRequest;
 
-    double LastMasterServerUpdate = 0.0;
-    std::shared_ptr<NetHttpRequest> MasterServerUpdateRequest;
+  std::queue<PendingDiscordNotice> PendingDiscordNotices;
+  std::shared_ptr<NetHttpRequest> DiscordNoticeRequest;
 
-    std::queue<PendingDiscordNotice> PendingDiscordNotices;
-    std::shared_ptr<NetHttpRequest> DiscordNoticeRequest;
+  constexpr static inline double k_DiscordOriginCooldownMin = 10.0f;
 
-    constexpr static inline double k_DiscordOriginCooldownMin = 10.0f;
+  std::unordered_map<uint32_t, double> DiscordOriginCooldown;
 
-    std::unordered_map<uint32_t, double> DiscordOriginCooldown;
-
-    static inline std::string BonfireThumbnail          = "https://i.imgur.com/zyHeayN.png";
-    static inline std::string RedSoapstoneThumbnail     = "https://i.imgur.com/I251YBN.png";
-    static inline std::string WhiteSoapstoneThumbnail   = "https://i.imgur.com/kOXzqso.png";
-
+  static inline std::string BonfireThumbnail = "https://i.imgur.com/zyHeayN.png";
+  static inline std::string RedSoapstoneThumbnail = "https://i.imgur.com/I251YBN.png";
+  static inline std::string WhiteSoapstoneThumbnail = "https://i.imgur.com/kOXzqso.png";
 };

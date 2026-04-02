@@ -61,4 +61,4 @@ namespace google {
 // the object behind the scenes -- e.g., to cache results -- but in these cases
 // mutex locking is used to make the access thread-safe.
 namespace protobuf {}
-}  // namespace google
+} // namespace google

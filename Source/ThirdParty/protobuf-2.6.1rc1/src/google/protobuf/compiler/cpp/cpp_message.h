@@ -43,20 +43,20 @@
 
 namespace google {
 namespace protobuf {
-  namespace io {
-    class Printer;             // printer.h
-  }
+namespace io {
+class Printer; // printer.h
 }
+} // namespace protobuf
 
 namespace protobuf {
 namespace compiler {
 namespace cpp {
 
-class EnumGenerator;           // enum.h
-class ExtensionGenerator;      // extension.h
+class EnumGenerator;      // enum.h
+class ExtensionGenerator; // extension.h
 
 class MessageGenerator {
- public:
+public:
   // See generator.cc for the meaning of dllexport_decl.
   explicit MessageGenerator(const Descriptor* descriptor,
                             const Options& options);
@@ -111,7 +111,7 @@ class MessageGenerator {
   // Generate all non-inline methods for this class.
   void GenerateClassMethods(io::Printer* printer);
 
- private:
+private:
   // Generate declarations and definitions of accessors for fields.
   void GenerateFieldAccessorDeclarations(io::Printer* printer);
   void GenerateFieldAccessorDefinitions(io::Printer* printer);
@@ -153,23 +153,22 @@ class MessageGenerator {
       io::Printer* printer, const Descriptor::ExtensionRange* range,
       bool unbounded);
 
-
   const Descriptor* descriptor_;
   string classname_;
   Options options_;
   FieldGeneratorMap field_generators_;
-  vector< vector<string> > runs_of_fields_;  // that might be trivially cleared
-  scoped_array<scoped_ptr<MessageGenerator> > nested_generators_;
-  scoped_array<scoped_ptr<EnumGenerator> > enum_generators_;
-  scoped_array<scoped_ptr<ExtensionGenerator> > extension_generators_;
+  vector<vector<string>> runs_of_fields_; // that might be trivially cleared
+  scoped_array<scoped_ptr<MessageGenerator>> nested_generators_;
+  scoped_array<scoped_ptr<EnumGenerator>> enum_generators_;
+  scoped_array<scoped_ptr<ExtensionGenerator>> extension_generators_;
   bool uses_string_;
 
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(MessageGenerator);
 };
 
-}  // namespace cpp
-}  // namespace compiler
-}  // namespace protobuf
+} // namespace cpp
+} // namespace compiler
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_CPP_MESSAGE_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_COMPILER_CPP_MESSAGE_H__

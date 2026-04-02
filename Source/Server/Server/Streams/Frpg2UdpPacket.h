@@ -15,15 +15,12 @@
 #include <vector>
 #include <string>
 
-struct Frpg2UdpPacket
-{
+struct Frpg2UdpPacket {
 public:
+  // Length is equal to the rest of the payload minus the header.
+  std::vector<uint8_t> Payload;
 
-    // Length is equal to the rest of the payload minus the header.
-    std::vector<uint8_t> Payload;
+  std::string Disassembly;
 
-    std::string Disassembly;
-
-    bool HasConnectionPrefix = false;
-
+  bool HasConnectionPrefix = false;
 };

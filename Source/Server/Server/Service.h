@@ -15,15 +15,13 @@
 // Base class for all network services
 // that the server wants to make available.
 
-class Service
-{
+class Service {
 public:
-    virtual ~Service() {};
+  virtual ~Service() {};
 
-    virtual bool Init() = 0;
-    virtual bool Term() = 0;
-    virtual void Poll() = 0;
+  virtual bool Init() = 0;
+  virtual bool Term() = 0;
+  virtual void Poll() = 0;
 
-    virtual std::string GetName() = 0;
-
+  virtual std::string GetName() = 0;
 };

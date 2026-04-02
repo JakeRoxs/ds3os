@@ -20,69 +20,59 @@
 #include <unistd.h>
 #endif
 
-bool GetMachineIPv4(NetIPAddress& Output, bool GetPublicAddress)
-{
-    // For public ip address we query an external webapi.
-    if (GetPublicAddress)
-    {
-        NetHttpRequest Request;
-        Request.SetMethod(NetHttpMethod::GET);
-        // Use HTTPS to ensure the public IP lookup is not tampered with in transit.
-        Request.SetUrl("https://api.ipify.org");
-        if (Request.Send())
-        {
-            if (std::shared_ptr<NetHttpResponse> Response = Request.GetResponse(); Response && Response->GetWasSuccess())
-            {
-                std::string IPAddress;
-                IPAddress.assign((char*)Response->GetBody().data(), Response->GetBody().size());
+bool GetMachineIPv4(NetIPAddress& Output, bool GetPublicAddress) {
+  // For public ip address we query an external webapi.
+  if (GetPublicAddress) {
+    NetHttpRequest Request;
+    Request.SetMethod(NetHttpMethod::GET);
+    // Use HTTPS to ensure the public IP lookup is not tampered with in transit.
+    Request.SetUrl("https://api.ipify.org");
+    if (Request.Send()) {
+      if (std::shared_ptr<NetHttpResponse> Response = Request.GetResponse(); Response && Response->GetWasSuccess()) {
+        std::string IPAddress;
+        IPAddress.assign((char*)Response->GetBody().data(), Response->GetBody().size());
 
-                if (!NetIPAddress::ParseString(IPAddress, Output))
-                {
-                    return false;
-                }
-
-                return true;
-            }
+        if (!NetIPAddress::ParseString(IPAddress, Output)) {
+          return false;
         }
-    }
-    // Otherwise we can just grab one with some winsock shenanigans. This won't
-    // work correctly for machines with multiple interfaces. But for our purposes it should
-    // be ok. This ip is mainly used for debugging.
-    else
-    {
-        char Buffer[1024];
-        if (gethostname(Buffer, sizeof(Buffer)) == -1)
-        {
-            return false;
-        }
-
-        struct hostent* HostEntry = gethostbyname(Buffer);
-        if (!HostEntry)
-        {
-            return false;
-        }
-
-        struct in_addr* Addr = (struct in_addr* )HostEntry->h_addr;
-
-#ifdef _WIN32
-        Output = NetIPAddress(
-            Addr->S_un.S_un_b.s_b1,
-            Addr->S_un.S_un_b.s_b2,
-            Addr->S_un.S_un_b.s_b3,
-            Addr->S_un.S_un_b.s_b4
-        );
-#else
-        uint32_t addr = ntohl(Addr->s_addr);
-        Output = NetIPAddress(
-            (addr >> 24) & 0xFF,
-            (addr >> 16) & 0xFF,
-            (addr >> 8) & 0xFF,
-            addr & 0xFF
-        );
-#endif
 
         return true;
+      }
+    }
+  }
+  // Otherwise we can just grab one with some winsock shenanigans. This won't
+  // work correctly for machines with multiple interfaces. But for our purposes it should
+  // be ok. This ip is mainly used for debugging.
+  else {
+    char Buffer[1024];
+    if (gethostname(Buffer, sizeof(Buffer)) == -1) {
+      return false;
     }
 
-    return false;
+    struct hostent* HostEntry = gethostbyname(Buffer);
+    if (!HostEntry) {
+      return false;
+    }
+
+    struct in_addr* Addr = (struct in_addr*)HostEntry->h_addr;
+
+#ifdef _WIN32
+    Output = NetIPAddress(
+        Addr->S_un.S_un_b.s_b1,
+        Addr->S_un.S_un_b.s_b2,
+        Addr->S_un.S_un_b.s_b3,
+        Addr->S_un.S_un_b.s_b4);
+#else
+    uint32_t addr = ntohl(Addr->s_addr);
+    Output = NetIPAddress(
+        (addr >> 24) & 0xFF,
+        (addr >> 16) & 0xFF,
+        (addr >> 8) & 0xFF,
+        addr & 0xFF);
+#endif
+
+    return true;
+  }
+
+  return false;
 }

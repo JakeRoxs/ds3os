@@ -1,6 +1,6 @@
 //====== Copyright © 1996-2008, Valve Corporation, All rights reserved. =======
 //
-// Purpose: 
+// Purpose:
 //
 //=============================================================================
 
@@ -14,19 +14,18 @@
 #include "isteamgameserver.h"
 #include "isteamgameserverstats.h"
 
-enum EServerMode
-{
-	eServerModeInvalid = 0, // DO NOT USE		
-	eServerModeNoAuthentication = 1, // Don't authenticate user logins and don't list on the server list
-	eServerModeAuthentication = 2, // Authenticate users, list on the server list, don't run VAC on clients that connect
-	eServerModeAuthenticationAndSecure = 3, // Authenticate users, list on the server list and VAC protect clients
-};													
+enum EServerMode {
+  eServerModeInvalid = 0,                 // DO NOT USE
+  eServerModeNoAuthentication = 1,        // Don't authenticate user logins and don't list on the server list
+  eServerModeAuthentication = 2,          // Authenticate users, list on the server list, don't run VAC on clients that connect
+  eServerModeAuthenticationAndSecure = 3, // Authenticate users, list on the server list and VAC protect clients
+};
 
 /// Pass to SteamGameServer_Init to indicate that the same UDP port will be used for game traffic
 /// UDP queries.  In this case, Steam will not open up a socket to handle server browser queries,
 /// and you must use ISteamGameServer::HandleIncomingPacket and ISteamGameServer::GetNextOutgoingPacket
 /// to handle packets related to server discovery on your socket.
-#define MASTERSERVERUPDATERPORT_USEGAMESOCKETSHARE	((uint16)-1)
+#define MASTERSERVERUPDATERPORT_USEGAMESOCKETSHARE ((uint16) - 1)
 
 // Initialize SteamGameServer client and interface objects, and set server properties which may not be changed.
 //
@@ -44,7 +43,7 @@ enum EServerMode
 //		UDP packets for the master  server updater. See references to GameSocketShare in isteamgameserver.h.
 // - The version string should be in the form x.x.x.x, and is used by the master server to detect when the
 //		server is out of date.  (Only servers with the latest version will be listed.)
-inline bool SteamGameServer_Init( uint32 unIP, uint16 usGamePort, uint16 usQueryPort, EServerMode eServerMode, const char *pchVersionString );
+inline bool SteamGameServer_Init(uint32 unIP, uint16 usGamePort, uint16 usQueryPort, EServerMode eServerMode, const char* pchVersionString);
 
 // Shutdown SteamGameSeverXxx interfaces, log out, and free resources.
 S_API void SteamGameServer_Shutdown();
@@ -62,11 +61,11 @@ S_API uint64 SteamGameServer_GetSteamID();
 // Older SDKs exported this global pointer, but it is no longer supported.
 // You should use SteamGameServerClient() or CSteamGameServerAPIContext to
 // safely access the ISteamClient APIs from your game server application.
-//S_API ISteamClient *g_pSteamClientGameServer;
+// S_API ISteamClient *g_pSteamClientGameServer;
 
 // SteamGameServer_InitSafe has been replaced with SteamGameServer_Init and
 // is no longer supported. Use SteamGameServer_Init instead.
-//S_API void S_CALLTYPE SteamGameServer_InitSafe();
+// S_API void S_CALLTYPE SteamGameServer_InitSafe();
 
 //=============================================================================
 //
@@ -76,39 +75,35 @@ S_API uint64 SteamGameServer_GetSteamID();
 
 #ifndef STEAM_API_EXPORTS
 // This function must be declared inline in the header so the module using steam_api.dll gets the version names they want.
-inline bool CSteamGameServerAPIContext::Init()
-{
-	m_pSteamClient = ::SteamGameServerClient();
-	if ( !m_pSteamClient )
-		return false;
+inline bool CSteamGameServerAPIContext::Init() {
+  m_pSteamClient = ::SteamGameServerClient();
+  if (!m_pSteamClient)
+    return false;
 
-	m_pSteamGameServer = ::SteamGameServer();
-	m_pSteamGameServerUtils = ::SteamGameServerUtils();
-	m_pSteamGameServerNetworking = ::SteamGameServerNetworking();
-	m_pSteamGameServerStats = ::SteamGameServerStats();
-	m_pSteamHTTP = ::SteamGameServerHTTP();
-	m_pSteamInventory = ::SteamGameServerInventory();
-	m_pSteamUGC = ::SteamGameServerUGC();
-	m_pSteamApps = ::SteamGameServerApps();
-	if ( !m_pSteamGameServer || !m_pSteamGameServerUtils || !m_pSteamGameServerNetworking || !m_pSteamGameServerStats
-		|| !m_pSteamHTTP || !m_pSteamInventory || !m_pSteamUGC || !m_pSteamApps )
-		return false;
+  m_pSteamGameServer = ::SteamGameServer();
+  m_pSteamGameServerUtils = ::SteamGameServerUtils();
+  m_pSteamGameServerNetworking = ::SteamGameServerNetworking();
+  m_pSteamGameServerStats = ::SteamGameServerStats();
+  m_pSteamHTTP = ::SteamGameServerHTTP();
+  m_pSteamInventory = ::SteamGameServerInventory();
+  m_pSteamUGC = ::SteamGameServerUGC();
+  m_pSteamApps = ::SteamGameServerApps();
+  if (!m_pSteamGameServer || !m_pSteamGameServerUtils || !m_pSteamGameServerNetworking || !m_pSteamGameServerStats || !m_pSteamHTTP || !m_pSteamInventory || !m_pSteamUGC || !m_pSteamApps)
+    return false;
 
-	return true;
+  return true;
 }
 #endif
 
-S_API bool S_CALLTYPE SteamInternal_GameServer_Init( uint32 unIP, uint16 usLegacySteamPort, uint16 usGamePort, uint16 usQueryPort, EServerMode eServerMode, const char *pchVersionString );
-inline bool SteamGameServer_Init( uint32 unIP, uint16 usGamePort, uint16 usQueryPort, EServerMode eServerMode, const char *pchVersionString )
-{
-	if ( !SteamInternal_GameServer_Init( unIP, 0, usGamePort, usQueryPort, eServerMode, pchVersionString ) )
-		return false;
+S_API bool S_CALLTYPE SteamInternal_GameServer_Init(uint32 unIP, uint16 usLegacySteamPort, uint16 usGamePort, uint16 usQueryPort, EServerMode eServerMode, const char* pchVersionString);
+inline bool SteamGameServer_Init(uint32 unIP, uint16 usGamePort, uint16 usQueryPort, EServerMode eServerMode, const char* pchVersionString) {
+  if (!SteamInternal_GameServer_Init(unIP, 0, usGamePort, usQueryPort, eServerMode, pchVersionString))
+    return false;
 
-	return true;
+  return true;
 }
-inline void SteamGameServer_ReleaseCurrentThreadMemory()
-{
-	SteamAPI_ReleaseCurrentThreadMemory();
+inline void SteamGameServer_ReleaseCurrentThreadMemory() {
+  SteamAPI_ReleaseCurrentThreadMemory();
 }
 
 #endif // STEAM_GAMESERVER_H

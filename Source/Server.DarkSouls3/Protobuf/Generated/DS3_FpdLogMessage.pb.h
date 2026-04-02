@@ -28,7 +28,7 @@
 namespace DS3_FpdLogMessage {
 
 // Internal implementation detail -- do not call these.
-void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
 void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -73,7 +73,7 @@ class EvaluateBloodMessageLog;
 // ===================================================================
 
 class Vector : public ::google::protobuf::MessageLite {
- public:
+public:
   Vector();
   virtual ~Vector();
 
@@ -94,7 +94,7 @@ class Vector : public ::google::protobuf::MessageLite {
 
   static const Vector& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -102,7 +102,7 @@ class Vector : public ::google::protobuf::MessageLite {
   static inline const Vector* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(Vector* other);
 
@@ -122,11 +122,13 @@ class Vector : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -155,7 +157,7 @@ class Vector : public ::google::protobuf::MessageLite {
   inline void set_z(float value);
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.Vector)
- private:
+private:
   inline void set_has_x();
   inline void clear_has_x();
   inline void set_has_y();
@@ -170,11 +172,11 @@ class Vector : public ::google::protobuf::MessageLite {
   float x_;
   float y_;
   float z_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -184,7 +186,7 @@ class Vector : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class GlobalEventLog : public ::google::protobuf::MessageLite {
- public:
+public:
   GlobalEventLog();
   virtual ~GlobalEventLog();
 
@@ -205,7 +207,7 @@ class GlobalEventLog : public ::google::protobuf::MessageLite {
 
   static const GlobalEventLog& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -213,7 +215,7 @@ class GlobalEventLog : public ::google::protobuf::MessageLite {
   static inline const GlobalEventLog* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(GlobalEventLog* other);
 
@@ -233,11 +235,13 @@ class GlobalEventLog : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -251,24 +255,23 @@ class GlobalEventLog : public ::google::protobuf::MessageLite {
   inline ::google::protobuf::uint32 values(int index) const;
   inline void set_values(int index, ::google::protobuf::uint32 value);
   inline void add_values(::google::protobuf::uint32 value);
-  inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
-      values() const;
-  inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
-      mutable_values();
+  inline const ::google::protobuf::RepeatedField<::google::protobuf::uint32>&
+  values() const;
+  inline ::google::protobuf::RepeatedField<::google::protobuf::uint32>*
+  mutable_values();
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.GlobalEventLog)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > values_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+  ::google::protobuf::RepeatedField<::google::protobuf::uint32> values_;
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -278,7 +281,7 @@ class GlobalEventLog : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class SystemOptionLog_Game_option_setting : public ::google::protobuf::MessageLite {
- public:
+public:
   SystemOptionLog_Game_option_setting();
   virtual ~SystemOptionLog_Game_option_setting();
 
@@ -299,7 +302,7 @@ class SystemOptionLog_Game_option_setting : public ::google::protobuf::MessageLi
 
   static const SystemOptionLog_Game_option_setting& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -307,7 +310,7 @@ class SystemOptionLog_Game_option_setting : public ::google::protobuf::MessageLi
   static inline const SystemOptionLog_Game_option_setting* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(SystemOptionLog_Game_option_setting* other);
 
@@ -327,11 +330,13 @@ class SystemOptionLog_Game_option_setting : public ::google::protobuf::MessageLi
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -374,7 +379,7 @@ class SystemOptionLog_Game_option_setting : public ::google::protobuf::MessageLi
   inline void set_vibration_level(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.SystemOptionLog.Game_option_setting)
- private:
+private:
   inline void set_has_toggle_auto_lock_on();
   inline void clear_has_toggle_auto_lock_on();
   inline void set_has_auto_target();
@@ -395,11 +400,11 @@ class SystemOptionLog_Game_option_setting : public ::google::protobuf::MessageLi
   ::google::protobuf::uint32 manual_attack_aiming_;
   ::google::protobuf::uint32 unknown_5_;
   ::google::protobuf::uint32 vibration_level_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -409,7 +414,7 @@ class SystemOptionLog_Game_option_setting : public ::google::protobuf::MessageLi
 // -------------------------------------------------------------------
 
 class SystemOptionLog_Network_setting : public ::google::protobuf::MessageLite {
- public:
+public:
   SystemOptionLog_Network_setting();
   virtual ~SystemOptionLog_Network_setting();
 
@@ -430,7 +435,7 @@ class SystemOptionLog_Network_setting : public ::google::protobuf::MessageLite {
 
   static const SystemOptionLog_Network_setting& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -438,7 +443,7 @@ class SystemOptionLog_Network_setting : public ::google::protobuf::MessageLite {
   static inline const SystemOptionLog_Network_setting* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(SystemOptionLog_Network_setting* other);
 
@@ -458,11 +463,13 @@ class SystemOptionLog_Network_setting : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -512,7 +519,7 @@ class SystemOptionLog_Network_setting : public ::google::protobuf::MessageLite {
   inline void set_start_offline(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.SystemOptionLog.Network_setting)
- private:
+private:
   inline void set_has_allow_cross_region_play();
   inline void clear_has_allow_cross_region_play();
   inline void set_has_has_password();
@@ -536,11 +543,11 @@ class SystemOptionLog_Network_setting : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 allow_voice_chat_;
   ::google::protobuf::uint32 unknown_12_;
   ::google::protobuf::uint32 start_offline_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -550,7 +557,7 @@ class SystemOptionLog_Network_setting : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class SystemOptionLog : public ::google::protobuf::MessageLite {
- public:
+public:
   SystemOptionLog();
   virtual ~SystemOptionLog();
 
@@ -571,7 +578,7 @@ class SystemOptionLog : public ::google::protobuf::MessageLite {
 
   static const SystemOptionLog& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -579,7 +586,7 @@ class SystemOptionLog : public ::google::protobuf::MessageLite {
   static inline const SystemOptionLog* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(SystemOptionLog* other);
 
@@ -599,11 +606,13 @@ class SystemOptionLog : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -632,7 +641,7 @@ class SystemOptionLog : public ::google::protobuf::MessageLite {
   inline void set_allocated_network_settings(::DS3_FpdLogMessage::SystemOptionLog_Network_setting* network_settings);
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.SystemOptionLog)
- private:
+private:
   inline void set_has_game_settings();
   inline void clear_has_game_settings();
   inline void set_has_network_settings();
@@ -644,11 +653,11 @@ class SystemOptionLog : public ::google::protobuf::MessageLite {
   mutable int _cached_size_;
   ::DS3_FpdLogMessage::SystemOptionLog_Game_option_setting* game_settings_;
   ::DS3_FpdLogMessage::SystemOptionLog_Network_setting* network_settings_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -658,7 +667,7 @@ class SystemOptionLog : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class UseItemLog_Use_item_info_list : public ::google::protobuf::MessageLite {
- public:
+public:
   UseItemLog_Use_item_info_list();
   virtual ~UseItemLog_Use_item_info_list();
 
@@ -679,7 +688,7 @@ class UseItemLog_Use_item_info_list : public ::google::protobuf::MessageLite {
 
   static const UseItemLog_Use_item_info_list& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -687,7 +696,7 @@ class UseItemLog_Use_item_info_list : public ::google::protobuf::MessageLite {
   static inline const UseItemLog_Use_item_info_list* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(UseItemLog_Use_item_info_list* other);
 
@@ -707,11 +716,13 @@ class UseItemLog_Use_item_info_list : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -740,7 +751,7 @@ class UseItemLog_Use_item_info_list : public ::google::protobuf::MessageLite {
   inline void set_unknown_4(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.UseItemLog.Use_item_info_list)
- private:
+private:
   inline void set_has_item_id();
   inline void clear_has_item_id();
   inline void set_has_count();
@@ -755,11 +766,11 @@ class UseItemLog_Use_item_info_list : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 item_id_;
   ::google::protobuf::uint32 count_;
   ::google::protobuf::uint32 unknown_4_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -769,7 +780,7 @@ class UseItemLog_Use_item_info_list : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class UseItemLog : public ::google::protobuf::MessageLite {
- public:
+public:
   UseItemLog();
   virtual ~UseItemLog();
 
@@ -790,7 +801,7 @@ class UseItemLog : public ::google::protobuf::MessageLite {
 
   static const UseItemLog& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -798,7 +809,7 @@ class UseItemLog : public ::google::protobuf::MessageLite {
   static inline const UseItemLog* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(UseItemLog* other);
 
@@ -818,11 +829,13 @@ class UseItemLog : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -838,10 +851,10 @@ class UseItemLog : public ::google::protobuf::MessageLite {
   inline const ::DS3_FpdLogMessage::UseItemLog_Use_item_info_list& use_item_info_list(int index) const;
   inline ::DS3_FpdLogMessage::UseItemLog_Use_item_info_list* mutable_use_item_info_list(int index);
   inline ::DS3_FpdLogMessage::UseItemLog_Use_item_info_list* add_use_item_info_list();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::UseItemLog_Use_item_info_list >&
-      use_item_info_list() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::UseItemLog_Use_item_info_list >*
-      mutable_use_item_info_list();
+  inline const ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::UseItemLog_Use_item_info_list>&
+  use_item_info_list() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::UseItemLog_Use_item_info_list>*
+  mutable_use_item_info_list();
 
   // required uint32 unknown_5 = 5;
   inline bool has_unknown_5() const;
@@ -860,7 +873,7 @@ class UseItemLog : public ::google::protobuf::MessageLite {
   inline void set_allocated_location(::DS3_FpdLogMessage::Vector* location);
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.UseItemLog)
- private:
+private:
   inline void set_has_unknown_5();
   inline void clear_has_unknown_5();
   inline void set_has_location();
@@ -870,14 +883,14 @@ class UseItemLog : public ::google::protobuf::MessageLite {
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::UseItemLog_Use_item_info_list > use_item_info_list_;
+  ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::UseItemLog_Use_item_info_list> use_item_info_list_;
   ::DS3_FpdLogMessage::Vector* location_;
   ::google::protobuf::uint32 unknown_5_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -887,7 +900,7 @@ class UseItemLog : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class GetItemLog_Get_item_info_list : public ::google::protobuf::MessageLite {
- public:
+public:
   GetItemLog_Get_item_info_list();
   virtual ~GetItemLog_Get_item_info_list();
 
@@ -908,7 +921,7 @@ class GetItemLog_Get_item_info_list : public ::google::protobuf::MessageLite {
 
   static const GetItemLog_Get_item_info_list& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -916,7 +929,7 @@ class GetItemLog_Get_item_info_list : public ::google::protobuf::MessageLite {
   static inline const GetItemLog_Get_item_info_list* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(GetItemLog_Get_item_info_list* other);
 
@@ -936,11 +949,13 @@ class GetItemLog_Get_item_info_list : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -1006,7 +1021,7 @@ class GetItemLog_Get_item_info_list : public ::google::protobuf::MessageLite {
   inline void set_unknown_9(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.GetItemLog.Get_item_info_list)
- private:
+private:
   inline void set_has_unknown_2();
   inline void clear_has_unknown_2();
   inline void set_has_location();
@@ -1036,11 +1051,11 @@ class GetItemLog_Get_item_info_list : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 unknown_7_;
   ::google::protobuf::uint32 unknown_8_;
   ::google::protobuf::uint32 unknown_9_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -1050,7 +1065,7 @@ class GetItemLog_Get_item_info_list : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class GetItemLog : public ::google::protobuf::MessageLite {
- public:
+public:
   GetItemLog();
   virtual ~GetItemLog();
 
@@ -1071,7 +1086,7 @@ class GetItemLog : public ::google::protobuf::MessageLite {
 
   static const GetItemLog& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1079,7 +1094,7 @@ class GetItemLog : public ::google::protobuf::MessageLite {
   static inline const GetItemLog* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(GetItemLog* other);
 
@@ -1099,11 +1114,13 @@ class GetItemLog : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -1119,24 +1136,23 @@ class GetItemLog : public ::google::protobuf::MessageLite {
   inline const ::DS3_FpdLogMessage::GetItemLog_Get_item_info_list& get_item_info_list(int index) const;
   inline ::DS3_FpdLogMessage::GetItemLog_Get_item_info_list* mutable_get_item_info_list(int index);
   inline ::DS3_FpdLogMessage::GetItemLog_Get_item_info_list* add_get_item_info_list();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::GetItemLog_Get_item_info_list >&
-      get_item_info_list() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::GetItemLog_Get_item_info_list >*
-      mutable_get_item_info_list();
+  inline const ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::GetItemLog_Get_item_info_list>&
+  get_item_info_list() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::GetItemLog_Get_item_info_list>*
+  mutable_get_item_info_list();
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.GetItemLog)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::GetItemLog_Get_item_info_list > get_item_info_list_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+  ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::GetItemLog_Get_item_info_list> get_item_info_list_;
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -1146,7 +1162,7 @@ class GetItemLog : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class ActGestureLog_Use_gesture_info_list : public ::google::protobuf::MessageLite {
- public:
+public:
   ActGestureLog_Use_gesture_info_list();
   virtual ~ActGestureLog_Use_gesture_info_list();
 
@@ -1167,7 +1183,7 @@ class ActGestureLog_Use_gesture_info_list : public ::google::protobuf::MessageLi
 
   static const ActGestureLog_Use_gesture_info_list& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1175,7 +1191,7 @@ class ActGestureLog_Use_gesture_info_list : public ::google::protobuf::MessageLi
   static inline const ActGestureLog_Use_gesture_info_list* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(ActGestureLog_Use_gesture_info_list* other);
 
@@ -1195,11 +1211,13 @@ class ActGestureLog_Use_gesture_info_list : public ::google::protobuf::MessageLi
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -1221,7 +1239,7 @@ class ActGestureLog_Use_gesture_info_list : public ::google::protobuf::MessageLi
   inline void set_count(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.ActGestureLog.Use_gesture_info_list)
- private:
+private:
   inline void set_has_guesture_id();
   inline void clear_has_guesture_id();
   inline void set_has_count();
@@ -1233,11 +1251,11 @@ class ActGestureLog_Use_gesture_info_list : public ::google::protobuf::MessageLi
   mutable int _cached_size_;
   ::google::protobuf::uint32 guesture_id_;
   ::google::protobuf::uint32 count_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -1247,7 +1265,7 @@ class ActGestureLog_Use_gesture_info_list : public ::google::protobuf::MessageLi
 // -------------------------------------------------------------------
 
 class ActGestureLog : public ::google::protobuf::MessageLite {
- public:
+public:
   ActGestureLog();
   virtual ~ActGestureLog();
 
@@ -1268,7 +1286,7 @@ class ActGestureLog : public ::google::protobuf::MessageLite {
 
   static const ActGestureLog& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1276,7 +1294,7 @@ class ActGestureLog : public ::google::protobuf::MessageLite {
   static inline const ActGestureLog* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(ActGestureLog* other);
 
@@ -1296,11 +1314,13 @@ class ActGestureLog : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -1316,10 +1336,10 @@ class ActGestureLog : public ::google::protobuf::MessageLite {
   inline const ::DS3_FpdLogMessage::ActGestureLog_Use_gesture_info_list& use_gesture_info_list(int index) const;
   inline ::DS3_FpdLogMessage::ActGestureLog_Use_gesture_info_list* mutable_use_gesture_info_list(int index);
   inline ::DS3_FpdLogMessage::ActGestureLog_Use_gesture_info_list* add_use_gesture_info_list();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::ActGestureLog_Use_gesture_info_list >&
-      use_gesture_info_list() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::ActGestureLog_Use_gesture_info_list >*
-      mutable_use_gesture_info_list();
+  inline const ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::ActGestureLog_Use_gesture_info_list>&
+  use_gesture_info_list() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::ActGestureLog_Use_gesture_info_list>*
+  mutable_use_gesture_info_list();
 
   // required uint32 unknown_4 = 4;
   inline bool has_unknown_4() const;
@@ -1338,7 +1358,7 @@ class ActGestureLog : public ::google::protobuf::MessageLite {
   inline void set_allocated_unknown_5(::DS3_FpdLogMessage::Vector* unknown_5);
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.ActGestureLog)
- private:
+private:
   inline void set_has_unknown_4();
   inline void clear_has_unknown_4();
   inline void set_has_unknown_5();
@@ -1348,14 +1368,14 @@ class ActGestureLog : public ::google::protobuf::MessageLite {
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::ActGestureLog_Use_gesture_info_list > use_gesture_info_list_;
+  ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::ActGestureLog_Use_gesture_info_list> use_gesture_info_list_;
   ::DS3_FpdLogMessage::Vector* unknown_5_;
   ::google::protobuf::uint32 unknown_4_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -1365,7 +1385,7 @@ class ActGestureLog : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class UseMagicLog_Use_magic_info_list : public ::google::protobuf::MessageLite {
- public:
+public:
   UseMagicLog_Use_magic_info_list();
   virtual ~UseMagicLog_Use_magic_info_list();
 
@@ -1386,7 +1406,7 @@ class UseMagicLog_Use_magic_info_list : public ::google::protobuf::MessageLite {
 
   static const UseMagicLog_Use_magic_info_list& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1394,7 +1414,7 @@ class UseMagicLog_Use_magic_info_list : public ::google::protobuf::MessageLite {
   static inline const UseMagicLog_Use_magic_info_list* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(UseMagicLog_Use_magic_info_list* other);
 
@@ -1414,11 +1434,13 @@ class UseMagicLog_Use_magic_info_list : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -1440,7 +1462,7 @@ class UseMagicLog_Use_magic_info_list : public ::google::protobuf::MessageLite {
   inline void set_count(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.UseMagicLog.Use_magic_info_list)
- private:
+private:
   inline void set_has_spell_id();
   inline void clear_has_spell_id();
   inline void set_has_count();
@@ -1452,11 +1474,11 @@ class UseMagicLog_Use_magic_info_list : public ::google::protobuf::MessageLite {
   mutable int _cached_size_;
   ::google::protobuf::uint32 spell_id_;
   ::google::protobuf::uint32 count_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -1466,7 +1488,7 @@ class UseMagicLog_Use_magic_info_list : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class UseMagicLog : public ::google::protobuf::MessageLite {
- public:
+public:
   UseMagicLog();
   virtual ~UseMagicLog();
 
@@ -1487,7 +1509,7 @@ class UseMagicLog : public ::google::protobuf::MessageLite {
 
   static const UseMagicLog& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1495,7 +1517,7 @@ class UseMagicLog : public ::google::protobuf::MessageLite {
   static inline const UseMagicLog* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(UseMagicLog* other);
 
@@ -1515,11 +1537,13 @@ class UseMagicLog : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -1535,10 +1559,10 @@ class UseMagicLog : public ::google::protobuf::MessageLite {
   inline const ::DS3_FpdLogMessage::UseMagicLog_Use_magic_info_list& use_magic_info_list(int index) const;
   inline ::DS3_FpdLogMessage::UseMagicLog_Use_magic_info_list* mutable_use_magic_info_list(int index);
   inline ::DS3_FpdLogMessage::UseMagicLog_Use_magic_info_list* add_use_magic_info_list();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::UseMagicLog_Use_magic_info_list >&
-      use_magic_info_list() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::UseMagicLog_Use_magic_info_list >*
-      mutable_use_magic_info_list();
+  inline const ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::UseMagicLog_Use_magic_info_list>&
+  use_magic_info_list() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::UseMagicLog_Use_magic_info_list>*
+  mutable_use_magic_info_list();
 
   // required uint32 unknown_4 = 4;
   inline bool has_unknown_4() const;
@@ -1557,7 +1581,7 @@ class UseMagicLog : public ::google::protobuf::MessageLite {
   inline void set_allocated_location(::DS3_FpdLogMessage::Vector* location);
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.UseMagicLog)
- private:
+private:
   inline void set_has_unknown_4();
   inline void clear_has_unknown_4();
   inline void set_has_location();
@@ -1567,14 +1591,14 @@ class UseMagicLog : public ::google::protobuf::MessageLite {
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::UseMagicLog_Use_magic_info_list > use_magic_info_list_;
+  ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::UseMagicLog_Use_magic_info_list> use_magic_info_list_;
   ::DS3_FpdLogMessage::Vector* location_;
   ::google::protobuf::uint32 unknown_4_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -1584,7 +1608,7 @@ class UseMagicLog : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class PurchaseItemLog_Purchase_item_info_list : public ::google::protobuf::MessageLite {
- public:
+public:
   PurchaseItemLog_Purchase_item_info_list();
   virtual ~PurchaseItemLog_Purchase_item_info_list();
 
@@ -1605,7 +1629,7 @@ class PurchaseItemLog_Purchase_item_info_list : public ::google::protobuf::Messa
 
   static const PurchaseItemLog_Purchase_item_info_list& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1613,7 +1637,7 @@ class PurchaseItemLog_Purchase_item_info_list : public ::google::protobuf::Messa
   static inline const PurchaseItemLog_Purchase_item_info_list* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PurchaseItemLog_Purchase_item_info_list* other);
 
@@ -1633,11 +1657,13 @@ class PurchaseItemLog_Purchase_item_info_list : public ::google::protobuf::Messa
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -1682,7 +1708,7 @@ class PurchaseItemLog_Purchase_item_info_list : public ::google::protobuf::Messa
   inline void set_count(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.PurchaseItemLog.Purchase_item_info_list)
- private:
+private:
   inline void set_has_unknown_2();
   inline void clear_has_unknown_2();
   inline void set_has_location();
@@ -1703,11 +1729,11 @@ class PurchaseItemLog_Purchase_item_info_list : public ::google::protobuf::Messa
   ::google::protobuf::uint32 item_id_;
   ::google::protobuf::uint32 unknown_6_;
   ::google::protobuf::uint32 count_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -1717,7 +1743,7 @@ class PurchaseItemLog_Purchase_item_info_list : public ::google::protobuf::Messa
 // -------------------------------------------------------------------
 
 class PurchaseItemLog : public ::google::protobuf::MessageLite {
- public:
+public:
   PurchaseItemLog();
   virtual ~PurchaseItemLog();
 
@@ -1738,7 +1764,7 @@ class PurchaseItemLog : public ::google::protobuf::MessageLite {
 
   static const PurchaseItemLog& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1746,7 +1772,7 @@ class PurchaseItemLog : public ::google::protobuf::MessageLite {
   static inline const PurchaseItemLog* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PurchaseItemLog* other);
 
@@ -1766,11 +1792,13 @@ class PurchaseItemLog : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -1786,24 +1814,23 @@ class PurchaseItemLog : public ::google::protobuf::MessageLite {
   inline const ::DS3_FpdLogMessage::PurchaseItemLog_Purchase_item_info_list& purchase_item_info_list(int index) const;
   inline ::DS3_FpdLogMessage::PurchaseItemLog_Purchase_item_info_list* mutable_purchase_item_info_list(int index);
   inline ::DS3_FpdLogMessage::PurchaseItemLog_Purchase_item_info_list* add_purchase_item_info_list();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::PurchaseItemLog_Purchase_item_info_list >&
-      purchase_item_info_list() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::PurchaseItemLog_Purchase_item_info_list >*
-      mutable_purchase_item_info_list();
+  inline const ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::PurchaseItemLog_Purchase_item_info_list>&
+  purchase_item_info_list() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::PurchaseItemLog_Purchase_item_info_list>*
+  mutable_purchase_item_info_list();
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.PurchaseItemLog)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::PurchaseItemLog_Purchase_item_info_list > purchase_item_info_list_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+  ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::PurchaseItemLog_Purchase_item_info_list> purchase_item_info_list_;
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -1813,7 +1840,7 @@ class PurchaseItemLog : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class DropItemLog_Throw_away_item_list : public ::google::protobuf::MessageLite {
- public:
+public:
   DropItemLog_Throw_away_item_list();
   virtual ~DropItemLog_Throw_away_item_list();
 
@@ -1834,7 +1861,7 @@ class DropItemLog_Throw_away_item_list : public ::google::protobuf::MessageLite 
 
   static const DropItemLog_Throw_away_item_list& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1842,7 +1869,7 @@ class DropItemLog_Throw_away_item_list : public ::google::protobuf::MessageLite 
   static inline const DropItemLog_Throw_away_item_list* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(DropItemLog_Throw_away_item_list* other);
 
@@ -1862,11 +1889,13 @@ class DropItemLog_Throw_away_item_list : public ::google::protobuf::MessageLite 
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -1911,7 +1940,7 @@ class DropItemLog_Throw_away_item_list : public ::google::protobuf::MessageLite 
   inline void set_count(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.DropItemLog.Throw_away_item_list)
- private:
+private:
   inline void set_has_unknown_2();
   inline void clear_has_unknown_2();
   inline void set_has_location();
@@ -1932,11 +1961,11 @@ class DropItemLog_Throw_away_item_list : public ::google::protobuf::MessageLite 
   ::google::protobuf::uint32 unknown_4_;
   ::google::protobuf::uint32 item_id_;
   ::google::protobuf::uint32 count_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -1946,7 +1975,7 @@ class DropItemLog_Throw_away_item_list : public ::google::protobuf::MessageLite 
 // -------------------------------------------------------------------
 
 class DropItemLog : public ::google::protobuf::MessageLite {
- public:
+public:
   DropItemLog();
   virtual ~DropItemLog();
 
@@ -1967,7 +1996,7 @@ class DropItemLog : public ::google::protobuf::MessageLite {
 
   static const DropItemLog& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1975,7 +2004,7 @@ class DropItemLog : public ::google::protobuf::MessageLite {
   static inline const DropItemLog* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(DropItemLog* other);
 
@@ -1995,11 +2024,13 @@ class DropItemLog : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -2015,24 +2046,23 @@ class DropItemLog : public ::google::protobuf::MessageLite {
   inline const ::DS3_FpdLogMessage::DropItemLog_Throw_away_item_list& throw_away_item_list(int index) const;
   inline ::DS3_FpdLogMessage::DropItemLog_Throw_away_item_list* mutable_throw_away_item_list(int index);
   inline ::DS3_FpdLogMessage::DropItemLog_Throw_away_item_list* add_throw_away_item_list();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::DropItemLog_Throw_away_item_list >&
-      throw_away_item_list() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::DropItemLog_Throw_away_item_list >*
-      mutable_throw_away_item_list();
+  inline const ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::DropItemLog_Throw_away_item_list>&
+  throw_away_item_list() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::DropItemLog_Throw_away_item_list>*
+  mutable_throw_away_item_list();
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.DropItemLog)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::DropItemLog_Throw_away_item_list > throw_away_item_list_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+  ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::DropItemLog_Throw_away_item_list> throw_away_item_list_;
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -2042,7 +2072,7 @@ class DropItemLog : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class LeaveItemLog_Set_item_info_list : public ::google::protobuf::MessageLite {
- public:
+public:
   LeaveItemLog_Set_item_info_list();
   virtual ~LeaveItemLog_Set_item_info_list();
 
@@ -2063,7 +2093,7 @@ class LeaveItemLog_Set_item_info_list : public ::google::protobuf::MessageLite {
 
   static const LeaveItemLog_Set_item_info_list& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -2071,7 +2101,7 @@ class LeaveItemLog_Set_item_info_list : public ::google::protobuf::MessageLite {
   static inline const LeaveItemLog_Set_item_info_list* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(LeaveItemLog_Set_item_info_list* other);
 
@@ -2091,11 +2121,13 @@ class LeaveItemLog_Set_item_info_list : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -2140,7 +2172,7 @@ class LeaveItemLog_Set_item_info_list : public ::google::protobuf::MessageLite {
   inline void set_count(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.LeaveItemLog.Set_item_info_list)
- private:
+private:
   inline void set_has_unknown_2();
   inline void clear_has_unknown_2();
   inline void set_has_location();
@@ -2161,11 +2193,11 @@ class LeaveItemLog_Set_item_info_list : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 unknown_4_;
   ::google::protobuf::uint32 item_id_;
   ::google::protobuf::uint32 count_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -2175,7 +2207,7 @@ class LeaveItemLog_Set_item_info_list : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class LeaveItemLog : public ::google::protobuf::MessageLite {
- public:
+public:
   LeaveItemLog();
   virtual ~LeaveItemLog();
 
@@ -2196,7 +2228,7 @@ class LeaveItemLog : public ::google::protobuf::MessageLite {
 
   static const LeaveItemLog& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -2204,7 +2236,7 @@ class LeaveItemLog : public ::google::protobuf::MessageLite {
   static inline const LeaveItemLog* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(LeaveItemLog* other);
 
@@ -2224,11 +2256,13 @@ class LeaveItemLog : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -2244,24 +2278,23 @@ class LeaveItemLog : public ::google::protobuf::MessageLite {
   inline const ::DS3_FpdLogMessage::LeaveItemLog_Set_item_info_list& set_item_info_list(int index) const;
   inline ::DS3_FpdLogMessage::LeaveItemLog_Set_item_info_list* mutable_set_item_info_list(int index);
   inline ::DS3_FpdLogMessage::LeaveItemLog_Set_item_info_list* add_set_item_info_list();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::LeaveItemLog_Set_item_info_list >&
-      set_item_info_list() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::LeaveItemLog_Set_item_info_list >*
-      mutable_set_item_info_list();
+  inline const ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::LeaveItemLog_Set_item_info_list>&
+  set_item_info_list() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::LeaveItemLog_Set_item_info_list>*
+  mutable_set_item_info_list();
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.LeaveItemLog)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::LeaveItemLog_Set_item_info_list > set_item_info_list_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+  ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::LeaveItemLog_Set_item_info_list> set_item_info_list_;
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -2271,7 +2304,7 @@ class LeaveItemLog : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class SaleItemLog_Sale_item_info_list : public ::google::protobuf::MessageLite {
- public:
+public:
   SaleItemLog_Sale_item_info_list();
   virtual ~SaleItemLog_Sale_item_info_list();
 
@@ -2292,7 +2325,7 @@ class SaleItemLog_Sale_item_info_list : public ::google::protobuf::MessageLite {
 
   static const SaleItemLog_Sale_item_info_list& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -2300,7 +2333,7 @@ class SaleItemLog_Sale_item_info_list : public ::google::protobuf::MessageLite {
   static inline const SaleItemLog_Sale_item_info_list* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(SaleItemLog_Sale_item_info_list* other);
 
@@ -2320,11 +2353,13 @@ class SaleItemLog_Sale_item_info_list : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -2369,7 +2404,7 @@ class SaleItemLog_Sale_item_info_list : public ::google::protobuf::MessageLite {
   inline void set_count(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.SaleItemLog.Sale_item_info_list)
- private:
+private:
   inline void set_has_unknown_2();
   inline void clear_has_unknown_2();
   inline void set_has_location();
@@ -2390,11 +2425,11 @@ class SaleItemLog_Sale_item_info_list : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 unknown_4_;
   ::google::protobuf::uint32 item_id_;
   ::google::protobuf::uint32 count_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -2404,7 +2439,7 @@ class SaleItemLog_Sale_item_info_list : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class SaleItemLog : public ::google::protobuf::MessageLite {
- public:
+public:
   SaleItemLog();
   virtual ~SaleItemLog();
 
@@ -2425,7 +2460,7 @@ class SaleItemLog : public ::google::protobuf::MessageLite {
 
   static const SaleItemLog& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -2433,7 +2468,7 @@ class SaleItemLog : public ::google::protobuf::MessageLite {
   static inline const SaleItemLog* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(SaleItemLog* other);
 
@@ -2453,11 +2488,13 @@ class SaleItemLog : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -2473,24 +2510,23 @@ class SaleItemLog : public ::google::protobuf::MessageLite {
   inline const ::DS3_FpdLogMessage::SaleItemLog_Sale_item_info_list& sale_item_info_list(int index) const;
   inline ::DS3_FpdLogMessage::SaleItemLog_Sale_item_info_list* mutable_sale_item_info_list(int index);
   inline ::DS3_FpdLogMessage::SaleItemLog_Sale_item_info_list* add_sale_item_info_list();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::SaleItemLog_Sale_item_info_list >&
-      sale_item_info_list() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::SaleItemLog_Sale_item_info_list >*
-      mutable_sale_item_info_list();
+  inline const ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::SaleItemLog_Sale_item_info_list>&
+  sale_item_info_list() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::SaleItemLog_Sale_item_info_list>*
+  mutable_sale_item_info_list();
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.SaleItemLog)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::SaleItemLog_Sale_item_info_list > sale_item_info_list_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+  ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::SaleItemLog_Sale_item_info_list> sale_item_info_list_;
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -2500,7 +2536,7 @@ class SaleItemLog : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class StrengthenWeaponLog_Strengthen_weapon_info_list : public ::google::protobuf::MessageLite {
- public:
+public:
   StrengthenWeaponLog_Strengthen_weapon_info_list();
   virtual ~StrengthenWeaponLog_Strengthen_weapon_info_list();
 
@@ -2521,7 +2557,7 @@ class StrengthenWeaponLog_Strengthen_weapon_info_list : public ::google::protobu
 
   static const StrengthenWeaponLog_Strengthen_weapon_info_list& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -2529,7 +2565,7 @@ class StrengthenWeaponLog_Strengthen_weapon_info_list : public ::google::protobu
   static inline const StrengthenWeaponLog_Strengthen_weapon_info_list* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(StrengthenWeaponLog_Strengthen_weapon_info_list* other);
 
@@ -2549,11 +2585,13 @@ class StrengthenWeaponLog_Strengthen_weapon_info_list : public ::google::protobu
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -2575,7 +2613,7 @@ class StrengthenWeaponLog_Strengthen_weapon_info_list : public ::google::protobu
   inline void set_to_item_id(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.StrengthenWeaponLog.Strengthen_weapon_info_list)
- private:
+private:
   inline void set_has_from_item_id();
   inline void clear_has_from_item_id();
   inline void set_has_to_item_id();
@@ -2587,11 +2625,11 @@ class StrengthenWeaponLog_Strengthen_weapon_info_list : public ::google::protobu
   mutable int _cached_size_;
   ::google::protobuf::uint32 from_item_id_;
   ::google::protobuf::uint32 to_item_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -2601,7 +2639,7 @@ class StrengthenWeaponLog_Strengthen_weapon_info_list : public ::google::protobu
 // -------------------------------------------------------------------
 
 class StrengthenWeaponLog : public ::google::protobuf::MessageLite {
- public:
+public:
   StrengthenWeaponLog();
   virtual ~StrengthenWeaponLog();
 
@@ -2622,7 +2660,7 @@ class StrengthenWeaponLog : public ::google::protobuf::MessageLite {
 
   static const StrengthenWeaponLog& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -2630,7 +2668,7 @@ class StrengthenWeaponLog : public ::google::protobuf::MessageLite {
   static inline const StrengthenWeaponLog* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(StrengthenWeaponLog* other);
 
@@ -2650,11 +2688,13 @@ class StrengthenWeaponLog : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -2670,24 +2710,23 @@ class StrengthenWeaponLog : public ::google::protobuf::MessageLite {
   inline const ::DS3_FpdLogMessage::StrengthenWeaponLog_Strengthen_weapon_info_list& strengthen_weapon_info_list(int index) const;
   inline ::DS3_FpdLogMessage::StrengthenWeaponLog_Strengthen_weapon_info_list* mutable_strengthen_weapon_info_list(int index);
   inline ::DS3_FpdLogMessage::StrengthenWeaponLog_Strengthen_weapon_info_list* add_strengthen_weapon_info_list();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::StrengthenWeaponLog_Strengthen_weapon_info_list >&
-      strengthen_weapon_info_list() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::StrengthenWeaponLog_Strengthen_weapon_info_list >*
-      mutable_strengthen_weapon_info_list();
+  inline const ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::StrengthenWeaponLog_Strengthen_weapon_info_list>&
+  strengthen_weapon_info_list() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::StrengthenWeaponLog_Strengthen_weapon_info_list>*
+  mutable_strengthen_weapon_info_list();
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.StrengthenWeaponLog)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::StrengthenWeaponLog_Strengthen_weapon_info_list > strengthen_weapon_info_list_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+  ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::StrengthenWeaponLog_Strengthen_weapon_info_list> strengthen_weapon_info_list_;
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -2697,7 +2736,7 @@ class StrengthenWeaponLog : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class VisitResultLog : public ::google::protobuf::MessageLite {
- public:
+public:
   VisitResultLog();
   virtual ~VisitResultLog();
 
@@ -2718,7 +2757,7 @@ class VisitResultLog : public ::google::protobuf::MessageLite {
 
   static const VisitResultLog& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -2726,7 +2765,7 @@ class VisitResultLog : public ::google::protobuf::MessageLite {
   static inline const VisitResultLog* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(VisitResultLog* other);
 
@@ -2746,11 +2785,13 @@ class VisitResultLog : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -2795,7 +2836,7 @@ class VisitResultLog : public ::google::protobuf::MessageLite {
   inline void set_unknown_2(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.VisitResultLog)
- private:
+private:
   inline void set_has_map_id();
   inline void clear_has_map_id();
   inline void set_has_location();
@@ -2816,11 +2857,11 @@ class VisitResultLog : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 online_area_id_source_;
   ::google::protobuf::uint32 online_area_id_destination_;
   ::google::protobuf::uint32 unknown_2_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -2830,7 +2871,7 @@ class VisitResultLog : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class QuickMatchResultLog : public ::google::protobuf::MessageLite {
- public:
+public:
   QuickMatchResultLog();
   virtual ~QuickMatchResultLog();
 
@@ -2851,7 +2892,7 @@ class QuickMatchResultLog : public ::google::protobuf::MessageLite {
 
   static const QuickMatchResultLog& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -2859,7 +2900,7 @@ class QuickMatchResultLog : public ::google::protobuf::MessageLite {
   static inline const QuickMatchResultLog* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(QuickMatchResultLog* other);
 
@@ -2879,11 +2920,13 @@ class QuickMatchResultLog : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -2954,7 +2997,7 @@ class QuickMatchResultLog : public ::google::protobuf::MessageLite {
   inline void set_unknown_9(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.QuickMatchResultLog)
- private:
+private:
   inline void set_has_unknown_1();
   inline void clear_has_unknown_1();
   inline void set_has_unknown_2();
@@ -2987,11 +3030,11 @@ class QuickMatchResultLog : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 unknown_7_;
   ::google::protobuf::uint32 unknown_8_;
   ::google::protobuf::uint32 unknown_9_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -3001,7 +3044,7 @@ class QuickMatchResultLog : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class QuickMatchEndLog : public ::google::protobuf::MessageLite {
- public:
+public:
   QuickMatchEndLog();
   virtual ~QuickMatchEndLog();
 
@@ -3022,7 +3065,7 @@ class QuickMatchEndLog : public ::google::protobuf::MessageLite {
 
   static const QuickMatchEndLog& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -3030,7 +3073,7 @@ class QuickMatchEndLog : public ::google::protobuf::MessageLite {
   static inline const QuickMatchEndLog* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(QuickMatchEndLog* other);
 
@@ -3050,11 +3093,13 @@ class QuickMatchEndLog : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -3104,7 +3149,7 @@ class QuickMatchEndLog : public ::google::protobuf::MessageLite {
   inline void set_unknown_6(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.QuickMatchEndLog)
- private:
+private:
   inline void set_has_unknown_1();
   inline void clear_has_unknown_1();
   inline void set_has_unknown_2();
@@ -3128,11 +3173,11 @@ class QuickMatchEndLog : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 unknown_4_;
   ::google::protobuf::uint32 unknown_5_;
   ::google::protobuf::uint32 unknown_6_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -3142,7 +3187,7 @@ class QuickMatchEndLog : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class ConvertSaveDataLog : public ::google::protobuf::MessageLite {
- public:
+public:
   ConvertSaveDataLog();
   virtual ~ConvertSaveDataLog();
 
@@ -3163,7 +3208,7 @@ class ConvertSaveDataLog : public ::google::protobuf::MessageLite {
 
   static const ConvertSaveDataLog& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -3171,7 +3216,7 @@ class ConvertSaveDataLog : public ::google::protobuf::MessageLite {
   static inline const ConvertSaveDataLog* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(ConvertSaveDataLog* other);
 
@@ -3191,11 +3236,13 @@ class ConvertSaveDataLog : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -3203,17 +3250,16 @@ class ConvertSaveDataLog : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.ConvertSaveDataLog)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -3223,7 +3269,7 @@ class ConvertSaveDataLog : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class AccessWarehouseLog_Access_warehouse_info_list : public ::google::protobuf::MessageLite {
- public:
+public:
   AccessWarehouseLog_Access_warehouse_info_list();
   virtual ~AccessWarehouseLog_Access_warehouse_info_list();
 
@@ -3244,7 +3290,7 @@ class AccessWarehouseLog_Access_warehouse_info_list : public ::google::protobuf:
 
   static const AccessWarehouseLog_Access_warehouse_info_list& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -3252,7 +3298,7 @@ class AccessWarehouseLog_Access_warehouse_info_list : public ::google::protobuf:
   static inline const AccessWarehouseLog_Access_warehouse_info_list* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(AccessWarehouseLog_Access_warehouse_info_list* other);
 
@@ -3272,11 +3318,13 @@ class AccessWarehouseLog_Access_warehouse_info_list : public ::google::protobuf:
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -3284,17 +3332,16 @@ class AccessWarehouseLog_Access_warehouse_info_list : public ::google::protobuf:
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.AccessWarehouseLog.Access_warehouse_info_list)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -3304,7 +3351,7 @@ class AccessWarehouseLog_Access_warehouse_info_list : public ::google::protobuf:
 // -------------------------------------------------------------------
 
 class AccessWarehouseLog : public ::google::protobuf::MessageLite {
- public:
+public:
   AccessWarehouseLog();
   virtual ~AccessWarehouseLog();
 
@@ -3325,7 +3372,7 @@ class AccessWarehouseLog : public ::google::protobuf::MessageLite {
 
   static const AccessWarehouseLog& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -3333,7 +3380,7 @@ class AccessWarehouseLog : public ::google::protobuf::MessageLite {
   static inline const AccessWarehouseLog* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(AccessWarehouseLog* other);
 
@@ -3353,11 +3400,13 @@ class AccessWarehouseLog : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -3367,17 +3416,16 @@ class AccessWarehouseLog : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.AccessWarehouseLog)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -3387,7 +3435,7 @@ class AccessWarehouseLog : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RepairEquipmentLog_Repair_equipment_info_list : public ::google::protobuf::MessageLite {
- public:
+public:
   RepairEquipmentLog_Repair_equipment_info_list();
   virtual ~RepairEquipmentLog_Repair_equipment_info_list();
 
@@ -3408,7 +3456,7 @@ class RepairEquipmentLog_Repair_equipment_info_list : public ::google::protobuf:
 
   static const RepairEquipmentLog_Repair_equipment_info_list& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -3416,7 +3464,7 @@ class RepairEquipmentLog_Repair_equipment_info_list : public ::google::protobuf:
   static inline const RepairEquipmentLog_Repair_equipment_info_list* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RepairEquipmentLog_Repair_equipment_info_list* other);
 
@@ -3436,11 +3484,13 @@ class RepairEquipmentLog_Repair_equipment_info_list : public ::google::protobuf:
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -3448,17 +3498,16 @@ class RepairEquipmentLog_Repair_equipment_info_list : public ::google::protobuf:
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.RepairEquipmentLog.Repair_equipment_info_list)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -3468,7 +3517,7 @@ class RepairEquipmentLog_Repair_equipment_info_list : public ::google::protobuf:
 // -------------------------------------------------------------------
 
 class RepairEquipmentLog : public ::google::protobuf::MessageLite {
- public:
+public:
   RepairEquipmentLog();
   virtual ~RepairEquipmentLog();
 
@@ -3489,7 +3538,7 @@ class RepairEquipmentLog : public ::google::protobuf::MessageLite {
 
   static const RepairEquipmentLog& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -3497,7 +3546,7 @@ class RepairEquipmentLog : public ::google::protobuf::MessageLite {
   static inline const RepairEquipmentLog* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RepairEquipmentLog* other);
 
@@ -3517,11 +3566,13 @@ class RepairEquipmentLog : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -3531,17 +3582,16 @@ class RepairEquipmentLog : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.RepairEquipmentLog)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -3551,7 +3601,7 @@ class RepairEquipmentLog : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class LevelUpLog : public ::google::protobuf::MessageLite {
- public:
+public:
   LevelUpLog();
   virtual ~LevelUpLog();
 
@@ -3572,7 +3622,7 @@ class LevelUpLog : public ::google::protobuf::MessageLite {
 
   static const LevelUpLog& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -3580,7 +3630,7 @@ class LevelUpLog : public ::google::protobuf::MessageLite {
   static inline const LevelUpLog* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(LevelUpLog* other);
 
@@ -3600,11 +3650,13 @@ class LevelUpLog : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -3612,17 +3664,16 @@ class LevelUpLog : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.LevelUpLog)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -3632,7 +3683,7 @@ class LevelUpLog : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class BrokenEquipmentLog : public ::google::protobuf::MessageLite {
- public:
+public:
   BrokenEquipmentLog();
   virtual ~BrokenEquipmentLog();
 
@@ -3653,7 +3704,7 @@ class BrokenEquipmentLog : public ::google::protobuf::MessageLite {
 
   static const BrokenEquipmentLog& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -3661,7 +3712,7 @@ class BrokenEquipmentLog : public ::google::protobuf::MessageLite {
   static inline const BrokenEquipmentLog* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(BrokenEquipmentLog* other);
 
@@ -3681,11 +3732,13 @@ class BrokenEquipmentLog : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -3693,17 +3746,16 @@ class BrokenEquipmentLog : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.BrokenEquipmentLog)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -3713,7 +3765,7 @@ class BrokenEquipmentLog : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class EquipMagicLog : public ::google::protobuf::MessageLite {
- public:
+public:
   EquipMagicLog();
   virtual ~EquipMagicLog();
 
@@ -3734,7 +3786,7 @@ class EquipMagicLog : public ::google::protobuf::MessageLite {
 
   static const EquipMagicLog& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -3742,7 +3794,7 @@ class EquipMagicLog : public ::google::protobuf::MessageLite {
   static inline const EquipMagicLog* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(EquipMagicLog* other);
 
@@ -3762,11 +3814,13 @@ class EquipMagicLog : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -3774,17 +3828,16 @@ class EquipMagicLog : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.EquipMagicLog)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -3794,7 +3847,7 @@ class EquipMagicLog : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class ChaneEstusFlaskNumLog : public ::google::protobuf::MessageLite {
- public:
+public:
   ChaneEstusFlaskNumLog();
   virtual ~ChaneEstusFlaskNumLog();
 
@@ -3815,7 +3868,7 @@ class ChaneEstusFlaskNumLog : public ::google::protobuf::MessageLite {
 
   static const ChaneEstusFlaskNumLog& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -3823,7 +3876,7 @@ class ChaneEstusFlaskNumLog : public ::google::protobuf::MessageLite {
   static inline const ChaneEstusFlaskNumLog* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(ChaneEstusFlaskNumLog* other);
 
@@ -3843,11 +3896,13 @@ class ChaneEstusFlaskNumLog : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -3855,17 +3910,16 @@ class ChaneEstusFlaskNumLog : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.ChaneEstusFlaskNumLog)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -3875,7 +3929,7 @@ class ChaneEstusFlaskNumLog : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class CreateBloodMessageLog : public ::google::protobuf::MessageLite {
- public:
+public:
   CreateBloodMessageLog();
   virtual ~CreateBloodMessageLog();
 
@@ -3896,7 +3950,7 @@ class CreateBloodMessageLog : public ::google::protobuf::MessageLite {
 
   static const CreateBloodMessageLog& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -3904,7 +3958,7 @@ class CreateBloodMessageLog : public ::google::protobuf::MessageLite {
   static inline const CreateBloodMessageLog* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(CreateBloodMessageLog* other);
 
@@ -3924,11 +3978,13 @@ class CreateBloodMessageLog : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -3936,17 +3992,16 @@ class CreateBloodMessageLog : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.CreateBloodMessageLog)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -3956,7 +4011,7 @@ class CreateBloodMessageLog : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class EvaluateBloodMessageLog : public ::google::protobuf::MessageLite {
- public:
+public:
   EvaluateBloodMessageLog();
   virtual ~EvaluateBloodMessageLog();
 
@@ -3977,7 +4032,7 @@ class EvaluateBloodMessageLog : public ::google::protobuf::MessageLite {
 
   static const EvaluateBloodMessageLog& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -3985,7 +4040,7 @@ class EvaluateBloodMessageLog : public ::google::protobuf::MessageLite {
   static inline const EvaluateBloodMessageLog* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(EvaluateBloodMessageLog* other);
 
@@ -4005,11 +4060,13 @@ class EvaluateBloodMessageLog : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -4017,17 +4074,16 @@ class EvaluateBloodMessageLog : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS3_FpdLogMessage.EvaluateBloodMessageLog)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFpdLogMessage_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFpdLogMessage_2eproto();
 
@@ -4035,7 +4091,6 @@ class EvaluateBloodMessageLog : public ::google::protobuf::MessageLite {
   static EvaluateBloodMessageLog* default_instance_;
 };
 // ===================================================================
-
 
 // ===================================================================
 
@@ -4136,12 +4191,12 @@ inline void GlobalEventLog::add_values(::google::protobuf::uint32 value) {
   values_.Add(value);
   // @@protoc_insertion_point(field_add:DS3_FpdLogMessage.GlobalEventLog.values)
 }
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+inline const ::google::protobuf::RepeatedField<::google::protobuf::uint32>&
 GlobalEventLog::values() const {
   // @@protoc_insertion_point(field_list:DS3_FpdLogMessage.GlobalEventLog.values)
   return values_;
 }
-inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+inline ::google::protobuf::RepeatedField<::google::protobuf::uint32>*
 GlobalEventLog::mutable_values() {
   // @@protoc_insertion_point(field_mutable_list:DS3_FpdLogMessage.GlobalEventLog.values)
   return &values_;
@@ -4434,7 +4489,8 @@ inline void SystemOptionLog::clear_has_game_settings() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void SystemOptionLog::clear_game_settings() {
-  if (game_settings_ != NULL) game_settings_->::DS3_FpdLogMessage::SystemOptionLog_Game_option_setting::Clear();
+  if (game_settings_ != NULL)
+    game_settings_->::DS3_FpdLogMessage::SystemOptionLog_Game_option_setting::Clear();
   clear_has_game_settings();
 }
 inline const ::DS3_FpdLogMessage::SystemOptionLog_Game_option_setting& SystemOptionLog::game_settings() const {
@@ -4447,7 +4503,8 @@ inline const ::DS3_FpdLogMessage::SystemOptionLog_Game_option_setting& SystemOpt
 }
 inline ::DS3_FpdLogMessage::SystemOptionLog_Game_option_setting* SystemOptionLog::mutable_game_settings() {
   set_has_game_settings();
-  if (game_settings_ == NULL) game_settings_ = new ::DS3_FpdLogMessage::SystemOptionLog_Game_option_setting;
+  if (game_settings_ == NULL)
+    game_settings_ = new ::DS3_FpdLogMessage::SystemOptionLog_Game_option_setting;
   // @@protoc_insertion_point(field_mutable:DS3_FpdLogMessage.SystemOptionLog.game_settings)
   return game_settings_;
 }
@@ -4479,7 +4536,8 @@ inline void SystemOptionLog::clear_has_network_settings() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void SystemOptionLog::clear_network_settings() {
-  if (network_settings_ != NULL) network_settings_->::DS3_FpdLogMessage::SystemOptionLog_Network_setting::Clear();
+  if (network_settings_ != NULL)
+    network_settings_->::DS3_FpdLogMessage::SystemOptionLog_Network_setting::Clear();
   clear_has_network_settings();
 }
 inline const ::DS3_FpdLogMessage::SystemOptionLog_Network_setting& SystemOptionLog::network_settings() const {
@@ -4492,7 +4550,8 @@ inline const ::DS3_FpdLogMessage::SystemOptionLog_Network_setting& SystemOptionL
 }
 inline ::DS3_FpdLogMessage::SystemOptionLog_Network_setting* SystemOptionLog::mutable_network_settings() {
   set_has_network_settings();
-  if (network_settings_ == NULL) network_settings_ = new ::DS3_FpdLogMessage::SystemOptionLog_Network_setting;
+  if (network_settings_ == NULL)
+    network_settings_ = new ::DS3_FpdLogMessage::SystemOptionLog_Network_setting;
   // @@protoc_insertion_point(field_mutable:DS3_FpdLogMessage.SystemOptionLog.network_settings)
   return network_settings_;
 }
@@ -4612,12 +4671,12 @@ inline ::DS3_FpdLogMessage::UseItemLog_Use_item_info_list* UseItemLog::add_use_i
   // @@protoc_insertion_point(field_add:DS3_FpdLogMessage.UseItemLog.use_item_info_list)
   return use_item_info_list_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::UseItemLog_Use_item_info_list >&
+inline const ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::UseItemLog_Use_item_info_list>&
 UseItemLog::use_item_info_list() const {
   // @@protoc_insertion_point(field_list:DS3_FpdLogMessage.UseItemLog.use_item_info_list)
   return use_item_info_list_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::UseItemLog_Use_item_info_list >*
+inline ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::UseItemLog_Use_item_info_list>*
 UseItemLog::mutable_use_item_info_list() {
   // @@protoc_insertion_point(field_mutable_list:DS3_FpdLogMessage.UseItemLog.use_item_info_list)
   return &use_item_info_list_;
@@ -4658,7 +4717,8 @@ inline void UseItemLog::clear_has_location() {
   _has_bits_[0] &= ~0x00000004u;
 }
 inline void UseItemLog::clear_location() {
-  if (location_ != NULL) location_->::DS3_FpdLogMessage::Vector::Clear();
+  if (location_ != NULL)
+    location_->::DS3_FpdLogMessage::Vector::Clear();
   clear_has_location();
 }
 inline const ::DS3_FpdLogMessage::Vector& UseItemLog::location() const {
@@ -4671,7 +4731,8 @@ inline const ::DS3_FpdLogMessage::Vector& UseItemLog::location() const {
 }
 inline ::DS3_FpdLogMessage::Vector* UseItemLog::mutable_location() {
   set_has_location();
-  if (location_ == NULL) location_ = new ::DS3_FpdLogMessage::Vector;
+  if (location_ == NULL)
+    location_ = new ::DS3_FpdLogMessage::Vector;
   // @@protoc_insertion_point(field_mutable:DS3_FpdLogMessage.UseItemLog.location)
   return location_;
 }
@@ -4731,7 +4792,8 @@ inline void GetItemLog_Get_item_info_list::clear_has_location() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void GetItemLog_Get_item_info_list::clear_location() {
-  if (location_ != NULL) location_->::DS3_FpdLogMessage::Vector::Clear();
+  if (location_ != NULL)
+    location_->::DS3_FpdLogMessage::Vector::Clear();
   clear_has_location();
 }
 inline const ::DS3_FpdLogMessage::Vector& GetItemLog_Get_item_info_list::location() const {
@@ -4744,7 +4806,8 @@ inline const ::DS3_FpdLogMessage::Vector& GetItemLog_Get_item_info_list::locatio
 }
 inline ::DS3_FpdLogMessage::Vector* GetItemLog_Get_item_info_list::mutable_location() {
   set_has_location();
-  if (location_ == NULL) location_ = new ::DS3_FpdLogMessage::Vector;
+  if (location_ == NULL)
+    location_ = new ::DS3_FpdLogMessage::Vector;
   // @@protoc_insertion_point(field_mutable:DS3_FpdLogMessage.GetItemLog.Get_item_info_list.location)
   return location_;
 }
@@ -4932,12 +4995,12 @@ inline ::DS3_FpdLogMessage::GetItemLog_Get_item_info_list* GetItemLog::add_get_i
   // @@protoc_insertion_point(field_add:DS3_FpdLogMessage.GetItemLog.get_item_info_list)
   return get_item_info_list_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::GetItemLog_Get_item_info_list >&
+inline const ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::GetItemLog_Get_item_info_list>&
 GetItemLog::get_item_info_list() const {
   // @@protoc_insertion_point(field_list:DS3_FpdLogMessage.GetItemLog.get_item_info_list)
   return get_item_info_list_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::GetItemLog_Get_item_info_list >*
+inline ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::GetItemLog_Get_item_info_list>*
 GetItemLog::mutable_get_item_info_list() {
   // @@protoc_insertion_point(field_mutable_list:DS3_FpdLogMessage.GetItemLog.get_item_info_list)
   return &get_item_info_list_;
@@ -5018,12 +5081,12 @@ inline ::DS3_FpdLogMessage::ActGestureLog_Use_gesture_info_list* ActGestureLog::
   // @@protoc_insertion_point(field_add:DS3_FpdLogMessage.ActGestureLog.use_gesture_info_list)
   return use_gesture_info_list_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::ActGestureLog_Use_gesture_info_list >&
+inline const ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::ActGestureLog_Use_gesture_info_list>&
 ActGestureLog::use_gesture_info_list() const {
   // @@protoc_insertion_point(field_list:DS3_FpdLogMessage.ActGestureLog.use_gesture_info_list)
   return use_gesture_info_list_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::ActGestureLog_Use_gesture_info_list >*
+inline ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::ActGestureLog_Use_gesture_info_list>*
 ActGestureLog::mutable_use_gesture_info_list() {
   // @@protoc_insertion_point(field_mutable_list:DS3_FpdLogMessage.ActGestureLog.use_gesture_info_list)
   return &use_gesture_info_list_;
@@ -5064,7 +5127,8 @@ inline void ActGestureLog::clear_has_unknown_5() {
   _has_bits_[0] &= ~0x00000004u;
 }
 inline void ActGestureLog::clear_unknown_5() {
-  if (unknown_5_ != NULL) unknown_5_->::DS3_FpdLogMessage::Vector::Clear();
+  if (unknown_5_ != NULL)
+    unknown_5_->::DS3_FpdLogMessage::Vector::Clear();
   clear_has_unknown_5();
 }
 inline const ::DS3_FpdLogMessage::Vector& ActGestureLog::unknown_5() const {
@@ -5077,7 +5141,8 @@ inline const ::DS3_FpdLogMessage::Vector& ActGestureLog::unknown_5() const {
 }
 inline ::DS3_FpdLogMessage::Vector* ActGestureLog::mutable_unknown_5() {
   set_has_unknown_5();
-  if (unknown_5_ == NULL) unknown_5_ = new ::DS3_FpdLogMessage::Vector;
+  if (unknown_5_ == NULL)
+    unknown_5_ = new ::DS3_FpdLogMessage::Vector;
   // @@protoc_insertion_point(field_mutable:DS3_FpdLogMessage.ActGestureLog.unknown_5)
   return unknown_5_;
 }
@@ -5173,12 +5238,12 @@ inline ::DS3_FpdLogMessage::UseMagicLog_Use_magic_info_list* UseMagicLog::add_us
   // @@protoc_insertion_point(field_add:DS3_FpdLogMessage.UseMagicLog.use_magic_info_list)
   return use_magic_info_list_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::UseMagicLog_Use_magic_info_list >&
+inline const ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::UseMagicLog_Use_magic_info_list>&
 UseMagicLog::use_magic_info_list() const {
   // @@protoc_insertion_point(field_list:DS3_FpdLogMessage.UseMagicLog.use_magic_info_list)
   return use_magic_info_list_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::UseMagicLog_Use_magic_info_list >*
+inline ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::UseMagicLog_Use_magic_info_list>*
 UseMagicLog::mutable_use_magic_info_list() {
   // @@protoc_insertion_point(field_mutable_list:DS3_FpdLogMessage.UseMagicLog.use_magic_info_list)
   return &use_magic_info_list_;
@@ -5219,7 +5284,8 @@ inline void UseMagicLog::clear_has_location() {
   _has_bits_[0] &= ~0x00000004u;
 }
 inline void UseMagicLog::clear_location() {
-  if (location_ != NULL) location_->::DS3_FpdLogMessage::Vector::Clear();
+  if (location_ != NULL)
+    location_->::DS3_FpdLogMessage::Vector::Clear();
   clear_has_location();
 }
 inline const ::DS3_FpdLogMessage::Vector& UseMagicLog::location() const {
@@ -5232,7 +5298,8 @@ inline const ::DS3_FpdLogMessage::Vector& UseMagicLog::location() const {
 }
 inline ::DS3_FpdLogMessage::Vector* UseMagicLog::mutable_location() {
   set_has_location();
-  if (location_ == NULL) location_ = new ::DS3_FpdLogMessage::Vector;
+  if (location_ == NULL)
+    location_ = new ::DS3_FpdLogMessage::Vector;
   // @@protoc_insertion_point(field_mutable:DS3_FpdLogMessage.UseMagicLog.location)
   return location_;
 }
@@ -5292,7 +5359,8 @@ inline void PurchaseItemLog_Purchase_item_info_list::clear_has_location() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void PurchaseItemLog_Purchase_item_info_list::clear_location() {
-  if (location_ != NULL) location_->::DS3_FpdLogMessage::Vector::Clear();
+  if (location_ != NULL)
+    location_->::DS3_FpdLogMessage::Vector::Clear();
   clear_has_location();
 }
 inline const ::DS3_FpdLogMessage::Vector& PurchaseItemLog_Purchase_item_info_list::location() const {
@@ -5305,7 +5373,8 @@ inline const ::DS3_FpdLogMessage::Vector& PurchaseItemLog_Purchase_item_info_lis
 }
 inline ::DS3_FpdLogMessage::Vector* PurchaseItemLog_Purchase_item_info_list::mutable_location() {
   set_has_location();
-  if (location_ == NULL) location_ = new ::DS3_FpdLogMessage::Vector;
+  if (location_ == NULL)
+    location_ = new ::DS3_FpdLogMessage::Vector;
   // @@protoc_insertion_point(field_mutable:DS3_FpdLogMessage.PurchaseItemLog.Purchase_item_info_list.location)
   return location_;
 }
@@ -5421,12 +5490,12 @@ inline ::DS3_FpdLogMessage::PurchaseItemLog_Purchase_item_info_list* PurchaseIte
   // @@protoc_insertion_point(field_add:DS3_FpdLogMessage.PurchaseItemLog.purchase_item_info_list)
   return purchase_item_info_list_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::PurchaseItemLog_Purchase_item_info_list >&
+inline const ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::PurchaseItemLog_Purchase_item_info_list>&
 PurchaseItemLog::purchase_item_info_list() const {
   // @@protoc_insertion_point(field_list:DS3_FpdLogMessage.PurchaseItemLog.purchase_item_info_list)
   return purchase_item_info_list_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::PurchaseItemLog_Purchase_item_info_list >*
+inline ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::PurchaseItemLog_Purchase_item_info_list>*
 PurchaseItemLog::mutable_purchase_item_info_list() {
   // @@protoc_insertion_point(field_mutable_list:DS3_FpdLogMessage.PurchaseItemLog.purchase_item_info_list)
   return &purchase_item_info_list_;
@@ -5471,7 +5540,8 @@ inline void DropItemLog_Throw_away_item_list::clear_has_location() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void DropItemLog_Throw_away_item_list::clear_location() {
-  if (location_ != NULL) location_->::DS3_FpdLogMessage::Vector::Clear();
+  if (location_ != NULL)
+    location_->::DS3_FpdLogMessage::Vector::Clear();
   clear_has_location();
 }
 inline const ::DS3_FpdLogMessage::Vector& DropItemLog_Throw_away_item_list::location() const {
@@ -5484,7 +5554,8 @@ inline const ::DS3_FpdLogMessage::Vector& DropItemLog_Throw_away_item_list::loca
 }
 inline ::DS3_FpdLogMessage::Vector* DropItemLog_Throw_away_item_list::mutable_location() {
   set_has_location();
-  if (location_ == NULL) location_ = new ::DS3_FpdLogMessage::Vector;
+  if (location_ == NULL)
+    location_ = new ::DS3_FpdLogMessage::Vector;
   // @@protoc_insertion_point(field_mutable:DS3_FpdLogMessage.DropItemLog.Throw_away_item_list.location)
   return location_;
 }
@@ -5600,12 +5671,12 @@ inline ::DS3_FpdLogMessage::DropItemLog_Throw_away_item_list* DropItemLog::add_t
   // @@protoc_insertion_point(field_add:DS3_FpdLogMessage.DropItemLog.throw_away_item_list)
   return throw_away_item_list_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::DropItemLog_Throw_away_item_list >&
+inline const ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::DropItemLog_Throw_away_item_list>&
 DropItemLog::throw_away_item_list() const {
   // @@protoc_insertion_point(field_list:DS3_FpdLogMessage.DropItemLog.throw_away_item_list)
   return throw_away_item_list_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::DropItemLog_Throw_away_item_list >*
+inline ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::DropItemLog_Throw_away_item_list>*
 DropItemLog::mutable_throw_away_item_list() {
   // @@protoc_insertion_point(field_mutable_list:DS3_FpdLogMessage.DropItemLog.throw_away_item_list)
   return &throw_away_item_list_;
@@ -5650,7 +5721,8 @@ inline void LeaveItemLog_Set_item_info_list::clear_has_location() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void LeaveItemLog_Set_item_info_list::clear_location() {
-  if (location_ != NULL) location_->::DS3_FpdLogMessage::Vector::Clear();
+  if (location_ != NULL)
+    location_->::DS3_FpdLogMessage::Vector::Clear();
   clear_has_location();
 }
 inline const ::DS3_FpdLogMessage::Vector& LeaveItemLog_Set_item_info_list::location() const {
@@ -5663,7 +5735,8 @@ inline const ::DS3_FpdLogMessage::Vector& LeaveItemLog_Set_item_info_list::locat
 }
 inline ::DS3_FpdLogMessage::Vector* LeaveItemLog_Set_item_info_list::mutable_location() {
   set_has_location();
-  if (location_ == NULL) location_ = new ::DS3_FpdLogMessage::Vector;
+  if (location_ == NULL)
+    location_ = new ::DS3_FpdLogMessage::Vector;
   // @@protoc_insertion_point(field_mutable:DS3_FpdLogMessage.LeaveItemLog.Set_item_info_list.location)
   return location_;
 }
@@ -5779,12 +5852,12 @@ inline ::DS3_FpdLogMessage::LeaveItemLog_Set_item_info_list* LeaveItemLog::add_s
   // @@protoc_insertion_point(field_add:DS3_FpdLogMessage.LeaveItemLog.set_item_info_list)
   return set_item_info_list_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::LeaveItemLog_Set_item_info_list >&
+inline const ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::LeaveItemLog_Set_item_info_list>&
 LeaveItemLog::set_item_info_list() const {
   // @@protoc_insertion_point(field_list:DS3_FpdLogMessage.LeaveItemLog.set_item_info_list)
   return set_item_info_list_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::LeaveItemLog_Set_item_info_list >*
+inline ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::LeaveItemLog_Set_item_info_list>*
 LeaveItemLog::mutable_set_item_info_list() {
   // @@protoc_insertion_point(field_mutable_list:DS3_FpdLogMessage.LeaveItemLog.set_item_info_list)
   return &set_item_info_list_;
@@ -5829,7 +5902,8 @@ inline void SaleItemLog_Sale_item_info_list::clear_has_location() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void SaleItemLog_Sale_item_info_list::clear_location() {
-  if (location_ != NULL) location_->::DS3_FpdLogMessage::Vector::Clear();
+  if (location_ != NULL)
+    location_->::DS3_FpdLogMessage::Vector::Clear();
   clear_has_location();
 }
 inline const ::DS3_FpdLogMessage::Vector& SaleItemLog_Sale_item_info_list::location() const {
@@ -5842,7 +5916,8 @@ inline const ::DS3_FpdLogMessage::Vector& SaleItemLog_Sale_item_info_list::locat
 }
 inline ::DS3_FpdLogMessage::Vector* SaleItemLog_Sale_item_info_list::mutable_location() {
   set_has_location();
-  if (location_ == NULL) location_ = new ::DS3_FpdLogMessage::Vector;
+  if (location_ == NULL)
+    location_ = new ::DS3_FpdLogMessage::Vector;
   // @@protoc_insertion_point(field_mutable:DS3_FpdLogMessage.SaleItemLog.Sale_item_info_list.location)
   return location_;
 }
@@ -5958,12 +6033,12 @@ inline ::DS3_FpdLogMessage::SaleItemLog_Sale_item_info_list* SaleItemLog::add_sa
   // @@protoc_insertion_point(field_add:DS3_FpdLogMessage.SaleItemLog.sale_item_info_list)
   return sale_item_info_list_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::SaleItemLog_Sale_item_info_list >&
+inline const ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::SaleItemLog_Sale_item_info_list>&
 SaleItemLog::sale_item_info_list() const {
   // @@protoc_insertion_point(field_list:DS3_FpdLogMessage.SaleItemLog.sale_item_info_list)
   return sale_item_info_list_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::SaleItemLog_Sale_item_info_list >*
+inline ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::SaleItemLog_Sale_item_info_list>*
 SaleItemLog::mutable_sale_item_info_list() {
   // @@protoc_insertion_point(field_mutable_list:DS3_FpdLogMessage.SaleItemLog.sale_item_info_list)
   return &sale_item_info_list_;
@@ -6044,12 +6119,12 @@ inline ::DS3_FpdLogMessage::StrengthenWeaponLog_Strengthen_weapon_info_list* Str
   // @@protoc_insertion_point(field_add:DS3_FpdLogMessage.StrengthenWeaponLog.strengthen_weapon_info_list)
   return strengthen_weapon_info_list_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::StrengthenWeaponLog_Strengthen_weapon_info_list >&
+inline const ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::StrengthenWeaponLog_Strengthen_weapon_info_list>&
 StrengthenWeaponLog::strengthen_weapon_info_list() const {
   // @@protoc_insertion_point(field_list:DS3_FpdLogMessage.StrengthenWeaponLog.strengthen_weapon_info_list)
   return strengthen_weapon_info_list_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS3_FpdLogMessage::StrengthenWeaponLog_Strengthen_weapon_info_list >*
+inline ::google::protobuf::RepeatedPtrField<::DS3_FpdLogMessage::StrengthenWeaponLog_Strengthen_weapon_info_list>*
 StrengthenWeaponLog::mutable_strengthen_weapon_info_list() {
   // @@protoc_insertion_point(field_mutable_list:DS3_FpdLogMessage.StrengthenWeaponLog.strengthen_weapon_info_list)
   return &strengthen_weapon_info_list_;
@@ -6094,7 +6169,8 @@ inline void VisitResultLog::clear_has_location() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void VisitResultLog::clear_location() {
-  if (location_ != NULL) location_->::DS3_FpdLogMessage::Vector::Clear();
+  if (location_ != NULL)
+    location_->::DS3_FpdLogMessage::Vector::Clear();
   clear_has_location();
 }
 inline const ::DS3_FpdLogMessage::Vector& VisitResultLog::location() const {
@@ -6107,7 +6183,8 @@ inline const ::DS3_FpdLogMessage::Vector& VisitResultLog::location() const {
 }
 inline ::DS3_FpdLogMessage::Vector* VisitResultLog::mutable_location() {
   set_has_location();
-  if (location_ == NULL) location_ = new ::DS3_FpdLogMessage::Vector;
+  if (location_ == NULL)
+    location_ = new ::DS3_FpdLogMessage::Vector;
   // @@protoc_insertion_point(field_mutable:DS3_FpdLogMessage.VisitResultLog.location)
   return location_;
 }
@@ -6612,11 +6689,10 @@ inline void QuickMatchEndLog::set_unknown_6(::google::protobuf::uint32 value) {
 
 // EvaluateBloodMessageLog
 
-
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace DS3_FpdLogMessage
+} // namespace DS3_FpdLogMessage
 
 // @@protoc_insertion_point(global_scope)
 
-#endif  // PROTOBUF_DS3_5fFpdLogMessage_2eproto__INCLUDED
+#endif // PROTOBUF_DS3_5fFpdLogMessage_2eproto__INCLUDED

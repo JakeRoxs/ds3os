@@ -22,24 +22,22 @@ class GameService;
 // Handles client requests for visitation (joining other users games via covenants - blue sentinels etc)
 
 class DS3_VisitorManager
-    : public GameManager
-{
-public:    
-    DS3_VisitorManager(Server* InServerInstance, GameService* InGameServiceInstance);
+    : public GameManager {
+public:
+  DS3_VisitorManager(Server* InServerInstance, GameService* InGameServiceInstance);
 
-    virtual MessageHandleResult OnMessageReceived(GameClient* Client, const Frpg2ReliableUdpMessage& Message) override;
+  virtual MessageHandleResult OnMessageReceived(GameClient* Client, const Frpg2ReliableUdpMessage& Message) override;
 
-    virtual std::string GetName() override;
+  virtual std::string GetName() override;
 
 protected:
-    bool CanMatchWith(const DS3_Frpg2RequestMessage::MatchingParameter& Client, const std::shared_ptr<GameClient>& Match);
+  bool CanMatchWith(const DS3_Frpg2RequestMessage::MatchingParameter& Client, const std::shared_ptr<GameClient>& Match);
 
-    MessageHandleResult Handle_RequestGetVisitorList(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestVisit(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestRejectVisit(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestGetVisitorList(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestVisit(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestRejectVisit(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
 
 private:
-    Server* ServerInstance;
-    GameService* GameServiceInstance;
-
+  Server* ServerInstance;
+  GameService* GameServiceInstance;
 };

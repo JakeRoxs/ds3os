@@ -28,7 +28,7 @@
 namespace DS3_Frpg2PlayerData {
 
 // Internal implementation detail -- do not call these.
-void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
+void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
 void protobuf_AssignDesc_DS3_5fFrpg2PlayerData_2eproto();
 void protobuf_ShutdownFile_DS3_5fFrpg2PlayerData_2eproto();
 
@@ -98,7 +98,7 @@ const int NetMode_ARRAYSIZE = NetMode_MAX + 1;
 // ===================================================================
 
 class DateTime : public ::google::protobuf::MessageLite {
- public:
+public:
   DateTime();
   virtual ~DateTime();
 
@@ -119,7 +119,7 @@ class DateTime : public ::google::protobuf::MessageLite {
 
   static const DateTime& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -127,7 +127,7 @@ class DateTime : public ::google::protobuf::MessageLite {
   static inline const DateTime* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(DateTime* other);
 
@@ -147,11 +147,13 @@ class DateTime : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -208,7 +210,7 @@ class DateTime : public ::google::protobuf::MessageLite {
   inline void set_tzdiff(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS3_Frpg2PlayerData.DateTime)
- private:
+private:
   inline void set_has_year();
   inline void clear_has_year();
   inline void set_has_month();
@@ -235,11 +237,11 @@ class DateTime : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 minutes_;
   ::google::protobuf::uint32 seconds_;
   ::google::protobuf::uint32 tzdiff_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFrpg2PlayerData_2eproto();
 
@@ -249,7 +251,7 @@ class DateTime : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class UnknownStruct1 : public ::google::protobuf::MessageLite {
- public:
+public:
   UnknownStruct1();
   virtual ~UnknownStruct1();
 
@@ -270,7 +272,7 @@ class UnknownStruct1 : public ::google::protobuf::MessageLite {
 
   static const UnknownStruct1& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -278,7 +280,7 @@ class UnknownStruct1 : public ::google::protobuf::MessageLite {
   static inline const UnknownStruct1* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(UnknownStruct1* other);
 
@@ -298,11 +300,13 @@ class UnknownStruct1 : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -336,7 +340,7 @@ class UnknownStruct1 : public ::google::protobuf::MessageLite {
   inline void set_unknown_3(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:DS3_Frpg2PlayerData.UnknownStruct1)
- private:
+private:
   inline void set_has_unknown_1();
   inline void clear_has_unknown_1();
   inline void set_has_unknown_2();
@@ -351,11 +355,11 @@ class UnknownStruct1 : public ::google::protobuf::MessageLite {
   ::google::protobuf::int64 unknown_1_;
   ::std::string* unknown_2_;
   ::google::protobuf::int64 unknown_3_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFrpg2PlayerData_2eproto();
 
@@ -365,7 +369,7 @@ class UnknownStruct1 : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class AllStatus : public ::google::protobuf::MessageLite {
- public:
+public:
   AllStatus();
   virtual ~AllStatus();
 
@@ -386,7 +390,7 @@ class AllStatus : public ::google::protobuf::MessageLite {
 
   static const AllStatus& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -394,7 +398,7 @@ class AllStatus : public ::google::protobuf::MessageLite {
   static inline const AllStatus* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(AllStatus* other);
 
@@ -414,11 +418,13 @@ class AllStatus : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -489,7 +495,7 @@ class AllStatus : public ::google::protobuf::MessageLite {
   inline void set_allocated_unknown_1(::DS3_Frpg2PlayerData::UnknownStruct1* unknown_1);
 
   // @@protoc_insertion_point(class_scope:DS3_Frpg2PlayerData.AllStatus)
- private:
+private:
   inline void set_has_player_location();
   inline void clear_has_player_location();
   inline void set_has_log_info();
@@ -516,11 +522,11 @@ class AllStatus : public ::google::protobuf::MessageLite {
   ::DS3_Frpg2PlayerData::StatsInfo* stats_info_;
   ::DS3_Frpg2PlayerData::Equipment* equipment_;
   ::DS3_Frpg2PlayerData::UnknownStruct1* unknown_1_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFrpg2PlayerData_2eproto();
 
@@ -530,7 +536,7 @@ class AllStatus : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class PlayerStatus : public ::google::protobuf::MessageLite {
- public:
+public:
   PlayerStatus();
   virtual ~PlayerStatus();
 
@@ -551,7 +557,7 @@ class PlayerStatus : public ::google::protobuf::MessageLite {
 
   static const PlayerStatus& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -559,7 +565,7 @@ class PlayerStatus : public ::google::protobuf::MessageLite {
   static inline const PlayerStatus* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PlayerStatus* other);
 
@@ -579,11 +585,13 @@ class PlayerStatus : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -709,10 +717,10 @@ class PlayerStatus : public ::google::protobuf::MessageLite {
   inline ::google::protobuf::uint32 played_areas(int index) const;
   inline void set_played_areas(int index, ::google::protobuf::uint32 value);
   inline void add_played_areas(::google::protobuf::uint32 value);
-  inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
-      played_areas() const;
-  inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
-      mutable_played_areas();
+  inline const ::google::protobuf::RepeatedField<::google::protobuf::uint32>&
+  played_areas() const;
+  inline ::google::protobuf::RepeatedField<::google::protobuf::uint32>*
+  mutable_played_areas();
 
   // repeated uint32 unknown_18 = 18;
   inline int unknown_18_size() const;
@@ -721,10 +729,10 @@ class PlayerStatus : public ::google::protobuf::MessageLite {
   inline ::google::protobuf::uint32 unknown_18(int index) const;
   inline void set_unknown_18(int index, ::google::protobuf::uint32 value);
   inline void add_unknown_18(::google::protobuf::uint32 value);
-  inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
-      unknown_18() const;
-  inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
-      mutable_unknown_18();
+  inline const ::google::protobuf::RepeatedField<::google::protobuf::uint32>&
+  unknown_18() const;
+  inline ::google::protobuf::RepeatedField<::google::protobuf::uint32>*
+  mutable_unknown_18();
 
   // optional uint32 embered = 19;
   inline bool has_embered() const;
@@ -1047,10 +1055,10 @@ class PlayerStatus : public ::google::protobuf::MessageLite {
   inline ::google::protobuf::int32 anticheat_data(int index) const;
   inline void set_anticheat_data(int index, ::google::protobuf::int32 value);
   inline void add_anticheat_data(::google::protobuf::int32 value);
-  inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
-      anticheat_data() const;
-  inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
-      mutable_anticheat_data();
+  inline const ::google::protobuf::RepeatedField<::google::protobuf::int32>&
+  anticheat_data() const;
+  inline ::google::protobuf::RepeatedField<::google::protobuf::int32>*
+  mutable_anticheat_data();
 
   // optional int32 unknown_63 = 63;
   inline bool has_unknown_63() const;
@@ -1179,7 +1187,7 @@ class PlayerStatus : public ::google::protobuf::MessageLite {
   inline void set_unknown_80(::google::protobuf::int32 value);
 
   // @@protoc_insertion_point(class_scope:DS3_Frpg2PlayerData.PlayerStatus)
- private:
+private:
   inline void set_has_regulation_version();
   inline void clear_has_regulation_version();
   inline void set_has_unknown_2();
@@ -1353,10 +1361,10 @@ class PlayerStatus : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 unknown_13_;
   ::google::protobuf::uint32 unknown_14_;
   int world_type_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > played_areas_;
+  ::google::protobuf::RepeatedField<::google::protobuf::uint32> played_areas_;
   ::google::protobuf::uint32 covenant_;
   ::google::protobuf::uint32 embered_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > unknown_18_;
+  ::google::protobuf::RepeatedField<::google::protobuf::uint32> unknown_18_;
   ::google::protobuf::uint32 souls_;
   ::google::protobuf::uint32 soul_memory_;
   bool cross_region_matchmaking_disabled_;
@@ -1401,7 +1409,7 @@ class PlayerStatus : public ::google::protobuf::MessageLite {
   ::google::protobuf::int32 attack_power_l_weapon_3_;
   ::google::protobuf::int32 unknown_63_;
   ::DS3_Frpg2PlayerData::ResistanceInfo* base_resistance_info_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::int32 > anticheat_data_;
+  ::google::protobuf::RepeatedField<::google::protobuf::int32> anticheat_data_;
   ::google::protobuf::int32 estus_flask_max_;
   ::google::protobuf::int32 ashen_estus_flask_max_;
   float max_equip_load_;
@@ -1419,11 +1427,11 @@ class PlayerStatus : public ::google::protobuf::MessageLite {
   ::google::protobuf::int32 unknown_78_;
   ::google::protobuf::int32 unknown_79_;
   ::google::protobuf::int32 unknown_80_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFrpg2PlayerData_2eproto();
 
@@ -1433,7 +1441,7 @@ class PlayerStatus : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class PlayData : public ::google::protobuf::MessageLite {
- public:
+public:
   PlayData();
   virtual ~PlayData();
 
@@ -1454,7 +1462,7 @@ class PlayData : public ::google::protobuf::MessageLite {
 
   static const PlayData& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1462,7 +1470,7 @@ class PlayData : public ::google::protobuf::MessageLite {
   static inline const PlayData* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PlayData* other);
 
@@ -1482,11 +1490,13 @@ class PlayData : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -1535,13 +1545,13 @@ class PlayData : public ::google::protobuf::MessageLite {
   inline const ::DS3_Frpg2PlayerData::BonfireInfo& bonfire_info(int index) const;
   inline ::DS3_Frpg2PlayerData::BonfireInfo* mutable_bonfire_info(int index);
   inline ::DS3_Frpg2PlayerData::BonfireInfo* add_bonfire_info();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS3_Frpg2PlayerData::BonfireInfo >&
-      bonfire_info() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS3_Frpg2PlayerData::BonfireInfo >*
-      mutable_bonfire_info();
+  inline const ::google::protobuf::RepeatedPtrField<::DS3_Frpg2PlayerData::BonfireInfo>&
+  bonfire_info() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS3_Frpg2PlayerData::BonfireInfo>*
+  mutable_bonfire_info();
 
   // @@protoc_insertion_point(class_scope:DS3_Frpg2PlayerData.PlayData)
- private:
+private:
   inline void set_has_play_time_seconds();
   inline void clear_has_play_time_seconds();
   inline void set_has_is_hollow();
@@ -1561,13 +1571,13 @@ class PlayData : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 is_hollow_;
   ::google::protobuf::uint32 hollow_level_;
   ::google::protobuf::uint32 unknown_4_;
-  ::google::protobuf::RepeatedPtrField< ::DS3_Frpg2PlayerData::BonfireInfo > bonfire_info_;
+  ::google::protobuf::RepeatedPtrField<::DS3_Frpg2PlayerData::BonfireInfo> bonfire_info_;
   ::google::protobuf::uint32 bonfire_level_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFrpg2PlayerData_2eproto();
 
@@ -1577,7 +1587,7 @@ class PlayData : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class LogInfo : public ::google::protobuf::MessageLite {
- public:
+public:
   LogInfo();
   virtual ~LogInfo();
 
@@ -1598,7 +1608,7 @@ class LogInfo : public ::google::protobuf::MessageLite {
 
   static const LogInfo& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1606,7 +1616,7 @@ class LogInfo : public ::google::protobuf::MessageLite {
   static inline const LogInfo* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(LogInfo* other);
 
@@ -1626,11 +1636,13 @@ class LogInfo : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -1680,7 +1692,7 @@ class LogInfo : public ::google::protobuf::MessageLite {
   inline void set_host_defeat_count(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS3_Frpg2PlayerData.LogInfo)
- private:
+private:
   inline void set_has_clear_count();
   inline void clear_has_clear_count();
   inline void set_has_death_count();
@@ -1704,11 +1716,11 @@ class LogInfo : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 coop_success_count_;
   ::google::protobuf::uint32 dark_spirit_defeat_count_;
   ::google::protobuf::uint32 host_defeat_count_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFrpg2PlayerData_2eproto();
 
@@ -1718,7 +1730,7 @@ class LogInfo : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class StatsInfo : public ::google::protobuf::MessageLite {
- public:
+public:
   StatsInfo();
   virtual ~StatsInfo();
 
@@ -1739,7 +1751,7 @@ class StatsInfo : public ::google::protobuf::MessageLite {
 
   static const StatsInfo& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1747,7 +1759,7 @@ class StatsInfo : public ::google::protobuf::MessageLite {
   static inline const StatsInfo* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(StatsInfo* other);
 
@@ -1767,11 +1779,13 @@ class StatsInfo : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -1839,7 +1853,7 @@ class StatsInfo : public ::google::protobuf::MessageLite {
   inline void set_allocated_date_time_2(::DS3_Frpg2PlayerData::DateTime* date_time_2);
 
   // @@protoc_insertion_point(class_scope:DS3_Frpg2PlayerData.StatsInfo)
- private:
+private:
   inline void set_has_unknown_1();
   inline void clear_has_unknown_1();
   inline void set_has_unknown_2();
@@ -1869,11 +1883,11 @@ class StatsInfo : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 unknown_6_;
   ::DS3_Frpg2PlayerData::DateTime* date_time_1_;
   ::DS3_Frpg2PlayerData::DateTime* date_time_2_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFrpg2PlayerData_2eproto();
 
@@ -1883,7 +1897,7 @@ class StatsInfo : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class Equipment : public ::google::protobuf::MessageLite {
- public:
+public:
   Equipment();
   virtual ~Equipment();
 
@@ -1904,7 +1918,7 @@ class Equipment : public ::google::protobuf::MessageLite {
 
   static const Equipment& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1912,7 +1926,7 @@ class Equipment : public ::google::protobuf::MessageLite {
   static inline const Equipment* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(Equipment* other);
 
@@ -1932,11 +1946,13 @@ class Equipment : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -2364,7 +2380,7 @@ class Equipment : public ::google::protobuf::MessageLite {
   inline void set_unknown_60(::google::protobuf::int32 value);
 
   // @@protoc_insertion_point(class_scope:DS3_Frpg2PlayerData.Equipment)
- private:
+private:
   inline void set_has_left_weapon_1();
   inline void clear_has_left_weapon_1();
   inline void set_has_left_weapon_2();
@@ -2550,11 +2566,11 @@ class Equipment : public ::google::protobuf::MessageLite {
   ::google::protobuf::int32 unknown_59_;
   ::google::protobuf::int32 unknown_60_;
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFrpg2PlayerData_2eproto();
 
@@ -2564,7 +2580,7 @@ class Equipment : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class PlayerLocation : public ::google::protobuf::MessageLite {
- public:
+public:
   PlayerLocation();
   virtual ~PlayerLocation();
 
@@ -2585,7 +2601,7 @@ class PlayerLocation : public ::google::protobuf::MessageLite {
 
   static const PlayerLocation& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -2593,7 +2609,7 @@ class PlayerLocation : public ::google::protobuf::MessageLite {
   static inline const PlayerLocation* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PlayerLocation* other);
 
@@ -2613,11 +2629,13 @@ class PlayerLocation : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -2639,7 +2657,7 @@ class PlayerLocation : public ::google::protobuf::MessageLite {
   inline void set_online_area_id(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS3_Frpg2PlayerData.PlayerLocation)
- private:
+private:
   inline void set_has_map_id();
   inline void clear_has_map_id();
   inline void set_has_online_area_id();
@@ -2651,11 +2669,11 @@ class PlayerLocation : public ::google::protobuf::MessageLite {
   mutable int _cached_size_;
   ::google::protobuf::uint32 map_id_;
   ::google::protobuf::uint32 online_area_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFrpg2PlayerData_2eproto();
 
@@ -2665,7 +2683,7 @@ class PlayerLocation : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class DefenseInfo : public ::google::protobuf::MessageLite {
- public:
+public:
   DefenseInfo();
   virtual ~DefenseInfo();
 
@@ -2686,7 +2704,7 @@ class DefenseInfo : public ::google::protobuf::MessageLite {
 
   static const DefenseInfo& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -2694,7 +2712,7 @@ class DefenseInfo : public ::google::protobuf::MessageLite {
   static inline const DefenseInfo* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(DefenseInfo* other);
 
@@ -2714,11 +2732,13 @@ class DefenseInfo : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -2782,7 +2802,7 @@ class DefenseInfo : public ::google::protobuf::MessageLite {
   inline void set_dark(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS3_Frpg2PlayerData.DefenseInfo)
- private:
+private:
   inline void set_has_physical();
   inline void clear_has_physical();
   inline void set_has_strike();
@@ -2812,11 +2832,11 @@ class DefenseInfo : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 fire_;
   ::google::protobuf::uint32 lightning_;
   ::google::protobuf::uint32 dark_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFrpg2PlayerData_2eproto();
 
@@ -2826,7 +2846,7 @@ class DefenseInfo : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class CutRateInfo : public ::google::protobuf::MessageLite {
- public:
+public:
   CutRateInfo();
   virtual ~CutRateInfo();
 
@@ -2847,7 +2867,7 @@ class CutRateInfo : public ::google::protobuf::MessageLite {
 
   static const CutRateInfo& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -2855,7 +2875,7 @@ class CutRateInfo : public ::google::protobuf::MessageLite {
   static inline const CutRateInfo* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(CutRateInfo* other);
 
@@ -2875,11 +2895,13 @@ class CutRateInfo : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -2943,7 +2965,7 @@ class CutRateInfo : public ::google::protobuf::MessageLite {
   inline void set_dark(float value);
 
   // @@protoc_insertion_point(class_scope:DS3_Frpg2PlayerData.CutRateInfo)
- private:
+private:
   inline void set_has_physical();
   inline void clear_has_physical();
   inline void set_has_strike();
@@ -2973,11 +2995,11 @@ class CutRateInfo : public ::google::protobuf::MessageLite {
   float fire_;
   float lightning_;
   float dark_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFrpg2PlayerData_2eproto();
 
@@ -2987,7 +3009,7 @@ class CutRateInfo : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class ResistanceInfo : public ::google::protobuf::MessageLite {
- public:
+public:
   ResistanceInfo();
   virtual ~ResistanceInfo();
 
@@ -3008,7 +3030,7 @@ class ResistanceInfo : public ::google::protobuf::MessageLite {
 
   static const ResistanceInfo& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -3016,7 +3038,7 @@ class ResistanceInfo : public ::google::protobuf::MessageLite {
   static inline const ResistanceInfo* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(ResistanceInfo* other);
 
@@ -3036,11 +3058,13 @@ class ResistanceInfo : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -3076,7 +3100,7 @@ class ResistanceInfo : public ::google::protobuf::MessageLite {
   inline void set_curse(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS3_Frpg2PlayerData.ResistanceInfo)
- private:
+private:
   inline void set_has_bleed();
   inline void clear_has_bleed();
   inline void set_has_poison();
@@ -3094,11 +3118,11 @@ class ResistanceInfo : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 poison_;
   ::google::protobuf::uint32 frost_;
   ::google::protobuf::uint32 curse_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFrpg2PlayerData_2eproto();
 
@@ -3108,7 +3132,7 @@ class ResistanceInfo : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class Vector : public ::google::protobuf::MessageLite {
- public:
+public:
   Vector();
   virtual ~Vector();
 
@@ -3129,7 +3153,7 @@ class Vector : public ::google::protobuf::MessageLite {
 
   static const Vector& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -3137,7 +3161,7 @@ class Vector : public ::google::protobuf::MessageLite {
   static inline const Vector* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(Vector* other);
 
@@ -3157,11 +3181,13 @@ class Vector : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -3190,7 +3216,7 @@ class Vector : public ::google::protobuf::MessageLite {
   inline void set_z(float value);
 
   // @@protoc_insertion_point(class_scope:DS3_Frpg2PlayerData.Vector)
- private:
+private:
   inline void set_has_x();
   inline void clear_has_x();
   inline void set_has_y();
@@ -3205,11 +3231,11 @@ class Vector : public ::google::protobuf::MessageLite {
   float x_;
   float y_;
   float z_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFrpg2PlayerData_2eproto();
 
@@ -3219,7 +3245,7 @@ class Vector : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class BonfireInfo : public ::google::protobuf::MessageLite {
- public:
+public:
   BonfireInfo();
   virtual ~BonfireInfo();
 
@@ -3240,7 +3266,7 @@ class BonfireInfo : public ::google::protobuf::MessageLite {
 
   static const BonfireInfo& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -3248,7 +3274,7 @@ class BonfireInfo : public ::google::protobuf::MessageLite {
   static inline const BonfireInfo* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(BonfireInfo* other);
 
@@ -3268,11 +3294,13 @@ class BonfireInfo : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -3294,7 +3322,7 @@ class BonfireInfo : public ::google::protobuf::MessageLite {
   inline void set_has_been_lit(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS3_Frpg2PlayerData.BonfireInfo)
- private:
+private:
   inline void set_has_bonfire_id();
   inline void clear_has_bonfire_id();
   inline void set_has_has_been_lit();
@@ -3306,11 +3334,11 @@ class BonfireInfo : public ::google::protobuf::MessageLite {
   mutable int _cached_size_;
   ::google::protobuf::uint32 bonfire_id_;
   ::google::protobuf::uint32 has_been_lit_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS3_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS3_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS3_5fFrpg2PlayerData_2eproto();
 
@@ -3318,7 +3346,6 @@ class BonfireInfo : public ::google::protobuf::MessageLite {
   static BonfireInfo* default_instance_;
 };
 // ===================================================================
-
 
 // ===================================================================
 
@@ -3578,7 +3605,7 @@ inline ::std::string* UnknownStruct1::release_unknown_2() {
     return NULL;
   } else {
     ::std::string* temp = unknown_2_;
-    unknown_2_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    unknown_2_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -3591,7 +3618,7 @@ inline void UnknownStruct1::set_allocated_unknown_2(::std::string* unknown_2) {
     unknown_2_ = unknown_2;
   } else {
     clear_has_unknown_2();
-    unknown_2_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    unknown_2_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS3_Frpg2PlayerData.UnknownStruct1.unknown_2)
 }
@@ -3635,7 +3662,8 @@ inline void AllStatus::clear_has_player_location() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void AllStatus::clear_player_location() {
-  if (player_location_ != NULL) player_location_->::DS3_Frpg2PlayerData::PlayerLocation::Clear();
+  if (player_location_ != NULL)
+    player_location_->::DS3_Frpg2PlayerData::PlayerLocation::Clear();
   clear_has_player_location();
 }
 inline const ::DS3_Frpg2PlayerData::PlayerLocation& AllStatus::player_location() const {
@@ -3648,7 +3676,8 @@ inline const ::DS3_Frpg2PlayerData::PlayerLocation& AllStatus::player_location()
 }
 inline ::DS3_Frpg2PlayerData::PlayerLocation* AllStatus::mutable_player_location() {
   set_has_player_location();
-  if (player_location_ == NULL) player_location_ = new ::DS3_Frpg2PlayerData::PlayerLocation;
+  if (player_location_ == NULL)
+    player_location_ = new ::DS3_Frpg2PlayerData::PlayerLocation;
   // @@protoc_insertion_point(field_mutable:DS3_Frpg2PlayerData.AllStatus.player_location)
   return player_location_;
 }
@@ -3680,7 +3709,8 @@ inline void AllStatus::clear_has_log_info() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void AllStatus::clear_log_info() {
-  if (log_info_ != NULL) log_info_->::DS3_Frpg2PlayerData::LogInfo::Clear();
+  if (log_info_ != NULL)
+    log_info_->::DS3_Frpg2PlayerData::LogInfo::Clear();
   clear_has_log_info();
 }
 inline const ::DS3_Frpg2PlayerData::LogInfo& AllStatus::log_info() const {
@@ -3693,7 +3723,8 @@ inline const ::DS3_Frpg2PlayerData::LogInfo& AllStatus::log_info() const {
 }
 inline ::DS3_Frpg2PlayerData::LogInfo* AllStatus::mutable_log_info() {
   set_has_log_info();
-  if (log_info_ == NULL) log_info_ = new ::DS3_Frpg2PlayerData::LogInfo;
+  if (log_info_ == NULL)
+    log_info_ = new ::DS3_Frpg2PlayerData::LogInfo;
   // @@protoc_insertion_point(field_mutable:DS3_Frpg2PlayerData.AllStatus.log_info)
   return log_info_;
 }
@@ -3725,7 +3756,8 @@ inline void AllStatus::clear_has_player_status() {
   _has_bits_[0] &= ~0x00000004u;
 }
 inline void AllStatus::clear_player_status() {
-  if (player_status_ != NULL) player_status_->::DS3_Frpg2PlayerData::PlayerStatus::Clear();
+  if (player_status_ != NULL)
+    player_status_->::DS3_Frpg2PlayerData::PlayerStatus::Clear();
   clear_has_player_status();
 }
 inline const ::DS3_Frpg2PlayerData::PlayerStatus& AllStatus::player_status() const {
@@ -3738,7 +3770,8 @@ inline const ::DS3_Frpg2PlayerData::PlayerStatus& AllStatus::player_status() con
 }
 inline ::DS3_Frpg2PlayerData::PlayerStatus* AllStatus::mutable_player_status() {
   set_has_player_status();
-  if (player_status_ == NULL) player_status_ = new ::DS3_Frpg2PlayerData::PlayerStatus;
+  if (player_status_ == NULL)
+    player_status_ = new ::DS3_Frpg2PlayerData::PlayerStatus;
   // @@protoc_insertion_point(field_mutable:DS3_Frpg2PlayerData.AllStatus.player_status)
   return player_status_;
 }
@@ -3770,7 +3803,8 @@ inline void AllStatus::clear_has_play_data() {
   _has_bits_[0] &= ~0x00000008u;
 }
 inline void AllStatus::clear_play_data() {
-  if (play_data_ != NULL) play_data_->::DS3_Frpg2PlayerData::PlayData::Clear();
+  if (play_data_ != NULL)
+    play_data_->::DS3_Frpg2PlayerData::PlayData::Clear();
   clear_has_play_data();
 }
 inline const ::DS3_Frpg2PlayerData::PlayData& AllStatus::play_data() const {
@@ -3783,7 +3817,8 @@ inline const ::DS3_Frpg2PlayerData::PlayData& AllStatus::play_data() const {
 }
 inline ::DS3_Frpg2PlayerData::PlayData* AllStatus::mutable_play_data() {
   set_has_play_data();
-  if (play_data_ == NULL) play_data_ = new ::DS3_Frpg2PlayerData::PlayData;
+  if (play_data_ == NULL)
+    play_data_ = new ::DS3_Frpg2PlayerData::PlayData;
   // @@protoc_insertion_point(field_mutable:DS3_Frpg2PlayerData.AllStatus.play_data)
   return play_data_;
 }
@@ -3815,7 +3850,8 @@ inline void AllStatus::clear_has_stats_info() {
   _has_bits_[0] &= ~0x00000010u;
 }
 inline void AllStatus::clear_stats_info() {
-  if (stats_info_ != NULL) stats_info_->::DS3_Frpg2PlayerData::StatsInfo::Clear();
+  if (stats_info_ != NULL)
+    stats_info_->::DS3_Frpg2PlayerData::StatsInfo::Clear();
   clear_has_stats_info();
 }
 inline const ::DS3_Frpg2PlayerData::StatsInfo& AllStatus::stats_info() const {
@@ -3828,7 +3864,8 @@ inline const ::DS3_Frpg2PlayerData::StatsInfo& AllStatus::stats_info() const {
 }
 inline ::DS3_Frpg2PlayerData::StatsInfo* AllStatus::mutable_stats_info() {
   set_has_stats_info();
-  if (stats_info_ == NULL) stats_info_ = new ::DS3_Frpg2PlayerData::StatsInfo;
+  if (stats_info_ == NULL)
+    stats_info_ = new ::DS3_Frpg2PlayerData::StatsInfo;
   // @@protoc_insertion_point(field_mutable:DS3_Frpg2PlayerData.AllStatus.stats_info)
   return stats_info_;
 }
@@ -3860,7 +3897,8 @@ inline void AllStatus::clear_has_equipment() {
   _has_bits_[0] &= ~0x00000020u;
 }
 inline void AllStatus::clear_equipment() {
-  if (equipment_ != NULL) equipment_->::DS3_Frpg2PlayerData::Equipment::Clear();
+  if (equipment_ != NULL)
+    equipment_->::DS3_Frpg2PlayerData::Equipment::Clear();
   clear_has_equipment();
 }
 inline const ::DS3_Frpg2PlayerData::Equipment& AllStatus::equipment() const {
@@ -3873,7 +3911,8 @@ inline const ::DS3_Frpg2PlayerData::Equipment& AllStatus::equipment() const {
 }
 inline ::DS3_Frpg2PlayerData::Equipment* AllStatus::mutable_equipment() {
   set_has_equipment();
-  if (equipment_ == NULL) equipment_ = new ::DS3_Frpg2PlayerData::Equipment;
+  if (equipment_ == NULL)
+    equipment_ = new ::DS3_Frpg2PlayerData::Equipment;
   // @@protoc_insertion_point(field_mutable:DS3_Frpg2PlayerData.AllStatus.equipment)
   return equipment_;
 }
@@ -3905,7 +3944,8 @@ inline void AllStatus::clear_has_unknown_1() {
   _has_bits_[0] &= ~0x00000040u;
 }
 inline void AllStatus::clear_unknown_1() {
-  if (unknown_1_ != NULL) unknown_1_->::DS3_Frpg2PlayerData::UnknownStruct1::Clear();
+  if (unknown_1_ != NULL)
+    unknown_1_->::DS3_Frpg2PlayerData::UnknownStruct1::Clear();
   clear_has_unknown_1();
 }
 inline const ::DS3_Frpg2PlayerData::UnknownStruct1& AllStatus::unknown_1() const {
@@ -3918,7 +3958,8 @@ inline const ::DS3_Frpg2PlayerData::UnknownStruct1& AllStatus::unknown_1() const
 }
 inline ::DS3_Frpg2PlayerData::UnknownStruct1* AllStatus::mutable_unknown_1() {
   set_has_unknown_1();
-  if (unknown_1_ == NULL) unknown_1_ = new ::DS3_Frpg2PlayerData::UnknownStruct1;
+  if (unknown_1_ == NULL)
+    unknown_1_ = new ::DS3_Frpg2PlayerData::UnknownStruct1;
   // @@protoc_insertion_point(field_mutable:DS3_Frpg2PlayerData.AllStatus.unknown_1)
   return unknown_1_;
 }
@@ -4295,7 +4336,7 @@ inline void PlayerStatus::clear_world_type() {
 }
 inline ::DS3_Frpg2PlayerData::WorldType PlayerStatus::world_type() const {
   // @@protoc_insertion_point(field_get:DS3_Frpg2PlayerData.PlayerStatus.world_type)
-  return static_cast< ::DS3_Frpg2PlayerData::WorldType >(world_type_);
+  return static_cast<::DS3_Frpg2PlayerData::WorldType>(world_type_);
 }
 inline void PlayerStatus::set_world_type(::DS3_Frpg2PlayerData::WorldType value) {
   assert(::DS3_Frpg2PlayerData::WorldType_IsValid(value));
@@ -4347,12 +4388,12 @@ inline void PlayerStatus::add_played_areas(::google::protobuf::uint32 value) {
   played_areas_.Add(value);
   // @@protoc_insertion_point(field_add:DS3_Frpg2PlayerData.PlayerStatus.played_areas)
 }
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+inline const ::google::protobuf::RepeatedField<::google::protobuf::uint32>&
 PlayerStatus::played_areas() const {
   // @@protoc_insertion_point(field_list:DS3_Frpg2PlayerData.PlayerStatus.played_areas)
   return played_areas_;
 }
-inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+inline ::google::protobuf::RepeatedField<::google::protobuf::uint32>*
 PlayerStatus::mutable_played_areas() {
   // @@protoc_insertion_point(field_mutable_list:DS3_Frpg2PlayerData.PlayerStatus.played_areas)
   return &played_areas_;
@@ -4377,12 +4418,12 @@ inline void PlayerStatus::add_unknown_18(::google::protobuf::uint32 value) {
   unknown_18_.Add(value);
   // @@protoc_insertion_point(field_add:DS3_Frpg2PlayerData.PlayerStatus.unknown_18)
 }
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+inline const ::google::protobuf::RepeatedField<::google::protobuf::uint32>&
 PlayerStatus::unknown_18() const {
   // @@protoc_insertion_point(field_list:DS3_Frpg2PlayerData.PlayerStatus.unknown_18)
   return unknown_18_;
 }
-inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+inline ::google::protobuf::RepeatedField<::google::protobuf::uint32>*
 PlayerStatus::mutable_unknown_18() {
   // @@protoc_insertion_point(field_mutable_list:DS3_Frpg2PlayerData.PlayerStatus.unknown_18)
   return &unknown_18_;
@@ -4764,7 +4805,7 @@ inline void PlayerStatus::clear_net_mode() {
 }
 inline ::DS3_Frpg2PlayerData::NetMode PlayerStatus::net_mode() const {
   // @@protoc_insertion_point(field_get:DS3_Frpg2PlayerData.PlayerStatus.net_mode)
-  return static_cast< ::DS3_Frpg2PlayerData::NetMode >(net_mode_);
+  return static_cast<::DS3_Frpg2PlayerData::NetMode>(net_mode_);
 }
 inline void PlayerStatus::set_net_mode(::DS3_Frpg2PlayerData::NetMode value) {
   assert(::DS3_Frpg2PlayerData::NetMode_IsValid(value));
@@ -4813,7 +4854,7 @@ inline void PlayerStatus::clear_invasion_type() {
 }
 inline ::DS3_Frpg2PlayerData::InvasionType PlayerStatus::invasion_type() const {
   // @@protoc_insertion_point(field_get:DS3_Frpg2PlayerData.PlayerStatus.invasion_type)
-  return static_cast< ::DS3_Frpg2PlayerData::InvasionType >(invasion_type_);
+  return static_cast<::DS3_Frpg2PlayerData::InvasionType>(invasion_type_);
 }
 inline void PlayerStatus::set_invasion_type(::DS3_Frpg2PlayerData::InvasionType value) {
   assert(::DS3_Frpg2PlayerData::InvasionType_IsValid(value));
@@ -4904,7 +4945,7 @@ inline ::std::string* PlayerStatus::release_name() {
     return NULL;
   } else {
     ::std::string* temp = name_;
-    name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    name_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -4917,7 +4958,7 @@ inline void PlayerStatus::set_allocated_name(::std::string* name) {
     name_ = name;
   } else {
     clear_has_name();
-    name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    name_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS3_Frpg2PlayerData.PlayerStatus.name)
 }
@@ -5389,7 +5430,8 @@ inline void PlayerStatus::clear_has_defense_info() {
   _has_bits_[1] &= ~0x02000000u;
 }
 inline void PlayerStatus::clear_defense_info() {
-  if (defense_info_ != NULL) defense_info_->::DS3_Frpg2PlayerData::DefenseInfo::Clear();
+  if (defense_info_ != NULL)
+    defense_info_->::DS3_Frpg2PlayerData::DefenseInfo::Clear();
   clear_has_defense_info();
 }
 inline const ::DS3_Frpg2PlayerData::DefenseInfo& PlayerStatus::defense_info() const {
@@ -5402,7 +5444,8 @@ inline const ::DS3_Frpg2PlayerData::DefenseInfo& PlayerStatus::defense_info() co
 }
 inline ::DS3_Frpg2PlayerData::DefenseInfo* PlayerStatus::mutable_defense_info() {
   set_has_defense_info();
-  if (defense_info_ == NULL) defense_info_ = new ::DS3_Frpg2PlayerData::DefenseInfo;
+  if (defense_info_ == NULL)
+    defense_info_ = new ::DS3_Frpg2PlayerData::DefenseInfo;
   // @@protoc_insertion_point(field_mutable:DS3_Frpg2PlayerData.PlayerStatus.defense_info)
   return defense_info_;
 }
@@ -5434,7 +5477,8 @@ inline void PlayerStatus::clear_has_cutrate_info() {
   _has_bits_[1] &= ~0x04000000u;
 }
 inline void PlayerStatus::clear_cutrate_info() {
-  if (cutrate_info_ != NULL) cutrate_info_->::DS3_Frpg2PlayerData::CutRateInfo::Clear();
+  if (cutrate_info_ != NULL)
+    cutrate_info_->::DS3_Frpg2PlayerData::CutRateInfo::Clear();
   clear_has_cutrate_info();
 }
 inline const ::DS3_Frpg2PlayerData::CutRateInfo& PlayerStatus::cutrate_info() const {
@@ -5447,7 +5491,8 @@ inline const ::DS3_Frpg2PlayerData::CutRateInfo& PlayerStatus::cutrate_info() co
 }
 inline ::DS3_Frpg2PlayerData::CutRateInfo* PlayerStatus::mutable_cutrate_info() {
   set_has_cutrate_info();
-  if (cutrate_info_ == NULL) cutrate_info_ = new ::DS3_Frpg2PlayerData::CutRateInfo;
+  if (cutrate_info_ == NULL)
+    cutrate_info_ = new ::DS3_Frpg2PlayerData::CutRateInfo;
   // @@protoc_insertion_point(field_mutable:DS3_Frpg2PlayerData.PlayerStatus.cutrate_info)
   return cutrate_info_;
 }
@@ -5479,7 +5524,8 @@ inline void PlayerStatus::clear_has_armor_resistance_info() {
   _has_bits_[1] &= ~0x08000000u;
 }
 inline void PlayerStatus::clear_armor_resistance_info() {
-  if (armor_resistance_info_ != NULL) armor_resistance_info_->::DS3_Frpg2PlayerData::ResistanceInfo::Clear();
+  if (armor_resistance_info_ != NULL)
+    armor_resistance_info_->::DS3_Frpg2PlayerData::ResistanceInfo::Clear();
   clear_has_armor_resistance_info();
 }
 inline const ::DS3_Frpg2PlayerData::ResistanceInfo& PlayerStatus::armor_resistance_info() const {
@@ -5492,7 +5538,8 @@ inline const ::DS3_Frpg2PlayerData::ResistanceInfo& PlayerStatus::armor_resistan
 }
 inline ::DS3_Frpg2PlayerData::ResistanceInfo* PlayerStatus::mutable_armor_resistance_info() {
   set_has_armor_resistance_info();
-  if (armor_resistance_info_ == NULL) armor_resistance_info_ = new ::DS3_Frpg2PlayerData::ResistanceInfo;
+  if (armor_resistance_info_ == NULL)
+    armor_resistance_info_ = new ::DS3_Frpg2PlayerData::ResistanceInfo;
   // @@protoc_insertion_point(field_mutable:DS3_Frpg2PlayerData.PlayerStatus.armor_resistance_info)
   return armor_resistance_info_;
 }
@@ -5524,7 +5571,8 @@ inline void PlayerStatus::clear_has_base_resistance_info() {
   _has_bits_[1] &= ~0x10000000u;
 }
 inline void PlayerStatus::clear_base_resistance_info() {
-  if (base_resistance_info_ != NULL) base_resistance_info_->::DS3_Frpg2PlayerData::ResistanceInfo::Clear();
+  if (base_resistance_info_ != NULL)
+    base_resistance_info_->::DS3_Frpg2PlayerData::ResistanceInfo::Clear();
   clear_has_base_resistance_info();
 }
 inline const ::DS3_Frpg2PlayerData::ResistanceInfo& PlayerStatus::base_resistance_info() const {
@@ -5537,7 +5585,8 @@ inline const ::DS3_Frpg2PlayerData::ResistanceInfo& PlayerStatus::base_resistanc
 }
 inline ::DS3_Frpg2PlayerData::ResistanceInfo* PlayerStatus::mutable_base_resistance_info() {
   set_has_base_resistance_info();
-  if (base_resistance_info_ == NULL) base_resistance_info_ = new ::DS3_Frpg2PlayerData::ResistanceInfo;
+  if (base_resistance_info_ == NULL)
+    base_resistance_info_ = new ::DS3_Frpg2PlayerData::ResistanceInfo;
   // @@protoc_insertion_point(field_mutable:DS3_Frpg2PlayerData.PlayerStatus.base_resistance_info)
   return base_resistance_info_;
 }
@@ -5577,12 +5626,12 @@ inline void PlayerStatus::add_anticheat_data(::google::protobuf::int32 value) {
   anticheat_data_.Add(value);
   // @@protoc_insertion_point(field_add:DS3_Frpg2PlayerData.PlayerStatus.anticheat_data)
 }
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
+inline const ::google::protobuf::RepeatedField<::google::protobuf::int32>&
 PlayerStatus::anticheat_data() const {
   // @@protoc_insertion_point(field_list:DS3_Frpg2PlayerData.PlayerStatus.anticheat_data)
   return anticheat_data_;
 }
-inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
+inline ::google::protobuf::RepeatedField<::google::protobuf::int32>*
 PlayerStatus::mutable_anticheat_data() {
   // @@protoc_insertion_point(field_mutable_list:DS3_Frpg2PlayerData.PlayerStatus.anticheat_data)
   return &anticheat_data_;
@@ -6163,12 +6212,12 @@ inline ::DS3_Frpg2PlayerData::BonfireInfo* PlayData::add_bonfire_info() {
   // @@protoc_insertion_point(field_add:DS3_Frpg2PlayerData.PlayData.bonfire_info)
   return bonfire_info_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS3_Frpg2PlayerData::BonfireInfo >&
+inline const ::google::protobuf::RepeatedPtrField<::DS3_Frpg2PlayerData::BonfireInfo>&
 PlayData::bonfire_info() const {
   // @@protoc_insertion_point(field_list:DS3_Frpg2PlayerData.PlayData.bonfire_info)
   return bonfire_info_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS3_Frpg2PlayerData::BonfireInfo >*
+inline ::google::protobuf::RepeatedPtrField<::DS3_Frpg2PlayerData::BonfireInfo>*
 PlayData::mutable_bonfire_info() {
   // @@protoc_insertion_point(field_mutable_list:DS3_Frpg2PlayerData.PlayData.bonfire_info)
   return &bonfire_info_;
@@ -6481,7 +6530,8 @@ inline void StatsInfo::clear_has_date_time_1() {
   _has_bits_[0] &= ~0x00000040u;
 }
 inline void StatsInfo::clear_date_time_1() {
-  if (date_time_1_ != NULL) date_time_1_->::DS3_Frpg2PlayerData::DateTime::Clear();
+  if (date_time_1_ != NULL)
+    date_time_1_->::DS3_Frpg2PlayerData::DateTime::Clear();
   clear_has_date_time_1();
 }
 inline const ::DS3_Frpg2PlayerData::DateTime& StatsInfo::date_time_1() const {
@@ -6494,7 +6544,8 @@ inline const ::DS3_Frpg2PlayerData::DateTime& StatsInfo::date_time_1() const {
 }
 inline ::DS3_Frpg2PlayerData::DateTime* StatsInfo::mutable_date_time_1() {
   set_has_date_time_1();
-  if (date_time_1_ == NULL) date_time_1_ = new ::DS3_Frpg2PlayerData::DateTime;
+  if (date_time_1_ == NULL)
+    date_time_1_ = new ::DS3_Frpg2PlayerData::DateTime;
   // @@protoc_insertion_point(field_mutable:DS3_Frpg2PlayerData.StatsInfo.date_time_1)
   return date_time_1_;
 }
@@ -6526,7 +6577,8 @@ inline void StatsInfo::clear_has_date_time_2() {
   _has_bits_[0] &= ~0x00000080u;
 }
 inline void StatsInfo::clear_date_time_2() {
-  if (date_time_2_ != NULL) date_time_2_->::DS3_Frpg2PlayerData::DateTime::Clear();
+  if (date_time_2_ != NULL)
+    date_time_2_->::DS3_Frpg2PlayerData::DateTime::Clear();
   clear_has_date_time_2();
 }
 inline const ::DS3_Frpg2PlayerData::DateTime& StatsInfo::date_time_2() const {
@@ -6539,7 +6591,8 @@ inline const ::DS3_Frpg2PlayerData::DateTime& StatsInfo::date_time_2() const {
 }
 inline ::DS3_Frpg2PlayerData::DateTime* StatsInfo::mutable_date_time_2() {
   set_has_date_time_2();
-  if (date_time_2_ == NULL) date_time_2_ = new ::DS3_Frpg2PlayerData::DateTime;
+  if (date_time_2_ == NULL)
+    date_time_2_ = new ::DS3_Frpg2PlayerData::DateTime;
   // @@protoc_insertion_point(field_mutable:DS3_Frpg2PlayerData.StatsInfo.date_time_2)
   return date_time_2_;
 }
@@ -8676,11 +8729,10 @@ inline void BonfireInfo::set_has_been_lit(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:DS3_Frpg2PlayerData.BonfireInfo.has_been_lit)
 }
 
-
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace DS3_Frpg2PlayerData
+} // namespace DS3_Frpg2PlayerData
 
 // @@protoc_insertion_point(global_scope)
 
-#endif  // PROTOBUF_DS3_5fFrpg2PlayerData_2eproto__INCLUDED
+#endif // PROTOBUF_DS3_5fFrpg2PlayerData_2eproto__INCLUDED

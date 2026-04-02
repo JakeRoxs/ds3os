@@ -10,8 +10,7 @@
 
 #include "Shared/Core/Utils/DebugObjects.h"
 
-namespace Debug
-{
+namespace Debug {
 #define TIMER(Name, Description) DebugTimer Name(Description);
 #define COUNTER(Name, Description) DebugCounter Name(Description);
 
@@ -19,4 +18,4 @@ namespace Debug
 
 #undef TIMER
 #undef COUNTER
-};
+}; // namespace Debug

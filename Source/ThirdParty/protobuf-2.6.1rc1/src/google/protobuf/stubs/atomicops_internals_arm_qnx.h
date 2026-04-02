@@ -44,11 +44,10 @@ inline Atomic32 QNXCmpxchg(Atomic32 old_value,
                            Atomic32 new_value,
                            volatile Atomic32* ptr) {
   return static_cast<Atomic32>(
-      _smp_cmpxchg((volatile unsigned *)ptr,
+      _smp_cmpxchg((volatile unsigned*)ptr,
                    (unsigned)old_value,
                    (unsigned)new_value));
 }
-
 
 inline Atomic32 NoBarrier_CompareAndSwap(volatile Atomic32* ptr,
                                          Atomic32 old_value,
@@ -139,8 +138,8 @@ inline Atomic32 Release_Load(volatile const Atomic32* ptr) {
   return *ptr;
 }
 
-}  // namespace internal
-}  // namespace protobuf
-}  // namespace google
+} // namespace internal
+} // namespace protobuf
+} // namespace google
 
-#endif  // GOOGLE_PROTOBUF_ATOMICOPS_INTERNALS_ARM_QNX_H_
+#endif // GOOGLE_PROTOBUF_ATOMICOPS_INTERNALS_ARM_QNX_H_

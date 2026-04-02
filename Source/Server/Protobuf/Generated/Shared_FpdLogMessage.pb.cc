@@ -24,7 +24,8 @@ void protobuf_AddDesc_Shared_5fFpdLogMessage_2eproto_impl() {
 #else
 void protobuf_AddDesc_Shared_5fFpdLogMessage_2eproto() {
   static bool already_here = false;
-  if (already_here) return;
+  if (already_here)
+    return;
   already_here = true;
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -36,7 +37,7 @@ void protobuf_AddDesc_Shared_5fFpdLogMessage_2eproto() {
 GOOGLE_PROTOBUF_DECLARE_ONCE(protobuf_AddDesc_Shared_5fFpdLogMessage_2eproto_once_);
 void protobuf_AddDesc_Shared_5fFpdLogMessage_2eproto() {
   ::google::protobuf::GoogleOnceInit(&protobuf_AddDesc_Shared_5fFpdLogMessage_2eproto_once_,
-                 &protobuf_AddDesc_Shared_5fFpdLogMessage_2eproto_impl);
+                                     &protobuf_AddDesc_Shared_5fFpdLogMessage_2eproto_impl);
 }
 #else
 // Force AddDescriptors() to be called at static initialization time.
@@ -49,6 +50,6 @@ struct StaticDescriptorInitializer_Shared_5fFpdLogMessage_2eproto {
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace Shared_FpdLogMessage
+} // namespace Shared_FpdLogMessage
 
 // @@protoc_insertion_point(global_scope)

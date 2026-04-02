@@ -19,19 +19,16 @@
 //
 //		GET	- Gets some general debug statistics about the server.
 
-class DebugStatisticsHandler : public WebUIHandler
-{
+class DebugStatisticsHandler : public WebUIHandler {
 public:
-	DebugStatisticsHandler(WebUIService* InService);
+  DebugStatisticsHandler(WebUIService* InService);
 
-	virtual bool handleGet(CivetServer* Server, struct mg_connection* Connection) override;
+  virtual bool handleGet(CivetServer* Server, struct mg_connection* Connection) override;
 
-	virtual void Register(CivetServer* Server) override;
+  virtual void Register(CivetServer* Server) override;
 
-	virtual void GatherData() override;
+  virtual void GatherData() override;
 
 protected:
-
-	std::mutex DataMutex;
-
+  std::mutex DataMutex;
 };

@@ -9,9 +9,8 @@
 
 //////////////////////////////////////////////////////////////////// DLL Stuff
 //
-__declspec(dllexport) unsigned long __stdcall Dll3Function(unsigned long Value)
-{
-    return Value + 1;
+__declspec(dllexport) unsigned long __stdcall Dll3Function(unsigned long Value) {
+  return Value + 1;
 }
 
 ///////////////////////////////////////////////////////////////// End of File.

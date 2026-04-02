@@ -34,134 +34,130 @@
 //
 LONG dwWrote = 0;
 
-static int (WINAPI * TrueEntryPoint)(VOID) = NULL;
-static int (WINAPI * RawEntryPoint)(VOID) = NULL;
+static int(WINAPI* TrueEntryPoint)(VOID) = NULL;
+static int(WINAPI* RawEntryPoint)(VOID) = NULL;
 
 //////////////////////////////////////////////////////////////////////////////
 //
-HRESULT (STDMETHODCALLTYPE *RealIStreamWrite)(IStream * This,
-                                              const void *pv,
-                                              ULONG cb,
-                                              ULONG *pcbWritten) = NULL;
+HRESULT(STDMETHODCALLTYPE* RealIStreamWrite)(IStream* This,
+                                             const void* pv,
+                                             ULONG cb,
+                                             ULONG* pcbWritten) = NULL;
 
-HRESULT STDMETHODCALLTYPE MineIStreamWrite(IStream * This,
-                                           const void *pv,
+HRESULT STDMETHODCALLTYPE MineIStreamWrite(IStream* This,
+                                           const void* pv,
                                            ULONG cb,
-                                           ULONG *pcbWritten)
-{
-    HRESULT hr;
-    ULONG cbWritten = 0;
-    if (pcbWritten == NULL) {
-        pcbWritten = &cbWritten;
+                                           ULONG* pcbWritten) {
+  HRESULT hr;
+  ULONG cbWritten = 0;
+  if (pcbWritten == NULL) {
+    pcbWritten = &cbWritten;
+  }
+
+  hr = RealIStreamWrite(This, pv, cb, pcbWritten);
+
+  for (;;) {
+    LONG dwOld = dwWrote;
+    LONG dwNew = dwOld + *pcbWritten;
+
+    if (InterlockedCompareExchange(&dwWrote, dwNew, dwOld) == dwOld) {
+      break;
     }
+  }
 
-    hr = RealIStreamWrite(This, pv, cb, pcbWritten);
-
-    for (;;) {
-        LONG dwOld = dwWrote;
-        LONG dwNew = dwOld + *pcbWritten;
-
-        if (InterlockedCompareExchange(&dwWrote, dwNew, dwOld) == dwOld) {
-            break;
-        }
-    }
-
-    return hr;
+  return hr;
 }
 
 //////////////////////////////////////////////////////////////////////////////
 //
-int WINAPI TimedEntryPoint(VOID)
-{
-    // We couldn't call CoInitializeEx in DllMain,
-    // so we detour the vtable entries here...
-    LONG error;
-    LPSTREAM pStream = NULL;
+int WINAPI TimedEntryPoint(VOID) {
+  // We couldn't call CoInitializeEx in DllMain,
+  // so we detour the vtable entries here...
+  LONG error;
+  LPSTREAM pStream = NULL;
 
-    // Create a temporary object so we can get a vtable.
-    CreateStreamOnHGlobal(NULL, TRUE, &pStream);
+  // Create a temporary object so we can get a vtable.
+  CreateStreamOnHGlobal(NULL, TRUE, &pStream);
 
-    // Apply the detour to the vtable.
-    DetourTransactionBegin();
-    DetourUpdateThread(GetCurrentThread());
-    if (pStream != NULL) {
-        RealIStreamWrite = pStream->lpVtbl->Write;
-        DetourAttach(&(PVOID&)RealIStreamWrite, MineIStreamWrite);
-    }
-    error = DetourTransactionCommit();
+  // Apply the detour to the vtable.
+  DetourTransactionBegin();
+  DetourUpdateThread(GetCurrentThread());
+  if (pStream != NULL) {
+    RealIStreamWrite = pStream->lpVtbl->Write;
+    DetourAttach(&(PVOID&)RealIStreamWrite, MineIStreamWrite);
+  }
+  error = DetourTransactionCommit();
 
-    if (pStream != NULL) {
-        pStream->lpVtbl->Release(pStream);
-        pStream = NULL;
-    }
+  if (pStream != NULL) {
+    pStream->lpVtbl->Release(pStream);
+    pStream = NULL;
+  }
 
-    if (error == NO_ERROR) {
-        printf("wrotei" DETOURS_STRINGIFY(DETOURS_BITS) ".dll:"
-               " Detoured IStream::Wrote() from OnHGlobal.\n");
-    }
-    else {
-        printf("wrotei" DETOURS_STRINGIFY(DETOURS_BITS) ".dll:"
-               " Error detouring IStram::Wrote(): %d\n", error);
-    }
+  if (error == NO_ERROR) {
+    printf("wrotei" DETOURS_STRINGIFY(DETOURS_BITS) ".dll:"
+                                                    " Detoured IStream::Wrote() from OnHGlobal.\n");
+  } else {
+    printf("wrotei" DETOURS_STRINGIFY(DETOURS_BITS) ".dll:"
+                                                    " Error detouring IStram::Wrote(): %d\n",
+           error);
+  }
+
+  printf("wrotei" DETOURS_STRINGIFY(DETOURS_BITS) ".dll:"
+                                                  " Calling EntryPoint\n\n");
+  fflush(stdout);
+
+  return TrueEntryPoint();
+}
+
+BOOL WINAPI DllMain(HINSTANCE hinst, DWORD dwReason, LPVOID reserved) {
+  LONG error;
+  (void)hinst;
+  (void)reserved;
+
+  if (DetourIsHelperProcess()) {
+    return TRUE;
+  }
+
+  if (dwReason == DLL_PROCESS_ATTACH) {
+    DetourRestoreAfterWith();
 
     printf("wrotei" DETOURS_STRINGIFY(DETOURS_BITS) ".dll:"
-           " Calling EntryPoint\n\n");
+                                                    " Starting.\n");
     fflush(stdout);
 
-    return TrueEntryPoint();
-}
+    // NB: DllMain can't call LoadLibrary, so we hook the app entry point.
+    TrueEntryPoint = (int(WINAPI*)(VOID))DetourGetEntryPoint(NULL);
+    RawEntryPoint = TrueEntryPoint;
 
-BOOL WINAPI DllMain(HINSTANCE hinst, DWORD dwReason, LPVOID reserved)
-{
-    LONG error;
-    (void)hinst;
-    (void)reserved;
+    DetourTransactionBegin();
+    DetourUpdateThread(GetCurrentThread());
+    DetourAttach(&(PVOID&)TrueEntryPoint, TimedEntryPoint);
+    error = DetourTransactionCommit();
 
-    if (DetourIsHelperProcess()) {
-        return TRUE;
+    if (error == NO_ERROR) {
+      printf("wrotei" DETOURS_STRINGIFY(DETOURS_BITS) ".dll:"
+                                                      " Detoured EntryPoint().\n");
+    } else {
+      printf("wrotei" DETOURS_STRINGIFY(DETOURS_BITS) ".dll:"
+                                                      " Error detouring EntryPoint(): %d\n",
+             error);
     }
-
-    if (dwReason == DLL_PROCESS_ATTACH) {
-        DetourRestoreAfterWith();
-
-        printf("wrotei" DETOURS_STRINGIFY(DETOURS_BITS) ".dll:"
-               " Starting.\n");
-        fflush(stdout);
-
-        // NB: DllMain can't call LoadLibrary, so we hook the app entry point.
-        TrueEntryPoint = (int (WINAPI *)(VOID))DetourGetEntryPoint(NULL);
-        RawEntryPoint = TrueEntryPoint;
-
-        DetourTransactionBegin();
-        DetourUpdateThread(GetCurrentThread());
-        DetourAttach(&(PVOID&)TrueEntryPoint, TimedEntryPoint);
-        error = DetourTransactionCommit();
-
-        if (error == NO_ERROR) {
-            printf("wrotei" DETOURS_STRINGIFY(DETOURS_BITS) ".dll:"
-                   " Detoured EntryPoint().\n");
-        }
-        else {
-            printf("wrotei" DETOURS_STRINGIFY(DETOURS_BITS) ".dll:"
-                   " Error detouring EntryPoint(): %d\n", error);
-        }
+  } else if (dwReason == DLL_PROCESS_DETACH) {
+    DetourTransactionBegin();
+    DetourUpdateThread(GetCurrentThread());
+    if (RealIStreamWrite != NULL) {
+      DetourDetach(&(PVOID&)RealIStreamWrite, (PVOID)MineIStreamWrite);
     }
-    else if (dwReason == DLL_PROCESS_DETACH) {
-        DetourTransactionBegin();
-        DetourUpdateThread(GetCurrentThread());
-        if (RealIStreamWrite != NULL) {
-            DetourDetach(&(PVOID&)RealIStreamWrite, (PVOID)MineIStreamWrite);
-        }
-        DetourDetach(&(PVOID&)TrueEntryPoint, TimedEntryPoint);
-        error = DetourTransactionCommit();
+    DetourDetach(&(PVOID&)TrueEntryPoint, TimedEntryPoint);
+    error = DetourTransactionCommit();
 
-        printf("wrotei" DETOURS_STRINGIFY(DETOURS_BITS) ".dll:"
-               " Removed IStream::Wrote() detours (%d), wrote %d bytes.\n",
-               error, dwWrote);
+    printf("wrotei" DETOURS_STRINGIFY(DETOURS_BITS) ".dll:"
+                                                    " Removed IStream::Wrote() detours (%d), wrote %d bytes.\n",
+           error, dwWrote);
 
-        fflush(stdout);
-    }
-    return TRUE;
+    fflush(stdout);
+  }
+  return TRUE;
 }
 //
 ///////////////////////////////////////////////////////////////// End of File.

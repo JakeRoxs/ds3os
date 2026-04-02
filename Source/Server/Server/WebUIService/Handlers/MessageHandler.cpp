@@ -18,55 +18,45 @@
 #include "Shared/Core/Utils/Strings.h"
 
 MessageHandler::MessageHandler(WebUIService* InService)
-    : WebUIHandler(InService)
-{
-} 
-
-void MessageHandler::Register(CivetServer* Server)
-{
-    Server->addHandler("/message", this);
+    : WebUIHandler(InService) {
 }
 
-bool MessageHandler::handlePost(CivetServer* Server, struct mg_connection* Connection)
-{
-    if (!Service->IsAuthenticated(Connection))
-    {
-        mg_send_http_error(Connection, 401, "Token invalid.");
-        return true;
-    }
+void MessageHandler::Register(CivetServer* Server) {
+  Server->addHandler("/message", this);
+}
 
-    nlohmann::json json;
-    if (!ReadJson(Server, Connection, json) ||
-        !json.contains("playerId") ||
-        !json.contains("message"))
-    {
-        mg_send_http_error(Connection, 400, "Malformed body.");
-        return true;
-    }
-
-    uint32_t playerId = json["playerId"];
-    std::string message = json["message"];
-
-    std::shared_ptr<GameService> Game = Service->GetServer()->GetService<GameService>();
-    if (playerId == 0)
-    {
-        LogS("WebUI", "Sending message to all players: %s", message.c_str());
-        for (auto Client : Game->GetClients())
-        {
-            Client->SendTextMessage(message);
-        }
-    }
-    else
-    {
-        if (std::shared_ptr<GameClient> Client = Game->FindClientByPlayerId(playerId))
-        {
-            LogS("WebUI", "Sending message to %s: %s", Client->GetName().c_str(), message.c_str());
-            Client->SendTextMessage(message);
-        }
-    }
-
-    nlohmann::json responseJson;
-    RespondJson(Connection, responseJson);
-
+bool MessageHandler::handlePost(CivetServer* Server, struct mg_connection* Connection) {
+  if (!Service->IsAuthenticated(Connection)) {
+    mg_send_http_error(Connection, 401, "Token invalid.");
     return true;
+  }
+
+  nlohmann::json json;
+  if (!ReadJson(Server, Connection, json) ||
+      !json.contains("playerId") ||
+      !json.contains("message")) {
+    mg_send_http_error(Connection, 400, "Malformed body.");
+    return true;
+  }
+
+  uint32_t playerId = json["playerId"];
+  std::string message = json["message"];
+
+  std::shared_ptr<GameService> Game = Service->GetServer()->GetService<GameService>();
+  if (playerId == 0) {
+    LogS("WebUI", "Sending message to all players: %s", message.c_str());
+    for (auto Client : Game->GetClients()) {
+      Client->SendTextMessage(message);
+    }
+  } else {
+    if (std::shared_ptr<GameClient> Client = Game->FindClientByPlayerId(playerId)) {
+      LogS("WebUI", "Sending message to %s: %s", Client->GetName().c_str(), message.c_str());
+      Client->SendTextMessage(message);
+    }
+  }
+
+  nlohmann::json responseJson;
+  RespondJson(Connection, responseJson);
+
+  return true;
 }

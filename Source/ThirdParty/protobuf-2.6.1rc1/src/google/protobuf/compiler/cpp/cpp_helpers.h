@@ -76,13 +76,12 @@ string FieldName(const FieldDescriptor* field);
 
 // Get the unqualified name that should be used for a field's field
 // number constant.
-string FieldConstantName(const FieldDescriptor *field);
+string FieldConstantName(const FieldDescriptor* field);
 
 // Returns the scope where the field was defined (for extensions, this is
 // different from the message type to which the field applies).
 inline const Descriptor* FieldScope(const FieldDescriptor* field) {
-  return field->is_extension() ?
-    field->extension_scope() : field->containing_type();
+  return field->is_extension() ? field->extension_scope() : field->containing_type();
 }
 
 // Returns the fully-qualified type name field->message_type().  Usually this
@@ -141,7 +140,6 @@ inline bool UseUnknownFieldSet(const FileDescriptor* file) {
   return file->options().optimize_for() != FileOptions::LITE_RUNTIME;
 }
 
-
 // Does this file have any enum type definitions?
 bool HasEnumDefinitions(const FileDescriptor* file);
 
@@ -192,15 +190,14 @@ void PrintHandlingOptionalStaticInitializers(
     io::Printer* printer, const char* with_static_init,
     const char* without_static_init);
 
-
 // Returns true if the field's CPPTYPE is string or message.
 bool IsStringOrMessage(const FieldDescriptor* field);
 
 string UnderscoresToCamelCase(const string& input, bool cap_next_letter);
 
-}  // namespace cpp
-}  // namespace compiler
-}  // namespace protobuf
+} // namespace cpp
+} // namespace compiler
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_CPP_HELPERS_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_COMPILER_CPP_HELPERS_H__

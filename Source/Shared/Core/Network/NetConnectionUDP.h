@@ -42,86 +42,82 @@
 #include <condition_variable>
 
 class NetConnectionUDP
-    : public NetConnection
-{
+    : public NetConnection {
 public:
 #if defined(_WIN32)
-    using SocketType = SOCKET;
-    using SocketLenType = int;
-    const SocketType INVALID_SOCKET_VALUE = INVALID_SOCKET;
+  using SocketType = SOCKET;
+  using SocketLenType = int;
+  const SocketType INVALID_SOCKET_VALUE = INVALID_SOCKET;
 #else
-    using SocketType = int;
-    using SocketLenType = socklen_t;
-    const SocketType INVALID_SOCKET_VALUE = -1;
+  using SocketType = int;
+  using SocketLenType = socklen_t;
+  const SocketType INVALID_SOCKET_VALUE = -1;
 #endif
 
 public:
-    NetConnectionUDP(NetConnectionUDP* Parent, SocketType ParentSocket, sockaddr_in DestinationIP, const std::string& InName, const NetIPAddress& InAddress);
-    NetConnectionUDP(const std::string& InName);
-    virtual ~NetConnectionUDP();
+  NetConnectionUDP(NetConnectionUDP* Parent, SocketType ParentSocket, sockaddr_in DestinationIP, const std::string& InName, const NetIPAddress& InAddress);
+  NetConnectionUDP(const std::string& InName);
+  virtual ~NetConnectionUDP();
 
-    virtual bool Listen(int Port) override;
+  virtual bool Listen(int Port) override;
 
-    virtual std::shared_ptr<NetConnection> Accept() override;
+  virtual std::shared_ptr<NetConnection> Accept() override;
 
-    virtual bool Pump() override;
+  virtual bool Pump() override;
 
-    virtual bool Connect(std::string Hostname, int Port, bool ForceLastIpEntry) override;
+  virtual bool Connect(std::string Hostname, int Port, bool ForceLastIpEntry) override;
 
-    virtual bool Peek(std::vector<uint8_t>& Buffer, int Offset, int Count, int& BytesReceived) override;
-    virtual bool Receive(std::vector<uint8_t>& Buffer, int Offset, int Count, int& BytesReceived) override;
-    virtual bool Send(const std::vector<uint8_t>& Buffer, int Offset, int Count) override;
+  virtual bool Peek(std::vector<uint8_t>& Buffer, int Offset, int Count, int& BytesReceived) override;
+  virtual bool Receive(std::vector<uint8_t>& Buffer, int Offset, int Count, int& BytesReceived) override;
+  virtual bool Send(const std::vector<uint8_t>& Buffer, int Offset, int Count) override;
 
-    virtual bool Disconnect() override;
+  virtual bool Disconnect() override;
 
-    virtual bool IsConnected() override;
-    virtual NetIPAddress GetAddress() override;
+  virtual bool IsConnected() override;
+  virtual NetIPAddress GetAddress() override;
 
-    virtual std::string GetName() override;
-    virtual void Rename(const std::string& Name) override;
+  virtual std::string GetName() override;
+  virtual void Rename(const std::string& Name) override;
 
 protected:
-    struct PendingPacket
-    {
-        std::vector<uint8_t> Data;
-        sockaddr_in SourceAddress;
-        double ProcessTime = 0.0f;
-    };
+  struct PendingPacket {
+    std::vector<uint8_t> Data;
+    sockaddr_in SourceAddress;
+    double ProcessTime = 0.0f;
+  };
 
-    void ProcessPacket(const PendingPacket& Packet);
+  void ProcessPacket(const PendingPacket& Packet);
 
-    void ReceiveThreadEntry();
-    void SendThreadEntry();
+  void ReceiveThreadEntry();
+  void SendThreadEntry();
 
 private:
+  std::string Name;
+  NetIPAddress IPAddress;
 
-    std::string Name;
-    NetIPAddress IPAddress;
+  NetConnectionUDP* Parent = nullptr;
+  SocketType Socket = INVALID_SOCKET_VALUE;
 
-    NetConnectionUDP* Parent = nullptr;
-    SocketType Socket = INVALID_SOCKET_VALUE;
+  bool bListening = false;
+  bool bChild = false;
 
-    bool bListening = false;
-    bool bChild = false;
+  sockaddr_in Destination = {};
 
-    sockaddr_in Destination = {};
+  std::vector<uint8_t> ReceiveBuffer;
+  std::vector<std::vector<uint8_t>> ReceiveQueue;
 
-    std::vector<uint8_t> ReceiveBuffer;
-    std::vector<std::vector<uint8_t>> ReceiveQueue;
+  std::vector<std::shared_ptr<NetConnectionUDP>> NewConnections;
+  std::vector<std::weak_ptr<NetConnectionUDP>> ChildConnections;
 
-    std::vector<std::shared_ptr<NetConnectionUDP>> NewConnections;
-    std::vector<std::weak_ptr<NetConnectionUDP>> ChildConnections;
+  std::mutex PendingPacketsMutex;
+  std::queue<std::unique_ptr<PendingPacket>> PendingPackets;
 
-    std::mutex PendingPacketsMutex;
-    std::queue<std::unique_ptr<PendingPacket>> PendingPackets;
+  std::queue<std::unique_ptr<PendingPacket>> SendQueue;
+  std::mutex SendQueueMutex;
+  std::condition_variable SendQueueCvar;
 
-    std::queue<std::unique_ptr<PendingPacket>> SendQueue;
-    std::mutex SendQueueMutex;
-    std::condition_variable SendQueueCvar;
-
-    std::unique_ptr<std::thread> ReceiveThread;
-    std::unique_ptr<std::thread> SendThread;
-    bool bShuttingDownThreads = false;
-    bool bErrorOnThreads = false;
-
+  std::unique_ptr<std::thread> ReceiveThread;
+  std::unique_ptr<std::thread> SendThread;
+  bool bShuttingDownThreads = false;
+  bool bErrorOnThreads = false;
 };

@@ -25,38 +25,36 @@ class GameService;
 // Placing and retrieving mirror knight summon signs.
 
 class DS2_MirrorKnightManager
-    : public GameManager
-{
-public:    
-    DS2_MirrorKnightManager(Server* InServerInstance, GameService* InGameServiceInstance);
+    : public GameManager {
+public:
+  DS2_MirrorKnightManager(Server* InServerInstance, GameService* InGameServiceInstance);
 
-    virtual MessageHandleResult OnMessageReceived(GameClient* Client, const Frpg2ReliableUdpMessage& Message) override;
+  virtual MessageHandleResult OnMessageReceived(GameClient* Client, const Frpg2ReliableUdpMessage& Message) override;
 
-    virtual std::string GetName() override;
-    virtual void Poll() override;
+  virtual std::string GetName() override;
+  virtual void Poll() override;
 
-    virtual void OnLostPlayer(GameClient* Client) override;
+  virtual void OnLostPlayer(GameClient* Client) override;
 
-    size_t GetLiveCount() { return LiveCache.size(); }
+  size_t GetLiveCount() { return LiveCache.size(); }
 
 protected:
-    bool CanMatchWith(const DS2_Frpg2RequestMessage::MatchingParameter& Client, const DS2_Frpg2RequestMessage::MatchingParameter& Match, uint32_t SignType);
+  bool CanMatchWith(const DS2_Frpg2RequestMessage::MatchingParameter& Client, const DS2_Frpg2RequestMessage::MatchingParameter& Match, uint32_t SignType);
 
-    void RemoveSignAndNotifyAware(const std::shared_ptr<SummonSign>& Sign);
+  void RemoveSignAndNotifyAware(const std::shared_ptr<SummonSign>& Sign);
 
-    MessageHandleResult Handle_RequestGetMirrorKnightSignList(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestCreateMirrorKnightSign(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestRemoveMirrorKnightSign(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestUpdateMirrorKnightSign(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestSummonMirrorKnightSign(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestRejectMirrorKnightSign(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    
+  MessageHandleResult Handle_RequestGetMirrorKnightSignList(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestCreateMirrorKnightSign(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestRemoveMirrorKnightSign(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestUpdateMirrorKnightSign(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestSummonMirrorKnightSign(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestRejectMirrorKnightSign(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+
 private:
-    Server* ServerInstance;
-    GameService* GameServiceInstance;
+  Server* ServerInstance;
+  GameService* GameServiceInstance;
 
-    std::unordered_map<uint32_t, std::shared_ptr<SummonSign>> LiveCache;
+  std::unordered_map<uint32_t, std::shared_ptr<SummonSign>> LiveCache;
 
-    uint32_t NextSignId = 1000;
-
+  uint32_t NextSignId = 1000;
 };

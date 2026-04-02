@@ -8,17 +8,16 @@
 #include <stdio.h>
 #include <GL/gl.h>
 
-int __cdecl main()
-{
-    printf("testogl.exe: Starting\n");
-    fflush(stdout);
+int __cdecl main() {
+  printf("testogl.exe: Starting\n");
+  fflush(stdout);
 
-    glFinish();
+  glFinish();
 
-    printf("testogl.exe: done\n");
-    fflush(stdout);
+  printf("testogl.exe: done\n");
+  fflush(stdout);
 
-    return 0;
+  return 0;
 }
 //
 ///////////////////////////////////////////////////////////////// End of File.

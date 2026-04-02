@@ -26,58 +26,54 @@ struct SummonSign;
 
 // Represents an individual client connected to the game service.
 
-class GameClient 
-    : public std::enable_shared_from_this<GameClient>
-{
+class GameClient
+    : public std::enable_shared_from_this<GameClient> {
 public:
-    GameClient() {}
-    GameClient(GameService* OwningService, std::shared_ptr<NetConnection> InConnection, const std::vector<uint8_t>& CwcKey, uint64_t AuthToken);
+  GameClient() {}
+  GameClient(GameService* OwningService, std::shared_ptr<NetConnection> InConnection, const std::vector<uint8_t>& CwcKey, uint64_t AuthToken);
 
-    // If this returns true the client is expected to be disconnected and is disposed of.
-    bool Poll();
+  // If this returns true the client is expected to be disconnected and is disposed of.
+  bool Poll();
 
-    std::string GetName();
+  std::string GetName();
 
-    PlayerState& GetPlayerState() { return *State; }
+  PlayerState& GetPlayerState() { return *State; }
 
-    template <typename T>
-    T& GetPlayerStateType() { return static_cast<T&>(*State); }
+  template <typename T>
+  T& GetPlayerStateType() { return static_cast<T&>(*State); }
 
-    double GetConnectionDuration() { return GetSeconds() - ConnectTime; }
+  double GetConnectionDuration() { return GetSeconds() - ConnectTime; }
 
-    // Sends a text message displayed at the top of the users screen.
-    void SendTextMessage(const std::string& Message);
+  // Sends a text message displayed at the top of the users screen.
+  void SendTextMessage(const std::string& Message);
 
 public:
+  std::shared_ptr<NetConnection> Connection;
+  std::shared_ptr<Frpg2ReliableUdpMessageStream> MessageStream;
 
-    std::shared_ptr<NetConnection> Connection;
-    std::shared_ptr<Frpg2ReliableUdpMessageStream> MessageStream;
+  std::vector<std::shared_ptr<SummonSign>> ActiveSummonSigns;
+  std::vector<std::shared_ptr<SummonSign>> ActiveMirrorKnightSummonSigns;
 
-    std::vector<std::shared_ptr<SummonSign>> ActiveSummonSigns;
-    std::vector<std::shared_ptr<SummonSign>> ActiveMirrorKnightSummonSigns;    
+  double ConnectTime = GetSeconds();
 
-    double ConnectTime = GetSeconds();
+  // When > 0 and current time surpasses it, the client is disconnected.
+  double DisconnectTime = 0.0f;
 
-    // When > 0 and current time surpasses it, the client is disconnected.
-    double DisconnectTime = 0.0f;
-
-    bool Banned = false;
+  bool Banned = false;
 
 protected:
+  bool HandleMessage(const Frpg2ReliableUdpMessage& Message);
 
-    bool HandleMessage(const Frpg2ReliableUdpMessage& Message);
+  bool PollInner();
 
-    bool PollInner();
+private:
+  GameService* Service;
 
-private:    
-    GameService* Service;
+  uint64_t AuthToken;
 
-    uint64_t AuthToken;
+  bool IsDisconnecting = false;
 
-    bool IsDisconnecting = false;
+  double LastMessageReceivedTime = 0.0;
 
-    double LastMessageReceivedTime = 0.0;
-
-    std::unique_ptr<PlayerState> State;
-
+  std::unique_ptr<PlayerState> State;
 };

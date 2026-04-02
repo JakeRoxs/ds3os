@@ -47,9 +47,9 @@
 #include <google/protobuf/pyext/scoped_pyobject_ptr.h>
 
 #if PY_MAJOR_VERSION >= 3
-  #define PyInt_Check PyLong_Check
-  #define PyInt_AsLong PyLong_AsLong
-  #define PyInt_FromLong PyLong_FromLong
+#define PyInt_Check PyLong_Check
+#define PyInt_AsLong PyLong_AsLong
+#define PyInt_FromLong PyLong_FromLong
 #endif
 
 namespace google {
@@ -63,13 +63,13 @@ namespace repeated_composite_container {
 // TODO(tibell): We might also want to check:
 //   GOOGLE_CHECK_NOTNULL((self)->owner.get());
 #define GOOGLE_CHECK_ATTACHED(self)             \
-  do {                                   \
+  do {                                          \
     GOOGLE_CHECK_NOTNULL((self)->message);      \
     GOOGLE_CHECK_NOTNULL((self)->parent_field); \
   } while (0);
 
 #define GOOGLE_CHECK_RELEASED(self)             \
-  do {                                   \
+  do {                                          \
     GOOGLE_CHECK((self)->owner.get() == NULL);  \
     GOOGLE_CHECK((self)->message == NULL);      \
     GOOGLE_CHECK((self)->parent_field == NULL); \
@@ -83,16 +83,14 @@ static PyObject* GetKey(PyObject* x) {
   return x;
 }
 
-#define GET_KEY(keyfunc, value)                                         \
-  ((keyfunc) == NULL ?                                                  \
-  GetKey((value)) :                                                     \
-  PyObject_CallFunctionObjArgs((keyfunc), (value), NULL))
+#define GET_KEY(keyfunc, value) \
+  ((keyfunc) == NULL ? GetKey((value)) : PyObject_CallFunctionObjArgs((keyfunc), (value), NULL))
 
 // Converts a comparison function that returns -1, 0, or 1 into a
 // less-than predicate.
 //
 // Returns -1 on error, 1 if x < y, 0 if x >= y.
-static int islt(PyObject *x, PyObject *y, PyObject *compare) {
+static int islt(PyObject* x, PyObject* y, PyObject* compare) {
   if (compare == NULL)
     return PyObject_RichCompareBool(x, y, Py_LT);
 
@@ -116,7 +114,7 @@ static int InternalQuickSort(RepeatedCompositeContainer* self,
                              PyObject* cmp,
                              PyObject* keyfunc) {
   if (limit - start <= 1)
-    return 0;  // Nothing to sort.
+    return 0; // Nothing to sort.
 
   GOOGLE_CHECK_ATTACHED(self);
 
@@ -489,10 +487,10 @@ static PyObject* SortAttached(RepeatedCompositeContainer* self,
                               PyObject* args,
                               PyObject* kwds) {
   // Sort the underlying Message array.
-  PyObject *compare = NULL;
+  PyObject* compare = NULL;
   int reverse = 0;
-  PyObject *keyfunc = NULL;
-  static char *kwlist[] = {"cmp", "key", "reverse", 0};
+  PyObject* keyfunc = NULL;
+  static char* kwlist[] = {"cmp", "key", "reverse", 0};
 
   if (args != NULL) {
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|OOi:sort",
@@ -690,74 +688,72 @@ static void Dealloc(RepeatedCompositeContainer* self) {
 }
 
 static PySequenceMethods SqMethods = {
-  (lenfunc)Length,        /* sq_length */
-  0, /* sq_concat */
-  0, /* sq_repeat */
-  (ssizeargfunc)Item /* sq_item */
+    (lenfunc)Length,   /* sq_length */
+    0,                 /* sq_concat */
+    0,                 /* sq_repeat */
+    (ssizeargfunc)Item /* sq_item */
 };
 
 static PyMappingMethods MpMethods = {
-  (lenfunc)Length,               /* mp_length */
-  (binaryfunc)Subscript,      /* mp_subscript */
-  (objobjargproc)AssignSubscript,/* mp_ass_subscript */
+    (lenfunc)Length,                /* mp_length */
+    (binaryfunc)Subscript,          /* mp_subscript */
+    (objobjargproc)AssignSubscript, /* mp_ass_subscript */
 };
 
 static PyMethodDef Methods[] = {
-  { "add", (PyCFunction) Add, METH_VARARGS | METH_KEYWORDS,
-    "Adds an object to the repeated container." },
-  { "extend", (PyCFunction) Extend, METH_O,
-    "Adds objects to the repeated container." },
-  { "remove", (PyCFunction) Remove, METH_O,
-    "Removes an object from the repeated container." },
-  { "sort", (PyCFunction) Sort, METH_VARARGS | METH_KEYWORDS,
-    "Sorts the repeated container." },
-  { "MergeFrom", (PyCFunction) MergeFrom, METH_O,
-    "Adds objects to the repeated container." },
-  { NULL, NULL }
-};
+    {"add", (PyCFunction)Add, METH_VARARGS | METH_KEYWORDS,
+     "Adds an object to the repeated container."},
+    {"extend", (PyCFunction)Extend, METH_O,
+     "Adds objects to the repeated container."},
+    {"remove", (PyCFunction)Remove, METH_O,
+     "Removes an object from the repeated container."},
+    {"sort", (PyCFunction)Sort, METH_VARARGS | METH_KEYWORDS,
+     "Sorts the repeated container."},
+    {"MergeFrom", (PyCFunction)MergeFrom, METH_O,
+     "Adds objects to the repeated container."},
+    {NULL, NULL}};
 
-}  // namespace repeated_composite_container
+} // namespace repeated_composite_container
 
 PyTypeObject RepeatedCompositeContainer_Type = {
-  PyVarObject_HEAD_INIT(&PyType_Type, 0)
-  "google.protobuf.internal."
-  "cpp._message.RepeatedCompositeContainer",  // tp_name
-  sizeof(RepeatedCompositeContainer),     // tp_basicsize
-  0,                                   //  tp_itemsize
-  (destructor)repeated_composite_container::Dealloc,  //  tp_dealloc
-  0,                                   //  tp_print
-  0,                                   //  tp_getattr
-  0,                                   //  tp_setattr
-  0,                                   //  tp_compare
-  0,                                   //  tp_repr
-  0,                                   //  tp_as_number
-  &repeated_composite_container::SqMethods,   //  tp_as_sequence
-  &repeated_composite_container::MpMethods,   //  tp_as_mapping
-  0,                                   //  tp_hash
-  0,                                   //  tp_call
-  0,                                   //  tp_str
-  0,                                   //  tp_getattro
-  0,                                   //  tp_setattro
-  0,                                   //  tp_as_buffer
-  Py_TPFLAGS_DEFAULT,                  //  tp_flags
-  "A Repeated scalar container",       //  tp_doc
-  0,                                   //  tp_traverse
-  0,                                   //  tp_clear
-  (richcmpfunc)repeated_composite_container::RichCompare,  //  tp_richcompare
-  0,                                   //  tp_weaklistoffset
-  0,                                   //  tp_iter
-  0,                                   //  tp_iternext
-  repeated_composite_container::Methods,   //  tp_methods
-  0,                                   //  tp_members
-  0,                                   //  tp_getset
-  0,                                   //  tp_base
-  0,                                   //  tp_dict
-  0,                                   //  tp_descr_get
-  0,                                   //  tp_descr_set
-  0,                                   //  tp_dictoffset
-  (initproc)repeated_composite_container::Init,  //  tp_init
+    PyVarObject_HEAD_INIT(&PyType_Type, 0) "google.protobuf.internal."
+                                           "cpp._message.RepeatedCompositeContainer", // tp_name
+    sizeof(RepeatedCompositeContainer),                                               // tp_basicsize
+    0,                                                                                //  tp_itemsize
+    (destructor)repeated_composite_container::Dealloc,                                //  tp_dealloc
+    0,                                                                                //  tp_print
+    0,                                                                                //  tp_getattr
+    0,                                                                                //  tp_setattr
+    0,                                                                                //  tp_compare
+    0,                                                                                //  tp_repr
+    0,                                                                                //  tp_as_number
+    &repeated_composite_container::SqMethods,                                         //  tp_as_sequence
+    &repeated_composite_container::MpMethods,                                         //  tp_as_mapping
+    0,                                                                                //  tp_hash
+    0,                                                                                //  tp_call
+    0,                                                                                //  tp_str
+    0,                                                                                //  tp_getattro
+    0,                                                                                //  tp_setattro
+    0,                                                                                //  tp_as_buffer
+    Py_TPFLAGS_DEFAULT,                                                               //  tp_flags
+    "A Repeated scalar container",                                                    //  tp_doc
+    0,                                                                                //  tp_traverse
+    0,                                                                                //  tp_clear
+    (richcmpfunc)repeated_composite_container::RichCompare,                           //  tp_richcompare
+    0,                                                                                //  tp_weaklistoffset
+    0,                                                                                //  tp_iter
+    0,                                                                                //  tp_iternext
+    repeated_composite_container::Methods,                                            //  tp_methods
+    0,                                                                                //  tp_members
+    0,                                                                                //  tp_getset
+    0,                                                                                //  tp_base
+    0,                                                                                //  tp_dict
+    0,                                                                                //  tp_descr_get
+    0,                                                                                //  tp_descr_set
+    0,                                                                                //  tp_dictoffset
+    (initproc)repeated_composite_container::Init,                                     //  tp_init
 };
 
-}  // namespace python
-}  // namespace protobuf
-}  // namespace google
+} // namespace python
+} // namespace protobuf
+} // namespace google

@@ -69,7 +69,7 @@ inline Atomic32 NoBarrier_AtomicIncrement(volatile Atomic32* ptr,
 }
 
 inline Atomic32 Barrier_AtomicIncrement(volatile Atomic32* ptr,
-                                          Atomic32 increment) {
+                                        Atomic32 increment) {
   return OSAtomicAdd32Barrier(increment, const_cast<Atomic32*>(ptr));
 }
 
@@ -171,7 +171,7 @@ inline Atomic64 Acquire_CompareAndSwap(volatile Atomic64* ptr,
   Atomic64 prev_value;
   do {
     if (OSAtomicCompareAndSwap64Barrier(
-        old_value, new_value, reinterpret_cast<volatile int64_t*>(ptr))) {
+            old_value, new_value, reinterpret_cast<volatile int64_t*>(ptr))) {
       return old_value;
     }
     prev_value = *ptr;
@@ -216,10 +216,10 @@ inline Atomic64 Release_Load(volatile const Atomic64* ptr) {
   return *ptr;
 }
 
-#endif  // defined(__LP64__)
+#endif // defined(__LP64__)
 
-}  // namespace internal
-}  // namespace protobuf
-}  // namespace google
+} // namespace internal
+} // namespace protobuf
+} // namespace google
 
-#endif  // GOOGLE_PROTOBUF_ATOMICOPS_INTERNALS_MACOSX_H_
+#endif // GOOGLE_PROTOBUF_ATOMICOPS_INTERNALS_MACOSX_H_

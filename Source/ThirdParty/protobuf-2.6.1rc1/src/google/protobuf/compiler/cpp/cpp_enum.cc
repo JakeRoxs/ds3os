@@ -58,14 +58,14 @@ bool ShouldGenerateArraySize(const EnumDescriptor* descriptor) {
   }
   return max_value != kint32max;
 }
-}  // namespace
+} // namespace
 
 EnumGenerator::EnumGenerator(const EnumDescriptor* descriptor,
                              const Options& options)
-  : descriptor_(descriptor),
-    classname_(ClassName(descriptor, false)),
-    options_(options),
-    generate_array_size_(ShouldGenerateArraySize(descriptor)) {
+    : descriptor_(descriptor),
+      classname_(ClassName(descriptor, false)),
+      options_(options),
+      generate_array_size_(ShouldGenerateArraySize(descriptor)) {
 }
 
 EnumGenerator::~EnumGenerator() {}
@@ -87,10 +87,10 @@ void EnumGenerator::GenerateDefinition(io::Printer* printer) {
     // 2147483648, and since 2147483648 can't fit in an integer, this produces a
     // compiler warning.  This works around that issue.
     vars["number"] = Int32ToString(descriptor_->value(i)->number());
-    vars["prefix"] = (descriptor_->containing_type() == NULL) ?
-      "" : classname_ + "_";
+    vars["prefix"] = (descriptor_->containing_type() == NULL) ? "" : classname_ + "_";
 
-    if (i > 0) printer->Print(",\n");
+    if (i > 0)
+      printer->Print(",\n");
     printer->Print(vars, "$prefix$$name$ = $number$");
 
     if (descriptor_->value(i)->number() < min_value->number()) {
@@ -114,44 +114,44 @@ void EnumGenerator::GenerateDefinition(io::Printer* printer) {
   }
 
   printer->Print(vars,
-    "$dllexport$bool $classname$_IsValid(int value);\n"
-    "const $classname$ $prefix$$short_name$_MIN = $prefix$$min_name$;\n"
-    "const $classname$ $prefix$$short_name$_MAX = $prefix$$max_name$;\n");
+                 "$dllexport$bool $classname$_IsValid(int value);\n"
+                 "const $classname$ $prefix$$short_name$_MIN = $prefix$$min_name$;\n"
+                 "const $classname$ $prefix$$short_name$_MAX = $prefix$$max_name$;\n");
 
   if (generate_array_size_) {
     printer->Print(vars,
-      "const int $prefix$$short_name$_ARRAYSIZE = "
-      "$prefix$$short_name$_MAX + 1;\n\n");
+                   "const int $prefix$$short_name$_ARRAYSIZE = "
+                   "$prefix$$short_name$_MAX + 1;\n\n");
   }
 
   if (HasDescriptorMethods(descriptor_->file())) {
     printer->Print(vars,
-      "$dllexport$const ::google::protobuf::EnumDescriptor* $classname$_descriptor();\n");
+                   "$dllexport$const ::google::protobuf::EnumDescriptor* $classname$_descriptor();\n");
     // The _Name and _Parse methods
     printer->Print(vars,
-      "inline const ::std::string& $classname$_Name($classname$ value) {\n"
-      "  return ::google::protobuf::internal::NameOfEnum(\n"
-      "    $classname$_descriptor(), value);\n"
-      "}\n");
+                   "inline const ::std::string& $classname$_Name($classname$ value) {\n"
+                   "  return ::google::protobuf::internal::NameOfEnum(\n"
+                   "    $classname$_descriptor(), value);\n"
+                   "}\n");
     printer->Print(vars,
-      "inline bool $classname$_Parse(\n"
-      "    const ::std::string& name, $classname$* value) {\n"
-      "  return ::google::protobuf::internal::ParseNamedEnum<$classname$>(\n"
-      "    $classname$_descriptor(), name, value);\n"
-      "}\n");
+                   "inline bool $classname$_Parse(\n"
+                   "    const ::std::string& name, $classname$* value) {\n"
+                   "  return ::google::protobuf::internal::ParseNamedEnum<$classname$>(\n"
+                   "    $classname$_descriptor(), name, value);\n"
+                   "}\n");
   }
 }
 
 void EnumGenerator::
-GenerateGetEnumDescriptorSpecializations(io::Printer* printer) {
+    GenerateGetEnumDescriptorSpecializations(io::Printer* printer) {
   if (HasDescriptorMethods(descriptor_->file())) {
     printer->Print(
-      "template <> struct is_proto_enum< $classname$> : ::google::protobuf::internal::true_type {};\n"
-      "template <>\n"
-      "inline const EnumDescriptor* GetEnumDescriptor< $classname$>() {\n"
-      "  return $classname$_descriptor();\n"
-      "}\n",
-      "classname", ClassName(descriptor_, true));
+        "template <> struct is_proto_enum< $classname$> : ::google::protobuf::internal::true_type {};\n"
+        "template <>\n"
+        "inline const EnumDescriptor* GetEnumDescriptor< $classname$>() {\n"
+        "  return $classname$_descriptor();\n"
+        "}\n",
+        "classname", ClassName(descriptor_, true));
   }
 }
 
@@ -164,38 +164,38 @@ void EnumGenerator::GenerateSymbolImports(io::Printer* printer) {
   for (int j = 0; j < descriptor_->value_count(); j++) {
     vars["tag"] = descriptor_->value(j)->name();
     printer->Print(vars,
-      "static const $nested_name$ $tag$ = $classname$_$tag$;\n");
+                   "static const $nested_name$ $tag$ = $classname$_$tag$;\n");
   }
 
   printer->Print(vars,
-    "static inline bool $nested_name$_IsValid(int value) {\n"
-    "  return $classname$_IsValid(value);\n"
-    "}\n"
-    "static const $nested_name$ $nested_name$_MIN =\n"
-    "  $classname$_$nested_name$_MIN;\n"
-    "static const $nested_name$ $nested_name$_MAX =\n"
-    "  $classname$_$nested_name$_MAX;\n");
+                 "static inline bool $nested_name$_IsValid(int value) {\n"
+                 "  return $classname$_IsValid(value);\n"
+                 "}\n"
+                 "static const $nested_name$ $nested_name$_MIN =\n"
+                 "  $classname$_$nested_name$_MIN;\n"
+                 "static const $nested_name$ $nested_name$_MAX =\n"
+                 "  $classname$_$nested_name$_MAX;\n");
   if (generate_array_size_) {
     printer->Print(vars,
-      "static const int $nested_name$_ARRAYSIZE =\n"
-      "  $classname$_$nested_name$_ARRAYSIZE;\n");
+                   "static const int $nested_name$_ARRAYSIZE =\n"
+                   "  $classname$_$nested_name$_ARRAYSIZE;\n");
   }
 
   if (HasDescriptorMethods(descriptor_->file())) {
     printer->Print(vars,
-      "static inline const ::google::protobuf::EnumDescriptor*\n"
-      "$nested_name$_descriptor() {\n"
-      "  return $classname$_descriptor();\n"
-      "}\n");
+                   "static inline const ::google::protobuf::EnumDescriptor*\n"
+                   "$nested_name$_descriptor() {\n"
+                   "  return $classname$_descriptor();\n"
+                   "}\n");
     printer->Print(vars,
-      "static inline const ::std::string& $nested_name$_Name($nested_name$ value) {\n"
-      "  return $classname$_Name(value);\n"
-      "}\n");
+                   "static inline const ::std::string& $nested_name$_Name($nested_name$ value) {\n"
+                   "  return $classname$_Name(value);\n"
+                   "}\n");
     printer->Print(vars,
-      "static inline bool $nested_name$_Parse(const ::std::string& name,\n"
-      "    $nested_name$* value) {\n"
-      "  return $classname$_Parse(name, value);\n"
-      "}\n");
+                   "static inline bool $nested_name$_Parse(const ::std::string& name,\n"
+                   "    $nested_name$* value) {\n"
+                   "  return $classname$_Parse(name, value);\n"
+                   "}\n");
   }
 }
 
@@ -207,11 +207,11 @@ void EnumGenerator::GenerateDescriptorInitializer(
 
   if (descriptor_->containing_type() == NULL) {
     printer->Print(vars,
-      "$classname$_descriptor_ = file->enum_type($index$);\n");
+                   "$classname$_descriptor_ = file->enum_type($index$);\n");
   } else {
     vars["parent"] = ClassName(descriptor_->containing_type(), false);
     printer->Print(vars,
-      "$classname$_descriptor_ = $parent$_descriptor_->enum_type($index$);\n");
+                   "$classname$_descriptor_ = $parent$_descriptor_->enum_type($index$);\n");
   }
 }
 
@@ -221,15 +221,15 @@ void EnumGenerator::GenerateMethods(io::Printer* printer) {
 
   if (HasDescriptorMethods(descriptor_->file())) {
     printer->Print(vars,
-      "const ::google::protobuf::EnumDescriptor* $classname$_descriptor() {\n"
-      "  protobuf_AssignDescriptorsOnce();\n"
-      "  return $classname$_descriptor_;\n"
-      "}\n");
+                   "const ::google::protobuf::EnumDescriptor* $classname$_descriptor() {\n"
+                   "  protobuf_AssignDescriptorsOnce();\n"
+                   "  return $classname$_descriptor_;\n"
+                   "}\n");
   }
 
   printer->Print(vars,
-    "bool $classname$_IsValid(int value) {\n"
-    "  switch(value) {\n");
+                 "bool $classname$_IsValid(int value) {\n"
+                 "  switch(value) {\n");
 
   // Multiple values may have the same number.  Make sure we only cover
   // each number once by first constructing a set containing all valid
@@ -244,17 +244,17 @@ void EnumGenerator::GenerateMethods(io::Printer* printer) {
   for (set<int>::iterator iter = numbers.begin();
        iter != numbers.end(); ++iter) {
     printer->Print(
-      "    case $number$:\n",
-      "number", Int32ToString(*iter));
+        "    case $number$:\n",
+        "number", Int32ToString(*iter));
   }
 
   printer->Print(vars,
-    "      return true;\n"
-    "    default:\n"
-    "      return false;\n"
-    "  }\n"
-    "}\n"
-    "\n");
+                 "      return true;\n"
+                 "    default:\n"
+                 "      return false;\n"
+                 "  }\n"
+                 "}\n"
+                 "\n");
 
   if (descriptor_->containing_type() != NULL) {
     // We need to "define" the static constants which were declared in the
@@ -268,21 +268,21 @@ void EnumGenerator::GenerateMethods(io::Printer* printer) {
     for (int i = 0; i < descriptor_->value_count(); i++) {
       vars["value"] = descriptor_->value(i)->name();
       printer->Print(vars,
-        "const $classname$ $parent$::$value$;\n");
+                     "const $classname$ $parent$::$value$;\n");
     }
     printer->Print(vars,
-      "const $classname$ $parent$::$nested_name$_MIN;\n"
-      "const $classname$ $parent$::$nested_name$_MAX;\n");
+                   "const $classname$ $parent$::$nested_name$_MIN;\n"
+                   "const $classname$ $parent$::$nested_name$_MAX;\n");
     if (generate_array_size_) {
       printer->Print(vars,
-        "const int $parent$::$nested_name$_ARRAYSIZE;\n");
+                     "const int $parent$::$nested_name$_ARRAYSIZE;\n");
     }
 
     printer->Print("#endif  // _MSC_VER\n");
   }
 }
 
-}  // namespace cpp
-}  // namespace compiler
-}  // namespace protobuf
-}  // namespace google
+} // namespace cpp
+} // namespace compiler
+} // namespace protobuf
+} // namespace google

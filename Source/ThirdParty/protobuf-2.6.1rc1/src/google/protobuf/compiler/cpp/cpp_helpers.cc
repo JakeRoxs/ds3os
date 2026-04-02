@@ -43,7 +43,6 @@
 #include <google/protobuf/stubs/strutil.h>
 #include <google/protobuf/stubs/substitute.h>
 
-
 namespace google {
 namespace protobuf {
 namespace compiler {
@@ -60,17 +59,16 @@ string DotsToColons(const string& name) {
 }
 
 const char* const kKeywordList[] = {
-  "and", "and_eq", "asm", "auto", "bitand", "bitor", "bool", "break", "case",
-  "catch", "char", "class", "compl", "const", "const_cast", "continue",
-  "default", "delete", "do", "double", "dynamic_cast", "else", "enum",
-  "explicit", "extern", "false", "float", "for", "friend", "goto", "if",
-  "inline", "int", "long", "mutable", "namespace", "new", "not", "not_eq",
-  "operator", "or", "or_eq", "private", "protected", "public", "register",
-  "reinterpret_cast", "return", "short", "signed", "sizeof", "static",
-  "static_cast", "struct", "switch", "template", "this", "throw", "true", "try",
-  "typedef", "typeid", "typename", "union", "unsigned", "using", "virtual",
-  "void", "volatile", "wchar_t", "while", "xor", "xor_eq"
-};
+    "and", "and_eq", "asm", "auto", "bitand", "bitor", "bool", "break", "case",
+    "catch", "char", "class", "compl", "const", "const_cast", "continue",
+    "default", "delete", "do", "double", "dynamic_cast", "else", "enum",
+    "explicit", "extern", "false", "float", "for", "friend", "goto", "if",
+    "inline", "int", "long", "mutable", "namespace", "new", "not", "not_eq",
+    "operator", "or", "or_eq", "private", "protected", "public", "register",
+    "reinterpret_cast", "return", "short", "signed", "sizeof", "static",
+    "static_cast", "struct", "switch", "template", "this", "throw", "true", "try",
+    "typedef", "typeid", "typename", "union", "unsigned", "using", "virtual",
+    "void", "volatile", "wchar_t", "while", "xor", "xor_eq"};
 
 hash_set<string> MakeKeywordsMap() {
   hash_set<string> result;
@@ -96,7 +94,7 @@ bool HasExtension(const Descriptor* descriptor) {
   return false;
 }
 
-}  // namespace
+} // namespace
 
 string UnderscoresToCamelCase(const string& input, bool cap_next_letter) {
   string result;
@@ -124,16 +122,17 @@ string UnderscoresToCamelCase(const string& input, bool cap_next_letter) {
 }
 
 const char kThickSeparator[] =
-  "// ===================================================================\n";
+    "// ===================================================================\n";
 const char kThinSeparator[] =
-  "// -------------------------------------------------------------------\n";
+    "// -------------------------------------------------------------------\n";
 
 string ClassName(const Descriptor* descriptor, bool qualified) {
 
   // Find "outer", the descriptor of the top-level message in which
   // "descriptor" is embedded.
   const Descriptor* outer = descriptor;
-  while (outer->containing_type() != NULL) outer = outer->containing_type();
+  while (outer->containing_type() != NULL)
+    outer = outer->containing_type();
 
   const string& outer_name = outer->full_name();
   string inner_name = descriptor->full_name().substr(outer_name.size());
@@ -160,10 +159,8 @@ string ClassName(const EnumDescriptor* enum_descriptor, bool qualified) {
   }
 }
 
-
 string SuperClassName(const Descriptor* descriptor) {
-  return HasDescriptorMethods(descriptor->file()) ?
-      "::google::protobuf::Message" : "::google::protobuf::MessageLite";
+  return HasDescriptorMethods(descriptor->file()) ? "::google::protobuf::Message" : "::google::protobuf::MessageLite";
 }
 
 string FieldName(const FieldDescriptor* field) {
@@ -175,13 +172,13 @@ string FieldName(const FieldDescriptor* field) {
   return result;
 }
 
-string FieldConstantName(const FieldDescriptor *field) {
+string FieldConstantName(const FieldDescriptor* field) {
   string field_name = UnderscoresToCamelCase(field->name(), true);
   string result = "k" + field_name + "FieldNumber";
 
   if (!field->is_extension() &&
       field->containing_type()->FindFieldByCamelcaseName(
-        field->camelcase_name()) != field) {
+          field->camelcase_name()) != field) {
     // This field's camelcase name is not unique.  As a hack, add the field
     // number to the constant name.  This makes the constant rather useless,
     // but what can we do?
@@ -207,16 +204,26 @@ string StripProto(const string& filename) {
 
 const char* PrimitiveTypeName(FieldDescriptor::CppType type) {
   switch (type) {
-    case FieldDescriptor::CPPTYPE_INT32  : return "::google::protobuf::int32";
-    case FieldDescriptor::CPPTYPE_INT64  : return "::google::protobuf::int64";
-    case FieldDescriptor::CPPTYPE_UINT32 : return "::google::protobuf::uint32";
-    case FieldDescriptor::CPPTYPE_UINT64 : return "::google::protobuf::uint64";
-    case FieldDescriptor::CPPTYPE_DOUBLE : return "double";
-    case FieldDescriptor::CPPTYPE_FLOAT  : return "float";
-    case FieldDescriptor::CPPTYPE_BOOL   : return "bool";
-    case FieldDescriptor::CPPTYPE_ENUM   : return "int";
-    case FieldDescriptor::CPPTYPE_STRING : return "::std::string";
-    case FieldDescriptor::CPPTYPE_MESSAGE: return NULL;
+  case FieldDescriptor::CPPTYPE_INT32:
+    return "::google::protobuf::int32";
+  case FieldDescriptor::CPPTYPE_INT64:
+    return "::google::protobuf::int64";
+  case FieldDescriptor::CPPTYPE_UINT32:
+    return "::google::protobuf::uint32";
+  case FieldDescriptor::CPPTYPE_UINT64:
+    return "::google::protobuf::uint64";
+  case FieldDescriptor::CPPTYPE_DOUBLE:
+    return "double";
+  case FieldDescriptor::CPPTYPE_FLOAT:
+    return "float";
+  case FieldDescriptor::CPPTYPE_BOOL:
+    return "bool";
+  case FieldDescriptor::CPPTYPE_ENUM:
+    return "int";
+  case FieldDescriptor::CPPTYPE_STRING:
+    return "::std::string";
+  case FieldDescriptor::CPPTYPE_MESSAGE:
+    return NULL;
 
     // No default because we want the compiler to complain if any new
     // CppTypes are added.
@@ -228,26 +235,44 @@ const char* PrimitiveTypeName(FieldDescriptor::CppType type) {
 
 const char* DeclaredTypeMethodName(FieldDescriptor::Type type) {
   switch (type) {
-    case FieldDescriptor::TYPE_INT32   : return "Int32";
-    case FieldDescriptor::TYPE_INT64   : return "Int64";
-    case FieldDescriptor::TYPE_UINT32  : return "UInt32";
-    case FieldDescriptor::TYPE_UINT64  : return "UInt64";
-    case FieldDescriptor::TYPE_SINT32  : return "SInt32";
-    case FieldDescriptor::TYPE_SINT64  : return "SInt64";
-    case FieldDescriptor::TYPE_FIXED32 : return "Fixed32";
-    case FieldDescriptor::TYPE_FIXED64 : return "Fixed64";
-    case FieldDescriptor::TYPE_SFIXED32: return "SFixed32";
-    case FieldDescriptor::TYPE_SFIXED64: return "SFixed64";
-    case FieldDescriptor::TYPE_FLOAT   : return "Float";
-    case FieldDescriptor::TYPE_DOUBLE  : return "Double";
+  case FieldDescriptor::TYPE_INT32:
+    return "Int32";
+  case FieldDescriptor::TYPE_INT64:
+    return "Int64";
+  case FieldDescriptor::TYPE_UINT32:
+    return "UInt32";
+  case FieldDescriptor::TYPE_UINT64:
+    return "UInt64";
+  case FieldDescriptor::TYPE_SINT32:
+    return "SInt32";
+  case FieldDescriptor::TYPE_SINT64:
+    return "SInt64";
+  case FieldDescriptor::TYPE_FIXED32:
+    return "Fixed32";
+  case FieldDescriptor::TYPE_FIXED64:
+    return "Fixed64";
+  case FieldDescriptor::TYPE_SFIXED32:
+    return "SFixed32";
+  case FieldDescriptor::TYPE_SFIXED64:
+    return "SFixed64";
+  case FieldDescriptor::TYPE_FLOAT:
+    return "Float";
+  case FieldDescriptor::TYPE_DOUBLE:
+    return "Double";
 
-    case FieldDescriptor::TYPE_BOOL    : return "Bool";
-    case FieldDescriptor::TYPE_ENUM    : return "Enum";
+  case FieldDescriptor::TYPE_BOOL:
+    return "Bool";
+  case FieldDescriptor::TYPE_ENUM:
+    return "Enum";
 
-    case FieldDescriptor::TYPE_STRING  : return "String";
-    case FieldDescriptor::TYPE_BYTES   : return "Bytes";
-    case FieldDescriptor::TYPE_GROUP   : return "Group";
-    case FieldDescriptor::TYPE_MESSAGE : return "Message";
+  case FieldDescriptor::TYPE_STRING:
+    return "String";
+  case FieldDescriptor::TYPE_BYTES:
+    return "Bytes";
+  case FieldDescriptor::TYPE_GROUP:
+    return "Group";
+  case FieldDescriptor::TYPE_MESSAGE:
+    return "Message";
 
     // No default because we want the compiler to complain if any new
     // types are added.
@@ -271,7 +296,7 @@ string Int64ToString(int64 number) {
   if (number == kint64min) {
     // Make sure we are in a 2's complement system.
     GOOGLE_COMPILE_ASSERT(kint64min == GOOGLE_LONGLONG(~0x7fffffffffffffff),
-                   kint64min_value_error);
+                          kint64min_value_error);
     return "GOOGLE_LONGLONG(~0x7fffffffffffffff)";
   }
   return "GOOGLE_LONGLONG(" + SimpleItoa(number) + ")";
@@ -279,61 +304,59 @@ string Int64ToString(int64 number) {
 
 string DefaultValue(const FieldDescriptor* field) {
   switch (field->cpp_type()) {
-    case FieldDescriptor::CPPTYPE_INT32:
-      return Int32ToString(field->default_value_int32());
-    case FieldDescriptor::CPPTYPE_UINT32:
-      return SimpleItoa(field->default_value_uint32()) + "u";
-    case FieldDescriptor::CPPTYPE_INT64:
-      return Int64ToString(field->default_value_int64());
-    case FieldDescriptor::CPPTYPE_UINT64:
-      return "GOOGLE_ULONGLONG(" + SimpleItoa(field->default_value_uint64())+ ")";
-    case FieldDescriptor::CPPTYPE_DOUBLE: {
-      double value = field->default_value_double();
-      if (value == numeric_limits<double>::infinity()) {
-        return "::google::protobuf::internal::Infinity()";
-      } else if (value == -numeric_limits<double>::infinity()) {
-        return "-::google::protobuf::internal::Infinity()";
-      } else if (value != value) {
-        return "::google::protobuf::internal::NaN()";
-      } else {
-        return SimpleDtoa(value);
-      }
+  case FieldDescriptor::CPPTYPE_INT32:
+    return Int32ToString(field->default_value_int32());
+  case FieldDescriptor::CPPTYPE_UINT32:
+    return SimpleItoa(field->default_value_uint32()) + "u";
+  case FieldDescriptor::CPPTYPE_INT64:
+    return Int64ToString(field->default_value_int64());
+  case FieldDescriptor::CPPTYPE_UINT64:
+    return "GOOGLE_ULONGLONG(" + SimpleItoa(field->default_value_uint64()) + ")";
+  case FieldDescriptor::CPPTYPE_DOUBLE: {
+    double value = field->default_value_double();
+    if (value == numeric_limits<double>::infinity()) {
+      return "::google::protobuf::internal::Infinity()";
+    } else if (value == -numeric_limits<double>::infinity()) {
+      return "-::google::protobuf::internal::Infinity()";
+    } else if (value != value) {
+      return "::google::protobuf::internal::NaN()";
+    } else {
+      return SimpleDtoa(value);
     }
-    case FieldDescriptor::CPPTYPE_FLOAT:
-      {
-        float value = field->default_value_float();
-        if (value == numeric_limits<float>::infinity()) {
-          return "static_cast<float>(::google::protobuf::internal::Infinity())";
-        } else if (value == -numeric_limits<float>::infinity()) {
-          return "static_cast<float>(-::google::protobuf::internal::Infinity())";
-        } else if (value != value) {
-          return "static_cast<float>(::google::protobuf::internal::NaN())";
-        } else {
-          string float_value = SimpleFtoa(value);
-          // If floating point value contains a period (.) or an exponent
-          // (either E or e), then append suffix 'f' to make it a float
-          // literal.
-          if (float_value.find_first_of(".eE") != string::npos) {
-            float_value.push_back('f');
-          }
-          return float_value;
-        }
+  }
+  case FieldDescriptor::CPPTYPE_FLOAT: {
+    float value = field->default_value_float();
+    if (value == numeric_limits<float>::infinity()) {
+      return "static_cast<float>(::google::protobuf::internal::Infinity())";
+    } else if (value == -numeric_limits<float>::infinity()) {
+      return "static_cast<float>(-::google::protobuf::internal::Infinity())";
+    } else if (value != value) {
+      return "static_cast<float>(::google::protobuf::internal::NaN())";
+    } else {
+      string float_value = SimpleFtoa(value);
+      // If floating point value contains a period (.) or an exponent
+      // (either E or e), then append suffix 'f' to make it a float
+      // literal.
+      if (float_value.find_first_of(".eE") != string::npos) {
+        float_value.push_back('f');
       }
-    case FieldDescriptor::CPPTYPE_BOOL:
-      return field->default_value_bool() ? "true" : "false";
-    case FieldDescriptor::CPPTYPE_ENUM:
-      // Lazy:  Generate a static_cast because we don't have a helper function
-      //   that constructs the full name of an enum value.
-      return strings::Substitute(
-          "static_cast< $0 >($1)",
-          ClassName(field->enum_type(), true),
-          Int32ToString(field->default_value_enum()->number()));
-    case FieldDescriptor::CPPTYPE_STRING:
-      return "\"" + EscapeTrigraphs(
-        CEscape(field->default_value_string())) +
-        "\"";
-    case FieldDescriptor::CPPTYPE_MESSAGE:
-      return FieldMessageTypeName(field) + "::default_instance()";
+      return float_value;
+    }
+  }
+  case FieldDescriptor::CPPTYPE_BOOL:
+    return field->default_value_bool() ? "true" : "false";
+  case FieldDescriptor::CPPTYPE_ENUM:
+    // Lazy:  Generate a static_cast because we don't have a helper function
+    //   that constructs the full name of an enum value.
+    return strings::Substitute(
+        "static_cast< $0 >($1)",
+        ClassName(field->enum_type(), true),
+        Int32ToString(field->default_value_enum()->number()));
+  case FieldDescriptor::CPPTYPE_STRING:
+    return "\"" + EscapeTrigraphs(CEscape(field->default_value_string())) +
+           "\"";
+  case FieldDescriptor::CPPTYPE_MESSAGE:
+    return FieldMessageTypeName(field) + "::default_instance()";
   }
   // Can't actually get here; make compiler happy.  (We could add a default
   // case above but then we wouldn't get the nice compiler warning when a
@@ -443,52 +466,56 @@ void PrintHandlingOptionalStaticInitializers(
     printer->Print(vars, with_static_init);
   } else {
     printer->Print(vars, (string(
-      "#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER\n") +
-      without_static_init +
-      "#else\n" +
-      with_static_init +
-      "#endif\n").c_str());
+                              "#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER\n") +
+                          without_static_init +
+                          "#else\n" +
+                          with_static_init +
+                          "#endif\n")
+                             .c_str());
   }
 }
 
-
 static bool HasEnumDefinitions(const Descriptor* message_type) {
-  if (message_type->enum_type_count() > 0) return true;
+  if (message_type->enum_type_count() > 0)
+    return true;
   for (int i = 0; i < message_type->nested_type_count(); ++i) {
-    if (HasEnumDefinitions(message_type->nested_type(i))) return true;
+    if (HasEnumDefinitions(message_type->nested_type(i)))
+      return true;
   }
   return false;
 }
 
 bool HasEnumDefinitions(const FileDescriptor* file) {
-  if (file->enum_type_count() > 0) return true;
+  if (file->enum_type_count() > 0)
+    return true;
   for (int i = 0; i < file->message_type_count(); ++i) {
-    if (HasEnumDefinitions(file->message_type(i))) return true;
+    if (HasEnumDefinitions(file->message_type(i)))
+      return true;
   }
   return false;
 }
 
 bool IsStringOrMessage(const FieldDescriptor* field) {
   switch (field->cpp_type()) {
-    case FieldDescriptor::CPPTYPE_INT32:
-    case FieldDescriptor::CPPTYPE_INT64:
-    case FieldDescriptor::CPPTYPE_UINT32:
-    case FieldDescriptor::CPPTYPE_UINT64:
-    case FieldDescriptor::CPPTYPE_DOUBLE:
-    case FieldDescriptor::CPPTYPE_FLOAT:
-    case FieldDescriptor::CPPTYPE_BOOL:
-    case FieldDescriptor::CPPTYPE_ENUM:
-      return false;
-    case FieldDescriptor::CPPTYPE_STRING:
-    case FieldDescriptor::CPPTYPE_MESSAGE:
-      return true;
+  case FieldDescriptor::CPPTYPE_INT32:
+  case FieldDescriptor::CPPTYPE_INT64:
+  case FieldDescriptor::CPPTYPE_UINT32:
+  case FieldDescriptor::CPPTYPE_UINT64:
+  case FieldDescriptor::CPPTYPE_DOUBLE:
+  case FieldDescriptor::CPPTYPE_FLOAT:
+  case FieldDescriptor::CPPTYPE_BOOL:
+  case FieldDescriptor::CPPTYPE_ENUM:
+    return false;
+  case FieldDescriptor::CPPTYPE_STRING:
+  case FieldDescriptor::CPPTYPE_MESSAGE:
+    return true;
   }
 
   GOOGLE_LOG(FATAL) << "Can't get here.";
   return false;
 }
 
-}  // namespace cpp
-}  // namespace compiler
-}  // namespace protobuf
-}  // namespace google
+} // namespace cpp
+} // namespace compiler
+} // namespace protobuf
+} // namespace google

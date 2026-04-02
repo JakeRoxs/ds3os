@@ -49,7 +49,9 @@ class EnumValueDescriptor;
 class FieldDescriptor;
 class ServiceDescriptor;
 
-namespace io { class Printer; }
+namespace io {
+class Printer;
+}
 
 namespace compiler {
 namespace python {
@@ -59,7 +61,7 @@ namespace python {
 // Python output, you can do so by registering an instance of this
 // CodeGenerator with the CommandLineInterface in your main() function.
 class LIBPROTOC_EXPORT Generator : public CodeGenerator {
- public:
+public:
   Generator();
   virtual ~Generator();
 
@@ -69,7 +71,7 @@ class LIBPROTOC_EXPORT Generator : public CodeGenerator {
                         GeneratorContext* generator_context,
                         string* error) const;
 
- private:
+private:
   void PrintImports() const;
   void PrintFileDescriptor() const;
   void PrintTopLevelEnums() const;
@@ -151,16 +153,16 @@ class LIBPROTOC_EXPORT Generator : public CodeGenerator {
   // Very coarse-grained lock to ensure that Generate() is reentrant.
   // Guards file_, printer_ and file_descriptor_serialized_.
   mutable Mutex mutex_;
-  mutable const FileDescriptor* file_;  // Set in Generate().  Under mutex_.
+  mutable const FileDescriptor* file_; // Set in Generate().  Under mutex_.
   mutable string file_descriptor_serialized_;
-  mutable io::Printer* printer_;  // Set in Generate().  Under mutex_.
+  mutable io::Printer* printer_; // Set in Generate().  Under mutex_.
 
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(Generator);
 };
 
-}  // namespace python
-}  // namespace compiler
-}  // namespace protobuf
+} // namespace python
+} // namespace compiler
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_PYTHON_GENERATOR_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_COMPILER_PYTHON_GENERATOR_H__

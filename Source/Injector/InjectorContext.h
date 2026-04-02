@@ -20,16 +20,15 @@
 
 // A minimal context object containing the runtime values and helpers that hooks need.
 // This intentionally avoids exposing the full Injector instance.
-struct InjectorContext
-{
-    using AOBByte = std::optional<uint8_t>;
+struct InjectorContext {
+  using AOBByte = std::optional<uint8_t>;
 
-    const RuntimeConfig& Config;
-    GameType GameType;
-    intptr_t BaseAddress;
+  const RuntimeConfig& Config;
+  GameType GameType;
+  intptr_t BaseAddress;
 
-    // Search helpers used by hooks for pattern and string scanning.
-    std::function<std::vector<intptr_t>(const std::vector<AOBByte>&)> SearchAOB;
-    std::function<std::vector<intptr_t>(const std::string&)> SearchString;
-    std::function<std::vector<intptr_t>(const std::wstring&)> SearchWString;
+  // Search helpers used by hooks for pattern and string scanning.
+  std::function<std::vector<intptr_t>(const std::vector<AOBByte>&)> SearchAOB;
+  std::function<std::vector<intptr_t>(const std::string&)> SearchString;
+  std::function<std::vector<intptr_t>(const std::wstring&)> SearchWString;
 };

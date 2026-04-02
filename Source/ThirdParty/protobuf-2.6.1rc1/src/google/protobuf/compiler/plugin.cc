@@ -54,13 +54,12 @@
 #include <google/protobuf/descriptor.h>
 #include <google/protobuf/io/zero_copy_stream_impl.h>
 
-
 namespace google {
 namespace protobuf {
 namespace compiler {
 
 class GeneratorResponseContext : public GeneratorContext {
- public:
+public:
   GeneratorResponseContext(CodeGeneratorResponse* response,
                            const vector<const FileDescriptor*>& parsed_files)
       : response_(response),
@@ -87,7 +86,7 @@ class GeneratorResponseContext : public GeneratorContext {
     *output = parsed_files_;
   }
 
- private:
+private:
   CodeGeneratorResponse* response_;
   const vector<const FileDescriptor*>& parsed_files_;
 };
@@ -124,7 +123,7 @@ int PluginMain(int argc, char* argv[], const CodeGenerator* generator) {
     parsed_files.push_back(pool.FindFileByName(request.file_to_generate(i)));
     if (parsed_files.back() == NULL) {
       cerr << argv[0] << ": protoc asked plugin to generate a file but "
-              "did not provide a descriptor for the file: "
+                         "did not provide a descriptor for the file: "
            << request.file_to_generate(i) << endl;
       return 1;
     }
@@ -158,6 +157,6 @@ int PluginMain(int argc, char* argv[], const CodeGenerator* generator) {
   return 0;
 }
 
-}  // namespace compiler
-}  // namespace protobuf
-}  // namespace google
+} // namespace compiler
+} // namespace protobuf
+} // namespace google

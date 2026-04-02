@@ -29,7 +29,7 @@
 namespace DS2_Frpg2RequestMessage {
 
 // Internal implementation detail -- do not call these.
-void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
 void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
 void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -330,7 +330,7 @@ const int QuickMatchGameMode_ARRAYSIZE = QuickMatchGameMode_MAX + 1;
 // ===================================================================
 
 class EmptyResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   EmptyResponse();
   virtual ~EmptyResponse();
 
@@ -351,7 +351,7 @@ class EmptyResponse : public ::google::protobuf::MessageLite {
 
   static const EmptyResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -359,7 +359,7 @@ class EmptyResponse : public ::google::protobuf::MessageLite {
   static inline const EmptyResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(EmptyResponse* other);
 
@@ -379,11 +379,13 @@ class EmptyResponse : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -391,17 +393,16 @@ class EmptyResponse : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.EmptyResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -411,7 +412,7 @@ class EmptyResponse : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestWaitForUserLogin : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestWaitForUserLogin();
   virtual ~RequestWaitForUserLogin();
 
@@ -432,7 +433,7 @@ class RequestWaitForUserLogin : public ::google::protobuf::MessageLite {
 
   static const RequestWaitForUserLogin& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -440,7 +441,7 @@ class RequestWaitForUserLogin : public ::google::protobuf::MessageLite {
   static inline const RequestWaitForUserLogin* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestWaitForUserLogin* other);
 
@@ -460,11 +461,13 @@ class RequestWaitForUserLogin : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -526,7 +529,7 @@ class RequestWaitForUserLogin : public ::google::protobuf::MessageLite {
   inline void set_unknown_6(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestWaitForUserLogin)
- private:
+private:
   inline void set_has_steam_id();
   inline void clear_has_steam_id();
   inline void set_has_unknown_1();
@@ -553,11 +556,11 @@ class RequestWaitForUserLogin : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 unknown_4_;
   ::google::protobuf::uint32 unknown_5_;
   ::google::protobuf::uint32 unknown_6_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -567,7 +570,7 @@ class RequestWaitForUserLogin : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestWaitForUserLoginResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestWaitForUserLoginResponse();
   virtual ~RequestWaitForUserLoginResponse();
 
@@ -588,7 +591,7 @@ class RequestWaitForUserLoginResponse : public ::google::protobuf::MessageLite {
 
   static const RequestWaitForUserLoginResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -596,7 +599,7 @@ class RequestWaitForUserLoginResponse : public ::google::protobuf::MessageLite {
   static inline const RequestWaitForUserLoginResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestWaitForUserLoginResponse* other);
 
@@ -616,11 +619,13 @@ class RequestWaitForUserLoginResponse : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -647,7 +652,7 @@ class RequestWaitForUserLoginResponse : public ::google::protobuf::MessageLite {
   inline void set_player_id(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestWaitForUserLoginResponse)
- private:
+private:
   inline void set_has_steam_id();
   inline void clear_has_steam_id();
   inline void set_has_player_id();
@@ -659,11 +664,11 @@ class RequestWaitForUserLoginResponse : public ::google::protobuf::MessageLite {
   mutable int _cached_size_;
   ::std::string* steam_id_;
   ::google::protobuf::uint32 player_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -673,7 +678,7 @@ class RequestWaitForUserLoginResponse : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class PlayerStatusUploadConfig : public ::google::protobuf::MessageLite {
- public:
+public:
   PlayerStatusUploadConfig();
   virtual ~PlayerStatusUploadConfig();
 
@@ -694,7 +699,7 @@ class PlayerStatusUploadConfig : public ::google::protobuf::MessageLite {
 
   static const PlayerStatusUploadConfig& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -702,7 +707,7 @@ class PlayerStatusUploadConfig : public ::google::protobuf::MessageLite {
   static inline const PlayerStatusUploadConfig* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PlayerStatusUploadConfig* other);
 
@@ -722,11 +727,13 @@ class PlayerStatusUploadConfig : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -740,10 +747,10 @@ class PlayerStatusUploadConfig : public ::google::protobuf::MessageLite {
   inline ::google::protobuf::uint32 player_data_mask(int index) const;
   inline void set_player_data_mask(int index, ::google::protobuf::uint32 value);
   inline void add_player_data_mask(::google::protobuf::uint32 value);
-  inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
-      player_data_mask() const;
-  inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
-      mutable_player_data_mask();
+  inline const ::google::protobuf::RepeatedField<::google::protobuf::uint32>&
+  player_data_mask() const;
+  inline ::google::protobuf::RepeatedField<::google::protobuf::uint32>*
+  mutable_player_data_mask();
 
   // required uint32 upload_interval = 2;
   inline bool has_upload_interval() const;
@@ -753,7 +760,7 @@ class PlayerStatusUploadConfig : public ::google::protobuf::MessageLite {
   inline void set_upload_interval(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.PlayerStatusUploadConfig)
- private:
+private:
   inline void set_has_upload_interval();
   inline void clear_has_upload_interval();
 
@@ -761,13 +768,13 @@ class PlayerStatusUploadConfig : public ::google::protobuf::MessageLite {
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > player_data_mask_;
+  ::google::protobuf::RepeatedField<::google::protobuf::uint32> player_data_mask_;
   ::google::protobuf::uint32 upload_interval_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -777,7 +784,7 @@ class PlayerStatusUploadConfig : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class AnnounceMessageData : public ::google::protobuf::MessageLite {
- public:
+public:
   AnnounceMessageData();
   virtual ~AnnounceMessageData();
 
@@ -798,7 +805,7 @@ class AnnounceMessageData : public ::google::protobuf::MessageLite {
 
   static const AnnounceMessageData& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -806,7 +813,7 @@ class AnnounceMessageData : public ::google::protobuf::MessageLite {
   static inline const AnnounceMessageData* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(AnnounceMessageData* other);
 
@@ -826,11 +833,13 @@ class AnnounceMessageData : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -892,7 +901,7 @@ class AnnounceMessageData : public ::google::protobuf::MessageLite {
   inline void set_allocated_datetime(::DS2_Frpg2PlayerData::DateTime* datetime);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.AnnounceMessageData)
- private:
+private:
   inline void set_has_unknown_1();
   inline void clear_has_unknown_1();
   inline void set_has_index();
@@ -916,11 +925,11 @@ class AnnounceMessageData : public ::google::protobuf::MessageLite {
   ::std::string* message_;
   ::DS2_Frpg2PlayerData::DateTime* datetime_;
   ::google::protobuf::uint32 unknown_2_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -930,7 +939,7 @@ class AnnounceMessageData : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class AnnounceMessageDataList : public ::google::protobuf::MessageLite {
- public:
+public:
   AnnounceMessageDataList();
   virtual ~AnnounceMessageDataList();
 
@@ -951,7 +960,7 @@ class AnnounceMessageDataList : public ::google::protobuf::MessageLite {
 
   static const AnnounceMessageDataList& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -959,7 +968,7 @@ class AnnounceMessageDataList : public ::google::protobuf::MessageLite {
   static inline const AnnounceMessageDataList* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(AnnounceMessageDataList* other);
 
@@ -979,11 +988,13 @@ class AnnounceMessageDataList : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -997,24 +1008,23 @@ class AnnounceMessageDataList : public ::google::protobuf::MessageLite {
   inline const ::DS2_Frpg2RequestMessage::AnnounceMessageData& items(int index) const;
   inline ::DS2_Frpg2RequestMessage::AnnounceMessageData* mutable_items(int index);
   inline ::DS2_Frpg2RequestMessage::AnnounceMessageData* add_items();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::AnnounceMessageData >&
-      items() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::AnnounceMessageData >*
-      mutable_items();
+  inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::AnnounceMessageData>&
+  items() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::AnnounceMessageData>*
+  mutable_items();
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.AnnounceMessageDataList)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::AnnounceMessageData > items_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+  ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::AnnounceMessageData> items_;
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -1024,7 +1034,7 @@ class AnnounceMessageDataList : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetAnnounceMessageList : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetAnnounceMessageList();
   virtual ~RequestGetAnnounceMessageList();
 
@@ -1045,7 +1055,7 @@ class RequestGetAnnounceMessageList : public ::google::protobuf::MessageLite {
 
   static const RequestGetAnnounceMessageList& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1053,7 +1063,7 @@ class RequestGetAnnounceMessageList : public ::google::protobuf::MessageLite {
   static inline const RequestGetAnnounceMessageList* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetAnnounceMessageList* other);
 
@@ -1073,11 +1083,13 @@ class RequestGetAnnounceMessageList : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -1106,7 +1118,7 @@ class RequestGetAnnounceMessageList : public ::google::protobuf::MessageLite {
   inline void set_unknown_2(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetAnnounceMessageList)
- private:
+private:
   inline void set_has_max_entries();
   inline void clear_has_max_entries();
   inline void set_has_unknown_1();
@@ -1121,11 +1133,11 @@ class RequestGetAnnounceMessageList : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 max_entries_;
   ::google::protobuf::uint32 unknown_1_;
   ::google::protobuf::uint32 unknown_2_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -1135,7 +1147,7 @@ class RequestGetAnnounceMessageList : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetAnnounceMessageListResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetAnnounceMessageListResponse();
   virtual ~RequestGetAnnounceMessageListResponse();
 
@@ -1156,7 +1168,7 @@ class RequestGetAnnounceMessageListResponse : public ::google::protobuf::Message
 
   static const RequestGetAnnounceMessageListResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1164,7 +1176,7 @@ class RequestGetAnnounceMessageListResponse : public ::google::protobuf::Message
   static inline const RequestGetAnnounceMessageListResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetAnnounceMessageListResponse* other);
 
@@ -1184,11 +1196,13 @@ class RequestGetAnnounceMessageListResponse : public ::google::protobuf::Message
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -1214,7 +1228,7 @@ class RequestGetAnnounceMessageListResponse : public ::google::protobuf::Message
   inline void set_allocated_notices(::DS2_Frpg2RequestMessage::AnnounceMessageDataList* notices);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetAnnounceMessageListResponse)
- private:
+private:
   inline void set_has_changes();
   inline void clear_has_changes();
   inline void set_has_notices();
@@ -1226,11 +1240,11 @@ class RequestGetAnnounceMessageListResponse : public ::google::protobuf::Message
   mutable int _cached_size_;
   ::DS2_Frpg2RequestMessage::AnnounceMessageDataList* changes_;
   ::DS2_Frpg2RequestMessage::AnnounceMessageDataList* notices_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -1240,7 +1254,7 @@ class RequestGetAnnounceMessageListResponse : public ::google::protobuf::Message
 // -------------------------------------------------------------------
 
 class PlayerCharacterData : public ::google::protobuf::MessageLite {
- public:
+public:
   PlayerCharacterData();
   virtual ~PlayerCharacterData();
 
@@ -1261,7 +1275,7 @@ class PlayerCharacterData : public ::google::protobuf::MessageLite {
 
   static const PlayerCharacterData& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1269,7 +1283,7 @@ class PlayerCharacterData : public ::google::protobuf::MessageLite {
   static inline const PlayerCharacterData* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PlayerCharacterData* other);
 
@@ -1289,11 +1303,13 @@ class PlayerCharacterData : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -1301,17 +1317,16 @@ class PlayerCharacterData : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.PlayerCharacterData)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -1321,7 +1336,7 @@ class PlayerCharacterData : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class PlayerCharacterID : public ::google::protobuf::MessageLite {
- public:
+public:
   PlayerCharacterID();
   virtual ~PlayerCharacterID();
 
@@ -1342,7 +1357,7 @@ class PlayerCharacterID : public ::google::protobuf::MessageLite {
 
   static const PlayerCharacterID& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1350,7 +1365,7 @@ class PlayerCharacterID : public ::google::protobuf::MessageLite {
   static inline const PlayerCharacterID* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PlayerCharacterID* other);
 
@@ -1370,11 +1385,13 @@ class PlayerCharacterID : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -1382,17 +1399,16 @@ class PlayerCharacterID : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.PlayerCharacterID)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -1402,7 +1418,7 @@ class PlayerCharacterID : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class PlayerInfoUploadConfigPushMessage : public ::google::protobuf::MessageLite {
- public:
+public:
   PlayerInfoUploadConfigPushMessage();
   virtual ~PlayerInfoUploadConfigPushMessage();
 
@@ -1423,7 +1439,7 @@ class PlayerInfoUploadConfigPushMessage : public ::google::protobuf::MessageLite
 
   static const PlayerInfoUploadConfigPushMessage& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1431,7 +1447,7 @@ class PlayerInfoUploadConfigPushMessage : public ::google::protobuf::MessageLite
   static inline const PlayerInfoUploadConfigPushMessage* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PlayerInfoUploadConfigPushMessage* other);
 
@@ -1451,11 +1467,13 @@ class PlayerInfoUploadConfigPushMessage : public ::google::protobuf::MessageLite
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -1493,7 +1511,7 @@ class PlayerInfoUploadConfigPushMessage : public ::google::protobuf::MessageLite
   inline void set_player_status_send_delay(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.PlayerInfoUploadConfigPushMessage)
- private:
+private:
   inline void set_has_push_message_id();
   inline void clear_has_push_message_id();
   inline void set_has_config();
@@ -1511,11 +1529,11 @@ class PlayerInfoUploadConfigPushMessage : public ::google::protobuf::MessageLite
   int push_message_id_;
   ::google::protobuf::uint32 player_character_update_send_delay_;
   ::google::protobuf::uint32 player_status_send_delay_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -1525,7 +1543,7 @@ class PlayerInfoUploadConfigPushMessage : public ::google::protobuf::MessageLite
 // -------------------------------------------------------------------
 
 class RequestUpdateLoginPlayerCharacter : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestUpdateLoginPlayerCharacter();
   virtual ~RequestUpdateLoginPlayerCharacter();
 
@@ -1546,7 +1564,7 @@ class RequestUpdateLoginPlayerCharacter : public ::google::protobuf::MessageLite
 
   static const RequestUpdateLoginPlayerCharacter& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1554,7 +1572,7 @@ class RequestUpdateLoginPlayerCharacter : public ::google::protobuf::MessageLite
   static inline const RequestUpdateLoginPlayerCharacter* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestUpdateLoginPlayerCharacter* other);
 
@@ -1574,11 +1592,13 @@ class RequestUpdateLoginPlayerCharacter : public ::google::protobuf::MessageLite
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -1599,13 +1619,13 @@ class RequestUpdateLoginPlayerCharacter : public ::google::protobuf::MessageLite
   inline ::google::protobuf::uint32 local_character_ids(int index) const;
   inline void set_local_character_ids(int index, ::google::protobuf::uint32 value);
   inline void add_local_character_ids(::google::protobuf::uint32 value);
-  inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
-      local_character_ids() const;
-  inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
-      mutable_local_character_ids();
+  inline const ::google::protobuf::RepeatedField<::google::protobuf::uint32>&
+  local_character_ids() const;
+  inline ::google::protobuf::RepeatedField<::google::protobuf::uint32>*
+  mutable_local_character_ids();
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestUpdateLoginPlayerCharacter)
- private:
+private:
   inline void set_has_character_id();
   inline void clear_has_character_id();
 
@@ -1613,13 +1633,13 @@ class RequestUpdateLoginPlayerCharacter : public ::google::protobuf::MessageLite
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > local_character_ids_;
+  ::google::protobuf::RepeatedField<::google::protobuf::uint32> local_character_ids_;
   ::google::protobuf::uint32 character_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -1629,7 +1649,7 @@ class RequestUpdateLoginPlayerCharacter : public ::google::protobuf::MessageLite
 // -------------------------------------------------------------------
 
 class RequestUpdateLoginPlayerCharacterResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestUpdateLoginPlayerCharacterResponse();
   virtual ~RequestUpdateLoginPlayerCharacterResponse();
 
@@ -1650,7 +1670,7 @@ class RequestUpdateLoginPlayerCharacterResponse : public ::google::protobuf::Mes
 
   static const RequestUpdateLoginPlayerCharacterResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1658,7 +1678,7 @@ class RequestUpdateLoginPlayerCharacterResponse : public ::google::protobuf::Mes
   static inline const RequestUpdateLoginPlayerCharacterResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestUpdateLoginPlayerCharacterResponse* other);
 
@@ -1678,11 +1698,13 @@ class RequestUpdateLoginPlayerCharacterResponse : public ::google::protobuf::Mes
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -1697,7 +1719,7 @@ class RequestUpdateLoginPlayerCharacterResponse : public ::google::protobuf::Mes
   inline void set_character_id(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestUpdateLoginPlayerCharacterResponse)
- private:
+private:
   inline void set_has_character_id();
   inline void clear_has_character_id();
 
@@ -1706,11 +1728,11 @@ class RequestUpdateLoginPlayerCharacterResponse : public ::google::protobuf::Mes
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
   ::google::protobuf::uint32 character_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -1720,7 +1742,7 @@ class RequestUpdateLoginPlayerCharacterResponse : public ::google::protobuf::Mes
 // -------------------------------------------------------------------
 
 class RequestUpdatePlayerStatus : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestUpdatePlayerStatus();
   virtual ~RequestUpdatePlayerStatus();
 
@@ -1741,7 +1763,7 @@ class RequestUpdatePlayerStatus : public ::google::protobuf::MessageLite {
 
   static const RequestUpdatePlayerStatus& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1749,7 +1771,7 @@ class RequestUpdatePlayerStatus : public ::google::protobuf::MessageLite {
   static inline const RequestUpdatePlayerStatus* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestUpdatePlayerStatus* other);
 
@@ -1769,11 +1791,13 @@ class RequestUpdatePlayerStatus : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -1793,7 +1817,7 @@ class RequestUpdatePlayerStatus : public ::google::protobuf::MessageLite {
   inline void set_allocated_status(::std::string* status);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestUpdatePlayerStatus)
- private:
+private:
   inline void set_has_status();
   inline void clear_has_status();
 
@@ -1802,11 +1826,11 @@ class RequestUpdatePlayerStatus : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
   ::std::string* status_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -1816,7 +1840,7 @@ class RequestUpdatePlayerStatus : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestUpdatePlayerStatusResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestUpdatePlayerStatusResponse();
   virtual ~RequestUpdatePlayerStatusResponse();
 
@@ -1837,7 +1861,7 @@ class RequestUpdatePlayerStatusResponse : public ::google::protobuf::MessageLite
 
   static const RequestUpdatePlayerStatusResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1845,7 +1869,7 @@ class RequestUpdatePlayerStatusResponse : public ::google::protobuf::MessageLite
   static inline const RequestUpdatePlayerStatusResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestUpdatePlayerStatusResponse* other);
 
@@ -1865,11 +1889,13 @@ class RequestUpdatePlayerStatusResponse : public ::google::protobuf::MessageLite
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -1877,17 +1903,16 @@ class RequestUpdatePlayerStatusResponse : public ::google::protobuf::MessageLite
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestUpdatePlayerStatusResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -1897,7 +1922,7 @@ class RequestUpdatePlayerStatusResponse : public ::google::protobuf::MessageLite
 // -------------------------------------------------------------------
 
 class RequestUpdatePlayerCharacter : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestUpdatePlayerCharacter();
   virtual ~RequestUpdatePlayerCharacter();
 
@@ -1918,7 +1943,7 @@ class RequestUpdatePlayerCharacter : public ::google::protobuf::MessageLite {
 
   static const RequestUpdatePlayerCharacter& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1926,7 +1951,7 @@ class RequestUpdatePlayerCharacter : public ::google::protobuf::MessageLite {
   static inline const RequestUpdatePlayerCharacter* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestUpdatePlayerCharacter* other);
 
@@ -1946,11 +1971,13 @@ class RequestUpdatePlayerCharacter : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -1977,7 +2004,7 @@ class RequestUpdatePlayerCharacter : public ::google::protobuf::MessageLite {
   inline void set_allocated_character_data(::std::string* character_data);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestUpdatePlayerCharacter)
- private:
+private:
   inline void set_has_character_id();
   inline void clear_has_character_id();
   inline void set_has_character_data();
@@ -1989,11 +2016,11 @@ class RequestUpdatePlayerCharacter : public ::google::protobuf::MessageLite {
   mutable int _cached_size_;
   ::std::string* character_data_;
   ::google::protobuf::uint32 character_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -2003,7 +2030,7 @@ class RequestUpdatePlayerCharacter : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestUpdatePlayerCharacterResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestUpdatePlayerCharacterResponse();
   virtual ~RequestUpdatePlayerCharacterResponse();
 
@@ -2024,7 +2051,7 @@ class RequestUpdatePlayerCharacterResponse : public ::google::protobuf::MessageL
 
   static const RequestUpdatePlayerCharacterResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -2032,7 +2059,7 @@ class RequestUpdatePlayerCharacterResponse : public ::google::protobuf::MessageL
   static inline const RequestUpdatePlayerCharacterResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestUpdatePlayerCharacterResponse* other);
 
@@ -2052,11 +2079,13 @@ class RequestUpdatePlayerCharacterResponse : public ::google::protobuf::MessageL
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -2064,17 +2093,16 @@ class RequestUpdatePlayerCharacterResponse : public ::google::protobuf::MessageL
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestUpdatePlayerCharacterResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -2084,7 +2112,7 @@ class RequestUpdatePlayerCharacterResponse : public ::google::protobuf::MessageL
 // -------------------------------------------------------------------
 
 class RequestGetPlayerCharacter : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetPlayerCharacter();
   virtual ~RequestGetPlayerCharacter();
 
@@ -2105,7 +2133,7 @@ class RequestGetPlayerCharacter : public ::google::protobuf::MessageLite {
 
   static const RequestGetPlayerCharacter& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -2113,7 +2141,7 @@ class RequestGetPlayerCharacter : public ::google::protobuf::MessageLite {
   static inline const RequestGetPlayerCharacter* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetPlayerCharacter* other);
 
@@ -2133,11 +2161,13 @@ class RequestGetPlayerCharacter : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -2159,7 +2189,7 @@ class RequestGetPlayerCharacter : public ::google::protobuf::MessageLite {
   inline void set_character_id(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetPlayerCharacter)
- private:
+private:
   inline void set_has_player_id();
   inline void clear_has_player_id();
   inline void set_has_character_id();
@@ -2171,11 +2201,11 @@ class RequestGetPlayerCharacter : public ::google::protobuf::MessageLite {
   mutable int _cached_size_;
   ::google::protobuf::uint32 player_id_;
   ::google::protobuf::uint32 character_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -2185,7 +2215,7 @@ class RequestGetPlayerCharacter : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetPlayerCharacterResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetPlayerCharacterResponse();
   virtual ~RequestGetPlayerCharacterResponse();
 
@@ -2206,7 +2236,7 @@ class RequestGetPlayerCharacterResponse : public ::google::protobuf::MessageLite
 
   static const RequestGetPlayerCharacterResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -2214,7 +2244,7 @@ class RequestGetPlayerCharacterResponse : public ::google::protobuf::MessageLite
   static inline const RequestGetPlayerCharacterResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetPlayerCharacterResponse* other);
 
@@ -2234,11 +2264,13 @@ class RequestGetPlayerCharacterResponse : public ::google::protobuf::MessageLite
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -2272,7 +2304,7 @@ class RequestGetPlayerCharacterResponse : public ::google::protobuf::MessageLite
   inline void set_allocated_character_data(::std::string* character_data);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetPlayerCharacterResponse)
- private:
+private:
   inline void set_has_player_id();
   inline void clear_has_player_id();
   inline void set_has_character_id();
@@ -2287,11 +2319,11 @@ class RequestGetPlayerCharacterResponse : public ::google::protobuf::MessageLite
   ::google::protobuf::uint32 player_id_;
   ::google::protobuf::uint32 character_id_;
   ::std::string* character_data_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -2301,7 +2333,7 @@ class RequestGetPlayerCharacterResponse : public ::google::protobuf::MessageLite
 // -------------------------------------------------------------------
 
 class RequestGetLoginPlayerCharacter : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetLoginPlayerCharacter();
   virtual ~RequestGetLoginPlayerCharacter();
 
@@ -2322,7 +2354,7 @@ class RequestGetLoginPlayerCharacter : public ::google::protobuf::MessageLite {
 
   static const RequestGetLoginPlayerCharacter& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -2330,7 +2362,7 @@ class RequestGetLoginPlayerCharacter : public ::google::protobuf::MessageLite {
   static inline const RequestGetLoginPlayerCharacter* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetLoginPlayerCharacter* other);
 
@@ -2350,11 +2382,13 @@ class RequestGetLoginPlayerCharacter : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -2369,7 +2403,7 @@ class RequestGetLoginPlayerCharacter : public ::google::protobuf::MessageLite {
   inline void set_player_id(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetLoginPlayerCharacter)
- private:
+private:
   inline void set_has_player_id();
   inline void clear_has_player_id();
 
@@ -2378,11 +2412,11 @@ class RequestGetLoginPlayerCharacter : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
   ::google::protobuf::int64 player_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -2392,7 +2426,7 @@ class RequestGetLoginPlayerCharacter : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetLoginPlayerCharacterResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetLoginPlayerCharacterResponse();
   virtual ~RequestGetLoginPlayerCharacterResponse();
 
@@ -2413,7 +2447,7 @@ class RequestGetLoginPlayerCharacterResponse : public ::google::protobuf::Messag
 
   static const RequestGetLoginPlayerCharacterResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -2421,7 +2455,7 @@ class RequestGetLoginPlayerCharacterResponse : public ::google::protobuf::Messag
   static inline const RequestGetLoginPlayerCharacterResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetLoginPlayerCharacterResponse* other);
 
@@ -2441,11 +2475,13 @@ class RequestGetLoginPlayerCharacterResponse : public ::google::protobuf::Messag
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -2479,7 +2515,7 @@ class RequestGetLoginPlayerCharacterResponse : public ::google::protobuf::Messag
   inline void set_allocated_character_data(::std::string* character_data);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetLoginPlayerCharacterResponse)
- private:
+private:
   inline void set_has_player_id();
   inline void clear_has_player_id();
   inline void set_has_character_id();
@@ -2494,11 +2530,11 @@ class RequestGetLoginPlayerCharacterResponse : public ::google::protobuf::Messag
   ::google::protobuf::int64 player_id_;
   ::std::string* character_data_;
   ::google::protobuf::uint32 character_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -2508,7 +2544,7 @@ class RequestGetLoginPlayerCharacterResponse : public ::google::protobuf::Messag
 // -------------------------------------------------------------------
 
 class BloodMessageData : public ::google::protobuf::MessageLite {
- public:
+public:
   BloodMessageData();
   virtual ~BloodMessageData();
 
@@ -2529,7 +2565,7 @@ class BloodMessageData : public ::google::protobuf::MessageLite {
 
   static const BloodMessageData& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -2537,7 +2573,7 @@ class BloodMessageData : public ::google::protobuf::MessageLite {
   static inline const BloodMessageData* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(BloodMessageData* other);
 
@@ -2557,11 +2593,13 @@ class BloodMessageData : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -2640,7 +2678,7 @@ class BloodMessageData : public ::google::protobuf::MessageLite {
   inline void set_allocated_unknown_8(::std::string* unknown_8);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.BloodMessageData)
- private:
+private:
   inline void set_has_player_id();
   inline void clear_has_player_id();
   inline void set_has_character_id();
@@ -2670,11 +2708,11 @@ class BloodMessageData : public ::google::protobuf::MessageLite {
   ::std::string* player_steam_id_;
   ::std::string* unknown_8_;
   ::google::protobuf::uint32 cell_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -2684,7 +2722,7 @@ class BloodMessageData : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class BloodMessageCellLimitData : public ::google::protobuf::MessageLite {
- public:
+public:
   BloodMessageCellLimitData();
   virtual ~BloodMessageCellLimitData();
 
@@ -2705,7 +2743,7 @@ class BloodMessageCellLimitData : public ::google::protobuf::MessageLite {
 
   static const BloodMessageCellLimitData& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -2713,7 +2751,7 @@ class BloodMessageCellLimitData : public ::google::protobuf::MessageLite {
   static inline const BloodMessageCellLimitData* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(BloodMessageCellLimitData* other);
 
@@ -2733,11 +2771,13 @@ class BloodMessageCellLimitData : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -2766,7 +2806,7 @@ class BloodMessageCellLimitData : public ::google::protobuf::MessageLite {
   inline void set_max_type_2(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.BloodMessageCellLimitData)
- private:
+private:
   inline void set_has_cell_id();
   inline void clear_has_cell_id();
   inline void set_has_max_type_1();
@@ -2781,11 +2821,11 @@ class BloodMessageCellLimitData : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 cell_id_;
   ::google::protobuf::uint32 max_type_1_;
   ::google::protobuf::uint32 max_type_2_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -2795,7 +2835,7 @@ class BloodMessageCellLimitData : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestReentryBloodMessage : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestReentryBloodMessage();
   virtual ~RequestReentryBloodMessage();
 
@@ -2816,7 +2856,7 @@ class RequestReentryBloodMessage : public ::google::protobuf::MessageLite {
 
   static const RequestReentryBloodMessage& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -2824,7 +2864,7 @@ class RequestReentryBloodMessage : public ::google::protobuf::MessageLite {
   static inline const RequestReentryBloodMessage* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestReentryBloodMessage* other);
 
@@ -2844,11 +2884,13 @@ class RequestReentryBloodMessage : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -2877,7 +2919,7 @@ class RequestReentryBloodMessage : public ::google::protobuf::MessageLite {
   inline void set_message_id(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestReentryBloodMessage)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_cell_id();
@@ -2892,11 +2934,11 @@ class RequestReentryBloodMessage : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 online_area_id_;
   ::google::protobuf::uint32 cell_id_;
   ::google::protobuf::uint32 message_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -2906,7 +2948,7 @@ class RequestReentryBloodMessage : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestReentryBloodMessageResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestReentryBloodMessageResponse();
   virtual ~RequestReentryBloodMessageResponse();
 
@@ -2927,7 +2969,7 @@ class RequestReentryBloodMessageResponse : public ::google::protobuf::MessageLit
 
   static const RequestReentryBloodMessageResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -2935,7 +2977,7 @@ class RequestReentryBloodMessageResponse : public ::google::protobuf::MessageLit
   static inline const RequestReentryBloodMessageResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestReentryBloodMessageResponse* other);
 
@@ -2955,11 +2997,13 @@ class RequestReentryBloodMessageResponse : public ::google::protobuf::MessageLit
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -2967,17 +3011,16 @@ class RequestReentryBloodMessageResponse : public ::google::protobuf::MessageLit
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestReentryBloodMessageResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -2987,7 +3030,7 @@ class RequestReentryBloodMessageResponse : public ::google::protobuf::MessageLit
 // -------------------------------------------------------------------
 
 class RequestCreateBloodMessage : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestCreateBloodMessage();
   virtual ~RequestCreateBloodMessage();
 
@@ -3008,7 +3051,7 @@ class RequestCreateBloodMessage : public ::google::protobuf::MessageLite {
 
   static const RequestCreateBloodMessage& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -3016,7 +3059,7 @@ class RequestCreateBloodMessage : public ::google::protobuf::MessageLite {
   static inline const RequestCreateBloodMessage* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestCreateBloodMessage* other);
 
@@ -3036,11 +3079,13 @@ class RequestCreateBloodMessage : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -3081,7 +3126,7 @@ class RequestCreateBloodMessage : public ::google::protobuf::MessageLite {
   inline void set_allocated_message_data(::std::string* message_data);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestCreateBloodMessage)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_cell_id();
@@ -3099,11 +3144,11 @@ class RequestCreateBloodMessage : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 cell_id_;
   ::std::string* message_data_;
   ::google::protobuf::uint32 character_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -3113,7 +3158,7 @@ class RequestCreateBloodMessage : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestCreateBloodMessageResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestCreateBloodMessageResponse();
   virtual ~RequestCreateBloodMessageResponse();
 
@@ -3134,7 +3179,7 @@ class RequestCreateBloodMessageResponse : public ::google::protobuf::MessageLite
 
   static const RequestCreateBloodMessageResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -3142,7 +3187,7 @@ class RequestCreateBloodMessageResponse : public ::google::protobuf::MessageLite
   static inline const RequestCreateBloodMessageResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestCreateBloodMessageResponse* other);
 
@@ -3162,11 +3207,13 @@ class RequestCreateBloodMessageResponse : public ::google::protobuf::MessageLite
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -3181,7 +3228,7 @@ class RequestCreateBloodMessageResponse : public ::google::protobuf::MessageLite
   inline void set_message_id(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestCreateBloodMessageResponse)
- private:
+private:
   inline void set_has_message_id();
   inline void clear_has_message_id();
 
@@ -3190,11 +3237,11 @@ class RequestCreateBloodMessageResponse : public ::google::protobuf::MessageLite
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
   ::google::protobuf::uint32 message_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -3204,7 +3251,7 @@ class RequestCreateBloodMessageResponse : public ::google::protobuf::MessageLite
 // -------------------------------------------------------------------
 
 class RequestRemoveBloodMessage : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestRemoveBloodMessage();
   virtual ~RequestRemoveBloodMessage();
 
@@ -3225,7 +3272,7 @@ class RequestRemoveBloodMessage : public ::google::protobuf::MessageLite {
 
   static const RequestRemoveBloodMessage& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -3233,7 +3280,7 @@ class RequestRemoveBloodMessage : public ::google::protobuf::MessageLite {
   static inline const RequestRemoveBloodMessage* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestRemoveBloodMessage* other);
 
@@ -3253,11 +3300,13 @@ class RequestRemoveBloodMessage : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -3286,7 +3335,7 @@ class RequestRemoveBloodMessage : public ::google::protobuf::MessageLite {
   inline void set_message_id(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestRemoveBloodMessage)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_cell_id();
@@ -3301,11 +3350,11 @@ class RequestRemoveBloodMessage : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 online_area_id_;
   ::google::protobuf::uint32 cell_id_;
   ::google::protobuf::uint32 message_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -3315,7 +3364,7 @@ class RequestRemoveBloodMessage : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestRemoveBloodMessageResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestRemoveBloodMessageResponse();
   virtual ~RequestRemoveBloodMessageResponse();
 
@@ -3336,7 +3385,7 @@ class RequestRemoveBloodMessageResponse : public ::google::protobuf::MessageLite
 
   static const RequestRemoveBloodMessageResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -3344,7 +3393,7 @@ class RequestRemoveBloodMessageResponse : public ::google::protobuf::MessageLite
   static inline const RequestRemoveBloodMessageResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestRemoveBloodMessageResponse* other);
 
@@ -3364,11 +3413,13 @@ class RequestRemoveBloodMessageResponse : public ::google::protobuf::MessageLite
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -3376,17 +3427,16 @@ class RequestRemoveBloodMessageResponse : public ::google::protobuf::MessageLite
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestRemoveBloodMessageResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -3396,7 +3446,7 @@ class RequestRemoveBloodMessageResponse : public ::google::protobuf::MessageLite
 // -------------------------------------------------------------------
 
 class RequestGetBloodMessageList : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetBloodMessageList();
   virtual ~RequestGetBloodMessageList();
 
@@ -3417,7 +3467,7 @@ class RequestGetBloodMessageList : public ::google::protobuf::MessageLite {
 
   static const RequestGetBloodMessageList& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -3425,7 +3475,7 @@ class RequestGetBloodMessageList : public ::google::protobuf::MessageLite {
   static inline const RequestGetBloodMessageList* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetBloodMessageList* other);
 
@@ -3445,11 +3495,13 @@ class RequestGetBloodMessageList : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -3477,13 +3529,13 @@ class RequestGetBloodMessageList : public ::google::protobuf::MessageLite {
   inline const ::DS2_Frpg2RequestMessage::BloodMessageCellLimitData& search_areas(int index) const;
   inline ::DS2_Frpg2RequestMessage::BloodMessageCellLimitData* mutable_search_areas(int index);
   inline ::DS2_Frpg2RequestMessage::BloodMessageCellLimitData* add_search_areas();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::BloodMessageCellLimitData >&
-      search_areas() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::BloodMessageCellLimitData >*
-      mutable_search_areas();
+  inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::BloodMessageCellLimitData>&
+  search_areas() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::BloodMessageCellLimitData>*
+  mutable_search_areas();
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetBloodMessageList)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_max_messages();
@@ -3495,12 +3547,12 @@ class RequestGetBloodMessageList : public ::google::protobuf::MessageLite {
   mutable int _cached_size_;
   ::google::protobuf::uint32 online_area_id_;
   ::google::protobuf::uint32 max_messages_;
-  ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::BloodMessageCellLimitData > search_areas_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+  ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::BloodMessageCellLimitData> search_areas_;
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -3510,7 +3562,7 @@ class RequestGetBloodMessageList : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetBloodMessageListResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetBloodMessageListResponse();
   virtual ~RequestGetBloodMessageListResponse();
 
@@ -3531,7 +3583,7 @@ class RequestGetBloodMessageListResponse : public ::google::protobuf::MessageLit
 
   static const RequestGetBloodMessageListResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -3539,7 +3591,7 @@ class RequestGetBloodMessageListResponse : public ::google::protobuf::MessageLit
   static inline const RequestGetBloodMessageListResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetBloodMessageListResponse* other);
 
@@ -3559,11 +3611,13 @@ class RequestGetBloodMessageListResponse : public ::google::protobuf::MessageLit
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -3584,13 +3638,13 @@ class RequestGetBloodMessageListResponse : public ::google::protobuf::MessageLit
   inline const ::DS2_Frpg2RequestMessage::BloodMessageData& messages(int index) const;
   inline ::DS2_Frpg2RequestMessage::BloodMessageData* mutable_messages(int index);
   inline ::DS2_Frpg2RequestMessage::BloodMessageData* add_messages();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::BloodMessageData >&
-      messages() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::BloodMessageData >*
-      mutable_messages();
+  inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::BloodMessageData>&
+  messages() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::BloodMessageData>*
+  mutable_messages();
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetBloodMessageListResponse)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
 
@@ -3598,13 +3652,13 @@ class RequestGetBloodMessageListResponse : public ::google::protobuf::MessageLit
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::BloodMessageData > messages_;
+  ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::BloodMessageData> messages_;
   ::google::protobuf::uint32 online_area_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -3614,7 +3668,7 @@ class RequestGetBloodMessageListResponse : public ::google::protobuf::MessageLit
 // -------------------------------------------------------------------
 
 class RequestEvaluateBloodMessage : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestEvaluateBloodMessage();
   virtual ~RequestEvaluateBloodMessage();
 
@@ -3635,7 +3689,7 @@ class RequestEvaluateBloodMessage : public ::google::protobuf::MessageLite {
 
   static const RequestEvaluateBloodMessage& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -3643,7 +3697,7 @@ class RequestEvaluateBloodMessage : public ::google::protobuf::MessageLite {
   static inline const RequestEvaluateBloodMessage* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestEvaluateBloodMessage* other);
 
@@ -3663,11 +3717,13 @@ class RequestEvaluateBloodMessage : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -3696,7 +3752,7 @@ class RequestEvaluateBloodMessage : public ::google::protobuf::MessageLite {
   inline void set_message_id(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestEvaluateBloodMessage)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_cell_id();
@@ -3711,11 +3767,11 @@ class RequestEvaluateBloodMessage : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 online_area_id_;
   ::google::protobuf::uint32 cell_id_;
   ::google::protobuf::uint32 message_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -3725,7 +3781,7 @@ class RequestEvaluateBloodMessage : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestEvaluateBloodMessageResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestEvaluateBloodMessageResponse();
   virtual ~RequestEvaluateBloodMessageResponse();
 
@@ -3746,7 +3802,7 @@ class RequestEvaluateBloodMessageResponse : public ::google::protobuf::MessageLi
 
   static const RequestEvaluateBloodMessageResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -3754,7 +3810,7 @@ class RequestEvaluateBloodMessageResponse : public ::google::protobuf::MessageLi
   static inline const RequestEvaluateBloodMessageResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestEvaluateBloodMessageResponse* other);
 
@@ -3774,11 +3830,13 @@ class RequestEvaluateBloodMessageResponse : public ::google::protobuf::MessageLi
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -3786,17 +3844,16 @@ class RequestEvaluateBloodMessageResponse : public ::google::protobuf::MessageLi
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestEvaluateBloodMessageResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -3806,7 +3863,7 @@ class RequestEvaluateBloodMessageResponse : public ::google::protobuf::MessageLi
 // -------------------------------------------------------------------
 
 class RequestGetBloodMessageEvaluation : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetBloodMessageEvaluation();
   virtual ~RequestGetBloodMessageEvaluation();
 
@@ -3827,7 +3884,7 @@ class RequestGetBloodMessageEvaluation : public ::google::protobuf::MessageLite 
 
   static const RequestGetBloodMessageEvaluation& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -3835,7 +3892,7 @@ class RequestGetBloodMessageEvaluation : public ::google::protobuf::MessageLite 
   static inline const RequestGetBloodMessageEvaluation* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetBloodMessageEvaluation* other);
 
@@ -3855,11 +3912,13 @@ class RequestGetBloodMessageEvaluation : public ::google::protobuf::MessageLite 
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -3888,7 +3947,7 @@ class RequestGetBloodMessageEvaluation : public ::google::protobuf::MessageLite 
   inline void set_message_id(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetBloodMessageEvaluation)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_cell_id();
@@ -3903,11 +3962,11 @@ class RequestGetBloodMessageEvaluation : public ::google::protobuf::MessageLite 
   ::google::protobuf::uint32 online_area_id_;
   ::google::protobuf::uint32 cell_id_;
   ::google::protobuf::uint32 message_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -3917,7 +3976,7 @@ class RequestGetBloodMessageEvaluation : public ::google::protobuf::MessageLite 
 // -------------------------------------------------------------------
 
 class RequestGetBloodMessageEvaluationResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetBloodMessageEvaluationResponse();
   virtual ~RequestGetBloodMessageEvaluationResponse();
 
@@ -3938,7 +3997,7 @@ class RequestGetBloodMessageEvaluationResponse : public ::google::protobuf::Mess
 
   static const RequestGetBloodMessageEvaluationResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -3946,7 +4005,7 @@ class RequestGetBloodMessageEvaluationResponse : public ::google::protobuf::Mess
   static inline const RequestGetBloodMessageEvaluationResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetBloodMessageEvaluationResponse* other);
 
@@ -3966,11 +4025,13 @@ class RequestGetBloodMessageEvaluationResponse : public ::google::protobuf::Mess
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -3992,7 +4053,7 @@ class RequestGetBloodMessageEvaluationResponse : public ::google::protobuf::Mess
   inline void set_rating(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetBloodMessageEvaluationResponse)
- private:
+private:
   inline void set_has_message_id();
   inline void clear_has_message_id();
   inline void set_has_rating();
@@ -4004,11 +4065,11 @@ class RequestGetBloodMessageEvaluationResponse : public ::google::protobuf::Mess
   mutable int _cached_size_;
   ::google::protobuf::int64 message_id_;
   ::google::protobuf::int64 rating_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -4018,7 +4079,7 @@ class RequestGetBloodMessageEvaluationResponse : public ::google::protobuf::Mess
 // -------------------------------------------------------------------
 
 class PushRequestEvaluateBloodMessage : public ::google::protobuf::MessageLite {
- public:
+public:
   PushRequestEvaluateBloodMessage();
   virtual ~PushRequestEvaluateBloodMessage();
 
@@ -4039,7 +4100,7 @@ class PushRequestEvaluateBloodMessage : public ::google::protobuf::MessageLite {
 
   static const PushRequestEvaluateBloodMessage& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -4047,7 +4108,7 @@ class PushRequestEvaluateBloodMessage : public ::google::protobuf::MessageLite {
   static inline const PushRequestEvaluateBloodMessage* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PushRequestEvaluateBloodMessage* other);
 
@@ -4067,11 +4128,13 @@ class PushRequestEvaluateBloodMessage : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -4112,7 +4175,7 @@ class PushRequestEvaluateBloodMessage : public ::google::protobuf::MessageLite {
   inline void set_allocated_player_steam_id(::std::string* player_steam_id);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.PushRequestEvaluateBloodMessage)
- private:
+private:
   inline void set_has_push_message_id();
   inline void clear_has_push_message_id();
   inline void set_has_player_id();
@@ -4130,11 +4193,11 @@ class PushRequestEvaluateBloodMessage : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 player_id_;
   ::std::string* player_steam_id_;
   ::google::protobuf::uint32 message_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -4144,7 +4207,7 @@ class PushRequestEvaluateBloodMessage : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetAreaBloodMessageList : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetAreaBloodMessageList();
   virtual ~RequestGetAreaBloodMessageList();
 
@@ -4165,7 +4228,7 @@ class RequestGetAreaBloodMessageList : public ::google::protobuf::MessageLite {
 
   static const RequestGetAreaBloodMessageList& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -4173,7 +4236,7 @@ class RequestGetAreaBloodMessageList : public ::google::protobuf::MessageLite {
   static inline const RequestGetAreaBloodMessageList* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetAreaBloodMessageList* other);
 
@@ -4193,11 +4256,13 @@ class RequestGetAreaBloodMessageList : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -4233,7 +4298,7 @@ class RequestGetAreaBloodMessageList : public ::google::protobuf::MessageLite {
   inline void set_max_type_2(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetAreaBloodMessageList)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_count();
@@ -4251,11 +4316,11 @@ class RequestGetAreaBloodMessageList : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 count_;
   ::google::protobuf::uint32 max_type_1_;
   ::google::protobuf::uint32 max_type_2_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -4265,7 +4330,7 @@ class RequestGetAreaBloodMessageList : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class BloodstainInfo : public ::google::protobuf::MessageLite {
- public:
+public:
   BloodstainInfo();
   virtual ~BloodstainInfo();
 
@@ -4286,7 +4351,7 @@ class BloodstainInfo : public ::google::protobuf::MessageLite {
 
   static const BloodstainInfo& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -4294,7 +4359,7 @@ class BloodstainInfo : public ::google::protobuf::MessageLite {
   static inline const BloodstainInfo* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(BloodstainInfo* other);
 
@@ -4314,11 +4379,13 @@ class BloodstainInfo : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -4359,7 +4426,7 @@ class BloodstainInfo : public ::google::protobuf::MessageLite {
   inline void set_allocated_data(::std::string* data);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.BloodstainInfo)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_cell_id();
@@ -4377,11 +4444,11 @@ class BloodstainInfo : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 cell_id_;
   ::std::string* data_;
   ::google::protobuf::uint32 bloodstain_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -4391,7 +4458,7 @@ class BloodstainInfo : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestCreateBloodstain : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestCreateBloodstain();
   virtual ~RequestCreateBloodstain();
 
@@ -4412,7 +4479,7 @@ class RequestCreateBloodstain : public ::google::protobuf::MessageLite {
 
   static const RequestCreateBloodstain& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -4420,7 +4487,7 @@ class RequestCreateBloodstain : public ::google::protobuf::MessageLite {
   static inline const RequestCreateBloodstain* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestCreateBloodstain* other);
 
@@ -4440,11 +4507,13 @@ class RequestCreateBloodstain : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -4490,7 +4559,7 @@ class RequestCreateBloodstain : public ::google::protobuf::MessageLite {
   inline void set_allocated_ghost_data(::std::string* ghost_data);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestCreateBloodstain)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_cell_id();
@@ -4508,11 +4577,11 @@ class RequestCreateBloodstain : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 cell_id_;
   ::std::string* data_;
   ::std::string* ghost_data_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -4522,7 +4591,7 @@ class RequestCreateBloodstain : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetBloodstainList : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetBloodstainList();
   virtual ~RequestGetBloodstainList();
 
@@ -4543,7 +4612,7 @@ class RequestGetBloodstainList : public ::google::protobuf::MessageLite {
 
   static const RequestGetBloodstainList& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -4551,7 +4620,7 @@ class RequestGetBloodstainList : public ::google::protobuf::MessageLite {
   static inline const RequestGetBloodstainList* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetBloodstainList* other);
 
@@ -4571,11 +4640,13 @@ class RequestGetBloodstainList : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -4603,13 +4674,13 @@ class RequestGetBloodstainList : public ::google::protobuf::MessageLite {
   inline const ::DS2_Frpg2RequestMessage::CellLimitData& search_areas(int index) const;
   inline ::DS2_Frpg2RequestMessage::CellLimitData* mutable_search_areas(int index);
   inline ::DS2_Frpg2RequestMessage::CellLimitData* add_search_areas();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::CellLimitData >&
-      search_areas() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::CellLimitData >*
-      mutable_search_areas();
+  inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::CellLimitData>&
+  search_areas() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::CellLimitData>*
+  mutable_search_areas();
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetBloodstainList)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_max_stains();
@@ -4621,12 +4692,12 @@ class RequestGetBloodstainList : public ::google::protobuf::MessageLite {
   mutable int _cached_size_;
   ::google::protobuf::uint32 online_area_id_;
   ::google::protobuf::uint32 max_stains_;
-  ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::CellLimitData > search_areas_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+  ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::CellLimitData> search_areas_;
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -4636,7 +4707,7 @@ class RequestGetBloodstainList : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetAreaBloodstainList : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetAreaBloodstainList();
   virtual ~RequestGetAreaBloodstainList();
 
@@ -4657,7 +4728,7 @@ class RequestGetAreaBloodstainList : public ::google::protobuf::MessageLite {
 
   static const RequestGetAreaBloodstainList& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -4665,7 +4736,7 @@ class RequestGetAreaBloodstainList : public ::google::protobuf::MessageLite {
   static inline const RequestGetAreaBloodstainList* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetAreaBloodstainList* other);
 
@@ -4685,11 +4756,13 @@ class RequestGetAreaBloodstainList : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -4725,7 +4798,7 @@ class RequestGetAreaBloodstainList : public ::google::protobuf::MessageLite {
   inline void set_max_type_2(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetAreaBloodstainList)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_count();
@@ -4743,11 +4816,11 @@ class RequestGetAreaBloodstainList : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 count_;
   ::google::protobuf::uint32 max_type_1_;
   ::google::protobuf::uint32 max_type_2_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -4757,7 +4830,7 @@ class RequestGetAreaBloodstainList : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetBloodstainListResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetBloodstainListResponse();
   virtual ~RequestGetBloodstainListResponse();
 
@@ -4778,7 +4851,7 @@ class RequestGetBloodstainListResponse : public ::google::protobuf::MessageLite 
 
   static const RequestGetBloodstainListResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -4786,7 +4859,7 @@ class RequestGetBloodstainListResponse : public ::google::protobuf::MessageLite 
   static inline const RequestGetBloodstainListResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetBloodstainListResponse* other);
 
@@ -4806,11 +4879,13 @@ class RequestGetBloodstainListResponse : public ::google::protobuf::MessageLite 
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -4824,24 +4899,23 @@ class RequestGetBloodstainListResponse : public ::google::protobuf::MessageLite 
   inline const ::DS2_Frpg2RequestMessage::BloodstainInfo& bloodstains(int index) const;
   inline ::DS2_Frpg2RequestMessage::BloodstainInfo* mutable_bloodstains(int index);
   inline ::DS2_Frpg2RequestMessage::BloodstainInfo* add_bloodstains();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::BloodstainInfo >&
-      bloodstains() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::BloodstainInfo >*
-      mutable_bloodstains();
+  inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::BloodstainInfo>&
+  bloodstains() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::BloodstainInfo>*
+  mutable_bloodstains();
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetBloodstainListResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::BloodstainInfo > bloodstains_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+  ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::BloodstainInfo> bloodstains_;
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -4851,7 +4925,7 @@ class RequestGetBloodstainListResponse : public ::google::protobuf::MessageLite 
 // -------------------------------------------------------------------
 
 class RequestGetDeadingGhost : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetDeadingGhost();
   virtual ~RequestGetDeadingGhost();
 
@@ -4872,7 +4946,7 @@ class RequestGetDeadingGhost : public ::google::protobuf::MessageLite {
 
   static const RequestGetDeadingGhost& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -4880,7 +4954,7 @@ class RequestGetDeadingGhost : public ::google::protobuf::MessageLite {
   static inline const RequestGetDeadingGhost* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetDeadingGhost* other);
 
@@ -4900,11 +4974,13 @@ class RequestGetDeadingGhost : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -4933,7 +5009,7 @@ class RequestGetDeadingGhost : public ::google::protobuf::MessageLite {
   inline void set_bloodstain_id(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetDeadingGhost)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_cell_id();
@@ -4948,11 +5024,11 @@ class RequestGetDeadingGhost : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 online_area_id_;
   ::google::protobuf::uint32 cell_id_;
   ::google::protobuf::uint32 bloodstain_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -4962,7 +5038,7 @@ class RequestGetDeadingGhost : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetDeadingGhostResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetDeadingGhostResponse();
   virtual ~RequestGetDeadingGhostResponse();
 
@@ -4983,7 +5059,7 @@ class RequestGetDeadingGhostResponse : public ::google::protobuf::MessageLite {
 
   static const RequestGetDeadingGhostResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -4991,7 +5067,7 @@ class RequestGetDeadingGhostResponse : public ::google::protobuf::MessageLite {
   static inline const RequestGetDeadingGhostResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetDeadingGhostResponse* other);
 
@@ -5011,11 +5087,13 @@ class RequestGetDeadingGhostResponse : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -5056,7 +5134,7 @@ class RequestGetDeadingGhostResponse : public ::google::protobuf::MessageLite {
   inline void set_allocated_data(::std::string* data);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetDeadingGhostResponse)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_cell_id();
@@ -5074,11 +5152,11 @@ class RequestGetDeadingGhostResponse : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 cell_id_;
   ::std::string* data_;
   ::google::protobuf::uint32 bloodstain_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -5088,7 +5166,7 @@ class RequestGetDeadingGhostResponse : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestNotifyBuyItem : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestNotifyBuyItem();
   virtual ~RequestNotifyBuyItem();
 
@@ -5109,7 +5187,7 @@ class RequestNotifyBuyItem : public ::google::protobuf::MessageLite {
 
   static const RequestNotifyBuyItem& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -5117,7 +5195,7 @@ class RequestNotifyBuyItem : public ::google::protobuf::MessageLite {
   static inline const RequestNotifyBuyItem* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestNotifyBuyItem* other);
 
@@ -5137,11 +5215,13 @@ class RequestNotifyBuyItem : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -5177,7 +5257,7 @@ class RequestNotifyBuyItem : public ::google::protobuf::MessageLite {
   inline void set_quantity(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestNotifyBuyItem)
- private:
+private:
   inline void set_has_merchant_id();
   inline void clear_has_merchant_id();
   inline void set_has_item_id();
@@ -5195,11 +5275,11 @@ class RequestNotifyBuyItem : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 item_id_;
   ::google::protobuf::uint32 souls_spent_;
   ::google::protobuf::uint32 quantity_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -5209,7 +5289,7 @@ class RequestNotifyBuyItem : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestNotifyBuyItemResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestNotifyBuyItemResponse();
   virtual ~RequestNotifyBuyItemResponse();
 
@@ -5230,7 +5310,7 @@ class RequestNotifyBuyItemResponse : public ::google::protobuf::MessageLite {
 
   static const RequestNotifyBuyItemResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -5238,7 +5318,7 @@ class RequestNotifyBuyItemResponse : public ::google::protobuf::MessageLite {
   static inline const RequestNotifyBuyItemResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestNotifyBuyItemResponse* other);
 
@@ -5258,11 +5338,13 @@ class RequestNotifyBuyItemResponse : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -5270,17 +5352,16 @@ class RequestNotifyBuyItemResponse : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestNotifyBuyItemResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -5290,7 +5371,7 @@ class RequestNotifyBuyItemResponse : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestNotifyDeath : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestNotifyDeath();
   virtual ~RequestNotifyDeath();
 
@@ -5311,7 +5392,7 @@ class RequestNotifyDeath : public ::google::protobuf::MessageLite {
 
   static const RequestNotifyDeath& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -5319,7 +5400,7 @@ class RequestNotifyDeath : public ::google::protobuf::MessageLite {
   static inline const RequestNotifyDeath* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestNotifyDeath* other);
 
@@ -5339,11 +5420,13 @@ class RequestNotifyDeath : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -5412,7 +5495,7 @@ class RequestNotifyDeath : public ::google::protobuf::MessageLite {
   inline void set_allocated_field_8(::std::string* field_8);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestNotifyDeath)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_cell_id();
@@ -5442,11 +5525,11 @@ class RequestNotifyDeath : public ::google::protobuf::MessageLite {
   ::google::protobuf::int64 field_6_;
   ::google::protobuf::int64 field_7_;
   ::std::string* field_8_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -5456,7 +5539,7 @@ class RequestNotifyDeath : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestNotifyDeathResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestNotifyDeathResponse();
   virtual ~RequestNotifyDeathResponse();
 
@@ -5477,7 +5560,7 @@ class RequestNotifyDeathResponse : public ::google::protobuf::MessageLite {
 
   static const RequestNotifyDeathResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -5485,7 +5568,7 @@ class RequestNotifyDeathResponse : public ::google::protobuf::MessageLite {
   static inline const RequestNotifyDeathResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestNotifyDeathResponse* other);
 
@@ -5505,11 +5588,13 @@ class RequestNotifyDeathResponse : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -5517,17 +5602,16 @@ class RequestNotifyDeathResponse : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestNotifyDeathResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -5537,7 +5621,7 @@ class RequestNotifyDeathResponse : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestNotifyDisconnectSession : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestNotifyDisconnectSession();
   virtual ~RequestNotifyDisconnectSession();
 
@@ -5558,7 +5642,7 @@ class RequestNotifyDisconnectSession : public ::google::protobuf::MessageLite {
 
   static const RequestNotifyDisconnectSession& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -5566,7 +5650,7 @@ class RequestNotifyDisconnectSession : public ::google::protobuf::MessageLite {
   static inline const RequestNotifyDisconnectSession* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestNotifyDisconnectSession* other);
 
@@ -5586,11 +5670,13 @@ class RequestNotifyDisconnectSession : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -5605,7 +5691,7 @@ class RequestNotifyDisconnectSession : public ::google::protobuf::MessageLite {
   inline void set_field_1(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestNotifyDisconnectSession)
- private:
+private:
   inline void set_has_field_1();
   inline void clear_has_field_1();
 
@@ -5614,11 +5700,11 @@ class RequestNotifyDisconnectSession : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
   ::google::protobuf::int64 field_1_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -5628,7 +5714,7 @@ class RequestNotifyDisconnectSession : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestNotifyDisconnectSessionResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestNotifyDisconnectSessionResponse();
   virtual ~RequestNotifyDisconnectSessionResponse();
 
@@ -5649,7 +5735,7 @@ class RequestNotifyDisconnectSessionResponse : public ::google::protobuf::Messag
 
   static const RequestNotifyDisconnectSessionResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -5657,7 +5743,7 @@ class RequestNotifyDisconnectSessionResponse : public ::google::protobuf::Messag
   static inline const RequestNotifyDisconnectSessionResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestNotifyDisconnectSessionResponse* other);
 
@@ -5677,11 +5763,13 @@ class RequestNotifyDisconnectSessionResponse : public ::google::protobuf::Messag
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -5689,17 +5777,16 @@ class RequestNotifyDisconnectSessionResponse : public ::google::protobuf::Messag
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestNotifyDisconnectSessionResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -5709,7 +5796,7 @@ class RequestNotifyDisconnectSessionResponse : public ::google::protobuf::Messag
 // -------------------------------------------------------------------
 
 class RequestNotifyJoinGuestPlayer : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestNotifyJoinGuestPlayer();
   virtual ~RequestNotifyJoinGuestPlayer();
 
@@ -5730,7 +5817,7 @@ class RequestNotifyJoinGuestPlayer : public ::google::protobuf::MessageLite {
 
   static const RequestNotifyJoinGuestPlayer& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -5738,7 +5825,7 @@ class RequestNotifyJoinGuestPlayer : public ::google::protobuf::MessageLite {
   static inline const RequestNotifyJoinGuestPlayer* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestNotifyJoinGuestPlayer* other);
 
@@ -5758,11 +5845,13 @@ class RequestNotifyJoinGuestPlayer : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -5838,7 +5927,7 @@ class RequestNotifyJoinGuestPlayer : public ::google::protobuf::MessageLite {
   inline void set_allocated_field_9(::std::string* field_9);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestNotifyJoinGuestPlayer)
- private:
+private:
   inline void set_has_field_1();
   inline void clear_has_field_1();
   inline void set_has_field_2();
@@ -5871,11 +5960,11 @@ class RequestNotifyJoinGuestPlayer : public ::google::protobuf::MessageLite {
   ::google::protobuf::int64 field_7_;
   ::google::protobuf::int64 field_8_;
   ::std::string* field_9_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -5885,7 +5974,7 @@ class RequestNotifyJoinGuestPlayer : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestNotifyJoinGuestPlayerResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestNotifyJoinGuestPlayerResponse();
   virtual ~RequestNotifyJoinGuestPlayerResponse();
 
@@ -5906,7 +5995,7 @@ class RequestNotifyJoinGuestPlayerResponse : public ::google::protobuf::MessageL
 
   static const RequestNotifyJoinGuestPlayerResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -5914,7 +6003,7 @@ class RequestNotifyJoinGuestPlayerResponse : public ::google::protobuf::MessageL
   static inline const RequestNotifyJoinGuestPlayerResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestNotifyJoinGuestPlayerResponse* other);
 
@@ -5934,11 +6023,13 @@ class RequestNotifyJoinGuestPlayerResponse : public ::google::protobuf::MessageL
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -5946,17 +6037,16 @@ class RequestNotifyJoinGuestPlayerResponse : public ::google::protobuf::MessageL
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestNotifyJoinGuestPlayerResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -5966,7 +6056,7 @@ class RequestNotifyJoinGuestPlayerResponse : public ::google::protobuf::MessageL
 // -------------------------------------------------------------------
 
 class RequestNotifyJoinSession : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestNotifyJoinSession();
   virtual ~RequestNotifyJoinSession();
 
@@ -5987,7 +6077,7 @@ class RequestNotifyJoinSession : public ::google::protobuf::MessageLite {
 
   static const RequestNotifyJoinSession& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -5995,7 +6085,7 @@ class RequestNotifyJoinSession : public ::google::protobuf::MessageLite {
   static inline const RequestNotifyJoinSession* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestNotifyJoinSession* other);
 
@@ -6015,11 +6105,13 @@ class RequestNotifyJoinSession : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -6055,7 +6147,7 @@ class RequestNotifyJoinSession : public ::google::protobuf::MessageLite {
   inline void set_field_4(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestNotifyJoinSession)
- private:
+private:
   inline void set_has_field_1();
   inline void clear_has_field_1();
   inline void set_has_field_2();
@@ -6073,11 +6165,11 @@ class RequestNotifyJoinSession : public ::google::protobuf::MessageLite {
   ::google::protobuf::int64 field_2_;
   ::google::protobuf::int64 field_3_;
   ::google::protobuf::int64 field_4_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -6087,7 +6179,7 @@ class RequestNotifyJoinSession : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestNotifyJoinSessionResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestNotifyJoinSessionResponse();
   virtual ~RequestNotifyJoinSessionResponse();
 
@@ -6108,7 +6200,7 @@ class RequestNotifyJoinSessionResponse : public ::google::protobuf::MessageLite 
 
   static const RequestNotifyJoinSessionResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -6116,7 +6208,7 @@ class RequestNotifyJoinSessionResponse : public ::google::protobuf::MessageLite 
   static inline const RequestNotifyJoinSessionResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestNotifyJoinSessionResponse* other);
 
@@ -6136,11 +6228,13 @@ class RequestNotifyJoinSessionResponse : public ::google::protobuf::MessageLite 
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -6148,17 +6242,16 @@ class RequestNotifyJoinSessionResponse : public ::google::protobuf::MessageLite 
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestNotifyJoinSessionResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -6168,7 +6261,7 @@ class RequestNotifyJoinSessionResponse : public ::google::protobuf::MessageLite 
 // -------------------------------------------------------------------
 
 class RequestNotifyKillEnemy_Enemy_count : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestNotifyKillEnemy_Enemy_count();
   virtual ~RequestNotifyKillEnemy_Enemy_count();
 
@@ -6189,7 +6282,7 @@ class RequestNotifyKillEnemy_Enemy_count : public ::google::protobuf::MessageLit
 
   static const RequestNotifyKillEnemy_Enemy_count& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -6197,7 +6290,7 @@ class RequestNotifyKillEnemy_Enemy_count : public ::google::protobuf::MessageLit
   static inline const RequestNotifyKillEnemy_Enemy_count* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestNotifyKillEnemy_Enemy_count* other);
 
@@ -6217,11 +6310,13 @@ class RequestNotifyKillEnemy_Enemy_count : public ::google::protobuf::MessageLit
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -6243,7 +6338,7 @@ class RequestNotifyKillEnemy_Enemy_count : public ::google::protobuf::MessageLit
   inline void set_enemy_count(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestNotifyKillEnemy.Enemy_count)
- private:
+private:
   inline void set_has_enemy_id();
   inline void clear_has_enemy_id();
   inline void set_has_enemy_count();
@@ -6255,11 +6350,11 @@ class RequestNotifyKillEnemy_Enemy_count : public ::google::protobuf::MessageLit
   mutable int _cached_size_;
   ::google::protobuf::int64 enemy_id_;
   ::google::protobuf::int64 enemy_count_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -6269,7 +6364,7 @@ class RequestNotifyKillEnemy_Enemy_count : public ::google::protobuf::MessageLit
 // -------------------------------------------------------------------
 
 class RequestNotifyKillEnemy : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestNotifyKillEnemy();
   virtual ~RequestNotifyKillEnemy();
 
@@ -6290,7 +6385,7 @@ class RequestNotifyKillEnemy : public ::google::protobuf::MessageLite {
 
   static const RequestNotifyKillEnemy& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -6298,7 +6393,7 @@ class RequestNotifyKillEnemy : public ::google::protobuf::MessageLite {
   static inline const RequestNotifyKillEnemy* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestNotifyKillEnemy* other);
 
@@ -6318,11 +6413,13 @@ class RequestNotifyKillEnemy : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -6338,24 +6435,23 @@ class RequestNotifyKillEnemy : public ::google::protobuf::MessageLite {
   inline const ::DS2_Frpg2RequestMessage::RequestNotifyKillEnemy_Enemy_count& enemy_count(int index) const;
   inline ::DS2_Frpg2RequestMessage::RequestNotifyKillEnemy_Enemy_count* mutable_enemy_count(int index);
   inline ::DS2_Frpg2RequestMessage::RequestNotifyKillEnemy_Enemy_count* add_enemy_count();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::RequestNotifyKillEnemy_Enemy_count >&
-      enemy_count() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::RequestNotifyKillEnemy_Enemy_count >*
-      mutable_enemy_count();
+  inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::RequestNotifyKillEnemy_Enemy_count>&
+  enemy_count() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::RequestNotifyKillEnemy_Enemy_count>*
+  mutable_enemy_count();
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestNotifyKillEnemy)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::RequestNotifyKillEnemy_Enemy_count > enemy_count_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+  ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::RequestNotifyKillEnemy_Enemy_count> enemy_count_;
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -6365,7 +6461,7 @@ class RequestNotifyKillEnemy : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestNotifyKillEnemyResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestNotifyKillEnemyResponse();
   virtual ~RequestNotifyKillEnemyResponse();
 
@@ -6386,7 +6482,7 @@ class RequestNotifyKillEnemyResponse : public ::google::protobuf::MessageLite {
 
   static const RequestNotifyKillEnemyResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -6394,7 +6490,7 @@ class RequestNotifyKillEnemyResponse : public ::google::protobuf::MessageLite {
   static inline const RequestNotifyKillEnemyResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestNotifyKillEnemyResponse* other);
 
@@ -6414,11 +6510,13 @@ class RequestNotifyKillEnemyResponse : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -6426,17 +6524,16 @@ class RequestNotifyKillEnemyResponse : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestNotifyKillEnemyResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -6446,7 +6543,7 @@ class RequestNotifyKillEnemyResponse : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestNotifyKillPlayer : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestNotifyKillPlayer();
   virtual ~RequestNotifyKillPlayer();
 
@@ -6467,7 +6564,7 @@ class RequestNotifyKillPlayer : public ::google::protobuf::MessageLite {
 
   static const RequestNotifyKillPlayer& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -6475,7 +6572,7 @@ class RequestNotifyKillPlayer : public ::google::protobuf::MessageLite {
   static inline const RequestNotifyKillPlayer* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestNotifyKillPlayer* other);
 
@@ -6495,11 +6592,13 @@ class RequestNotifyKillPlayer : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -6542,7 +6641,7 @@ class RequestNotifyKillPlayer : public ::google::protobuf::MessageLite {
   inline void set_field_5(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestNotifyKillPlayer)
- private:
+private:
   inline void set_has_field_1();
   inline void clear_has_field_1();
   inline void set_has_field_2();
@@ -6563,11 +6662,11 @@ class RequestNotifyKillPlayer : public ::google::protobuf::MessageLite {
   ::google::protobuf::int64 field_3_;
   ::google::protobuf::int64 field_4_;
   ::google::protobuf::int64 field_5_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -6577,7 +6676,7 @@ class RequestNotifyKillPlayer : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestNotifyKillPlayerResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestNotifyKillPlayerResponse();
   virtual ~RequestNotifyKillPlayerResponse();
 
@@ -6598,7 +6697,7 @@ class RequestNotifyKillPlayerResponse : public ::google::protobuf::MessageLite {
 
   static const RequestNotifyKillPlayerResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -6606,7 +6705,7 @@ class RequestNotifyKillPlayerResponse : public ::google::protobuf::MessageLite {
   static inline const RequestNotifyKillPlayerResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestNotifyKillPlayerResponse* other);
 
@@ -6626,11 +6725,13 @@ class RequestNotifyKillPlayerResponse : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -6638,17 +6739,16 @@ class RequestNotifyKillPlayerResponse : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestNotifyKillPlayerResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -6658,7 +6758,7 @@ class RequestNotifyKillPlayerResponse : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestNotifyLeaveGuestPlayer : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestNotifyLeaveGuestPlayer();
   virtual ~RequestNotifyLeaveGuestPlayer();
 
@@ -6679,7 +6779,7 @@ class RequestNotifyLeaveGuestPlayer : public ::google::protobuf::MessageLite {
 
   static const RequestNotifyLeaveGuestPlayer& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -6687,7 +6787,7 @@ class RequestNotifyLeaveGuestPlayer : public ::google::protobuf::MessageLite {
   static inline const RequestNotifyLeaveGuestPlayer* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestNotifyLeaveGuestPlayer* other);
 
@@ -6707,11 +6807,13 @@ class RequestNotifyLeaveGuestPlayer : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -6747,7 +6849,7 @@ class RequestNotifyLeaveGuestPlayer : public ::google::protobuf::MessageLite {
   inline void set_field_4(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestNotifyLeaveGuestPlayer)
- private:
+private:
   inline void set_has_field_1();
   inline void clear_has_field_1();
   inline void set_has_field_2();
@@ -6765,11 +6867,11 @@ class RequestNotifyLeaveGuestPlayer : public ::google::protobuf::MessageLite {
   ::google::protobuf::int64 field_2_;
   ::google::protobuf::int64 field_3_;
   ::google::protobuf::int64 field_4_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -6779,7 +6881,7 @@ class RequestNotifyLeaveGuestPlayer : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestNotifyLeaveGuestPlayerResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestNotifyLeaveGuestPlayerResponse();
   virtual ~RequestNotifyLeaveGuestPlayerResponse();
 
@@ -6800,7 +6902,7 @@ class RequestNotifyLeaveGuestPlayerResponse : public ::google::protobuf::Message
 
   static const RequestNotifyLeaveGuestPlayerResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -6808,7 +6910,7 @@ class RequestNotifyLeaveGuestPlayerResponse : public ::google::protobuf::Message
   static inline const RequestNotifyLeaveGuestPlayerResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestNotifyLeaveGuestPlayerResponse* other);
 
@@ -6828,11 +6930,13 @@ class RequestNotifyLeaveGuestPlayerResponse : public ::google::protobuf::Message
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -6840,17 +6944,16 @@ class RequestNotifyLeaveGuestPlayerResponse : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestNotifyLeaveGuestPlayerResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -6860,7 +6963,7 @@ class RequestNotifyLeaveGuestPlayerResponse : public ::google::protobuf::Message
 // -------------------------------------------------------------------
 
 class RequestNotifyLeaveSession : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestNotifyLeaveSession();
   virtual ~RequestNotifyLeaveSession();
 
@@ -6881,7 +6984,7 @@ class RequestNotifyLeaveSession : public ::google::protobuf::MessageLite {
 
   static const RequestNotifyLeaveSession& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -6889,7 +6992,7 @@ class RequestNotifyLeaveSession : public ::google::protobuf::MessageLite {
   static inline const RequestNotifyLeaveSession* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestNotifyLeaveSession* other);
 
@@ -6909,11 +7012,13 @@ class RequestNotifyLeaveSession : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -6949,7 +7054,7 @@ class RequestNotifyLeaveSession : public ::google::protobuf::MessageLite {
   inline void set_field_4(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestNotifyLeaveSession)
- private:
+private:
   inline void set_has_field_1();
   inline void clear_has_field_1();
   inline void set_has_field_2();
@@ -6967,11 +7072,11 @@ class RequestNotifyLeaveSession : public ::google::protobuf::MessageLite {
   ::google::protobuf::int64 field_2_;
   ::google::protobuf::int64 field_3_;
   ::google::protobuf::int64 field_4_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -6981,7 +7086,7 @@ class RequestNotifyLeaveSession : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestNotifyLeaveSessionResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestNotifyLeaveSessionResponse();
   virtual ~RequestNotifyLeaveSessionResponse();
 
@@ -7002,7 +7107,7 @@ class RequestNotifyLeaveSessionResponse : public ::google::protobuf::MessageLite
 
   static const RequestNotifyLeaveSessionResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -7010,7 +7115,7 @@ class RequestNotifyLeaveSessionResponse : public ::google::protobuf::MessageLite
   static inline const RequestNotifyLeaveSessionResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestNotifyLeaveSessionResponse* other);
 
@@ -7030,11 +7135,13 @@ class RequestNotifyLeaveSessionResponse : public ::google::protobuf::MessageLite
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -7042,17 +7149,16 @@ class RequestNotifyLeaveSessionResponse : public ::google::protobuf::MessageLite
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestNotifyLeaveSessionResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -7062,7 +7168,7 @@ class RequestNotifyLeaveSessionResponse : public ::google::protobuf::MessageLite
 // -------------------------------------------------------------------
 
 class RequestNotifyMirrorKnight : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestNotifyMirrorKnight();
   virtual ~RequestNotifyMirrorKnight();
 
@@ -7083,7 +7189,7 @@ class RequestNotifyMirrorKnight : public ::google::protobuf::MessageLite {
 
   static const RequestNotifyMirrorKnight& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -7091,7 +7197,7 @@ class RequestNotifyMirrorKnight : public ::google::protobuf::MessageLite {
   static inline const RequestNotifyMirrorKnight* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestNotifyMirrorKnight* other);
 
@@ -7111,11 +7217,13 @@ class RequestNotifyMirrorKnight : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -7130,7 +7238,7 @@ class RequestNotifyMirrorKnight : public ::google::protobuf::MessageLite {
   inline void set_field_1(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestNotifyMirrorKnight)
- private:
+private:
   inline void set_has_field_1();
   inline void clear_has_field_1();
 
@@ -7139,11 +7247,11 @@ class RequestNotifyMirrorKnight : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
   ::google::protobuf::int64 field_1_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -7153,7 +7261,7 @@ class RequestNotifyMirrorKnight : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestNotifyMirrorKnightResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestNotifyMirrorKnightResponse();
   virtual ~RequestNotifyMirrorKnightResponse();
 
@@ -7174,7 +7282,7 @@ class RequestNotifyMirrorKnightResponse : public ::google::protobuf::MessageLite
 
   static const RequestNotifyMirrorKnightResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -7182,7 +7290,7 @@ class RequestNotifyMirrorKnightResponse : public ::google::protobuf::MessageLite
   static inline const RequestNotifyMirrorKnightResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestNotifyMirrorKnightResponse* other);
 
@@ -7202,11 +7310,13 @@ class RequestNotifyMirrorKnightResponse : public ::google::protobuf::MessageLite
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -7214,17 +7324,16 @@ class RequestNotifyMirrorKnightResponse : public ::google::protobuf::MessageLite
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestNotifyMirrorKnightResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -7234,7 +7343,7 @@ class RequestNotifyMirrorKnightResponse : public ::google::protobuf::MessageLite
 // -------------------------------------------------------------------
 
 class RequestNotifyOfflineDeathCount : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestNotifyOfflineDeathCount();
   virtual ~RequestNotifyOfflineDeathCount();
 
@@ -7255,7 +7364,7 @@ class RequestNotifyOfflineDeathCount : public ::google::protobuf::MessageLite {
 
   static const RequestNotifyOfflineDeathCount& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -7263,7 +7372,7 @@ class RequestNotifyOfflineDeathCount : public ::google::protobuf::MessageLite {
   static inline const RequestNotifyOfflineDeathCount* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestNotifyOfflineDeathCount* other);
 
@@ -7283,11 +7392,13 @@ class RequestNotifyOfflineDeathCount : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -7302,7 +7413,7 @@ class RequestNotifyOfflineDeathCount : public ::google::protobuf::MessageLite {
   inline void set_count(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestNotifyOfflineDeathCount)
- private:
+private:
   inline void set_has_count();
   inline void clear_has_count();
 
@@ -7311,11 +7422,11 @@ class RequestNotifyOfflineDeathCount : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
   ::google::protobuf::int64 count_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -7325,7 +7436,7 @@ class RequestNotifyOfflineDeathCount : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestNotifyOfflineDeathCountResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestNotifyOfflineDeathCountResponse();
   virtual ~RequestNotifyOfflineDeathCountResponse();
 
@@ -7346,7 +7457,7 @@ class RequestNotifyOfflineDeathCountResponse : public ::google::protobuf::Messag
 
   static const RequestNotifyOfflineDeathCountResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -7354,7 +7465,7 @@ class RequestNotifyOfflineDeathCountResponse : public ::google::protobuf::Messag
   static inline const RequestNotifyOfflineDeathCountResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestNotifyOfflineDeathCountResponse* other);
 
@@ -7374,11 +7485,13 @@ class RequestNotifyOfflineDeathCountResponse : public ::google::protobuf::Messag
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -7386,17 +7499,16 @@ class RequestNotifyOfflineDeathCountResponse : public ::google::protobuf::Messag
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestNotifyOfflineDeathCountResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -7406,7 +7518,7 @@ class RequestNotifyOfflineDeathCountResponse : public ::google::protobuf::Messag
 // -------------------------------------------------------------------
 
 class MatchingParameter : public ::google::protobuf::MessageLite {
- public:
+public:
   MatchingParameter();
   virtual ~MatchingParameter();
 
@@ -7427,7 +7539,7 @@ class MatchingParameter : public ::google::protobuf::MessageLite {
 
   static const MatchingParameter& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -7435,7 +7547,7 @@ class MatchingParameter : public ::google::protobuf::MessageLite {
   static inline const MatchingParameter* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(MatchingParameter* other);
 
@@ -7455,11 +7567,13 @@ class MatchingParameter : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -7544,7 +7658,7 @@ class MatchingParameter : public ::google::protobuf::MessageLite {
   inline void set_soul_memory(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.MatchingParameter)
- private:
+private:
   inline void set_has_calibration_version();
   inline void clear_has_calibration_version();
   inline void set_has_soul_level();
@@ -7583,11 +7697,11 @@ class MatchingParameter : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 unknown_10_;
   ::google::protobuf::uint32 name_engraved_ring_;
   ::google::protobuf::uint32 soul_memory_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -7597,7 +7711,7 @@ class MatchingParameter : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class PushRequestSummonSign : public ::google::protobuf::MessageLite {
- public:
+public:
   PushRequestSummonSign();
   virtual ~PushRequestSummonSign();
 
@@ -7618,7 +7732,7 @@ class PushRequestSummonSign : public ::google::protobuf::MessageLite {
 
   static const PushRequestSummonSign& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -7626,7 +7740,7 @@ class PushRequestSummonSign : public ::google::protobuf::MessageLite {
   static inline const PushRequestSummonSign* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PushRequestSummonSign* other);
 
@@ -7646,11 +7760,13 @@ class PushRequestSummonSign : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -7703,7 +7819,7 @@ class PushRequestSummonSign : public ::google::protobuf::MessageLite {
   inline void set_allocated_player_steam_id(::std::string* player_steam_id);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.PushRequestSummonSign)
- private:
+private:
   inline void set_has_push_message_id();
   inline void clear_has_push_message_id();
   inline void set_has_player_id();
@@ -7724,11 +7840,11 @@ class PushRequestSummonSign : public ::google::protobuf::MessageLite {
   ::std::string* player_struct_;
   ::std::string* player_steam_id_;
   int push_message_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -7738,7 +7854,7 @@ class PushRequestSummonSign : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestSummonSign : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestSummonSign();
   virtual ~RequestSummonSign();
 
@@ -7759,7 +7875,7 @@ class RequestSummonSign : public ::google::protobuf::MessageLite {
 
   static const RequestSummonSign& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -7767,7 +7883,7 @@ class RequestSummonSign : public ::google::protobuf::MessageLite {
   static inline const RequestSummonSign* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestSummonSign* other);
 
@@ -7787,11 +7903,13 @@ class RequestSummonSign : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -7834,7 +7952,7 @@ class RequestSummonSign : public ::google::protobuf::MessageLite {
   inline void set_cell_id(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestSummonSign)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_sign_info();
@@ -7852,11 +7970,11 @@ class RequestSummonSign : public ::google::protobuf::MessageLite {
   ::DS2_Frpg2RequestMessage::SignInfo* sign_info_;
   ::std::string* player_struct_;
   ::google::protobuf::int64 cell_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -7866,7 +7984,7 @@ class RequestSummonSign : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestSummonSignResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestSummonSignResponse();
   virtual ~RequestSummonSignResponse();
 
@@ -7887,7 +8005,7 @@ class RequestSummonSignResponse : public ::google::protobuf::MessageLite {
 
   static const RequestSummonSignResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -7895,7 +8013,7 @@ class RequestSummonSignResponse : public ::google::protobuf::MessageLite {
   static inline const RequestSummonSignResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestSummonSignResponse* other);
 
@@ -7915,11 +8033,13 @@ class RequestSummonSignResponse : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -7927,17 +8047,16 @@ class RequestSummonSignResponse : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestSummonSignResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -7947,7 +8066,7 @@ class RequestSummonSignResponse : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class PushRequestRejectSign : public ::google::protobuf::MessageLite {
- public:
+public:
   PushRequestRejectSign();
   virtual ~PushRequestRejectSign();
 
@@ -7968,7 +8087,7 @@ class PushRequestRejectSign : public ::google::protobuf::MessageLite {
 
   static const PushRequestRejectSign& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -7976,7 +8095,7 @@ class PushRequestRejectSign : public ::google::protobuf::MessageLite {
   static inline const PushRequestRejectSign* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PushRequestRejectSign* other);
 
@@ -7996,11 +8115,13 @@ class PushRequestRejectSign : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -8043,7 +8164,7 @@ class PushRequestRejectSign : public ::google::protobuf::MessageLite {
   inline void set_allocated_player_steam_id(::std::string* player_steam_id);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.PushRequestRejectSign)
- private:
+private:
   inline void set_has_push_message_id();
   inline void clear_has_push_message_id();
   inline void set_has_sign_info();
@@ -8061,11 +8182,11 @@ class PushRequestRejectSign : public ::google::protobuf::MessageLite {
   int push_message_id_;
   int error_;
   ::std::string* player_steam_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -8075,7 +8196,7 @@ class PushRequestRejectSign : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class PushRequestRemoveSign : public ::google::protobuf::MessageLite {
- public:
+public:
   PushRequestRemoveSign();
   virtual ~PushRequestRemoveSign();
 
@@ -8096,7 +8217,7 @@ class PushRequestRemoveSign : public ::google::protobuf::MessageLite {
 
   static const PushRequestRemoveSign& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -8104,7 +8225,7 @@ class PushRequestRemoveSign : public ::google::protobuf::MessageLite {
   static inline const PushRequestRemoveSign* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PushRequestRemoveSign* other);
 
@@ -8124,11 +8245,13 @@ class PushRequestRemoveSign : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -8169,7 +8292,7 @@ class PushRequestRemoveSign : public ::google::protobuf::MessageLite {
   inline void set_allocated_player_steam_id(::std::string* player_steam_id);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.PushRequestRemoveSign)
- private:
+private:
   inline void set_has_push_message_id();
   inline void clear_has_push_message_id();
   inline void set_has_player_id();
@@ -8187,11 +8310,11 @@ class PushRequestRemoveSign : public ::google::protobuf::MessageLite {
   ::google::protobuf::int64 sign_id_;
   ::std::string* player_steam_id_;
   int push_message_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -8201,7 +8324,7 @@ class PushRequestRemoveSign : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestCreateSign : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestCreateSign();
   virtual ~RequestCreateSign();
 
@@ -8222,7 +8345,7 @@ class RequestCreateSign : public ::google::protobuf::MessageLite {
 
   static const RequestCreateSign& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -8230,7 +8353,7 @@ class RequestCreateSign : public ::google::protobuf::MessageLite {
   static inline const RequestCreateSign* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestCreateSign* other);
 
@@ -8250,11 +8373,13 @@ class RequestCreateSign : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -8304,7 +8429,7 @@ class RequestCreateSign : public ::google::protobuf::MessageLite {
   inline void set_sign_type(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestCreateSign)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_matching_parameter();
@@ -8325,11 +8450,11 @@ class RequestCreateSign : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 cell_id_;
   ::std::string* player_struct_;
   ::google::protobuf::uint32 sign_type_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -8339,7 +8464,7 @@ class RequestCreateSign : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestCreateSignResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestCreateSignResponse();
   virtual ~RequestCreateSignResponse();
 
@@ -8360,7 +8485,7 @@ class RequestCreateSignResponse : public ::google::protobuf::MessageLite {
 
   static const RequestCreateSignResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -8368,7 +8493,7 @@ class RequestCreateSignResponse : public ::google::protobuf::MessageLite {
   static inline const RequestCreateSignResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestCreateSignResponse* other);
 
@@ -8388,11 +8513,13 @@ class RequestCreateSignResponse : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -8407,7 +8534,7 @@ class RequestCreateSignResponse : public ::google::protobuf::MessageLite {
   inline void set_sign_id(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestCreateSignResponse)
- private:
+private:
   inline void set_has_sign_id();
   inline void clear_has_sign_id();
 
@@ -8416,11 +8543,11 @@ class RequestCreateSignResponse : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
   ::google::protobuf::uint32 sign_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -8430,7 +8557,7 @@ class RequestCreateSignResponse : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetSignList : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetSignList();
   virtual ~RequestGetSignList();
 
@@ -8451,7 +8578,7 @@ class RequestGetSignList : public ::google::protobuf::MessageLite {
 
   static const RequestGetSignList& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -8459,7 +8586,7 @@ class RequestGetSignList : public ::google::protobuf::MessageLite {
   static inline const RequestGetSignList* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetSignList* other);
 
@@ -8479,11 +8606,13 @@ class RequestGetSignList : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -8504,10 +8633,10 @@ class RequestGetSignList : public ::google::protobuf::MessageLite {
   inline const ::DS2_Frpg2RequestMessage::SignCellInfo& search_areas(int index) const;
   inline ::DS2_Frpg2RequestMessage::SignCellInfo* mutable_search_areas(int index);
   inline ::DS2_Frpg2RequestMessage::SignCellInfo* add_search_areas();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::SignCellInfo >&
-      search_areas() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::SignCellInfo >*
-      mutable_search_areas();
+  inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::SignCellInfo>&
+  search_areas() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::SignCellInfo>*
+  mutable_search_areas();
 
   // required uint32 max_signs = 3;
   inline bool has_max_signs() const;
@@ -8547,7 +8676,7 @@ class RequestGetSignList : public ::google::protobuf::MessageLite {
   inline void set_unknown_7(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetSignList)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_max_signs();
@@ -8565,18 +8694,18 @@ class RequestGetSignList : public ::google::protobuf::MessageLite {
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::SignCellInfo > search_areas_;
+  ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::SignCellInfo> search_areas_;
   ::google::protobuf::uint32 online_area_id_;
   ::google::protobuf::uint32 max_signs_;
   ::DS2_Frpg2RequestMessage::MatchingParameter* matching_parameter_;
   ::google::protobuf::uint32 unknown_5_;
   ::google::protobuf::uint32 unknown_6_;
   ::google::protobuf::uint32 unknown_7_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -8586,7 +8715,7 @@ class RequestGetSignList : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetSignListResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetSignListResponse();
   virtual ~RequestGetSignListResponse();
 
@@ -8607,7 +8736,7 @@ class RequestGetSignListResponse : public ::google::protobuf::MessageLite {
 
   static const RequestGetSignListResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -8615,7 +8744,7 @@ class RequestGetSignListResponse : public ::google::protobuf::MessageLite {
   static inline const RequestGetSignListResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetSignListResponse* other);
 
@@ -8635,11 +8764,13 @@ class RequestGetSignListResponse : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -8653,10 +8784,10 @@ class RequestGetSignListResponse : public ::google::protobuf::MessageLite {
   inline const ::DS2_Frpg2RequestMessage::SignInfo& sign_info(int index) const;
   inline ::DS2_Frpg2RequestMessage::SignInfo* mutable_sign_info(int index);
   inline ::DS2_Frpg2RequestMessage::SignInfo* add_sign_info();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::SignInfo >&
-      sign_info() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::SignInfo >*
-      mutable_sign_info();
+  inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::SignInfo>&
+  sign_info() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::SignInfo>*
+  mutable_sign_info();
 
   // repeated .DS2_Frpg2RequestMessage.SignData sign_data = 2;
   inline int sign_data_size() const;
@@ -8665,25 +8796,24 @@ class RequestGetSignListResponse : public ::google::protobuf::MessageLite {
   inline const ::DS2_Frpg2RequestMessage::SignData& sign_data(int index) const;
   inline ::DS2_Frpg2RequestMessage::SignData* mutable_sign_data(int index);
   inline ::DS2_Frpg2RequestMessage::SignData* add_sign_data();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::SignData >&
-      sign_data() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::SignData >*
-      mutable_sign_data();
+  inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::SignData>&
+  sign_data() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::SignData>*
+  mutable_sign_data();
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetSignListResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::SignInfo > sign_info_;
-  ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::SignData > sign_data_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+  ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::SignInfo> sign_info_;
+  ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::SignData> sign_data_;
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -8693,7 +8823,7 @@ class RequestGetSignListResponse : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestRejectSign : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestRejectSign();
   virtual ~RequestRejectSign();
 
@@ -8714,7 +8844,7 @@ class RequestRejectSign : public ::google::protobuf::MessageLite {
 
   static const RequestRejectSign& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -8722,7 +8852,7 @@ class RequestRejectSign : public ::google::protobuf::MessageLite {
   static inline const RequestRejectSign* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestRejectSign* other);
 
@@ -8742,11 +8872,13 @@ class RequestRejectSign : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -8789,7 +8921,7 @@ class RequestRejectSign : public ::google::protobuf::MessageLite {
   inline void set_cell_id(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestRejectSign)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_sign_id();
@@ -8810,11 +8942,11 @@ class RequestRejectSign : public ::google::protobuf::MessageLite {
   ::google::protobuf::int64 unknown_4_;
   ::google::protobuf::int64 cell_id_;
   int error_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -8824,7 +8956,7 @@ class RequestRejectSign : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestRejectSignResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestRejectSignResponse();
   virtual ~RequestRejectSignResponse();
 
@@ -8845,7 +8977,7 @@ class RequestRejectSignResponse : public ::google::protobuf::MessageLite {
 
   static const RequestRejectSignResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -8853,7 +8985,7 @@ class RequestRejectSignResponse : public ::google::protobuf::MessageLite {
   static inline const RequestRejectSignResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestRejectSignResponse* other);
 
@@ -8873,11 +9005,13 @@ class RequestRejectSignResponse : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -8885,17 +9019,16 @@ class RequestRejectSignResponse : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestRejectSignResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -8905,7 +9038,7 @@ class RequestRejectSignResponse : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestRemoveSign : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestRemoveSign();
   virtual ~RequestRemoveSign();
 
@@ -8926,7 +9059,7 @@ class RequestRemoveSign : public ::google::protobuf::MessageLite {
 
   static const RequestRemoveSign& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -8934,7 +9067,7 @@ class RequestRemoveSign : public ::google::protobuf::MessageLite {
   static inline const RequestRemoveSign* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestRemoveSign* other);
 
@@ -8954,11 +9087,13 @@ class RequestRemoveSign : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -8987,7 +9122,7 @@ class RequestRemoveSign : public ::google::protobuf::MessageLite {
   inline void set_cell_id(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestRemoveSign)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_sign_id();
@@ -9002,11 +9137,11 @@ class RequestRemoveSign : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 online_area_id_;
   ::google::protobuf::uint32 sign_id_;
   ::google::protobuf::uint32 cell_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -9016,7 +9151,7 @@ class RequestRemoveSign : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestRemoveSignResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestRemoveSignResponse();
   virtual ~RequestRemoveSignResponse();
 
@@ -9037,7 +9172,7 @@ class RequestRemoveSignResponse : public ::google::protobuf::MessageLite {
 
   static const RequestRemoveSignResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -9045,7 +9180,7 @@ class RequestRemoveSignResponse : public ::google::protobuf::MessageLite {
   static inline const RequestRemoveSignResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestRemoveSignResponse* other);
 
@@ -9065,11 +9200,13 @@ class RequestRemoveSignResponse : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -9077,17 +9214,16 @@ class RequestRemoveSignResponse : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestRemoveSignResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -9097,7 +9233,7 @@ class RequestRemoveSignResponse : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestUpdateSign : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestUpdateSign();
   virtual ~RequestUpdateSign();
 
@@ -9118,7 +9254,7 @@ class RequestUpdateSign : public ::google::protobuf::MessageLite {
 
   static const RequestUpdateSign& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -9126,7 +9262,7 @@ class RequestUpdateSign : public ::google::protobuf::MessageLite {
   static inline const RequestUpdateSign* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestUpdateSign* other);
 
@@ -9146,11 +9282,13 @@ class RequestUpdateSign : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -9179,7 +9317,7 @@ class RequestUpdateSign : public ::google::protobuf::MessageLite {
   inline void set_cell_id(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestUpdateSign)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_sign_id();
@@ -9194,11 +9332,11 @@ class RequestUpdateSign : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 online_area_id_;
   ::google::protobuf::uint32 sign_id_;
   ::google::protobuf::uint32 cell_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -9208,7 +9346,7 @@ class RequestUpdateSign : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestUpdateSignResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestUpdateSignResponse();
   virtual ~RequestUpdateSignResponse();
 
@@ -9229,7 +9367,7 @@ class RequestUpdateSignResponse : public ::google::protobuf::MessageLite {
 
   static const RequestUpdateSignResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -9237,7 +9375,7 @@ class RequestUpdateSignResponse : public ::google::protobuf::MessageLite {
   static inline const RequestUpdateSignResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestUpdateSignResponse* other);
 
@@ -9257,11 +9395,13 @@ class RequestUpdateSignResponse : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -9269,17 +9409,16 @@ class RequestUpdateSignResponse : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestUpdateSignResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -9289,7 +9428,7 @@ class RequestUpdateSignResponse : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class SignCellInfo : public ::google::protobuf::MessageLite {
- public:
+public:
   SignCellInfo();
   virtual ~SignCellInfo();
 
@@ -9310,7 +9449,7 @@ class SignCellInfo : public ::google::protobuf::MessageLite {
 
   static const SignCellInfo& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -9318,7 +9457,7 @@ class SignCellInfo : public ::google::protobuf::MessageLite {
   static inline const SignCellInfo* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(SignCellInfo* other);
 
@@ -9338,11 +9477,13 @@ class SignCellInfo : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -9363,10 +9504,10 @@ class SignCellInfo : public ::google::protobuf::MessageLite {
   inline const ::DS2_Frpg2RequestMessage::SignInfo& local_signs(int index) const;
   inline ::DS2_Frpg2RequestMessage::SignInfo* mutable_local_signs(int index);
   inline ::DS2_Frpg2RequestMessage::SignInfo* add_local_signs();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::SignInfo >&
-      local_signs() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::SignInfo >*
-      mutable_local_signs();
+  inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::SignInfo>&
+  local_signs() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::SignInfo>*
+  mutable_local_signs();
 
   // optional uint32 max_signs = 3;
   inline bool has_max_signs() const;
@@ -9376,7 +9517,7 @@ class SignCellInfo : public ::google::protobuf::MessageLite {
   inline void set_max_signs(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.SignCellInfo)
- private:
+private:
   inline void set_has_cell_id();
   inline void clear_has_cell_id();
   inline void set_has_max_signs();
@@ -9386,14 +9527,14 @@ class SignCellInfo : public ::google::protobuf::MessageLite {
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::SignInfo > local_signs_;
+  ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::SignInfo> local_signs_;
   ::google::protobuf::uint32 cell_id_;
   ::google::protobuf::uint32 max_signs_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -9403,7 +9544,7 @@ class SignCellInfo : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class SignInfo : public ::google::protobuf::MessageLite {
- public:
+public:
   SignInfo();
   virtual ~SignInfo();
 
@@ -9424,7 +9565,7 @@ class SignInfo : public ::google::protobuf::MessageLite {
 
   static const SignInfo& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -9432,7 +9573,7 @@ class SignInfo : public ::google::protobuf::MessageLite {
   static inline const SignInfo* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(SignInfo* other);
 
@@ -9452,11 +9593,13 @@ class SignInfo : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -9478,7 +9621,7 @@ class SignInfo : public ::google::protobuf::MessageLite {
   inline void set_sign_id(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.SignInfo)
- private:
+private:
   inline void set_has_player_id();
   inline void clear_has_player_id();
   inline void set_has_sign_id();
@@ -9490,11 +9633,11 @@ class SignInfo : public ::google::protobuf::MessageLite {
   mutable int _cached_size_;
   ::google::protobuf::uint32 player_id_;
   ::google::protobuf::uint32 sign_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -9504,7 +9647,7 @@ class SignInfo : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class SignData : public ::google::protobuf::MessageLite {
- public:
+public:
   SignData();
   virtual ~SignData();
 
@@ -9525,7 +9668,7 @@ class SignData : public ::google::protobuf::MessageLite {
 
   static const SignData& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -9533,7 +9676,7 @@ class SignData : public ::google::protobuf::MessageLite {
   static inline const SignData* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(SignData* other);
 
@@ -9553,11 +9696,13 @@ class SignData : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -9628,7 +9773,7 @@ class SignData : public ::google::protobuf::MessageLite {
   inline void set_sign_type(::DS2_Frpg2RequestMessage::SignType value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.SignData)
- private:
+private:
   inline void set_has_sign_info();
   inline void clear_has_sign_info();
   inline void set_has_online_area_id();
@@ -9655,11 +9800,11 @@ class SignData : public ::google::protobuf::MessageLite {
   ::std::string* player_steam_id_;
   ::google::protobuf::int64 cell_id_;
   int sign_type_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -9669,7 +9814,7 @@ class SignData : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetRightMatchingArea : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetRightMatchingArea();
   virtual ~RequestGetRightMatchingArea();
 
@@ -9690,7 +9835,7 @@ class RequestGetRightMatchingArea : public ::google::protobuf::MessageLite {
 
   static const RequestGetRightMatchingArea& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -9698,7 +9843,7 @@ class RequestGetRightMatchingArea : public ::google::protobuf::MessageLite {
   static inline const RequestGetRightMatchingArea* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetRightMatchingArea* other);
 
@@ -9718,11 +9863,13 @@ class RequestGetRightMatchingArea : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -9739,7 +9886,7 @@ class RequestGetRightMatchingArea : public ::google::protobuf::MessageLite {
   inline void set_allocated_matching_parameter(::DS2_Frpg2RequestMessage::MatchingParameter* matching_parameter);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetRightMatchingArea)
- private:
+private:
   inline void set_has_matching_parameter();
   inline void clear_has_matching_parameter();
 
@@ -9748,11 +9895,11 @@ class RequestGetRightMatchingArea : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
   ::DS2_Frpg2RequestMessage::MatchingParameter* matching_parameter_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -9762,7 +9909,7 @@ class RequestGetRightMatchingArea : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetRightMatchingAreaResponse_Area_info : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetRightMatchingAreaResponse_Area_info();
   virtual ~RequestGetRightMatchingAreaResponse_Area_info();
 
@@ -9783,7 +9930,7 @@ class RequestGetRightMatchingAreaResponse_Area_info : public ::google::protobuf:
 
   static const RequestGetRightMatchingAreaResponse_Area_info& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -9791,7 +9938,7 @@ class RequestGetRightMatchingAreaResponse_Area_info : public ::google::protobuf:
   static inline const RequestGetRightMatchingAreaResponse_Area_info* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetRightMatchingAreaResponse_Area_info* other);
 
@@ -9811,11 +9958,13 @@ class RequestGetRightMatchingAreaResponse_Area_info : public ::google::protobuf:
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -9837,7 +9986,7 @@ class RequestGetRightMatchingAreaResponse_Area_info : public ::google::protobuf:
   inline void set_population(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetRightMatchingAreaResponse.Area_info)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_population();
@@ -9849,11 +9998,11 @@ class RequestGetRightMatchingAreaResponse_Area_info : public ::google::protobuf:
   mutable int _cached_size_;
   ::google::protobuf::uint32 online_area_id_;
   ::google::protobuf::uint32 population_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -9863,7 +10012,7 @@ class RequestGetRightMatchingAreaResponse_Area_info : public ::google::protobuf:
 // -------------------------------------------------------------------
 
 class RequestGetRightMatchingAreaResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetRightMatchingAreaResponse();
   virtual ~RequestGetRightMatchingAreaResponse();
 
@@ -9884,7 +10033,7 @@ class RequestGetRightMatchingAreaResponse : public ::google::protobuf::MessageLi
 
   static const RequestGetRightMatchingAreaResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -9892,7 +10041,7 @@ class RequestGetRightMatchingAreaResponse : public ::google::protobuf::MessageLi
   static inline const RequestGetRightMatchingAreaResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetRightMatchingAreaResponse* other);
 
@@ -9912,11 +10061,13 @@ class RequestGetRightMatchingAreaResponse : public ::google::protobuf::MessageLi
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -9932,24 +10083,23 @@ class RequestGetRightMatchingAreaResponse : public ::google::protobuf::MessageLi
   inline const ::DS2_Frpg2RequestMessage::RequestGetRightMatchingAreaResponse_Area_info& area_info(int index) const;
   inline ::DS2_Frpg2RequestMessage::RequestGetRightMatchingAreaResponse_Area_info* mutable_area_info(int index);
   inline ::DS2_Frpg2RequestMessage::RequestGetRightMatchingAreaResponse_Area_info* add_area_info();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::RequestGetRightMatchingAreaResponse_Area_info >&
-      area_info() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::RequestGetRightMatchingAreaResponse_Area_info >*
-      mutable_area_info();
+  inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::RequestGetRightMatchingAreaResponse_Area_info>&
+  area_info() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::RequestGetRightMatchingAreaResponse_Area_info>*
+  mutable_area_info();
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetRightMatchingAreaResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::RequestGetRightMatchingAreaResponse_Area_info > area_info_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+  ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::RequestGetRightMatchingAreaResponse_Area_info> area_info_;
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -9959,7 +10109,7 @@ class RequestGetRightMatchingAreaResponse : public ::google::protobuf::MessageLi
 // -------------------------------------------------------------------
 
 class PushRequestRejectMirrorKnightSign : public ::google::protobuf::MessageLite {
- public:
+public:
   PushRequestRejectMirrorKnightSign();
   virtual ~PushRequestRejectMirrorKnightSign();
 
@@ -9980,7 +10130,7 @@ class PushRequestRejectMirrorKnightSign : public ::google::protobuf::MessageLite
 
   static const PushRequestRejectMirrorKnightSign& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -9988,7 +10138,7 @@ class PushRequestRejectMirrorKnightSign : public ::google::protobuf::MessageLite
   static inline const PushRequestRejectMirrorKnightSign* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PushRequestRejectMirrorKnightSign* other);
 
@@ -10008,11 +10158,13 @@ class PushRequestRejectMirrorKnightSign : public ::google::protobuf::MessageLite
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -10055,7 +10207,7 @@ class PushRequestRejectMirrorKnightSign : public ::google::protobuf::MessageLite
   inline void set_allocated_player_steam_id(::std::string* player_steam_id);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.PushRequestRejectMirrorKnightSign)
- private:
+private:
   inline void set_has_push_message_id();
   inline void clear_has_push_message_id();
   inline void set_has_sign_info();
@@ -10073,11 +10225,11 @@ class PushRequestRejectMirrorKnightSign : public ::google::protobuf::MessageLite
   int push_message_id_;
   int error_;
   ::std::string* player_steam_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -10087,7 +10239,7 @@ class PushRequestRejectMirrorKnightSign : public ::google::protobuf::MessageLite
 // -------------------------------------------------------------------
 
 class PushRequestRemoveMirrorKnightSign : public ::google::protobuf::MessageLite {
- public:
+public:
   PushRequestRemoveMirrorKnightSign();
   virtual ~PushRequestRemoveMirrorKnightSign();
 
@@ -10108,7 +10260,7 @@ class PushRequestRemoveMirrorKnightSign : public ::google::protobuf::MessageLite
 
   static const PushRequestRemoveMirrorKnightSign& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -10116,7 +10268,7 @@ class PushRequestRemoveMirrorKnightSign : public ::google::protobuf::MessageLite
   static inline const PushRequestRemoveMirrorKnightSign* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PushRequestRemoveMirrorKnightSign* other);
 
@@ -10136,11 +10288,13 @@ class PushRequestRemoveMirrorKnightSign : public ::google::protobuf::MessageLite
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -10181,7 +10335,7 @@ class PushRequestRemoveMirrorKnightSign : public ::google::protobuf::MessageLite
   inline void set_allocated_player_steam_id(::std::string* player_steam_id);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.PushRequestRemoveMirrorKnightSign)
- private:
+private:
   inline void set_has_push_message_id();
   inline void clear_has_push_message_id();
   inline void set_has_player_id();
@@ -10199,11 +10353,11 @@ class PushRequestRemoveMirrorKnightSign : public ::google::protobuf::MessageLite
   ::google::protobuf::int64 sign_id_;
   ::std::string* player_steam_id_;
   int push_message_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -10213,7 +10367,7 @@ class PushRequestRemoveMirrorKnightSign : public ::google::protobuf::MessageLite
 // -------------------------------------------------------------------
 
 class PushRequestSummonMirrorKnightSign : public ::google::protobuf::MessageLite {
- public:
+public:
   PushRequestSummonMirrorKnightSign();
   virtual ~PushRequestSummonMirrorKnightSign();
 
@@ -10234,7 +10388,7 @@ class PushRequestSummonMirrorKnightSign : public ::google::protobuf::MessageLite
 
   static const PushRequestSummonMirrorKnightSign& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -10242,7 +10396,7 @@ class PushRequestSummonMirrorKnightSign : public ::google::protobuf::MessageLite
   static inline const PushRequestSummonMirrorKnightSign* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PushRequestSummonMirrorKnightSign* other);
 
@@ -10262,11 +10416,13 @@ class PushRequestSummonMirrorKnightSign : public ::google::protobuf::MessageLite
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -10319,7 +10475,7 @@ class PushRequestSummonMirrorKnightSign : public ::google::protobuf::MessageLite
   inline void set_allocated_player_steam_id(::std::string* player_steam_id);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.PushRequestSummonMirrorKnightSign)
- private:
+private:
   inline void set_has_push_message_id();
   inline void clear_has_push_message_id();
   inline void set_has_player_id();
@@ -10340,11 +10496,11 @@ class PushRequestSummonMirrorKnightSign : public ::google::protobuf::MessageLite
   ::std::string* player_struct_;
   ::std::string* player_steam_id_;
   int push_message_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -10354,7 +10510,7 @@ class PushRequestSummonMirrorKnightSign : public ::google::protobuf::MessageLite
 // -------------------------------------------------------------------
 
 class RequestCreateMirrorKnightSign : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestCreateMirrorKnightSign();
   virtual ~RequestCreateMirrorKnightSign();
 
@@ -10375,7 +10531,7 @@ class RequestCreateMirrorKnightSign : public ::google::protobuf::MessageLite {
 
   static const RequestCreateMirrorKnightSign& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -10383,7 +10539,7 @@ class RequestCreateMirrorKnightSign : public ::google::protobuf::MessageLite {
   static inline const RequestCreateMirrorKnightSign* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestCreateMirrorKnightSign* other);
 
@@ -10403,11 +10559,13 @@ class RequestCreateMirrorKnightSign : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -10436,7 +10594,7 @@ class RequestCreateMirrorKnightSign : public ::google::protobuf::MessageLite {
   inline void set_allocated_data(::std::string* data);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestCreateMirrorKnightSign)
- private:
+private:
   inline void set_has_matching_parameter();
   inline void clear_has_matching_parameter();
   inline void set_has_data();
@@ -10448,11 +10606,11 @@ class RequestCreateMirrorKnightSign : public ::google::protobuf::MessageLite {
   mutable int _cached_size_;
   ::DS2_Frpg2RequestMessage::MatchingParameter* matching_parameter_;
   ::std::string* data_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -10462,7 +10620,7 @@ class RequestCreateMirrorKnightSign : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestCreateMirrorKnightSignResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestCreateMirrorKnightSignResponse();
   virtual ~RequestCreateMirrorKnightSignResponse();
 
@@ -10483,7 +10641,7 @@ class RequestCreateMirrorKnightSignResponse : public ::google::protobuf::Message
 
   static const RequestCreateMirrorKnightSignResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -10491,7 +10649,7 @@ class RequestCreateMirrorKnightSignResponse : public ::google::protobuf::Message
   static inline const RequestCreateMirrorKnightSignResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestCreateMirrorKnightSignResponse* other);
 
@@ -10511,11 +10669,13 @@ class RequestCreateMirrorKnightSignResponse : public ::google::protobuf::Message
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -10530,7 +10690,7 @@ class RequestCreateMirrorKnightSignResponse : public ::google::protobuf::Message
   inline void set_sign_id(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestCreateMirrorKnightSignResponse)
- private:
+private:
   inline void set_has_sign_id();
   inline void clear_has_sign_id();
 
@@ -10539,11 +10699,11 @@ class RequestCreateMirrorKnightSignResponse : public ::google::protobuf::Message
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
   ::google::protobuf::int64 sign_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -10553,7 +10713,7 @@ class RequestCreateMirrorKnightSignResponse : public ::google::protobuf::Message
 // -------------------------------------------------------------------
 
 class RequestGetMirrorKnightSignList : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetMirrorKnightSignList();
   virtual ~RequestGetMirrorKnightSignList();
 
@@ -10574,7 +10734,7 @@ class RequestGetMirrorKnightSignList : public ::google::protobuf::MessageLite {
 
   static const RequestGetMirrorKnightSignList& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -10582,7 +10742,7 @@ class RequestGetMirrorKnightSignList : public ::google::protobuf::MessageLite {
   static inline const RequestGetMirrorKnightSignList* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetMirrorKnightSignList* other);
 
@@ -10602,11 +10762,13 @@ class RequestGetMirrorKnightSignList : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -10630,7 +10792,7 @@ class RequestGetMirrorKnightSignList : public ::google::protobuf::MessageLite {
   inline void set_allocated_matching_parameter(::DS2_Frpg2RequestMessage::MatchingParameter* matching_parameter);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetMirrorKnightSignList)
- private:
+private:
   inline void set_has_max_signs();
   inline void clear_has_max_signs();
   inline void set_has_matching_parameter();
@@ -10642,11 +10804,11 @@ class RequestGetMirrorKnightSignList : public ::google::protobuf::MessageLite {
   mutable int _cached_size_;
   ::google::protobuf::int64 max_signs_;
   ::DS2_Frpg2RequestMessage::MatchingParameter* matching_parameter_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -10656,7 +10818,7 @@ class RequestGetMirrorKnightSignList : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetMirrorKnightSignListResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetMirrorKnightSignListResponse();
   virtual ~RequestGetMirrorKnightSignListResponse();
 
@@ -10677,7 +10839,7 @@ class RequestGetMirrorKnightSignListResponse : public ::google::protobuf::Messag
 
   static const RequestGetMirrorKnightSignListResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -10685,7 +10847,7 @@ class RequestGetMirrorKnightSignListResponse : public ::google::protobuf::Messag
   static inline const RequestGetMirrorKnightSignListResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetMirrorKnightSignListResponse* other);
 
@@ -10705,11 +10867,13 @@ class RequestGetMirrorKnightSignListResponse : public ::google::protobuf::Messag
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -10723,24 +10887,23 @@ class RequestGetMirrorKnightSignListResponse : public ::google::protobuf::Messag
   inline const ::DS2_Frpg2RequestMessage::SignData& sign_data(int index) const;
   inline ::DS2_Frpg2RequestMessage::SignData* mutable_sign_data(int index);
   inline ::DS2_Frpg2RequestMessage::SignData* add_sign_data();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::SignData >&
-      sign_data() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::SignData >*
-      mutable_sign_data();
+  inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::SignData>&
+  sign_data() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::SignData>*
+  mutable_sign_data();
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetMirrorKnightSignListResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::SignData > sign_data_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+  ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::SignData> sign_data_;
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -10750,7 +10913,7 @@ class RequestGetMirrorKnightSignListResponse : public ::google::protobuf::Messag
 // -------------------------------------------------------------------
 
 class RequestRejectMirrorKnightSign : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestRejectMirrorKnightSign();
   virtual ~RequestRejectMirrorKnightSign();
 
@@ -10771,7 +10934,7 @@ class RequestRejectMirrorKnightSign : public ::google::protobuf::MessageLite {
 
   static const RequestRejectMirrorKnightSign& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -10779,7 +10942,7 @@ class RequestRejectMirrorKnightSign : public ::google::protobuf::MessageLite {
   static inline const RequestRejectMirrorKnightSign* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestRejectMirrorKnightSign* other);
 
@@ -10799,11 +10962,13 @@ class RequestRejectMirrorKnightSign : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -10846,7 +11011,7 @@ class RequestRejectMirrorKnightSign : public ::google::protobuf::MessageLite {
   inline void set_cell_id(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestRejectMirrorKnightSign)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_sign_id();
@@ -10867,11 +11032,11 @@ class RequestRejectMirrorKnightSign : public ::google::protobuf::MessageLite {
   ::google::protobuf::int64 unknown_4_;
   ::google::protobuf::int64 cell_id_;
   int error_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -10881,7 +11046,7 @@ class RequestRejectMirrorKnightSign : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestRejectMirrorKnightSignResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestRejectMirrorKnightSignResponse();
   virtual ~RequestRejectMirrorKnightSignResponse();
 
@@ -10902,7 +11067,7 @@ class RequestRejectMirrorKnightSignResponse : public ::google::protobuf::Message
 
   static const RequestRejectMirrorKnightSignResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -10910,7 +11075,7 @@ class RequestRejectMirrorKnightSignResponse : public ::google::protobuf::Message
   static inline const RequestRejectMirrorKnightSignResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestRejectMirrorKnightSignResponse* other);
 
@@ -10930,11 +11095,13 @@ class RequestRejectMirrorKnightSignResponse : public ::google::protobuf::Message
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -10942,17 +11109,16 @@ class RequestRejectMirrorKnightSignResponse : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestRejectMirrorKnightSignResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -10962,7 +11128,7 @@ class RequestRejectMirrorKnightSignResponse : public ::google::protobuf::Message
 // -------------------------------------------------------------------
 
 class RequestRemoveMirrorKnightSign : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestRemoveMirrorKnightSign();
   virtual ~RequestRemoveMirrorKnightSign();
 
@@ -10983,7 +11149,7 @@ class RequestRemoveMirrorKnightSign : public ::google::protobuf::MessageLite {
 
   static const RequestRemoveMirrorKnightSign& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -10991,7 +11157,7 @@ class RequestRemoveMirrorKnightSign : public ::google::protobuf::MessageLite {
   static inline const RequestRemoveMirrorKnightSign* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestRemoveMirrorKnightSign* other);
 
@@ -11011,11 +11177,13 @@ class RequestRemoveMirrorKnightSign : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -11030,7 +11198,7 @@ class RequestRemoveMirrorKnightSign : public ::google::protobuf::MessageLite {
   inline void set_sign_id(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestRemoveMirrorKnightSign)
- private:
+private:
   inline void set_has_sign_id();
   inline void clear_has_sign_id();
 
@@ -11039,11 +11207,11 @@ class RequestRemoveMirrorKnightSign : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
   ::google::protobuf::int64 sign_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -11053,7 +11221,7 @@ class RequestRemoveMirrorKnightSign : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestRemoveMirrorKnightSignResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestRemoveMirrorKnightSignResponse();
   virtual ~RequestRemoveMirrorKnightSignResponse();
 
@@ -11074,7 +11242,7 @@ class RequestRemoveMirrorKnightSignResponse : public ::google::protobuf::Message
 
   static const RequestRemoveMirrorKnightSignResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -11082,7 +11250,7 @@ class RequestRemoveMirrorKnightSignResponse : public ::google::protobuf::Message
   static inline const RequestRemoveMirrorKnightSignResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestRemoveMirrorKnightSignResponse* other);
 
@@ -11102,11 +11270,13 @@ class RequestRemoveMirrorKnightSignResponse : public ::google::protobuf::Message
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -11114,17 +11284,16 @@ class RequestRemoveMirrorKnightSignResponse : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestRemoveMirrorKnightSignResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -11134,7 +11303,7 @@ class RequestRemoveMirrorKnightSignResponse : public ::google::protobuf::Message
 // -------------------------------------------------------------------
 
 class RequestSummonMirrorKnightSign : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestSummonMirrorKnightSign();
   virtual ~RequestSummonMirrorKnightSign();
 
@@ -11155,7 +11324,7 @@ class RequestSummonMirrorKnightSign : public ::google::protobuf::MessageLite {
 
   static const RequestSummonMirrorKnightSign& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -11163,7 +11332,7 @@ class RequestSummonMirrorKnightSign : public ::google::protobuf::MessageLite {
   static inline const RequestSummonMirrorKnightSign* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestSummonMirrorKnightSign* other);
 
@@ -11183,11 +11352,13 @@ class RequestSummonMirrorKnightSign : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -11216,7 +11387,7 @@ class RequestSummonMirrorKnightSign : public ::google::protobuf::MessageLite {
   inline void set_allocated_player_struct(::std::string* player_struct);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestSummonMirrorKnightSign)
- private:
+private:
   inline void set_has_sign_info();
   inline void clear_has_sign_info();
   inline void set_has_player_struct();
@@ -11228,11 +11399,11 @@ class RequestSummonMirrorKnightSign : public ::google::protobuf::MessageLite {
   mutable int _cached_size_;
   ::DS2_Frpg2RequestMessage::SignInfo* sign_info_;
   ::std::string* player_struct_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -11242,7 +11413,7 @@ class RequestSummonMirrorKnightSign : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestSummonMirrorKnightSignResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestSummonMirrorKnightSignResponse();
   virtual ~RequestSummonMirrorKnightSignResponse();
 
@@ -11263,7 +11434,7 @@ class RequestSummonMirrorKnightSignResponse : public ::google::protobuf::Message
 
   static const RequestSummonMirrorKnightSignResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -11271,7 +11442,7 @@ class RequestSummonMirrorKnightSignResponse : public ::google::protobuf::Message
   static inline const RequestSummonMirrorKnightSignResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestSummonMirrorKnightSignResponse* other);
 
@@ -11291,11 +11462,13 @@ class RequestSummonMirrorKnightSignResponse : public ::google::protobuf::Message
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -11303,17 +11476,16 @@ class RequestSummonMirrorKnightSignResponse : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestSummonMirrorKnightSignResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -11323,7 +11495,7 @@ class RequestSummonMirrorKnightSignResponse : public ::google::protobuf::Message
 // -------------------------------------------------------------------
 
 class RequestUpdateMirrorKnightSign : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestUpdateMirrorKnightSign();
   virtual ~RequestUpdateMirrorKnightSign();
 
@@ -11344,7 +11516,7 @@ class RequestUpdateMirrorKnightSign : public ::google::protobuf::MessageLite {
 
   static const RequestUpdateMirrorKnightSign& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -11352,7 +11524,7 @@ class RequestUpdateMirrorKnightSign : public ::google::protobuf::MessageLite {
   static inline const RequestUpdateMirrorKnightSign* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestUpdateMirrorKnightSign* other);
 
@@ -11372,11 +11544,13 @@ class RequestUpdateMirrorKnightSign : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -11391,7 +11565,7 @@ class RequestUpdateMirrorKnightSign : public ::google::protobuf::MessageLite {
   inline void set_sign_id(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestUpdateMirrorKnightSign)
- private:
+private:
   inline void set_has_sign_id();
   inline void clear_has_sign_id();
 
@@ -11400,11 +11574,11 @@ class RequestUpdateMirrorKnightSign : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
   ::google::protobuf::int64 sign_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -11414,7 +11588,7 @@ class RequestUpdateMirrorKnightSign : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestUpdateMirrorKnightSignResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestUpdateMirrorKnightSignResponse();
   virtual ~RequestUpdateMirrorKnightSignResponse();
 
@@ -11435,7 +11609,7 @@ class RequestUpdateMirrorKnightSignResponse : public ::google::protobuf::Message
 
   static const RequestUpdateMirrorKnightSignResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -11443,7 +11617,7 @@ class RequestUpdateMirrorKnightSignResponse : public ::google::protobuf::Message
   static inline const RequestUpdateMirrorKnightSignResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestUpdateMirrorKnightSignResponse* other);
 
@@ -11463,11 +11637,13 @@ class RequestUpdateMirrorKnightSignResponse : public ::google::protobuf::Message
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -11475,17 +11651,16 @@ class RequestUpdateMirrorKnightSignResponse : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestUpdateMirrorKnightSignResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -11495,7 +11670,7 @@ class RequestUpdateMirrorKnightSignResponse : public ::google::protobuf::Message
 // -------------------------------------------------------------------
 
 class BreakInTargetData : public ::google::protobuf::MessageLite {
- public:
+public:
   BreakInTargetData();
   virtual ~BreakInTargetData();
 
@@ -11516,7 +11691,7 @@ class BreakInTargetData : public ::google::protobuf::MessageLite {
 
   static const BreakInTargetData& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -11524,7 +11699,7 @@ class BreakInTargetData : public ::google::protobuf::MessageLite {
   static inline const BreakInTargetData* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(BreakInTargetData* other);
 
@@ -11544,11 +11719,13 @@ class BreakInTargetData : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -11575,7 +11752,7 @@ class BreakInTargetData : public ::google::protobuf::MessageLite {
   inline void set_allocated_steam_id(::std::string* steam_id);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.BreakInTargetData)
- private:
+private:
   inline void set_has_player_id();
   inline void clear_has_player_id();
   inline void set_has_steam_id();
@@ -11587,11 +11764,11 @@ class BreakInTargetData : public ::google::protobuf::MessageLite {
   mutable int _cached_size_;
   ::std::string* steam_id_;
   ::google::protobuf::uint32 player_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -11601,7 +11778,7 @@ class BreakInTargetData : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class PushRequestAllowBreakInTarget : public ::google::protobuf::MessageLite {
- public:
+public:
   PushRequestAllowBreakInTarget();
   virtual ~PushRequestAllowBreakInTarget();
 
@@ -11622,7 +11799,7 @@ class PushRequestAllowBreakInTarget : public ::google::protobuf::MessageLite {
 
   static const PushRequestAllowBreakInTarget& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -11630,7 +11807,7 @@ class PushRequestAllowBreakInTarget : public ::google::protobuf::MessageLite {
   static inline const PushRequestAllowBreakInTarget* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PushRequestAllowBreakInTarget* other);
 
@@ -11650,11 +11827,13 @@ class PushRequestAllowBreakInTarget : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -11695,7 +11874,7 @@ class PushRequestAllowBreakInTarget : public ::google::protobuf::MessageLite {
   inline void set_unknown_4(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.PushRequestAllowBreakInTarget)
- private:
+private:
   inline void set_has_push_message_id();
   inline void clear_has_push_message_id();
   inline void set_has_player_id();
@@ -11713,11 +11892,11 @@ class PushRequestAllowBreakInTarget : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 player_id_;
   ::std::string* player_struct_;
   ::google::protobuf::uint32 unknown_4_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -11727,7 +11906,7 @@ class PushRequestAllowBreakInTarget : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class PushRequestBreakInTarget : public ::google::protobuf::MessageLite {
- public:
+public:
   PushRequestBreakInTarget();
   virtual ~PushRequestBreakInTarget();
 
@@ -11748,7 +11927,7 @@ class PushRequestBreakInTarget : public ::google::protobuf::MessageLite {
 
   static const PushRequestBreakInTarget& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -11756,7 +11935,7 @@ class PushRequestBreakInTarget : public ::google::protobuf::MessageLite {
   static inline const PushRequestBreakInTarget* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PushRequestBreakInTarget* other);
 
@@ -11776,11 +11955,13 @@ class PushRequestBreakInTarget : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -11835,7 +12016,7 @@ class PushRequestBreakInTarget : public ::google::protobuf::MessageLite {
   inline void set_cell_id(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.PushRequestBreakInTarget)
- private:
+private:
   inline void set_has_push_message_id();
   inline void clear_has_push_message_id();
   inline void set_has_player_id();
@@ -11859,11 +12040,11 @@ class PushRequestBreakInTarget : public ::google::protobuf::MessageLite {
   int type_;
   ::google::protobuf::uint32 online_area_id_;
   ::google::protobuf::uint32 cell_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -11873,7 +12054,7 @@ class PushRequestBreakInTarget : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class PushRequestRejectBreakInTarget : public ::google::protobuf::MessageLite {
- public:
+public:
   PushRequestRejectBreakInTarget();
   virtual ~PushRequestRejectBreakInTarget();
 
@@ -11894,7 +12075,7 @@ class PushRequestRejectBreakInTarget : public ::google::protobuf::MessageLite {
 
   static const PushRequestRejectBreakInTarget& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -11902,7 +12083,7 @@ class PushRequestRejectBreakInTarget : public ::google::protobuf::MessageLite {
   static inline const PushRequestRejectBreakInTarget* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PushRequestRejectBreakInTarget* other);
 
@@ -11922,11 +12103,13 @@ class PushRequestRejectBreakInTarget : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -11974,7 +12157,7 @@ class PushRequestRejectBreakInTarget : public ::google::protobuf::MessageLite {
   inline void set_unknown_5(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.PushRequestRejectBreakInTarget)
- private:
+private:
   inline void set_has_push_message_id();
   inline void clear_has_push_message_id();
   inline void set_has_player_id();
@@ -11995,11 +12178,11 @@ class PushRequestRejectBreakInTarget : public ::google::protobuf::MessageLite {
   ::std::string* steam_id_;
   ::google::protobuf::int64 unknown_5_;
   int push_message_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -12009,7 +12192,7 @@ class PushRequestRejectBreakInTarget : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class PushRequestRemoveBreakInTarget : public ::google::protobuf::MessageLite {
- public:
+public:
   PushRequestRemoveBreakInTarget();
   virtual ~PushRequestRemoveBreakInTarget();
 
@@ -12030,7 +12213,7 @@ class PushRequestRemoveBreakInTarget : public ::google::protobuf::MessageLite {
 
   static const PushRequestRemoveBreakInTarget& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -12038,7 +12221,7 @@ class PushRequestRemoveBreakInTarget : public ::google::protobuf::MessageLite {
   static inline const PushRequestRemoveBreakInTarget* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PushRequestRemoveBreakInTarget* other);
 
@@ -12058,11 +12241,13 @@ class PushRequestRemoveBreakInTarget : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -12070,17 +12255,16 @@ class PushRequestRemoveBreakInTarget : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.PushRequestRemoveBreakInTarget)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -12090,7 +12274,7 @@ class PushRequestRemoveBreakInTarget : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestBreakInTarget : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestBreakInTarget();
   virtual ~RequestBreakInTarget();
 
@@ -12111,7 +12295,7 @@ class RequestBreakInTarget : public ::google::protobuf::MessageLite {
 
   static const RequestBreakInTarget& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -12119,7 +12303,7 @@ class RequestBreakInTarget : public ::google::protobuf::MessageLite {
   static inline const RequestBreakInTarget* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestBreakInTarget* other);
 
@@ -12139,11 +12323,13 @@ class RequestBreakInTarget : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -12179,7 +12365,7 @@ class RequestBreakInTarget : public ::google::protobuf::MessageLite {
   inline void set_type(::DS2_Frpg2RequestMessage::BreakInType value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestBreakInTarget)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_cell_id();
@@ -12197,11 +12383,11 @@ class RequestBreakInTarget : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 cell_id_;
   ::google::protobuf::uint32 player_id_;
   int type_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -12211,7 +12397,7 @@ class RequestBreakInTarget : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestBreakInTargetResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestBreakInTargetResponse();
   virtual ~RequestBreakInTargetResponse();
 
@@ -12232,7 +12418,7 @@ class RequestBreakInTargetResponse : public ::google::protobuf::MessageLite {
 
   static const RequestBreakInTargetResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -12240,7 +12426,7 @@ class RequestBreakInTargetResponse : public ::google::protobuf::MessageLite {
   static inline const RequestBreakInTargetResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestBreakInTargetResponse* other);
 
@@ -12260,11 +12446,13 @@ class RequestBreakInTargetResponse : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -12272,17 +12460,16 @@ class RequestBreakInTargetResponse : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestBreakInTargetResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -12292,7 +12479,7 @@ class RequestBreakInTargetResponse : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetBreakInTargetList : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetBreakInTargetList();
   virtual ~RequestGetBreakInTargetList();
 
@@ -12313,7 +12500,7 @@ class RequestGetBreakInTargetList : public ::google::protobuf::MessageLite {
 
   static const RequestGetBreakInTargetList& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -12321,7 +12508,7 @@ class RequestGetBreakInTargetList : public ::google::protobuf::MessageLite {
   static inline const RequestGetBreakInTargetList* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetBreakInTargetList* other);
 
@@ -12341,11 +12528,13 @@ class RequestGetBreakInTargetList : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -12390,7 +12579,7 @@ class RequestGetBreakInTargetList : public ::google::protobuf::MessageLite {
   inline void set_type(::DS2_Frpg2RequestMessage::BreakInType value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetBreakInTargetList)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_cell_id();
@@ -12411,11 +12600,11 @@ class RequestGetBreakInTargetList : public ::google::protobuf::MessageLite {
   ::DS2_Frpg2RequestMessage::MatchingParameter* matching_parameter_;
   ::google::protobuf::uint32 max_targets_;
   int type_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -12425,7 +12614,7 @@ class RequestGetBreakInTargetList : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetBreakInTargetListResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetBreakInTargetListResponse();
   virtual ~RequestGetBreakInTargetListResponse();
 
@@ -12446,7 +12635,7 @@ class RequestGetBreakInTargetListResponse : public ::google::protobuf::MessageLi
 
   static const RequestGetBreakInTargetListResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -12454,7 +12643,7 @@ class RequestGetBreakInTargetListResponse : public ::google::protobuf::MessageLi
   static inline const RequestGetBreakInTargetListResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetBreakInTargetListResponse* other);
 
@@ -12474,11 +12663,13 @@ class RequestGetBreakInTargetListResponse : public ::google::protobuf::MessageLi
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -12506,13 +12697,13 @@ class RequestGetBreakInTargetListResponse : public ::google::protobuf::MessageLi
   inline const ::DS2_Frpg2RequestMessage::BreakInTargetData& target_data(int index) const;
   inline ::DS2_Frpg2RequestMessage::BreakInTargetData* mutable_target_data(int index);
   inline ::DS2_Frpg2RequestMessage::BreakInTargetData* add_target_data();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::BreakInTargetData >&
-      target_data() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::BreakInTargetData >*
-      mutable_target_data();
+  inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::BreakInTargetData>&
+  target_data() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::BreakInTargetData>*
+  mutable_target_data();
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetBreakInTargetListResponse)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_cell_id();
@@ -12524,12 +12715,12 @@ class RequestGetBreakInTargetListResponse : public ::google::protobuf::MessageLi
   mutable int _cached_size_;
   ::google::protobuf::uint32 online_area_id_;
   ::google::protobuf::uint32 cell_id_;
-  ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::BreakInTargetData > target_data_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+  ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::BreakInTargetData> target_data_;
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -12539,7 +12730,7 @@ class RequestGetBreakInTargetListResponse : public ::google::protobuf::MessageLi
 // -------------------------------------------------------------------
 
 class RequestRejectBreakInTarget : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestRejectBreakInTarget();
   virtual ~RequestRejectBreakInTarget();
 
@@ -12560,7 +12751,7 @@ class RequestRejectBreakInTarget : public ::google::protobuf::MessageLite {
 
   static const RequestRejectBreakInTarget& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -12568,7 +12759,7 @@ class RequestRejectBreakInTarget : public ::google::protobuf::MessageLite {
   static inline const RequestRejectBreakInTarget* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestRejectBreakInTarget* other);
 
@@ -12588,11 +12779,13 @@ class RequestRejectBreakInTarget : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -12635,7 +12828,7 @@ class RequestRejectBreakInTarget : public ::google::protobuf::MessageLite {
   inline void set_unknown_5(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestRejectBreakInTarget)
- private:
+private:
   inline void set_has_player_id();
   inline void clear_has_player_id();
   inline void set_has_unknown_2();
@@ -12656,11 +12849,11 @@ class RequestRejectBreakInTarget : public ::google::protobuf::MessageLite {
   ::google::protobuf::int64 online_area_id_;
   ::google::protobuf::int64 cell_id_;
   ::google::protobuf::int64 unknown_5_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -12670,7 +12863,7 @@ class RequestRejectBreakInTarget : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestRejectBreakInTargetResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestRejectBreakInTargetResponse();
   virtual ~RequestRejectBreakInTargetResponse();
 
@@ -12691,7 +12884,7 @@ class RequestRejectBreakInTargetResponse : public ::google::protobuf::MessageLit
 
   static const RequestRejectBreakInTargetResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -12699,7 +12892,7 @@ class RequestRejectBreakInTargetResponse : public ::google::protobuf::MessageLit
   static inline const RequestRejectBreakInTargetResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestRejectBreakInTargetResponse* other);
 
@@ -12719,11 +12912,13 @@ class RequestRejectBreakInTargetResponse : public ::google::protobuf::MessageLit
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -12731,17 +12926,16 @@ class RequestRejectBreakInTargetResponse : public ::google::protobuf::MessageLit
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestRejectBreakInTargetResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -12751,7 +12945,7 @@ class RequestRejectBreakInTargetResponse : public ::google::protobuf::MessageLit
 // -------------------------------------------------------------------
 
 class GhostData : public ::google::protobuf::MessageLite {
- public:
+public:
   GhostData();
   virtual ~GhostData();
 
@@ -12772,7 +12966,7 @@ class GhostData : public ::google::protobuf::MessageLite {
 
   static const GhostData& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -12780,7 +12974,7 @@ class GhostData : public ::google::protobuf::MessageLite {
   static inline const GhostData* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(GhostData* other);
 
@@ -12800,11 +12994,13 @@ class GhostData : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -12838,7 +13034,7 @@ class GhostData : public ::google::protobuf::MessageLite {
   inline void set_allocated_data(::std::string* data);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.GhostData)
- private:
+private:
   inline void set_has_cell_id();
   inline void clear_has_cell_id();
   inline void set_has_ghost_id();
@@ -12853,11 +13049,11 @@ class GhostData : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 cell_id_;
   ::google::protobuf::uint32 ghost_id_;
   ::std::string* data_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -12867,7 +13063,7 @@ class GhostData : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetGhostDataList : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetGhostDataList();
   virtual ~RequestGetGhostDataList();
 
@@ -12888,7 +13084,7 @@ class RequestGetGhostDataList : public ::google::protobuf::MessageLite {
 
   static const RequestGetGhostDataList& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -12896,7 +13092,7 @@ class RequestGetGhostDataList : public ::google::protobuf::MessageLite {
   static inline const RequestGetGhostDataList* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetGhostDataList* other);
 
@@ -12916,11 +13112,13 @@ class RequestGetGhostDataList : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -12948,13 +13146,13 @@ class RequestGetGhostDataList : public ::google::protobuf::MessageLite {
   inline const ::DS2_Frpg2RequestMessage::CellLimitData& search_areas(int index) const;
   inline ::DS2_Frpg2RequestMessage::CellLimitData* mutable_search_areas(int index);
   inline ::DS2_Frpg2RequestMessage::CellLimitData* add_search_areas();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::CellLimitData >&
-      search_areas() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::CellLimitData >*
-      mutable_search_areas();
+  inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::CellLimitData>&
+  search_areas() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::CellLimitData>*
+  mutable_search_areas();
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetGhostDataList)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_max_ghosts();
@@ -12966,12 +13164,12 @@ class RequestGetGhostDataList : public ::google::protobuf::MessageLite {
   mutable int _cached_size_;
   ::google::protobuf::uint32 online_area_id_;
   ::google::protobuf::uint32 max_ghosts_;
-  ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::CellLimitData > search_areas_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+  ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::CellLimitData> search_areas_;
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -12981,7 +13179,7 @@ class RequestGetGhostDataList : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetGhostDataListResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetGhostDataListResponse();
   virtual ~RequestGetGhostDataListResponse();
 
@@ -13002,7 +13200,7 @@ class RequestGetGhostDataListResponse : public ::google::protobuf::MessageLite {
 
   static const RequestGetGhostDataListResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -13010,7 +13208,7 @@ class RequestGetGhostDataListResponse : public ::google::protobuf::MessageLite {
   static inline const RequestGetGhostDataListResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetGhostDataListResponse* other);
 
@@ -13030,11 +13228,13 @@ class RequestGetGhostDataListResponse : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -13055,13 +13255,13 @@ class RequestGetGhostDataListResponse : public ::google::protobuf::MessageLite {
   inline const ::DS2_Frpg2RequestMessage::GhostData& ghosts(int index) const;
   inline ::DS2_Frpg2RequestMessage::GhostData* mutable_ghosts(int index);
   inline ::DS2_Frpg2RequestMessage::GhostData* add_ghosts();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::GhostData >&
-      ghosts() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::GhostData >*
-      mutable_ghosts();
+  inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::GhostData>&
+  ghosts() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::GhostData>*
+  mutable_ghosts();
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetGhostDataListResponse)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
 
@@ -13069,13 +13269,13 @@ class RequestGetGhostDataListResponse : public ::google::protobuf::MessageLite {
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::GhostData > ghosts_;
+  ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::GhostData> ghosts_;
   ::google::protobuf::uint32 online_area_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -13085,7 +13285,7 @@ class RequestGetGhostDataListResponse : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestCreateGhostData : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestCreateGhostData();
   virtual ~RequestCreateGhostData();
 
@@ -13106,7 +13306,7 @@ class RequestCreateGhostData : public ::google::protobuf::MessageLite {
 
   static const RequestCreateGhostData& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -13114,7 +13314,7 @@ class RequestCreateGhostData : public ::google::protobuf::MessageLite {
   static inline const RequestCreateGhostData* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestCreateGhostData* other);
 
@@ -13134,11 +13334,13 @@ class RequestCreateGhostData : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -13172,7 +13374,7 @@ class RequestCreateGhostData : public ::google::protobuf::MessageLite {
   inline void set_allocated_data(::std::string* data);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestCreateGhostData)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_cell_id();
@@ -13187,11 +13389,11 @@ class RequestCreateGhostData : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 online_area_id_;
   ::google::protobuf::uint32 cell_id_;
   ::std::string* data_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -13201,7 +13403,7 @@ class RequestCreateGhostData : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestCreateGhostDataResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestCreateGhostDataResponse();
   virtual ~RequestCreateGhostDataResponse();
 
@@ -13222,7 +13424,7 @@ class RequestCreateGhostDataResponse : public ::google::protobuf::MessageLite {
 
   static const RequestCreateGhostDataResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -13230,7 +13432,7 @@ class RequestCreateGhostDataResponse : public ::google::protobuf::MessageLite {
   static inline const RequestCreateGhostDataResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestCreateGhostDataResponse* other);
 
@@ -13250,11 +13452,13 @@ class RequestCreateGhostDataResponse : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -13262,17 +13466,16 @@ class RequestCreateGhostDataResponse : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestCreateGhostDataResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -13282,7 +13485,7 @@ class RequestCreateGhostDataResponse : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class VisitorData : public ::google::protobuf::MessageLite {
- public:
+public:
   VisitorData();
   virtual ~VisitorData();
 
@@ -13303,7 +13506,7 @@ class VisitorData : public ::google::protobuf::MessageLite {
 
   static const VisitorData& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -13311,7 +13514,7 @@ class VisitorData : public ::google::protobuf::MessageLite {
   static inline const VisitorData* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(VisitorData* other);
 
@@ -13331,11 +13534,13 @@ class VisitorData : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -13362,7 +13567,7 @@ class VisitorData : public ::google::protobuf::MessageLite {
   inline void set_allocated_player_steam_id(::std::string* player_steam_id);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.VisitorData)
- private:
+private:
   inline void set_has_player_id();
   inline void clear_has_player_id();
   inline void set_has_player_steam_id();
@@ -13374,11 +13579,11 @@ class VisitorData : public ::google::protobuf::MessageLite {
   mutable int _cached_size_;
   ::google::protobuf::int64 player_id_;
   ::std::string* player_steam_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -13388,7 +13593,7 @@ class VisitorData : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetVisitorList : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetVisitorList();
   virtual ~RequestGetVisitorList();
 
@@ -13409,7 +13614,7 @@ class RequestGetVisitorList : public ::google::protobuf::MessageLite {
 
   static const RequestGetVisitorList& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -13417,7 +13622,7 @@ class RequestGetVisitorList : public ::google::protobuf::MessageLite {
   static inline const RequestGetVisitorList* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetVisitorList* other);
 
@@ -13437,11 +13642,13 @@ class RequestGetVisitorList : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -13493,7 +13700,7 @@ class RequestGetVisitorList : public ::google::protobuf::MessageLite {
   inline void set_field_6(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetVisitorList)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_cell_id();
@@ -13517,11 +13724,11 @@ class RequestGetVisitorList : public ::google::protobuf::MessageLite {
   ::DS2_Frpg2RequestMessage::MatchingParameter* matching_parameter_;
   ::google::protobuf::int64 field_6_;
   int type_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -13531,7 +13738,7 @@ class RequestGetVisitorList : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetVisitorListResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetVisitorListResponse();
   virtual ~RequestGetVisitorListResponse();
 
@@ -13552,7 +13759,7 @@ class RequestGetVisitorListResponse : public ::google::protobuf::MessageLite {
 
   static const RequestGetVisitorListResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -13560,7 +13767,7 @@ class RequestGetVisitorListResponse : public ::google::protobuf::MessageLite {
   static inline const RequestGetVisitorListResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetVisitorListResponse* other);
 
@@ -13580,11 +13787,13 @@ class RequestGetVisitorListResponse : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -13612,13 +13821,13 @@ class RequestGetVisitorListResponse : public ::google::protobuf::MessageLite {
   inline const ::DS2_Frpg2RequestMessage::VisitorData& target_data(int index) const;
   inline ::DS2_Frpg2RequestMessage::VisitorData* mutable_target_data(int index);
   inline ::DS2_Frpg2RequestMessage::VisitorData* add_target_data();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::VisitorData >&
-      target_data() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::VisitorData >*
-      mutable_target_data();
+  inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::VisitorData>&
+  target_data() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::VisitorData>*
+  mutable_target_data();
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetVisitorListResponse)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_cell_id();
@@ -13630,12 +13839,12 @@ class RequestGetVisitorListResponse : public ::google::protobuf::MessageLite {
   mutable int _cached_size_;
   ::google::protobuf::int64 online_area_id_;
   ::google::protobuf::int64 cell_id_;
-  ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::VisitorData > target_data_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+  ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::VisitorData> target_data_;
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -13645,7 +13854,7 @@ class RequestGetVisitorListResponse : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class PushRequestRemoveVisitor : public ::google::protobuf::MessageLite {
- public:
+public:
   PushRequestRemoveVisitor();
   virtual ~PushRequestRemoveVisitor();
 
@@ -13666,7 +13875,7 @@ class PushRequestRemoveVisitor : public ::google::protobuf::MessageLite {
 
   static const PushRequestRemoveVisitor& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -13674,7 +13883,7 @@ class PushRequestRemoveVisitor : public ::google::protobuf::MessageLite {
   static inline const PushRequestRemoveVisitor* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PushRequestRemoveVisitor* other);
 
@@ -13694,11 +13903,13 @@ class PushRequestRemoveVisitor : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -13739,7 +13950,7 @@ class PushRequestRemoveVisitor : public ::google::protobuf::MessageLite {
   inline void set_type(::DS2_Frpg2RequestMessage::VisitorType value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.PushRequestRemoveVisitor)
- private:
+private:
   inline void set_has_push_message_id();
   inline void clear_has_push_message_id();
   inline void set_has_player_id();
@@ -13757,11 +13968,11 @@ class PushRequestRemoveVisitor : public ::google::protobuf::MessageLite {
   int push_message_id_;
   int type_;
   ::std::string* player_steam_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -13771,7 +13982,7 @@ class PushRequestRemoveVisitor : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestVisit : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestVisit();
   virtual ~RequestVisit();
 
@@ -13792,7 +14003,7 @@ class RequestVisit : public ::google::protobuf::MessageLite {
 
   static const RequestVisit& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -13800,7 +14011,7 @@ class RequestVisit : public ::google::protobuf::MessageLite {
   static inline const RequestVisit* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestVisit* other);
 
@@ -13820,11 +14031,13 @@ class RequestVisit : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -13872,7 +14085,7 @@ class RequestVisit : public ::google::protobuf::MessageLite {
   inline void set_allocated_player_struct(::std::string* player_struct);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestVisit)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_cell_id();
@@ -13893,11 +14106,11 @@ class RequestVisit : public ::google::protobuf::MessageLite {
   ::google::protobuf::int64 player_id_;
   ::std::string* player_struct_;
   int type_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -13907,7 +14120,7 @@ class RequestVisit : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestVisitResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestVisitResponse();
   virtual ~RequestVisitResponse();
 
@@ -13928,7 +14141,7 @@ class RequestVisitResponse : public ::google::protobuf::MessageLite {
 
   static const RequestVisitResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -13936,7 +14149,7 @@ class RequestVisitResponse : public ::google::protobuf::MessageLite {
   static inline const RequestVisitResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestVisitResponse* other);
 
@@ -13956,11 +14169,13 @@ class RequestVisitResponse : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -13968,17 +14183,16 @@ class RequestVisitResponse : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestVisitResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -13988,7 +14202,7 @@ class RequestVisitResponse : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestRejectVisit : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestRejectVisit();
   virtual ~RequestRejectVisit();
 
@@ -14009,7 +14223,7 @@ class RequestRejectVisit : public ::google::protobuf::MessageLite {
 
   static const RequestRejectVisit& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -14017,7 +14231,7 @@ class RequestRejectVisit : public ::google::protobuf::MessageLite {
   static inline const RequestRejectVisit* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestRejectVisit* other);
 
@@ -14037,11 +14251,13 @@ class RequestRejectVisit : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -14084,7 +14300,7 @@ class RequestRejectVisit : public ::google::protobuf::MessageLite {
   inline void set_type(::DS2_Frpg2RequestMessage::VisitorType value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestRejectVisit)
- private:
+private:
   inline void set_has_player_id();
   inline void clear_has_player_id();
   inline void set_has_unknown_2();
@@ -14105,11 +14321,11 @@ class RequestRejectVisit : public ::google::protobuf::MessageLite {
   ::google::protobuf::int64 online_area_id_;
   ::google::protobuf::int64 cell_id_;
   int type_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -14119,7 +14335,7 @@ class RequestRejectVisit : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestRejectVisitResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestRejectVisitResponse();
   virtual ~RequestRejectVisitResponse();
 
@@ -14140,7 +14356,7 @@ class RequestRejectVisitResponse : public ::google::protobuf::MessageLite {
 
   static const RequestRejectVisitResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -14148,7 +14364,7 @@ class RequestRejectVisitResponse : public ::google::protobuf::MessageLite {
   static inline const RequestRejectVisitResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestRejectVisitResponse* other);
 
@@ -14168,11 +14384,13 @@ class RequestRejectVisitResponse : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -14180,17 +14398,16 @@ class RequestRejectVisitResponse : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestRejectVisitResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -14200,7 +14417,7 @@ class RequestRejectVisitResponse : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class PushRequestRejectVisit : public ::google::protobuf::MessageLite {
- public:
+public:
   PushRequestRejectVisit();
   virtual ~PushRequestRejectVisit();
 
@@ -14221,7 +14438,7 @@ class PushRequestRejectVisit : public ::google::protobuf::MessageLite {
 
   static const PushRequestRejectVisit& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -14229,7 +14446,7 @@ class PushRequestRejectVisit : public ::google::protobuf::MessageLite {
   static inline const PushRequestRejectVisit* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PushRequestRejectVisit* other);
 
@@ -14249,11 +14466,13 @@ class PushRequestRejectVisit : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -14301,7 +14520,7 @@ class PushRequestRejectVisit : public ::google::protobuf::MessageLite {
   inline void set_type(::DS2_Frpg2RequestMessage::VisitorType value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.PushRequestRejectVisit)
- private:
+private:
   inline void set_has_push_message_id();
   inline void clear_has_push_message_id();
   inline void set_has_player_id();
@@ -14322,11 +14541,11 @@ class PushRequestRejectVisit : public ::google::protobuf::MessageLite {
   int push_message_id_;
   int type_;
   ::std::string* steam_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -14336,7 +14555,7 @@ class PushRequestRejectVisit : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class PushRequestVisit : public ::google::protobuf::MessageLite {
- public:
+public:
   PushRequestVisit();
   virtual ~PushRequestVisit();
 
@@ -14357,7 +14576,7 @@ class PushRequestVisit : public ::google::protobuf::MessageLite {
 
   static const PushRequestVisit& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -14365,7 +14584,7 @@ class PushRequestVisit : public ::google::protobuf::MessageLite {
   static inline const PushRequestVisit* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PushRequestVisit* other);
 
@@ -14385,11 +14604,13 @@ class PushRequestVisit : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -14456,7 +14677,7 @@ class PushRequestVisit : public ::google::protobuf::MessageLite {
   inline void set_cell_id(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.PushRequestVisit)
- private:
+private:
   inline void set_has_push_message_id();
   inline void clear_has_push_message_id();
   inline void set_has_player_id();
@@ -14483,11 +14704,11 @@ class PushRequestVisit : public ::google::protobuf::MessageLite {
   ::std::string* player_struct_;
   ::google::protobuf::int64 online_area_id_;
   ::google::protobuf::int64 cell_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -14497,7 +14718,7 @@ class PushRequestVisit : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class PushRequestNotifyRingBell : public ::google::protobuf::MessageLite {
- public:
+public:
   PushRequestNotifyRingBell();
   virtual ~PushRequestNotifyRingBell();
 
@@ -14518,7 +14739,7 @@ class PushRequestNotifyRingBell : public ::google::protobuf::MessageLite {
 
   static const PushRequestNotifyRingBell& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -14526,7 +14747,7 @@ class PushRequestNotifyRingBell : public ::google::protobuf::MessageLite {
   static inline const PushRequestNotifyRingBell* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PushRequestNotifyRingBell* other);
 
@@ -14546,11 +14767,13 @@ class PushRequestNotifyRingBell : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -14565,7 +14788,7 @@ class PushRequestNotifyRingBell : public ::google::protobuf::MessageLite {
   inline void set_push_message_id(::DS2_Frpg2RequestMessage::PushMessageId value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.PushRequestNotifyRingBell)
- private:
+private:
   inline void set_has_push_message_id();
   inline void clear_has_push_message_id();
 
@@ -14574,11 +14797,11 @@ class PushRequestNotifyRingBell : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
   int push_message_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -14588,7 +14811,7 @@ class PushRequestNotifyRingBell : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestNotifyRingBell : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestNotifyRingBell();
   virtual ~RequestNotifyRingBell();
 
@@ -14609,7 +14832,7 @@ class RequestNotifyRingBell : public ::google::protobuf::MessageLite {
 
   static const RequestNotifyRingBell& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -14617,7 +14840,7 @@ class RequestNotifyRingBell : public ::google::protobuf::MessageLite {
   static inline const RequestNotifyRingBell* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestNotifyRingBell* other);
 
@@ -14637,11 +14860,13 @@ class RequestNotifyRingBell : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -14649,17 +14874,16 @@ class RequestNotifyRingBell : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestNotifyRingBell)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -14669,7 +14893,7 @@ class RequestNotifyRingBell : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestNotifyRingBellResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestNotifyRingBellResponse();
   virtual ~RequestNotifyRingBellResponse();
 
@@ -14690,7 +14914,7 @@ class RequestNotifyRingBellResponse : public ::google::protobuf::MessageLite {
 
   static const RequestNotifyRingBellResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -14698,7 +14922,7 @@ class RequestNotifyRingBellResponse : public ::google::protobuf::MessageLite {
   static inline const RequestNotifyRingBellResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestNotifyRingBellResponse* other);
 
@@ -14718,11 +14942,13 @@ class RequestNotifyRingBellResponse : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -14730,17 +14956,16 @@ class RequestNotifyRingBellResponse : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestNotifyRingBellResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -14750,7 +14975,7 @@ class RequestNotifyRingBellResponse : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetRegulationFile : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetRegulationFile();
   virtual ~RequestGetRegulationFile();
 
@@ -14771,7 +14996,7 @@ class RequestGetRegulationFile : public ::google::protobuf::MessageLite {
 
   static const RequestGetRegulationFile& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -14779,7 +15004,7 @@ class RequestGetRegulationFile : public ::google::protobuf::MessageLite {
   static inline const RequestGetRegulationFile* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetRegulationFile* other);
 
@@ -14799,11 +15024,13 @@ class RequestGetRegulationFile : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -14811,17 +15038,16 @@ class RequestGetRegulationFile : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetRegulationFile)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -14831,7 +15057,7 @@ class RequestGetRegulationFile : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetRegulationFileResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetRegulationFileResponse();
   virtual ~RequestGetRegulationFileResponse();
 
@@ -14852,7 +15078,7 @@ class RequestGetRegulationFileResponse : public ::google::protobuf::MessageLite 
 
   static const RequestGetRegulationFileResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -14860,7 +15086,7 @@ class RequestGetRegulationFileResponse : public ::google::protobuf::MessageLite 
   static inline const RequestGetRegulationFileResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetRegulationFileResponse* other);
 
@@ -14880,11 +15106,13 @@ class RequestGetRegulationFileResponse : public ::google::protobuf::MessageLite 
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -14892,17 +15120,16 @@ class RequestGetRegulationFileResponse : public ::google::protobuf::MessageLite 
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetRegulationFileResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -14912,7 +15139,7 @@ class RequestGetRegulationFileResponse : public ::google::protobuf::MessageLite 
 // -------------------------------------------------------------------
 
 class RegulationFileDiffData : public ::google::protobuf::MessageLite {
- public:
+public:
   RegulationFileDiffData();
   virtual ~RegulationFileDiffData();
 
@@ -14933,7 +15160,7 @@ class RegulationFileDiffData : public ::google::protobuf::MessageLite {
 
   static const RegulationFileDiffData& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -14941,7 +15168,7 @@ class RegulationFileDiffData : public ::google::protobuf::MessageLite {
   static inline const RegulationFileDiffData* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RegulationFileDiffData* other);
 
@@ -14961,11 +15188,13 @@ class RegulationFileDiffData : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -14973,17 +15202,16 @@ class RegulationFileDiffData : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RegulationFileDiffData)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -14993,7 +15221,7 @@ class RegulationFileDiffData : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RegulationFileMessage : public ::google::protobuf::MessageLite {
- public:
+public:
   RegulationFileMessage();
   virtual ~RegulationFileMessage();
 
@@ -15014,7 +15242,7 @@ class RegulationFileMessage : public ::google::protobuf::MessageLite {
 
   static const RegulationFileMessage& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -15022,7 +15250,7 @@ class RegulationFileMessage : public ::google::protobuf::MessageLite {
   static inline const RegulationFileMessage* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RegulationFileMessage* other);
 
@@ -15042,11 +15270,13 @@ class RegulationFileMessage : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -15054,17 +15284,16 @@ class RegulationFileMessage : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RegulationFileMessage)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -15074,7 +15303,7 @@ class RegulationFileMessage : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RegulationFileUpdateMessage : public ::google::protobuf::MessageLite {
- public:
+public:
   RegulationFileUpdateMessage();
   virtual ~RegulationFileUpdateMessage();
 
@@ -15095,7 +15324,7 @@ class RegulationFileUpdateMessage : public ::google::protobuf::MessageLite {
 
   static const RegulationFileUpdateMessage& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -15103,7 +15332,7 @@ class RegulationFileUpdateMessage : public ::google::protobuf::MessageLite {
   static inline const RegulationFileUpdateMessage* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RegulationFileUpdateMessage* other);
 
@@ -15123,11 +15352,13 @@ class RegulationFileUpdateMessage : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -15135,17 +15366,16 @@ class RegulationFileUpdateMessage : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RegulationFileUpdateMessage)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -15155,7 +15385,7 @@ class RegulationFileUpdateMessage : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RegulationFileUpdatePushMessage : public ::google::protobuf::MessageLite {
- public:
+public:
   RegulationFileUpdatePushMessage();
   virtual ~RegulationFileUpdatePushMessage();
 
@@ -15176,7 +15406,7 @@ class RegulationFileUpdatePushMessage : public ::google::protobuf::MessageLite {
 
   static const RegulationFileUpdatePushMessage& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -15184,7 +15414,7 @@ class RegulationFileUpdatePushMessage : public ::google::protobuf::MessageLite {
   static inline const RegulationFileUpdatePushMessage* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RegulationFileUpdatePushMessage* other);
 
@@ -15204,11 +15434,13 @@ class RegulationFileUpdatePushMessage : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -15216,17 +15448,16 @@ class RegulationFileUpdatePushMessage : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RegulationFileUpdatePushMessage)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -15236,7 +15467,7 @@ class RegulationFileUpdatePushMessage : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RankingRecordCount : public ::google::protobuf::MessageLite {
- public:
+public:
   RankingRecordCount();
   virtual ~RankingRecordCount();
 
@@ -15257,7 +15488,7 @@ class RankingRecordCount : public ::google::protobuf::MessageLite {
 
   static const RankingRecordCount& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -15265,7 +15496,7 @@ class RankingRecordCount : public ::google::protobuf::MessageLite {
   static inline const RankingRecordCount* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RankingRecordCount* other);
 
@@ -15285,11 +15516,13 @@ class RankingRecordCount : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -15297,17 +15530,16 @@ class RankingRecordCount : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RankingRecordCount)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -15317,7 +15549,7 @@ class RankingRecordCount : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RankingRotationID : public ::google::protobuf::MessageLite {
- public:
+public:
   RankingRotationID();
   virtual ~RankingRotationID();
 
@@ -15338,7 +15570,7 @@ class RankingRotationID : public ::google::protobuf::MessageLite {
 
   static const RankingRotationID& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -15346,7 +15578,7 @@ class RankingRotationID : public ::google::protobuf::MessageLite {
   static inline const RankingRotationID* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RankingRotationID* other);
 
@@ -15366,11 +15598,13 @@ class RankingRotationID : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -15378,17 +15612,16 @@ class RankingRotationID : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RankingRotationID)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -15398,7 +15631,7 @@ class RankingRotationID : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class PowerStoneRankingData : public ::google::protobuf::MessageLite {
- public:
+public:
   PowerStoneRankingData();
   virtual ~PowerStoneRankingData();
 
@@ -15419,7 +15652,7 @@ class PowerStoneRankingData : public ::google::protobuf::MessageLite {
 
   static const PowerStoneRankingData& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -15427,7 +15660,7 @@ class PowerStoneRankingData : public ::google::protobuf::MessageLite {
   static inline const PowerStoneRankingData* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PowerStoneRankingData* other);
 
@@ -15447,11 +15680,13 @@ class PowerStoneRankingData : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -15506,7 +15741,7 @@ class PowerStoneRankingData : public ::google::protobuf::MessageLite {
   inline void set_allocated_data(::std::string* data);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.PowerStoneRankingData)
- private:
+private:
   inline void set_has_player_id();
   inline void clear_has_player_id();
   inline void set_has_character_id();
@@ -15530,11 +15765,11 @@ class PowerStoneRankingData : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 rank_;
   ::std::string* data_;
   ::google::protobuf::uint32 score_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -15544,7 +15779,7 @@ class PowerStoneRankingData : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class PowerStoneRankingDataPack : public ::google::protobuf::MessageLite {
- public:
+public:
   PowerStoneRankingDataPack();
   virtual ~PowerStoneRankingDataPack();
 
@@ -15565,7 +15800,7 @@ class PowerStoneRankingDataPack : public ::google::protobuf::MessageLite {
 
   static const PowerStoneRankingDataPack& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -15573,7 +15808,7 @@ class PowerStoneRankingDataPack : public ::google::protobuf::MessageLite {
   static inline const PowerStoneRankingDataPack* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PowerStoneRankingDataPack* other);
 
@@ -15593,11 +15828,13 @@ class PowerStoneRankingDataPack : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -15605,17 +15842,16 @@ class PowerStoneRankingDataPack : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.PowerStoneRankingDataPack)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -15625,7 +15861,7 @@ class PowerStoneRankingDataPack : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetPowerStoneMyRanking : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetPowerStoneMyRanking();
   virtual ~RequestGetPowerStoneMyRanking();
 
@@ -15646,7 +15882,7 @@ class RequestGetPowerStoneMyRanking : public ::google::protobuf::MessageLite {
 
   static const RequestGetPowerStoneMyRanking& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -15654,7 +15890,7 @@ class RequestGetPowerStoneMyRanking : public ::google::protobuf::MessageLite {
   static inline const RequestGetPowerStoneMyRanking* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetPowerStoneMyRanking* other);
 
@@ -15674,11 +15910,13 @@ class RequestGetPowerStoneMyRanking : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -15693,7 +15931,7 @@ class RequestGetPowerStoneMyRanking : public ::google::protobuf::MessageLite {
   inline void set_character_id(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetPowerStoneMyRanking)
- private:
+private:
   inline void set_has_character_id();
   inline void clear_has_character_id();
 
@@ -15702,11 +15940,11 @@ class RequestGetPowerStoneMyRanking : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
   ::google::protobuf::uint32 character_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -15716,7 +15954,7 @@ class RequestGetPowerStoneMyRanking : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetPowerStoneMyRankingResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetPowerStoneMyRankingResponse();
   virtual ~RequestGetPowerStoneMyRankingResponse();
 
@@ -15737,7 +15975,7 @@ class RequestGetPowerStoneMyRankingResponse : public ::google::protobuf::Message
 
   static const RequestGetPowerStoneMyRankingResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -15745,7 +15983,7 @@ class RequestGetPowerStoneMyRankingResponse : public ::google::protobuf::Message
   static inline const RequestGetPowerStoneMyRankingResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetPowerStoneMyRankingResponse* other);
 
@@ -15765,11 +16003,13 @@ class RequestGetPowerStoneMyRankingResponse : public ::google::protobuf::Message
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -15786,7 +16026,7 @@ class RequestGetPowerStoneMyRankingResponse : public ::google::protobuf::Message
   inline void set_allocated_data(::DS2_Frpg2RequestMessage::PowerStoneRankingData* data);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetPowerStoneMyRankingResponse)
- private:
+private:
   inline void set_has_data();
   inline void clear_has_data();
 
@@ -15795,11 +16035,11 @@ class RequestGetPowerStoneMyRankingResponse : public ::google::protobuf::Message
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
   ::DS2_Frpg2RequestMessage::PowerStoneRankingData* data_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -15809,7 +16049,7 @@ class RequestGetPowerStoneMyRankingResponse : public ::google::protobuf::Message
 // -------------------------------------------------------------------
 
 class RequestGetPowerStoneRanking : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetPowerStoneRanking();
   virtual ~RequestGetPowerStoneRanking();
 
@@ -15830,7 +16070,7 @@ class RequestGetPowerStoneRanking : public ::google::protobuf::MessageLite {
 
   static const RequestGetPowerStoneRanking& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -15838,7 +16078,7 @@ class RequestGetPowerStoneRanking : public ::google::protobuf::MessageLite {
   static inline const RequestGetPowerStoneRanking* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetPowerStoneRanking* other);
 
@@ -15858,11 +16098,13 @@ class RequestGetPowerStoneRanking : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -15884,7 +16126,7 @@ class RequestGetPowerStoneRanking : public ::google::protobuf::MessageLite {
   inline void set_count(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetPowerStoneRanking)
- private:
+private:
   inline void set_has_offset();
   inline void clear_has_offset();
   inline void set_has_count();
@@ -15896,11 +16138,11 @@ class RequestGetPowerStoneRanking : public ::google::protobuf::MessageLite {
   mutable int _cached_size_;
   ::google::protobuf::uint32 offset_;
   ::google::protobuf::uint32 count_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -15910,7 +16152,7 @@ class RequestGetPowerStoneRanking : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetPowerStoneRankingResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetPowerStoneRankingResponse();
   virtual ~RequestGetPowerStoneRankingResponse();
 
@@ -15931,7 +16173,7 @@ class RequestGetPowerStoneRankingResponse : public ::google::protobuf::MessageLi
 
   static const RequestGetPowerStoneRankingResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -15939,7 +16181,7 @@ class RequestGetPowerStoneRankingResponse : public ::google::protobuf::MessageLi
   static inline const RequestGetPowerStoneRankingResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetPowerStoneRankingResponse* other);
 
@@ -15959,11 +16201,13 @@ class RequestGetPowerStoneRankingResponse : public ::google::protobuf::MessageLi
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -15977,24 +16221,23 @@ class RequestGetPowerStoneRankingResponse : public ::google::protobuf::MessageLi
   inline const ::DS2_Frpg2RequestMessage::PowerStoneRankingData& data(int index) const;
   inline ::DS2_Frpg2RequestMessage::PowerStoneRankingData* mutable_data(int index);
   inline ::DS2_Frpg2RequestMessage::PowerStoneRankingData* add_data();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::PowerStoneRankingData >&
-      data() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::PowerStoneRankingData >*
-      mutable_data();
+  inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::PowerStoneRankingData>&
+  data() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::PowerStoneRankingData>*
+  mutable_data();
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetPowerStoneRankingResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::PowerStoneRankingData > data_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+  ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::PowerStoneRankingData> data_;
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -16004,7 +16247,7 @@ class RequestGetPowerStoneRankingResponse : public ::google::protobuf::MessageLi
 // -------------------------------------------------------------------
 
 class RequestGetPowerStoneRankingRecordCount : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetPowerStoneRankingRecordCount();
   virtual ~RequestGetPowerStoneRankingRecordCount();
 
@@ -16025,7 +16268,7 @@ class RequestGetPowerStoneRankingRecordCount : public ::google::protobuf::Messag
 
   static const RequestGetPowerStoneRankingRecordCount& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -16033,7 +16276,7 @@ class RequestGetPowerStoneRankingRecordCount : public ::google::protobuf::Messag
   static inline const RequestGetPowerStoneRankingRecordCount* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetPowerStoneRankingRecordCount* other);
 
@@ -16053,11 +16296,13 @@ class RequestGetPowerStoneRankingRecordCount : public ::google::protobuf::Messag
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -16065,17 +16310,16 @@ class RequestGetPowerStoneRankingRecordCount : public ::google::protobuf::Messag
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetPowerStoneRankingRecordCount)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -16085,7 +16329,7 @@ class RequestGetPowerStoneRankingRecordCount : public ::google::protobuf::Messag
 // -------------------------------------------------------------------
 
 class RequestGetPowerStoneRankingRecordCountResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetPowerStoneRankingRecordCountResponse();
   virtual ~RequestGetPowerStoneRankingRecordCountResponse();
 
@@ -16106,7 +16350,7 @@ class RequestGetPowerStoneRankingRecordCountResponse : public ::google::protobuf
 
   static const RequestGetPowerStoneRankingRecordCountResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -16114,7 +16358,7 @@ class RequestGetPowerStoneRankingRecordCountResponse : public ::google::protobuf
   static inline const RequestGetPowerStoneRankingRecordCountResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetPowerStoneRankingRecordCountResponse* other);
 
@@ -16134,11 +16378,13 @@ class RequestGetPowerStoneRankingRecordCountResponse : public ::google::protobuf
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -16153,7 +16399,7 @@ class RequestGetPowerStoneRankingRecordCountResponse : public ::google::protobuf
   inline void set_count(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetPowerStoneRankingRecordCountResponse)
- private:
+private:
   inline void set_has_count();
   inline void clear_has_count();
 
@@ -16162,11 +16408,11 @@ class RequestGetPowerStoneRankingRecordCountResponse : public ::google::protobuf
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
   ::google::protobuf::uint32 count_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -16176,7 +16422,7 @@ class RequestGetPowerStoneRankingRecordCountResponse : public ::google::protobuf
 // -------------------------------------------------------------------
 
 class RequestRegisterPowerStoneData : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestRegisterPowerStoneData();
   virtual ~RequestRegisterPowerStoneData();
 
@@ -16197,7 +16443,7 @@ class RequestRegisterPowerStoneData : public ::google::protobuf::MessageLite {
 
   static const RequestRegisterPowerStoneData& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -16205,7 +16451,7 @@ class RequestRegisterPowerStoneData : public ::google::protobuf::MessageLite {
   static inline const RequestRegisterPowerStoneData* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestRegisterPowerStoneData* other);
 
@@ -16225,11 +16471,13 @@ class RequestRegisterPowerStoneData : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -16263,7 +16511,7 @@ class RequestRegisterPowerStoneData : public ::google::protobuf::MessageLite {
   inline void set_allocated_data(::std::string* data);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestRegisterPowerStoneData)
- private:
+private:
   inline void set_has_character_id();
   inline void clear_has_character_id();
   inline void set_has_increment();
@@ -16278,11 +16526,11 @@ class RequestRegisterPowerStoneData : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 character_id_;
   ::google::protobuf::uint32 increment_;
   ::std::string* data_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -16292,7 +16540,7 @@ class RequestRegisterPowerStoneData : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestRegisterPowerStoneDataResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestRegisterPowerStoneDataResponse();
   virtual ~RequestRegisterPowerStoneDataResponse();
 
@@ -16313,7 +16561,7 @@ class RequestRegisterPowerStoneDataResponse : public ::google::protobuf::Message
 
   static const RequestRegisterPowerStoneDataResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -16321,7 +16569,7 @@ class RequestRegisterPowerStoneDataResponse : public ::google::protobuf::Message
   static inline const RequestRegisterPowerStoneDataResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestRegisterPowerStoneDataResponse* other);
 
@@ -16341,11 +16589,13 @@ class RequestRegisterPowerStoneDataResponse : public ::google::protobuf::Message
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -16353,17 +16603,16 @@ class RequestRegisterPowerStoneDataResponse : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestRegisterPowerStoneDataResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -16373,7 +16622,7 @@ class RequestRegisterPowerStoneDataResponse : public ::google::protobuf::Message
 // -------------------------------------------------------------------
 
 class PushRequestAllowQuickMatch : public ::google::protobuf::MessageLite {
- public:
+public:
   PushRequestAllowQuickMatch();
   virtual ~PushRequestAllowQuickMatch();
 
@@ -16394,7 +16643,7 @@ class PushRequestAllowQuickMatch : public ::google::protobuf::MessageLite {
 
   static const PushRequestAllowQuickMatch& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -16402,7 +16651,7 @@ class PushRequestAllowQuickMatch : public ::google::protobuf::MessageLite {
   static inline const PushRequestAllowQuickMatch* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PushRequestAllowQuickMatch* other);
 
@@ -16422,11 +16671,13 @@ class PushRequestAllowQuickMatch : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -16474,7 +16725,7 @@ class PushRequestAllowQuickMatch : public ::google::protobuf::MessageLite {
   inline void set_allocated_field_5(::std::string* field_5);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.PushRequestAllowQuickMatch)
- private:
+private:
   inline void set_has_push_message_id();
   inline void clear_has_push_message_id();
   inline void set_has_player_id();
@@ -16495,11 +16746,11 @@ class PushRequestAllowQuickMatch : public ::google::protobuf::MessageLite {
   ::google::protobuf::int64 cell_id_;
   ::std::string* field_5_;
   int push_message_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -16509,7 +16760,7 @@ class PushRequestAllowQuickMatch : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class PushRequestJoinQuickMatch : public ::google::protobuf::MessageLite {
- public:
+public:
   PushRequestJoinQuickMatch();
   virtual ~PushRequestJoinQuickMatch();
 
@@ -16530,7 +16781,7 @@ class PushRequestJoinQuickMatch : public ::google::protobuf::MessageLite {
 
   static const PushRequestJoinQuickMatch& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -16538,7 +16789,7 @@ class PushRequestJoinQuickMatch : public ::google::protobuf::MessageLite {
   static inline const PushRequestJoinQuickMatch* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PushRequestJoinQuickMatch* other);
 
@@ -16558,11 +16809,13 @@ class PushRequestJoinQuickMatch : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -16617,7 +16870,7 @@ class PushRequestJoinQuickMatch : public ::google::protobuf::MessageLite {
   inline void set_mode(::DS2_Frpg2RequestMessage::QuickMatchGameMode value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.PushRequestJoinQuickMatch)
- private:
+private:
   inline void set_has_push_message_id();
   inline void clear_has_push_message_id();
   inline void set_has_player_id();
@@ -16641,11 +16894,11 @@ class PushRequestJoinQuickMatch : public ::google::protobuf::MessageLite {
   int mode_;
   ::google::protobuf::int64 online_area_id_;
   ::google::protobuf::int64 cell_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -16655,7 +16908,7 @@ class PushRequestJoinQuickMatch : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class PushRequestRejectQuickMatch : public ::google::protobuf::MessageLite {
- public:
+public:
   PushRequestRejectQuickMatch();
   virtual ~PushRequestRejectQuickMatch();
 
@@ -16676,7 +16929,7 @@ class PushRequestRejectQuickMatch : public ::google::protobuf::MessageLite {
 
   static const PushRequestRejectQuickMatch& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -16684,7 +16937,7 @@ class PushRequestRejectQuickMatch : public ::google::protobuf::MessageLite {
   static inline const PushRequestRejectQuickMatch* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PushRequestRejectQuickMatch* other);
 
@@ -16704,11 +16957,13 @@ class PushRequestRejectQuickMatch : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -16770,7 +17025,7 @@ class PushRequestRejectQuickMatch : public ::google::protobuf::MessageLite {
   inline void set_unknown_7(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.PushRequestRejectQuickMatch)
- private:
+private:
   inline void set_has_push_message_id();
   inline void clear_has_push_message_id();
   inline void set_has_player_id();
@@ -16797,11 +17052,11 @@ class PushRequestRejectQuickMatch : public ::google::protobuf::MessageLite {
   ::google::protobuf::int64 online_area_id_;
   ::google::protobuf::int64 cell_id_;
   ::google::protobuf::int64 unknown_7_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -16811,7 +17066,7 @@ class PushRequestRejectQuickMatch : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class PushRequestRemoveQuickMatch : public ::google::protobuf::MessageLite {
- public:
+public:
   PushRequestRemoveQuickMatch();
   virtual ~PushRequestRemoveQuickMatch();
 
@@ -16832,7 +17087,7 @@ class PushRequestRemoveQuickMatch : public ::google::protobuf::MessageLite {
 
   static const PushRequestRemoveQuickMatch& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -16840,7 +17095,7 @@ class PushRequestRemoveQuickMatch : public ::google::protobuf::MessageLite {
   static inline const PushRequestRemoveQuickMatch* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PushRequestRemoveQuickMatch* other);
 
@@ -16860,11 +17115,13 @@ class PushRequestRemoveQuickMatch : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -16919,7 +17176,7 @@ class PushRequestRemoveQuickMatch : public ::google::protobuf::MessageLite {
   inline void set_mode(::DS2_Frpg2RequestMessage::QuickMatchGameMode value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.PushRequestRemoveQuickMatch)
- private:
+private:
   inline void set_has_push_message_id();
   inline void clear_has_push_message_id();
   inline void set_has_player_id();
@@ -16943,11 +17200,11 @@ class PushRequestRemoveQuickMatch : public ::google::protobuf::MessageLite {
   int mode_;
   ::google::protobuf::int64 cell_id_;
   ::std::string* player_steam_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -16957,7 +17214,7 @@ class PushRequestRemoveQuickMatch : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class QuickMatchData : public ::google::protobuf::MessageLite {
- public:
+public:
   QuickMatchData();
   virtual ~QuickMatchData();
 
@@ -16978,7 +17235,7 @@ class QuickMatchData : public ::google::protobuf::MessageLite {
 
   static const QuickMatchData& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -16986,7 +17243,7 @@ class QuickMatchData : public ::google::protobuf::MessageLite {
   static inline const QuickMatchData* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(QuickMatchData* other);
 
@@ -17006,11 +17263,13 @@ class QuickMatchData : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -17067,7 +17326,7 @@ class QuickMatchData : public ::google::protobuf::MessageLite {
   inline void set_mode(::DS2_Frpg2RequestMessage::QuickMatchGameMode value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.QuickMatchData)
- private:
+private:
   inline void set_has_player_id();
   inline void clear_has_player_id();
   inline void set_has_online_area_id();
@@ -17091,11 +17350,11 @@ class QuickMatchData : public ::google::protobuf::MessageLite {
   ::DS2_Frpg2RequestMessage::MatchingParameter* matching_parameter_;
   ::std::string* player_steam_id_;
   int mode_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -17105,7 +17364,7 @@ class QuickMatchData : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestJoinQuickMatch : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestJoinQuickMatch();
   virtual ~RequestJoinQuickMatch();
 
@@ -17126,7 +17385,7 @@ class RequestJoinQuickMatch : public ::google::protobuf::MessageLite {
 
   static const RequestJoinQuickMatch& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -17134,7 +17393,7 @@ class RequestJoinQuickMatch : public ::google::protobuf::MessageLite {
   static inline const RequestJoinQuickMatch* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestJoinQuickMatch* other);
 
@@ -17154,11 +17413,13 @@ class RequestJoinQuickMatch : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -17194,7 +17455,7 @@ class RequestJoinQuickMatch : public ::google::protobuf::MessageLite {
   inline void set_mode(::DS2_Frpg2RequestMessage::QuickMatchGameMode value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestJoinQuickMatch)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_cell_id();
@@ -17212,11 +17473,11 @@ class RequestJoinQuickMatch : public ::google::protobuf::MessageLite {
   ::google::protobuf::int64 cell_id_;
   ::google::protobuf::int64 player_id_;
   int mode_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -17226,7 +17487,7 @@ class RequestJoinQuickMatch : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestJoinQuickMatchResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestJoinQuickMatchResponse();
   virtual ~RequestJoinQuickMatchResponse();
 
@@ -17247,7 +17508,7 @@ class RequestJoinQuickMatchResponse : public ::google::protobuf::MessageLite {
 
   static const RequestJoinQuickMatchResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -17255,7 +17516,7 @@ class RequestJoinQuickMatchResponse : public ::google::protobuf::MessageLite {
   static inline const RequestJoinQuickMatchResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestJoinQuickMatchResponse* other);
 
@@ -17275,11 +17536,13 @@ class RequestJoinQuickMatchResponse : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -17287,17 +17550,16 @@ class RequestJoinQuickMatchResponse : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestJoinQuickMatchResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -17307,7 +17569,7 @@ class RequestJoinQuickMatchResponse : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestRegisterQuickMatch : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestRegisterQuickMatch();
   virtual ~RequestRegisterQuickMatch();
 
@@ -17328,7 +17590,7 @@ class RequestRegisterQuickMatch : public ::google::protobuf::MessageLite {
 
   static const RequestRegisterQuickMatch& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -17336,7 +17598,7 @@ class RequestRegisterQuickMatch : public ::google::protobuf::MessageLite {
   static inline const RequestRegisterQuickMatch* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestRegisterQuickMatch* other);
 
@@ -17356,11 +17618,13 @@ class RequestRegisterQuickMatch : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -17398,7 +17662,7 @@ class RequestRegisterQuickMatch : public ::google::protobuf::MessageLite {
   inline void set_mode(::DS2_Frpg2RequestMessage::QuickMatchGameMode value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestRegisterQuickMatch)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_cell_id();
@@ -17416,11 +17680,11 @@ class RequestRegisterQuickMatch : public ::google::protobuf::MessageLite {
   ::google::protobuf::int64 cell_id_;
   ::DS2_Frpg2RequestMessage::MatchingParameter* matching_parameter_;
   int mode_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -17430,7 +17694,7 @@ class RequestRegisterQuickMatch : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestRegisterQuickMatchResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestRegisterQuickMatchResponse();
   virtual ~RequestRegisterQuickMatchResponse();
 
@@ -17451,7 +17715,7 @@ class RequestRegisterQuickMatchResponse : public ::google::protobuf::MessageLite
 
   static const RequestRegisterQuickMatchResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -17459,7 +17723,7 @@ class RequestRegisterQuickMatchResponse : public ::google::protobuf::MessageLite
   static inline const RequestRegisterQuickMatchResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestRegisterQuickMatchResponse* other);
 
@@ -17479,11 +17743,13 @@ class RequestRegisterQuickMatchResponse : public ::google::protobuf::MessageLite
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -17491,17 +17757,16 @@ class RequestRegisterQuickMatchResponse : public ::google::protobuf::MessageLite
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestRegisterQuickMatchResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -17511,7 +17776,7 @@ class RequestRegisterQuickMatchResponse : public ::google::protobuf::MessageLite
 // -------------------------------------------------------------------
 
 class RequestRejectQuickMatch : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestRejectQuickMatch();
   virtual ~RequestRejectQuickMatch();
 
@@ -17532,7 +17797,7 @@ class RequestRejectQuickMatch : public ::google::protobuf::MessageLite {
 
   static const RequestRejectQuickMatch& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -17540,7 +17805,7 @@ class RequestRejectQuickMatch : public ::google::protobuf::MessageLite {
   static inline const RequestRejectQuickMatch* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestRejectQuickMatch* other);
 
@@ -17560,11 +17825,13 @@ class RequestRejectQuickMatch : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -17607,7 +17874,7 @@ class RequestRejectQuickMatch : public ::google::protobuf::MessageLite {
   inline void set_unknown_5(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestRejectQuickMatch)
- private:
+private:
   inline void set_has_player_id();
   inline void clear_has_player_id();
   inline void set_has_online_area_id();
@@ -17628,11 +17895,11 @@ class RequestRejectQuickMatch : public ::google::protobuf::MessageLite {
   ::google::protobuf::int64 cell_id_;
   ::google::protobuf::int64 unknown_5_;
   int mode_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -17642,7 +17909,7 @@ class RequestRejectQuickMatch : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestRejectQuickMatchResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestRejectQuickMatchResponse();
   virtual ~RequestRejectQuickMatchResponse();
 
@@ -17663,7 +17930,7 @@ class RequestRejectQuickMatchResponse : public ::google::protobuf::MessageLite {
 
   static const RequestRejectQuickMatchResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -17671,7 +17938,7 @@ class RequestRejectQuickMatchResponse : public ::google::protobuf::MessageLite {
   static inline const RequestRejectQuickMatchResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestRejectQuickMatchResponse* other);
 
@@ -17691,11 +17958,13 @@ class RequestRejectQuickMatchResponse : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -17703,17 +17972,16 @@ class RequestRejectQuickMatchResponse : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestRejectQuickMatchResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -17723,7 +17991,7 @@ class RequestRejectQuickMatchResponse : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestSearchQuickMatch : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestSearchQuickMatch();
   virtual ~RequestSearchQuickMatch();
 
@@ -17744,7 +18012,7 @@ class RequestSearchQuickMatch : public ::google::protobuf::MessageLite {
 
   static const RequestSearchQuickMatch& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -17752,7 +18020,7 @@ class RequestSearchQuickMatch : public ::google::protobuf::MessageLite {
   static inline const RequestSearchQuickMatch* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestSearchQuickMatch* other);
 
@@ -17772,11 +18040,13 @@ class RequestSearchQuickMatch : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -17821,7 +18091,7 @@ class RequestSearchQuickMatch : public ::google::protobuf::MessageLite {
   inline void set_mode(::DS2_Frpg2RequestMessage::QuickMatchGameMode value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestSearchQuickMatch)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_cell_id();
@@ -17842,11 +18112,11 @@ class RequestSearchQuickMatch : public ::google::protobuf::MessageLite {
   ::DS2_Frpg2RequestMessage::MatchingParameter* matching_parameter_;
   ::google::protobuf::int64 max_results_;
   int mode_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -17856,7 +18126,7 @@ class RequestSearchQuickMatch : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestSearchQuickMatchResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestSearchQuickMatchResponse();
   virtual ~RequestSearchQuickMatchResponse();
 
@@ -17877,7 +18147,7 @@ class RequestSearchQuickMatchResponse : public ::google::protobuf::MessageLite {
 
   static const RequestSearchQuickMatchResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -17885,7 +18155,7 @@ class RequestSearchQuickMatchResponse : public ::google::protobuf::MessageLite {
   static inline const RequestSearchQuickMatchResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestSearchQuickMatchResponse* other);
 
@@ -17905,11 +18175,13 @@ class RequestSearchQuickMatchResponse : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -17923,24 +18195,23 @@ class RequestSearchQuickMatchResponse : public ::google::protobuf::MessageLite {
   inline const ::DS2_Frpg2RequestMessage::QuickMatchData& matches(int index) const;
   inline ::DS2_Frpg2RequestMessage::QuickMatchData* mutable_matches(int index);
   inline ::DS2_Frpg2RequestMessage::QuickMatchData* add_matches();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::QuickMatchData >&
-      matches() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::QuickMatchData >*
-      mutable_matches();
+  inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::QuickMatchData>&
+  matches() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::QuickMatchData>*
+  mutable_matches();
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestSearchQuickMatchResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::QuickMatchData > matches_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+  ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::QuickMatchData> matches_;
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -17950,7 +18221,7 @@ class RequestSearchQuickMatchResponse : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestUnregisterQuickMatch : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestUnregisterQuickMatch();
   virtual ~RequestUnregisterQuickMatch();
 
@@ -17971,7 +18242,7 @@ class RequestUnregisterQuickMatch : public ::google::protobuf::MessageLite {
 
   static const RequestUnregisterQuickMatch& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -17979,7 +18250,7 @@ class RequestUnregisterQuickMatch : public ::google::protobuf::MessageLite {
   static inline const RequestUnregisterQuickMatch* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestUnregisterQuickMatch* other);
 
@@ -17999,11 +18270,13 @@ class RequestUnregisterQuickMatch : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -18032,7 +18305,7 @@ class RequestUnregisterQuickMatch : public ::google::protobuf::MessageLite {
   inline void set_mode(::DS2_Frpg2RequestMessage::QuickMatchGameMode value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestUnregisterQuickMatch)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_cell_id();
@@ -18047,11 +18320,11 @@ class RequestUnregisterQuickMatch : public ::google::protobuf::MessageLite {
   ::google::protobuf::int64 online_area_id_;
   ::google::protobuf::int64 cell_id_;
   int mode_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -18061,7 +18334,7 @@ class RequestUnregisterQuickMatch : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestUnregisterQuickMatchResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestUnregisterQuickMatchResponse();
   virtual ~RequestUnregisterQuickMatchResponse();
 
@@ -18082,7 +18355,7 @@ class RequestUnregisterQuickMatchResponse : public ::google::protobuf::MessageLi
 
   static const RequestUnregisterQuickMatchResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -18090,7 +18363,7 @@ class RequestUnregisterQuickMatchResponse : public ::google::protobuf::MessageLi
   static inline const RequestUnregisterQuickMatchResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestUnregisterQuickMatchResponse* other);
 
@@ -18110,11 +18383,13 @@ class RequestUnregisterQuickMatchResponse : public ::google::protobuf::MessageLi
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -18122,17 +18397,16 @@ class RequestUnregisterQuickMatchResponse : public ::google::protobuf::MessageLi
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestUnregisterQuickMatchResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -18142,7 +18416,7 @@ class RequestUnregisterQuickMatchResponse : public ::google::protobuf::MessageLi
 // -------------------------------------------------------------------
 
 class RequestUpdateQuickMatch : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestUpdateQuickMatch();
   virtual ~RequestUpdateQuickMatch();
 
@@ -18163,7 +18437,7 @@ class RequestUpdateQuickMatch : public ::google::protobuf::MessageLite {
 
   static const RequestUpdateQuickMatch& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -18171,7 +18445,7 @@ class RequestUpdateQuickMatch : public ::google::protobuf::MessageLite {
   static inline const RequestUpdateQuickMatch* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestUpdateQuickMatch* other);
 
@@ -18191,11 +18465,13 @@ class RequestUpdateQuickMatch : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -18224,7 +18500,7 @@ class RequestUpdateQuickMatch : public ::google::protobuf::MessageLite {
   inline void set_mode(::DS2_Frpg2RequestMessage::QuickMatchGameMode value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestUpdateQuickMatch)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_cell_id();
@@ -18239,11 +18515,11 @@ class RequestUpdateQuickMatch : public ::google::protobuf::MessageLite {
   ::google::protobuf::int64 online_area_id_;
   ::google::protobuf::int64 cell_id_;
   int mode_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -18253,7 +18529,7 @@ class RequestUpdateQuickMatch : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestUpdateQuickMatchResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestUpdateQuickMatchResponse();
   virtual ~RequestUpdateQuickMatchResponse();
 
@@ -18274,7 +18550,7 @@ class RequestUpdateQuickMatchResponse : public ::google::protobuf::MessageLite {
 
   static const RequestUpdateQuickMatchResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -18282,7 +18558,7 @@ class RequestUpdateQuickMatchResponse : public ::google::protobuf::MessageLite {
   static inline const RequestUpdateQuickMatchResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestUpdateQuickMatchResponse* other);
 
@@ -18302,11 +18578,13 @@ class RequestUpdateQuickMatchResponse : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -18314,17 +18592,16 @@ class RequestUpdateQuickMatchResponse : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestUpdateQuickMatchResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -18334,7 +18611,7 @@ class RequestUpdateQuickMatchResponse : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetTotalDeathCount : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetTotalDeathCount();
   virtual ~RequestGetTotalDeathCount();
 
@@ -18355,7 +18632,7 @@ class RequestGetTotalDeathCount : public ::google::protobuf::MessageLite {
 
   static const RequestGetTotalDeathCount& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -18363,7 +18640,7 @@ class RequestGetTotalDeathCount : public ::google::protobuf::MessageLite {
   static inline const RequestGetTotalDeathCount* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetTotalDeathCount* other);
 
@@ -18383,11 +18660,13 @@ class RequestGetTotalDeathCount : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -18395,17 +18674,16 @@ class RequestGetTotalDeathCount : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetTotalDeathCount)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -18415,7 +18693,7 @@ class RequestGetTotalDeathCount : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetTotalDeathCountResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetTotalDeathCountResponse();
   virtual ~RequestGetTotalDeathCountResponse();
 
@@ -18436,7 +18714,7 @@ class RequestGetTotalDeathCountResponse : public ::google::protobuf::MessageLite
 
   static const RequestGetTotalDeathCountResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -18444,7 +18722,7 @@ class RequestGetTotalDeathCountResponse : public ::google::protobuf::MessageLite
   static inline const RequestGetTotalDeathCountResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetTotalDeathCountResponse* other);
 
@@ -18464,11 +18742,13 @@ class RequestGetTotalDeathCountResponse : public ::google::protobuf::MessageLite
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -18483,7 +18763,7 @@ class RequestGetTotalDeathCountResponse : public ::google::protobuf::MessageLite
   inline void set_total_death_count(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetTotalDeathCountResponse)
- private:
+private:
   inline void set_has_total_death_count();
   inline void clear_has_total_death_count();
 
@@ -18492,11 +18772,11 @@ class RequestGetTotalDeathCountResponse : public ::google::protobuf::MessageLite
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
   ::google::protobuf::uint32 total_death_count_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -18506,7 +18786,7 @@ class RequestGetTotalDeathCountResponse : public ::google::protobuf::MessageLite
 // -------------------------------------------------------------------
 
 class PushRequestHeader : public ::google::protobuf::MessageLite {
- public:
+public:
   PushRequestHeader();
   virtual ~PushRequestHeader();
 
@@ -18527,7 +18807,7 @@ class PushRequestHeader : public ::google::protobuf::MessageLite {
 
   static const PushRequestHeader& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -18535,7 +18815,7 @@ class PushRequestHeader : public ::google::protobuf::MessageLite {
   static inline const PushRequestHeader* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PushRequestHeader* other);
 
@@ -18555,11 +18835,13 @@ class PushRequestHeader : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -18574,7 +18856,7 @@ class PushRequestHeader : public ::google::protobuf::MessageLite {
   inline void set_push_message_id(::DS2_Frpg2RequestMessage::PushMessageId value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.PushRequestHeader)
- private:
+private:
   inline void set_has_push_message_id();
   inline void clear_has_push_message_id();
 
@@ -18583,11 +18865,11 @@ class PushRequestHeader : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
   int push_message_id_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -18597,7 +18879,7 @@ class PushRequestHeader : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class ManagementTextMessage : public ::google::protobuf::MessageLite {
- public:
+public:
   ManagementTextMessage();
   virtual ~ManagementTextMessage();
 
@@ -18618,7 +18900,7 @@ class ManagementTextMessage : public ::google::protobuf::MessageLite {
 
   static const ManagementTextMessage& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -18626,7 +18908,7 @@ class ManagementTextMessage : public ::google::protobuf::MessageLite {
   static inline const ManagementTextMessage* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(ManagementTextMessage* other);
 
@@ -18646,11 +18928,13 @@ class ManagementTextMessage : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -18700,7 +18984,7 @@ class ManagementTextMessage : public ::google::protobuf::MessageLite {
   inline void set_unknown_5(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.ManagementTextMessage)
- private:
+private:
   inline void set_has_push_message_id();
   inline void clear_has_push_message_id();
   inline void set_has_message();
@@ -18721,11 +19005,11 @@ class ManagementTextMessage : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 unknown_4_;
   ::DS2_Frpg2PlayerData::DateTime* timestamp_;
   ::google::protobuf::uint32 unknown_5_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -18735,7 +19019,7 @@ class ManagementTextMessage : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class NRLoggingMessage : public ::google::protobuf::MessageLite {
- public:
+public:
   NRLoggingMessage();
   virtual ~NRLoggingMessage();
 
@@ -18756,7 +19040,7 @@ class NRLoggingMessage : public ::google::protobuf::MessageLite {
 
   static const NRLoggingMessage& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -18764,7 +19048,7 @@ class NRLoggingMessage : public ::google::protobuf::MessageLite {
   static inline const NRLoggingMessage* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(NRLoggingMessage* other);
 
@@ -18784,11 +19068,13 @@ class NRLoggingMessage : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -18796,17 +19082,16 @@ class NRLoggingMessage : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.NRLoggingMessage)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -18816,7 +19101,7 @@ class NRLoggingMessage : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class NRLogUploadRequest : public ::google::protobuf::MessageLite {
- public:
+public:
   NRLogUploadRequest();
   virtual ~NRLogUploadRequest();
 
@@ -18837,7 +19122,7 @@ class NRLogUploadRequest : public ::google::protobuf::MessageLite {
 
   static const NRLogUploadRequest& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -18845,7 +19130,7 @@ class NRLogUploadRequest : public ::google::protobuf::MessageLite {
   static inline const NRLogUploadRequest* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(NRLogUploadRequest* other);
 
@@ -18865,11 +19150,13 @@ class NRLogUploadRequest : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -18877,17 +19164,16 @@ class NRLogUploadRequest : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.NRLogUploadRequest)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -18897,7 +19183,7 @@ class NRLogUploadRequest : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class ServerPing : public ::google::protobuf::MessageLite {
- public:
+public:
   ServerPing();
   virtual ~ServerPing();
 
@@ -18918,7 +19204,7 @@ class ServerPing : public ::google::protobuf::MessageLite {
 
   static const ServerPing& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -18926,7 +19212,7 @@ class ServerPing : public ::google::protobuf::MessageLite {
   static inline const ServerPing* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(ServerPing* other);
 
@@ -18946,11 +19232,13 @@ class ServerPing : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -18958,17 +19246,16 @@ class ServerPing : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.ServerPing)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -18978,7 +19265,7 @@ class ServerPing : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestBenchmarkThroughput : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestBenchmarkThroughput();
   virtual ~RequestBenchmarkThroughput();
 
@@ -18999,7 +19286,7 @@ class RequestBenchmarkThroughput : public ::google::protobuf::MessageLite {
 
   static const RequestBenchmarkThroughput& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -19007,7 +19294,7 @@ class RequestBenchmarkThroughput : public ::google::protobuf::MessageLite {
   static inline const RequestBenchmarkThroughput* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestBenchmarkThroughput* other);
 
@@ -19027,11 +19314,13 @@ class RequestBenchmarkThroughput : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -19039,17 +19328,16 @@ class RequestBenchmarkThroughput : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestBenchmarkThroughput)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -19059,7 +19347,7 @@ class RequestBenchmarkThroughput : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestBenchmarkThroughputResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestBenchmarkThroughputResponse();
   virtual ~RequestBenchmarkThroughputResponse();
 
@@ -19080,7 +19368,7 @@ class RequestBenchmarkThroughputResponse : public ::google::protobuf::MessageLit
 
   static const RequestBenchmarkThroughputResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -19088,7 +19376,7 @@ class RequestBenchmarkThroughputResponse : public ::google::protobuf::MessageLit
   static inline const RequestBenchmarkThroughputResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestBenchmarkThroughputResponse* other);
 
@@ -19108,11 +19396,13 @@ class RequestBenchmarkThroughputResponse : public ::google::protobuf::MessageLit
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -19120,17 +19410,16 @@ class RequestBenchmarkThroughputResponse : public ::google::protobuf::MessageLit
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestBenchmarkThroughputResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -19140,7 +19429,7 @@ class RequestBenchmarkThroughputResponse : public ::google::protobuf::MessageLit
 // -------------------------------------------------------------------
 
 class RequestMeasureDownloadBandwidth : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestMeasureDownloadBandwidth();
   virtual ~RequestMeasureDownloadBandwidth();
 
@@ -19161,7 +19450,7 @@ class RequestMeasureDownloadBandwidth : public ::google::protobuf::MessageLite {
 
   static const RequestMeasureDownloadBandwidth& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -19169,7 +19458,7 @@ class RequestMeasureDownloadBandwidth : public ::google::protobuf::MessageLite {
   static inline const RequestMeasureDownloadBandwidth* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestMeasureDownloadBandwidth* other);
 
@@ -19189,11 +19478,13 @@ class RequestMeasureDownloadBandwidth : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -19201,17 +19492,16 @@ class RequestMeasureDownloadBandwidth : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestMeasureDownloadBandwidth)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -19221,7 +19511,7 @@ class RequestMeasureDownloadBandwidth : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestMeasureDownloadBandwidthResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestMeasureDownloadBandwidthResponse();
   virtual ~RequestMeasureDownloadBandwidthResponse();
 
@@ -19242,7 +19532,7 @@ class RequestMeasureDownloadBandwidthResponse : public ::google::protobuf::Messa
 
   static const RequestMeasureDownloadBandwidthResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -19250,7 +19540,7 @@ class RequestMeasureDownloadBandwidthResponse : public ::google::protobuf::Messa
   static inline const RequestMeasureDownloadBandwidthResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestMeasureDownloadBandwidthResponse* other);
 
@@ -19270,11 +19560,13 @@ class RequestMeasureDownloadBandwidthResponse : public ::google::protobuf::Messa
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -19282,17 +19574,16 @@ class RequestMeasureDownloadBandwidthResponse : public ::google::protobuf::Messa
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestMeasureDownloadBandwidthResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -19302,7 +19593,7 @@ class RequestMeasureDownloadBandwidthResponse : public ::google::protobuf::Messa
 // -------------------------------------------------------------------
 
 class RequestMeasureUploadBandwidth : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestMeasureUploadBandwidth();
   virtual ~RequestMeasureUploadBandwidth();
 
@@ -19323,7 +19614,7 @@ class RequestMeasureUploadBandwidth : public ::google::protobuf::MessageLite {
 
   static const RequestMeasureUploadBandwidth& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -19331,7 +19622,7 @@ class RequestMeasureUploadBandwidth : public ::google::protobuf::MessageLite {
   static inline const RequestMeasureUploadBandwidth* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestMeasureUploadBandwidth* other);
 
@@ -19351,11 +19642,13 @@ class RequestMeasureUploadBandwidth : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -19363,17 +19656,16 @@ class RequestMeasureUploadBandwidth : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestMeasureUploadBandwidth)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -19383,7 +19675,7 @@ class RequestMeasureUploadBandwidth : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestMeasureUploadBandwidthResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestMeasureUploadBandwidthResponse();
   virtual ~RequestMeasureUploadBandwidthResponse();
 
@@ -19404,7 +19696,7 @@ class RequestMeasureUploadBandwidthResponse : public ::google::protobuf::Message
 
   static const RequestMeasureUploadBandwidthResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -19412,7 +19704,7 @@ class RequestMeasureUploadBandwidthResponse : public ::google::protobuf::Message
   static inline const RequestMeasureUploadBandwidthResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestMeasureUploadBandwidthResponse* other);
 
@@ -19432,11 +19724,13 @@ class RequestMeasureUploadBandwidthResponse : public ::google::protobuf::Message
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -19444,17 +19738,16 @@ class RequestMeasureUploadBandwidthResponse : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestMeasureUploadBandwidthResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -19464,7 +19757,7 @@ class RequestMeasureUploadBandwidthResponse : public ::google::protobuf::Message
 // -------------------------------------------------------------------
 
 class RequestSendMessageToAllPlayers : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestSendMessageToAllPlayers();
   virtual ~RequestSendMessageToAllPlayers();
 
@@ -19485,7 +19778,7 @@ class RequestSendMessageToAllPlayers : public ::google::protobuf::MessageLite {
 
   static const RequestSendMessageToAllPlayers& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -19493,7 +19786,7 @@ class RequestSendMessageToAllPlayers : public ::google::protobuf::MessageLite {
   static inline const RequestSendMessageToAllPlayers* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestSendMessageToAllPlayers* other);
 
@@ -19513,11 +19806,13 @@ class RequestSendMessageToAllPlayers : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -19525,17 +19820,16 @@ class RequestSendMessageToAllPlayers : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestSendMessageToAllPlayers)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -19545,7 +19839,7 @@ class RequestSendMessageToAllPlayers : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestSendMessageToAllPlayersResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestSendMessageToAllPlayersResponse();
   virtual ~RequestSendMessageToAllPlayersResponse();
 
@@ -19566,7 +19860,7 @@ class RequestSendMessageToAllPlayersResponse : public ::google::protobuf::Messag
 
   static const RequestSendMessageToAllPlayersResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -19574,7 +19868,7 @@ class RequestSendMessageToAllPlayersResponse : public ::google::protobuf::Messag
   static inline const RequestSendMessageToAllPlayersResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestSendMessageToAllPlayersResponse* other);
 
@@ -19594,11 +19888,13 @@ class RequestSendMessageToAllPlayersResponse : public ::google::protobuf::Messag
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -19606,17 +19902,16 @@ class RequestSendMessageToAllPlayersResponse : public ::google::protobuf::Messag
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestSendMessageToAllPlayersResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -19626,7 +19921,7 @@ class RequestSendMessageToAllPlayersResponse : public ::google::protobuf::Messag
 // -------------------------------------------------------------------
 
 class RequestSendMessageToPlayers : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestSendMessageToPlayers();
   virtual ~RequestSendMessageToPlayers();
 
@@ -19647,7 +19942,7 @@ class RequestSendMessageToPlayers : public ::google::protobuf::MessageLite {
 
   static const RequestSendMessageToPlayers& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -19655,7 +19950,7 @@ class RequestSendMessageToPlayers : public ::google::protobuf::MessageLite {
   static inline const RequestSendMessageToPlayers* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestSendMessageToPlayers* other);
 
@@ -19675,11 +19970,13 @@ class RequestSendMessageToPlayers : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -19693,10 +19990,10 @@ class RequestSendMessageToPlayers : public ::google::protobuf::MessageLite {
   inline ::google::protobuf::uint32 player_ids(int index) const;
   inline void set_player_ids(int index, ::google::protobuf::uint32 value);
   inline void add_player_ids(::google::protobuf::uint32 value);
-  inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
-      player_ids() const;
-  inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
-      mutable_player_ids();
+  inline const ::google::protobuf::RepeatedField<::google::protobuf::uint32>&
+  player_ids() const;
+  inline ::google::protobuf::RepeatedField<::google::protobuf::uint32>*
+  mutable_player_ids();
 
   // required bytes message = 2;
   inline bool has_message() const;
@@ -19711,7 +20008,7 @@ class RequestSendMessageToPlayers : public ::google::protobuf::MessageLite {
   inline void set_allocated_message(::std::string* message);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestSendMessageToPlayers)
- private:
+private:
   inline void set_has_message();
   inline void clear_has_message();
 
@@ -19719,13 +20016,13 @@ class RequestSendMessageToPlayers : public ::google::protobuf::MessageLite {
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > player_ids_;
+  ::google::protobuf::RepeatedField<::google::protobuf::uint32> player_ids_;
   ::std::string* message_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -19735,7 +20032,7 @@ class RequestSendMessageToPlayers : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestSendMessageToPlayersResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestSendMessageToPlayersResponse();
   virtual ~RequestSendMessageToPlayersResponse();
 
@@ -19756,7 +20053,7 @@ class RequestSendMessageToPlayersResponse : public ::google::protobuf::MessageLi
 
   static const RequestSendMessageToPlayersResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -19764,7 +20061,7 @@ class RequestSendMessageToPlayersResponse : public ::google::protobuf::MessageLi
   static inline const RequestSendMessageToPlayersResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestSendMessageToPlayersResponse* other);
 
@@ -19784,11 +20081,13 @@ class RequestSendMessageToPlayersResponse : public ::google::protobuf::MessageLi
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -19796,17 +20095,16 @@ class RequestSendMessageToPlayersResponse : public ::google::protobuf::MessageLi
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestSendMessageToPlayersResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -19816,7 +20114,7 @@ class RequestSendMessageToPlayersResponse : public ::google::protobuf::MessageLi
 // -------------------------------------------------------------------
 
 class RequestSendMessageToSelectLanguagePlayers : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestSendMessageToSelectLanguagePlayers();
   virtual ~RequestSendMessageToSelectLanguagePlayers();
 
@@ -19837,7 +20135,7 @@ class RequestSendMessageToSelectLanguagePlayers : public ::google::protobuf::Mes
 
   static const RequestSendMessageToSelectLanguagePlayers& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -19845,7 +20143,7 @@ class RequestSendMessageToSelectLanguagePlayers : public ::google::protobuf::Mes
   static inline const RequestSendMessageToSelectLanguagePlayers* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestSendMessageToSelectLanguagePlayers* other);
 
@@ -19865,11 +20163,13 @@ class RequestSendMessageToSelectLanguagePlayers : public ::google::protobuf::Mes
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -19877,17 +20177,16 @@ class RequestSendMessageToSelectLanguagePlayers : public ::google::protobuf::Mes
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestSendMessageToSelectLanguagePlayers)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -19897,7 +20196,7 @@ class RequestSendMessageToSelectLanguagePlayers : public ::google::protobuf::Mes
 // -------------------------------------------------------------------
 
 class RequestSendMessageToSelectLanguagePlayersResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestSendMessageToSelectLanguagePlayersResponse();
   virtual ~RequestSendMessageToSelectLanguagePlayersResponse();
 
@@ -19918,7 +20217,7 @@ class RequestSendMessageToSelectLanguagePlayersResponse : public ::google::proto
 
   static const RequestSendMessageToSelectLanguagePlayersResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -19926,7 +20225,7 @@ class RequestSendMessageToSelectLanguagePlayersResponse : public ::google::proto
   static inline const RequestSendMessageToSelectLanguagePlayersResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestSendMessageToSelectLanguagePlayersResponse* other);
 
@@ -19946,11 +20245,13 @@ class RequestSendMessageToSelectLanguagePlayersResponse : public ::google::proto
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -19958,17 +20259,16 @@ class RequestSendMessageToSelectLanguagePlayersResponse : public ::google::proto
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestSendMessageToSelectLanguagePlayersResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -19978,7 +20278,7 @@ class RequestSendMessageToSelectLanguagePlayersResponse : public ::google::proto
 // -------------------------------------------------------------------
 
 class RequestSendMessageToPushClient : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestSendMessageToPushClient();
   virtual ~RequestSendMessageToPushClient();
 
@@ -19999,7 +20299,7 @@ class RequestSendMessageToPushClient : public ::google::protobuf::MessageLite {
 
   static const RequestSendMessageToPushClient& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -20007,7 +20307,7 @@ class RequestSendMessageToPushClient : public ::google::protobuf::MessageLite {
   static inline const RequestSendMessageToPushClient* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestSendMessageToPushClient* other);
 
@@ -20027,11 +20327,13 @@ class RequestSendMessageToPushClient : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -20039,17 +20341,16 @@ class RequestSendMessageToPushClient : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestSendMessageToPushClient)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -20059,7 +20360,7 @@ class RequestSendMessageToPushClient : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestSendPlayerList : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestSendPlayerList();
   virtual ~RequestSendPlayerList();
 
@@ -20080,7 +20381,7 @@ class RequestSendPlayerList : public ::google::protobuf::MessageLite {
 
   static const RequestSendPlayerList& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -20088,7 +20389,7 @@ class RequestSendPlayerList : public ::google::protobuf::MessageLite {
   static inline const RequestSendPlayerList* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestSendPlayerList* other);
 
@@ -20108,11 +20409,13 @@ class RequestSendPlayerList : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -20120,17 +20423,16 @@ class RequestSendPlayerList : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestSendPlayerList)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -20140,7 +20442,7 @@ class RequestSendPlayerList : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class NotifyLoginToPushServer : public ::google::protobuf::MessageLite {
- public:
+public:
   NotifyLoginToPushServer();
   virtual ~NotifyLoginToPushServer();
 
@@ -20161,7 +20463,7 @@ class NotifyLoginToPushServer : public ::google::protobuf::MessageLite {
 
   static const NotifyLoginToPushServer& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -20169,7 +20471,7 @@ class NotifyLoginToPushServer : public ::google::protobuf::MessageLite {
   static inline const NotifyLoginToPushServer* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(NotifyLoginToPushServer* other);
 
@@ -20189,11 +20491,13 @@ class NotifyLoginToPushServer : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -20201,17 +20505,16 @@ class NotifyLoginToPushServer : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.NotifyLoginToPushServer)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -20221,7 +20524,7 @@ class NotifyLoginToPushServer : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class NotifyLogoutToPushServer : public ::google::protobuf::MessageLite {
- public:
+public:
   NotifyLogoutToPushServer();
   virtual ~NotifyLogoutToPushServer();
 
@@ -20242,7 +20545,7 @@ class NotifyLogoutToPushServer : public ::google::protobuf::MessageLite {
 
   static const NotifyLogoutToPushServer& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -20250,7 +20553,7 @@ class NotifyLogoutToPushServer : public ::google::protobuf::MessageLite {
   static inline const NotifyLogoutToPushServer* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(NotifyLogoutToPushServer* other);
 
@@ -20270,11 +20573,13 @@ class NotifyLogoutToPushServer : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -20282,17 +20587,16 @@ class NotifyLogoutToPushServer : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.NotifyLogoutToPushServer)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -20302,7 +20606,7 @@ class NotifyLogoutToPushServer : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class UserLoginInfo : public ::google::protobuf::MessageLite {
- public:
+public:
   UserLoginInfo();
   virtual ~UserLoginInfo();
 
@@ -20323,7 +20627,7 @@ class UserLoginInfo : public ::google::protobuf::MessageLite {
 
   static const UserLoginInfo& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -20331,7 +20635,7 @@ class UserLoginInfo : public ::google::protobuf::MessageLite {
   static inline const UserLoginInfo* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(UserLoginInfo* other);
 
@@ -20351,11 +20655,13 @@ class UserLoginInfo : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -20363,17 +20669,16 @@ class UserLoginInfo : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.UserLoginInfo)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -20383,7 +20688,7 @@ class UserLoginInfo : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class UserLogout : public ::google::protobuf::MessageLite {
- public:
+public:
   UserLogout();
   virtual ~UserLogout();
 
@@ -20404,7 +20709,7 @@ class UserLogout : public ::google::protobuf::MessageLite {
 
   static const UserLogout& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -20412,7 +20717,7 @@ class UserLogout : public ::google::protobuf::MessageLite {
   static inline const UserLogout* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(UserLogout* other);
 
@@ -20432,11 +20737,13 @@ class UserLogout : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -20444,17 +20751,16 @@ class UserLogout : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.UserLogout)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -20464,7 +20770,7 @@ class UserLogout : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class LoginClientInfo : public ::google::protobuf::MessageLite {
- public:
+public:
   LoginClientInfo();
   virtual ~LoginClientInfo();
 
@@ -20485,7 +20791,7 @@ class LoginClientInfo : public ::google::protobuf::MessageLite {
 
   static const LoginClientInfo& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -20493,7 +20799,7 @@ class LoginClientInfo : public ::google::protobuf::MessageLite {
   static inline const LoginClientInfo* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(LoginClientInfo* other);
 
@@ -20513,11 +20819,13 @@ class LoginClientInfo : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -20525,17 +20833,16 @@ class LoginClientInfo : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.LoginClientInfo)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -20545,7 +20852,7 @@ class LoginClientInfo : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class LoginForXboxOne : public ::google::protobuf::MessageLite {
- public:
+public:
   LoginForXboxOne();
   virtual ~LoginForXboxOne();
 
@@ -20566,7 +20873,7 @@ class LoginForXboxOne : public ::google::protobuf::MessageLite {
 
   static const LoginForXboxOne& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -20574,7 +20881,7 @@ class LoginForXboxOne : public ::google::protobuf::MessageLite {
   static inline const LoginForXboxOne* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(LoginForXboxOne* other);
 
@@ -20594,11 +20901,13 @@ class LoginForXboxOne : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -20606,17 +20915,16 @@ class LoginForXboxOne : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.LoginForXboxOne)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -20626,7 +20934,7 @@ class LoginForXboxOne : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class SocketOptionSetting : public ::google::protobuf::MessageLite {
- public:
+public:
   SocketOptionSetting();
   virtual ~SocketOptionSetting();
 
@@ -20647,7 +20955,7 @@ class SocketOptionSetting : public ::google::protobuf::MessageLite {
 
   static const SocketOptionSetting& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -20655,7 +20963,7 @@ class SocketOptionSetting : public ::google::protobuf::MessageLite {
   static inline const SocketOptionSetting* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(SocketOptionSetting* other);
 
@@ -20675,11 +20983,13 @@ class SocketOptionSetting : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -20687,17 +20997,16 @@ class SocketOptionSetting : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.SocketOptionSetting)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -20707,7 +21016,7 @@ class SocketOptionSetting : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class GetConnectGameServerPortIdResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   GetConnectGameServerPortIdResponse();
   virtual ~GetConnectGameServerPortIdResponse();
 
@@ -20728,7 +21037,7 @@ class GetConnectGameServerPortIdResponse : public ::google::protobuf::MessageLit
 
   static const GetConnectGameServerPortIdResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -20736,7 +21045,7 @@ class GetConnectGameServerPortIdResponse : public ::google::protobuf::MessageLit
   static inline const GetConnectGameServerPortIdResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(GetConnectGameServerPortIdResponse* other);
 
@@ -20756,11 +21065,13 @@ class GetConnectGameServerPortIdResponse : public ::google::protobuf::MessageLit
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -20768,17 +21079,16 @@ class GetConnectGameServerPortIdResponse : public ::google::protobuf::MessageLit
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.GetConnectGameServerPortIdResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -20788,7 +21098,7 @@ class GetConnectGameServerPortIdResponse : public ::google::protobuf::MessageLit
 // -------------------------------------------------------------------
 
 class NotifyClientServerInfoToPushServer : public ::google::protobuf::MessageLite {
- public:
+public:
   NotifyClientServerInfoToPushServer();
   virtual ~NotifyClientServerInfoToPushServer();
 
@@ -20809,7 +21119,7 @@ class NotifyClientServerInfoToPushServer : public ::google::protobuf::MessageLit
 
   static const NotifyClientServerInfoToPushServer& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -20817,7 +21127,7 @@ class NotifyClientServerInfoToPushServer : public ::google::protobuf::MessageLit
   static inline const NotifyClientServerInfoToPushServer* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(NotifyClientServerInfoToPushServer* other);
 
@@ -20837,11 +21147,13 @@ class NotifyClientServerInfoToPushServer : public ::google::protobuf::MessageLit
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -20849,17 +21161,16 @@ class NotifyClientServerInfoToPushServer : public ::google::protobuf::MessageLit
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.NotifyClientServerInfoToPushServer)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -20869,7 +21180,7 @@ class NotifyClientServerInfoToPushServer : public ::google::protobuf::MessageLit
 // -------------------------------------------------------------------
 
 class PushLoginUserInfo : public ::google::protobuf::MessageLite {
- public:
+public:
   PushLoginUserInfo();
   virtual ~PushLoginUserInfo();
 
@@ -20890,7 +21201,7 @@ class PushLoginUserInfo : public ::google::protobuf::MessageLite {
 
   static const PushLoginUserInfo& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -20898,7 +21209,7 @@ class PushLoginUserInfo : public ::google::protobuf::MessageLite {
   static inline const PushLoginUserInfo* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PushLoginUserInfo* other);
 
@@ -20918,11 +21229,13 @@ class PushLoginUserInfo : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -20930,17 +21243,16 @@ class PushLoginUserInfo : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.PushLoginUserInfo)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -20950,7 +21262,7 @@ class PushLoginUserInfo : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestCheckLogin : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestCheckLogin();
   virtual ~RequestCheckLogin();
 
@@ -20971,7 +21283,7 @@ class RequestCheckLogin : public ::google::protobuf::MessageLite {
 
   static const RequestCheckLogin& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -20979,7 +21291,7 @@ class RequestCheckLogin : public ::google::protobuf::MessageLite {
   static inline const RequestCheckLogin* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestCheckLogin* other);
 
@@ -20999,11 +21311,13 @@ class RequestCheckLogin : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -21011,17 +21325,16 @@ class RequestCheckLogin : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestCheckLogin)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -21031,7 +21344,7 @@ class RequestCheckLogin : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestCheckLoginResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestCheckLoginResponse();
   virtual ~RequestCheckLoginResponse();
 
@@ -21052,7 +21365,7 @@ class RequestCheckLoginResponse : public ::google::protobuf::MessageLite {
 
   static const RequestCheckLoginResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -21060,7 +21373,7 @@ class RequestCheckLoginResponse : public ::google::protobuf::MessageLite {
   static inline const RequestCheckLoginResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestCheckLoginResponse* other);
 
@@ -21080,11 +21393,13 @@ class RequestCheckLoginResponse : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -21092,17 +21407,16 @@ class RequestCheckLoginResponse : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestCheckLoginResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -21112,7 +21426,7 @@ class RequestCheckLoginResponse : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetPlayerConnectGameServer : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetPlayerConnectGameServer();
   virtual ~RequestGetPlayerConnectGameServer();
 
@@ -21133,7 +21447,7 @@ class RequestGetPlayerConnectGameServer : public ::google::protobuf::MessageLite
 
   static const RequestGetPlayerConnectGameServer& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -21141,7 +21455,7 @@ class RequestGetPlayerConnectGameServer : public ::google::protobuf::MessageLite
   static inline const RequestGetPlayerConnectGameServer* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetPlayerConnectGameServer* other);
 
@@ -21161,11 +21475,13 @@ class RequestGetPlayerConnectGameServer : public ::google::protobuf::MessageLite
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -21173,17 +21489,16 @@ class RequestGetPlayerConnectGameServer : public ::google::protobuf::MessageLite
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetPlayerConnectGameServer)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -21193,7 +21508,7 @@ class RequestGetPlayerConnectGameServer : public ::google::protobuf::MessageLite
 // -------------------------------------------------------------------
 
 class RequestGetPlayerConnectGameServerResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetPlayerConnectGameServerResponse();
   virtual ~RequestGetPlayerConnectGameServerResponse();
 
@@ -21214,7 +21529,7 @@ class RequestGetPlayerConnectGameServerResponse : public ::google::protobuf::Mes
 
   static const RequestGetPlayerConnectGameServerResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -21222,7 +21537,7 @@ class RequestGetPlayerConnectGameServerResponse : public ::google::protobuf::Mes
   static inline const RequestGetPlayerConnectGameServerResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetPlayerConnectGameServerResponse* other);
 
@@ -21242,11 +21557,13 @@ class RequestGetPlayerConnectGameServerResponse : public ::google::protobuf::Mes
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -21254,17 +21571,16 @@ class RequestGetPlayerConnectGameServerResponse : public ::google::protobuf::Mes
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetPlayerConnectGameServerResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -21274,7 +21590,7 @@ class RequestGetPlayerConnectGameServerResponse : public ::google::protobuf::Mes
 // -------------------------------------------------------------------
 
 class PlayerConnectServerInfo : public ::google::protobuf::MessageLite {
- public:
+public:
   PlayerConnectServerInfo();
   virtual ~PlayerConnectServerInfo();
 
@@ -21295,7 +21611,7 @@ class PlayerConnectServerInfo : public ::google::protobuf::MessageLite {
 
   static const PlayerConnectServerInfo& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -21303,7 +21619,7 @@ class PlayerConnectServerInfo : public ::google::protobuf::MessageLite {
   static inline const PlayerConnectServerInfo* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PlayerConnectServerInfo* other);
 
@@ -21323,11 +21639,13 @@ class PlayerConnectServerInfo : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -21335,17 +21653,16 @@ class PlayerConnectServerInfo : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.PlayerConnectServerInfo)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -21355,7 +21672,7 @@ class PlayerConnectServerInfo : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetConnectionCount : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetConnectionCount();
   virtual ~RequestGetConnectionCount();
 
@@ -21376,7 +21693,7 @@ class RequestGetConnectionCount : public ::google::protobuf::MessageLite {
 
   static const RequestGetConnectionCount& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -21384,7 +21701,7 @@ class RequestGetConnectionCount : public ::google::protobuf::MessageLite {
   static inline const RequestGetConnectionCount* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetConnectionCount* other);
 
@@ -21404,11 +21721,13 @@ class RequestGetConnectionCount : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -21416,17 +21735,16 @@ class RequestGetConnectionCount : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetConnectionCount)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -21436,7 +21754,7 @@ class RequestGetConnectionCount : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetConnectionCountResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetConnectionCountResponse();
   virtual ~RequestGetConnectionCountResponse();
 
@@ -21457,7 +21775,7 @@ class RequestGetConnectionCountResponse : public ::google::protobuf::MessageLite
 
   static const RequestGetConnectionCountResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -21465,7 +21783,7 @@ class RequestGetConnectionCountResponse : public ::google::protobuf::MessageLite
   static inline const RequestGetConnectionCountResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetConnectionCountResponse* other);
 
@@ -21485,11 +21803,13 @@ class RequestGetConnectionCountResponse : public ::google::protobuf::MessageLite
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -21497,17 +21817,16 @@ class RequestGetConnectionCountResponse : public ::google::protobuf::MessageLite
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetConnectionCountResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -21517,7 +21836,7 @@ class RequestGetConnectionCountResponse : public ::google::protobuf::MessageLite
 // -------------------------------------------------------------------
 
 class RequestDisconnectAllUser : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestDisconnectAllUser();
   virtual ~RequestDisconnectAllUser();
 
@@ -21538,7 +21857,7 @@ class RequestDisconnectAllUser : public ::google::protobuf::MessageLite {
 
   static const RequestDisconnectAllUser& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -21546,7 +21865,7 @@ class RequestDisconnectAllUser : public ::google::protobuf::MessageLite {
   static inline const RequestDisconnectAllUser* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestDisconnectAllUser* other);
 
@@ -21566,11 +21885,13 @@ class RequestDisconnectAllUser : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -21578,17 +21899,16 @@ class RequestDisconnectAllUser : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestDisconnectAllUser)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -21598,7 +21918,7 @@ class RequestDisconnectAllUser : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestDisconnectUser : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestDisconnectUser();
   virtual ~RequestDisconnectUser();
 
@@ -21619,7 +21939,7 @@ class RequestDisconnectUser : public ::google::protobuf::MessageLite {
 
   static const RequestDisconnectUser& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -21627,7 +21947,7 @@ class RequestDisconnectUser : public ::google::protobuf::MessageLite {
   static inline const RequestDisconnectUser* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestDisconnectUser* other);
 
@@ -21647,11 +21967,13 @@ class RequestDisconnectUser : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -21659,17 +21981,16 @@ class RequestDisconnectUser : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestDisconnectUser)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -21679,7 +22000,7 @@ class RequestDisconnectUser : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetServerSidePlayerStatus : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetServerSidePlayerStatus();
   virtual ~RequestGetServerSidePlayerStatus();
 
@@ -21700,7 +22021,7 @@ class RequestGetServerSidePlayerStatus : public ::google::protobuf::MessageLite 
 
   static const RequestGetServerSidePlayerStatus& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -21708,7 +22029,7 @@ class RequestGetServerSidePlayerStatus : public ::google::protobuf::MessageLite 
   static inline const RequestGetServerSidePlayerStatus* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetServerSidePlayerStatus* other);
 
@@ -21728,11 +22049,13 @@ class RequestGetServerSidePlayerStatus : public ::google::protobuf::MessageLite 
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -21740,17 +22063,16 @@ class RequestGetServerSidePlayerStatus : public ::google::protobuf::MessageLite 
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetServerSidePlayerStatus)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -21760,7 +22082,7 @@ class RequestGetServerSidePlayerStatus : public ::google::protobuf::MessageLite 
 // -------------------------------------------------------------------
 
 class CellLimitData : public ::google::protobuf::MessageLite {
- public:
+public:
   CellLimitData();
   virtual ~CellLimitData();
 
@@ -21781,7 +22103,7 @@ class CellLimitData : public ::google::protobuf::MessageLite {
 
   static const CellLimitData& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -21789,7 +22111,7 @@ class CellLimitData : public ::google::protobuf::MessageLite {
   static inline const CellLimitData* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(CellLimitData* other);
 
@@ -21809,11 +22131,13 @@ class CellLimitData : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -21835,7 +22159,7 @@ class CellLimitData : public ::google::protobuf::MessageLite {
   inline void set_max_items(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.CellLimitData)
- private:
+private:
   inline void set_has_cell_id();
   inline void clear_has_cell_id();
   inline void set_has_max_items();
@@ -21847,11 +22171,11 @@ class CellLimitData : public ::google::protobuf::MessageLite {
   mutable int _cached_size_;
   ::google::protobuf::uint32 cell_id_;
   ::google::protobuf::uint32 max_items_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -21861,7 +22185,7 @@ class CellLimitData : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class DateTime : public ::google::protobuf::MessageLite {
- public:
+public:
   DateTime();
   virtual ~DateTime();
 
@@ -21882,7 +22206,7 @@ class DateTime : public ::google::protobuf::MessageLite {
 
   static const DateTime& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -21890,7 +22214,7 @@ class DateTime : public ::google::protobuf::MessageLite {
   static inline const DateTime* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(DateTime* other);
 
@@ -21910,11 +22234,13 @@ class DateTime : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -21922,17 +22248,16 @@ class DateTime : public ::google::protobuf::MessageLite {
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.DateTime)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -21942,7 +22267,7 @@ class DateTime : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetPlayerCharacterList : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetPlayerCharacterList();
   virtual ~RequestGetPlayerCharacterList();
 
@@ -21963,7 +22288,7 @@ class RequestGetPlayerCharacterList : public ::google::protobuf::MessageLite {
 
   static const RequestGetPlayerCharacterList& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -21971,7 +22296,7 @@ class RequestGetPlayerCharacterList : public ::google::protobuf::MessageLite {
   static inline const RequestGetPlayerCharacterList* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetPlayerCharacterList* other);
 
@@ -21991,11 +22316,13 @@ class RequestGetPlayerCharacterList : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -22029,7 +22356,7 @@ class RequestGetPlayerCharacterList : public ::google::protobuf::MessageLite {
   inline void set_allocated_character_data(::std::string* character_data);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetPlayerCharacterList)
- private:
+private:
   inline void set_has_player_id();
   inline void clear_has_player_id();
   inline void set_has_charatcer_id();
@@ -22044,11 +22371,11 @@ class RequestGetPlayerCharacterList : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 player_id_;
   ::google::protobuf::uint32 charatcer_id_;
   ::std::string* character_data_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -22058,7 +22385,7 @@ class RequestGetPlayerCharacterList : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class RequestGetPlayerCharacterListResponse : public ::google::protobuf::MessageLite {
- public:
+public:
   RequestGetPlayerCharacterListResponse();
   virtual ~RequestGetPlayerCharacterListResponse();
 
@@ -22079,7 +22406,7 @@ class RequestGetPlayerCharacterListResponse : public ::google::protobuf::Message
 
   static const RequestGetPlayerCharacterListResponse& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -22087,7 +22414,7 @@ class RequestGetPlayerCharacterListResponse : public ::google::protobuf::Message
   static inline const RequestGetPlayerCharacterListResponse* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(RequestGetPlayerCharacterListResponse* other);
 
@@ -22107,11 +22434,13 @@ class RequestGetPlayerCharacterListResponse : public ::google::protobuf::Message
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -22119,17 +22448,16 @@ class RequestGetPlayerCharacterListResponse : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2RequestMessage.RequestGetPlayerCharacterListResponse)
- private:
-
+private:
   ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2RequestMessage_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2RequestMessage_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2RequestMessage_2eproto();
 
@@ -22137,7 +22465,6 @@ class RequestGetPlayerCharacterListResponse : public ::google::protobuf::Message
   static RequestGetPlayerCharacterListResponse* default_instance_;
 };
 // ===================================================================
-
 
 // ===================================================================
 
@@ -22205,7 +22532,7 @@ inline ::std::string* RequestWaitForUserLogin::release_steam_id() {
     return NULL;
   } else {
     ::std::string* temp = steam_id_;
-    steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -22218,7 +22545,7 @@ inline void RequestWaitForUserLogin::set_allocated_steam_id(::std::string* steam
     steam_id_ = steam_id;
   } else {
     clear_has_steam_id();
-    steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.RequestWaitForUserLogin.steam_id)
 }
@@ -22429,7 +22756,7 @@ inline ::std::string* RequestWaitForUserLoginResponse::release_steam_id() {
     return NULL;
   } else {
     ::std::string* temp = steam_id_;
-    steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -22442,7 +22769,7 @@ inline void RequestWaitForUserLoginResponse::set_allocated_steam_id(::std::strin
     steam_id_ = steam_id;
   } else {
     clear_has_steam_id();
-    steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.RequestWaitForUserLoginResponse.steam_id)
 }
@@ -22494,12 +22821,12 @@ inline void PlayerStatusUploadConfig::add_player_data_mask(::google::protobuf::u
   player_data_mask_.Add(value);
   // @@protoc_insertion_point(field_add:DS2_Frpg2RequestMessage.PlayerStatusUploadConfig.player_data_mask)
 }
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+inline const ::google::protobuf::RepeatedField<::google::protobuf::uint32>&
 PlayerStatusUploadConfig::player_data_mask() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2RequestMessage.PlayerStatusUploadConfig.player_data_mask)
   return player_data_mask_;
 }
-inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+inline ::google::protobuf::RepeatedField<::google::protobuf::uint32>*
 PlayerStatusUploadConfig::mutable_player_data_mask() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2RequestMessage.PlayerStatusUploadConfig.player_data_mask)
   return &player_data_mask_;
@@ -22663,7 +22990,7 @@ inline ::std::string* AnnounceMessageData::release_header() {
     return NULL;
   } else {
     ::std::string* temp = header_;
-    header_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    header_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -22676,7 +23003,7 @@ inline void AnnounceMessageData::set_allocated_header(::std::string* header) {
     header_ = header;
   } else {
     clear_has_header();
-    header_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    header_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.AnnounceMessageData.header)
 }
@@ -22739,7 +23066,7 @@ inline ::std::string* AnnounceMessageData::release_message() {
     return NULL;
   } else {
     ::std::string* temp = message_;
-    message_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    message_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -22752,7 +23079,7 @@ inline void AnnounceMessageData::set_allocated_message(::std::string* message) {
     message_ = message;
   } else {
     clear_has_message();
-    message_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    message_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.AnnounceMessageData.message)
 }
@@ -22768,7 +23095,8 @@ inline void AnnounceMessageData::clear_has_datetime() {
   _has_bits_[0] &= ~0x00000020u;
 }
 inline void AnnounceMessageData::clear_datetime() {
-  if (datetime_ != NULL) datetime_->::DS2_Frpg2PlayerData::DateTime::Clear();
+  if (datetime_ != NULL)
+    datetime_->::DS2_Frpg2PlayerData::DateTime::Clear();
   clear_has_datetime();
 }
 inline const ::DS2_Frpg2PlayerData::DateTime& AnnounceMessageData::datetime() const {
@@ -22781,7 +23109,8 @@ inline const ::DS2_Frpg2PlayerData::DateTime& AnnounceMessageData::datetime() co
 }
 inline ::DS2_Frpg2PlayerData::DateTime* AnnounceMessageData::mutable_datetime() {
   set_has_datetime();
-  if (datetime_ == NULL) datetime_ = new ::DS2_Frpg2PlayerData::DateTime;
+  if (datetime_ == NULL)
+    datetime_ = new ::DS2_Frpg2PlayerData::DateTime;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2RequestMessage.AnnounceMessageData.datetime)
   return datetime_;
 }
@@ -22825,12 +23154,12 @@ inline ::DS2_Frpg2RequestMessage::AnnounceMessageData* AnnounceMessageDataList::
   // @@protoc_insertion_point(field_add:DS2_Frpg2RequestMessage.AnnounceMessageDataList.items)
   return items_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::AnnounceMessageData >&
+inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::AnnounceMessageData>&
 AnnounceMessageDataList::items() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2RequestMessage.AnnounceMessageDataList.items)
   return items_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::AnnounceMessageData >*
+inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::AnnounceMessageData>*
 AnnounceMessageDataList::mutable_items() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2RequestMessage.AnnounceMessageDataList.items)
   return &items_;
@@ -22927,7 +23256,8 @@ inline void RequestGetAnnounceMessageListResponse::clear_has_changes() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void RequestGetAnnounceMessageListResponse::clear_changes() {
-  if (changes_ != NULL) changes_->::DS2_Frpg2RequestMessage::AnnounceMessageDataList::Clear();
+  if (changes_ != NULL)
+    changes_->::DS2_Frpg2RequestMessage::AnnounceMessageDataList::Clear();
   clear_has_changes();
 }
 inline const ::DS2_Frpg2RequestMessage::AnnounceMessageDataList& RequestGetAnnounceMessageListResponse::changes() const {
@@ -22940,7 +23270,8 @@ inline const ::DS2_Frpg2RequestMessage::AnnounceMessageDataList& RequestGetAnnou
 }
 inline ::DS2_Frpg2RequestMessage::AnnounceMessageDataList* RequestGetAnnounceMessageListResponse::mutable_changes() {
   set_has_changes();
-  if (changes_ == NULL) changes_ = new ::DS2_Frpg2RequestMessage::AnnounceMessageDataList;
+  if (changes_ == NULL)
+    changes_ = new ::DS2_Frpg2RequestMessage::AnnounceMessageDataList;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2RequestMessage.RequestGetAnnounceMessageListResponse.changes)
   return changes_;
 }
@@ -22972,7 +23303,8 @@ inline void RequestGetAnnounceMessageListResponse::clear_has_notices() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void RequestGetAnnounceMessageListResponse::clear_notices() {
-  if (notices_ != NULL) notices_->::DS2_Frpg2RequestMessage::AnnounceMessageDataList::Clear();
+  if (notices_ != NULL)
+    notices_->::DS2_Frpg2RequestMessage::AnnounceMessageDataList::Clear();
   clear_has_notices();
 }
 inline const ::DS2_Frpg2RequestMessage::AnnounceMessageDataList& RequestGetAnnounceMessageListResponse::notices() const {
@@ -22985,7 +23317,8 @@ inline const ::DS2_Frpg2RequestMessage::AnnounceMessageDataList& RequestGetAnnou
 }
 inline ::DS2_Frpg2RequestMessage::AnnounceMessageDataList* RequestGetAnnounceMessageListResponse::mutable_notices() {
   set_has_notices();
-  if (notices_ == NULL) notices_ = new ::DS2_Frpg2RequestMessage::AnnounceMessageDataList;
+  if (notices_ == NULL)
+    notices_ = new ::DS2_Frpg2RequestMessage::AnnounceMessageDataList;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2RequestMessage.RequestGetAnnounceMessageListResponse.notices)
   return notices_;
 }
@@ -23034,7 +23367,7 @@ inline void PlayerInfoUploadConfigPushMessage::clear_push_message_id() {
 }
 inline ::DS2_Frpg2RequestMessage::PushMessageId PlayerInfoUploadConfigPushMessage::push_message_id() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PlayerInfoUploadConfigPushMessage.push_message_id)
-  return static_cast< ::DS2_Frpg2RequestMessage::PushMessageId >(push_message_id_);
+  return static_cast<::DS2_Frpg2RequestMessage::PushMessageId>(push_message_id_);
 }
 inline void PlayerInfoUploadConfigPushMessage::set_push_message_id(::DS2_Frpg2RequestMessage::PushMessageId value) {
   assert(::DS2_Frpg2RequestMessage::PushMessageId_IsValid(value));
@@ -23054,7 +23387,8 @@ inline void PlayerInfoUploadConfigPushMessage::clear_has_config() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void PlayerInfoUploadConfigPushMessage::clear_config() {
-  if (config_ != NULL) config_->::DS2_Frpg2RequestMessage::PlayerStatusUploadConfig::Clear();
+  if (config_ != NULL)
+    config_->::DS2_Frpg2RequestMessage::PlayerStatusUploadConfig::Clear();
   clear_has_config();
 }
 inline const ::DS2_Frpg2RequestMessage::PlayerStatusUploadConfig& PlayerInfoUploadConfigPushMessage::config() const {
@@ -23067,7 +23401,8 @@ inline const ::DS2_Frpg2RequestMessage::PlayerStatusUploadConfig& PlayerInfoUplo
 }
 inline ::DS2_Frpg2RequestMessage::PlayerStatusUploadConfig* PlayerInfoUploadConfigPushMessage::mutable_config() {
   set_has_config();
-  if (config_ == NULL) config_ = new ::DS2_Frpg2RequestMessage::PlayerStatusUploadConfig;
+  if (config_ == NULL)
+    config_ = new ::DS2_Frpg2RequestMessage::PlayerStatusUploadConfig;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2RequestMessage.PlayerInfoUploadConfigPushMessage.config)
   return config_;
 }
@@ -23183,12 +23518,12 @@ inline void RequestUpdateLoginPlayerCharacter::add_local_character_ids(::google:
   local_character_ids_.Add(value);
   // @@protoc_insertion_point(field_add:DS2_Frpg2RequestMessage.RequestUpdateLoginPlayerCharacter.local_character_ids)
 }
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+inline const ::google::protobuf::RepeatedField<::google::protobuf::uint32>&
 RequestUpdateLoginPlayerCharacter::local_character_ids() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2RequestMessage.RequestUpdateLoginPlayerCharacter.local_character_ids)
   return local_character_ids_;
 }
-inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+inline ::google::protobuf::RepeatedField<::google::protobuf::uint32>*
 RequestUpdateLoginPlayerCharacter::mutable_local_character_ids() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2RequestMessage.RequestUpdateLoginPlayerCharacter.local_character_ids)
   return &local_character_ids_;
@@ -23284,7 +23619,7 @@ inline ::std::string* RequestUpdatePlayerStatus::release_status() {
     return NULL;
   } else {
     ::std::string* temp = status_;
-    status_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    status_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -23297,7 +23632,7 @@ inline void RequestUpdatePlayerStatus::set_allocated_status(::std::string* statu
     status_ = status;
   } else {
     clear_has_status();
-    status_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    status_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.RequestUpdatePlayerStatus.status)
 }
@@ -23392,7 +23727,7 @@ inline ::std::string* RequestUpdatePlayerCharacter::release_character_data() {
     return NULL;
   } else {
     ::std::string* temp = character_data_;
-    character_data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    character_data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -23405,7 +23740,7 @@ inline void RequestUpdatePlayerCharacter::set_allocated_character_data(::std::st
     character_data_ = character_data;
   } else {
     clear_has_character_data();
-    character_data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    character_data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.RequestUpdatePlayerCharacter.character_data)
 }
@@ -23576,7 +23911,7 @@ inline ::std::string* RequestGetPlayerCharacterResponse::release_character_data(
     return NULL;
   } else {
     ::std::string* temp = character_data_;
-    character_data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    character_data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -23589,7 +23924,7 @@ inline void RequestGetPlayerCharacterResponse::set_allocated_character_data(::st
     character_data_ = character_data;
   } else {
     clear_has_character_data();
-    character_data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    character_data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.RequestGetPlayerCharacterResponse.character_data)
 }
@@ -23732,7 +24067,7 @@ inline ::std::string* RequestGetLoginPlayerCharacterResponse::release_character_
     return NULL;
   } else {
     ::std::string* temp = character_data_;
-    character_data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    character_data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -23745,7 +24080,7 @@ inline void RequestGetLoginPlayerCharacterResponse::set_allocated_character_data
     character_data_ = character_data;
   } else {
     clear_has_character_data();
-    character_data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    character_data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.RequestGetLoginPlayerCharacterResponse.character_data)
 }
@@ -23908,7 +24243,7 @@ inline ::std::string* BloodMessageData::release_message_data() {
     return NULL;
   } else {
     ::std::string* temp = message_data_;
-    message_data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    message_data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -23921,7 +24256,7 @@ inline void BloodMessageData::set_allocated_message_data(::std::string* message_
     message_data_ = message_data;
   } else {
     clear_has_message_data();
-    message_data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    message_data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.BloodMessageData.message_data)
 }
@@ -23984,7 +24319,7 @@ inline ::std::string* BloodMessageData::release_player_steam_id() {
     return NULL;
   } else {
     ::std::string* temp = player_steam_id_;
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -23997,7 +24332,7 @@ inline void BloodMessageData::set_allocated_player_steam_id(::std::string* playe
     player_steam_id_ = player_steam_id;
   } else {
     clear_has_player_steam_id();
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.BloodMessageData.player_steam_id)
 }
@@ -24084,7 +24419,7 @@ inline ::std::string* BloodMessageData::release_unknown_8() {
     return NULL;
   } else {
     ::std::string* temp = unknown_8_;
-    unknown_8_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    unknown_8_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -24097,7 +24432,7 @@ inline void BloodMessageData::set_allocated_unknown_8(::std::string* unknown_8) 
     unknown_8_ = unknown_8;
   } else {
     clear_has_unknown_8();
-    unknown_8_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    unknown_8_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.BloodMessageData.unknown_8)
 }
@@ -24392,7 +24727,7 @@ inline ::std::string* RequestCreateBloodMessage::release_message_data() {
     return NULL;
   } else {
     ::std::string* temp = message_data_;
-    message_data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    message_data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -24405,7 +24740,7 @@ inline void RequestCreateBloodMessage::set_allocated_message_data(::std::string*
     message_data_ = message_data;
   } else {
     clear_has_message_data();
-    message_data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    message_data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.RequestCreateBloodMessage.message_data)
 }
@@ -24589,12 +24924,12 @@ inline ::DS2_Frpg2RequestMessage::BloodMessageCellLimitData* RequestGetBloodMess
   // @@protoc_insertion_point(field_add:DS2_Frpg2RequestMessage.RequestGetBloodMessageList.search_areas)
   return search_areas_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::BloodMessageCellLimitData >&
+inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::BloodMessageCellLimitData>&
 RequestGetBloodMessageList::search_areas() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2RequestMessage.RequestGetBloodMessageList.search_areas)
   return search_areas_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::BloodMessageCellLimitData >*
+inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::BloodMessageCellLimitData>*
 RequestGetBloodMessageList::mutable_search_areas() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2RequestMessage.RequestGetBloodMessageList.search_areas)
   return &search_areas_;
@@ -24647,12 +24982,12 @@ inline ::DS2_Frpg2RequestMessage::BloodMessageData* RequestGetBloodMessageListRe
   // @@protoc_insertion_point(field_add:DS2_Frpg2RequestMessage.RequestGetBloodMessageListResponse.messages)
   return messages_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::BloodMessageData >&
+inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::BloodMessageData>&
 RequestGetBloodMessageListResponse::messages() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2RequestMessage.RequestGetBloodMessageListResponse.messages)
   return messages_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::BloodMessageData >*
+inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::BloodMessageData>*
 RequestGetBloodMessageListResponse::mutable_messages() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2RequestMessage.RequestGetBloodMessageListResponse.messages)
   return &messages_;
@@ -24886,7 +25221,7 @@ inline void PushRequestEvaluateBloodMessage::clear_push_message_id() {
 }
 inline ::DS2_Frpg2RequestMessage::PushMessageId PushRequestEvaluateBloodMessage::push_message_id() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PushRequestEvaluateBloodMessage.push_message_id)
-  return static_cast< ::DS2_Frpg2RequestMessage::PushMessageId >(push_message_id_);
+  return static_cast<::DS2_Frpg2RequestMessage::PushMessageId>(push_message_id_);
 }
 inline void PushRequestEvaluateBloodMessage::set_push_message_id(::DS2_Frpg2RequestMessage::PushMessageId value) {
   assert(::DS2_Frpg2RequestMessage::PushMessageId_IsValid(value));
@@ -25001,7 +25336,7 @@ inline ::std::string* PushRequestEvaluateBloodMessage::release_player_steam_id()
     return NULL;
   } else {
     ::std::string* temp = player_steam_id_;
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -25014,7 +25349,7 @@ inline void PushRequestEvaluateBloodMessage::set_allocated_player_steam_id(::std
     player_steam_id_ = player_steam_id;
   } else {
     clear_has_player_steam_id();
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.PushRequestEvaluateBloodMessage.player_steam_id)
 }
@@ -25253,7 +25588,7 @@ inline ::std::string* BloodstainInfo::release_data() {
     return NULL;
   } else {
     ::std::string* temp = data_;
-    data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -25266,7 +25601,7 @@ inline void BloodstainInfo::set_allocated_data(::std::string* data) {
     data_ = data;
   } else {
     clear_has_data();
-    data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.BloodstainInfo.data)
 }
@@ -25381,7 +25716,7 @@ inline ::std::string* RequestCreateBloodstain::release_data() {
     return NULL;
   } else {
     ::std::string* temp = data_;
-    data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -25394,7 +25729,7 @@ inline void RequestCreateBloodstain::set_allocated_data(::std::string* data) {
     data_ = data;
   } else {
     clear_has_data();
-    data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.RequestCreateBloodstain.data)
 }
@@ -25457,7 +25792,7 @@ inline ::std::string* RequestCreateBloodstain::release_ghost_data() {
     return NULL;
   } else {
     ::std::string* temp = ghost_data_;
-    ghost_data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    ghost_data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -25470,7 +25805,7 @@ inline void RequestCreateBloodstain::set_allocated_ghost_data(::std::string* gho
     ghost_data_ = ghost_data;
   } else {
     clear_has_ghost_data();
-    ghost_data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    ghost_data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.RequestCreateBloodstain.ghost_data)
 }
@@ -25546,12 +25881,12 @@ inline ::DS2_Frpg2RequestMessage::CellLimitData* RequestGetBloodstainList::add_s
   // @@protoc_insertion_point(field_add:DS2_Frpg2RequestMessage.RequestGetBloodstainList.search_areas)
   return search_areas_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::CellLimitData >&
+inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::CellLimitData>&
 RequestGetBloodstainList::search_areas() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2RequestMessage.RequestGetBloodstainList.search_areas)
   return search_areas_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::CellLimitData >*
+inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::CellLimitData>*
 RequestGetBloodstainList::mutable_search_areas() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2RequestMessage.RequestGetBloodstainList.search_areas)
   return &search_areas_;
@@ -25680,12 +26015,12 @@ inline ::DS2_Frpg2RequestMessage::BloodstainInfo* RequestGetBloodstainListRespon
   // @@protoc_insertion_point(field_add:DS2_Frpg2RequestMessage.RequestGetBloodstainListResponse.bloodstains)
   return bloodstains_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::BloodstainInfo >&
+inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::BloodstainInfo>&
 RequestGetBloodstainListResponse::bloodstains() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2RequestMessage.RequestGetBloodstainListResponse.bloodstains)
   return bloodstains_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::BloodstainInfo >*
+inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::BloodstainInfo>*
 RequestGetBloodstainListResponse::mutable_bloodstains() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2RequestMessage.RequestGetBloodstainListResponse.bloodstains)
   return &bloodstains_;
@@ -25901,7 +26236,7 @@ inline ::std::string* RequestGetDeadingGhostResponse::release_data() {
     return NULL;
   } else {
     ::std::string* temp = data_;
-    data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -25914,7 +26249,7 @@ inline void RequestGetDeadingGhostResponse::set_allocated_data(::std::string* da
     data_ = data;
   } else {
     clear_has_data();
-    data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.RequestGetDeadingGhostResponse.data)
 }
@@ -26253,7 +26588,7 @@ inline ::std::string* RequestNotifyDeath::release_field_8() {
     return NULL;
   } else {
     ::std::string* temp = field_8_;
-    field_8_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    field_8_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -26266,7 +26601,7 @@ inline void RequestNotifyDeath::set_allocated_field_8(::std::string* field_8) {
     field_8_ = field_8;
   } else {
     clear_has_field_8();
-    field_8_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    field_8_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.RequestNotifyDeath.field_8)
 }
@@ -26561,7 +26896,7 @@ inline ::std::string* RequestNotifyJoinGuestPlayer::release_field_9() {
     return NULL;
   } else {
     ::std::string* temp = field_9_;
-    field_9_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    field_9_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -26574,7 +26909,7 @@ inline void RequestNotifyJoinGuestPlayer::set_allocated_field_9(::std::string* f
     field_9_ = field_9;
   } else {
     clear_has_field_9();
-    field_9_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    field_9_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.RequestNotifyJoinGuestPlayer.field_9)
 }
@@ -26762,12 +27097,12 @@ inline ::DS2_Frpg2RequestMessage::RequestNotifyKillEnemy_Enemy_count* RequestNot
   // @@protoc_insertion_point(field_add:DS2_Frpg2RequestMessage.RequestNotifyKillEnemy.enemy_count)
   return enemy_count_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::RequestNotifyKillEnemy_Enemy_count >&
+inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::RequestNotifyKillEnemy_Enemy_count>&
 RequestNotifyKillEnemy::enemy_count() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2RequestMessage.RequestNotifyKillEnemy.enemy_count)
   return enemy_count_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::RequestNotifyKillEnemy_Enemy_count >*
+inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::RequestNotifyKillEnemy_Enemy_count>*
 RequestNotifyKillEnemy::mutable_enemy_count() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2RequestMessage.RequestNotifyKillEnemy.enemy_count)
   return &enemy_count_;
@@ -27465,7 +27800,7 @@ inline void PushRequestSummonSign::clear_push_message_id() {
 }
 inline ::DS2_Frpg2RequestMessage::PushMessageId PushRequestSummonSign::push_message_id() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PushRequestSummonSign.push_message_id)
-  return static_cast< ::DS2_Frpg2RequestMessage::PushMessageId >(push_message_id_);
+  return static_cast<::DS2_Frpg2RequestMessage::PushMessageId>(push_message_id_);
 }
 inline void PushRequestSummonSign::set_push_message_id(::DS2_Frpg2RequestMessage::PushMessageId value) {
   assert(::DS2_Frpg2RequestMessage::PushMessageId_IsValid(value));
@@ -27580,7 +27915,7 @@ inline ::std::string* PushRequestSummonSign::release_player_struct() {
     return NULL;
   } else {
     ::std::string* temp = player_struct_;
-    player_struct_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_struct_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -27593,7 +27928,7 @@ inline void PushRequestSummonSign::set_allocated_player_struct(::std::string* pl
     player_struct_ = player_struct;
   } else {
     clear_has_player_struct();
-    player_struct_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_struct_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.PushRequestSummonSign.player_struct)
 }
@@ -27656,7 +27991,7 @@ inline ::std::string* PushRequestSummonSign::release_player_steam_id() {
     return NULL;
   } else {
     ::std::string* temp = player_steam_id_;
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -27669,7 +28004,7 @@ inline void PushRequestSummonSign::set_allocated_player_steam_id(::std::string* 
     player_steam_id_ = player_steam_id;
   } else {
     clear_has_player_steam_id();
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.PushRequestSummonSign.player_steam_id)
 }
@@ -27713,7 +28048,8 @@ inline void RequestSummonSign::clear_has_sign_info() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void RequestSummonSign::clear_sign_info() {
-  if (sign_info_ != NULL) sign_info_->::DS2_Frpg2RequestMessage::SignInfo::Clear();
+  if (sign_info_ != NULL)
+    sign_info_->::DS2_Frpg2RequestMessage::SignInfo::Clear();
   clear_has_sign_info();
 }
 inline const ::DS2_Frpg2RequestMessage::SignInfo& RequestSummonSign::sign_info() const {
@@ -27726,7 +28062,8 @@ inline const ::DS2_Frpg2RequestMessage::SignInfo& RequestSummonSign::sign_info()
 }
 inline ::DS2_Frpg2RequestMessage::SignInfo* RequestSummonSign::mutable_sign_info() {
   set_has_sign_info();
-  if (sign_info_ == NULL) sign_info_ = new ::DS2_Frpg2RequestMessage::SignInfo;
+  if (sign_info_ == NULL)
+    sign_info_ = new ::DS2_Frpg2RequestMessage::SignInfo;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2RequestMessage.RequestSummonSign.sign_info)
   return sign_info_;
 }
@@ -27805,7 +28142,7 @@ inline ::std::string* RequestSummonSign::release_player_struct() {
     return NULL;
   } else {
     ::std::string* temp = player_struct_;
-    player_struct_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_struct_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -27818,7 +28155,7 @@ inline void RequestSummonSign::set_allocated_player_struct(::std::string* player
     player_struct_ = player_struct;
   } else {
     clear_has_player_struct();
-    player_struct_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_struct_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.RequestSummonSign.player_struct)
 }
@@ -27871,7 +28208,7 @@ inline void PushRequestRejectSign::clear_push_message_id() {
 }
 inline ::DS2_Frpg2RequestMessage::PushMessageId PushRequestRejectSign::push_message_id() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PushRequestRejectSign.push_message_id)
-  return static_cast< ::DS2_Frpg2RequestMessage::PushMessageId >(push_message_id_);
+  return static_cast<::DS2_Frpg2RequestMessage::PushMessageId>(push_message_id_);
 }
 inline void PushRequestRejectSign::set_push_message_id(::DS2_Frpg2RequestMessage::PushMessageId value) {
   assert(::DS2_Frpg2RequestMessage::PushMessageId_IsValid(value));
@@ -27891,7 +28228,8 @@ inline void PushRequestRejectSign::clear_has_sign_info() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void PushRequestRejectSign::clear_sign_info() {
-  if (sign_info_ != NULL) sign_info_->::DS2_Frpg2RequestMessage::SignInfo::Clear();
+  if (sign_info_ != NULL)
+    sign_info_->::DS2_Frpg2RequestMessage::SignInfo::Clear();
   clear_has_sign_info();
 }
 inline const ::DS2_Frpg2RequestMessage::SignInfo& PushRequestRejectSign::sign_info() const {
@@ -27904,7 +28242,8 @@ inline const ::DS2_Frpg2RequestMessage::SignInfo& PushRequestRejectSign::sign_in
 }
 inline ::DS2_Frpg2RequestMessage::SignInfo* PushRequestRejectSign::mutable_sign_info() {
   set_has_sign_info();
-  if (sign_info_ == NULL) sign_info_ = new ::DS2_Frpg2RequestMessage::SignInfo;
+  if (sign_info_ == NULL)
+    sign_info_ = new ::DS2_Frpg2RequestMessage::SignInfo;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2RequestMessage.PushRequestRejectSign.sign_info)
   return sign_info_;
 }
@@ -27941,7 +28280,7 @@ inline void PushRequestRejectSign::clear_error() {
 }
 inline ::DS2_Frpg2RequestMessage::SummonErrorId PushRequestRejectSign::error() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PushRequestRejectSign.error)
-  return static_cast< ::DS2_Frpg2RequestMessage::SummonErrorId >(error_);
+  return static_cast<::DS2_Frpg2RequestMessage::SummonErrorId>(error_);
 }
 inline void PushRequestRejectSign::set_error(::DS2_Frpg2RequestMessage::SummonErrorId value) {
   assert(::DS2_Frpg2RequestMessage::SummonErrorId_IsValid(value));
@@ -28008,7 +28347,7 @@ inline ::std::string* PushRequestRejectSign::release_player_steam_id() {
     return NULL;
   } else {
     ::std::string* temp = player_steam_id_;
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -28021,7 +28360,7 @@ inline void PushRequestRejectSign::set_allocated_player_steam_id(::std::string* 
     player_steam_id_ = player_steam_id;
   } else {
     clear_has_player_steam_id();
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.PushRequestRejectSign.player_steam_id)
 }
@@ -28046,7 +28385,7 @@ inline void PushRequestRemoveSign::clear_push_message_id() {
 }
 inline ::DS2_Frpg2RequestMessage::PushMessageId PushRequestRemoveSign::push_message_id() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PushRequestRemoveSign.push_message_id)
-  return static_cast< ::DS2_Frpg2RequestMessage::PushMessageId >(push_message_id_);
+  return static_cast<::DS2_Frpg2RequestMessage::PushMessageId>(push_message_id_);
 }
 inline void PushRequestRemoveSign::set_push_message_id(::DS2_Frpg2RequestMessage::PushMessageId value) {
   assert(::DS2_Frpg2RequestMessage::PushMessageId_IsValid(value));
@@ -28161,7 +28500,7 @@ inline ::std::string* PushRequestRemoveSign::release_player_steam_id() {
     return NULL;
   } else {
     ::std::string* temp = player_steam_id_;
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -28174,7 +28513,7 @@ inline void PushRequestRemoveSign::set_allocated_player_steam_id(::std::string* 
     player_steam_id_ = player_steam_id;
   } else {
     clear_has_player_steam_id();
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.PushRequestRemoveSign.player_steam_id)
 }
@@ -28218,7 +28557,8 @@ inline void RequestCreateSign::clear_has_matching_parameter() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void RequestCreateSign::clear_matching_parameter() {
-  if (matching_parameter_ != NULL) matching_parameter_->::DS2_Frpg2RequestMessage::MatchingParameter::Clear();
+  if (matching_parameter_ != NULL)
+    matching_parameter_->::DS2_Frpg2RequestMessage::MatchingParameter::Clear();
   clear_has_matching_parameter();
 }
 inline const ::DS2_Frpg2RequestMessage::MatchingParameter& RequestCreateSign::matching_parameter() const {
@@ -28231,7 +28571,8 @@ inline const ::DS2_Frpg2RequestMessage::MatchingParameter& RequestCreateSign::ma
 }
 inline ::DS2_Frpg2RequestMessage::MatchingParameter* RequestCreateSign::mutable_matching_parameter() {
   set_has_matching_parameter();
-  if (matching_parameter_ == NULL) matching_parameter_ = new ::DS2_Frpg2RequestMessage::MatchingParameter;
+  if (matching_parameter_ == NULL)
+    matching_parameter_ = new ::DS2_Frpg2RequestMessage::MatchingParameter;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2RequestMessage.RequestCreateSign.matching_parameter)
   return matching_parameter_;
 }
@@ -28310,7 +28651,7 @@ inline ::std::string* RequestCreateSign::release_player_struct() {
     return NULL;
   } else {
     ::std::string* temp = player_struct_;
-    player_struct_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_struct_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -28323,7 +28664,7 @@ inline void RequestCreateSign::set_allocated_player_struct(::std::string* player
     player_struct_ = player_struct;
   } else {
     clear_has_player_struct();
-    player_struct_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_struct_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.RequestCreateSign.player_struct)
 }
@@ -28451,12 +28792,12 @@ inline ::DS2_Frpg2RequestMessage::SignCellInfo* RequestGetSignList::add_search_a
   // @@protoc_insertion_point(field_add:DS2_Frpg2RequestMessage.RequestGetSignList.search_areas)
   return search_areas_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::SignCellInfo >&
+inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::SignCellInfo>&
 RequestGetSignList::search_areas() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2RequestMessage.RequestGetSignList.search_areas)
   return search_areas_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::SignCellInfo >*
+inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::SignCellInfo>*
 RequestGetSignList::mutable_search_areas() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2RequestMessage.RequestGetSignList.search_areas)
   return &search_areas_;
@@ -28497,7 +28838,8 @@ inline void RequestGetSignList::clear_has_matching_parameter() {
   _has_bits_[0] &= ~0x00000008u;
 }
 inline void RequestGetSignList::clear_matching_parameter() {
-  if (matching_parameter_ != NULL) matching_parameter_->::DS2_Frpg2RequestMessage::MatchingParameter::Clear();
+  if (matching_parameter_ != NULL)
+    matching_parameter_->::DS2_Frpg2RequestMessage::MatchingParameter::Clear();
   clear_has_matching_parameter();
 }
 inline const ::DS2_Frpg2RequestMessage::MatchingParameter& RequestGetSignList::matching_parameter() const {
@@ -28510,7 +28852,8 @@ inline const ::DS2_Frpg2RequestMessage::MatchingParameter& RequestGetSignList::m
 }
 inline ::DS2_Frpg2RequestMessage::MatchingParameter* RequestGetSignList::mutable_matching_parameter() {
   set_has_matching_parameter();
-  if (matching_parameter_ == NULL) matching_parameter_ = new ::DS2_Frpg2RequestMessage::MatchingParameter;
+  if (matching_parameter_ == NULL)
+    matching_parameter_ = new ::DS2_Frpg2RequestMessage::MatchingParameter;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2RequestMessage.RequestGetSignList.matching_parameter)
   return matching_parameter_;
 }
@@ -28626,12 +28969,12 @@ inline ::DS2_Frpg2RequestMessage::SignInfo* RequestGetSignListResponse::add_sign
   // @@protoc_insertion_point(field_add:DS2_Frpg2RequestMessage.RequestGetSignListResponse.sign_info)
   return sign_info_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::SignInfo >&
+inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::SignInfo>&
 RequestGetSignListResponse::sign_info() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2RequestMessage.RequestGetSignListResponse.sign_info)
   return sign_info_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::SignInfo >*
+inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::SignInfo>*
 RequestGetSignListResponse::mutable_sign_info() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2RequestMessage.RequestGetSignListResponse.sign_info)
   return &sign_info_;
@@ -28656,12 +28999,12 @@ inline ::DS2_Frpg2RequestMessage::SignData* RequestGetSignListResponse::add_sign
   // @@protoc_insertion_point(field_add:DS2_Frpg2RequestMessage.RequestGetSignListResponse.sign_data)
   return sign_data_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::SignData >&
+inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::SignData>&
 RequestGetSignListResponse::sign_data() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2RequestMessage.RequestGetSignListResponse.sign_data)
   return sign_data_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::SignData >*
+inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::SignData>*
 RequestGetSignListResponse::mutable_sign_data() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2RequestMessage.RequestGetSignListResponse.sign_data)
   return &sign_data_;
@@ -28735,7 +29078,7 @@ inline void RequestRejectSign::clear_error() {
 }
 inline ::DS2_Frpg2RequestMessage::SummonErrorId RequestRejectSign::error() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.RequestRejectSign.error)
-  return static_cast< ::DS2_Frpg2RequestMessage::SummonErrorId >(error_);
+  return static_cast<::DS2_Frpg2RequestMessage::SummonErrorId>(error_);
 }
 inline void RequestRejectSign::set_error(::DS2_Frpg2RequestMessage::SummonErrorId value) {
   assert(::DS2_Frpg2RequestMessage::SummonErrorId_IsValid(value));
@@ -29003,12 +29346,12 @@ inline ::DS2_Frpg2RequestMessage::SignInfo* SignCellInfo::add_local_signs() {
   // @@protoc_insertion_point(field_add:DS2_Frpg2RequestMessage.SignCellInfo.local_signs)
   return local_signs_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::SignInfo >&
+inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::SignInfo>&
 SignCellInfo::local_signs() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2RequestMessage.SignCellInfo.local_signs)
   return local_signs_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::SignInfo >*
+inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::SignInfo>*
 SignCellInfo::mutable_local_signs() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2RequestMessage.SignCellInfo.local_signs)
   return &local_signs_;
@@ -29105,7 +29448,8 @@ inline void SignData::clear_has_sign_info() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void SignData::clear_sign_info() {
-  if (sign_info_ != NULL) sign_info_->::DS2_Frpg2RequestMessage::SignInfo::Clear();
+  if (sign_info_ != NULL)
+    sign_info_->::DS2_Frpg2RequestMessage::SignInfo::Clear();
   clear_has_sign_info();
 }
 inline const ::DS2_Frpg2RequestMessage::SignInfo& SignData::sign_info() const {
@@ -29118,7 +29462,8 @@ inline const ::DS2_Frpg2RequestMessage::SignInfo& SignData::sign_info() const {
 }
 inline ::DS2_Frpg2RequestMessage::SignInfo* SignData::mutable_sign_info() {
   set_has_sign_info();
-  if (sign_info_ == NULL) sign_info_ = new ::DS2_Frpg2RequestMessage::SignInfo;
+  if (sign_info_ == NULL)
+    sign_info_ = new ::DS2_Frpg2RequestMessage::SignInfo;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2RequestMessage.SignData.sign_info)
   return sign_info_;
 }
@@ -29174,7 +29519,8 @@ inline void SignData::clear_has_matching_parameter() {
   _has_bits_[0] &= ~0x00000004u;
 }
 inline void SignData::clear_matching_parameter() {
-  if (matching_parameter_ != NULL) matching_parameter_->::DS2_Frpg2RequestMessage::MatchingParameter::Clear();
+  if (matching_parameter_ != NULL)
+    matching_parameter_->::DS2_Frpg2RequestMessage::MatchingParameter::Clear();
   clear_has_matching_parameter();
 }
 inline const ::DS2_Frpg2RequestMessage::MatchingParameter& SignData::matching_parameter() const {
@@ -29187,7 +29533,8 @@ inline const ::DS2_Frpg2RequestMessage::MatchingParameter& SignData::matching_pa
 }
 inline ::DS2_Frpg2RequestMessage::MatchingParameter* SignData::mutable_matching_parameter() {
   set_has_matching_parameter();
-  if (matching_parameter_ == NULL) matching_parameter_ = new ::DS2_Frpg2RequestMessage::MatchingParameter;
+  if (matching_parameter_ == NULL)
+    matching_parameter_ = new ::DS2_Frpg2RequestMessage::MatchingParameter;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2RequestMessage.SignData.matching_parameter)
   return matching_parameter_;
 }
@@ -29266,7 +29613,7 @@ inline ::std::string* SignData::release_player_struct() {
     return NULL;
   } else {
     ::std::string* temp = player_struct_;
-    player_struct_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_struct_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -29279,7 +29626,7 @@ inline void SignData::set_allocated_player_struct(::std::string* player_struct) 
     player_struct_ = player_struct;
   } else {
     clear_has_player_struct();
-    player_struct_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_struct_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.SignData.player_struct)
 }
@@ -29342,7 +29689,7 @@ inline ::std::string* SignData::release_player_steam_id() {
     return NULL;
   } else {
     ::std::string* temp = player_steam_id_;
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -29355,7 +29702,7 @@ inline void SignData::set_allocated_player_steam_id(::std::string* player_steam_
     player_steam_id_ = player_steam_id;
   } else {
     clear_has_player_steam_id();
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.SignData.player_steam_id)
 }
@@ -29400,7 +29747,7 @@ inline void SignData::clear_sign_type() {
 }
 inline ::DS2_Frpg2RequestMessage::SignType SignData::sign_type() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.SignData.sign_type)
-  return static_cast< ::DS2_Frpg2RequestMessage::SignType >(sign_type_);
+  return static_cast<::DS2_Frpg2RequestMessage::SignType>(sign_type_);
 }
 inline void SignData::set_sign_type(::DS2_Frpg2RequestMessage::SignType value) {
   assert(::DS2_Frpg2RequestMessage::SignType_IsValid(value));
@@ -29424,7 +29771,8 @@ inline void RequestGetRightMatchingArea::clear_has_matching_parameter() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void RequestGetRightMatchingArea::clear_matching_parameter() {
-  if (matching_parameter_ != NULL) matching_parameter_->::DS2_Frpg2RequestMessage::MatchingParameter::Clear();
+  if (matching_parameter_ != NULL)
+    matching_parameter_->::DS2_Frpg2RequestMessage::MatchingParameter::Clear();
   clear_has_matching_parameter();
 }
 inline const ::DS2_Frpg2RequestMessage::MatchingParameter& RequestGetRightMatchingArea::matching_parameter() const {
@@ -29437,7 +29785,8 @@ inline const ::DS2_Frpg2RequestMessage::MatchingParameter& RequestGetRightMatchi
 }
 inline ::DS2_Frpg2RequestMessage::MatchingParameter* RequestGetRightMatchingArea::mutable_matching_parameter() {
   set_has_matching_parameter();
-  if (matching_parameter_ == NULL) matching_parameter_ = new ::DS2_Frpg2RequestMessage::MatchingParameter;
+  if (matching_parameter_ == NULL)
+    matching_parameter_ = new ::DS2_Frpg2RequestMessage::MatchingParameter;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2RequestMessage.RequestGetRightMatchingArea.matching_parameter)
   return matching_parameter_;
 }
@@ -29533,12 +29882,12 @@ inline ::DS2_Frpg2RequestMessage::RequestGetRightMatchingAreaResponse_Area_info*
   // @@protoc_insertion_point(field_add:DS2_Frpg2RequestMessage.RequestGetRightMatchingAreaResponse.area_info)
   return area_info_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::RequestGetRightMatchingAreaResponse_Area_info >&
+inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::RequestGetRightMatchingAreaResponse_Area_info>&
 RequestGetRightMatchingAreaResponse::area_info() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2RequestMessage.RequestGetRightMatchingAreaResponse.area_info)
   return area_info_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::RequestGetRightMatchingAreaResponse_Area_info >*
+inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::RequestGetRightMatchingAreaResponse_Area_info>*
 RequestGetRightMatchingAreaResponse::mutable_area_info() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2RequestMessage.RequestGetRightMatchingAreaResponse.area_info)
   return &area_info_;
@@ -29564,7 +29913,7 @@ inline void PushRequestRejectMirrorKnightSign::clear_push_message_id() {
 }
 inline ::DS2_Frpg2RequestMessage::PushMessageId PushRequestRejectMirrorKnightSign::push_message_id() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PushRequestRejectMirrorKnightSign.push_message_id)
-  return static_cast< ::DS2_Frpg2RequestMessage::PushMessageId >(push_message_id_);
+  return static_cast<::DS2_Frpg2RequestMessage::PushMessageId>(push_message_id_);
 }
 inline void PushRequestRejectMirrorKnightSign::set_push_message_id(::DS2_Frpg2RequestMessage::PushMessageId value) {
   assert(::DS2_Frpg2RequestMessage::PushMessageId_IsValid(value));
@@ -29584,7 +29933,8 @@ inline void PushRequestRejectMirrorKnightSign::clear_has_sign_info() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void PushRequestRejectMirrorKnightSign::clear_sign_info() {
-  if (sign_info_ != NULL) sign_info_->::DS2_Frpg2RequestMessage::SignInfo::Clear();
+  if (sign_info_ != NULL)
+    sign_info_->::DS2_Frpg2RequestMessage::SignInfo::Clear();
   clear_has_sign_info();
 }
 inline const ::DS2_Frpg2RequestMessage::SignInfo& PushRequestRejectMirrorKnightSign::sign_info() const {
@@ -29597,7 +29947,8 @@ inline const ::DS2_Frpg2RequestMessage::SignInfo& PushRequestRejectMirrorKnightS
 }
 inline ::DS2_Frpg2RequestMessage::SignInfo* PushRequestRejectMirrorKnightSign::mutable_sign_info() {
   set_has_sign_info();
-  if (sign_info_ == NULL) sign_info_ = new ::DS2_Frpg2RequestMessage::SignInfo;
+  if (sign_info_ == NULL)
+    sign_info_ = new ::DS2_Frpg2RequestMessage::SignInfo;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2RequestMessage.PushRequestRejectMirrorKnightSign.sign_info)
   return sign_info_;
 }
@@ -29634,7 +29985,7 @@ inline void PushRequestRejectMirrorKnightSign::clear_error() {
 }
 inline ::DS2_Frpg2RequestMessage::SummonErrorId PushRequestRejectMirrorKnightSign::error() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PushRequestRejectMirrorKnightSign.error)
-  return static_cast< ::DS2_Frpg2RequestMessage::SummonErrorId >(error_);
+  return static_cast<::DS2_Frpg2RequestMessage::SummonErrorId>(error_);
 }
 inline void PushRequestRejectMirrorKnightSign::set_error(::DS2_Frpg2RequestMessage::SummonErrorId value) {
   assert(::DS2_Frpg2RequestMessage::SummonErrorId_IsValid(value));
@@ -29701,7 +30052,7 @@ inline ::std::string* PushRequestRejectMirrorKnightSign::release_player_steam_id
     return NULL;
   } else {
     ::std::string* temp = player_steam_id_;
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -29714,7 +30065,7 @@ inline void PushRequestRejectMirrorKnightSign::set_allocated_player_steam_id(::s
     player_steam_id_ = player_steam_id;
   } else {
     clear_has_player_steam_id();
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.PushRequestRejectMirrorKnightSign.player_steam_id)
 }
@@ -29739,7 +30090,7 @@ inline void PushRequestRemoveMirrorKnightSign::clear_push_message_id() {
 }
 inline ::DS2_Frpg2RequestMessage::PushMessageId PushRequestRemoveMirrorKnightSign::push_message_id() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PushRequestRemoveMirrorKnightSign.push_message_id)
-  return static_cast< ::DS2_Frpg2RequestMessage::PushMessageId >(push_message_id_);
+  return static_cast<::DS2_Frpg2RequestMessage::PushMessageId>(push_message_id_);
 }
 inline void PushRequestRemoveMirrorKnightSign::set_push_message_id(::DS2_Frpg2RequestMessage::PushMessageId value) {
   assert(::DS2_Frpg2RequestMessage::PushMessageId_IsValid(value));
@@ -29854,7 +30205,7 @@ inline ::std::string* PushRequestRemoveMirrorKnightSign::release_player_steam_id
     return NULL;
   } else {
     ::std::string* temp = player_steam_id_;
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -29867,7 +30218,7 @@ inline void PushRequestRemoveMirrorKnightSign::set_allocated_player_steam_id(::s
     player_steam_id_ = player_steam_id;
   } else {
     clear_has_player_steam_id();
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.PushRequestRemoveMirrorKnightSign.player_steam_id)
 }
@@ -29892,7 +30243,7 @@ inline void PushRequestSummonMirrorKnightSign::clear_push_message_id() {
 }
 inline ::DS2_Frpg2RequestMessage::PushMessageId PushRequestSummonMirrorKnightSign::push_message_id() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PushRequestSummonMirrorKnightSign.push_message_id)
-  return static_cast< ::DS2_Frpg2RequestMessage::PushMessageId >(push_message_id_);
+  return static_cast<::DS2_Frpg2RequestMessage::PushMessageId>(push_message_id_);
 }
 inline void PushRequestSummonMirrorKnightSign::set_push_message_id(::DS2_Frpg2RequestMessage::PushMessageId value) {
   assert(::DS2_Frpg2RequestMessage::PushMessageId_IsValid(value));
@@ -30007,7 +30358,7 @@ inline ::std::string* PushRequestSummonMirrorKnightSign::release_player_struct()
     return NULL;
   } else {
     ::std::string* temp = player_struct_;
-    player_struct_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_struct_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -30020,7 +30371,7 @@ inline void PushRequestSummonMirrorKnightSign::set_allocated_player_struct(::std
     player_struct_ = player_struct;
   } else {
     clear_has_player_struct();
-    player_struct_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_struct_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.PushRequestSummonMirrorKnightSign.player_struct)
 }
@@ -30083,7 +30434,7 @@ inline ::std::string* PushRequestSummonMirrorKnightSign::release_player_steam_id
     return NULL;
   } else {
     ::std::string* temp = player_steam_id_;
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -30096,7 +30447,7 @@ inline void PushRequestSummonMirrorKnightSign::set_allocated_player_steam_id(::s
     player_steam_id_ = player_steam_id;
   } else {
     clear_has_player_steam_id();
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.PushRequestSummonMirrorKnightSign.player_steam_id)
 }
@@ -30116,7 +30467,8 @@ inline void RequestCreateMirrorKnightSign::clear_has_matching_parameter() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void RequestCreateMirrorKnightSign::clear_matching_parameter() {
-  if (matching_parameter_ != NULL) matching_parameter_->::DS2_Frpg2RequestMessage::MatchingParameter::Clear();
+  if (matching_parameter_ != NULL)
+    matching_parameter_->::DS2_Frpg2RequestMessage::MatchingParameter::Clear();
   clear_has_matching_parameter();
 }
 inline const ::DS2_Frpg2RequestMessage::MatchingParameter& RequestCreateMirrorKnightSign::matching_parameter() const {
@@ -30129,7 +30481,8 @@ inline const ::DS2_Frpg2RequestMessage::MatchingParameter& RequestCreateMirrorKn
 }
 inline ::DS2_Frpg2RequestMessage::MatchingParameter* RequestCreateMirrorKnightSign::mutable_matching_parameter() {
   set_has_matching_parameter();
-  if (matching_parameter_ == NULL) matching_parameter_ = new ::DS2_Frpg2RequestMessage::MatchingParameter;
+  if (matching_parameter_ == NULL)
+    matching_parameter_ = new ::DS2_Frpg2RequestMessage::MatchingParameter;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2RequestMessage.RequestCreateMirrorKnightSign.matching_parameter)
   return matching_parameter_;
 }
@@ -30208,7 +30561,7 @@ inline ::std::string* RequestCreateMirrorKnightSign::release_data() {
     return NULL;
   } else {
     ::std::string* temp = data_;
-    data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -30221,7 +30574,7 @@ inline void RequestCreateMirrorKnightSign::set_allocated_data(::std::string* dat
     data_ = data;
   } else {
     clear_has_data();
-    data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.RequestCreateMirrorKnightSign.data)
 }
@@ -30293,7 +30646,8 @@ inline void RequestGetMirrorKnightSignList::clear_has_matching_parameter() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void RequestGetMirrorKnightSignList::clear_matching_parameter() {
-  if (matching_parameter_ != NULL) matching_parameter_->::DS2_Frpg2RequestMessage::MatchingParameter::Clear();
+  if (matching_parameter_ != NULL)
+    matching_parameter_->::DS2_Frpg2RequestMessage::MatchingParameter::Clear();
   clear_has_matching_parameter();
 }
 inline const ::DS2_Frpg2RequestMessage::MatchingParameter& RequestGetMirrorKnightSignList::matching_parameter() const {
@@ -30306,7 +30660,8 @@ inline const ::DS2_Frpg2RequestMessage::MatchingParameter& RequestGetMirrorKnigh
 }
 inline ::DS2_Frpg2RequestMessage::MatchingParameter* RequestGetMirrorKnightSignList::mutable_matching_parameter() {
   set_has_matching_parameter();
-  if (matching_parameter_ == NULL) matching_parameter_ = new ::DS2_Frpg2RequestMessage::MatchingParameter;
+  if (matching_parameter_ == NULL)
+    matching_parameter_ = new ::DS2_Frpg2RequestMessage::MatchingParameter;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2RequestMessage.RequestGetMirrorKnightSignList.matching_parameter)
   return matching_parameter_;
 }
@@ -30350,12 +30705,12 @@ inline ::DS2_Frpg2RequestMessage::SignData* RequestGetMirrorKnightSignListRespon
   // @@protoc_insertion_point(field_add:DS2_Frpg2RequestMessage.RequestGetMirrorKnightSignListResponse.sign_data)
   return sign_data_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::SignData >&
+inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::SignData>&
 RequestGetMirrorKnightSignListResponse::sign_data() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2RequestMessage.RequestGetMirrorKnightSignListResponse.sign_data)
   return sign_data_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::SignData >*
+inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::SignData>*
 RequestGetMirrorKnightSignListResponse::mutable_sign_data() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2RequestMessage.RequestGetMirrorKnightSignListResponse.sign_data)
   return &sign_data_;
@@ -30429,7 +30784,7 @@ inline void RequestRejectMirrorKnightSign::clear_error() {
 }
 inline ::DS2_Frpg2RequestMessage::SummonErrorId RequestRejectMirrorKnightSign::error() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.RequestRejectMirrorKnightSign.error)
-  return static_cast< ::DS2_Frpg2RequestMessage::SummonErrorId >(error_);
+  return static_cast<::DS2_Frpg2RequestMessage::SummonErrorId>(error_);
 }
 inline void RequestRejectMirrorKnightSign::set_error(::DS2_Frpg2RequestMessage::SummonErrorId value) {
   assert(::DS2_Frpg2RequestMessage::SummonErrorId_IsValid(value));
@@ -30537,7 +30892,8 @@ inline void RequestSummonMirrorKnightSign::clear_has_sign_info() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void RequestSummonMirrorKnightSign::clear_sign_info() {
-  if (sign_info_ != NULL) sign_info_->::DS2_Frpg2RequestMessage::SignInfo::Clear();
+  if (sign_info_ != NULL)
+    sign_info_->::DS2_Frpg2RequestMessage::SignInfo::Clear();
   clear_has_sign_info();
 }
 inline const ::DS2_Frpg2RequestMessage::SignInfo& RequestSummonMirrorKnightSign::sign_info() const {
@@ -30550,7 +30906,8 @@ inline const ::DS2_Frpg2RequestMessage::SignInfo& RequestSummonMirrorKnightSign:
 }
 inline ::DS2_Frpg2RequestMessage::SignInfo* RequestSummonMirrorKnightSign::mutable_sign_info() {
   set_has_sign_info();
-  if (sign_info_ == NULL) sign_info_ = new ::DS2_Frpg2RequestMessage::SignInfo;
+  if (sign_info_ == NULL)
+    sign_info_ = new ::DS2_Frpg2RequestMessage::SignInfo;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2RequestMessage.RequestSummonMirrorKnightSign.sign_info)
   return sign_info_;
 }
@@ -30629,7 +30986,7 @@ inline ::std::string* RequestSummonMirrorKnightSign::release_player_struct() {
     return NULL;
   } else {
     ::std::string* temp = player_struct_;
-    player_struct_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_struct_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -30642,7 +30999,7 @@ inline void RequestSummonMirrorKnightSign::set_allocated_player_struct(::std::st
     player_struct_ = player_struct;
   } else {
     clear_has_player_struct();
-    player_struct_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_struct_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.RequestSummonMirrorKnightSign.player_struct)
 }
@@ -30769,7 +31126,7 @@ inline ::std::string* BreakInTargetData::release_steam_id() {
     return NULL;
   } else {
     ::std::string* temp = steam_id_;
-    steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -30782,7 +31139,7 @@ inline void BreakInTargetData::set_allocated_steam_id(::std::string* steam_id) {
     steam_id_ = steam_id;
   } else {
     clear_has_steam_id();
-    steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.BreakInTargetData.steam_id)
 }
@@ -30807,7 +31164,7 @@ inline void PushRequestAllowBreakInTarget::clear_push_message_id() {
 }
 inline ::DS2_Frpg2RequestMessage::PushMessageId PushRequestAllowBreakInTarget::push_message_id() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PushRequestAllowBreakInTarget.push_message_id)
-  return static_cast< ::DS2_Frpg2RequestMessage::PushMessageId >(push_message_id_);
+  return static_cast<::DS2_Frpg2RequestMessage::PushMessageId>(push_message_id_);
 }
 inline void PushRequestAllowBreakInTarget::set_push_message_id(::DS2_Frpg2RequestMessage::PushMessageId value) {
   assert(::DS2_Frpg2RequestMessage::PushMessageId_IsValid(value));
@@ -30898,7 +31255,7 @@ inline ::std::string* PushRequestAllowBreakInTarget::release_player_struct() {
     return NULL;
   } else {
     ::std::string* temp = player_struct_;
-    player_struct_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_struct_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -30911,7 +31268,7 @@ inline void PushRequestAllowBreakInTarget::set_allocated_player_struct(::std::st
     player_struct_ = player_struct;
   } else {
     clear_has_player_struct();
-    player_struct_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_struct_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.PushRequestAllowBreakInTarget.player_struct)
 }
@@ -30960,7 +31317,7 @@ inline void PushRequestBreakInTarget::clear_push_message_id() {
 }
 inline ::DS2_Frpg2RequestMessage::PushMessageId PushRequestBreakInTarget::push_message_id() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PushRequestBreakInTarget.push_message_id)
-  return static_cast< ::DS2_Frpg2RequestMessage::PushMessageId >(push_message_id_);
+  return static_cast<::DS2_Frpg2RequestMessage::PushMessageId>(push_message_id_);
 }
 inline void PushRequestBreakInTarget::set_push_message_id(::DS2_Frpg2RequestMessage::PushMessageId value) {
   assert(::DS2_Frpg2RequestMessage::PushMessageId_IsValid(value));
@@ -31051,7 +31408,7 @@ inline ::std::string* PushRequestBreakInTarget::release_steam_id() {
     return NULL;
   } else {
     ::std::string* temp = steam_id_;
-    steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -31064,7 +31421,7 @@ inline void PushRequestBreakInTarget::set_allocated_steam_id(::std::string* stea
     steam_id_ = steam_id;
   } else {
     clear_has_steam_id();
-    steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.PushRequestBreakInTarget.steam_id)
 }
@@ -31085,7 +31442,7 @@ inline void PushRequestBreakInTarget::clear_type() {
 }
 inline ::DS2_Frpg2RequestMessage::BreakInType PushRequestBreakInTarget::type() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PushRequestBreakInTarget.type)
-  return static_cast< ::DS2_Frpg2RequestMessage::BreakInType >(type_);
+  return static_cast<::DS2_Frpg2RequestMessage::BreakInType>(type_);
 }
 inline void PushRequestBreakInTarget::set_type(::DS2_Frpg2RequestMessage::BreakInType value) {
   assert(::DS2_Frpg2RequestMessage::BreakInType_IsValid(value));
@@ -31162,7 +31519,7 @@ inline void PushRequestRejectBreakInTarget::clear_push_message_id() {
 }
 inline ::DS2_Frpg2RequestMessage::PushMessageId PushRequestRejectBreakInTarget::push_message_id() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PushRequestRejectBreakInTarget.push_message_id)
-  return static_cast< ::DS2_Frpg2RequestMessage::PushMessageId >(push_message_id_);
+  return static_cast<::DS2_Frpg2RequestMessage::PushMessageId>(push_message_id_);
 }
 inline void PushRequestRejectBreakInTarget::set_push_message_id(::DS2_Frpg2RequestMessage::PushMessageId value) {
   assert(::DS2_Frpg2RequestMessage::PushMessageId_IsValid(value));
@@ -31277,7 +31634,7 @@ inline ::std::string* PushRequestRejectBreakInTarget::release_steam_id() {
     return NULL;
   } else {
     ::std::string* temp = steam_id_;
-    steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -31290,7 +31647,7 @@ inline void PushRequestRejectBreakInTarget::set_allocated_steam_id(::std::string
     steam_id_ = steam_id;
   } else {
     clear_has_steam_id();
-    steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.PushRequestRejectBreakInTarget.steam_id)
 }
@@ -31415,7 +31772,7 @@ inline void RequestBreakInTarget::clear_type() {
 }
 inline ::DS2_Frpg2RequestMessage::BreakInType RequestBreakInTarget::type() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.RequestBreakInTarget.type)
-  return static_cast< ::DS2_Frpg2RequestMessage::BreakInType >(type_);
+  return static_cast<::DS2_Frpg2RequestMessage::BreakInType>(type_);
 }
 inline void RequestBreakInTarget::set_type(::DS2_Frpg2RequestMessage::BreakInType value) {
   assert(::DS2_Frpg2RequestMessage::BreakInType_IsValid(value));
@@ -31515,7 +31872,8 @@ inline void RequestGetBreakInTargetList::clear_has_matching_parameter() {
   _has_bits_[0] &= ~0x00000008u;
 }
 inline void RequestGetBreakInTargetList::clear_matching_parameter() {
-  if (matching_parameter_ != NULL) matching_parameter_->::DS2_Frpg2RequestMessage::MatchingParameter::Clear();
+  if (matching_parameter_ != NULL)
+    matching_parameter_->::DS2_Frpg2RequestMessage::MatchingParameter::Clear();
   clear_has_matching_parameter();
 }
 inline const ::DS2_Frpg2RequestMessage::MatchingParameter& RequestGetBreakInTargetList::matching_parameter() const {
@@ -31528,7 +31886,8 @@ inline const ::DS2_Frpg2RequestMessage::MatchingParameter& RequestGetBreakInTarg
 }
 inline ::DS2_Frpg2RequestMessage::MatchingParameter* RequestGetBreakInTargetList::mutable_matching_parameter() {
   set_has_matching_parameter();
-  if (matching_parameter_ == NULL) matching_parameter_ = new ::DS2_Frpg2RequestMessage::MatchingParameter;
+  if (matching_parameter_ == NULL)
+    matching_parameter_ = new ::DS2_Frpg2RequestMessage::MatchingParameter;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2RequestMessage.RequestGetBreakInTargetList.matching_parameter)
   return matching_parameter_;
 }
@@ -31565,7 +31924,7 @@ inline void RequestGetBreakInTargetList::clear_type() {
 }
 inline ::DS2_Frpg2RequestMessage::BreakInType RequestGetBreakInTargetList::type() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.RequestGetBreakInTargetList.type)
-  return static_cast< ::DS2_Frpg2RequestMessage::BreakInType >(type_);
+  return static_cast<::DS2_Frpg2RequestMessage::BreakInType>(type_);
 }
 inline void RequestGetBreakInTargetList::set_type(::DS2_Frpg2RequestMessage::BreakInType value) {
   assert(::DS2_Frpg2RequestMessage::BreakInType_IsValid(value));
@@ -31645,12 +32004,12 @@ inline ::DS2_Frpg2RequestMessage::BreakInTargetData* RequestGetBreakInTargetList
   // @@protoc_insertion_point(field_add:DS2_Frpg2RequestMessage.RequestGetBreakInTargetListResponse.target_data)
   return target_data_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::BreakInTargetData >&
+inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::BreakInTargetData>&
 RequestGetBreakInTargetListResponse::target_data() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2RequestMessage.RequestGetBreakInTargetListResponse.target_data)
   return target_data_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::BreakInTargetData >*
+inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::BreakInTargetData>*
 RequestGetBreakInTargetListResponse::mutable_target_data() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2RequestMessage.RequestGetBreakInTargetListResponse.target_data)
   return &target_data_;
@@ -31894,7 +32253,7 @@ inline ::std::string* GhostData::release_data() {
     return NULL;
   } else {
     ::std::string* temp = data_;
-    data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -31907,7 +32266,7 @@ inline void GhostData::set_allocated_data(::std::string* data) {
     data_ = data;
   } else {
     clear_has_data();
-    data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.GhostData.data)
 }
@@ -31983,12 +32342,12 @@ inline ::DS2_Frpg2RequestMessage::CellLimitData* RequestGetGhostDataList::add_se
   // @@protoc_insertion_point(field_add:DS2_Frpg2RequestMessage.RequestGetGhostDataList.search_areas)
   return search_areas_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::CellLimitData >&
+inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::CellLimitData>&
 RequestGetGhostDataList::search_areas() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2RequestMessage.RequestGetGhostDataList.search_areas)
   return search_areas_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::CellLimitData >*
+inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::CellLimitData>*
 RequestGetGhostDataList::mutable_search_areas() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2RequestMessage.RequestGetGhostDataList.search_areas)
   return &search_areas_;
@@ -32041,12 +32400,12 @@ inline ::DS2_Frpg2RequestMessage::GhostData* RequestGetGhostDataListResponse::ad
   // @@protoc_insertion_point(field_add:DS2_Frpg2RequestMessage.RequestGetGhostDataListResponse.ghosts)
   return ghosts_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::GhostData >&
+inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::GhostData>&
 RequestGetGhostDataListResponse::ghosts() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2RequestMessage.RequestGetGhostDataListResponse.ghosts)
   return ghosts_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::GhostData >*
+inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::GhostData>*
 RequestGetGhostDataListResponse::mutable_ghosts() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2RequestMessage.RequestGetGhostDataListResponse.ghosts)
   return &ghosts_;
@@ -32162,7 +32521,7 @@ inline ::std::string* RequestCreateGhostData::release_data() {
     return NULL;
   } else {
     ::std::string* temp = data_;
-    data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -32175,7 +32534,7 @@ inline void RequestCreateGhostData::set_allocated_data(::std::string* data) {
     data_ = data;
   } else {
     clear_has_data();
-    data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.RequestCreateGhostData.data)
 }
@@ -32270,7 +32629,7 @@ inline ::std::string* VisitorData::release_player_steam_id() {
     return NULL;
   } else {
     ::std::string* temp = player_steam_id_;
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -32283,7 +32642,7 @@ inline void VisitorData::set_allocated_player_steam_id(::std::string* player_ste
     player_steam_id_ = player_steam_id;
   } else {
     clear_has_player_steam_id();
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.VisitorData.player_steam_id)
 }
@@ -32375,7 +32734,8 @@ inline void RequestGetVisitorList::clear_has_matching_parameter() {
   _has_bits_[0] &= ~0x00000008u;
 }
 inline void RequestGetVisitorList::clear_matching_parameter() {
-  if (matching_parameter_ != NULL) matching_parameter_->::DS2_Frpg2RequestMessage::MatchingParameter::Clear();
+  if (matching_parameter_ != NULL)
+    matching_parameter_->::DS2_Frpg2RequestMessage::MatchingParameter::Clear();
   clear_has_matching_parameter();
 }
 inline const ::DS2_Frpg2RequestMessage::MatchingParameter& RequestGetVisitorList::matching_parameter() const {
@@ -32388,7 +32748,8 @@ inline const ::DS2_Frpg2RequestMessage::MatchingParameter& RequestGetVisitorList
 }
 inline ::DS2_Frpg2RequestMessage::MatchingParameter* RequestGetVisitorList::mutable_matching_parameter() {
   set_has_matching_parameter();
-  if (matching_parameter_ == NULL) matching_parameter_ = new ::DS2_Frpg2RequestMessage::MatchingParameter;
+  if (matching_parameter_ == NULL)
+    matching_parameter_ = new ::DS2_Frpg2RequestMessage::MatchingParameter;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2RequestMessage.RequestGetVisitorList.matching_parameter)
   return matching_parameter_;
 }
@@ -32425,7 +32786,7 @@ inline void RequestGetVisitorList::clear_type() {
 }
 inline ::DS2_Frpg2RequestMessage::VisitorType RequestGetVisitorList::type() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.RequestGetVisitorList.type)
-  return static_cast< ::DS2_Frpg2RequestMessage::VisitorType >(type_);
+  return static_cast<::DS2_Frpg2RequestMessage::VisitorType>(type_);
 }
 inline void RequestGetVisitorList::set_type(::DS2_Frpg2RequestMessage::VisitorType value) {
   assert(::DS2_Frpg2RequestMessage::VisitorType_IsValid(value));
@@ -32529,12 +32890,12 @@ inline ::DS2_Frpg2RequestMessage::VisitorData* RequestGetVisitorListResponse::ad
   // @@protoc_insertion_point(field_add:DS2_Frpg2RequestMessage.RequestGetVisitorListResponse.target_data)
   return target_data_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::VisitorData >&
+inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::VisitorData>&
 RequestGetVisitorListResponse::target_data() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2RequestMessage.RequestGetVisitorListResponse.target_data)
   return target_data_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::VisitorData >*
+inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::VisitorData>*
 RequestGetVisitorListResponse::mutable_target_data() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2RequestMessage.RequestGetVisitorListResponse.target_data)
   return &target_data_;
@@ -32560,7 +32921,7 @@ inline void PushRequestRemoveVisitor::clear_push_message_id() {
 }
 inline ::DS2_Frpg2RequestMessage::PushMessageId PushRequestRemoveVisitor::push_message_id() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PushRequestRemoveVisitor.push_message_id)
-  return static_cast< ::DS2_Frpg2RequestMessage::PushMessageId >(push_message_id_);
+  return static_cast<::DS2_Frpg2RequestMessage::PushMessageId>(push_message_id_);
 }
 inline void PushRequestRemoveVisitor::set_push_message_id(::DS2_Frpg2RequestMessage::PushMessageId value) {
   assert(::DS2_Frpg2RequestMessage::PushMessageId_IsValid(value));
@@ -32651,7 +33012,7 @@ inline ::std::string* PushRequestRemoveVisitor::release_player_steam_id() {
     return NULL;
   } else {
     ::std::string* temp = player_steam_id_;
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -32664,7 +33025,7 @@ inline void PushRequestRemoveVisitor::set_allocated_player_steam_id(::std::strin
     player_steam_id_ = player_steam_id;
   } else {
     clear_has_player_steam_id();
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.PushRequestRemoveVisitor.player_steam_id)
 }
@@ -32685,7 +33046,7 @@ inline void PushRequestRemoveVisitor::clear_type() {
 }
 inline ::DS2_Frpg2RequestMessage::VisitorType PushRequestRemoveVisitor::type() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PushRequestRemoveVisitor.type)
-  return static_cast< ::DS2_Frpg2RequestMessage::VisitorType >(type_);
+  return static_cast<::DS2_Frpg2RequestMessage::VisitorType>(type_);
 }
 inline void PushRequestRemoveVisitor::set_type(::DS2_Frpg2RequestMessage::VisitorType value) {
   assert(::DS2_Frpg2RequestMessage::VisitorType_IsValid(value));
@@ -32762,7 +33123,7 @@ inline void RequestVisit::clear_type() {
 }
 inline ::DS2_Frpg2RequestMessage::VisitorType RequestVisit::type() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.RequestVisit.type)
-  return static_cast< ::DS2_Frpg2RequestMessage::VisitorType >(type_);
+  return static_cast<::DS2_Frpg2RequestMessage::VisitorType>(type_);
 }
 inline void RequestVisit::set_type(::DS2_Frpg2RequestMessage::VisitorType value) {
   assert(::DS2_Frpg2RequestMessage::VisitorType_IsValid(value));
@@ -32853,7 +33214,7 @@ inline ::std::string* RequestVisit::release_player_struct() {
     return NULL;
   } else {
     ::std::string* temp = player_struct_;
-    player_struct_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_struct_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -32866,7 +33227,7 @@ inline void RequestVisit::set_allocated_player_struct(::std::string* player_stru
     player_struct_ = player_struct;
   } else {
     clear_has_player_struct();
-    player_struct_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_struct_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.RequestVisit.player_struct)
 }
@@ -32991,7 +33352,7 @@ inline void RequestRejectVisit::clear_type() {
 }
 inline ::DS2_Frpg2RequestMessage::VisitorType RequestRejectVisit::type() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.RequestRejectVisit.type)
-  return static_cast< ::DS2_Frpg2RequestMessage::VisitorType >(type_);
+  return static_cast<::DS2_Frpg2RequestMessage::VisitorType>(type_);
 }
 inline void RequestRejectVisit::set_type(::DS2_Frpg2RequestMessage::VisitorType value) {
   assert(::DS2_Frpg2RequestMessage::VisitorType_IsValid(value));
@@ -33024,7 +33385,7 @@ inline void PushRequestRejectVisit::clear_push_message_id() {
 }
 inline ::DS2_Frpg2RequestMessage::PushMessageId PushRequestRejectVisit::push_message_id() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PushRequestRejectVisit.push_message_id)
-  return static_cast< ::DS2_Frpg2RequestMessage::PushMessageId >(push_message_id_);
+  return static_cast<::DS2_Frpg2RequestMessage::PushMessageId>(push_message_id_);
 }
 inline void PushRequestRejectVisit::set_push_message_id(::DS2_Frpg2RequestMessage::PushMessageId value) {
   assert(::DS2_Frpg2RequestMessage::PushMessageId_IsValid(value));
@@ -33139,7 +33500,7 @@ inline ::std::string* PushRequestRejectVisit::release_steam_id() {
     return NULL;
   } else {
     ::std::string* temp = steam_id_;
-    steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -33152,7 +33513,7 @@ inline void PushRequestRejectVisit::set_allocated_steam_id(::std::string* steam_
     steam_id_ = steam_id;
   } else {
     clear_has_steam_id();
-    steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.PushRequestRejectVisit.steam_id)
 }
@@ -33173,7 +33534,7 @@ inline void PushRequestRejectVisit::clear_type() {
 }
 inline ::DS2_Frpg2RequestMessage::VisitorType PushRequestRejectVisit::type() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PushRequestRejectVisit.type)
-  return static_cast< ::DS2_Frpg2RequestMessage::VisitorType >(type_);
+  return static_cast<::DS2_Frpg2RequestMessage::VisitorType>(type_);
 }
 inline void PushRequestRejectVisit::set_type(::DS2_Frpg2RequestMessage::VisitorType value) {
   assert(::DS2_Frpg2RequestMessage::VisitorType_IsValid(value));
@@ -33202,7 +33563,7 @@ inline void PushRequestVisit::clear_push_message_id() {
 }
 inline ::DS2_Frpg2RequestMessage::PushMessageId PushRequestVisit::push_message_id() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PushRequestVisit.push_message_id)
-  return static_cast< ::DS2_Frpg2RequestMessage::PushMessageId >(push_message_id_);
+  return static_cast<::DS2_Frpg2RequestMessage::PushMessageId>(push_message_id_);
 }
 inline void PushRequestVisit::set_push_message_id(::DS2_Frpg2RequestMessage::PushMessageId value) {
   assert(::DS2_Frpg2RequestMessage::PushMessageId_IsValid(value));
@@ -33293,7 +33654,7 @@ inline ::std::string* PushRequestVisit::release_player_steam_id() {
     return NULL;
   } else {
     ::std::string* temp = player_steam_id_;
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -33306,7 +33667,7 @@ inline void PushRequestVisit::set_allocated_player_steam_id(::std::string* playe
     player_steam_id_ = player_steam_id;
   } else {
     clear_has_player_steam_id();
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.PushRequestVisit.player_steam_id)
 }
@@ -33369,7 +33730,7 @@ inline ::std::string* PushRequestVisit::release_player_struct() {
     return NULL;
   } else {
     ::std::string* temp = player_struct_;
-    player_struct_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_struct_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -33382,7 +33743,7 @@ inline void PushRequestVisit::set_allocated_player_struct(::std::string* player_
     player_struct_ = player_struct;
   } else {
     clear_has_player_struct();
-    player_struct_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_struct_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.PushRequestVisit.player_struct)
 }
@@ -33403,7 +33764,7 @@ inline void PushRequestVisit::clear_type() {
 }
 inline ::DS2_Frpg2RequestMessage::VisitorType PushRequestVisit::type() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PushRequestVisit.type)
-  return static_cast< ::DS2_Frpg2RequestMessage::VisitorType >(type_);
+  return static_cast<::DS2_Frpg2RequestMessage::VisitorType>(type_);
 }
 inline void PushRequestVisit::set_type(::DS2_Frpg2RequestMessage::VisitorType value) {
   assert(::DS2_Frpg2RequestMessage::VisitorType_IsValid(value));
@@ -33480,7 +33841,7 @@ inline void PushRequestNotifyRingBell::clear_push_message_id() {
 }
 inline ::DS2_Frpg2RequestMessage::PushMessageId PushRequestNotifyRingBell::push_message_id() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PushRequestNotifyRingBell.push_message_id)
-  return static_cast< ::DS2_Frpg2RequestMessage::PushMessageId >(push_message_id_);
+  return static_cast<::DS2_Frpg2RequestMessage::PushMessageId>(push_message_id_);
 }
 inline void PushRequestNotifyRingBell::set_push_message_id(::DS2_Frpg2RequestMessage::PushMessageId value) {
   assert(::DS2_Frpg2RequestMessage::PushMessageId_IsValid(value));
@@ -33711,7 +34072,7 @@ inline ::std::string* PowerStoneRankingData::release_data() {
     return NULL;
   } else {
     ::std::string* temp = data_;
-    data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -33724,7 +34085,7 @@ inline void PowerStoneRankingData::set_allocated_data(::std::string* data) {
     data_ = data;
   } else {
     clear_has_data();
-    data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.PowerStoneRankingData.data)
 }
@@ -33776,7 +34137,8 @@ inline void RequestGetPowerStoneMyRankingResponse::clear_has_data() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void RequestGetPowerStoneMyRankingResponse::clear_data() {
-  if (data_ != NULL) data_->::DS2_Frpg2RequestMessage::PowerStoneRankingData::Clear();
+  if (data_ != NULL)
+    data_->::DS2_Frpg2RequestMessage::PowerStoneRankingData::Clear();
   clear_has_data();
 }
 inline const ::DS2_Frpg2RequestMessage::PowerStoneRankingData& RequestGetPowerStoneMyRankingResponse::data() const {
@@ -33789,7 +34151,8 @@ inline const ::DS2_Frpg2RequestMessage::PowerStoneRankingData& RequestGetPowerSt
 }
 inline ::DS2_Frpg2RequestMessage::PowerStoneRankingData* RequestGetPowerStoneMyRankingResponse::mutable_data() {
   set_has_data();
-  if (data_ == NULL) data_ = new ::DS2_Frpg2RequestMessage::PowerStoneRankingData;
+  if (data_ == NULL)
+    data_ = new ::DS2_Frpg2RequestMessage::PowerStoneRankingData;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2RequestMessage.RequestGetPowerStoneMyRankingResponse.data)
   return data_;
 }
@@ -33885,12 +34248,12 @@ inline ::DS2_Frpg2RequestMessage::PowerStoneRankingData* RequestGetPowerStoneRan
   // @@protoc_insertion_point(field_add:DS2_Frpg2RequestMessage.RequestGetPowerStoneRankingResponse.data)
   return data_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::PowerStoneRankingData >&
+inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::PowerStoneRankingData>&
 RequestGetPowerStoneRankingResponse::data() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2RequestMessage.RequestGetPowerStoneRankingResponse.data)
   return data_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::PowerStoneRankingData >*
+inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::PowerStoneRankingData>*
 RequestGetPowerStoneRankingResponse::mutable_data() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2RequestMessage.RequestGetPowerStoneRankingResponse.data)
   return &data_;
@@ -34038,7 +34401,7 @@ inline ::std::string* RequestRegisterPowerStoneData::release_data() {
     return NULL;
   } else {
     ::std::string* temp = data_;
-    data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -34051,7 +34414,7 @@ inline void RequestRegisterPowerStoneData::set_allocated_data(::std::string* dat
     data_ = data;
   } else {
     clear_has_data();
-    data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.RequestRegisterPowerStoneData.data)
 }
@@ -34080,7 +34443,7 @@ inline void PushRequestAllowQuickMatch::clear_push_message_id() {
 }
 inline ::DS2_Frpg2RequestMessage::PushMessageId PushRequestAllowQuickMatch::push_message_id() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PushRequestAllowQuickMatch.push_message_id)
-  return static_cast< ::DS2_Frpg2RequestMessage::PushMessageId >(push_message_id_);
+  return static_cast<::DS2_Frpg2RequestMessage::PushMessageId>(push_message_id_);
 }
 inline void PushRequestAllowQuickMatch::set_push_message_id(::DS2_Frpg2RequestMessage::PushMessageId value) {
   assert(::DS2_Frpg2RequestMessage::PushMessageId_IsValid(value));
@@ -34219,7 +34582,7 @@ inline ::std::string* PushRequestAllowQuickMatch::release_field_5() {
     return NULL;
   } else {
     ::std::string* temp = field_5_;
-    field_5_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    field_5_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -34232,7 +34595,7 @@ inline void PushRequestAllowQuickMatch::set_allocated_field_5(::std::string* fie
     field_5_ = field_5;
   } else {
     clear_has_field_5();
-    field_5_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    field_5_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.PushRequestAllowQuickMatch.field_5)
 }
@@ -34257,7 +34620,7 @@ inline void PushRequestJoinQuickMatch::clear_push_message_id() {
 }
 inline ::DS2_Frpg2RequestMessage::PushMessageId PushRequestJoinQuickMatch::push_message_id() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PushRequestJoinQuickMatch.push_message_id)
-  return static_cast< ::DS2_Frpg2RequestMessage::PushMessageId >(push_message_id_);
+  return static_cast<::DS2_Frpg2RequestMessage::PushMessageId>(push_message_id_);
 }
 inline void PushRequestJoinQuickMatch::set_push_message_id(::DS2_Frpg2RequestMessage::PushMessageId value) {
   assert(::DS2_Frpg2RequestMessage::PushMessageId_IsValid(value));
@@ -34348,7 +34711,7 @@ inline ::std::string* PushRequestJoinQuickMatch::release_player_steam_id() {
     return NULL;
   } else {
     ::std::string* temp = player_steam_id_;
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -34361,7 +34724,7 @@ inline void PushRequestJoinQuickMatch::set_allocated_player_steam_id(::std::stri
     player_steam_id_ = player_steam_id;
   } else {
     clear_has_player_steam_id();
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.PushRequestJoinQuickMatch.player_steam_id)
 }
@@ -34430,7 +34793,7 @@ inline void PushRequestJoinQuickMatch::clear_mode() {
 }
 inline ::DS2_Frpg2RequestMessage::QuickMatchGameMode PushRequestJoinQuickMatch::mode() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PushRequestJoinQuickMatch.mode)
-  return static_cast< ::DS2_Frpg2RequestMessage::QuickMatchGameMode >(mode_);
+  return static_cast<::DS2_Frpg2RequestMessage::QuickMatchGameMode>(mode_);
 }
 inline void PushRequestJoinQuickMatch::set_mode(::DS2_Frpg2RequestMessage::QuickMatchGameMode value) {
   assert(::DS2_Frpg2RequestMessage::QuickMatchGameMode_IsValid(value));
@@ -34459,7 +34822,7 @@ inline void PushRequestRejectQuickMatch::clear_push_message_id() {
 }
 inline ::DS2_Frpg2RequestMessage::PushMessageId PushRequestRejectQuickMatch::push_message_id() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PushRequestRejectQuickMatch.push_message_id)
-  return static_cast< ::DS2_Frpg2RequestMessage::PushMessageId >(push_message_id_);
+  return static_cast<::DS2_Frpg2RequestMessage::PushMessageId>(push_message_id_);
 }
 inline void PushRequestRejectQuickMatch::set_push_message_id(::DS2_Frpg2RequestMessage::PushMessageId value) {
   assert(::DS2_Frpg2RequestMessage::PushMessageId_IsValid(value));
@@ -34550,7 +34913,7 @@ inline ::std::string* PushRequestRejectQuickMatch::release_player_steam_id() {
     return NULL;
   } else {
     ::std::string* temp = player_steam_id_;
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -34563,7 +34926,7 @@ inline void PushRequestRejectQuickMatch::set_allocated_player_steam_id(::std::st
     player_steam_id_ = player_steam_id;
   } else {
     clear_has_player_steam_id();
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.PushRequestRejectQuickMatch.player_steam_id)
 }
@@ -34632,7 +34995,7 @@ inline void PushRequestRejectQuickMatch::clear_mode() {
 }
 inline ::DS2_Frpg2RequestMessage::QuickMatchGameMode PushRequestRejectQuickMatch::mode() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PushRequestRejectQuickMatch.mode)
-  return static_cast< ::DS2_Frpg2RequestMessage::QuickMatchGameMode >(mode_);
+  return static_cast<::DS2_Frpg2RequestMessage::QuickMatchGameMode>(mode_);
 }
 inline void PushRequestRejectQuickMatch::set_mode(::DS2_Frpg2RequestMessage::QuickMatchGameMode value) {
   assert(::DS2_Frpg2RequestMessage::QuickMatchGameMode_IsValid(value));
@@ -34685,7 +35048,7 @@ inline void PushRequestRemoveQuickMatch::clear_push_message_id() {
 }
 inline ::DS2_Frpg2RequestMessage::PushMessageId PushRequestRemoveQuickMatch::push_message_id() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PushRequestRemoveQuickMatch.push_message_id)
-  return static_cast< ::DS2_Frpg2RequestMessage::PushMessageId >(push_message_id_);
+  return static_cast<::DS2_Frpg2RequestMessage::PushMessageId>(push_message_id_);
 }
 inline void PushRequestRemoveQuickMatch::set_push_message_id(::DS2_Frpg2RequestMessage::PushMessageId value) {
   assert(::DS2_Frpg2RequestMessage::PushMessageId_IsValid(value));
@@ -34824,7 +35187,7 @@ inline ::std::string* PushRequestRemoveQuickMatch::release_player_steam_id() {
     return NULL;
   } else {
     ::std::string* temp = player_steam_id_;
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -34837,7 +35200,7 @@ inline void PushRequestRemoveQuickMatch::set_allocated_player_steam_id(::std::st
     player_steam_id_ = player_steam_id;
   } else {
     clear_has_player_steam_id();
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.PushRequestRemoveQuickMatch.player_steam_id)
 }
@@ -34858,7 +35221,7 @@ inline void PushRequestRemoveQuickMatch::clear_mode() {
 }
 inline ::DS2_Frpg2RequestMessage::QuickMatchGameMode PushRequestRemoveQuickMatch::mode() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PushRequestRemoveQuickMatch.mode)
-  return static_cast< ::DS2_Frpg2RequestMessage::QuickMatchGameMode >(mode_);
+  return static_cast<::DS2_Frpg2RequestMessage::QuickMatchGameMode>(mode_);
 }
 inline void PushRequestRemoveQuickMatch::set_mode(::DS2_Frpg2RequestMessage::QuickMatchGameMode value) {
   assert(::DS2_Frpg2RequestMessage::QuickMatchGameMode_IsValid(value));
@@ -34954,7 +35317,8 @@ inline void QuickMatchData::clear_has_matching_parameter() {
   _has_bits_[0] &= ~0x00000008u;
 }
 inline void QuickMatchData::clear_matching_parameter() {
-  if (matching_parameter_ != NULL) matching_parameter_->::DS2_Frpg2RequestMessage::MatchingParameter::Clear();
+  if (matching_parameter_ != NULL)
+    matching_parameter_->::DS2_Frpg2RequestMessage::MatchingParameter::Clear();
   clear_has_matching_parameter();
 }
 inline const ::DS2_Frpg2RequestMessage::MatchingParameter& QuickMatchData::matching_parameter() const {
@@ -34967,7 +35331,8 @@ inline const ::DS2_Frpg2RequestMessage::MatchingParameter& QuickMatchData::match
 }
 inline ::DS2_Frpg2RequestMessage::MatchingParameter* QuickMatchData::mutable_matching_parameter() {
   set_has_matching_parameter();
-  if (matching_parameter_ == NULL) matching_parameter_ = new ::DS2_Frpg2RequestMessage::MatchingParameter;
+  if (matching_parameter_ == NULL)
+    matching_parameter_ = new ::DS2_Frpg2RequestMessage::MatchingParameter;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2RequestMessage.QuickMatchData.matching_parameter)
   return matching_parameter_;
 }
@@ -35046,7 +35411,7 @@ inline ::std::string* QuickMatchData::release_player_steam_id() {
     return NULL;
   } else {
     ::std::string* temp = player_steam_id_;
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -35059,7 +35424,7 @@ inline void QuickMatchData::set_allocated_player_steam_id(::std::string* player_
     player_steam_id_ = player_steam_id;
   } else {
     clear_has_player_steam_id();
-    player_steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    player_steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.QuickMatchData.player_steam_id)
 }
@@ -35080,7 +35445,7 @@ inline void QuickMatchData::clear_mode() {
 }
 inline ::DS2_Frpg2RequestMessage::QuickMatchGameMode QuickMatchData::mode() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.QuickMatchData.mode)
-  return static_cast< ::DS2_Frpg2RequestMessage::QuickMatchGameMode >(mode_);
+  return static_cast<::DS2_Frpg2RequestMessage::QuickMatchGameMode>(mode_);
 }
 inline void QuickMatchData::set_mode(::DS2_Frpg2RequestMessage::QuickMatchGameMode value) {
   assert(::DS2_Frpg2RequestMessage::QuickMatchGameMode_IsValid(value));
@@ -35181,7 +35546,7 @@ inline void RequestJoinQuickMatch::clear_mode() {
 }
 inline ::DS2_Frpg2RequestMessage::QuickMatchGameMode RequestJoinQuickMatch::mode() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.RequestJoinQuickMatch.mode)
-  return static_cast< ::DS2_Frpg2RequestMessage::QuickMatchGameMode >(mode_);
+  return static_cast<::DS2_Frpg2RequestMessage::QuickMatchGameMode>(mode_);
 }
 inline void RequestJoinQuickMatch::set_mode(::DS2_Frpg2RequestMessage::QuickMatchGameMode value) {
   assert(::DS2_Frpg2RequestMessage::QuickMatchGameMode_IsValid(value));
@@ -35257,7 +35622,8 @@ inline void RequestRegisterQuickMatch::clear_has_matching_parameter() {
   _has_bits_[0] &= ~0x00000004u;
 }
 inline void RequestRegisterQuickMatch::clear_matching_parameter() {
-  if (matching_parameter_ != NULL) matching_parameter_->::DS2_Frpg2RequestMessage::MatchingParameter::Clear();
+  if (matching_parameter_ != NULL)
+    matching_parameter_->::DS2_Frpg2RequestMessage::MatchingParameter::Clear();
   clear_has_matching_parameter();
 }
 inline const ::DS2_Frpg2RequestMessage::MatchingParameter& RequestRegisterQuickMatch::matching_parameter() const {
@@ -35270,7 +35636,8 @@ inline const ::DS2_Frpg2RequestMessage::MatchingParameter& RequestRegisterQuickM
 }
 inline ::DS2_Frpg2RequestMessage::MatchingParameter* RequestRegisterQuickMatch::mutable_matching_parameter() {
   set_has_matching_parameter();
-  if (matching_parameter_ == NULL) matching_parameter_ = new ::DS2_Frpg2RequestMessage::MatchingParameter;
+  if (matching_parameter_ == NULL)
+    matching_parameter_ = new ::DS2_Frpg2RequestMessage::MatchingParameter;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2RequestMessage.RequestRegisterQuickMatch.matching_parameter)
   return matching_parameter_;
 }
@@ -35307,7 +35674,7 @@ inline void RequestRegisterQuickMatch::clear_mode() {
 }
 inline ::DS2_Frpg2RequestMessage::QuickMatchGameMode RequestRegisterQuickMatch::mode() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.RequestRegisterQuickMatch.mode)
-  return static_cast< ::DS2_Frpg2RequestMessage::QuickMatchGameMode >(mode_);
+  return static_cast<::DS2_Frpg2RequestMessage::QuickMatchGameMode>(mode_);
 }
 inline void RequestRegisterQuickMatch::set_mode(::DS2_Frpg2RequestMessage::QuickMatchGameMode value) {
   assert(::DS2_Frpg2RequestMessage::QuickMatchGameMode_IsValid(value));
@@ -35412,7 +35779,7 @@ inline void RequestRejectQuickMatch::clear_mode() {
 }
 inline ::DS2_Frpg2RequestMessage::QuickMatchGameMode RequestRejectQuickMatch::mode() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.RequestRejectQuickMatch.mode)
-  return static_cast< ::DS2_Frpg2RequestMessage::QuickMatchGameMode >(mode_);
+  return static_cast<::DS2_Frpg2RequestMessage::QuickMatchGameMode>(mode_);
 }
 inline void RequestRejectQuickMatch::set_mode(::DS2_Frpg2RequestMessage::QuickMatchGameMode value) {
   assert(::DS2_Frpg2RequestMessage::QuickMatchGameMode_IsValid(value));
@@ -35512,7 +35879,8 @@ inline void RequestSearchQuickMatch::clear_has_matching_parameter() {
   _has_bits_[0] &= ~0x00000004u;
 }
 inline void RequestSearchQuickMatch::clear_matching_parameter() {
-  if (matching_parameter_ != NULL) matching_parameter_->::DS2_Frpg2RequestMessage::MatchingParameter::Clear();
+  if (matching_parameter_ != NULL)
+    matching_parameter_->::DS2_Frpg2RequestMessage::MatchingParameter::Clear();
   clear_has_matching_parameter();
 }
 inline const ::DS2_Frpg2RequestMessage::MatchingParameter& RequestSearchQuickMatch::matching_parameter() const {
@@ -35525,7 +35893,8 @@ inline const ::DS2_Frpg2RequestMessage::MatchingParameter& RequestSearchQuickMat
 }
 inline ::DS2_Frpg2RequestMessage::MatchingParameter* RequestSearchQuickMatch::mutable_matching_parameter() {
   set_has_matching_parameter();
-  if (matching_parameter_ == NULL) matching_parameter_ = new ::DS2_Frpg2RequestMessage::MatchingParameter;
+  if (matching_parameter_ == NULL)
+    matching_parameter_ = new ::DS2_Frpg2RequestMessage::MatchingParameter;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2RequestMessage.RequestSearchQuickMatch.matching_parameter)
   return matching_parameter_;
 }
@@ -35586,7 +35955,7 @@ inline void RequestSearchQuickMatch::clear_mode() {
 }
 inline ::DS2_Frpg2RequestMessage::QuickMatchGameMode RequestSearchQuickMatch::mode() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.RequestSearchQuickMatch.mode)
-  return static_cast< ::DS2_Frpg2RequestMessage::QuickMatchGameMode >(mode_);
+  return static_cast<::DS2_Frpg2RequestMessage::QuickMatchGameMode>(mode_);
 }
 inline void RequestSearchQuickMatch::set_mode(::DS2_Frpg2RequestMessage::QuickMatchGameMode value) {
   assert(::DS2_Frpg2RequestMessage::QuickMatchGameMode_IsValid(value));
@@ -35618,12 +35987,12 @@ inline ::DS2_Frpg2RequestMessage::QuickMatchData* RequestSearchQuickMatchRespons
   // @@protoc_insertion_point(field_add:DS2_Frpg2RequestMessage.RequestSearchQuickMatchResponse.matches)
   return matches_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::QuickMatchData >&
+inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::QuickMatchData>&
 RequestSearchQuickMatchResponse::matches() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2RequestMessage.RequestSearchQuickMatchResponse.matches)
   return matches_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2RequestMessage::QuickMatchData >*
+inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2RequestMessage::QuickMatchData>*
 RequestSearchQuickMatchResponse::mutable_matches() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2RequestMessage.RequestSearchQuickMatchResponse.matches)
   return &matches_;
@@ -35697,7 +36066,7 @@ inline void RequestUnregisterQuickMatch::clear_mode() {
 }
 inline ::DS2_Frpg2RequestMessage::QuickMatchGameMode RequestUnregisterQuickMatch::mode() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.RequestUnregisterQuickMatch.mode)
-  return static_cast< ::DS2_Frpg2RequestMessage::QuickMatchGameMode >(mode_);
+  return static_cast<::DS2_Frpg2RequestMessage::QuickMatchGameMode>(mode_);
 }
 inline void RequestUnregisterQuickMatch::set_mode(::DS2_Frpg2RequestMessage::QuickMatchGameMode value) {
   assert(::DS2_Frpg2RequestMessage::QuickMatchGameMode_IsValid(value));
@@ -35778,7 +36147,7 @@ inline void RequestUpdateQuickMatch::clear_mode() {
 }
 inline ::DS2_Frpg2RequestMessage::QuickMatchGameMode RequestUpdateQuickMatch::mode() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.RequestUpdateQuickMatch.mode)
-  return static_cast< ::DS2_Frpg2RequestMessage::QuickMatchGameMode >(mode_);
+  return static_cast<::DS2_Frpg2RequestMessage::QuickMatchGameMode>(mode_);
 }
 inline void RequestUpdateQuickMatch::set_mode(::DS2_Frpg2RequestMessage::QuickMatchGameMode value) {
   assert(::DS2_Frpg2RequestMessage::QuickMatchGameMode_IsValid(value));
@@ -35843,7 +36212,7 @@ inline void PushRequestHeader::clear_push_message_id() {
 }
 inline ::DS2_Frpg2RequestMessage::PushMessageId PushRequestHeader::push_message_id() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.PushRequestHeader.push_message_id)
-  return static_cast< ::DS2_Frpg2RequestMessage::PushMessageId >(push_message_id_);
+  return static_cast<::DS2_Frpg2RequestMessage::PushMessageId>(push_message_id_);
 }
 inline void PushRequestHeader::set_push_message_id(::DS2_Frpg2RequestMessage::PushMessageId value) {
   assert(::DS2_Frpg2RequestMessage::PushMessageId_IsValid(value));
@@ -35872,7 +36241,7 @@ inline void ManagementTextMessage::clear_push_message_id() {
 }
 inline ::DS2_Frpg2RequestMessage::PushMessageId ManagementTextMessage::push_message_id() const {
   // @@protoc_insertion_point(field_get:DS2_Frpg2RequestMessage.ManagementTextMessage.push_message_id)
-  return static_cast< ::DS2_Frpg2RequestMessage::PushMessageId >(push_message_id_);
+  return static_cast<::DS2_Frpg2RequestMessage::PushMessageId>(push_message_id_);
 }
 inline void ManagementTextMessage::set_push_message_id(::DS2_Frpg2RequestMessage::PushMessageId value) {
   assert(::DS2_Frpg2RequestMessage::PushMessageId_IsValid(value));
@@ -35939,7 +36308,7 @@ inline ::std::string* ManagementTextMessage::release_message() {
     return NULL;
   } else {
     ::std::string* temp = message_;
-    message_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    message_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -35952,7 +36321,7 @@ inline void ManagementTextMessage::set_allocated_message(::std::string* message)
     message_ = message;
   } else {
     clear_has_message();
-    message_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    message_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.ManagementTextMessage.message)
 }
@@ -35968,7 +36337,8 @@ inline void ManagementTextMessage::clear_has_timestamp() {
   _has_bits_[0] &= ~0x00000004u;
 }
 inline void ManagementTextMessage::clear_timestamp() {
-  if (timestamp_ != NULL) timestamp_->::DS2_Frpg2PlayerData::DateTime::Clear();
+  if (timestamp_ != NULL)
+    timestamp_->::DS2_Frpg2PlayerData::DateTime::Clear();
   clear_has_timestamp();
 }
 inline const ::DS2_Frpg2PlayerData::DateTime& ManagementTextMessage::timestamp() const {
@@ -35981,7 +36351,8 @@ inline const ::DS2_Frpg2PlayerData::DateTime& ManagementTextMessage::timestamp()
 }
 inline ::DS2_Frpg2PlayerData::DateTime* ManagementTextMessage::mutable_timestamp() {
   set_has_timestamp();
-  if (timestamp_ == NULL) timestamp_ = new ::DS2_Frpg2PlayerData::DateTime;
+  if (timestamp_ == NULL)
+    timestamp_ = new ::DS2_Frpg2PlayerData::DateTime;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2RequestMessage.ManagementTextMessage.timestamp)
   return timestamp_;
 }
@@ -36117,12 +36488,12 @@ inline void RequestSendMessageToPlayers::add_player_ids(::google::protobuf::uint
   player_ids_.Add(value);
   // @@protoc_insertion_point(field_add:DS2_Frpg2RequestMessage.RequestSendMessageToPlayers.player_ids)
 }
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+inline const ::google::protobuf::RepeatedField<::google::protobuf::uint32>&
 RequestSendMessageToPlayers::player_ids() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2RequestMessage.RequestSendMessageToPlayers.player_ids)
   return player_ids_;
 }
-inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+inline ::google::protobuf::RepeatedField<::google::protobuf::uint32>*
 RequestSendMessageToPlayers::mutable_player_ids() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2RequestMessage.RequestSendMessageToPlayers.player_ids)
   return &player_ids_;
@@ -36186,7 +36557,7 @@ inline ::std::string* RequestSendMessageToPlayers::release_message() {
     return NULL;
   } else {
     ::std::string* temp = message_;
-    message_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    message_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -36199,7 +36570,7 @@ inline void RequestSendMessageToPlayers::set_allocated_message(::std::string* me
     message_ = message;
   } else {
     clear_has_message();
-    message_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    message_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.RequestSendMessageToPlayers.message)
 }
@@ -36470,7 +36841,7 @@ inline ::std::string* RequestGetPlayerCharacterList::release_character_data() {
     return NULL;
   } else {
     ::std::string* temp = character_data_;
-    character_data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    character_data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -36483,7 +36854,7 @@ inline void RequestGetPlayerCharacterList::set_allocated_character_data(::std::s
     character_data_ = character_data;
   } else {
     clear_has_character_data();
-    character_data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    character_data_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2RequestMessage.RequestGetPlayerCharacterList.character_data)
 }
@@ -36492,11 +36863,10 @@ inline void RequestGetPlayerCharacterList::set_allocated_character_data(::std::s
 
 // RequestGetPlayerCharacterListResponse
 
-
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace DS2_Frpg2RequestMessage
+} // namespace DS2_Frpg2RequestMessage
 
 // @@protoc_insertion_point(global_scope)
 
-#endif  // PROTOBUF_DS2_5fFrpg2RequestMessage_2eproto__INCLUDED
+#endif // PROTOBUF_DS2_5fFrpg2RequestMessage_2eproto__INCLUDED

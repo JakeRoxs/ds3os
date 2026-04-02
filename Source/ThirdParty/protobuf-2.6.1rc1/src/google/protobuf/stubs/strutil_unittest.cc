@@ -58,7 +58,7 @@ TEST(StringUtilityTest, ImmuneToLocales) {
       setlocale(LC_NUMERIC, "es_ES.utf8") == NULL) {
     // Some systems may not have the desired locale available.
     GOOGLE_LOG(WARNING)
-      << "Couldn't set locale to es_ES.  Skipping this test.";
+        << "Couldn't set locale to es_ES.  Skipping this test.";
   } else {
     EXPECT_EQ("1.5", SimpleDtoa(1.5));
     EXPECT_EQ("1.5", SimpleFtoa(1.5));
@@ -68,6 +68,6 @@ TEST(StringUtilityTest, ImmuneToLocales) {
   setlocale(LC_NUMERIC, old_locale.c_str());
 }
 
-}  // anonymous namespace
-}  // namespace protobuf
-}  // namespace google
+} // anonymous namespace
+} // namespace protobuf
+} // namespace google

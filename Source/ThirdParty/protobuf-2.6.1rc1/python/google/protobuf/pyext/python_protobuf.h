@@ -50,8 +50,8 @@ namespace python {
 const Message* GetCProtoInsidePyProto(PyObject* msg);
 Message* MutableCProtoInsidePyProto(PyObject* msg);
 
-}  // namespace python
-}  // namespace protobuf
+} // namespace python
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_PYTHON_PYTHON_PROTOBUF_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_PYTHON_PYTHON_PROTOBUF_H__

@@ -24,29 +24,27 @@ class Server;
 // appear when you are near things like bonfires.
 
 class DS2_GhostManager
-    : public GameManager
-{
-public:    
-    DS2_GhostManager(Server* InServerInstance);
+    : public GameManager {
+public:
+  DS2_GhostManager(Server* InServerInstance);
 
-    virtual bool Init() override;
-    virtual void TrimDatabase() override;
+  virtual bool Init() override;
+  virtual void TrimDatabase() override;
 
-    virtual MessageHandleResult OnMessageReceived(GameClient* Client, const Frpg2ReliableUdpMessage& Message) override;
+  virtual MessageHandleResult OnMessageReceived(GameClient* Client, const Frpg2ReliableUdpMessage& Message) override;
 
-    virtual std::string GetName() override;
+  virtual std::string GetName() override;
 
-    size_t GetLiveCount() { return LiveCache.GetTotalEntries(); }
+  size_t GetLiveCount() { return LiveCache.GetTotalEntries(); }
 
 protected:
-    MessageHandleResult Handle_RequestCreateGhostData(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestGetGhostDataList(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestCreateGhostData(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestGetGhostDataList(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
 
 private:
-    Server* ServerInstance;
+  Server* ServerInstance;
 
-    OnlineAreaPool<uint64_t, Ghost> LiveCache;
+  OnlineAreaPool<uint64_t, Ghost> LiveCache;
 
-    uint32_t NextMemoryCacheGhostId = std::numeric_limits<uint32_t>::max();
-
+  uint32_t NextMemoryCacheGhostId = std::numeric_limits<uint32_t>::max();
 };

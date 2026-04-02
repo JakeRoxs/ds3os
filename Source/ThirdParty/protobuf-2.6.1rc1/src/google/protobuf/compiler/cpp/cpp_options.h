@@ -49,10 +49,9 @@ struct Options {
   bool safe_boundary_check;
 };
 
-}  // namespace cpp
-}  // namespace compiler
-}  // namespace protobuf
+} // namespace cpp
+} // namespace compiler
+} // namespace protobuf
 
-
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_CPP_OPTIONS_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_COMPILER_CPP_OPTIONS_H__

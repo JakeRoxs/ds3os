@@ -23,47 +23,44 @@
 class Server;
 class WebUIHandler;
 
-// The webui service hosts a very simple webserver that can be used to 
+// The webui service hosts a very simple webserver that can be used to
 // monitor the status of the server.
 
-class WebUIService 
-    : public Service
-{
+class WebUIService
+    : public Service {
 public:
-    WebUIService(Server* OwningServer);
-    virtual ~WebUIService();
+  WebUIService(Server* OwningServer);
+  virtual ~WebUIService();
 
-    virtual bool Init() override;
-    virtual bool Term() override;
-    virtual void Poll() override;
+  virtual bool Init() override;
+  virtual bool Term() override;
+  virtual void Poll() override;
 
-    virtual std::string GetName() override;
+  virtual std::string GetName() override;
 
-    Server* GetServer() { return ServerInstance; }
-    std::shared_ptr<CivetServer> GetWebServer() { return WebServer; }
+  Server* GetServer() { return ServerInstance; }
+  std::shared_ptr<CivetServer> GetWebServer() { return WebServer; }
 
 public:
-    bool CheckAuthToken(const std::string& Token);
-    std::string AddAuthToken();
-    bool IsAuthenticated(const mg_connection* Connection);
-    void ClearExpiredTokens();
+  bool CheckAuthToken(const std::string& Token);
+  std::string AddAuthToken();
+  bool IsAuthenticated(const mg_connection* Connection);
+  void ClearExpiredTokens();
 
-    void GatherData();
+  void GatherData();
 
 private:
-    struct AuthToken
-    {
-        std::string Token;
-        double ExpireTime;
-    };
+  struct AuthToken {
+    std::string Token;
+    double ExpireTime;
+  };
 
-    Server* ServerInstance;
+  Server* ServerInstance;
 
-    std::shared_ptr<CivetServer> WebServer;
+  std::shared_ptr<CivetServer> WebServer;
 
-    std::vector<std::shared_ptr<WebUIHandler>> Handlers;
+  std::vector<std::shared_ptr<WebUIHandler>> Handlers;
 
-    std::recursive_mutex StateMutex;
-    std::unordered_map<std::string, AuthToken> AuthTokens;
-
+  std::recursive_mutex StateMutex;
+  std::unordered_map<std::string, AuthToken> AuthTokens;
 };

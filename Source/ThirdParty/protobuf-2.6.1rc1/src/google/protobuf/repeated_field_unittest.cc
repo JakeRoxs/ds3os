@@ -96,7 +96,6 @@ TEST(RepeatedField, Small) {
   EXPECT_EQ(field.SpaceUsedExcludingSelf(), expected_usage);
 }
 
-
 // Test operations on a RepeatedField which is large enough to allocate a
 // separate array.
 TEST(RepeatedField, Large) {
@@ -270,7 +269,7 @@ TEST(RepeatedField, MergeFromSelf) {
   me.Add(3);
   EXPECT_DEATH(me.MergeFrom(me), "");
 }
-#endif  // PROTOBUF_HAS_DEATH_TEST
+#endif // PROTOBUF_HAS_DEATH_TEST
 
 TEST(RepeatedField, CopyFrom) {
   RepeatedField<int> source, destination;
@@ -385,7 +384,6 @@ TEST(RepeatedField, Truncate) {
   EXPECT_DEBUG_DEATH(field.Truncate(field.size() + 1), "new_size");
 #endif
 }
-
 
 TEST(RepeatedField, ExtractSubrange) {
   // Exhaustively test every subrange in arrays of all sizes from 0 through 9.
@@ -619,28 +617,28 @@ TEST(RepeatedPtrField, ClearedElements) {
   EXPECT_TRUE(original->empty());
   EXPECT_EQ(field.ClearedCount(), 1);
 
-  EXPECT_EQ(field.Add(), original);  // Should return same string for reuse.
+  EXPECT_EQ(field.Add(), original); // Should return same string for reuse.
 
-  EXPECT_EQ(field.ReleaseLast(), original);  // We take ownership.
+  EXPECT_EQ(field.ReleaseLast(), original); // We take ownership.
   EXPECT_EQ(field.ClearedCount(), 0);
 
-  EXPECT_NE(field.Add(), original);  // Should NOT return the same string.
+  EXPECT_NE(field.Add(), original); // Should NOT return the same string.
   EXPECT_EQ(field.ClearedCount(), 0);
 
-  field.AddAllocated(original);  // Give ownership back.
+  field.AddAllocated(original); // Give ownership back.
   EXPECT_EQ(field.ClearedCount(), 0);
   EXPECT_EQ(field.Mutable(1), original);
 
   field.Clear();
   EXPECT_EQ(field.ClearedCount(), 2);
-  EXPECT_EQ(field.ReleaseCleared(), original);  // Take ownership again.
+  EXPECT_EQ(field.ReleaseCleared(), original); // Take ownership again.
   EXPECT_EQ(field.ClearedCount(), 1);
   EXPECT_NE(field.Add(), original);
   EXPECT_EQ(field.ClearedCount(), 0);
   EXPECT_NE(field.Add(), original);
   EXPECT_EQ(field.ClearedCount(), 0);
 
-  field.AddCleared(original);  // Give ownership back, but as a cleared object.
+  field.AddCleared(original); // Give ownership back, but as a cleared object.
   EXPECT_EQ(field.ClearedCount(), 1);
   EXPECT_EQ(field.Add(), original);
   EXPECT_EQ(field.ClearedCount(), 0);
@@ -716,7 +714,7 @@ TEST(RepeatedPtrField, MergeFromSelf) {
   me.Add()->assign("1");
   EXPECT_DEATH(me.MergeFrom(me), "");
 }
-#endif  // PROTOBUF_HAS_DEATH_TEST
+#endif // PROTOBUF_HAS_DEATH_TEST
 
 TEST(RepeatedPtrField, CopyFrom) {
   RepeatedPtrField<string> source, destination;
@@ -903,7 +901,7 @@ TEST(RepeatedPtrField, DeleteSubrange) {
 
 // Iterator tests stolen from net/proto/proto-array_unittest.
 class RepeatedFieldIteratorTest : public testing::Test {
- protected:
+protected:
   virtual void SetUp() {
     for (int i = 0; i < 3; ++i) {
       proto_array_.Add(i);
@@ -953,7 +951,7 @@ TEST_F(RepeatedFieldIteratorTest, Mutation) {
 // -------------------------------------------------------------------
 
 class RepeatedPtrFieldIteratorTest : public testing::Test {
- protected:
+protected:
   virtual void SetUp() {
     proto_array_.Add()->assign("foo");
     proto_array_.Add()->assign("bar");
@@ -1006,8 +1004,7 @@ TEST_F(RepeatedPtrFieldIteratorTest, MutableReverseIteration) {
 
 TEST_F(RepeatedPtrFieldIteratorTest, ConstReverseIteration) {
   const RepeatedPtrField<string>& const_proto_array = proto_array_;
-  RepeatedPtrField<string>::const_reverse_iterator iter
-      = const_proto_array.rbegin();
+  RepeatedPtrField<string>::const_reverse_iterator iter = const_proto_array.rbegin();
   EXPECT_EQ("baz", *iter);
   ++iter;
   EXPECT_EQ("bar", *(iter++));
@@ -1079,7 +1076,7 @@ TEST_F(RepeatedPtrFieldIteratorTest, Mutation) {
 // -------------------------------------------------------------------
 
 class RepeatedPtrFieldPtrsIteratorTest : public testing::Test {
- protected:
+protected:
   virtual void SetUp() {
     proto_array_.Add()->assign("foo");
     proto_array_.Add()->assign("bar");
@@ -1284,7 +1281,6 @@ TEST_F(RepeatedPtrFieldPtrsIteratorTest, Sort) {
   EXPECT_EQ("y", proto_array_.Get(9));
 }
 
-
 // -----------------------------------------------------------------------------
 // Unit-tests for the insert iterators
 // google::protobuf::RepeatedFieldBackInserter,
@@ -1292,7 +1288,7 @@ TEST_F(RepeatedPtrFieldPtrsIteratorTest, Sort) {
 // Ported from util/gtl/proto-array-iterators_unittest.
 
 class RepeatedFieldInsertionIteratorsTest : public testing::Test {
- protected:
+protected:
   std::list<double> halves;
   std::list<int> fibonacci;
   std::vector<string> words;
@@ -1342,7 +1338,6 @@ class RepeatedFieldInsertionIteratorsTest : public testing::Test {
     std::copy(nested_ptrs.begin(), nested_ptrs.end(),
               RepeatedFieldBackInserter(
                   protobuffer.mutable_repeated_nested_message()));
-
   }
 
   virtual void TearDown() {
@@ -1383,8 +1378,7 @@ TEST_F(RepeatedFieldInsertionIteratorsTest, Words2) {
   words.push_back("six");
   words.push_back("pence");
   protobuffer.mutable_repeated_string()->Clear();
-  std::copy(words.begin(), words.end(), RepeatedPtrFieldBackInserter(
-      protobuffer.mutable_repeated_string()));
+  std::copy(words.begin(), words.end(), RepeatedPtrFieldBackInserter(protobuffer.mutable_repeated_string()));
   ASSERT_EQ(words.size(), protobuffer.repeated_string_size());
   for (int i = 0; i < words.size(); ++i)
     EXPECT_EQ(words.at(i), protobuffer.repeated_string(i));
@@ -1436,7 +1430,7 @@ TEST_F(RepeatedFieldInsertionIteratorsTest,
   EXPECT_EQ(testproto.DebugString(), goldenproto.DebugString());
 }
 
-}  // namespace
+} // namespace
 
-}  // namespace protobuf
-}  // namespace google
+} // namespace protobuf
+} // namespace google

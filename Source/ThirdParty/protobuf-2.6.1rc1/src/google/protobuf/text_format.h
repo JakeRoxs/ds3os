@@ -51,7 +51,7 @@ namespace google {
 namespace protobuf {
 
 namespace io {
-  class ErrorCollector;      // tokenizer.h
+class ErrorCollector; // tokenizer.h
 }
 
 // This class implements protocol buffer text format.  Printing and parsing
@@ -60,7 +60,7 @@ namespace io {
 //
 // This class is really a namespace that contains only static methods.
 class LIBPROTOBUF_EXPORT TextFormat {
- public:
+public:
   // Outputs a textual representation of the given message to the given
   // output stream.
   static bool Print(const Message& message, io::ZeroCopyOutputStream* output);
@@ -93,7 +93,7 @@ class LIBPROTOBUF_EXPORT TextFormat {
   // fields to be printed in a different way and register it at the
   // Printer.
   class LIBPROTOBUF_EXPORT FieldValuePrinter {
-   public:
+  public:
     FieldValuePrinter();
     virtual ~FieldValuePrinter();
     virtual string PrintBool(bool val) const;
@@ -118,14 +118,14 @@ class LIBPROTOBUF_EXPORT TextFormat {
                                    int field_count,
                                    bool single_line_mode) const;
 
-   private:
+  private:
     GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(FieldValuePrinter);
   };
 
   // Class for those users which require more fine-grained control over how
   // a protobuffer message is printed out.
   class LIBPROTOBUF_EXPORT Printer {
-   public:
+  public:
     Printer();
     ~Printer();
 
@@ -213,7 +213,7 @@ class LIBPROTOBUF_EXPORT TextFormat {
     bool RegisterFieldValuePrinter(const FieldDescriptor* field,
                                    const FieldValuePrinter* printer);
 
-   private:
+  private:
     // Forward declaration of an internal class used to print the text
     // output to the OutputStream (see text_format.cc for implementation).
     class TextGenerator;
@@ -270,7 +270,8 @@ class LIBPROTOBUF_EXPORT TextFormat {
 
     scoped_ptr<const FieldValuePrinter> default_field_value_printer_;
     typedef map<const FieldDescriptor*,
-                const FieldValuePrinter*> CustomPrinterMap;
+                const FieldValuePrinter*>
+        CustomPrinterMap;
     CustomPrinterMap custom_printers_;
   };
 
@@ -298,7 +299,7 @@ class LIBPROTOBUF_EXPORT TextFormat {
   // This class may be extended in the future to find more information
   // like fields, etc.
   class LIBPROTOBUF_EXPORT Finder {
-   public:
+  public:
     virtual ~Finder();
 
     // Try to find an extension of *message by fully-qualified field
@@ -321,7 +322,7 @@ class LIBPROTOBUF_EXPORT TextFormat {
   // Data structure which is populated with the locations of each field
   // value parsed from the text.
   class LIBPROTOBUF_EXPORT ParseInfoTree {
-   public:
+  public:
     ParseInfoTree();
     ~ParseInfoTree();
 
@@ -336,7 +337,7 @@ class LIBPROTOBUF_EXPORT TextFormat {
     ParseInfoTree* GetTreeForNested(const FieldDescriptor* field,
                                     int index) const;
 
-   private:
+  private:
     // Allow the text format parser to record information into the tree.
     friend class TextFormat;
 
@@ -347,11 +348,11 @@ class LIBPROTOBUF_EXPORT TextFormat {
     ParseInfoTree* CreateNested(const FieldDescriptor* field);
 
     // Defines the map from the index-th field descriptor to its parse location.
-    typedef map<const FieldDescriptor*, vector<ParseLocation> > LocationMap;
+    typedef map<const FieldDescriptor*, vector<ParseLocation>> LocationMap;
 
     // Defines the map from the index-th field descriptor to the nested parse
     // info tree.
-    typedef map<const FieldDescriptor*, vector<ParseInfoTree*> > NestedMap;
+    typedef map<const FieldDescriptor*, vector<ParseInfoTree*>> NestedMap;
 
     LocationMap locations_;
     NestedMap nested_;
@@ -361,7 +362,7 @@ class LIBPROTOBUF_EXPORT TextFormat {
 
   // For more control over parsing, use this class.
   class LIBPROTOBUF_EXPORT Parser {
-   public:
+  public:
     Parser();
     ~Parser();
 
@@ -412,12 +413,11 @@ class LIBPROTOBUF_EXPORT TextFormat {
                                    const FieldDescriptor* field,
                                    Message* output);
 
-
     void AllowFieldNumber(bool allow) {
       allow_field_number_ = allow;
     }
 
-   private:
+  private:
     // Forward declaration of an internal class used to parse text
     // representations (see text_format.cc for implementation).
     class ParserImpl;
@@ -440,8 +440,7 @@ class LIBPROTOBUF_EXPORT TextFormat {
     bool allow_singular_overwrites_;
   };
 
-
- private:
+private:
   // Hack: ParseInfoTree declares TextFormat as a friend which should extend
   // the friendship to TextFormat::Parser::ParserImpl, but unfortunately some
   // old compilers (e.g. GCC 3.4.6) don't implement this correctly. We provide
@@ -461,13 +460,12 @@ inline void TextFormat::RecordLocation(ParseInfoTree* info_tree,
   info_tree->RecordLocation(field, location);
 }
 
-
 inline TextFormat::ParseInfoTree* TextFormat::CreateNested(
     ParseInfoTree* info_tree, const FieldDescriptor* field) {
   return info_tree->CreateNested(field);
 }
 
-}  // namespace protobuf
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_TEXT_FORMAT_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_TEXT_FORMAT_H__

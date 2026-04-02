@@ -19,15 +19,13 @@
 //
 //		POST - Sends a message to a player (or all players)
 
-class MessageHandler : public WebUIHandler
-{
+class MessageHandler : public WebUIHandler {
 public:
-	MessageHandler(WebUIService* InService);
+  MessageHandler(WebUIService* InService);
 
-	virtual bool handlePost(CivetServer* Server, struct mg_connection* Connection) override;
+  virtual bool handlePost(CivetServer* Server, struct mg_connection* Connection) override;
 
-	virtual void Register(CivetServer* Server) override;
+  virtual void Register(CivetServer* Server) override;
 
 protected:
-
 };

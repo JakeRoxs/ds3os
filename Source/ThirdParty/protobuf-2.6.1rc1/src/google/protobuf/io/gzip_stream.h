@@ -54,7 +54,7 @@ namespace io {
 
 // A ZeroCopyInputStream that reads compressed data through zlib
 class LIBPROTOBUF_EXPORT GzipInputStream : public ZeroCopyInputStream {
- public:
+public:
   // Format key for constructor
   enum Format {
     // zlib will autodetect gzip header or deflate stream
@@ -88,7 +88,7 @@ class LIBPROTOBUF_EXPORT GzipInputStream : public ZeroCopyInputStream {
   bool Skip(int count);
   int64 ByteCount() const;
 
- private:
+private:
   Format format_;
 
   ZeroCopyInputStream* sub_stream_;
@@ -106,9 +106,8 @@ class LIBPROTOBUF_EXPORT GzipInputStream : public ZeroCopyInputStream {
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(GzipInputStream);
 };
 
-
 class LIBPROTOBUF_EXPORT GzipOutputStream : public ZeroCopyOutputStream {
- public:
+public:
   // Format key for constructor
   enum Format {
     // GZIP streams have some extra header data for file attributes.
@@ -134,7 +133,7 @@ class LIBPROTOBUF_EXPORT GzipOutputStream : public ZeroCopyOutputStream {
     // zlib.h for definitions of these constants.
     int compression_strategy;
 
-    Options();  // Initializes with default values.
+    Options(); // Initializes with default values.
   };
 
   // Create a GzipOutputStream with default options.
@@ -180,7 +179,7 @@ class LIBPROTOBUF_EXPORT GzipOutputStream : public ZeroCopyOutputStream {
   void BackUp(int count);
   int64 ByteCount() const;
 
- private:
+private:
   ZeroCopyOutputStream* sub_stream_;
   // Result from calling Next() on sub_stream_
   void* sub_data_;
@@ -202,8 +201,8 @@ class LIBPROTOBUF_EXPORT GzipOutputStream : public ZeroCopyOutputStream {
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(GzipOutputStream);
 };
 
-}  // namespace io
-}  // namespace protobuf
+} // namespace io
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_IO_GZIP_STREAM_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_IO_GZIP_STREAM_H__

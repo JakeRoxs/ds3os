@@ -16,18 +16,15 @@
 #include <vector>
 
 class RSACipher
-    : public Cipher
-{
+    : public Cipher {
 public:
+  RSACipher(RSAKeyPair* Key, RSAPaddingMode PaddingMode, bool UsePublicKeyToEncrypt);
 
-    RSACipher(RSAKeyPair* Key, RSAPaddingMode PaddingMode, bool UsePublicKeyToEncrypt);
-
-    bool Encrypt(const std::vector<uint8_t>& input, std::vector<uint8_t>& Output) override;
-    bool Decrypt(const std::vector<uint8_t>& input, std::vector<uint8_t>& Output) override;
+  bool Encrypt(const std::vector<uint8_t>& input, std::vector<uint8_t>& Output) override;
+  bool Decrypt(const std::vector<uint8_t>& input, std::vector<uint8_t>& Output) override;
 
 private:
-    RSAKeyPair* Key;
-    RSAPaddingMode PaddingMode;
-    bool UsePublicKeyToEncrypt = false;
-
+  RSAKeyPair* Key;
+  RSAPaddingMode PaddingMode;
+  bool UsePublicKeyToEncrypt = false;
 };

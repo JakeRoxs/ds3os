@@ -17,50 +17,40 @@
 #include <iterator>
 #include <Windows.h>
 
-namespace 
-{
-    using create_file_p = HANDLE(WINAPI*)(LPCWSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile);
-    create_file_p s_original_create_file = CreateFileW;
+namespace {
+using create_file_p = HANDLE(WINAPI*)(LPCWSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile);
+create_file_p s_original_create_file = CreateFileW;
 
-    HANDLE WINAPI CreateFileHook(LPCWSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile)
-    {
-        std::string filename = NarrowString(lpFileName);
+HANDLE WINAPI CreateFileHook(LPCWSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile) {
+  std::string filename = NarrowString(lpFileName);
 
-        const std::string extension_sl2 = ".sl2";
-        const std::string extension_sl2_bak = ".sl2.bak";
-        const std::string extension_rds = ".rds";
+  const std::string extension_sl2 = ".sl2";
+  const std::string extension_sl2_bak = ".sl2.bak";
+  const std::string extension_rds = ".rds";
 
-        if (StringEndsWith(filename, extension_sl2))
-        {
-            filename = filename.substr(0, filename.size() - extension_sl2.size()) + extension_rds;
-        }
-        else if (StringEndsWith(filename, extension_sl2_bak))
-        {
-            filename = filename.substr(0, filename.size() - extension_sl2_bak.size()) + extension_rds;
-        }
+  if (StringEndsWith(filename, extension_sl2)) {
+    filename = filename.substr(0, filename.size() - extension_sl2.size()) + extension_rds;
+  } else if (StringEndsWith(filename, extension_sl2_bak)) {
+    filename = filename.substr(0, filename.size() - extension_sl2_bak.size()) + extension_rds;
+  }
 
-        std::wstring new_filename = WidenString(filename);
-        return s_original_create_file(new_filename.c_str(), dwDesiredAccess, dwShareMode, lpSecurityAttributes, dwCreationDisposition, dwFlagsAndAttributes, hTemplateFile);
-    }
-};
+  std::wstring new_filename = WidenString(filename);
+  return s_original_create_file(new_filename.c_str(), dwDesiredAccess, dwShareMode, lpSecurityAttributes, dwCreationDisposition, dwFlagsAndAttributes, hTemplateFile);
+}
+}; // namespace
 
-HookError ChangeSaveGameFilenameHook::Install(const InjectorContext& /*context*/)
-{
-    DetourTransactionBegin();
-    DetourUpdateThread(GetCurrentThread());
-    DetourAttach(&(PVOID&)s_original_create_file, CreateFileHook);
-    LONG result = DetourTransactionCommit();
+HookError ChangeSaveGameFilenameHook::Install(const InjectorContext& /*context*/) {
+  DetourTransactionBegin();
+  DetourUpdateThread(GetCurrentThread());
+  DetourAttach(&(PVOID&)s_original_create_file, CreateFileHook);
+  LONG result = DetourTransactionCommit();
 
-    return (result == NO_ERROR) ? HookError::Success : HookError::DetourFailed;
+  return (result == NO_ERROR) ? HookError::Success : HookError::DetourFailed;
 }
 
-void ChangeSaveGameFilenameHook::Uninstall()
-{
-
+void ChangeSaveGameFilenameHook::Uninstall() {
 }
 
-const char* ChangeSaveGameFilenameHook::GetName()
-{
-    return "Change Save Game Filename";
+const char* ChangeSaveGameFilenameHook::GetName() {
+  return "Change Save Game Filename";
 }
-

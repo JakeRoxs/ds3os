@@ -19,20 +19,18 @@ class Server;
 // eg. Announcement messages, eula and alike.
 
 class DS3_BootManager
-    : public GameManager
-{
-public:    
-    DS3_BootManager(Server* InServerInstance);
+    : public GameManager {
+public:
+  DS3_BootManager(Server* InServerInstance);
 
-    virtual MessageHandleResult OnMessageReceived(GameClient* Client, const Frpg2ReliableUdpMessage& Message) override;
+  virtual MessageHandleResult OnMessageReceived(GameClient* Client, const Frpg2ReliableUdpMessage& Message) override;
 
-    virtual std::string GetName() override;
+  virtual std::string GetName() override;
 
 protected:
-    MessageHandleResult Handle_RequestWaitForUserLogin(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestGetAnnounceMessageList(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestWaitForUserLogin(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestGetAnnounceMessageList(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
 
 private:
-    Server* ServerInstance;
-
+  Server* ServerInstance;
 };

@@ -37,80 +37,75 @@
 
 //////////////////////////////////////////////////////////////// Target Class.
 //
-class CMember
-{
-  public:
-    void Target(void);
+class CMember {
+public:
+  void Target(void);
 };
 
-void CMember::Target(void)
-{
-    printf("  CMember::Target!   (this:%p)\n", this);
+void CMember::Target(void) {
+  printf("  CMember::Target!   (this:%p)\n", this);
 }
 
 //////////////////////////////////////////////////////////////// Detour Class.
 //
 class CDetour /* add ": public CMember" to enable access to member variables... */
 {
-  public:
-    void Mine_Target(void);
-    static void (CDetour::* Real_Target)(void);
+public:
+  void Mine_Target(void);
+  static void (CDetour::*Real_Target)(void);
 
-    // Class shouldn't have any member variables or virtual functions.
+  // Class shouldn't have any member variables or virtual functions.
 };
 
-void CDetour::Mine_Target(void)
-{
-    printf("  CDetour::Mine_Target! (this:%p)\n", this);
-    (this->*Real_Target)();
+void CDetour::Mine_Target(void) {
+  printf("  CDetour::Mine_Target! (this:%p)\n", this);
+  (this->*Real_Target)();
 }
 
 void (CDetour::* CDetour::Real_Target)(void) = (void (CDetour::*)(void))&CMember::Target;
 
 //////////////////////////////////////////////////////////////////////////////
 //
-int main(int argc, char **argv)
-{
-    (void)argc;
-    (void)argv;
+int main(int argc, char** argv) {
+  (void)argc;
+  (void)argv;
 
-    //////////////////////////////////////////////////////////////////////////
-    //
+  //////////////////////////////////////////////////////////////////////////
+  //
 
-    void (CMember::* pfTarget)(void) = &CMember::Target;
-    void (CDetour::* pfMine)(void) = &CDetour::Mine_Target;
+  void (CMember::*pfTarget)(void) = &CMember::Target;
+  void (CDetour::*pfMine)(void) = &CDetour::Mine_Target;
 
-    Verify("CMember::Target      ", *(PBYTE*)&pfTarget);
-    Verify("*CDetour::Real_Target", *(PBYTE*)&CDetour::Real_Target);
-    Verify("CDetour::Mine_Target ", *(PBYTE*)&pfMine);
+  Verify("CMember::Target      ", *(PBYTE*)&pfTarget);
+  Verify("*CDetour::Real_Target", *(PBYTE*)&CDetour::Real_Target);
+  Verify("CDetour::Mine_Target ", *(PBYTE*)&pfMine);
 
-    printf("\n");
+  printf("\n");
 
-    DetourTransactionBegin();
-    DetourUpdateThread(GetCurrentThread());
+  DetourTransactionBegin();
+  DetourUpdateThread(GetCurrentThread());
 
-    DetourAttach(&(PVOID&)CDetour::Real_Target,
-                 *(PBYTE*)&pfMine);
+  DetourAttach(&(PVOID&)CDetour::Real_Target,
+               *(PBYTE*)&pfMine);
 
-    LONG l = DetourTransactionCommit();
-    printf("DetourTransactionCommit = %d\n", l);
-    printf("\n");
+  LONG l = DetourTransactionCommit();
+  printf("DetourTransactionCommit = %d\n", l);
+  printf("\n");
 
-    Verify("CMember::Target      ", *(PBYTE*)&pfTarget);
-    Verify("*CDetour::Real_Target", *(&(PBYTE&)CDetour::Real_Target));
-    Verify("CDetour::Mine_Target ", *(PBYTE*)&pfMine);
-    printf("\n");
+  Verify("CMember::Target      ", *(PBYTE*)&pfTarget);
+  Verify("*CDetour::Real_Target", *(&(PBYTE&)CDetour::Real_Target));
+  Verify("CDetour::Mine_Target ", *(PBYTE*)&pfMine);
+  printf("\n");
 
-    //////////////////////////////////////////////////////////////////////////
-    //
-    CMember target;
+  //////////////////////////////////////////////////////////////////////////
+  //
+  CMember target;
 
-    printf("Calling CMember (w/o Detour):\n");
-    (((CDetour*)&target)->*CDetour::Real_Target)();
+  printf("Calling CMember (w/o Detour):\n");
+  (((CDetour*)&target)->*CDetour::Real_Target)();
 
-    printf("Calling CMember (will be detoured):\n");
-    target.Target();
+  printf("Calling CMember (will be detoured):\n");
+  target.Target();
 
-    return 0;
+  return 0;
 }
-

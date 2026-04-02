@@ -14,67 +14,57 @@
 #include "Shared/Core/Utils/Logging.h"
 
 AuthHandler::AuthHandler(WebUIService* InService)
-    : WebUIHandler(InService)
-{
+    : WebUIHandler(InService) {
 }
 
-
-void AuthHandler::Register(CivetServer* Server)
-{
-    Server->addHandler("/auth", this);
+void AuthHandler::Register(CivetServer* Server) {
+  Server->addHandler("/auth", this);
 }
 
-bool AuthHandler::handleGet(CivetServer* Server, struct mg_connection* Connection)
-{
-    if (!Service->IsAuthenticated(Connection))
-    {
-        mg_send_http_error(Connection, 401, "Token invalid.");
-        return true;
-    }
+bool AuthHandler::handleGet(CivetServer* Server, struct mg_connection* Connection) {
+  if (!Service->IsAuthenticated(Connection)) {
+    mg_send_http_error(Connection, 401, "Token invalid.");
+    return true;
+  }
+
+  nlohmann::json json;
+  RespondJson(Connection, json);
+
+  return true;
+}
+
+bool AuthHandler::handlePost(CivetServer* Server, struct mg_connection* Connection) {
+  nlohmann::json json;
+  if (!ReadJson(Server, Connection, json) ||
+      !json.contains("username") ||
+      !json.contains("password")) {
+    mg_send_http_error(Connection, 400, "Malformed body.");
+    return true;
+  }
+
+  std::string Username = json["username"];
+  std::string Password = json["password"];
+
+  std::string CorrectUsername = Service->GetServer()->GetConfig().WebUIServerUsername;
+  std::string CorrectPassword = Service->GetServer()->GetConfig().WebUIServerPassword;
+
+  if (Username == CorrectUsername &&
+      Password == CorrectPassword &&
+      !CorrectUsername.empty() &&
+      !CorrectPassword.empty()) {
+    RuntimeConfig& Config = Service->GetServer()->GetMutableConfig();
 
     nlohmann::json json;
+    json["token"] = Service->AddAuthToken();
+    json["gameType"] = Config.GameType;
+
+    LogS("WebUI", "User has logged in to webui.");
+
     RespondJson(Connection, json);
-
+  } else {
+    mg_send_http_error(Connection, 401, "Token login.");
     return true;
-}
+  }
 
-bool AuthHandler::handlePost(CivetServer* Server, struct mg_connection* Connection)
-{
-    nlohmann::json json;
-    if (!ReadJson(Server, Connection, json) ||
-        !json.contains("username") ||
-        !json.contains("password"))
-    {
-        mg_send_http_error(Connection, 400, "Malformed body.");
-        return true;
-    }
-
-    std::string Username = json["username"];
-    std::string Password = json["password"];
-
-    std::string CorrectUsername = Service->GetServer()->GetConfig().WebUIServerUsername;
-    std::string CorrectPassword = Service->GetServer()->GetConfig().WebUIServerPassword;
-
-    if (Username == CorrectUsername &&
-        Password == CorrectPassword &&
-        !CorrectUsername.empty() &&
-        !CorrectPassword.empty())
-    {
-        RuntimeConfig& Config = Service->GetServer()->GetMutableConfig();
-
-        nlohmann::json json;
-        json["token"] = Service->AddAuthToken();
-        json["gameType"] = Config.GameType;
-
-        LogS("WebUI", "User has logged in to webui.");
-
-        RespondJson(Connection, json);
-    }
-    else
-    {
-        mg_send_http_error(Connection, 401, "Token login.");
-        return true;
-    }
-
-    return true;
+  return true;
 }

@@ -119,7 +119,6 @@ inline string ShortMutableJavaClassName(const Descriptor* descriptor) {
   return descriptor->name();
 }
 
-
 // Whether we should generate multiple java files for messages.
 inline bool MultipleJavaFiles(
     const FileDescriptor* descriptor, bool immutable) {
@@ -128,7 +127,7 @@ inline bool MultipleJavaFiles(
 
 // Get the unqualified name that should be used for a field's field
 // number constant.
-string FieldConstantName(const FieldDescriptor *field);
+string FieldConstantName(const FieldDescriptor* field);
 
 // Returns the type of the FieldDescriptor.
 // This does nothing interesting for the open source release, but is used for
@@ -172,14 +171,14 @@ bool IsDefaultValueJavaDefault(const FieldDescriptor* field);
 // Otherwise, unknown fields will be stored in a ByteString object
 inline bool UseUnknownFieldSet(const Descriptor* descriptor) {
   return descriptor->file()->options().optimize_for() !=
-           FileOptions::LITE_RUNTIME;
+         FileOptions::LITE_RUNTIME;
 }
 
 // Does this message class have generated parsing, serialization, and other
 // standard methods for which reflection-based fallback implementations exist?
 inline bool HasGeneratedMethods(const Descriptor* descriptor) {
   return descriptor->file()->options().optimize_for() !=
-           FileOptions::CODE_SIZE;
+         FileOptions::CODE_SIZE;
 }
 
 // Does this message have specialized equals() and hashCode() methods?
@@ -190,25 +189,25 @@ inline bool HasEqualsAndHashCode(const Descriptor* descriptor) {
 // Does this message class have descriptor and reflection methods?
 inline bool HasDescriptorMethods(const Descriptor* descriptor) {
   return descriptor->file()->options().optimize_for() !=
-           FileOptions::LITE_RUNTIME;
+         FileOptions::LITE_RUNTIME;
 }
 inline bool HasDescriptorMethods(const EnumDescriptor* descriptor) {
   return descriptor->file()->options().optimize_for() !=
-           FileOptions::LITE_RUNTIME;
+         FileOptions::LITE_RUNTIME;
 }
 inline bool HasDescriptorMethods(const FileDescriptor* descriptor) {
   return descriptor->options().optimize_for() !=
-           FileOptions::LITE_RUNTIME;
+         FileOptions::LITE_RUNTIME;
 }
 
 inline bool HasNestedBuilders(const Descriptor* descriptor) {
   // The proto-lite version doesn't support nested builders.
   return descriptor->file()->options().optimize_for() !=
-           FileOptions::LITE_RUNTIME;
+         FileOptions::LITE_RUNTIME;
 }
 
 // Should we generate generic services for this file?
-inline bool HasGenericServices(const FileDescriptor *file) {
+inline bool HasGenericServices(const FileDescriptor* file) {
   return file->service_count() > 0 &&
          file->options().optimize_for() != FileOptions::LITE_RUNTIME &&
          file->options().java_generic_services();
@@ -314,9 +313,9 @@ inline bool SupportFieldPresence(const FileDescriptor* descriptor) {
 // Check whether a mesasge has repeated fields.
 bool HasRepeatedFields(const Descriptor* descriptor);
 
-}  // namespace java
-}  // namespace compiler
-}  // namespace protobuf
+} // namespace java
+} // namespace compiler
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_JAVA_HELPERS_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_COMPILER_JAVA_HELPERS_H__

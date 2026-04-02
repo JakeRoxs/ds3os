@@ -33,7 +33,8 @@ void protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto_impl() {
 #else
 void protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto() {
   static bool already_here = false;
-  if (already_here) return;
+  if (already_here)
+    return;
   already_here = true;
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -61,7 +62,7 @@ void protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto() {
 GOOGLE_PROTOBUF_DECLARE_ONCE(protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto_once_);
 void protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto() {
   ::google::protobuf::GoogleOnceInit(&protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto_once_,
-                 &protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto_impl);
+                                     &protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto_impl);
 }
 #else
 // Force AddDescriptors() to be called at static initialization time.
@@ -78,10 +79,10 @@ struct StaticDescriptorInitializer_Shared_5fFrpg2RequestMessage_2eproto {
 const int RequestQueryLoginServerInfo::kSteamIdFieldNumber;
 const int RequestQueryLoginServerInfo::kF2FieldNumber;
 const int RequestQueryLoginServerInfo::kAppVersionFieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 RequestQueryLoginServerInfo::RequestQueryLoginServerInfo()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:Shared_Frpg2RequestMessage.RequestQueryLoginServerInfo)
 }
@@ -90,7 +91,7 @@ void RequestQueryLoginServerInfo::InitAsDefaultInstance() {
 }
 
 RequestQueryLoginServerInfo::RequestQueryLoginServerInfo(const RequestQueryLoginServerInfo& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:Shared_Frpg2RequestMessage.RequestQueryLoginServerInfo)
@@ -99,8 +100,8 @@ RequestQueryLoginServerInfo::RequestQueryLoginServerInfo(const RequestQueryLogin
 void RequestQueryLoginServerInfo::SharedCtor() {
   ::google::protobuf::internal::GetEmptyString();
   _cached_size_ = 0;
-  steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  f2_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  f2_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   app_version_ = GOOGLE_ULONGLONG(0);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
@@ -117,11 +118,11 @@ void RequestQueryLoginServerInfo::SharedDtor() {
   if (f2_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
     delete f2_;
   }
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -134,7 +135,8 @@ const RequestQueryLoginServerInfo& RequestQueryLoginServerInfo::default_instance
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -165,7 +167,9 @@ void RequestQueryLoginServerInfo::Clear() {
 
 bool RequestQueryLoginServerInfo::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -173,61 +177,65 @@ bool RequestQueryLoginServerInfo::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:Shared_Frpg2RequestMessage.RequestQueryLoginServerInfo)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required string steam_id = 1;
-      case 1: {
-        if (tag == 10) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_steam_id()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(18)) goto parse_f2;
-        break;
+    // required string steam_id = 1;
+    case 1: {
+      if (tag == 10) {
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+            input, this->mutable_steam_id()));
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(18))
+        goto parse_f2;
+      break;
+    }
 
-      // optional string f2 = 2;
-      case 2: {
-        if (tag == 18) {
-         parse_f2:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_f2()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(24)) goto parse_app_version;
-        break;
+    // optional string f2 = 2;
+    case 2: {
+      if (tag == 18) {
+      parse_f2:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+            input, this->mutable_f2()));
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(24))
+        goto parse_app_version;
+      break;
+    }
 
-      // required uint64 app_version = 3;
-      case 3: {
-        if (tag == 24) {
-         parse_app_version:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
-                 input, &app_version_)));
-          set_has_app_version();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // required uint64 app_version = 3;
+    case 3: {
+      if (tag == 24) {
+      parse_app_version:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
+            input, &app_version_)));
+        set_has_app_version();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -245,13 +253,13 @@ void RequestQueryLoginServerInfo::SerializeWithCachedSizes(
   // required string steam_id = 1;
   if (has_steam_id()) {
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      1, this->steam_id(), output);
+        1, this->steam_id(), output);
   }
 
   // optional string f2 = 2;
   if (has_f2()) {
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      2, this->f2(), output);
+        2, this->f2(), output);
   }
 
   // required uint64 app_version = 3;
@@ -271,24 +279,23 @@ int RequestQueryLoginServerInfo::ByteSize() const {
     // required string steam_id = 1;
     if (has_steam_id()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->steam_id());
+                    ::google::protobuf::internal::WireFormatLite::StringSize(
+                        this->steam_id());
     }
 
     // optional string f2 = 2;
     if (has_f2()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->f2());
+                    ::google::protobuf::internal::WireFormatLite::StringSize(
+                        this->f2());
     }
 
     // required uint64 app_version = 3;
     if (has_app_version()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt64Size(
-          this->app_version());
+                    ::google::protobuf::internal::WireFormatLite::UInt64Size(
+                        this->app_version());
     }
-
   }
   total_size += unknown_fields().size();
 
@@ -320,13 +327,15 @@ void RequestQueryLoginServerInfo::MergeFrom(const RequestQueryLoginServerInfo& f
 }
 
 void RequestQueryLoginServerInfo::CopyFrom(const RequestQueryLoginServerInfo& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool RequestQueryLoginServerInfo::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000005) != 0x00000005) return false;
+  if ((_has_bits_[0] & 0x00000005) != 0x00000005)
+    return false;
 
   return true;
 }
@@ -346,16 +355,15 @@ void RequestQueryLoginServerInfo::Swap(RequestQueryLoginServerInfo* other) {
   return "Shared_Frpg2RequestMessage.RequestQueryLoginServerInfo";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
 const int RequestQueryLoginServerInfoResponse::kPortFieldNumber;
 const int RequestQueryLoginServerInfoResponse::kServerIpFieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 RequestQueryLoginServerInfoResponse::RequestQueryLoginServerInfoResponse()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:Shared_Frpg2RequestMessage.RequestQueryLoginServerInfoResponse)
 }
@@ -364,7 +372,7 @@ void RequestQueryLoginServerInfoResponse::InitAsDefaultInstance() {
 }
 
 RequestQueryLoginServerInfoResponse::RequestQueryLoginServerInfoResponse(const RequestQueryLoginServerInfoResponse& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:Shared_Frpg2RequestMessage.RequestQueryLoginServerInfoResponse)
@@ -374,7 +382,7 @@ void RequestQueryLoginServerInfoResponse::SharedCtor() {
   ::google::protobuf::internal::GetEmptyString();
   _cached_size_ = 0;
   port_ = GOOGLE_LONGLONG(0);
-  server_ip_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  server_ip_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -387,11 +395,11 @@ void RequestQueryLoginServerInfoResponse::SharedDtor() {
   if (server_ip_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
     delete server_ip_;
   }
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -404,7 +412,8 @@ const RequestQueryLoginServerInfoResponse& RequestQueryLoginServerInfoResponse::
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -430,7 +439,9 @@ void RequestQueryLoginServerInfoResponse::Clear() {
 
 bool RequestQueryLoginServerInfoResponse::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -438,48 +449,51 @@ bool RequestQueryLoginServerInfoResponse::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:Shared_Frpg2RequestMessage.RequestQueryLoginServerInfoResponse)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required int64 port = 1;
-      case 1: {
-        if (tag == 8) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
-                 input, &port_)));
-          set_has_port();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(18)) goto parse_server_ip;
-        break;
+    // required int64 port = 1;
+    case 1: {
+      if (tag == 8) {
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
+            input, &port_)));
+        set_has_port();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(18))
+        goto parse_server_ip;
+      break;
+    }
 
-      // required string server_ip = 2;
-      case 2: {
-        if (tag == 18) {
-         parse_server_ip:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_server_ip()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // required string server_ip = 2;
+    case 2: {
+      if (tag == 18) {
+      parse_server_ip:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+            input, this->mutable_server_ip()));
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -502,7 +516,7 @@ void RequestQueryLoginServerInfoResponse::SerializeWithCachedSizes(
   // required string server_ip = 2;
   if (has_server_ip()) {
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      2, this->server_ip(), output);
+        2, this->server_ip(), output);
   }
 
   output->WriteRaw(unknown_fields().data(),
@@ -517,17 +531,16 @@ int RequestQueryLoginServerInfoResponse::ByteSize() const {
     // required int64 port = 1;
     if (has_port()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int64Size(
-          this->port());
+                    ::google::protobuf::internal::WireFormatLite::Int64Size(
+                        this->port());
     }
 
     // required string server_ip = 2;
     if (has_server_ip()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->server_ip());
+                    ::google::protobuf::internal::WireFormatLite::StringSize(
+                        this->server_ip());
     }
-
   }
   total_size += unknown_fields().size();
 
@@ -556,13 +569,15 @@ void RequestQueryLoginServerInfoResponse::MergeFrom(const RequestQueryLoginServe
 }
 
 void RequestQueryLoginServerInfoResponse::CopyFrom(const RequestQueryLoginServerInfoResponse& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool RequestQueryLoginServerInfoResponse::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
+  if ((_has_bits_[0] & 0x00000003) != 0x00000003)
+    return false;
 
   return true;
 }
@@ -581,14 +596,13 @@ void RequestQueryLoginServerInfoResponse::Swap(RequestQueryLoginServerInfoRespon
   return "Shared_Frpg2RequestMessage.RequestQueryLoginServerInfoResponse";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 RequestQueryLoginServerInfoForXboxOne::RequestQueryLoginServerInfoForXboxOne()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:Shared_Frpg2RequestMessage.RequestQueryLoginServerInfoForXboxOne)
 }
@@ -597,7 +611,7 @@ void RequestQueryLoginServerInfoForXboxOne::InitAsDefaultInstance() {
 }
 
 RequestQueryLoginServerInfoForXboxOne::RequestQueryLoginServerInfoForXboxOne(const RequestQueryLoginServerInfoForXboxOne& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:Shared_Frpg2RequestMessage.RequestQueryLoginServerInfoForXboxOne)
@@ -614,11 +628,11 @@ RequestQueryLoginServerInfoForXboxOne::~RequestQueryLoginServerInfoForXboxOne() 
 }
 
 void RequestQueryLoginServerInfoForXboxOne::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -631,7 +645,8 @@ const RequestQueryLoginServerInfoForXboxOne& RequestQueryLoginServerInfoForXboxO
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -649,7 +664,9 @@ void RequestQueryLoginServerInfoForXboxOne::Clear() {
 
 bool RequestQueryLoginServerInfoForXboxOne::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -657,13 +674,14 @@ bool RequestQueryLoginServerInfoForXboxOne::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:Shared_Frpg2RequestMessage.RequestQueryLoginServerInfoForXboxOne)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
   handle_unusual:
     if (tag == 0 ||
         ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-        ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
       goto success;
     }
     DO_(::google::protobuf::internal::WireFormatLite::SkipField(
@@ -708,7 +726,8 @@ void RequestQueryLoginServerInfoForXboxOne::MergeFrom(const RequestQueryLoginSer
 }
 
 void RequestQueryLoginServerInfoForXboxOne::CopyFrom(const RequestQueryLoginServerInfoForXboxOne& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
@@ -729,15 +748,14 @@ void RequestQueryLoginServerInfoForXboxOne::Swap(RequestQueryLoginServerInfoForX
   return "Shared_Frpg2RequestMessage.RequestQueryLoginServerInfoForXboxOne";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
 const int RequestHandshake::kAesCwcKeyFieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 RequestHandshake::RequestHandshake()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:Shared_Frpg2RequestMessage.RequestHandshake)
 }
@@ -746,7 +764,7 @@ void RequestHandshake::InitAsDefaultInstance() {
 }
 
 RequestHandshake::RequestHandshake(const RequestHandshake& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:Shared_Frpg2RequestMessage.RequestHandshake)
@@ -755,7 +773,7 @@ RequestHandshake::RequestHandshake(const RequestHandshake& from)
 void RequestHandshake::SharedCtor() {
   ::google::protobuf::internal::GetEmptyString();
   _cached_size_ = 0;
-  aes_cwc_key_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  aes_cwc_key_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -768,11 +786,11 @@ void RequestHandshake::SharedDtor() {
   if (aes_cwc_key_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
     delete aes_cwc_key_;
   }
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -785,7 +803,8 @@ const RequestHandshake& RequestHandshake::default_instance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -808,7 +827,9 @@ void RequestHandshake::Clear() {
 
 bool RequestHandshake::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -816,33 +837,35 @@ bool RequestHandshake::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:Shared_Frpg2RequestMessage.RequestHandshake)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required bytes aes_cwc_key = 1;
-      case 1: {
-        if (tag == 10) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
-                input, this->mutable_aes_cwc_key()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // required bytes aes_cwc_key = 1;
+    case 1: {
+      if (tag == 10) {
+        DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
+            input, this->mutable_aes_cwc_key()));
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -860,7 +883,7 @@ void RequestHandshake::SerializeWithCachedSizes(
   // required bytes aes_cwc_key = 1;
   if (has_aes_cwc_key()) {
     ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
-      1, this->aes_cwc_key(), output);
+        1, this->aes_cwc_key(), output);
   }
 
   output->WriteRaw(unknown_fields().data(),
@@ -875,10 +898,9 @@ int RequestHandshake::ByteSize() const {
     // required bytes aes_cwc_key = 1;
     if (has_aes_cwc_key()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::BytesSize(
-          this->aes_cwc_key());
+                    ::google::protobuf::internal::WireFormatLite::BytesSize(
+                        this->aes_cwc_key());
     }
-
   }
   total_size += unknown_fields().size();
 
@@ -904,13 +926,15 @@ void RequestHandshake::MergeFrom(const RequestHandshake& from) {
 }
 
 void RequestHandshake::CopyFrom(const RequestHandshake& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool RequestHandshake::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000001) != 0x00000001) return false;
+  if ((_has_bits_[0] & 0x00000001) != 0x00000001)
+    return false;
 
   return true;
 }
@@ -928,14 +952,13 @@ void RequestHandshake::Swap(RequestHandshake* other) {
   return "Shared_Frpg2RequestMessage.RequestHandshake";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 RequestHandshakeResponse::RequestHandshakeResponse()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:Shared_Frpg2RequestMessage.RequestHandshakeResponse)
 }
@@ -944,7 +967,7 @@ void RequestHandshakeResponse::InitAsDefaultInstance() {
 }
 
 RequestHandshakeResponse::RequestHandshakeResponse(const RequestHandshakeResponse& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:Shared_Frpg2RequestMessage.RequestHandshakeResponse)
@@ -961,11 +984,11 @@ RequestHandshakeResponse::~RequestHandshakeResponse() {
 }
 
 void RequestHandshakeResponse::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -978,7 +1001,8 @@ const RequestHandshakeResponse& RequestHandshakeResponse::default_instance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -996,7 +1020,9 @@ void RequestHandshakeResponse::Clear() {
 
 bool RequestHandshakeResponse::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -1004,13 +1030,14 @@ bool RequestHandshakeResponse::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:Shared_Frpg2RequestMessage.RequestHandshakeResponse)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
   handle_unusual:
     if (tag == 0 ||
         ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-        ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
       goto success;
     }
     DO_(::google::protobuf::internal::WireFormatLite::SkipField(
@@ -1055,7 +1082,8 @@ void RequestHandshakeResponse::MergeFrom(const RequestHandshakeResponse& from) {
 }
 
 void RequestHandshakeResponse::CopyFrom(const RequestHandshakeResponse& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
@@ -1076,7 +1104,6 @@ void RequestHandshakeResponse::Swap(RequestHandshakeResponse* other) {
   return "Shared_Frpg2RequestMessage.RequestHandshakeResponse";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
@@ -1084,10 +1111,10 @@ const int GetServiceStatus::kIdFieldNumber;
 const int GetServiceStatus::kSteamIdFieldNumber;
 const int GetServiceStatus::kUnknown1FieldNumber;
 const int GetServiceStatus::kAppVersionFieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 GetServiceStatus::GetServiceStatus()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:Shared_Frpg2RequestMessage.GetServiceStatus)
 }
@@ -1096,7 +1123,7 @@ void GetServiceStatus::InitAsDefaultInstance() {
 }
 
 GetServiceStatus::GetServiceStatus(const GetServiceStatus& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:Shared_Frpg2RequestMessage.GetServiceStatus)
@@ -1106,8 +1133,8 @@ void GetServiceStatus::SharedCtor() {
   ::google::protobuf::internal::GetEmptyString();
   _cached_size_ = 0;
   id_ = GOOGLE_LONGLONG(0);
-  steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  unknown_1_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  unknown_1_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   app_version_ = GOOGLE_LONGLONG(0);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
@@ -1124,11 +1151,11 @@ void GetServiceStatus::SharedDtor() {
   if (unknown_1_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
     delete unknown_1_;
   }
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -1141,7 +1168,8 @@ const GetServiceStatus& GetServiceStatus::default_instance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -1173,7 +1201,9 @@ void GetServiceStatus::Clear() {
 
 bool GetServiceStatus::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -1181,76 +1211,81 @@ bool GetServiceStatus::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:Shared_Frpg2RequestMessage.GetServiceStatus)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required int64 id = 1;
-      case 1: {
-        if (tag == 8) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
-                 input, &id_)));
-          set_has_id();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(18)) goto parse_steam_id;
-        break;
+    // required int64 id = 1;
+    case 1: {
+      if (tag == 8) {
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
+            input, &id_)));
+        set_has_id();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(18))
+        goto parse_steam_id;
+      break;
+    }
 
-      // required string steam_id = 2;
-      case 2: {
-        if (tag == 18) {
-         parse_steam_id:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_steam_id()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(26)) goto parse_unknown_1;
-        break;
+    // required string steam_id = 2;
+    case 2: {
+      if (tag == 18) {
+      parse_steam_id:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+            input, this->mutable_steam_id()));
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(26))
+        goto parse_unknown_1;
+      break;
+    }
 
-      // optional string unknown_1 = 3;
-      case 3: {
-        if (tag == 26) {
-         parse_unknown_1:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_unknown_1()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(32)) goto parse_app_version;
-        break;
+    // optional string unknown_1 = 3;
+    case 3: {
+      if (tag == 26) {
+      parse_unknown_1:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+            input, this->mutable_unknown_1()));
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(32))
+        goto parse_app_version;
+      break;
+    }
 
-      // required int64 app_version = 4;
-      case 4: {
-        if (tag == 32) {
-         parse_app_version:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
-                 input, &app_version_)));
-          set_has_app_version();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // required int64 app_version = 4;
+    case 4: {
+      if (tag == 32) {
+      parse_app_version:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
+            input, &app_version_)));
+        set_has_app_version();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -1273,13 +1308,13 @@ void GetServiceStatus::SerializeWithCachedSizes(
   // required string steam_id = 2;
   if (has_steam_id()) {
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      2, this->steam_id(), output);
+        2, this->steam_id(), output);
   }
 
   // optional string unknown_1 = 3;
   if (has_unknown_1()) {
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      3, this->unknown_1(), output);
+        3, this->unknown_1(), output);
   }
 
   // required int64 app_version = 4;
@@ -1299,31 +1334,30 @@ int GetServiceStatus::ByteSize() const {
     // required int64 id = 1;
     if (has_id()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int64Size(
-          this->id());
+                    ::google::protobuf::internal::WireFormatLite::Int64Size(
+                        this->id());
     }
 
     // required string steam_id = 2;
     if (has_steam_id()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->steam_id());
+                    ::google::protobuf::internal::WireFormatLite::StringSize(
+                        this->steam_id());
     }
 
     // optional string unknown_1 = 3;
     if (has_unknown_1()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->unknown_1());
+                    ::google::protobuf::internal::WireFormatLite::StringSize(
+                        this->unknown_1());
     }
 
     // required int64 app_version = 4;
     if (has_app_version()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int64Size(
-          this->app_version());
+                    ::google::protobuf::internal::WireFormatLite::Int64Size(
+                        this->app_version());
     }
-
   }
   total_size += unknown_fields().size();
 
@@ -1358,13 +1392,15 @@ void GetServiceStatus::MergeFrom(const GetServiceStatus& from) {
 }
 
 void GetServiceStatus::CopyFrom(const GetServiceStatus& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool GetServiceStatus::IsInitialized() const {
-  if ((_has_bits_[0] & 0x0000000b) != 0x0000000b) return false;
+  if ((_has_bits_[0] & 0x0000000b) != 0x0000000b)
+    return false;
 
   return true;
 }
@@ -1385,14 +1421,13 @@ void GetServiceStatus::Swap(GetServiceStatus* other) {
   return "Shared_Frpg2RequestMessage.GetServiceStatus";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 GetServiceStatusForXboxOne::GetServiceStatusForXboxOne()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:Shared_Frpg2RequestMessage.GetServiceStatusForXboxOne)
 }
@@ -1401,7 +1436,7 @@ void GetServiceStatusForXboxOne::InitAsDefaultInstance() {
 }
 
 GetServiceStatusForXboxOne::GetServiceStatusForXboxOne(const GetServiceStatusForXboxOne& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:Shared_Frpg2RequestMessage.GetServiceStatusForXboxOne)
@@ -1418,11 +1453,11 @@ GetServiceStatusForXboxOne::~GetServiceStatusForXboxOne() {
 }
 
 void GetServiceStatusForXboxOne::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -1435,7 +1470,8 @@ const GetServiceStatusForXboxOne& GetServiceStatusForXboxOne::default_instance()
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -1453,7 +1489,9 @@ void GetServiceStatusForXboxOne::Clear() {
 
 bool GetServiceStatusForXboxOne::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -1461,13 +1499,14 @@ bool GetServiceStatusForXboxOne::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:Shared_Frpg2RequestMessage.GetServiceStatusForXboxOne)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
   handle_unusual:
     if (tag == 0 ||
         ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-        ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
       goto success;
     }
     DO_(::google::protobuf::internal::WireFormatLite::SkipField(
@@ -1512,7 +1551,8 @@ void GetServiceStatusForXboxOne::MergeFrom(const GetServiceStatusForXboxOne& fro
 }
 
 void GetServiceStatusForXboxOne::CopyFrom(const GetServiceStatusForXboxOne& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
@@ -1533,7 +1573,6 @@ void GetServiceStatusForXboxOne::Swap(GetServiceStatusForXboxOne* other) {
   return "Shared_Frpg2RequestMessage.GetServiceStatusForXboxOne";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
@@ -1541,10 +1580,10 @@ const int GetServiceStatusResponse::kIdFieldNumber;
 const int GetServiceStatusResponse::kSteamIdFieldNumber;
 const int GetServiceStatusResponse::kUnknown1FieldNumber;
 const int GetServiceStatusResponse::kAppVersionFieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 GetServiceStatusResponse::GetServiceStatusResponse()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:Shared_Frpg2RequestMessage.GetServiceStatusResponse)
 }
@@ -1553,7 +1592,7 @@ void GetServiceStatusResponse::InitAsDefaultInstance() {
 }
 
 GetServiceStatusResponse::GetServiceStatusResponse(const GetServiceStatusResponse& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:Shared_Frpg2RequestMessage.GetServiceStatusResponse)
@@ -1563,7 +1602,7 @@ void GetServiceStatusResponse::SharedCtor() {
   ::google::protobuf::internal::GetEmptyString();
   _cached_size_ = 0;
   id_ = GOOGLE_LONGLONG(0);
-  steam_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  steam_id_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   unknown_1_ = GOOGLE_LONGLONG(0);
   app_version_ = GOOGLE_LONGLONG(0);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -1578,11 +1617,11 @@ void GetServiceStatusResponse::SharedDtor() {
   if (steam_id_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
     delete steam_id_;
   }
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -1595,7 +1634,8 @@ const GetServiceStatusResponse& GetServiceStatusResponse::default_instance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_Shared_5fFrpg2RequestMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -1607,14 +1647,15 @@ GetServiceStatusResponse* GetServiceStatusResponse::New() const {
 }
 
 void GetServiceStatusResponse::Clear() {
-#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(      \
-  &reinterpret_cast<GetServiceStatusResponse*>(16)->f) - \
-   reinterpret_cast<char*>(16))
+#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(                                   \
+                                 &reinterpret_cast<GetServiceStatusResponse*>(16)->f) - \
+                             reinterpret_cast<char*>(16))
 
-#define ZR_(first, last) do {                              \
-    size_t f = OFFSET_OF_FIELD_(first);                    \
-    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last);  \
-    ::memset(&first, 0, n);                                \
+#define ZR_(first, last)                                  \
+  do {                                                    \
+    size_t f = OFFSET_OF_FIELD_(first);                   \
+    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last); \
+    ::memset(&first, 0, n);                               \
   } while (0)
 
   if (_has_bits_[0 / 32] & 15) {
@@ -1636,7 +1677,9 @@ void GetServiceStatusResponse::Clear() {
 
 bool GetServiceStatusResponse::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -1644,78 +1687,83 @@ bool GetServiceStatusResponse::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:Shared_Frpg2RequestMessage.GetServiceStatusResponse)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional int64 id = 1;
-      case 1: {
-        if (tag == 8) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
-                 input, &id_)));
-          set_has_id();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(18)) goto parse_steam_id;
-        break;
+    // optional int64 id = 1;
+    case 1: {
+      if (tag == 8) {
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
+            input, &id_)));
+        set_has_id();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(18))
+        goto parse_steam_id;
+      break;
+    }
 
-      // optional string steam_id = 2;
-      case 2: {
-        if (tag == 18) {
-         parse_steam_id:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_steam_id()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(24)) goto parse_unknown_1;
-        break;
+    // optional string steam_id = 2;
+    case 2: {
+      if (tag == 18) {
+      parse_steam_id:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+            input, this->mutable_steam_id()));
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(24))
+        goto parse_unknown_1;
+      break;
+    }
 
-      // optional int64 unknown_1 = 3;
-      case 3: {
-        if (tag == 24) {
-         parse_unknown_1:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
-                 input, &unknown_1_)));
-          set_has_unknown_1();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(32)) goto parse_app_version;
-        break;
+    // optional int64 unknown_1 = 3;
+    case 3: {
+      if (tag == 24) {
+      parse_unknown_1:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
+            input, &unknown_1_)));
+        set_has_unknown_1();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(32))
+        goto parse_app_version;
+      break;
+    }
 
-      // optional int64 app_version = 4;
-      case 4: {
-        if (tag == 32) {
-         parse_app_version:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
-                 input, &app_version_)));
-          set_has_app_version();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // optional int64 app_version = 4;
+    case 4: {
+      if (tag == 32) {
+      parse_app_version:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
+            input, &app_version_)));
+        set_has_app_version();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -1738,7 +1786,7 @@ void GetServiceStatusResponse::SerializeWithCachedSizes(
   // optional string steam_id = 2;
   if (has_steam_id()) {
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      2, this->steam_id(), output);
+        2, this->steam_id(), output);
   }
 
   // optional int64 unknown_1 = 3;
@@ -1763,31 +1811,30 @@ int GetServiceStatusResponse::ByteSize() const {
     // optional int64 id = 1;
     if (has_id()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int64Size(
-          this->id());
+                    ::google::protobuf::internal::WireFormatLite::Int64Size(
+                        this->id());
     }
 
     // optional string steam_id = 2;
     if (has_steam_id()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->steam_id());
+                    ::google::protobuf::internal::WireFormatLite::StringSize(
+                        this->steam_id());
     }
 
     // optional int64 unknown_1 = 3;
     if (has_unknown_1()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int64Size(
-          this->unknown_1());
+                    ::google::protobuf::internal::WireFormatLite::Int64Size(
+                        this->unknown_1());
     }
 
     // optional int64 app_version = 4;
     if (has_app_version()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int64Size(
-          this->app_version());
+                    ::google::protobuf::internal::WireFormatLite::Int64Size(
+                        this->app_version());
     }
-
   }
   total_size += unknown_fields().size();
 
@@ -1822,7 +1869,8 @@ void GetServiceStatusResponse::MergeFrom(const GetServiceStatusResponse& from) {
 }
 
 void GetServiceStatusResponse::CopyFrom(const GetServiceStatusResponse& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
@@ -1848,9 +1896,8 @@ void GetServiceStatusResponse::Swap(GetServiceStatusResponse* other) {
   return "Shared_Frpg2RequestMessage.GetServiceStatusResponse";
 }
 
-
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace Shared_Frpg2RequestMessage
+} // namespace Shared_Frpg2RequestMessage
 
 // @@protoc_insertion_point(global_scope)

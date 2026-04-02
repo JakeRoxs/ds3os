@@ -191,7 +191,7 @@ TEST(Printer, Indenting) {
       printer.PrintRaw("RawBit has indent at start\n");
       printer.PrintRaw("but not after a raw newline\n");
       printer.Print(vars, "Note that a newline in a variable will break "
-                    "indenting, as we see$newline$here.\n");
+                          "indenting, as we see$newline$here.\n");
       printer.Indent();
       printer.Print("And this");
       printer.Outdent();
@@ -204,18 +204,18 @@ TEST(Printer, Indenting) {
     buffer[output.ByteCount()] = '\0';
 
     EXPECT_STREQ(
-      "This is not indented.\n"
-      "  This is indented\n"
-      "  And so is this\n"
-      "But this is not.  And this is still the same line.\n"
-      "  But this is indented.\n"
-      "  RawBit has indent at start\n"
-      "but not after a raw newline\n"
-      "Note that a newline in a variable will break indenting, as we see\n"
-      "here.\n"
-      "    And this is double-indented\n"
-      "Back to normal.",
-      buffer);
+        "This is not indented.\n"
+        "  This is indented\n"
+        "  And so is this\n"
+        "But this is not.  And this is still the same line.\n"
+        "  But this is indented.\n"
+        "  RawBit has indent at start\n"
+        "but not after a raw newline\n"
+        "Note that a newline in a variable will break indenting, as we see\n"
+        "here.\n"
+        "    And this is double-indented\n"
+        "Back to normal.",
+        buffer);
   }
 }
 
@@ -231,7 +231,7 @@ TEST(Printer, Death) {
   EXPECT_DEBUG_DEATH(printer.Print("$unclosed"), "Unclosed variable name");
   EXPECT_DEBUG_DEATH(printer.Outdent(), "without matching Indent");
 }
-#endif  // PROTOBUF_HAS_DEATH_TEST
+#endif // PROTOBUF_HAS_DEATH_TEST
 
 TEST(Printer, WriteFailurePartial) {
   char buffer[17];
@@ -279,7 +279,7 @@ TEST(Printer, WriteFailureExact) {
   EXPECT_EQ("0123456789abcdef", string(buffer, sizeof(buffer)));
 }
 
-}  // namespace
-}  // namespace io
-}  // namespace protobuf
-}  // namespace google
+} // namespace
+} // namespace io
+} // namespace protobuf
+} // namespace google

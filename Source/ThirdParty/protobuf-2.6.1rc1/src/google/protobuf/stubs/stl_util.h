@@ -96,8 +96,9 @@ inline char* string_as_array(string* str) {
 // ElementDeleter (defined below), which ensures that your container's elements
 // are deleted when the ElementDeleter goes out of scope.
 template <class T>
-void STLDeleteElements(T *container) {
-  if (!container) return;
+void STLDeleteElements(T* container) {
+  if (!container)
+    return;
   STLDeleteContainerPointers(container->begin(), container->end());
   container->clear();
 }
@@ -107,15 +108,16 @@ void STLDeleteElements(T *container) {
 // in the case it's given a NULL pointer.
 
 template <class T>
-void STLDeleteValues(T *v) {
-  if (!v) return;
+void STLDeleteValues(T* v) {
+  if (!v)
+    return;
   for (typename T::iterator i = v->begin(); i != v->end(); ++i) {
     delete i->second;
   }
   v->clear();
 }
 
-}  // namespace protobuf
-}  // namespace google
+} // namespace protobuf
+} // namespace google
 
-#endif  // GOOGLE_PROTOBUF_STUBS_STL_UTIL_H__
+#endif // GOOGLE_PROTOBUF_STUBS_STL_UTIL_H__

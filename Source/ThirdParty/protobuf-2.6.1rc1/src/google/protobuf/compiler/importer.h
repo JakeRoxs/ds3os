@@ -48,7 +48,9 @@
 namespace google {
 namespace protobuf {
 
-namespace io { class ZeroCopyInputStream; }
+namespace io {
+class ZeroCopyInputStream;
+}
 
 namespace compiler {
 
@@ -74,7 +76,7 @@ class DiskSourceTree;
 // Note:  This class does not implement FindFileContainingSymbol() or
 //   FindFileContainingExtension(); these will always return false.
 class LIBPROTOBUF_EXPORT SourceTreeDescriptorDatabase : public DescriptorDatabase {
- public:
+public:
   SourceTreeDescriptorDatabase(SourceTree* source_tree);
   ~SourceTreeDescriptorDatabase();
 
@@ -103,14 +105,14 @@ class LIBPROTOBUF_EXPORT SourceTreeDescriptorDatabase : public DescriptorDatabas
                                    int field_number,
                                    FileDescriptorProto* output);
 
- private:
+private:
   class SingleFileErrorCollector;
 
   SourceTree* source_tree_;
   MultiFileErrorCollector* error_collector_;
 
   class LIBPROTOBUF_EXPORT ValidationErrorCollector : public DescriptorPool::ErrorCollector {
-   public:
+  public:
     ValidationErrorCollector(SourceTreeDescriptorDatabase* owner);
     ~ValidationErrorCollector();
 
@@ -121,7 +123,7 @@ class LIBPROTOBUF_EXPORT SourceTreeDescriptorDatabase : public DescriptorDatabas
                   ErrorLocation location,
                   const string& message);
 
-   private:
+  private:
     SourceTreeDescriptorDatabase* owner_;
   };
   friend class ValidationErrorCollector;
@@ -140,7 +142,7 @@ class LIBPROTOBUF_EXPORT SourceTreeDescriptorDatabase : public DescriptorDatabas
 //
 // TODO(kenton):  I feel like this class is not well-named.
 class LIBPROTOBUF_EXPORT Importer {
- public:
+public:
   Importer(SourceTree* source_tree,
            MultiFileErrorCollector* error_collector);
   ~Importer();
@@ -169,7 +171,7 @@ class LIBPROTOBUF_EXPORT Importer {
   void AddUnusedImportTrackFile(const string& file_name);
   void ClearUnusedImportTrackFiles();
 
- private:
+private:
   SourceTreeDescriptorDatabase database_;
   DescriptorPool pool_;
 
@@ -179,7 +181,7 @@ class LIBPROTOBUF_EXPORT Importer {
 // If the importer encounters problems while trying to import the proto files,
 // it reports them to a MultiFileErrorCollector.
 class LIBPROTOBUF_EXPORT MultiFileErrorCollector {
- public:
+public:
   inline MultiFileErrorCollector() {}
   virtual ~MultiFileErrorCollector();
 
@@ -188,7 +190,7 @@ class LIBPROTOBUF_EXPORT MultiFileErrorCollector {
   virtual void AddError(const string& filename, int line, int column,
                         const string& message) = 0;
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(MultiFileErrorCollector);
 };
 
@@ -197,7 +199,7 @@ class LIBPROTOBUF_EXPORT MultiFileErrorCollector {
 // Most users will probably want to use the DiskSourceTree implementation,
 // below.
 class LIBPROTOBUF_EXPORT SourceTree {
- public:
+public:
   inline SourceTree() {}
   virtual ~SourceTree();
 
@@ -214,7 +216,7 @@ class LIBPROTOBUF_EXPORT SourceTree {
   // TODO(xiaofeng): change this to a pure virtual function.
   virtual string GetLastErrorMessage();
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(SourceTree);
 };
 
@@ -222,7 +224,7 @@ class LIBPROTOBUF_EXPORT SourceTree {
 // Multiple mappings can be set up to map locations in the DiskSourceTree to
 // locations in the physical filesystem.
 class LIBPROTOBUF_EXPORT DiskSourceTree : public SourceTree {
- public:
+public:
   DiskSourceTree();
   ~DiskSourceTree();
 
@@ -273,9 +275,9 @@ class LIBPROTOBUF_EXPORT DiskSourceTree : public SourceTree {
   // * NO_MAPPING: Indicates that no mapping was found which contains this
   //   file.
   DiskFileToVirtualFileResult
-    DiskFileToVirtualFile(const string& disk_file,
-                          string* virtual_file,
-                          string* shadowing_disk_file);
+  DiskFileToVirtualFile(const string& disk_file,
+                        string* virtual_file,
+                        string* shadowing_disk_file);
 
   // Given a virtual path, find the path to the file on disk.
   // Return true and update disk_file with the on-disk path if the file exists.
@@ -287,14 +289,14 @@ class LIBPROTOBUF_EXPORT DiskSourceTree : public SourceTree {
 
   virtual string GetLastErrorMessage();
 
- private:
+private:
   struct Mapping {
     string virtual_path;
     string disk_path;
 
     inline Mapping(const string& virtual_path_param,
                    const string& disk_path_param)
-      : virtual_path(virtual_path_param), disk_path(disk_path_param) {}
+        : virtual_path(virtual_path_param), disk_path(disk_path_param) {}
   };
   vector<Mapping> mappings_;
   string last_error_message_;
@@ -310,8 +312,8 @@ class LIBPROTOBUF_EXPORT DiskSourceTree : public SourceTree {
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(DiskSourceTree);
 };
 
-}  // namespace compiler
-}  // namespace protobuf
+} // namespace compiler
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_IMPORTER_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_COMPILER_IMPORTER_H__

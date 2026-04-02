@@ -40,48 +40,49 @@
 
 namespace google {
 namespace protobuf {
-  namespace compiler {
-    namespace java {
-      class Context;            // context.h
-      class ClassNameResolver;  // name_resolver.h
-    }
-  }
-  namespace io {
-    class Printer;              // printer.h
-  }
+namespace compiler {
+namespace java {
+class Context;           // context.h
+class ClassNameResolver; // name_resolver.h
+} // namespace java
+} // namespace compiler
+namespace io {
+class Printer; // printer.h
 }
+} // namespace protobuf
 
 namespace protobuf {
 namespace compiler {
 namespace java {
 
 class ServiceGenerator {
- public:
+public:
   explicit ServiceGenerator(const ServiceDescriptor* descriptor);
   virtual ~ServiceGenerator();
 
   virtual void Generate(io::Printer* printer) = 0;
 
-  enum RequestOrResponse { REQUEST, RESPONSE };
-  enum IsAbstract { IS_ABSTRACT, IS_CONCRETE };
+  enum RequestOrResponse { REQUEST,
+                           RESPONSE };
+  enum IsAbstract { IS_ABSTRACT,
+                    IS_CONCRETE };
 
- protected:
+protected:
   const ServiceDescriptor* descriptor_;
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ServiceGenerator);
 };
 
 class ImmutableServiceGenerator : public ServiceGenerator {
- public:
+public:
   explicit ImmutableServiceGenerator(const ServiceDescriptor* descriptor,
                                      Context* context);
   virtual ~ImmutableServiceGenerator();
 
   virtual void Generate(io::Printer* printer);
 
- private:
-
+private:
   // Generate the getDescriptorForType() method.
   void GenerateGetDescriptorForType(io::Printer* printer);
 
@@ -127,9 +128,9 @@ class ImmutableServiceGenerator : public ServiceGenerator {
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ImmutableServiceGenerator);
 };
 
-}  // namespace java
-}  // namespace compiler
-}  // namespace protobuf
+} // namespace java
+} // namespace compiler
+} // namespace protobuf
 
-#endif  // NET_PROTO2_COMPILER_JAVA_SERVICE_H__
-}  // namespace google
+#endif // NET_PROTO2_COMPILER_JAVA_SERVICE_H__
+} // namespace google

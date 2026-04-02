@@ -42,17 +42,17 @@
 
 namespace google {
 namespace protobuf {
-  namespace io {
-    class Printer;             // printer.h
-  }
+namespace io {
+class Printer; // printer.h
 }
+} // namespace protobuf
 
 namespace protobuf {
 namespace compiler {
 namespace cpp {
 
 class ServiceGenerator {
- public:
+public:
   // See generator.cc for the meaning of dllexport_decl.
   explicit ServiceGenerator(const ServiceDescriptor* descriptor,
                             const Options& options);
@@ -73,9 +73,11 @@ class ServiceGenerator {
   // Generate implementations of everything declared by GenerateDeclarations().
   void GenerateImplementation(io::Printer* printer);
 
- private:
-  enum RequestOrResponse { REQUEST, RESPONSE };
-  enum VirtualOrNon { VIRTUAL, NON_VIRTUAL };
+private:
+  enum RequestOrResponse { REQUEST,
+                           RESPONSE };
+  enum VirtualOrNon { VIRTUAL,
+                      NON_VIRTUAL };
 
   // Header stuff.
 
@@ -110,9 +112,9 @@ class ServiceGenerator {
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ServiceGenerator);
 };
 
-}  // namespace cpp
-}  // namespace compiler
-}  // namespace protobuf
+} // namespace cpp
+} // namespace compiler
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_CPP_SERVICE_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_COMPILER_CPP_SERVICE_H__

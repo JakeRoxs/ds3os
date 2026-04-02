@@ -39,16 +39,16 @@
 
 namespace google {
 namespace protobuf {
-  class FileDescriptor;
-  class FieldDescriptor;
-  class OneofDescriptor;
-  class Descriptor;
-  namespace compiler {
-    namespace java {
-      class ClassNameResolver;  // name_resolver.h
-    }
-  }
-}  // namespace protobuf
+class FileDescriptor;
+class FieldDescriptor;
+class OneofDescriptor;
+class Descriptor;
+namespace compiler {
+namespace java {
+class ClassNameResolver; // name_resolver.h
+}
+} // namespace compiler
+} // namespace protobuf
 
 namespace protobuf {
 namespace compiler {
@@ -59,7 +59,7 @@ struct OneofGeneratorInfo;
 // A context object holds the information that is shared among all code
 // generators.
 class Context {
- public:
+public:
   explicit Context(const FileDescriptor* file);
   ~Context();
 
@@ -75,7 +75,7 @@ class Context {
   const OneofGeneratorInfo* GetOneofGeneratorInfo(
       const OneofDescriptor* oneof) const;
 
- private:
+private:
   void InitializeFieldGeneratorInfo(const FileDescriptor* file);
   void InitializeFieldGeneratorInfoForMessage(const Descriptor* message);
   void InitializeFieldGeneratorInfoForFields(
@@ -87,9 +87,9 @@ class Context {
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(Context);
 };
 
-}  // namespace java
-}  // namespace compiler
-}  // namespace protobuf
+} // namespace java
+} // namespace compiler
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_JAVA_CONTEXT_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_COMPILER_JAVA_CONTEXT_H__

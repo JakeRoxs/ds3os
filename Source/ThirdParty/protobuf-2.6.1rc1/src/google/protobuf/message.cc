@@ -54,17 +54,19 @@
 namespace google {
 namespace protobuf {
 
-using internal::WireFormat;
 using internal::ReflectionOps;
+using internal::WireFormat;
 
 Message::~Message() {}
 
 void Message::MergeFrom(const Message& from) {
   const Descriptor* descriptor = GetDescriptor();
   GOOGLE_CHECK_EQ(from.GetDescriptor(), descriptor)
-    << ": Tried to merge from a message with a different type.  "
-       "to: " << descriptor->full_name() << ", "
-       "from:" << from.GetDescriptor()->full_name();
+      << ": Tried to merge from a message with a different type.  "
+         "to: "
+      << descriptor->full_name() << ", "
+                                    "from:"
+      << from.GetDescriptor()->full_name();
   ReflectionOps::Merge(from, this);
 }
 
@@ -75,9 +77,11 @@ void Message::CheckTypeAndMergeFrom(const MessageLite& other) {
 void Message::CopyFrom(const Message& from) {
   const Descriptor* descriptor = GetDescriptor();
   GOOGLE_CHECK_EQ(from.GetDescriptor(), descriptor)
-    << ": Tried to copy from a message with a different type. "
-       "to: " << descriptor->full_name() << ", "
-       "from:" << from.GetDescriptor()->full_name();
+      << ": Tried to copy from a message with a different type. "
+         "to: "
+      << descriptor->full_name() << ", "
+                                    "from:"
+      << from.GetDescriptor()->full_name();
   ReflectionOps::Copy(from, this);
 }
 
@@ -105,8 +109,8 @@ string Message::InitializationErrorString() const {
 
 void Message::CheckInitialized() const {
   GOOGLE_CHECK(IsInitialized())
-    << "Message of type \"" << GetDescriptor()->full_name()
-    << "\" is missing required fields: " << InitializationErrorString();
+      << "Message of type \"" << GetDescriptor()->full_name()
+      << "\" is missing required fields: " << InitializationErrorString();
 }
 
 void Message::DiscardUnknownFields() {
@@ -137,7 +141,6 @@ bool Message::ParsePartialFromIstream(istream* input) {
   return ParsePartialFromZeroCopyStream(&zero_copy_input) && input->eof();
 }
 
-
 void Message::SerializeWithCachedSizes(
     io::CodedOutputStream* output) const {
   WireFormat::SerializeWithCachedSizes(*this, GetCachedSize(), output);
@@ -151,8 +154,8 @@ int Message::ByteSize() const {
 
 void Message::SetCachedSize(int /* size */) const {
   GOOGLE_LOG(FATAL) << "Message class \"" << GetDescriptor()->full_name()
-             << "\" implements neither SetCachedSize() nor ByteSize().  "
-                "Must implement one or the other.";
+                    << "\" implements neither SetCachedSize() nor ByteSize().  "
+                       "Must implement one or the other.";
 }
 
 int Message::SpaceUsed() const {
@@ -172,7 +175,8 @@ bool Message::SerializePartialToFileDescriptor(int file_descriptor) const {
 bool Message::SerializeToOstream(ostream* output) const {
   {
     io::OstreamOutputStream zero_copy_output(output);
-    if (!SerializeToZeroCopyStream(&zero_copy_output)) return false;
+    if (!SerializeToZeroCopyStream(&zero_copy_output))
+      return false;
   }
   return output->good();
 }
@@ -182,45 +186,42 @@ bool Message::SerializePartialToOstream(ostream* output) const {
   return SerializePartialToZeroCopyStream(&zero_copy_output);
 }
 
-
 // =============================================================================
 // Reflection and associated Template Specializations
 
 Reflection::~Reflection() {}
 
-#define HANDLE_TYPE(TYPE, CPPTYPE, CTYPE)                             \
-template<>                                                            \
-const RepeatedField<TYPE>& Reflection::GetRepeatedField<TYPE>(        \
-    const Message& message, const FieldDescriptor* field) const {     \
-  return *static_cast<RepeatedField<TYPE>* >(                         \
-      MutableRawRepeatedField(const_cast<Message*>(&message),         \
-                          field, CPPTYPE, CTYPE, NULL));              \
-}                                                                     \
-                                                                      \
-template<>                                                            \
-RepeatedField<TYPE>* Reflection::MutableRepeatedField<TYPE>(          \
-    Message* message, const FieldDescriptor* field) const {           \
-  return static_cast<RepeatedField<TYPE>* >(                          \
-      MutableRawRepeatedField(message, field, CPPTYPE, CTYPE, NULL)); \
-}
+#define HANDLE_TYPE(TYPE, CPPTYPE, CTYPE)                               \
+  template <>                                                           \
+  const RepeatedField<TYPE>& Reflection::GetRepeatedField<TYPE>(        \
+      const Message& message, const FieldDescriptor* field) const {     \
+    return *static_cast<RepeatedField<TYPE>*>(                          \
+        MutableRawRepeatedField(const_cast<Message*>(&message),         \
+                                field, CPPTYPE, CTYPE, NULL));          \
+  }                                                                     \
+                                                                        \
+  template <>                                                           \
+  RepeatedField<TYPE>* Reflection::MutableRepeatedField<TYPE>(          \
+      Message * message, const FieldDescriptor* field) const {          \
+    return static_cast<RepeatedField<TYPE>*>(                           \
+        MutableRawRepeatedField(message, field, CPPTYPE, CTYPE, NULL)); \
+  }
 
-HANDLE_TYPE(int32,  FieldDescriptor::CPPTYPE_INT32,  -1);
-HANDLE_TYPE(int64,  FieldDescriptor::CPPTYPE_INT64,  -1);
+HANDLE_TYPE(int32, FieldDescriptor::CPPTYPE_INT32, -1);
+HANDLE_TYPE(int64, FieldDescriptor::CPPTYPE_INT64, -1);
 HANDLE_TYPE(uint32, FieldDescriptor::CPPTYPE_UINT32, -1);
 HANDLE_TYPE(uint64, FieldDescriptor::CPPTYPE_UINT64, -1);
-HANDLE_TYPE(float,  FieldDescriptor::CPPTYPE_FLOAT,  -1);
+HANDLE_TYPE(float, FieldDescriptor::CPPTYPE_FLOAT, -1);
 HANDLE_TYPE(double, FieldDescriptor::CPPTYPE_DOUBLE, -1);
-HANDLE_TYPE(bool,   FieldDescriptor::CPPTYPE_BOOL,   -1);
-
+HANDLE_TYPE(bool, FieldDescriptor::CPPTYPE_BOOL, -1);
 
 #undef HANDLE_TYPE
 
 void* Reflection::MutableRawRepeatedString(
     Message* message, const FieldDescriptor* field, bool is_string) const {
   return MutableRawRepeatedField(message, field,
-      FieldDescriptor::CPPTYPE_STRING, FieldOptions::STRING, NULL);
+                                 FieldDescriptor::CPPTYPE_STRING, FieldOptions::STRING, NULL);
 }
-
 
 // =============================================================================
 // MessageFactory
@@ -230,7 +231,7 @@ MessageFactory::~MessageFactory() {}
 namespace {
 
 class GeneratedMessageFactory : public MessageFactory {
- public:
+public:
   GeneratedMessageFactory();
   ~GeneratedMessageFactory();
 
@@ -243,10 +244,11 @@ class GeneratedMessageFactory : public MessageFactory {
   // implements MessageFactory ---------------------------------------
   const Message* GetPrototype(const Descriptor* type);
 
- private:
+private:
   // Only written at static init time, so does not require locking.
   hash_map<const char*, RegistrationFunc*,
-           hash<const char*>, streq> file_map_;
+           hash<const char*>, streq>
+      file_map_;
 
   // Initialized lazily, so requires locking.
   Mutex mutex_;
@@ -270,7 +272,7 @@ GeneratedMessageFactory::~GeneratedMessageFactory() {}
 
 GeneratedMessageFactory* GeneratedMessageFactory::singleton() {
   ::google::protobuf::GoogleOnceInit(&generated_message_factory_once_init_,
-                 &InitGeneratedMessageFactory);
+                                     &InitGeneratedMessageFactory);
   return generated_message_factory_;
 }
 
@@ -284,8 +286,8 @@ void GeneratedMessageFactory::RegisterFile(
 void GeneratedMessageFactory::RegisterType(const Descriptor* descriptor,
                                            const Message* prototype) {
   GOOGLE_DCHECK_EQ(descriptor->file()->pool(), DescriptorPool::generated_pool())
-    << "Tried to register a non-generated type with the generated "
-       "type registry.";
+      << "Tried to register a non-generated type with the generated "
+         "type registry.";
 
   // This should only be called as a result of calling a file registration
   // function during GetPrototype(), in which case we already have locked
@@ -296,24 +298,26 @@ void GeneratedMessageFactory::RegisterType(const Descriptor* descriptor,
   }
 }
 
-
 const Message* GeneratedMessageFactory::GetPrototype(const Descriptor* type) {
   {
     ReaderMutexLock lock(&mutex_);
     const Message* result = FindPtrOrNull(type_map_, type);
-    if (result != NULL) return result;
+    if (result != NULL)
+      return result;
   }
 
   // If the type is not in the generated pool, then we can't possibly handle
   // it.
-  if (type->file()->pool() != DescriptorPool::generated_pool()) return NULL;
+  if (type->file()->pool() != DescriptorPool::generated_pool())
+    return NULL;
 
   // Apparently the file hasn't been registered yet.  Let's do that now.
   RegistrationFunc* registration_func =
       FindPtrOrNull(file_map_, type->file()->name().c_str());
   if (registration_func == NULL) {
     GOOGLE_LOG(DFATAL) << "File appears to be in generated pool but wasn't "
-                   "registered: " << type->file()->name();
+                          "registered: "
+                       << type->file()->name();
     return NULL;
   }
 
@@ -330,13 +334,13 @@ const Message* GeneratedMessageFactory::GetPrototype(const Descriptor* type) {
 
   if (result == NULL) {
     GOOGLE_LOG(DFATAL) << "Type appears to be in generated pool but wasn't "
-                << "registered: " << type->full_name();
+                       << "registered: " << type->full_name();
   }
 
   return result;
 }
 
-}  // namespace
+} // namespace
 
 MessageFactory* MessageFactory::generated_factory() {
   return GeneratedMessageFactory::singleton();
@@ -353,6 +357,5 @@ void MessageFactory::InternalRegisterGeneratedMessage(
   GeneratedMessageFactory::singleton()->RegisterType(descriptor, prototype);
 }
 
-
-}  // namespace protobuf
-}  // namespace google
+} // namespace protobuf
+} // namespace google

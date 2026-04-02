@@ -12,35 +12,30 @@
 #include "Core/Utils/Logging.h"
 #include "Core/Utils/File.h"
 
-bool PropertyListParser::Parse(const std::vector<uint8_t>& data, PropertyList& output)
-{
-    m_offset = 0;
-    m_data = &data;
-    m_output = &output;
+bool PropertyListParser::Parse(const std::vector<uint8_t>& data, PropertyList& output) {
+  m_offset = 0;
+  m_data = &data;
+  m_output = &output;
 
-    try
-    {
-        static size_t counter = 0;
+  try {
+    static size_t counter = 0;
 
-        char buffer[256];
-        snprintf(buffer, sizeof(buffer), "Z:\\rekindled-server\\Temp\\BloodMessageData\\%i.dat", counter++);
+    char buffer[256];
+    snprintf(buffer, sizeof(buffer), "Z:\\rekindled-server\\Temp\\BloodMessageData\\%i.dat", counter++);
 
-        WriteBytesToFile(buffer, data);
+    WriteBytesToFile(buffer, data);
 
-        while (m_offset < data.size())
-        {
-            uint32_t entry_size = Read<uint32_t>();
-            uint32_t entry_id = Read<uint32_t>();
-            
-            WarningS("", "Property: %u", entry_size);
+    while (m_offset < data.size()) {
+      uint32_t entry_size = Read<uint32_t>();
+      uint32_t entry_id = Read<uint32_t>();
 
-            m_offset += entry_size + 8;
-        }
+      WarningS("", "Property: %u", entry_size);
+
+      m_offset += entry_size + 8;
     }
-    catch (std::out_of_range)
-    {
-        return false;
-    }
+  } catch (std::out_of_range) {
+    return false;
+  }
 
-    return true;
+  return true;
 }

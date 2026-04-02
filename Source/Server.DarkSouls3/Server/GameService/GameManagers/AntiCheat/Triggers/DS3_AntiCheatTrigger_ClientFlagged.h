@@ -18,13 +18,11 @@
 
 // Triggers when the clients anti-cheat sends the appropriate flag to notify of cheating.
 
-class DS3_AntiCheatTrigger_ClientFlagged : public DS3_AntiCheatTrigger
-{
+class DS3_AntiCheatTrigger_ClientFlagged : public DS3_AntiCheatTrigger {
 public:
-    DS3_AntiCheatTrigger_ClientFlagged(DS3_AntiCheatManager* InCheatManager, Server* InServerInstance, GameService* InGameServiceInstance);
+  DS3_AntiCheatTrigger_ClientFlagged(DS3_AntiCheatManager* InCheatManager, Server* InServerInstance, GameService* InGameServiceInstance);
 
-    virtual bool Scan(std::shared_ptr<GameClient> client, std::string& extraInfo) override;
-    virtual std::string GetName() override;
-    virtual float GetPenaltyScore() override;
-
+  virtual bool Scan(std::shared_ptr<GameClient> client, std::string& extraInfo) override;
+  virtual std::string GetName() override;
+  virtual float GetPenaltyScore() override;
 };

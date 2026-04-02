@@ -12,24 +12,20 @@
 
 #include "Server/GameService/Utils/DS2_GameIds.h"
 
-struct DS2_CellAndAreaId
-{
-    uint64_t CellId;
-    DS2_OnlineAreaId AreaId;
+struct DS2_CellAndAreaId {
+  uint64_t CellId;
+  DS2_OnlineAreaId AreaId;
 
-    bool operator==(const DS2_CellAndAreaId& other) const
-    {
-        return AreaId == other.AreaId &&
-               CellId == other.CellId;
-    }
+  bool operator==(const DS2_CellAndAreaId& other) const {
+    return AreaId == other.AreaId &&
+           CellId == other.CellId;
+  }
 };
 
 template <>
-struct std::hash<DS2_CellAndAreaId>
-{
-    std::size_t operator()(const DS2_CellAndAreaId& k) const
-    {
-        return std::hash<size_t>()((size_t)k.AreaId) ^ 
-               (std::hash<size_t>()((size_t)k.CellId) << 1);
-    }
+struct std::hash<DS2_CellAndAreaId> {
+  std::size_t operator()(const DS2_CellAndAreaId& k) const {
+    return std::hash<size_t>()((size_t)k.AreaId) ^
+           (std::hash<size_t>()((size_t)k.CellId) << 1);
+  }
 };

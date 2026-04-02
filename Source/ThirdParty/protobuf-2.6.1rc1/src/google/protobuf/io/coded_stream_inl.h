@@ -47,7 +47,8 @@ namespace io {
 
 inline bool CodedInputStream::InternalReadStringInline(string* buffer,
                                                        int size) {
-  if (size < 0) return false;  // security: size is often user-supplied
+  if (size < 0)
+    return false; // security: size is often user-supplied
 
   if (BufferSize() >= size) {
     STLStringResizeUninitialized(buffer, size);
@@ -63,7 +64,7 @@ inline bool CodedInputStream::InternalReadStringInline(string* buffer,
   return ReadStringFallback(buffer, size);
 }
 
-}  // namespace io
-}  // namespace protobuf
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_IO_CODED_STREAM_INL_H__
+} // namespace io
+} // namespace protobuf
+} // namespace google
+#endif // GOOGLE_PROTOBUF_IO_CODED_STREAM_INL_H__

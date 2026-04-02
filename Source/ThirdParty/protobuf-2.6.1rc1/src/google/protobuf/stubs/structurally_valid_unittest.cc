@@ -34,7 +34,7 @@ TEST(StructurallyValidTest, InvalidUTF8String) {
   }
 }
 
-}  // namespace
-}  // namespace internal
-}  // namespace protobuf
-}  // namespace google
+} // namespace
+} // namespace internal
+} // namespace protobuf
+} // namespace google

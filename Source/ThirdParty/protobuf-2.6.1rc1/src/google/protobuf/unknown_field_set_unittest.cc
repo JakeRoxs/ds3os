@@ -54,7 +54,7 @@ namespace protobuf {
 using internal::WireFormat;
 
 class UnknownFieldSetTest : public testing::Test {
- protected:
+protected:
   virtual void SetUp() {
     descriptor_ = unittest::TestAllTypes::descriptor();
     TestUtil::SetAllFields(&all_fields_);
@@ -65,7 +65,8 @@ class UnknownFieldSetTest : public testing::Test {
 
   const UnknownField* GetField(const string& name) {
     const FieldDescriptor* field = descriptor_->FindFieldByName(name);
-    if (field == NULL) return NULL;
+    if (field == NULL)
+      return NULL;
     for (int i = 0; i < unknown_fields_->field_count(); i++) {
       if (unknown_fields_->field(i).number() == field->number()) {
         return &unknown_fields_->field(i);
@@ -80,7 +81,7 @@ class UnknownFieldSetTest : public testing::Test {
   string GetBizarroData() {
     unittest::TestEmptyMessage bizarro_message;
     UnknownFieldSet* bizarro_unknown_fields =
-      bizarro_message.mutable_unknown_fields();
+        bizarro_message.mutable_unknown_fields();
     for (int i = 0; i < unknown_fields_->field_count(); i++) {
       const UnknownField& unknown_field = unknown_fields_->field(i);
       if (unknown_field.type() == UnknownField::TYPE_VARINT) {
@@ -175,7 +176,7 @@ TEST_F(UnknownFieldSetTest, Group) {
 
   const UnknownField& nested_field = field->group().field(0);
   const FieldDescriptor* nested_field_descriptor =
-    unittest::TestAllTypes::OptionalGroup::descriptor()->FindFieldByName("a");
+      unittest::TestAllTypes::OptionalGroup::descriptor()->FindFieldByName("a");
   ASSERT_TRUE(nested_field_descriptor != NULL);
 
   EXPECT_EQ(nested_field_descriptor->number(), nested_field.number());
@@ -193,7 +194,7 @@ TEST_F(UnknownFieldSetTest, SerializeFastAndSlowAreEquivalent) {
 
   uint8* target = reinterpret_cast<uint8*>(string_as_array(&fast_buffer));
   uint8* result = WireFormat::SerializeUnknownFieldsToArray(
-          empty_message_.unknown_fields(), target);
+      empty_message_.unknown_fields(), target);
   EXPECT_EQ(size, result - target);
 
   {
@@ -293,15 +294,14 @@ TEST_F(UnknownFieldSetTest, MergeFrom) {
   destination.MergeFrom(source);
 
   EXPECT_EQ(
-    // Note:  The ordering of fields here depends on the ordering of adds
-    //   and merging, above.
-    "1: 1\n"
-    "3: 2\n"
-    "2: 3\n"
-    "3: 4\n",
-    destination.DebugString());
+      // Note:  The ordering of fields here depends on the ordering of adds
+      //   and merging, above.
+      "1: 1\n"
+      "3: 2\n"
+      "2: 3\n"
+      "3: 4\n",
+      destination.DebugString());
 }
-
 
 TEST_F(UnknownFieldSetTest, Clear) {
   // Clear the set.
@@ -402,14 +402,14 @@ TEST_F(UnknownFieldSetTest, WrongExtensionTypeTreatedAsUnknown) {
 }
 
 TEST_F(UnknownFieldSetTest, UnknownEnumValue) {
-  using unittest::TestAllTypes;
   using unittest::TestAllExtensions;
+  using unittest::TestAllTypes;
   using unittest::TestEmptyMessage;
 
   const FieldDescriptor* singular_field =
-    TestAllTypes::descriptor()->FindFieldByName("optional_nested_enum");
+      TestAllTypes::descriptor()->FindFieldByName("optional_nested_enum");
   const FieldDescriptor* repeated_field =
-    TestAllTypes::descriptor()->FindFieldByName("repeated_nested_enum");
+      TestAllTypes::descriptor()->FindFieldByName("repeated_nested_enum");
   ASSERT_TRUE(singular_field != NULL);
   ASSERT_TRUE(repeated_field != NULL);
 
@@ -419,11 +419,11 @@ TEST_F(UnknownFieldSetTest, UnknownEnumValue) {
     TestEmptyMessage empty_message;
     UnknownFieldSet* unknown_fields = empty_message.mutable_unknown_fields();
     unknown_fields->AddVarint(singular_field->number(), TestAllTypes::BAR);
-    unknown_fields->AddVarint(singular_field->number(), 5);  // not valid
+    unknown_fields->AddVarint(singular_field->number(), 5); // not valid
     unknown_fields->AddVarint(repeated_field->number(), TestAllTypes::FOO);
-    unknown_fields->AddVarint(repeated_field->number(), 4);  // not valid
+    unknown_fields->AddVarint(repeated_field->number(), 4); // not valid
     unknown_fields->AddVarint(repeated_field->number(), TestAllTypes::BAZ);
-    unknown_fields->AddVarint(repeated_field->number(), 6);  // not valid
+    unknown_fields->AddVarint(repeated_field->number(), 6); // not valid
     empty_message.SerializeToString(&data);
   }
 
@@ -512,7 +512,6 @@ TEST_F(UnknownFieldSetTest, SpaceUsed) {
   EXPECT_LT(base_size, empty_message.SpaceUsed());
 }
 
-
 TEST_F(UnknownFieldSetTest, Empty) {
   UnknownFieldSet unknown_fields;
   EXPECT_TRUE(unknown_fields.empty());
@@ -550,7 +549,7 @@ TEST_F(UnknownFieldSetTest, DeleteSubrange) {
 }
 
 void CheckDeleteByNumber(const vector<int>& field_numbers, int deleted_number,
-                        const vector<int>& expected_field_nubmers) {
+                         const vector<int>& expected_field_nubmers) {
   UnknownFieldSet unknown_fields;
   for (int i = 0; i < field_numbers.size(); ++i) {
     unknown_fields.AddFixed32(field_numbers[i], i);
@@ -593,7 +592,7 @@ TEST_F(UnknownFieldSetTest, DeleteByNumber) {
                       MAKE_VECTOR(kExpectedFieldNumbers5));
 }
 #undef MAKE_VECTOR
-}  // namespace
+} // namespace
 
-}  // namespace protobuf
-}  // namespace google
+} // namespace protobuf
+} // namespace google

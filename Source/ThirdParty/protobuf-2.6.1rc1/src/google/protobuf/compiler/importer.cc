@@ -58,7 +58,7 @@ namespace compiler {
 
 #ifdef _WIN32
 #ifndef F_OK
-#define F_OK 00  // not defined by MSVC for whatever reason
+#define F_OK 00 // not defined by MSVC for whatever reason
 #endif
 #include <ctype.h>
 #endif
@@ -85,12 +85,12 @@ MultiFileErrorCollector::~MultiFileErrorCollector() {}
 // - It lets us check if any errors have occurred.
 class SourceTreeDescriptorDatabase::SingleFileErrorCollector
     : public io::ErrorCollector {
- public:
+public:
   SingleFileErrorCollector(const string& filename,
                            MultiFileErrorCollector* multi_file_error_collector)
-    : filename_(filename),
-      multi_file_error_collector_(multi_file_error_collector),
-      had_errors_(false) {}
+      : filename_(filename),
+        multi_file_error_collector_(multi_file_error_collector),
+        had_errors_(false) {}
   ~SingleFileErrorCollector() {}
 
   bool had_errors() { return had_errors_; }
@@ -103,7 +103,7 @@ class SourceTreeDescriptorDatabase::SingleFileErrorCollector
     had_errors_ = true;
   }
 
- private:
+private:
   string filename_;
   MultiFileErrorCollector* multi_file_error_collector_;
   bool had_errors_;
@@ -113,10 +113,10 @@ class SourceTreeDescriptorDatabase::SingleFileErrorCollector
 
 SourceTreeDescriptorDatabase::SourceTreeDescriptorDatabase(
     SourceTree* source_tree)
-  : source_tree_(source_tree),
-    error_collector_(NULL),
-    using_validation_error_collector_(false),
-    validation_error_collector_(this) {}
+    : source_tree_(source_tree),
+      error_collector_(NULL),
+      using_validation_error_collector_(false),
+      validation_error_collector_(this) {}
 
 SourceTreeDescriptorDatabase::~SourceTreeDescriptorDatabase() {}
 
@@ -163,11 +163,11 @@ bool SourceTreeDescriptorDatabase::FindFileContainingExtension(
 // -------------------------------------------------------------------
 
 SourceTreeDescriptorDatabase::ValidationErrorCollector::
-ValidationErrorCollector(SourceTreeDescriptorDatabase* owner)
-  : owner_(owner) {}
+    ValidationErrorCollector(SourceTreeDescriptorDatabase* owner)
+    : owner_(owner) {}
 
 SourceTreeDescriptorDatabase::ValidationErrorCollector::
-~ValidationErrorCollector() {}
+    ~ValidationErrorCollector() {}
 
 void SourceTreeDescriptorDatabase::ValidationErrorCollector::AddError(
     const string& filename,
@@ -175,7 +175,8 @@ void SourceTreeDescriptorDatabase::ValidationErrorCollector::AddError(
     const Message* descriptor,
     ErrorLocation location,
     const string& message) {
-  if (owner_->error_collector_ == NULL) return;
+  if (owner_->error_collector_ == NULL)
+    return;
 
   int line, column;
   owner_->source_locations_.Find(descriptor, location, &line, &column);
@@ -186,8 +187,8 @@ void SourceTreeDescriptorDatabase::ValidationErrorCollector::AddError(
 
 Importer::Importer(SourceTree* source_tree,
                    MultiFileErrorCollector* error_collector)
-  : database_(source_tree),
-    pool_(&database_, database_.GetValidationErrorCollector()) {
+    : database_(source_tree),
+      pool_(&database_, database_.GetValidationErrorCollector()) {
   pool_.EnforceWeakDependencies(true);
   database_.RecordErrorsTo(error_collector);
 }
@@ -256,7 +257,7 @@ static string CanonicalizePath(string path) {
 
   vector<string> canonical_parts;
   vector<string> parts = Split(
-      path, "/", true);  // Note:  Removes empty parts.
+      path, "/", true); // Note:  Removes empty parts.
   for (int i = 0; i < parts.size(); i++) {
     if (parts[i] == ".") {
       // Ignore.
@@ -317,7 +318,8 @@ static bool ApplyMapping(const string& filename,
       return false;
     }
     result->assign(new_prefix);
-    if (!result->empty()) result->push_back('/');
+    if (!result->empty())
+      result->push_back('/');
     result->append(filename);
     return true;
   } else if (HasPrefixString(filename, old_prefix)) {
@@ -347,7 +349,8 @@ static bool ApplyMapping(const string& filename,
           return false;
         }
         result->assign(new_prefix);
-        if (!result->empty()) result->push_back('/');
+        if (!result->empty())
+          result->push_back('/');
         result->append(after_prefix);
         return true;
       }
@@ -475,6 +478,6 @@ io::ZeroCopyInputStream* DiskSourceTree::OpenDiskFile(
   }
 }
 
-}  // namespace compiler
-}  // namespace protobuf
-}  // namespace google
+} // namespace compiler
+} // namespace protobuf
+} // namespace google

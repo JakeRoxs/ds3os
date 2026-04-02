@@ -33,148 +33,132 @@
 
 #include "Server.DarkSouls2/Protobuf/DS2_Protobufs.h"
 
- // Static class that holds methods intended to validate the structure
- // of the size-delimited entry lists and serialized NRSessionSearchResult 
- // data for security purposes, namely patching out-of-bounds read crashes 
- // and a reliable remote code execution exploit (CVE-2022-24126).
- // 
- // This specifically relates to the game's V1.15 version. It will most 
- // likely have to be reworked if a new client version comes out, but this 
- // should not be necessary as the only reason for a client update would be 
- // patching this bug.
-class DS2_NRSSRSanitizer
-{
+// Static class that holds methods intended to validate the structure
+// of the size-delimited entry lists and serialized NRSessionSearchResult
+// data for security purposes, namely patching out-of-bounds read crashes
+// and a reliable remote code execution exploit (CVE-2022-24126).
+//
+// This specifically relates to the game's V1.15 version. It will most
+// likely have to be reworked if a new client version comes out, but this
+// should not be necessary as the only reason for a client update would be
+// patching this bug.
+class DS2_NRSSRSanitizer {
 public:
+  DS2_NRSSRSanitizer() = delete;
 
-	DS2_NRSSRSanitizer() = delete;
+  // The game checks if these two match and rejects the data if they dont,
+  // so we can use them to detect NRSSR data.
+  inline static const uint32_t SIGNATURE = 0x5652584E;
+  inline static const uint16_t VERSION_NUMBER = 0x8405;
 
-	// The game checks if these two match and rejects the data if they dont, 
-	// so we can use them to detect NRSSR data.
-	inline static const uint32_t SIGNATURE = 0x5652584E;
-	inline static const uint16_t VERSION_NUMBER = 0x8405;
+  // The size of the session data information in bytes, stored in big-endian in the packet.
+  // This is always 8 on PC and holds the ID of the Steam lobby the client should connect to.
+  inline static const uint16_t SESSION_DATA_SIZE = 8;
 
-	// The size of the session data information in bytes, stored in big-endian in the packet.
-	// This is always 8 on PC and holds the ID of the Steam lobby the client should connect to.
-	inline static const uint16_t SESSION_DATA_SIZE = 8;
+  // The size of the host online id field in NRSSR data. On PC this is 8 (size of a CSteamID).
+  inline static const size_t HOST_ONLINE_ID_SIZE = 8;
 
-	// The size of the host online id field in NRSSR data. On PC this is 8 (size of a CSteamID).
-	inline static const size_t HOST_ONLINE_ID_SIZE = 8;
+  // Game stack buffer sizes for property and name strings (in number of uint16_t (note:not wchar_t!!! wchar_t size is compiler dependent))
+  inline static const size_t MAX_PROP_WSTR_SIZE = 1024;
+  inline static const size_t MAX_NAME_WSTR_SIZE = 256;
 
-	// Game stack buffer sizes for property and name strings (in number of uint16_t (note:not wchar_t!!! wchar_t size is compiler dependent))
-	inline static const size_t MAX_PROP_WSTR_SIZE = 1024;
-	inline static const size_t MAX_NAME_WSTR_SIZE = 256;
+  // Possible outcomes of size-delimited entry list validation
+  enum class ValidationResult {
+    // The entry list data is valid.
+    Valid,
+    // One of the entry size fields is invalid.
+    EntryList_SizeMismatch,
+    // The signature or version of NRSSR data does not match expected values.
+    NRSSR_SignatureOrVersion_Mismatch,
+    // There is not enough data left in the buffer to read NRSSR property metadata.
+    NRSSR_PropertyMetadata_InsufficientData,
+    // The provided NRSSR property type is invalid.
+    NRSSR_PropertyMetadata_InvalidType,
+    // There is not enough data left in the buffer to read a 4-byte NRSSR property.
+    NRSSR_Property4Byte_InsufficientData,
+    // There is not enough data left in the buffer to read an 8-byte NRSRR property.
+    NRSSR_Property8Byte_InsufficientData,
+    // A string NRSSR property is either longer than the client's buffer or is not null-terminated.
+    NRSSR_PropertyString_Overflow,
+    // The NRSSR host name string is either longer than the client's buffer or is not null-terminated.
+    NRSSR_NameString_Overflow,
+    // The amount of data left in the NRSSR struct after the name string is abnormal.
+    NRSSR_RemainingDataSize_Mismatch,
+    // NRSSR session size field does not match with the expected value.
+    NRSSR_SessionSize_Abnormal
+  };
 
-	// Possible outcomes of size-delimited entry list validation
-	enum class ValidationResult
-	{
-		// The entry list data is valid.
-		Valid,
-		// One of the entry size fields is invalid.
-		EntryList_SizeMismatch,
-		// The signature or version of NRSSR data does not match expected values.
-		NRSSR_SignatureOrVersion_Mismatch,
-		// There is not enough data left in the buffer to read NRSSR property metadata.
-		NRSSR_PropertyMetadata_InsufficientData,
-		// The provided NRSSR property type is invalid.
-		NRSSR_PropertyMetadata_InvalidType,
-		// There is not enough data left in the buffer to read a 4-byte NRSSR property.
-		NRSSR_Property4Byte_InsufficientData,
-		// There is not enough data left in the buffer to read an 8-byte NRSRR property.
-		NRSSR_Property8Byte_InsufficientData,
-		// A string NRSSR property is either longer than the client's buffer or is not null-terminated.
-		NRSSR_PropertyString_Overflow,
-		// The NRSSR host name string is either longer than the client's buffer or is not null-terminated.
-		NRSSR_NameString_Overflow,
-		// The amount of data left in the NRSSR struct after the name string is abnormal.
-		NRSSR_RemainingDataSize_Mismatch,
-		// NRSSR session size field does not match with the expected value.
-		NRSSR_SessionSize_Abnormal
-	};
+  // Verify if length-delimited entry list data used to store session join information is valid.
+  // Will also validate any NRSSR data stored in the entries.
+  static ValidationResult ValidateEntryList(const uint8_t* EntryList, size_t Size) {
+    // Format is different in DS2.
+    // If we want to enable support for older versions, we should decipher it.
+    return ValidationResult::Valid;
+  }
 
-	// Verify if length-delimited entry list data used to store session join information is valid.
-	// Will also validate any NRSSR data stored in the entries.
-	static ValidationResult ValidateEntryList(const uint8_t* EntryList, size_t Size)
-	{
-        // Format is different in DS2. 
-        // If we want to enable support for older versions, we should decipher it.
-        return ValidationResult::Valid;
-	}
+  static ValidationResult ValidateEntryList(const char* EntryList, size_t Size) {
+    return ValidateEntryList(reinterpret_cast<const uint8_t*>(EntryList), Size);
+  }
 
-	static ValidationResult ValidateEntryList(const char* EntryList, size_t Size)
-	{
-		return ValidateEntryList(reinterpret_cast<const uint8_t*>(EntryList), Size);
-	}
+  static ValidationResult ValidatePushMessages(const std::string& Data) {
+    // Format is different in DS2.
+    // If we want to enable support for older versions, we should decipher it.
 
-    static ValidationResult ValidatePushMessages(const std::string& Data)
-    {
-		// Format is different in DS2. 
-        // If we want to enable support for older versions, we should decipher it.
-		
-
-		//TODO: make this better
-		DS2_Frpg2RequestMessage::PushRequestHeader Header;
-		if(!Header.ParseFromString(Data)){
-			return ValidationResult::NRSSR_PropertyMetadata_InvalidType;
-		}
-		switch (Header.push_message_id())
-		{
-			case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestAllowBreakInTarget:
-				{
-					DS2_Frpg2RequestMessage::PushRequestAllowBreakInTarget Msg;
-					if (!Msg.ParseFromString(Data))
-					{
-						return ValidationResult::NRSSR_PropertyMetadata_InvalidType;
-					}
-
-					auto ValidationResult = DS2_NRSSRSanitizer::ValidateEntryList(Msg.player_struct().data(), Msg.player_struct().size());
-					if (ValidationResult != ValidationResult::Valid)
-					{
-						return ValidationResult;
-					}
-					break;
-				}
-			case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestVisit:
-				{
-					//TODO: Add Validation
-					return ValidationResult::Valid;
-				}
-			case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestAllowQuickMatch:
-				{
-					//TODO: Add Validation
-					return ValidationResult::Valid;
-				}
-			case DS2_Frpg2RequestMessage::PushMessageId::PushID_ManagementTextMessage:
-				{
-					//We should never get this message type from an inbound connection
-					//TODO: flag whomever did this
-					return ValidationResult::NRSSR_PropertyMetadata_InvalidType;
-				}
-			case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestRemoveSign:
-			case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestSummonSign:
-			case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestRejectSign:
-			case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestJoinQuickMatch:
-			case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestRemoveQuickMatch: 
-			case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestRejectQuickMatch:
-			case DS2_Frpg2RequestMessage::PushMessageId::PushID_PlayerInfoUploadConfigPushMessage:
-			case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestEvaluateBloodMessage:
-			case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestBreakInTarget:
-			case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestRejectBreakInTarget:
-			case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestRejectVisit:
-			case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestRemoveVisitor:
-			case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestNotifyRingBell:
-			case DS2_Frpg2RequestMessage::PushMessageId::PushID_RegulationFileUpdatePushMessage:
-			case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestRejectMirrorKnightSign:
-			case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestRemoveMirrorKnightSign:
-			case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestSummonMirrorKnightSign:
-				{
-					// These messages don't look to have anything that needs validating in them.
-					break;
-				}
-			default:
-				{
-					return ValidationResult::NRSSR_PropertyMetadata_InvalidType;	
-				}
-		}
-        return ValidationResult::Valid;
+    // TODO: make this better
+    DS2_Frpg2RequestMessage::PushRequestHeader Header;
+    if (!Header.ParseFromString(Data)) {
+      return ValidationResult::NRSSR_PropertyMetadata_InvalidType;
     }
+    switch (Header.push_message_id()) {
+    case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestAllowBreakInTarget: {
+      DS2_Frpg2RequestMessage::PushRequestAllowBreakInTarget Msg;
+      if (!Msg.ParseFromString(Data)) {
+        return ValidationResult::NRSSR_PropertyMetadata_InvalidType;
+      }
+
+      auto ValidationResult = DS2_NRSSRSanitizer::ValidateEntryList(Msg.player_struct().data(), Msg.player_struct().size());
+      if (ValidationResult != ValidationResult::Valid) {
+        return ValidationResult;
+      }
+      break;
+    }
+    case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestVisit: {
+      // TODO: Add Validation
+      return ValidationResult::Valid;
+    }
+    case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestAllowQuickMatch: {
+      // TODO: Add Validation
+      return ValidationResult::Valid;
+    }
+    case DS2_Frpg2RequestMessage::PushMessageId::PushID_ManagementTextMessage: {
+      // We should never get this message type from an inbound connection
+      // TODO: flag whomever did this
+      return ValidationResult::NRSSR_PropertyMetadata_InvalidType;
+    }
+    case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestRemoveSign:
+    case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestSummonSign:
+    case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestRejectSign:
+    case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestJoinQuickMatch:
+    case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestRemoveQuickMatch:
+    case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestRejectQuickMatch:
+    case DS2_Frpg2RequestMessage::PushMessageId::PushID_PlayerInfoUploadConfigPushMessage:
+    case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestEvaluateBloodMessage:
+    case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestBreakInTarget:
+    case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestRejectBreakInTarget:
+    case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestRejectVisit:
+    case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestRemoveVisitor:
+    case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestNotifyRingBell:
+    case DS2_Frpg2RequestMessage::PushMessageId::PushID_RegulationFileUpdatePushMessage:
+    case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestRejectMirrorKnightSign:
+    case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestRemoveMirrorKnightSign:
+    case DS2_Frpg2RequestMessage::PushMessageId::PushID_PushRequestSummonMirrorKnightSign: {
+      // These messages don't look to have anything that needs validating in them.
+      break;
+    }
+    default: {
+      return ValidationResult::NRSSR_PropertyMetadata_InvalidType;
+    }
+    }
+    return ValidationResult::Valid;
+  }
 };

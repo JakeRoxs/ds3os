@@ -26,53 +26,50 @@
 #include <mutex>
 #include <condition_variable>
 
-// Core of this application, manages all the 
-// network services that ds3 uses. 
+// Core of this application, manages all the
+// network services that ds3 uses.
 
-class Injector
-{
+class Injector {
 public:
-    Injector();
-    ~Injector();
+  Injector();
+  ~Injector();
 
-    bool Init(const std::filesystem::path& configPath = {});
-    bool Term();
-    void RunUntilQuit();
+  bool Init(const std::filesystem::path& configPath = {});
+  bool Term();
+  void RunUntilQuit();
 
-    const std::string& GetLastInitError() const { return LastInitError; }
+  const std::string& GetLastInitError() const { return LastInitError; }
 
-    void RequestShutdown();
-    bool IsShutdownRequested() const;
+  void RequestShutdown();
+  bool IsShutdownRequested() const;
 
-    void SaveConfig();
+  void SaveConfig();
 
-    const RuntimeConfig& GetConfig()    { return Config; }
-    GameType GetGameType()              { return CurrentGameType; }
+  const RuntimeConfig& GetConfig() { return Config; }
+  GameType GetGameType() { return CurrentGameType; }
 
-    intptr_t GetBaseAddress();
-    
-    using AOBByte = std::optional<uint8_t>;
-    std::vector<intptr_t> SearchAOB(const std::vector<AOBByte>& pattern);
+  intptr_t GetBaseAddress();
 
-    std::vector<intptr_t> SearchString(const std::string& input);
-    std::vector<intptr_t> SearchString(const std::wstring& input);
+  using AOBByte = std::optional<uint8_t>;
+  std::vector<intptr_t> SearchAOB(const std::vector<AOBByte>& pattern);
+
+  std::vector<intptr_t> SearchString(const std::string& input);
+  std::vector<intptr_t> SearchString(const std::wstring& input);
 
 private:
+  bool QuitRequested = false;
+  mutable std::mutex QuitMutex;
+  std::condition_variable QuitCv;
 
-    bool QuitRequested = false;
-    mutable std::mutex QuitMutex;
-    std::condition_variable QuitCv;
+  std::filesystem::path DllPath;
 
+  GameType CurrentGameType;
 
-    std::filesystem::path DllPath;
+  std::pair<intptr_t, size_t> ModuleRegion;
 
-    GameType CurrentGameType;
+  RuntimeConfig Config;
 
-    std::pair<intptr_t, size_t> ModuleRegion;
+  HookManager Hooks;
 
-    RuntimeConfig Config;
-
-    HookManager Hooks;
-
-    std::string LastInitError;
+  std::string LastInitError;
 };

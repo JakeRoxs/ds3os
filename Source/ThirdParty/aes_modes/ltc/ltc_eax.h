@@ -18,31 +18,31 @@
 
 typedef struct
 {
-    uint8_t     nv[AES_BLOCK_SIZE];
-    ctr_ctx     ctr[1];
-    omac_state  hdr_omac[1];
-    omac_state  ctx_omac[1];
+  uint8_t nv[AES_BLOCK_SIZE];
+  ctr_ctx ctr[1];
+  omac_state hdr_omac[1];
+  omac_state ctx_omac[1];
 } eax_state;
 
-int eax_init( const unsigned char key[], unsigned long key_len,
-              const unsigned char nonce[], unsigned long nonce_len,
-              const unsigned char hdr[], unsigned long header_len,
-              eax_state eax[1] );
+int eax_init(const unsigned char key[], unsigned long key_len,
+             const unsigned char nonce[], unsigned long nonce_len,
+             const unsigned char hdr[], unsigned long header_len,
+             eax_state eax[1]);
 
-int eax_addheader( const unsigned char hdr[], unsigned long length, eax_state eax[1] );
+int eax_addheader(const unsigned char hdr[], unsigned long length, eax_state eax[1]);
 
-int eax_encryptx( const unsigned char pt[], unsigned char ct[], unsigned long length, eax_state eax[1] );
+int eax_encryptx(const unsigned char pt[], unsigned char ct[], unsigned long length, eax_state eax[1]);
 
-int eax_decryptx( const unsigned char ct[], unsigned char pt[], unsigned long length, eax_state eax[1] );
+int eax_decryptx(const unsigned char ct[], unsigned char pt[], unsigned long length, eax_state eax[1]);
 
-int eax_done( unsigned char tag[], unsigned long tag_len, eax_state eax[1] );
+int eax_done(unsigned char tag[], unsigned long tag_len, eax_state eax[1]);
 
-int eax_memory( const unsigned char key[], unsigned long key_len,
-                const unsigned char nonce[], unsigned long nonce_len,
-                const unsigned char hdr[], unsigned long header_len,
-                unsigned char pt[], unsigned long pt_len,
-                unsigned char ct[],
-                unsigned char tag[], unsigned long tag_len,
-                int dir, int *stat);
+int eax_memory(const unsigned char key[], unsigned long key_len,
+               const unsigned char nonce[], unsigned long nonce_len,
+               const unsigned char hdr[], unsigned long header_len,
+               unsigned char pt[], unsigned long pt_len,
+               unsigned char ct[],
+               unsigned char tag[], unsigned long tag_len,
+               int dir, int* stat);
 
 #endif

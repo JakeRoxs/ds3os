@@ -94,7 +94,8 @@ string ClassNameWithoutPackage(const ServiceDescriptor* descriptor,
 // Check whether a given message or its nested types has the given class name.
 bool MessageHasConflictingClassName(const Descriptor* message,
                                     const string& classname) {
-  if (message->name() == classname) return true;
+  if (message->name() == classname)
+    return true;
   for (int i = 0; i < message->nested_type_count(); ++i) {
     if (MessageHasConflictingClassName(message->nested_type(i), classname)) {
       return true;
@@ -108,7 +109,7 @@ bool MessageHasConflictingClassName(const Descriptor* message,
   return false;
 }
 
-}  // namespace
+} // namespace
 
 ClassNameResolver::ClassNameResolver() {
 }
@@ -183,7 +184,8 @@ string ClassNameResolver::GetDescriptorClassName(
 string ClassNameResolver::GetClassName(const FileDescriptor* descriptor,
                                        bool immutable) {
   string result = FileJavaPackage(descriptor, immutable);
-  if (!result.empty()) result += '.';
+  if (!result.empty())
+    result += '.';
   result += GetFileClassName(descriptor, immutable);
   return result;
 }
@@ -236,10 +238,12 @@ string ClassNameResolver::GetJavaClassFullName(
   string result;
   if (MultipleJavaFiles(file, immutable)) {
     result = FileJavaPackage(file, immutable);
-    if (!result.empty()) result += '.';
+    if (!result.empty())
+      result += '.';
   } else {
     result = GetClassName(file, immutable);
-    if (!result.empty()) result += '$';
+    if (!result.empty())
+      result += '$';
   }
   result += StringReplace(name_without_package, ".", "$", true);
   return result;
@@ -251,7 +255,6 @@ string ClassNameResolver::GetExtensionIdentifierName(
          descriptor->name();
 }
 
-
 string ClassNameResolver::GetJavaImmutableClassName(
     const Descriptor* descriptor) {
   return GetJavaClassFullName(
@@ -259,8 +262,7 @@ string ClassNameResolver::GetJavaImmutableClassName(
       descriptor->file(), true);
 }
 
-
-}  // namespace java
-}  // namespace compiler
-}  // namespace protobuf
-}  // namespace google
+} // namespace java
+} // namespace compiler
+} // namespace protobuf
+} // namespace google

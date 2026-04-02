@@ -1,0 +1,22 @@
+# Generated from .editorconfig rules for C/C++
+# - indent_style = space
+# - indent_size = 2
+# - c_brace_style = k&r
+# - end_of_line = lf
+---
+Language: Cpp
+BasedOnStyle: LLVM
+IndentWidth: 2
+TabWidth: 2
+UseTab: Never
+BreakBeforeBraces: Attach
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: Inline
+ColumnLimit: 0
+DerivePointerAlignment: false
+PointerAlignment: Left
+ReflowComments: true
+SortIncludes: false
+Standard: c++17
+...

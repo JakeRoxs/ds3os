@@ -32,83 +32,80 @@
 
 //////////////////////////////////////////////////////////////////////////////
 //
-HRESULT (STDMETHODCALLTYPE *RealIStreamWrite)(IStream * This,
-                                              const void *pv,
-                                              ULONG cb,
-                                              ULONG *pcbWritten) = NULL;
+HRESULT(STDMETHODCALLTYPE* RealIStreamWrite)(IStream* This,
+                                             const void* pv,
+                                             ULONG cb,
+                                             ULONG* pcbWritten) = NULL;
 
-HRESULT STDMETHODCALLTYPE MineIStreamWrite(IStream * This,
-                                           const void *pv,
+HRESULT STDMETHODCALLTYPE MineIStreamWrite(IStream* This,
+                                           const void* pv,
                                            ULONG cb,
-                                           ULONG *pcbWritten)
-{
-    HRESULT hr;
-    ULONG cbWritten = 0;
-    if (pcbWritten == NULL) {
-        pcbWritten = &cbWritten;
-    }
+                                           ULONG* pcbWritten) {
+  HRESULT hr;
+  ULONG cbWritten = 0;
+  if (pcbWritten == NULL) {
+    pcbWritten = &cbWritten;
+  }
 
-    printf("commem:   %p->IStreamWrite(pv=%p, cb=%d)\n", This, pv, cb);
-    hr = RealIStreamWrite(This, pv, cb, pcbWritten);
-    printf("commem:   %p->IStreamWrite -> %08x (pcbWritten=%d)\n", This, hr, *pcbWritten);
+  printf("commem:   %p->IStreamWrite(pv=%p, cb=%d)\n", This, pv, cb);
+  hr = RealIStreamWrite(This, pv, cb, pcbWritten);
+  printf("commem:   %p->IStreamWrite -> %08x (pcbWritten=%d)\n", This, hr, *pcbWritten);
 
-    return hr;
+  return hr;
 }
 
 //////////////////////////////////////////////////////////////////////////////
 //
-int main(int argc, char **argv)
-{
-    HRESULT hr;
+int main(int argc, char** argv) {
+  HRESULT hr;
 
-    (void)argc;
-    (void)argv;
+  (void)argc;
+  (void)argv;
 
-    LPSTREAM pStream = NULL;
-    ULARGE_INTEGER ul;
-    LARGE_INTEGER li;
+  LPSTREAM pStream = NULL;
+  ULARGE_INTEGER ul;
+  LARGE_INTEGER li;
 
-    CoInitialize(NULL);
+  CoInitialize(NULL);
 
-    hr = CreateStreamOnHGlobal(NULL, TRUE, &pStream);
+  hr = CreateStreamOnHGlobal(NULL, TRUE, &pStream);
 
-    RealIStreamWrite = pStream->lpVtbl->Write;
+  RealIStreamWrite = pStream->lpVtbl->Write;
 
-    ul.QuadPart = 512;
-    hr = pStream->lpVtbl->SetSize(pStream, ul);
-    li.QuadPart = 0;
-    hr = pStream->lpVtbl->Seek(pStream, li, STREAM_SEEK_SET, NULL);
+  ul.QuadPart = 512;
+  hr = pStream->lpVtbl->SetSize(pStream, ul);
+  li.QuadPart = 0;
+  hr = pStream->lpVtbl->Seek(pStream, li, STREAM_SEEK_SET, NULL);
 
-    printf("commem: Calling Write w/o before attach.\n");
+  printf("commem: Calling Write w/o before attach.\n");
 
-    li.QuadPart = 0;
-    hr = pStream->lpVtbl->Write(pStream, &ul, sizeof(ul), NULL);
+  li.QuadPart = 0;
+  hr = pStream->lpVtbl->Write(pStream, &ul, sizeof(ul), NULL);
 
-    DetourTransactionBegin();
-    DetourUpdateThread(GetCurrentThread());
-    DetourAttach(&(PVOID&)RealIStreamWrite, MineIStreamWrite);
-    DetourTransactionCommit();
+  DetourTransactionBegin();
+  DetourUpdateThread(GetCurrentThread());
+  DetourAttach(&(PVOID&)RealIStreamWrite, MineIStreamWrite);
+  DetourTransactionCommit();
 
-    printf("commem: Calling Write w/o after attach.\n");
+  printf("commem: Calling Write w/o after attach.\n");
 
-    li.QuadPart = 1;
-    hr = pStream->lpVtbl->Write(pStream, &li, sizeof(li), NULL);
+  li.QuadPart = 1;
+  hr = pStream->lpVtbl->Write(pStream, &li, sizeof(li), NULL);
 
-    DetourTransactionBegin();
-    DetourUpdateThread(GetCurrentThread());
-    DetourDetach(&(PVOID&)RealIStreamWrite, MineIStreamWrite);
-    DetourTransactionCommit();
+  DetourTransactionBegin();
+  DetourUpdateThread(GetCurrentThread());
+  DetourDetach(&(PVOID&)RealIStreamWrite, MineIStreamWrite);
+  DetourTransactionCommit();
 
-    printf("commem: Calling Write w/o after detach.\n");
+  printf("commem: Calling Write w/o after detach.\n");
 
-    li.QuadPart = 2;
-    hr = pStream->lpVtbl->Write(pStream, &li, sizeof(li), NULL);
+  li.QuadPart = 2;
+  hr = pStream->lpVtbl->Write(pStream, &li, sizeof(li), NULL);
 
-    hr = pStream->lpVtbl->Release(pStream);
-    pStream = NULL;
+  hr = pStream->lpVtbl->Release(pStream);
+  pStream = NULL;
 
-    CoUninitialize();
+  CoUninitialize();
 
-    return 0;
+  return 0;
 }
-

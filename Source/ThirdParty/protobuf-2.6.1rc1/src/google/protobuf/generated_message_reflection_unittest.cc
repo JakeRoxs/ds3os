@@ -59,7 +59,7 @@ namespace {
 // Shorthand to get a FieldDescriptor for a field of unittest::TestAllTypes.
 const FieldDescriptor* F(const string& name) {
   const FieldDescriptor* result =
-    unittest::TestAllTypes::descriptor()->FindFieldByName(name);
+      unittest::TestAllTypes::descriptor()->FindFieldByName(name);
   GOOGLE_CHECK(result != NULL);
   return result;
 }
@@ -68,7 +68,7 @@ TEST(GeneratedMessageReflectionTest, Defaults) {
   // Check that all default values are set correctly in the initial message.
   unittest::TestAllTypes message;
   TestUtil::ReflectionTester reflection_tester(
-    unittest::TestAllTypes::descriptor());
+      unittest::TestAllTypes::descriptor());
 
   reflection_tester.ExpectClearViaReflection(message);
 
@@ -92,7 +92,7 @@ TEST(GeneratedMessageReflectionTest, Accessors) {
   // values.
   unittest::TestAllTypes message;
   TestUtil::ReflectionTester reflection_tester(
-    unittest::TestAllTypes::descriptor());
+      unittest::TestAllTypes::descriptor());
 
   reflection_tester.SetAllFieldsViaReflection(&message);
   TestUtil::ExpectAllFieldsSet(message);
@@ -113,23 +113,22 @@ TEST(GeneratedMessageReflectionTest, GetStringReference) {
   string scratch;
 
   EXPECT_EQ(&message.optional_string(),
-      &reflection->GetStringReference(message, F("optional_string"), &scratch))
-    << "For simple string fields, GetStringReference() should return a "
-       "reference to the underlying string.";
+            &reflection->GetStringReference(message, F("optional_string"), &scratch))
+      << "For simple string fields, GetStringReference() should return a "
+         "reference to the underlying string.";
   EXPECT_EQ(&message.repeated_string(0),
-      &reflection->GetRepeatedStringReference(message, F("repeated_string"),
-                                              0, &scratch))
-    << "For simple string fields, GetRepeatedStringReference() should return "
-       "a reference to the underlying string.";
+            &reflection->GetRepeatedStringReference(message, F("repeated_string"),
+                                                    0, &scratch))
+      << "For simple string fields, GetRepeatedStringReference() should return "
+         "a reference to the underlying string.";
 }
-
 
 TEST(GeneratedMessageReflectionTest, DefaultsAfterClear) {
   // Check that after setting all fields and then clearing, getting an
   // embedded message does NOT return the default instance.
   unittest::TestAllTypes message;
   TestUtil::ReflectionTester reflection_tester(
-    unittest::TestAllTypes::descriptor());
+      unittest::TestAllTypes::descriptor());
 
   TestUtil::SetAllFields(&message);
   message.Clear();
@@ -145,7 +144,6 @@ TEST(GeneratedMessageReflectionTest, DefaultsAfterClear) {
   EXPECT_NE(&unittest_import::ImportMessage::default_instance(),
             &reflection->GetMessage(message, F("optional_import_message")));
 }
-
 
 TEST(GeneratedMessageReflectionTest, Swap) {
   unittest::TestAllTypes message1;
@@ -315,7 +313,7 @@ TEST(GeneratedMessageReflectionTest, SwapFieldsOneof) {
 TEST(GeneratedMessageReflectionTest, RemoveLast) {
   unittest::TestAllTypes message;
   TestUtil::ReflectionTester reflection_tester(
-    unittest::TestAllTypes::descriptor());
+      unittest::TestAllTypes::descriptor());
 
   TestUtil::SetAllFields(&message);
 
@@ -327,7 +325,7 @@ TEST(GeneratedMessageReflectionTest, RemoveLast) {
 TEST(GeneratedMessageReflectionTest, RemoveLastExtensions) {
   unittest::TestAllExtensions message;
   TestUtil::ReflectionTester reflection_tester(
-    unittest::TestAllExtensions::descriptor());
+      unittest::TestAllExtensions::descriptor());
 
   TestUtil::SetAllExtensions(&message);
 
@@ -373,20 +371,19 @@ TEST(GeneratedMessageReflectionTest, ReleaseLastExtensions) {
   message.Clear();
   TestUtil::SetAllExtensions(&message);
   ASSERT_EQ(2, message.ExtensionSize(
-      unittest::repeated_foreign_message_extension));
+                   unittest::repeated_foreign_message_extension));
   const protobuf_unittest::ForeignMessage* expected = message.MutableExtension(
       unittest::repeated_foreign_message_extension, 1);
   scoped_ptr<Message> released(message.GetReflection()->ReleaseLast(
       &message, descriptor->file()->FindExtensionByName(
-          "repeated_foreign_message_extension")));
+                    "repeated_foreign_message_extension")));
   EXPECT_EQ(expected, released.get());
-
 }
 
 TEST(GeneratedMessageReflectionTest, SwapRepeatedElements) {
   unittest::TestAllTypes message;
   TestUtil::ReflectionTester reflection_tester(
-    unittest::TestAllTypes::descriptor());
+      unittest::TestAllTypes::descriptor());
 
   TestUtil::SetAllFields(&message);
 
@@ -402,7 +399,7 @@ TEST(GeneratedMessageReflectionTest, SwapRepeatedElements) {
 TEST(GeneratedMessageReflectionTest, SwapRepeatedElementsExtension) {
   unittest::TestAllExtensions message;
   TestUtil::ReflectionTester reflection_tester(
-    unittest::TestAllExtensions::descriptor());
+      unittest::TestAllExtensions::descriptor());
 
   TestUtil::SetAllExtensions(&message);
 
@@ -420,7 +417,7 @@ TEST(GeneratedMessageReflectionTest, Extensions) {
   // values.
   unittest::TestAllExtensions message;
   TestUtil::ReflectionTester reflection_tester(
-    unittest::TestAllExtensions::descriptor());
+      unittest::TestAllExtensions::descriptor());
 
   reflection_tester.SetAllFieldsViaReflection(&message);
   TestUtil::ExpectAllExtensionsSet(message);
@@ -432,14 +429,14 @@ TEST(GeneratedMessageReflectionTest, Extensions) {
 
 TEST(GeneratedMessageReflectionTest, FindExtensionTypeByNumber) {
   const Reflection* reflection =
-    unittest::TestAllExtensions::default_instance().GetReflection();
+      unittest::TestAllExtensions::default_instance().GetReflection();
 
   const FieldDescriptor* extension1 =
-    unittest::TestAllExtensions::descriptor()->file()->FindExtensionByName(
-      "optional_int32_extension");
+      unittest::TestAllExtensions::descriptor()->file()->FindExtensionByName(
+          "optional_int32_extension");
   const FieldDescriptor* extension2 =
-    unittest::TestAllExtensions::descriptor()->file()->FindExtensionByName(
-      "repeated_string_extension");
+      unittest::TestAllExtensions::descriptor()->file()->FindExtensionByName(
+          "repeated_string_extension");
 
   EXPECT_EQ(extension1,
             reflection->FindKnownExtensionByNumber(extension1->number()));
@@ -451,20 +448,19 @@ TEST(GeneratedMessageReflectionTest, FindExtensionTypeByNumber) {
 
   // Extensions of TestAllExtensions should not show up as extensions of
   // other types.
-  EXPECT_TRUE(unittest::TestAllTypes::default_instance().GetReflection()->
-              FindKnownExtensionByNumber(extension1->number()) == NULL);
+  EXPECT_TRUE(unittest::TestAllTypes::default_instance().GetReflection()->FindKnownExtensionByNumber(extension1->number()) == NULL);
 }
 
 TEST(GeneratedMessageReflectionTest, FindKnownExtensionByName) {
   const Reflection* reflection =
-    unittest::TestAllExtensions::default_instance().GetReflection();
+      unittest::TestAllExtensions::default_instance().GetReflection();
 
   const FieldDescriptor* extension1 =
-    unittest::TestAllExtensions::descriptor()->file()->FindExtensionByName(
-      "optional_int32_extension");
+      unittest::TestAllExtensions::descriptor()->file()->FindExtensionByName(
+          "optional_int32_extension");
   const FieldDescriptor* extension2 =
-    unittest::TestAllExtensions::descriptor()->file()->FindExtensionByName(
-      "repeated_string_extension");
+      unittest::TestAllExtensions::descriptor()->file()->FindExtensionByName(
+          "repeated_string_extension");
 
   EXPECT_EQ(extension1,
             reflection->FindKnownExtensionByName(extension1->full_name()));
@@ -476,8 +472,7 @@ TEST(GeneratedMessageReflectionTest, FindKnownExtensionByName) {
 
   // Extensions of TestAllExtensions should not show up as extensions of
   // other types.
-  EXPECT_TRUE(unittest::TestAllTypes::default_instance().GetReflection()->
-              FindKnownExtensionByName(extension1->full_name()) == NULL);
+  EXPECT_TRUE(unittest::TestAllTypes::default_instance().GetReflection()->FindKnownExtensionByName(extension1->full_name()) == NULL);
 }
 
 TEST(GeneratedMessageReflectionTest, SetAllocatedMessageTest) {
@@ -485,7 +480,7 @@ TEST(GeneratedMessageReflectionTest, SetAllocatedMessageTest) {
   unittest::TestAllTypes from_message2;
   unittest::TestAllTypes to_message;
   TestUtil::ReflectionTester reflection_tester(
-    unittest::TestAllTypes::descriptor());
+      unittest::TestAllTypes::descriptor());
   reflection_tester.SetAllFieldsViaReflection(&from_message1);
   reflection_tester.SetAllFieldsViaReflection(&from_message2);
 
@@ -518,7 +513,7 @@ TEST(GeneratedMessageReflectionTest, SetAllocatedExtensionMessageTest) {
   unittest::TestAllExtensions from_message2;
   unittest::TestAllExtensions to_message;
   TestUtil::ReflectionTester reflection_tester(
-    unittest::TestAllExtensions::descriptor());
+      unittest::TestAllExtensions::descriptor());
   reflection_tester.SetAllFieldsViaReflection(&from_message1);
   reflection_tester.SetAllFieldsViaReflection(&from_message2);
 
@@ -563,17 +558,18 @@ TEST(GeneratedMessageReflectionTest, Oneof) {
 
   // Check default values.
   EXPECT_EQ(0, reflection->GetInt32(
-      message, descriptor->FindFieldByName("foo_int")));
+                   message, descriptor->FindFieldByName("foo_int")));
   EXPECT_EQ("", reflection->GetString(
-      message, descriptor->FindFieldByName("foo_string")));
+                    message, descriptor->FindFieldByName("foo_string")));
   EXPECT_EQ("", reflection->GetString(
-      message, descriptor->FindFieldByName("foo_cord")));
+                    message, descriptor->FindFieldByName("foo_cord")));
   EXPECT_EQ("", reflection->GetString(
-      message, descriptor->FindFieldByName("foo_string_piece")));
+                    message, descriptor->FindFieldByName("foo_string_piece")));
   EXPECT_EQ("", reflection->GetString(
-      message, descriptor->FindFieldByName("foo_bytes")));
+                    message, descriptor->FindFieldByName("foo_bytes")));
   EXPECT_EQ(unittest::TestOneof2::FOO, reflection->GetEnum(
-      message, descriptor->FindFieldByName("foo_enum"))->number());
+                                                     message, descriptor->FindFieldByName("foo_enum"))
+                                           ->number());
   EXPECT_EQ(&unittest::TestOneof2::NestedMessage::default_instance(),
             &reflection->GetMessage(
                 message, descriptor->FindFieldByName("foo_message")));
@@ -584,40 +580,41 @@ TEST(GeneratedMessageReflectionTest, Oneof) {
             &reflection->GetMessage(
                 message, descriptor->FindFieldByName("foo_lazy_message")));
   EXPECT_EQ(5, reflection->GetInt32(
-      message, descriptor->FindFieldByName("bar_int")));
+                   message, descriptor->FindFieldByName("bar_int")));
   EXPECT_EQ("STRING", reflection->GetString(
-      message, descriptor->FindFieldByName("bar_string")));
+                          message, descriptor->FindFieldByName("bar_string")));
   EXPECT_EQ("CORD", reflection->GetString(
-      message, descriptor->FindFieldByName("bar_cord")));
+                        message, descriptor->FindFieldByName("bar_cord")));
   EXPECT_EQ("SPIECE", reflection->GetString(
-      message, descriptor->FindFieldByName("bar_string_piece")));
+                          message, descriptor->FindFieldByName("bar_string_piece")));
   EXPECT_EQ("BYTES", reflection->GetString(
-      message, descriptor->FindFieldByName("bar_bytes")));
+                         message, descriptor->FindFieldByName("bar_bytes")));
   EXPECT_EQ(unittest::TestOneof2::BAR, reflection->GetEnum(
-      message, descriptor->FindFieldByName("bar_enum"))->number());
+                                                     message, descriptor->FindFieldByName("bar_enum"))
+                                           ->number());
 
   // Check Set functions.
   reflection->SetInt32(
       &message, descriptor->FindFieldByName("foo_int"), 123);
   EXPECT_EQ(123, reflection->GetInt32(
-      message, descriptor->FindFieldByName("foo_int")));
+                     message, descriptor->FindFieldByName("foo_int")));
   reflection->SetString(
       &message, descriptor->FindFieldByName("foo_string"), "abc");
   EXPECT_EQ("abc", reflection->GetString(
-      message, descriptor->FindFieldByName("foo_string")));
+                       message, descriptor->FindFieldByName("foo_string")));
   reflection->SetString(
       &message, descriptor->FindFieldByName("foo_bytes"), "bytes");
   EXPECT_EQ("bytes", reflection->GetString(
-      message, descriptor->FindFieldByName("foo_bytes")));
+                         message, descriptor->FindFieldByName("foo_bytes")));
   reflection->SetString(
       &message, descriptor->FindFieldByName("bar_cord"), "change_cord");
   EXPECT_EQ("change_cord", reflection->GetString(
-      message, descriptor->FindFieldByName("bar_cord")));
+                               message, descriptor->FindFieldByName("bar_cord")));
   reflection->SetString(
       &message, descriptor->FindFieldByName("bar_string_piece"),
       "change_spiece");
   EXPECT_EQ("change_spiece", reflection->GetString(
-      message, descriptor->FindFieldByName("bar_string_piece")));
+                                 message, descriptor->FindFieldByName("bar_string_piece")));
 }
 
 TEST(GeneratedMessageReflectionTest, SetAllocatedOneofMessageTest) {
@@ -669,7 +666,7 @@ TEST(GeneratedMessageReflectionTest, SetAllocatedOneofMessageTest) {
 TEST(GeneratedMessageReflectionTest, ReleaseMessageTest) {
   unittest::TestAllTypes message;
   TestUtil::ReflectionTester reflection_tester(
-    unittest::TestAllTypes::descriptor());
+      unittest::TestAllTypes::descriptor());
 
   // When nothing is set, we expect all released messages to be NULL.
   reflection_tester.ExpectMessagesReleasedViaReflection(
@@ -695,7 +692,7 @@ TEST(GeneratedMessageReflectionTest, ReleaseMessageTest) {
 TEST(GeneratedMessageReflectionTest, ReleaseExtensionMessageTest) {
   unittest::TestAllExtensions message;
   TestUtil::ReflectionTester reflection_tester(
-    unittest::TestAllExtensions::descriptor());
+      unittest::TestAllExtensions::descriptor());
 
   // When nothing is set, we expect all released messages to be NULL.
   reflection_tester.ExpectMessagesReleasedViaReflection(
@@ -750,46 +747,45 @@ TEST(GeneratedMessageReflectionTest, UsageErrors) {
   // Testing every single failure mode would be too much work.  Let's just
   // check a few.
   EXPECT_DEATH(
-    reflection->GetInt32(
-      message, descriptor->FindFieldByName("optional_int64")),
-    "Protocol Buffer reflection usage error:\n"
-    "  Method      : google::protobuf::Reflection::GetInt32\n"
-    "  Message type: protobuf_unittest\\.TestAllTypes\n"
-    "  Field       : protobuf_unittest\\.TestAllTypes\\.optional_int64\n"
-    "  Problem     : Field is not the right type for this message:\n"
-    "    Expected  : CPPTYPE_INT32\n"
-    "    Field type: CPPTYPE_INT64");
+      reflection->GetInt32(
+          message, descriptor->FindFieldByName("optional_int64")),
+      "Protocol Buffer reflection usage error:\n"
+      "  Method      : google::protobuf::Reflection::GetInt32\n"
+      "  Message type: protobuf_unittest\\.TestAllTypes\n"
+      "  Field       : protobuf_unittest\\.TestAllTypes\\.optional_int64\n"
+      "  Problem     : Field is not the right type for this message:\n"
+      "    Expected  : CPPTYPE_INT32\n"
+      "    Field type: CPPTYPE_INT64");
   EXPECT_DEATH(
-    reflection->GetInt32(
-      message, descriptor->FindFieldByName("repeated_int32")),
-    "Protocol Buffer reflection usage error:\n"
-    "  Method      : google::protobuf::Reflection::GetInt32\n"
-    "  Message type: protobuf_unittest.TestAllTypes\n"
-    "  Field       : protobuf_unittest.TestAllTypes.repeated_int32\n"
-    "  Problem     : Field is repeated; the method requires a singular field.");
+      reflection->GetInt32(
+          message, descriptor->FindFieldByName("repeated_int32")),
+      "Protocol Buffer reflection usage error:\n"
+      "  Method      : google::protobuf::Reflection::GetInt32\n"
+      "  Message type: protobuf_unittest.TestAllTypes\n"
+      "  Field       : protobuf_unittest.TestAllTypes.repeated_int32\n"
+      "  Problem     : Field is repeated; the method requires a singular field.");
   EXPECT_DEATH(
-    reflection->GetInt32(
-      message, unittest::ForeignMessage::descriptor()->FindFieldByName("c")),
-    "Protocol Buffer reflection usage error:\n"
-    "  Method      : google::protobuf::Reflection::GetInt32\n"
-    "  Message type: protobuf_unittest.TestAllTypes\n"
-    "  Field       : protobuf_unittest.ForeignMessage.c\n"
-    "  Problem     : Field does not match message type.");
+      reflection->GetInt32(
+          message, unittest::ForeignMessage::descriptor()->FindFieldByName("c")),
+      "Protocol Buffer reflection usage error:\n"
+      "  Method      : google::protobuf::Reflection::GetInt32\n"
+      "  Message type: protobuf_unittest.TestAllTypes\n"
+      "  Field       : protobuf_unittest.ForeignMessage.c\n"
+      "  Problem     : Field does not match message type.");
   EXPECT_DEATH(
-    reflection->HasField(
-      message, unittest::ForeignMessage::descriptor()->FindFieldByName("c")),
-    "Protocol Buffer reflection usage error:\n"
-    "  Method      : google::protobuf::Reflection::HasField\n"
-    "  Message type: protobuf_unittest.TestAllTypes\n"
-    "  Field       : protobuf_unittest.ForeignMessage.c\n"
-    "  Problem     : Field does not match message type.");
+      reflection->HasField(
+          message, unittest::ForeignMessage::descriptor()->FindFieldByName("c")),
+      "Protocol Buffer reflection usage error:\n"
+      "  Method      : google::protobuf::Reflection::HasField\n"
+      "  Message type: protobuf_unittest.TestAllTypes\n"
+      "  Field       : protobuf_unittest.ForeignMessage.c\n"
+      "  Problem     : Field does not match message type.");
 
 #undef f
 }
 
-#endif  // PROTOBUF_HAS_DEATH_TEST
+#endif // PROTOBUF_HAS_DEATH_TEST
 
-
-}  // namespace
-}  // namespace protobuf
-}  // namespace google
+} // namespace
+} // namespace protobuf
+} // namespace google

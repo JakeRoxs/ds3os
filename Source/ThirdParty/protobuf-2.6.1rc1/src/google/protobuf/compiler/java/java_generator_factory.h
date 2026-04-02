@@ -37,25 +37,25 @@
 
 namespace google {
 namespace protobuf {
-  class FieldDescriptor;         // descriptor.h
-  class Descriptor;              // descriptor.h
-  class ServiceDescriptor;       // descriptor.h
-  namespace compiler {
-    namespace java {
-      class MessageGenerator;    // message.h
-      class ExtensionGenerator;  // extension.h
-      class ServiceGenerator;    // service.h
-      class Context;             // context.h
-    }
-  }
-}
+class FieldDescriptor;   // descriptor.h
+class Descriptor;        // descriptor.h
+class ServiceDescriptor; // descriptor.h
+namespace compiler {
+namespace java {
+class MessageGenerator;   // message.h
+class ExtensionGenerator; // extension.h
+class ServiceGenerator;   // service.h
+class Context;            // context.h
+} // namespace java
+} // namespace compiler
+} // namespace protobuf
 
 namespace protobuf {
 namespace compiler {
 namespace java {
 
 class GeneratorFactory {
- public:
+public:
   GeneratorFactory();
   virtual ~GeneratorFactory();
 
@@ -68,13 +68,13 @@ class GeneratorFactory {
   virtual ServiceGenerator* NewServiceGenerator(
       const ServiceDescriptor* descriptor) const = 0;
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(GeneratorFactory);
 };
 
 // Factory that creates generators for immutable-default messages.
 class ImmutableGeneratorFactory : public GeneratorFactory {
- public:
+public:
   ImmutableGeneratorFactory(Context* context);
   virtual ~ImmutableGeneratorFactory();
 
@@ -87,15 +87,14 @@ class ImmutableGeneratorFactory : public GeneratorFactory {
   virtual ServiceGenerator* NewServiceGenerator(
       const ServiceDescriptor* descriptor) const;
 
- private:
+private:
   Context* context_;
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ImmutableGeneratorFactory);
 };
 
+} // namespace java
+} // namespace compiler
+} // namespace protobuf
 
-}  // namespace java
-}  // namespace compiler
-}  // namespace protobuf
-
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_JAVA_GENERATOR_FACTORY_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_COMPILER_JAVA_GENERATOR_FACTORY_H__

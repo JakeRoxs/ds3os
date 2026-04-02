@@ -15,17 +15,16 @@
 #include "BaseMenu.h"
 #include "SpaceWarClient.h"
 
-class CConnectingMenu : public CBaseMenu<EClientGameState>
-{
+class CConnectingMenu : public CBaseMenu<EClientGameState> {
 public:
-	// Constructor
-	CConnectingMenu( IGameEngine *pGameEngine );
+  // Constructor
+  CConnectingMenu(IGameEngine* pGameEngine);
 
-	void Reset();
-	void OnConnectFailure();
+  void Reset();
+  void OnConnectFailure();
 
 private:
-	bool m_bInitialLogonFailed;
+  bool m_bInitialLogonFailed;
 };
 
 #endif // CONNECTINGMENU_H

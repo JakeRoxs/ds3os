@@ -23,31 +23,29 @@ class Server;
 // and replaying bloodstain ghosts in the world.
 
 class DS2_BloodstainManager
-    : public GameManager
-{
-public:    
-    DS2_BloodstainManager(Server* InServerInstance);
+    : public GameManager {
+public:
+  DS2_BloodstainManager(Server* InServerInstance);
 
-    virtual bool Init() override;
-    virtual void TrimDatabase() override;
+  virtual bool Init() override;
+  virtual void TrimDatabase() override;
 
-    virtual MessageHandleResult OnMessageReceived(GameClient* Client, const Frpg2ReliableUdpMessage& Message) override;
+  virtual MessageHandleResult OnMessageReceived(GameClient* Client, const Frpg2ReliableUdpMessage& Message) override;
 
-    virtual std::string GetName() override;
+  virtual std::string GetName() override;
 
-    size_t GetLiveCount() { return LiveCache.GetTotalEntries(); }
+  size_t GetLiveCount() { return LiveCache.GetTotalEntries(); }
 
 protected:
-    MessageHandleResult Handle_RequestCreateBloodstain(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestGetBloodstainList(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestGetAreaBloodstainList(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestGetDeadingGhost(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestCreateBloodstain(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestGetBloodstainList(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestGetAreaBloodstainList(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestGetDeadingGhost(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
 
 private:
-    Server* ServerInstance;
+  Server* ServerInstance;
 
-    OnlineAreaPool<DS2_CellAndAreaId, Bloodstain> LiveCache;
+  OnlineAreaPool<DS2_CellAndAreaId, Bloodstain> LiveCache;
 
-    uint32_t NextMemoryCacheStainId = std::numeric_limits<uint32_t>::max();
-
+  uint32_t NextMemoryCacheStainId = std::numeric_limits<uint32_t>::max();
 };

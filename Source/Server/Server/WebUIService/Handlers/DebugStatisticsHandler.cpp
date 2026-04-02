@@ -20,75 +20,65 @@
 #include <ctime>
 
 DebugStatisticsHandler::DebugStatisticsHandler(WebUIService* InService)
-    : WebUIHandler(InService)
-{
-} 
-
-void DebugStatisticsHandler::Register(CivetServer* Server)
-{
-    Server->addHandler("/debug_statistics", this);
+    : WebUIHandler(InService) {
 }
 
-void DebugStatisticsHandler::GatherData()
-{
+void DebugStatisticsHandler::Register(CivetServer* Server) {
+  Server->addHandler("/debug_statistics", this);
+}
+
+void DebugStatisticsHandler::GatherData() {
+  std::scoped_lock lock(DataMutex);
+}
+
+bool DebugStatisticsHandler::handleGet(CivetServer* Server, struct mg_connection* Connection) {
+  if (!Service->IsAuthenticated(Connection)) {
+    mg_send_http_error(Connection, 401, "Token invalid.");
+    return true;
+  }
+
+  nlohmann::json json;
+  {
     std::scoped_lock lock(DataMutex);
 
-}
-
-bool DebugStatisticsHandler::handleGet(CivetServer* Server, struct mg_connection* Connection)
-{
-    if (!Service->IsAuthenticated(Connection))
-    {
-        mg_send_http_error(Connection, 401, "Token invalid.");
-        return true;
+    auto timers = nlohmann::json::array();
+    for (DebugTimer* Timer : DebugTimer::GetTimers()) {
+      auto stat = nlohmann::json::object();
+      stat["name"] = Timer->GetName();
+      stat["current"] = StringFormat("%.2f ms", Timer->GetCurrent() * 1000.0);
+      stat["average"] = StringFormat("%.2f ms", Timer->GetAverage() * 1000.0);
+      stat["peak"] = StringFormat("%.2f ms", Timer->GetPeak() * 1000.0);
+      timers.push_back(stat);
     }
 
-    nlohmann::json json;
-    {
-        std::scoped_lock lock(DataMutex);
-
-        auto timers = nlohmann::json::array();
-        for (DebugTimer* Timer : DebugTimer::GetTimers())
-        {
-            auto stat = nlohmann::json::object();
-            stat["name"] = Timer->GetName();
-            stat["current"] = StringFormat("%.2f ms", Timer->GetCurrent() * 1000.0);
-            stat["average"] = StringFormat("%.2f ms", Timer->GetAverage() * 1000.0);
-            stat["peak"] = StringFormat("%.2f ms", Timer->GetPeak() * 1000.0);
-            timers.push_back(stat);
-        }
-        
-        auto counters = nlohmann::json::array();
-        for (DebugCounter* Counter : DebugCounter::GetCounters())
-        {
-            auto stat = nlohmann::json::object();
-            stat["name"] = Counter->GetName();
-            stat["average_rate"] = StringFormat("%.2f", Counter->GetAverageRate());
-            stat["total_lifetime"] = StringFormat("%.2f", Counter->GetTotalLifetime());
-            counters.push_back(stat);
-        }
-
-        auto logs = nlohmann::json::array();
-        if (Service->GetServer()->IsDefaultServer())
-        {
-            for (const LogMessage& Message : GetRecentLogs())
-            {
-                auto stat = nlohmann::json::object();
-                stat["level"] = Message.Level;
-                stat["source"] = Message.Source;
-                stat["message"] = Message.Message;
-                logs.push_back(stat);
-            }
-        }
-
-        json["timers"] = timers;
-        json["counters"] = counters;
-        json["logs"] = logs;
+    auto counters = nlohmann::json::array();
+    for (DebugCounter* Counter : DebugCounter::GetCounters()) {
+      auto stat = nlohmann::json::object();
+      stat["name"] = Counter->GetName();
+      stat["average_rate"] = StringFormat("%.2f", Counter->GetAverageRate());
+      stat["total_lifetime"] = StringFormat("%.2f", Counter->GetTotalLifetime());
+      counters.push_back(stat);
     }
 
-    RespondJson(Connection, json);
+    auto logs = nlohmann::json::array();
+    if (Service->GetServer()->IsDefaultServer()) {
+      for (const LogMessage& Message : GetRecentLogs()) {
+        auto stat = nlohmann::json::object();
+        stat["level"] = Message.Level;
+        stat["source"] = Message.Source;
+        stat["message"] = Message.Message;
+        logs.push_back(stat);
+      }
+    }
 
-    MarkAsNeedsDataGather();
+    json["timers"] = timers;
+    json["counters"] = counters;
+    json["logs"] = logs;
+  }
 
-    return true;
+  RespondJson(Connection, json);
+
+  MarkAsNeedsDataGather();
+
+  return true;
 }

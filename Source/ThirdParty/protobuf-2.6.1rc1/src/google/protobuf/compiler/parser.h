@@ -46,7 +46,9 @@
 #include <google/protobuf/io/tokenizer.h>
 
 namespace google {
-namespace protobuf { class Message; }
+namespace protobuf {
+class Message;
+}
 
 namespace protobuf {
 namespace compiler {
@@ -63,7 +65,7 @@ class SourceLocationTable;
 // many other kinds of validation needed to construct a complete
 // FileDescriptor.
 class LIBPROTOBUF_EXPORT Parser {
- public:
+public:
   Parser();
   ~Parser();
 
@@ -114,7 +116,7 @@ class LIBPROTOBUF_EXPORT Parser {
     stop_after_syntax_identifier_ = value;
   }
 
- private:
+private:
   class LocationRecorder;
 
   // =================================================================
@@ -206,7 +208,7 @@ class LIBPROTOBUF_EXPORT Parser {
   // destructor records the end location.  Since the parser is
   // recursive-descent, this works out beautifully.
   class LIBPROTOBUF_EXPORT LocationRecorder {
-   public:
+  public:
     // Construct the file's "root" location.
     LocationRecorder(Parser* parser);
 
@@ -245,7 +247,7 @@ class LIBPROTOBUF_EXPORT Parser {
     // is an older way of keeping track of source locations which is still
     // used in some places.
     void RecordLegacyLocation(const Message* descriptor,
-        DescriptorPool::ErrorCollector::ErrorLocation location);
+                              DescriptorPool::ErrorCollector::ErrorLocation location);
 
     // Attaches leading and trailing comments to the location.  The two strings
     // will be swapped into place, so after this is called *leading and
@@ -255,7 +257,7 @@ class LIBPROTOBUF_EXPORT Parser {
     //   why this is const.
     void AttachComments(string* leading, string* trailing) const;
 
-   private:
+  private:
     Parser* parser_;
     SourceCodeInfo::Location* location_;
 
@@ -395,7 +397,6 @@ class LIBPROTOBUF_EXPORT Parser {
                           const LocationRecorder& method_location,
                           const FileDescriptorProto* containing_file);
 
-
   // Parse options of a single method or stream.
   bool ParseOptions(const LocationRecorder& parent_location,
                     const FileDescriptorProto* containing_file,
@@ -428,8 +429,8 @@ class LIBPROTOBUF_EXPORT Parser {
                               const FileDescriptorProto* containing_file);
 
   enum OptionStyle {
-    OPTION_ASSIGNMENT,  // just "name = value"
-    OPTION_STATEMENT    // "option name = value;"
+    OPTION_ASSIGNMENT, // just "name = value"
+    OPTION_STATEMENT   // "option name = value;"
   };
 
   // Parse a single option name/value pair, e.g. "ctype = CORD".  The name
@@ -465,7 +466,7 @@ class LIBPROTOBUF_EXPORT Parser {
   io::Tokenizer* input_;
   io::ErrorCollector* error_collector_;
   SourceCodeInfo* source_code_info_;
-  SourceLocationTable* source_location_table_;  // legacy
+  SourceLocationTable* source_location_table_; // legacy
   bool had_errors_;
   bool require_syntax_identifier_;
   bool stop_after_syntax_identifier_;
@@ -487,7 +488,7 @@ class LIBPROTOBUF_EXPORT Parser {
 // writing you still need to use SourceLocationTable when integrating with
 // DescriptorPool.
 class LIBPROTOBUF_EXPORT SourceLocationTable {
- public:
+public:
   SourceLocationTable();
   ~SourceLocationTable();
 
@@ -508,15 +509,16 @@ class LIBPROTOBUF_EXPORT SourceLocationTable {
   // Clears the contents of the table.
   void Clear();
 
- private:
+private:
   typedef map<
-    pair<const Message*, DescriptorPool::ErrorCollector::ErrorLocation>,
-    pair<int, int> > LocationMap;
+      pair<const Message*, DescriptorPool::ErrorCollector::ErrorLocation>,
+      pair<int, int>>
+      LocationMap;
   LocationMap location_map_;
 };
 
-}  // namespace compiler
-}  // namespace protobuf
+} // namespace compiler
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_PARSER_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_COMPILER_PARSER_H__

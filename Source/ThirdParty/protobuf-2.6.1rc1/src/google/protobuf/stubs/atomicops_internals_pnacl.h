@@ -66,8 +66,8 @@ inline Atomic32 Acquire_Load(volatile const Atomic32* ptr) {
   return value;
 }
 
-}  // namespace internal
-}  // namespace protobuf
-}  // namespace google
+} // namespace internal
+} // namespace protobuf
+} // namespace google
 
-#endif  // GOOGLE_PROTOBUF_ATOMICOPS_INTERNALS_PNACL_H_
+#endif // GOOGLE_PROTOBUF_ATOMICOPS_INTERNALS_PNACL_H_

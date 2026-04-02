@@ -35,7 +35,6 @@
 #include <google/protobuf/compiler/python/python_generator.h>
 #include <google/protobuf/compiler/java/java_generator.h>
 
-
 int main(int argc, char* argv[]) {
 
   google::protobuf::compiler::CommandLineInterface cli;
@@ -50,7 +49,6 @@ int main(int argc, char* argv[]) {
   google::protobuf::compiler::java::JavaGenerator java_generator;
   cli.RegisterGenerator("--java_out", &java_generator,
                         "Generate Java source file.");
-
 
   // Proto2 Python
   google::protobuf::compiler::python::Generator py_generator;

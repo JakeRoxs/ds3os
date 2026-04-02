@@ -41,7 +41,6 @@
 #include <google/protobuf/stubs/shared_ptr.h>
 #endif
 
-
 namespace google {
 namespace protobuf {
 
@@ -102,7 +101,7 @@ int ass_subscript(ExtensionDict* self, PyObject* key, PyObject* value);
 //
 // Returns None on success.
 PyObject* ClearExtension(ExtensionDict* self,
-                                       PyObject* extension);
+                         PyObject* extension);
 
 // Checks if the dict has an extension.
 //
@@ -115,9 +114,9 @@ PyObject* HasExtension(ExtensionDict* self, PyObject* extension);
 // Returns a new reference.
 PyObject* _FindExtensionByName(ExtensionDict* self, PyObject* name);
 
-}  // namespace extension_dict
-}  // namespace python
-}  // namespace protobuf
+} // namespace extension_dict
+} // namespace python
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_PYTHON_CPP_EXTENSION_DICT_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_PYTHON_CPP_EXTENSION_DICT_H__

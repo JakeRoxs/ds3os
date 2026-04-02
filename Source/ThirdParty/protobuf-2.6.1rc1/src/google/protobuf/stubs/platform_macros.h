@@ -34,7 +34,7 @@
 #include <google/protobuf/stubs/common.h>
 
 #define GOOGLE_PROTOBUF_PLATFORM_ERROR \
-#error "Host platform was not detected as supported by protobuf"
+  #error "Host platform was not detected as supported by protobuf"
 
 // Processor architecture detection.  For more info on what's defined, see:
 //   http://msdn.microsoft.com/en-us/library/b0084kay.aspx
@@ -73,19 +73,19 @@
 #define GOOGLE_PROTOBUF_ARCH_32_BIT 1
 #endif
 #elif defined(__GNUC__)
-# if (((__GNUC__ == 4) && (__GNUC_MINOR__ >= 7)) || (__GNUC__ > 4))
+#if (((__GNUC__ == 4) && (__GNUC_MINOR__ >= 7)) || (__GNUC__ > 4))
 // We fallback to the generic Clang/GCC >= 4.7 implementation in atomicops.h
-# elif defined(__clang__)
-#  if !__has_extension(c_atomic)
+#elif defined(__clang__)
+#if !__has_extension(c_atomic)
 GOOGLE_PROTOBUF_PLATFORM_ERROR
-#  endif
+#endif
 // We fallback to the generic Clang/GCC >= 4.7 implementation in atomicops.h
-# endif
-# if __LP64__
-#  define GOOGLE_PROTOBUF_ARCH_64_BIT 1
-# else
-#  define GOOGLE_PROTOBUF_ARCH_32_BIT 1
-# endif
+#endif
+#if __LP64__
+#define GOOGLE_PROTOBUF_ARCH_64_BIT 1
+#else
+#define GOOGLE_PROTOBUF_ARCH_32_BIT 1
+#endif
 #else
 GOOGLE_PROTOBUF_PLATFORM_ERROR
 #endif
@@ -100,4 +100,4 @@ GOOGLE_PROTOBUF_PLATFORM_ERROR
 
 #undef GOOGLE_PROTOBUF_PLATFORM_ERROR
 
-#endif  // GOOGLE_PROTOBUF_PLATFORM_MACROS_H_
+#endif // GOOGLE_PROTOBUF_PLATFORM_MACROS_H_

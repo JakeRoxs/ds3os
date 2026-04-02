@@ -32,7 +32,7 @@
 
 #include <google/protobuf/stubs/type_traits.h>
 
-#include <stdlib.h>   // for exit()
+#include <stdlib.h> // for exit()
 #include <stdio.h>
 #include <string>
 #include <vector>
@@ -43,16 +43,17 @@
 typedef int int32;
 typedef long int64;
 
+using std::pair;
 using std::string;
 using std::vector;
-using std::pair;
-
 
 // This assertion produces errors like "error: invalid use of
 // incomplete type 'struct <unnamed>::AssertTypesEq<const int, int>'"
 // when it fails.
-template<typename T, typename U> struct AssertTypesEq;
-template<typename T> struct AssertTypesEq<T, T> {};
+template <typename T, typename U>
+struct AssertTypesEq;
+template <typename T>
+struct AssertTypesEq<T, T> {};
 #define COMPILE_ASSERT_TYPES_EQ(T, U) static_cast<void>(AssertTypesEq<T, U>())
 
 // A user-defined POD type.
@@ -62,9 +63,10 @@ struct A {
 
 // A user-defined non-POD type with a trivial copy constructor.
 class B {
- public:
-  explicit B(int n) : n_(n) { }
- private:
+public:
+  explicit B(int n) : n_(n) {}
+
+private:
   int n_;
 };
 
@@ -72,83 +74,90 @@ class B {
 // We will explicitly declare C to have a trivial copy constructor
 // by specializing has_trivial_copy.
 class C {
- public:
-  explicit C(int n) : n_(n) { }
- private:
+public:
+  explicit C(int n) : n_(n) {}
+
+private:
   int n_;
 };
 
 namespace google {
 namespace protobuf {
 namespace internal {
-template<> struct has_trivial_copy<C> : true_type { };
-}  // namespace internal
-}  // namespace protobuf
-}  // namespace google
+template <>
+struct has_trivial_copy<C> : true_type {};
+} // namespace internal
+} // namespace protobuf
+} // namespace google
 
 // Another user-defined non-POD type with a trivial assignment operator.
 // We will explicitly declare C to have a trivial assignment operator
 // by specializing has_trivial_assign.
 class D {
- public:
-  explicit D(int n) : n_(n) { }
- private:
+public:
+  explicit D(int n) : n_(n) {}
+
+private:
   int n_;
 };
 
 namespace google {
 namespace protobuf {
 namespace internal {
-template<> struct has_trivial_assign<D> : true_type { };
-}  // namespace internal
-}  // namespace protobuf
-}  // namespace google
+template <>
+struct has_trivial_assign<D> : true_type {};
+} // namespace internal
+} // namespace protobuf
+} // namespace google
 
 // Another user-defined non-POD type with a trivial constructor.
 // We will explicitly declare E to have a trivial constructor
 // by specializing has_trivial_constructor.
 class E {
- public:
+public:
   int n_;
 };
 
 namespace google {
 namespace protobuf {
 namespace internal {
-template<> struct has_trivial_constructor<E> : true_type { };
-}  // namespace internal
-}  // namespace protobuf
-}  // namespace google
+template <>
+struct has_trivial_constructor<E> : true_type {};
+} // namespace internal
+} // namespace protobuf
+} // namespace google
 
 // Another user-defined non-POD type with a trivial destructor.
 // We will explicitly declare E to have a trivial destructor
 // by specializing has_trivial_destructor.
 class F {
- public:
-  explicit F(int n) : n_(n) { }
- private:
+public:
+  explicit F(int n) : n_(n) {}
+
+private:
   int n_;
 };
 
 namespace google {
 namespace protobuf {
 namespace internal {
-template<> struct has_trivial_destructor<F> : true_type { };
-}  // namespace internal
-}  // namespace protobuf
-}  // namespace google
+template <>
+struct has_trivial_destructor<F> : true_type {};
+} // namespace internal
+} // namespace protobuf
+} // namespace google
 
 enum G {};
 
 union H {};
 
 class I {
- public:
+public:
   operator int() const;
 };
 
 class J {
- private:
+private:
   operator int() const;
 };
 
@@ -160,8 +169,8 @@ namespace {
 // A base class and a derived class that inherits from it, used for
 // testing conversion type traits.
 class Base {
- public:
-  virtual ~Base() { }
+public:
+  virtual ~Base() {}
 };
 
 class Derived : public Base {
@@ -187,7 +196,7 @@ TEST(TypeTraitsTest, TestIsInteger) {
   EXPECT_FALSE(is_integral<string>::value);
   EXPECT_FALSE(is_integral<int*>::value);
   EXPECT_FALSE(is_integral<A>::value);
-  EXPECT_FALSE((is_integral<pair<int, int> >::value));
+  EXPECT_FALSE((is_integral<pair<int, int>>::value));
 
   // Verify that cv-qualified integral types are still integral, and
   // cv-qualified non-integral types are still non-integral.
@@ -211,7 +220,7 @@ TEST(TypeTraitsTest, TestIsFloating) {
   EXPECT_FALSE(is_floating_point<string>::value);
   EXPECT_FALSE(is_floating_point<float*>::value);
   EXPECT_FALSE(is_floating_point<A>::value);
-  EXPECT_FALSE((is_floating_point<pair<int, int> >::value));
+  EXPECT_FALSE((is_floating_point<pair<int, int>>::value));
 
   // Verify that cv-qualified floating point types are still floating, and
   // cv-qualified non-floating types are still non-floating.
@@ -235,7 +244,7 @@ TEST(TypeTraitsTest, TestIsPointer) {
   EXPECT_FALSE(is_pointer<void>::value);
   EXPECT_FALSE(is_pointer<float&>::value);
   EXPECT_FALSE(is_pointer<long>::value);
-  EXPECT_FALSE(is_pointer<vector<int*> >::value);
+  EXPECT_FALSE(is_pointer<vector<int*>>::value);
   EXPECT_FALSE(is_pointer<int[5]>::value);
 
   // A function pointer is a pointer, but a function type, or a function
@@ -250,7 +259,7 @@ TEST(TypeTraitsTest, TestIsPointer) {
   EXPECT_TRUE(is_pointer<const void* volatile>::value);
   EXPECT_TRUE(is_pointer<char** const volatile>::value);
   EXPECT_FALSE(is_pointer<const int>::value);
-  EXPECT_FALSE(is_pointer<volatile vector<int*> >::value);
+  EXPECT_FALSE(is_pointer<volatile vector<int*>>::value);
   EXPECT_FALSE(is_pointer<const volatile double>::value);
 }
 
@@ -278,7 +287,7 @@ TEST(TypeTraitsTest, TestIsEnum) {
   EXPECT_FALSE(is_enum<I>::value);
   EXPECT_FALSE(is_enum<J>::value);
   EXPECT_FALSE(is_enum<void()>::value);
-  EXPECT_FALSE(is_enum<void(*)()>::value);
+  EXPECT_FALSE(is_enum<void (*)()>::value);
   EXPECT_FALSE(is_enum<int A::*>::value);
   EXPECT_FALSE(is_enum<void (A::*)()>::value);
 #endif
@@ -296,7 +305,6 @@ TEST(TypeTraitsTest, TestIsReference) {
   EXPECT_TRUE(is_reference<volatile RefFloat>::value);
   EXPECT_TRUE(is_reference<const volatile RefFloat>::value);
 
-
   // Verifies that is_reference is false for all non-reference types.
   EXPECT_FALSE(is_reference<float>::value);
   EXPECT_FALSE(is_reference<const float>::value);
@@ -304,7 +312,7 @@ TEST(TypeTraitsTest, TestIsReference) {
   EXPECT_FALSE(is_reference<const volatile float>::value);
   EXPECT_FALSE(is_reference<const int*>::value);
   EXPECT_FALSE(is_reference<int()>::value);
-  EXPECT_FALSE(is_reference<void(*)(const char&)>::value);
+  EXPECT_FALSE(is_reference<void (*)(const char&)>::value);
 }
 
 TEST(TypeTraitsTest, TestAddReference) {
@@ -355,7 +363,7 @@ TEST(TypeTraitsTest, TestIsPod) {
   // Verify that some non-POD types are not marked as PODs.
   EXPECT_FALSE(is_pod<void>::value);
   EXPECT_FALSE(is_pod<string>::value);
-  EXPECT_FALSE((is_pod<pair<int, int> >::value));
+  EXPECT_FALSE((is_pod<pair<int, int>>::value));
   EXPECT_FALSE(is_pod<A>::value);
   EXPECT_FALSE(is_pod<B>::value);
   EXPECT_FALSE(is_pod<C>::value);
@@ -388,18 +396,18 @@ TEST(TypeTraitsTest, TestHasTrivialConstructor) {
   // Verify that pairs and arrays of such types have trivial
   // constructors.
   typedef int int10[10];
-  EXPECT_TRUE((has_trivial_constructor<pair<int, char*> >::value));
+  EXPECT_TRUE((has_trivial_constructor<pair<int, char*>>::value));
   EXPECT_TRUE(has_trivial_constructor<int10>::value);
 
   // Verify that pairs of types without trivial constructors
   // are not marked as trivial.
-  EXPECT_FALSE((has_trivial_constructor<pair<int, string> >::value));
-  EXPECT_FALSE((has_trivial_constructor<pair<string, int> >::value));
+  EXPECT_FALSE((has_trivial_constructor<pair<int, string>>::value));
+  EXPECT_FALSE((has_trivial_constructor<pair<string, int>>::value));
 
   // Verify that types without trivial constructors are
   // correctly marked as such.
   EXPECT_FALSE(has_trivial_constructor<string>::value);
-  EXPECT_FALSE(has_trivial_constructor<vector<int> >::value);
+  EXPECT_FALSE(has_trivial_constructor<vector<int>>::value);
 
   // Verify that E, which we have declared to have a trivial
   // constructor, is correctly marked as such.
@@ -431,18 +439,18 @@ TEST(TypeTraitsTest, TestHasTrivialCopy) {
   // Verify that pairs and arrays of such types have trivial
   // copy constructors.
   typedef int int10[10];
-  EXPECT_TRUE((has_trivial_copy<pair<int, char*> >::value));
+  EXPECT_TRUE((has_trivial_copy<pair<int, char*>>::value));
   EXPECT_TRUE(has_trivial_copy<int10>::value);
 
   // Verify that pairs of types without trivial copy constructors
   // are not marked as trivial.
-  EXPECT_FALSE((has_trivial_copy<pair<int, string> >::value));
-  EXPECT_FALSE((has_trivial_copy<pair<string, int> >::value));
+  EXPECT_FALSE((has_trivial_copy<pair<int, string>>::value));
+  EXPECT_FALSE((has_trivial_copy<pair<string, int>>::value));
 
   // Verify that types without trivial copy constructors are
   // correctly marked as such.
   EXPECT_FALSE(has_trivial_copy<string>::value);
-  EXPECT_FALSE(has_trivial_copy<vector<int> >::value);
+  EXPECT_FALSE(has_trivial_copy<vector<int>>::value);
 
   // Verify that C, which we have declared to have a trivial
   // copy constructor, is correctly marked as such.
@@ -474,18 +482,18 @@ TEST(TypeTraitsTest, TestHasTrivialAssign) {
   // Verify that pairs and arrays of such types have trivial
   // assignment operators.
   typedef int int10[10];
-  EXPECT_TRUE((has_trivial_assign<pair<int, char*> >::value));
+  EXPECT_TRUE((has_trivial_assign<pair<int, char*>>::value));
   EXPECT_TRUE(has_trivial_assign<int10>::value);
 
   // Verify that pairs of types without trivial assignment operators
   // are not marked as trivial.
-  EXPECT_FALSE((has_trivial_assign<pair<int, string> >::value));
-  EXPECT_FALSE((has_trivial_assign<pair<string, int> >::value));
+  EXPECT_FALSE((has_trivial_assign<pair<int, string>>::value));
+  EXPECT_FALSE((has_trivial_assign<pair<string, int>>::value));
 
   // Verify that types without trivial assignment operators are
   // correctly marked as such.
   EXPECT_FALSE(has_trivial_assign<string>::value);
-  EXPECT_FALSE(has_trivial_assign<vector<int> >::value);
+  EXPECT_FALSE(has_trivial_assign<vector<int>>::value);
 
   // Verify that D, which we have declared to have a trivial
   // assignment operator, is correctly marked as such.
@@ -516,18 +524,18 @@ TEST(TypeTraitsTest, TestHasTrivialDestructor) {
   // Verify that pairs and arrays of such types have trivial
   // destructors.
   typedef int int10[10];
-  EXPECT_TRUE((has_trivial_destructor<pair<int, char*> >::value));
+  EXPECT_TRUE((has_trivial_destructor<pair<int, char*>>::value));
   EXPECT_TRUE(has_trivial_destructor<int10>::value);
 
   // Verify that pairs of types without trivial destructors
   // are not marked as trivial.
-  EXPECT_FALSE((has_trivial_destructor<pair<int, string> >::value));
-  EXPECT_FALSE((has_trivial_destructor<pair<string, int> >::value));
+  EXPECT_FALSE((has_trivial_destructor<pair<int, string>>::value));
+  EXPECT_FALSE((has_trivial_destructor<pair<string, int>>::value));
 
   // Verify that types without trivial destructors are
   // correctly marked as such.
   EXPECT_FALSE(has_trivial_destructor<string>::value);
-  EXPECT_FALSE(has_trivial_destructor<vector<int> >::value);
+  EXPECT_FALSE(has_trivial_destructor<vector<int>>::value);
 
   // Verify that F, which we have declared to have a trivial
   // destructor, is correctly marked as such.
@@ -546,9 +554,9 @@ TEST(TypeTraitsTest, TestRemovePointer) {
 TEST(TypeTraitsTest, TestRemoveConst) {
   COMPILE_ASSERT_TYPES_EQ(int, remove_const<int>::type);
   COMPILE_ASSERT_TYPES_EQ(int, remove_const<const int>::type);
-  COMPILE_ASSERT_TYPES_EQ(int *, remove_const<int * const>::type);
+  COMPILE_ASSERT_TYPES_EQ(int*, remove_const<int* const>::type);
   // TR1 examples.
-  COMPILE_ASSERT_TYPES_EQ(const int *, remove_const<const int *>::type);
+  COMPILE_ASSERT_TYPES_EQ(const int*, remove_const<const int*>::type);
   COMPILE_ASSERT_TYPES_EQ(volatile int,
                           remove_const<const volatile int>::type);
 }
@@ -556,10 +564,10 @@ TEST(TypeTraitsTest, TestRemoveConst) {
 TEST(TypeTraitsTest, TestRemoveVolatile) {
   COMPILE_ASSERT_TYPES_EQ(int, remove_volatile<int>::type);
   COMPILE_ASSERT_TYPES_EQ(int, remove_volatile<volatile int>::type);
-  COMPILE_ASSERT_TYPES_EQ(int *, remove_volatile<int * volatile>::type);
+  COMPILE_ASSERT_TYPES_EQ(int*, remove_volatile<int* volatile>::type);
   // TR1 examples.
-  COMPILE_ASSERT_TYPES_EQ(volatile int *,
-                          remove_volatile<volatile int *>::type);
+  COMPILE_ASSERT_TYPES_EQ(volatile int*,
+                          remove_volatile<volatile int*>::type);
   COMPILE_ASSERT_TYPES_EQ(const int,
                           remove_volatile<const volatile int>::type);
 }
@@ -568,10 +576,10 @@ TEST(TypeTraitsTest, TestRemoveCV) {
   COMPILE_ASSERT_TYPES_EQ(int, remove_cv<int>::type);
   COMPILE_ASSERT_TYPES_EQ(int, remove_cv<volatile int>::type);
   COMPILE_ASSERT_TYPES_EQ(int, remove_cv<const int>::type);
-  COMPILE_ASSERT_TYPES_EQ(int *, remove_cv<int * const volatile>::type);
+  COMPILE_ASSERT_TYPES_EQ(int*, remove_cv<int* const volatile>::type);
   // TR1 examples.
-  COMPILE_ASSERT_TYPES_EQ(const volatile int *,
-                          remove_cv<const volatile int *>::type);
+  COMPILE_ASSERT_TYPES_EQ(const volatile int*,
+                          remove_cv<const volatile int*>::type);
   COMPILE_ASSERT_TYPES_EQ(int,
                           remove_cv<const volatile int>::type);
 }
@@ -580,7 +588,7 @@ TEST(TypeTraitsTest, TestRemoveReference) {
   COMPILE_ASSERT_TYPES_EQ(int, remove_reference<int>::type);
   COMPILE_ASSERT_TYPES_EQ(int, remove_reference<int&>::type);
   COMPILE_ASSERT_TYPES_EQ(const int, remove_reference<const int&>::type);
-  COMPILE_ASSERT_TYPES_EQ(int*, remove_reference<int * &>::type);
+  COMPILE_ASSERT_TYPES_EQ(int*, remove_reference<int*&>::type);
 }
 
 TEST(TypeTraitsTest, TestIsSame) {
@@ -622,7 +630,7 @@ TEST(TypeTraitsTest, TestConvertible) {
 #endif
 }
 
-}  // anonymous namespace
-}  // namespace internal
-}  // namespace protobuf
-}  // namespace google
+} // anonymous namespace
+} // namespace internal
+} // namespace protobuf
+} // namespace google
