@@ -108,11 +108,11 @@ After running the server once a file will be created at Saved/default/config.jso
 
 Rekindled Server uses its own saves to avoid any issues with retail game saves. If you want to transfer your retail saves to Rekindled Server, click the settings (cog) icon at the bottom of the loader and press the copy retail saves button.
 
-We don't provide an automation option to copy Rekindled Server saves back to retail saves for safety. If you ~really~ want to do this you can find the folder the saves are stored in and rename the .rekindled files to .sl2.
+We don't provide an automation option to copy Rekindled Server saves back to retail saves for safety. If you ~really~ want to do this you can find the folder the saves are stored in and rename the .rds files to .sl2.
 
 ## Can I run the server via docker?
 
-Yes, there are 2 docker containers currently published for Rekindled Server, these are automatically updated each time a new release is made:
+Yes, there are 3 docker containers currently published for Rekindled Server, these are automatically updated each time a new release is made:
 
 jakeroxs/rekindled-ds2s-server - This is the main Dark Souls 2: SOTFS server.
 jakeroxs/rekindled-ds3-server - This is the main Dark Souls 3 server.
@@ -130,7 +130,7 @@ A `docker-compose.yml` file is included in the repository root with a simple con
 docker compose up -d
 ```
 
-The compose file uses the published images and binds the `Saved` directory to `./Saved` on the host. Adjust ports or remove the master service if you only need the game server.
+The compose file uses the published images and binds the `Saved` directory to `./Saved` on the host. Adjust ports or enable the hub service if you want to host your own hub server/site.
 
 ## I launch the game but its unable to connect?
 
@@ -155,23 +155,17 @@ https://github.com/jakeroxs/rekindled-server/blob/main/Source/Server/Config/Runt
 The project is written in C++17 and uses CMake for cross-platform builds.
 
 **Required:** CMake should be configured with Ninja by default.
-The repo now enforces this in `CMakeLists.txt` (fatal configure error when non-Ninja is used unless `-DREKINDLED_ALLOW_NON_NINJA=ON`).
 
 Use:
 
 - `Ninja` (preferred, cross-platform)
-
-Optional fallback (only with explicit override):
-
-- `Visual Studio 18 2026` (MSVC / Clang-CL) with `-DREKINDLED_ALLOW_NON_NINJA=ON`
-- `Visual Studio 17 2022` (if available) with `-DREKINDLED_ALLOW_NON_NINJA=ON`
 
 ## Prerequisites
 
 - [CMake](https://cmake.org/download/) (3.20+ recommended)
 - Visual Studio 2026 or 2022 + optional Clang-cl, or another CMake-compatible toolchain
 - .NET SDK 5.0 or later (`dotnet` command) – used by the WinForms loader project (project currently targets net5.0-windows)
-- Node.js & npm (only if you intend to build the master server, which is
+- Node.js & npm (only if you intend to build the hub server, which is
   managed separately with npm)
 
 The loader target is a SDK‑style .NET project with NuGet dependencies. CMake now
@@ -215,7 +209,7 @@ pwsh .\Tools\build-cmake.ps1 -Generator "Ninja" -BuildType Debug
 pwsh .\Tools\build-cmake.ps1 -Generator "Visual Studio 18 2026" -BuildType Release
 ```
 
-## Using nix
+## Using nix (currently disabled until I figure out how to deal with dependencies in nix actions) 
 
 ```sh
 # to build a package
@@ -242,7 +236,7 @@ The nix version stores the configs in `${XDG_CONFIG_HOME:-$HOME/.config}/rekindl
 │   ├── Server.DarkSouls3/ Source code thats special to dark souls 3 support.
 │   ├── Server.DarkSouls2/ Source code thats special to dark souls 2 support.
 │   ├── Shared/            Source code that is shared between the server and injector projects.
-│   └── ThirdParty/        Source code for any third-party libraries used.
+│   └── ThirdParty/        Source code for any remaining third-party libraries used.
 │   └── WebUI/             Contains the static resources used to assemble the management web page for the server.
 ├── Tools/                 Various cheat engine tables, bat files and alike used for analysis.
 ```
