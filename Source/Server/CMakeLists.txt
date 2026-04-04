@@ -1,6 +1,7 @@
 # ================================================================================================
-#  DS3OS
+#  Rekindled Server
 #  Copyright (C) 2021 Tim Leonard
+#  Copyright (C) 2026 Jake Morgeson
 # ================================================================================================
 
 project(Server C CXX)
@@ -145,15 +146,6 @@ if(NOT TARGET sqlite)
     endif()
 endif()
 
-# If the target is still missing, attempt to directly bring in the vendored sqlite
-# directory (for CI/host scenarios where ThirdParty did not create it).
-if(NOT TARGET sqlite)
-    if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../ThirdParty/sqlite/CMakeLists.txt")
-        message(STATUS "sqlite target still missing; adding ThirdParty/sqlite subdirectory directly")
-        add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/../ThirdParty/sqlite")
-    endif()
-endif()
-
 if(NOT TARGET sqlite)
     # Diagnostic output to help troubleshoot why sqlite is missing.
     get_cmake_property(_all_targets TARGETS)
@@ -162,14 +154,14 @@ if(NOT TARGET sqlite)
     message(STATUS "CMake cache entries: SQLite3_FOUND=${SQLite3_FOUND} SQLite3_LIBRARIES='${SQLite3_LIBRARIES}' SQLite3_LIBRARY='${SQLite3_LIBRARY}' SQLite3_INCLUDE_DIRS='${SQLite3_INCLUDE_DIRS}' SQLite3_INCLUDE_DIR='${SQLite3_INCLUDE_DIR}'")
     message(FATAL_ERROR "Missing required SQLite target `sqlite`. Ensure ThirdParty is configured correctly or that a system SQLite is available.")
 endif()
-set(DSOS_SQLITE_TARGET sqlite)
+set(REKINDLED_SQLITE_TARGET sqlite)
 
 # Diagnostic output for CI: show which SQLite target we will link.
-message(STATUS "Using SQLite link target: ${DSOS_SQLITE_TARGET}")
-if(TARGET ${DSOS_SQLITE_TARGET})
-    get_target_property(_DSOS_SQLITE_LOCATION ${DSOS_SQLITE_TARGET} IMPORTED_LOCATION)
-    if(_DSOS_SQLITE_LOCATION)
-        message(STATUS "${DSOS_SQLITE_TARGET} IMPORTED_LOCATION = ${_DSOS_SQLITE_LOCATION}")
+message(STATUS "Using SQLite link target: ${REKINDLED_SQLITE_TARGET}")
+if(TARGET ${REKINDLED_SQLITE_TARGET})
+    get_target_property(_REKINDLED_SQLITE_LOCATION ${REKINDLED_SQLITE_TARGET} IMPORTED_LOCATION)
+    if(_REKINDLED_SQLITE_LOCATION)
+        message(STATUS "${REKINDLED_SQLITE_TARGET} IMPORTED_LOCATION = ${_REKINDLED_SQLITE_LOCATION}")
     endif()
 endif()
 
@@ -180,7 +172,7 @@ target_link_libraries(
     Shared
     civetweb
     libprotobuf-lite
-    ${DSOS_SQLITE_TARGET}
+    ${REKINDLED_SQLITE_TARGET}
     steam
 )
 
@@ -207,8 +199,6 @@ foreach(config ${CMAKE_CONFIGURATION_TYPES})
         message(WARNING "WebUI folder not found, skipping copy: ${CMAKE_CURRENT_SOURCE_DIR}/../WebUI")
     endif()
 endforeach()
-
-util_setup_folder_structure(${PROJECT_NAME} SOURCES "DS3OS")
 
 #-----------------------------------------------------------------------------#
 # Client emulator config unit tests

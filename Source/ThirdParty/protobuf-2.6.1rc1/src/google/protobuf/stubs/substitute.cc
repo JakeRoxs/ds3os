@@ -59,7 +59,7 @@ string Substitute(
     const SubstituteArg& arg8, const SubstituteArg& arg9) {
   string result;
   SubstituteAndAppend(&result, format, arg0, arg1, arg2, arg3, arg4,
-                                       arg5, arg6, arg7, arg8, arg9);
+                      arg5, arg6, arg7, arg8, arg9);
   return result;
 }
 
@@ -71,32 +71,31 @@ void SubstituteAndAppend(
     const SubstituteArg& arg6, const SubstituteArg& arg7,
     const SubstituteArg& arg8, const SubstituteArg& arg9) {
   const SubstituteArg* const args_array[] = {
-    &arg0, &arg1, &arg2, &arg3, &arg4, &arg5, &arg6, &arg7, &arg8, &arg9, NULL
-  };
+      &arg0, &arg1, &arg2, &arg3, &arg4, &arg5, &arg6, &arg7, &arg8, &arg9, NULL};
 
   // Determine total size needed.
   int size = 0;
   for (int i = 0; format[i] != '\0'; i++) {
     if (format[i] == '$') {
-      if (ascii_isdigit(format[i+1])) {
-        int index = format[i+1] - '0';
+      if (ascii_isdigit(format[i + 1])) {
+        int index = format[i + 1] - '0';
         if (args_array[index]->size() == -1) {
           GOOGLE_LOG(DFATAL)
-            << "strings::Substitute format string invalid: asked for \"$"
-            << index << "\", but only " << CountSubstituteArgs(args_array)
-            << " args were given.  Full format string was: \""
-            << CEscape(format) << "\".";
+              << "strings::Substitute format string invalid: asked for \"$"
+              << index << "\", but only " << CountSubstituteArgs(args_array)
+              << " args were given.  Full format string was: \""
+              << CEscape(format) << "\".";
           return;
         }
         size += args_array[index]->size();
-        ++i;  // Skip next char.
-      } else if (format[i+1] == '$') {
+        ++i; // Skip next char.
+      } else if (format[i + 1] == '$') {
         ++size;
-        ++i;  // Skip next char.
+        ++i; // Skip next char.
       } else {
         GOOGLE_LOG(DFATAL)
-          << "Invalid strings::Substitute() format string: \""
-          << CEscape(format) << "\".";
+            << "Invalid strings::Substitute() format string: \""
+            << CEscape(format) << "\".";
         return;
       }
     } else {
@@ -104,7 +103,8 @@ void SubstituteAndAppend(
     }
   }
 
-  if (size == 0) return;
+  if (size == 0)
+    return;
 
   // Build the string.
   int original_size = output->size();
@@ -112,14 +112,14 @@ void SubstituteAndAppend(
   char* target = string_as_array(output) + original_size;
   for (int i = 0; format[i] != '\0'; i++) {
     if (format[i] == '$') {
-      if (ascii_isdigit(format[i+1])) {
-        const SubstituteArg* src = args_array[format[i+1] - '0'];
+      if (ascii_isdigit(format[i + 1])) {
+        const SubstituteArg* src = args_array[format[i + 1] - '0'];
         memcpy(target, src->data(), src->size());
         target += src->size();
-        ++i;  // Skip next char.
-      } else if (format[i+1] == '$') {
+        ++i; // Skip next char.
+      } else if (format[i + 1] == '$') {
         *target++ = '$';
-        ++i;  // Skip next char.
+        ++i; // Skip next char.
       }
     } else {
       *target++ = format[i];
@@ -129,6 +129,6 @@ void SubstituteAndAppend(
   GOOGLE_DCHECK_EQ(target - output->data(), output->size());
 }
 
-}  // namespace strings
-}  // namespace protobuf
-}  // namespace google
+} // namespace strings
+} // namespace protobuf
+} // namespace google

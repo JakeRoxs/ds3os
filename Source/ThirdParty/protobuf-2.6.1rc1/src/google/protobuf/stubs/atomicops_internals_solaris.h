@@ -55,8 +55,8 @@ inline Atomic32 NoBarrier_AtomicIncrement(volatile Atomic32* ptr,
 }
 
 inline void MemoryBarrier(void) {
-	membar_producer();
-	membar_consumer();
+  membar_producer();
+  membar_consumer();
 }
 
 inline Atomic32 Barrier_AtomicIncrement(volatile Atomic32* ptr,
@@ -180,9 +180,8 @@ inline Atomic64 Release_Load(volatile const Atomic64* ptr) {
 }
 #endif
 
-}  // namespace internal
-}  // namespace protobuf
-}  // namespace google
+} // namespace internal
+} // namespace protobuf
+} // namespace google
 
-#endif  // GOOGLE_PROTOBUF_ATOMICOPS_INTERNALS_SPARC_GCC_H_
-
+#endif // GOOGLE_PROTOBUF_ATOMICOPS_INTERNALS_SPARC_GCC_H_

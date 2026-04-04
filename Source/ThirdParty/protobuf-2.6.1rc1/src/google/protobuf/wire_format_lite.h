@@ -43,12 +43,13 @@
 #include <string>
 #include <google/protobuf/stubs/common.h>
 #include <google/protobuf/message_lite.h>
-#include <google/protobuf/io/coded_stream.h>  // for CodedOutputStream::Varint32Size
+#include <google/protobuf/io/coded_stream.h> // for CodedOutputStream::Varint32Size
 
 namespace google {
 
 namespace protobuf {
-  template <typename T> class RepeatedField;  // repeated_field.h
+template <typename T>
+class RepeatedField; // repeated_field.h
 }
 
 namespace protobuf {
@@ -66,8 +67,7 @@ class StringPieceField;
 //
 // This class is really a namespace that contains only static methods.
 class LIBPROTOBUF_EXPORT WireFormatLite {
- public:
-
+public:
   // -----------------------------------------------------------------
   // Helper constants and functions related to the format.  These are
   // mostly meant for internal and generated code to use.
@@ -84,50 +84,50 @@ class LIBPROTOBUF_EXPORT WireFormatLite {
   // unrecognized fields for forwards compatibility.
 
   enum WireType {
-    WIRETYPE_VARINT           = 0,
-    WIRETYPE_FIXED64          = 1,
+    WIRETYPE_VARINT = 0,
+    WIRETYPE_FIXED64 = 1,
     WIRETYPE_LENGTH_DELIMITED = 2,
-    WIRETYPE_START_GROUP      = 3,
-    WIRETYPE_END_GROUP        = 4,
-    WIRETYPE_FIXED32          = 5,
+    WIRETYPE_START_GROUP = 3,
+    WIRETYPE_END_GROUP = 4,
+    WIRETYPE_FIXED32 = 5,
   };
 
   // Lite alternative to FieldDescriptor::Type.  Must be kept in sync.
   enum FieldType {
-    TYPE_DOUBLE         = 1,
-    TYPE_FLOAT          = 2,
-    TYPE_INT64          = 3,
-    TYPE_UINT64         = 4,
-    TYPE_INT32          = 5,
-    TYPE_FIXED64        = 6,
-    TYPE_FIXED32        = 7,
-    TYPE_BOOL           = 8,
-    TYPE_STRING         = 9,
-    TYPE_GROUP          = 10,
-    TYPE_MESSAGE        = 11,
-    TYPE_BYTES          = 12,
-    TYPE_UINT32         = 13,
-    TYPE_ENUM           = 14,
-    TYPE_SFIXED32       = 15,
-    TYPE_SFIXED64       = 16,
-    TYPE_SINT32         = 17,
-    TYPE_SINT64         = 18,
-    MAX_FIELD_TYPE      = 18,
+    TYPE_DOUBLE = 1,
+    TYPE_FLOAT = 2,
+    TYPE_INT64 = 3,
+    TYPE_UINT64 = 4,
+    TYPE_INT32 = 5,
+    TYPE_FIXED64 = 6,
+    TYPE_FIXED32 = 7,
+    TYPE_BOOL = 8,
+    TYPE_STRING = 9,
+    TYPE_GROUP = 10,
+    TYPE_MESSAGE = 11,
+    TYPE_BYTES = 12,
+    TYPE_UINT32 = 13,
+    TYPE_ENUM = 14,
+    TYPE_SFIXED32 = 15,
+    TYPE_SFIXED64 = 16,
+    TYPE_SINT32 = 17,
+    TYPE_SINT64 = 18,
+    MAX_FIELD_TYPE = 18,
   };
 
   // Lite alternative to FieldDescriptor::CppType.  Must be kept in sync.
   enum CppType {
-    CPPTYPE_INT32       = 1,
-    CPPTYPE_INT64       = 2,
-    CPPTYPE_UINT32      = 3,
-    CPPTYPE_UINT64      = 4,
-    CPPTYPE_DOUBLE      = 5,
-    CPPTYPE_FLOAT       = 6,
-    CPPTYPE_BOOL        = 7,
-    CPPTYPE_ENUM        = 8,
-    CPPTYPE_STRING      = 9,
-    CPPTYPE_MESSAGE     = 10,
-    MAX_CPPTYPE         = 10,
+    CPPTYPE_INT32 = 1,
+    CPPTYPE_INT64 = 2,
+    CPPTYPE_UINT32 = 3,
+    CPPTYPE_UINT64 = 4,
+    CPPTYPE_DOUBLE = 5,
+    CPPTYPE_FLOAT = 6,
+    CPPTYPE_BOOL = 7,
+    CPPTYPE_ENUM = 8,
+    CPPTYPE_STRING = 9,
+    CPPTYPE_MESSAGE = 10,
+    MAX_CPPTYPE = 10,
   };
 
   // Helper method to get the CppType for a particular Type.
@@ -183,10 +183,9 @@ class LIBPROTOBUF_EXPORT WireFormatLite {
 // result is usable as a compile-time constant, which makes it usable
 // as a switch case or a template input.  WireFormatLite::MakeTag() is more
 // type-safe, though, so prefer it if possible.
-#define GOOGLE_PROTOBUF_WIRE_FORMAT_MAKE_TAG(FIELD_NUMBER, TYPE)                  \
-  static_cast<uint32>(                                                   \
-    ((FIELD_NUMBER) << ::google::protobuf::internal::WireFormatLite::kTagTypeBits) \
-      | (TYPE))
+#define GOOGLE_PROTOBUF_WIRE_FORMAT_MAKE_TAG(FIELD_NUMBER, TYPE) \
+  static_cast<uint32>(                                           \
+      ((FIELD_NUMBER) << ::google::protobuf::internal::WireFormatLite::kTagTypeBits) | (TYPE))
 
   // These are the tags for the old MessageSet format, which was defined as:
   //   message MessageSet {
@@ -199,17 +198,17 @@ class LIBPROTOBUF_EXPORT WireFormatLite {
   static const int kMessageSetTypeIdNumber = 2;
   static const int kMessageSetMessageNumber = 3;
   static const int kMessageSetItemStartTag =
-    GOOGLE_PROTOBUF_WIRE_FORMAT_MAKE_TAG(kMessageSetItemNumber,
-                                WireFormatLite::WIRETYPE_START_GROUP);
+      GOOGLE_PROTOBUF_WIRE_FORMAT_MAKE_TAG(kMessageSetItemNumber,
+                                           WireFormatLite::WIRETYPE_START_GROUP);
   static const int kMessageSetItemEndTag =
-    GOOGLE_PROTOBUF_WIRE_FORMAT_MAKE_TAG(kMessageSetItemNumber,
-                                WireFormatLite::WIRETYPE_END_GROUP);
+      GOOGLE_PROTOBUF_WIRE_FORMAT_MAKE_TAG(kMessageSetItemNumber,
+                                           WireFormatLite::WIRETYPE_END_GROUP);
   static const int kMessageSetTypeIdTag =
-    GOOGLE_PROTOBUF_WIRE_FORMAT_MAKE_TAG(kMessageSetTypeIdNumber,
-                                WireFormatLite::WIRETYPE_VARINT);
+      GOOGLE_PROTOBUF_WIRE_FORMAT_MAKE_TAG(kMessageSetTypeIdNumber,
+                                           WireFormatLite::WIRETYPE_VARINT);
   static const int kMessageSetMessageTag =
-    GOOGLE_PROTOBUF_WIRE_FORMAT_MAKE_TAG(kMessageSetMessageNumber,
-                                WireFormatLite::WIRETYPE_LENGTH_DELIMITED);
+      GOOGLE_PROTOBUF_WIRE_FORMAT_MAKE_TAG(kMessageSetMessageNumber,
+                                           WireFormatLite::WIRETYPE_LENGTH_DELIMITED);
 
   // Byte size of all tags of a MessageSet::Item combined.
   static const int kMessageSetItemTagsSize;
@@ -229,9 +228,9 @@ class LIBPROTOBUF_EXPORT WireFormatLite {
   // the purpose of varint.  So, for the "sint32" and "sint64" field types,
   // we ZigZag-encode the values.
   static uint32 ZigZagEncode32(int32 n);
-  static int32  ZigZagDecode32(uint32 n);
+  static int32 ZigZagDecode32(uint32 n);
   static uint64 ZigZagEncode64(int64 n);
-  static int64  ZigZagDecode64(uint64 n);
+  static int64 ZigZagDecode64(uint64 n);
 
   // =================================================================
   // Methods for reading/writing individual field.  The implementations
@@ -239,7 +238,7 @@ class LIBPROTOBUF_EXPORT WireFormatLite {
   // that file to use these.
 
 // Avoid ugly line wrapping
-#define input  io::CodedInputStream*  input_arg
+#define input io::CodedInputStream* input_arg
 #define output io::CodedOutputStream* output_arg
 #define field_number int field_number_arg
 #define INL GOOGLE_ATTRIBUTE_ALWAYS_INLINE
@@ -298,18 +297,18 @@ class LIBPROTOBUF_EXPORT WireFormatLite {
                                      RepeatedField<int>* value);
 
   static bool ReadString(input, string* value);
-  static bool ReadBytes (input, string* value);
+  static bool ReadBytes(input, string* value);
 
-  static inline bool ReadGroup  (field_number, input, MessageLite* value);
+  static inline bool ReadGroup(field_number, input, MessageLite* value);
   static inline bool ReadMessage(input, MessageLite* value);
 
   // Like above, but de-virtualize the call to MergePartialFromCodedStream().
   // The pointer must point at an instance of MessageType, *not* a subclass (or
   // the subclass must not override MergePartialFromCodedStream()).
-  template<typename MessageType>
+  template <typename MessageType>
   static inline bool ReadGroupNoVirtual(field_number, input,
                                         MessageType* value);
-  template<typename MessageType>
+  template <typename MessageType>
   static inline bool ReadMessageNoVirtual(input, MessageType* value);
 
   // Write a tag.  The Write*() functions typically include the tag, so
@@ -318,64 +317,64 @@ class LIBPROTOBUF_EXPORT WireFormatLite {
   static inline void WriteTag(field_number, WireType type, output) INL;
 
   // Write fields, without tags.
-  static inline void WriteInt32NoTag   (int32 value, output) INL;
-  static inline void WriteInt64NoTag   (int64 value, output) INL;
-  static inline void WriteUInt32NoTag  (uint32 value, output) INL;
-  static inline void WriteUInt64NoTag  (uint64 value, output) INL;
-  static inline void WriteSInt32NoTag  (int32 value, output) INL;
-  static inline void WriteSInt64NoTag  (int64 value, output) INL;
-  static inline void WriteFixed32NoTag (uint32 value, output) INL;
-  static inline void WriteFixed64NoTag (uint64 value, output) INL;
+  static inline void WriteInt32NoTag(int32 value, output) INL;
+  static inline void WriteInt64NoTag(int64 value, output) INL;
+  static inline void WriteUInt32NoTag(uint32 value, output) INL;
+  static inline void WriteUInt64NoTag(uint64 value, output) INL;
+  static inline void WriteSInt32NoTag(int32 value, output) INL;
+  static inline void WriteSInt64NoTag(int64 value, output) INL;
+  static inline void WriteFixed32NoTag(uint32 value, output) INL;
+  static inline void WriteFixed64NoTag(uint64 value, output) INL;
   static inline void WriteSFixed32NoTag(int32 value, output) INL;
   static inline void WriteSFixed64NoTag(int64 value, output) INL;
-  static inline void WriteFloatNoTag   (float value, output) INL;
-  static inline void WriteDoubleNoTag  (double value, output) INL;
-  static inline void WriteBoolNoTag    (bool value, output) INL;
-  static inline void WriteEnumNoTag    (int value, output) INL;
+  static inline void WriteFloatNoTag(float value, output) INL;
+  static inline void WriteDoubleNoTag(double value, output) INL;
+  static inline void WriteBoolNoTag(bool value, output) INL;
+  static inline void WriteEnumNoTag(int value, output) INL;
 
   // Write fields, including tags.
-  static void WriteInt32   (field_number,  int32 value, output);
-  static void WriteInt64   (field_number,  int64 value, output);
-  static void WriteUInt32  (field_number, uint32 value, output);
-  static void WriteUInt64  (field_number, uint64 value, output);
-  static void WriteSInt32  (field_number,  int32 value, output);
-  static void WriteSInt64  (field_number,  int64 value, output);
-  static void WriteFixed32 (field_number, uint32 value, output);
-  static void WriteFixed64 (field_number, uint64 value, output);
-  static void WriteSFixed32(field_number,  int32 value, output);
-  static void WriteSFixed64(field_number,  int64 value, output);
-  static void WriteFloat   (field_number,  float value, output);
-  static void WriteDouble  (field_number, double value, output);
-  static void WriteBool    (field_number,   bool value, output);
-  static void WriteEnum    (field_number,    int value, output);
+  static void WriteInt32(field_number, int32 value, output);
+  static void WriteInt64(field_number, int64 value, output);
+  static void WriteUInt32(field_number, uint32 value, output);
+  static void WriteUInt64(field_number, uint64 value, output);
+  static void WriteSInt32(field_number, int32 value, output);
+  static void WriteSInt64(field_number, int64 value, output);
+  static void WriteFixed32(field_number, uint32 value, output);
+  static void WriteFixed64(field_number, uint64 value, output);
+  static void WriteSFixed32(field_number, int32 value, output);
+  static void WriteSFixed64(field_number, int64 value, output);
+  static void WriteFloat(field_number, float value, output);
+  static void WriteDouble(field_number, double value, output);
+  static void WriteBool(field_number, bool value, output);
+  static void WriteEnum(field_number, int value, output);
 
   static void WriteString(field_number, const string& value, output);
-  static void WriteBytes (field_number, const string& value, output);
+  static void WriteBytes(field_number, const string& value, output);
   static void WriteStringMaybeAliased(
       field_number, const string& value, output);
   static void WriteBytesMaybeAliased(
       field_number, const string& value, output);
 
   static void WriteGroup(
-    field_number, const MessageLite& value, output);
+      field_number, const MessageLite& value, output);
   static void WriteMessage(
-    field_number, const MessageLite& value, output);
+      field_number, const MessageLite& value, output);
   // Like above, but these will check if the output stream has enough
   // space to write directly to a flat array.
   static void WriteGroupMaybeToArray(
-    field_number, const MessageLite& value, output);
+      field_number, const MessageLite& value, output);
   static void WriteMessageMaybeToArray(
-    field_number, const MessageLite& value, output);
+      field_number, const MessageLite& value, output);
 
   // Like above, but de-virtualize the call to SerializeWithCachedSizes().  The
   // pointer must point at an instance of MessageType, *not* a subclass (or
   // the subclass must not override SerializeWithCachedSizes()).
-  template<typename MessageType>
+  template <typename MessageType>
   static inline void WriteGroupNoVirtual(
-    field_number, const MessageType& value, output);
-  template<typename MessageType>
+      field_number, const MessageType& value, output);
+  template <typename MessageType>
   static inline void WriteMessageNoVirtual(
-    field_number, const MessageType& value, output);
+      field_number, const MessageType& value, output);
 
 #undef output
 #define output uint8* target
@@ -384,55 +383,55 @@ class LIBPROTOBUF_EXPORT WireFormatLite {
   static inline uint8* WriteTagToArray(field_number, WireType type, output) INL;
 
   // Write fields, without tags.
-  static inline uint8* WriteInt32NoTagToArray   (int32 value, output) INL;
-  static inline uint8* WriteInt64NoTagToArray   (int64 value, output) INL;
-  static inline uint8* WriteUInt32NoTagToArray  (uint32 value, output) INL;
-  static inline uint8* WriteUInt64NoTagToArray  (uint64 value, output) INL;
-  static inline uint8* WriteSInt32NoTagToArray  (int32 value, output) INL;
-  static inline uint8* WriteSInt64NoTagToArray  (int64 value, output) INL;
-  static inline uint8* WriteFixed32NoTagToArray (uint32 value, output) INL;
-  static inline uint8* WriteFixed64NoTagToArray (uint64 value, output) INL;
+  static inline uint8* WriteInt32NoTagToArray(int32 value, output) INL;
+  static inline uint8* WriteInt64NoTagToArray(int64 value, output) INL;
+  static inline uint8* WriteUInt32NoTagToArray(uint32 value, output) INL;
+  static inline uint8* WriteUInt64NoTagToArray(uint64 value, output) INL;
+  static inline uint8* WriteSInt32NoTagToArray(int32 value, output) INL;
+  static inline uint8* WriteSInt64NoTagToArray(int64 value, output) INL;
+  static inline uint8* WriteFixed32NoTagToArray(uint32 value, output) INL;
+  static inline uint8* WriteFixed64NoTagToArray(uint64 value, output) INL;
   static inline uint8* WriteSFixed32NoTagToArray(int32 value, output) INL;
   static inline uint8* WriteSFixed64NoTagToArray(int64 value, output) INL;
-  static inline uint8* WriteFloatNoTagToArray   (float value, output) INL;
-  static inline uint8* WriteDoubleNoTagToArray  (double value, output) INL;
-  static inline uint8* WriteBoolNoTagToArray    (bool value, output) INL;
-  static inline uint8* WriteEnumNoTagToArray    (int value, output) INL;
+  static inline uint8* WriteFloatNoTagToArray(float value, output) INL;
+  static inline uint8* WriteDoubleNoTagToArray(double value, output) INL;
+  static inline uint8* WriteBoolNoTagToArray(bool value, output) INL;
+  static inline uint8* WriteEnumNoTagToArray(int value, output) INL;
 
   // Write fields, including tags.
   static inline uint8* WriteInt32ToArray(
-    field_number, int32 value, output) INL;
+      field_number, int32 value, output) INL;
   static inline uint8* WriteInt64ToArray(
-    field_number, int64 value, output) INL;
+      field_number, int64 value, output) INL;
   static inline uint8* WriteUInt32ToArray(
-    field_number, uint32 value, output) INL;
+      field_number, uint32 value, output) INL;
   static inline uint8* WriteUInt64ToArray(
-    field_number, uint64 value, output) INL;
+      field_number, uint64 value, output) INL;
   static inline uint8* WriteSInt32ToArray(
-    field_number, int32 value, output) INL;
+      field_number, int32 value, output) INL;
   static inline uint8* WriteSInt64ToArray(
-    field_number, int64 value, output) INL;
+      field_number, int64 value, output) INL;
   static inline uint8* WriteFixed32ToArray(
-    field_number, uint32 value, output) INL;
+      field_number, uint32 value, output) INL;
   static inline uint8* WriteFixed64ToArray(
-    field_number, uint64 value, output) INL;
+      field_number, uint64 value, output) INL;
   static inline uint8* WriteSFixed32ToArray(
-    field_number, int32 value, output) INL;
+      field_number, int32 value, output) INL;
   static inline uint8* WriteSFixed64ToArray(
-    field_number, int64 value, output) INL;
+      field_number, int64 value, output) INL;
   static inline uint8* WriteFloatToArray(
-    field_number, float value, output) INL;
+      field_number, float value, output) INL;
   static inline uint8* WriteDoubleToArray(
-    field_number, double value, output) INL;
+      field_number, double value, output) INL;
   static inline uint8* WriteBoolToArray(
-    field_number, bool value, output) INL;
+      field_number, bool value, output) INL;
   static inline uint8* WriteEnumToArray(
-    field_number, int value, output) INL;
+      field_number, int value, output) INL;
 
   static inline uint8* WriteStringToArray(
-    field_number, const string& value, output) INL;
+      field_number, const string& value, output) INL;
   static inline uint8* WriteBytesToArray(
-    field_number, const string& value, output) INL;
+      field_number, const string& value, output) INL;
 
   static inline uint8* WriteGroupToArray(
       field_number, const MessageLite& value, output) INL;
@@ -442,12 +441,12 @@ class LIBPROTOBUF_EXPORT WireFormatLite {
   // Like above, but de-virtualize the call to SerializeWithCachedSizes().  The
   // pointer must point at an instance of MessageType, *not* a subclass (or
   // the subclass must not override SerializeWithCachedSizes()).
-  template<typename MessageType>
+  template <typename MessageType>
   static inline uint8* WriteGroupNoVirtualToArray(
-    field_number, const MessageType& value, output) INL;
-  template<typename MessageType>
+      field_number, const MessageType& value, output) INL;
+  template <typename MessageType>
   static inline uint8* WriteMessageNoVirtualToArray(
-    field_number, const MessageType& value, output) INL;
+      field_number, const MessageType& value, output) INL;
 
 #undef output
 #undef input
@@ -459,42 +458,42 @@ class LIBPROTOBUF_EXPORT WireFormatLite {
   // the tag, so you must also call TagSize().  (This is because, for repeated
   // fields, you should only call TagSize() once and multiply it by the element
   // count, but you may have to call XxSize() for each individual element.)
-  static inline int Int32Size   ( int32 value);
-  static inline int Int64Size   ( int64 value);
-  static inline int UInt32Size  (uint32 value);
-  static inline int UInt64Size  (uint64 value);
-  static inline int SInt32Size  ( int32 value);
-  static inline int SInt64Size  ( int64 value);
-  static inline int EnumSize    (   int value);
+  static inline int Int32Size(int32 value);
+  static inline int Int64Size(int64 value);
+  static inline int UInt32Size(uint32 value);
+  static inline int UInt64Size(uint64 value);
+  static inline int SInt32Size(int32 value);
+  static inline int SInt64Size(int64 value);
+  static inline int EnumSize(int value);
 
   // These types always have the same size.
-  static const int kFixed32Size  = 4;
-  static const int kFixed64Size  = 8;
+  static const int kFixed32Size = 4;
+  static const int kFixed64Size = 8;
   static const int kSFixed32Size = 4;
   static const int kSFixed64Size = 8;
-  static const int kFloatSize    = 4;
-  static const int kDoubleSize   = 8;
-  static const int kBoolSize     = 1;
+  static const int kFloatSize = 4;
+  static const int kDoubleSize = 8;
+  static const int kBoolSize = 1;
 
   static inline int StringSize(const string& value);
-  static inline int BytesSize (const string& value);
+  static inline int BytesSize(const string& value);
 
-  static inline int GroupSize  (const MessageLite& value);
+  static inline int GroupSize(const MessageLite& value);
   static inline int MessageSize(const MessageLite& value);
 
   // Like above, but de-virtualize the call to ByteSize().  The
   // pointer must point at an instance of MessageType, *not* a subclass (or
   // the subclass must not override ByteSize()).
-  template<typename MessageType>
-  static inline int GroupSizeNoVirtual  (const MessageType& value);
-  template<typename MessageType>
+  template <typename MessageType>
+  static inline int GroupSizeNoVirtual(const MessageType& value);
+  template <typename MessageType>
   static inline int MessageSizeNoVirtual(const MessageType& value);
 
   // Given the length of data, calculate the byte size of the data on the
   // wire if we encode the data as a length delimited field.
   static inline int LengthDelimitedSize(int length);
 
- private:
+private:
   // A helper method for the repeated primitive reader. This method has
   // optimizations for primitive types that have fixed size on the wire, and
   // can be read using potentially faster paths.
@@ -522,7 +521,7 @@ class LIBPROTOBUF_EXPORT WireFormatLite {
 // UnknownFieldSet.  This class is used by ExtensionSet::ParseField(), since
 // ExtensionSet is part of the lite library but UnknownFieldSet is not.
 class LIBPROTOBUF_EXPORT FieldSkipper {
- public:
+public:
   FieldSkipper() {}
   virtual ~FieldSkipper() {}
 
@@ -542,7 +541,7 @@ class LIBPROTOBUF_EXPORT FieldSkipper {
 // Subclass of FieldSkipper which saves skipped fields to a CodedOutputStream.
 
 class LIBPROTOBUF_EXPORT CodedOutputStreamFieldSkipper : public FieldSkipper {
- public:
+public:
   explicit CodedOutputStreamFieldSkipper(io::CodedOutputStream* unknown_fields)
       : unknown_fields_(unknown_fields) {}
   virtual ~CodedOutputStreamFieldSkipper() {}
@@ -552,10 +551,9 @@ class LIBPROTOBUF_EXPORT CodedOutputStreamFieldSkipper : public FieldSkipper {
   virtual bool SkipMessage(io::CodedInputStream* input);
   virtual void SkipUnknownEnum(int field_number, int value);
 
- protected:
+protected:
   io::CodedOutputStream* unknown_fields_;
 };
-
 
 // inline methods ====================================================
 
@@ -579,7 +577,7 @@ inline int WireFormatLite::GetTagFieldNumber(uint32 tag) {
 inline int WireFormatLite::TagSize(int field_number,
                                    WireFormatLite::FieldType type) {
   int result = io::CodedOutputStream::VarintSize32(
-    field_number << kTagTypeBits);
+      field_number << kTagTypeBits);
   if (type == TYPE_GROUP) {
     // Groups have both a start and an end tag.
     return result * 2;
@@ -589,25 +587,37 @@ inline int WireFormatLite::TagSize(int field_number,
 }
 
 inline uint32 WireFormatLite::EncodeFloat(float value) {
-  union {float f; uint32 i;};
+  union {
+    float f;
+    uint32 i;
+  };
   f = value;
   return i;
 }
 
 inline float WireFormatLite::DecodeFloat(uint32 value) {
-  union {float f; uint32 i;};
+  union {
+    float f;
+    uint32 i;
+  };
   i = value;
   return f;
 }
 
 inline uint64 WireFormatLite::EncodeDouble(double value) {
-  union {double f; uint64 i;};
+  union {
+    double f;
+    uint64 i;
+  };
   f = value;
   return i;
 }
 
 inline double WireFormatLite::DecodeDouble(uint64 value) {
-  union {double f; uint64 i;};
+  union {
+    double f;
+    uint64 i;
+  };
   i = value;
   return f;
 }
@@ -654,8 +664,8 @@ inline int64 WireFormatLite::ZigZagDecode64(uint64 n) {
   return (n >> 1) ^ -static_cast<int64>(n & 1);
 }
 
-}  // namespace internal
-}  // namespace protobuf
+} // namespace internal
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_WIRE_FORMAT_LITE_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_WIRE_FORMAT_LITE_H__

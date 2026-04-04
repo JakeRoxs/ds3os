@@ -1,6 +1,7 @@
 /*
- * Dark Souls 3 - Open Server
+ * Rekindled Server
  * Copyright (C) 2021 Tim Leonard
+ * Copyright (C) 2026 Jake Morgeson
  *
  * This program is free software; licensed under the MIT license.
  * You should have received a copy of the license along with this program.
@@ -29,81 +30,74 @@ class Cipher;
 // in the game service to allow future game sessions. Without an authentication state
 // the game service will ignore the clients packets.
 
-struct GameClientAuthenticationState
-{
-    uint64_t AuthToken;
-    std::vector<uint8_t> CwcKey;
-    double LastRefreshTime;
+struct GameClientAuthenticationState {
+  uint64_t AuthToken;
+  std::vector<uint8_t> CwcKey;
+  double LastRefreshTime;
 };
 
-// The game server is responsible for responding to any requests that game clients make. 
+// The game server is responsible for responding to any requests that game clients make.
 // Its connected to after the user has visited the login server and the authentication server.
 
-class GameService 
-    : public Service
-{
+class GameService
+    : public Service {
 public:
-    GameService(Server* OwningServer, RSAKeyPair* ServerRSAKey);
-    virtual ~GameService();
+  GameService(Server* OwningServer, RSAKeyPair* ServerRSAKey);
+  virtual ~GameService();
 
-    virtual bool Init() override;
-    virtual bool Term() override;
-    virtual void Poll() override;
+  virtual bool Init() override;
+  virtual bool Term() override;
+  virtual void Poll() override;
 
-    virtual std::string GetName() override;
+  virtual std::string GetName() override;
 
-    Server* GetServer() { return ServerInstance; }
+  Server* GetServer() { return ServerInstance; }
 
-    void CreateAuthToken(uint64_t AuthToken, const std::vector<uint8_t>& CwcKey);
-    void RefreshAuthToken(uint64_t AuthToken);
+  void CreateAuthToken(uint64_t AuthToken, const std::vector<uint8_t>& CwcKey);
+  void RefreshAuthToken(uint64_t AuthToken);
 
-    const std::vector<std::shared_ptr<GameManager>>& GetManagers() { return Managers; }
+  const std::vector<std::shared_ptr<GameManager>>& GetManagers() { return Managers; }
 
-    void RegisterManager(std::shared_ptr<GameManager> Manager);
+  void RegisterManager(std::shared_ptr<GameManager> Manager);
 
-    template <typename T>
-    std::shared_ptr<T> GetManager()
-    {
-        for (auto Manager : Managers)
-        {
-            if (std::shared_ptr<T> Result = std::dynamic_pointer_cast<T>(Manager))
-            {
-                return Result;
-            }
-        }
-
-        return nullptr;
+  template <typename T>
+  std::shared_ptr<T> GetManager() {
+    for (auto Manager : Managers) {
+      if (std::shared_ptr<T> Result = std::dynamic_pointer_cast<T>(Manager)) {
+        return Result;
+      }
     }
 
-    std::shared_ptr<GameClient> FindClientByPlayerId(uint32_t PlayerId);
+    return nullptr;
+  }
 
-    // Be very careful using this, we manipulate steam-ids in debug to allow multiple 
-    // instance of the same player to be active in the game. Use FindClientByPlayerId instead.
-    std::shared_ptr<GameClient> FindClientBySteamId(const std::string& SteamId);
-    
-    std::vector<std::shared_ptr<GameClient>> FindClients(std::function<bool(const std::shared_ptr<GameClient>&)> Predicate);
-    std::vector<std::shared_ptr<GameClient>> GetClients() { return Clients; }
+  std::shared_ptr<GameClient> FindClientByPlayerId(uint32_t PlayerId);
+
+  // Be very careful using this, we manipulate steam-ids in debug to allow multiple
+  // instance of the same player to be active in the game. Use FindClientByPlayerId instead.
+  std::shared_ptr<GameClient> FindClientBySteamId(const std::string& SteamId);
+
+  std::vector<std::shared_ptr<GameClient>> FindClients(std::function<bool(const std::shared_ptr<GameClient>&)> Predicate);
+  std::vector<std::shared_ptr<GameClient>> GetClients() { return Clients; }
 
 protected:
+  void HandleClientConnection(std::shared_ptr<NetConnection> ClientConnection);
 
-    void HandleClientConnection(std::shared_ptr<NetConnection> ClientConnection);
-
-    void TrimDatabase();
+  void TrimDatabase();
 
 private:
-    Server* ServerInstance;
+  Server* ServerInstance;
 
-    std::shared_ptr<NetConnection> Connection;
+  std::shared_ptr<NetConnection> Connection;
 
-    std::vector<std::shared_ptr<GameClient>> Clients;
-    std::vector<std::shared_ptr<GameClient>> DisconnectingClients;
+  std::vector<std::shared_ptr<GameClient>> Clients;
+  std::vector<std::shared_ptr<GameClient>> DisconnectingClients;
 
-    std::vector<std::shared_ptr<GameManager>> Managers;
+  std::vector<std::shared_ptr<GameManager>> Managers;
 
-    std::unordered_map<uint64_t, GameClientAuthenticationState> AuthenticationStates;
+  std::unordered_map<uint64_t, GameClientAuthenticationState> AuthenticationStates;
 
-    RSAKeyPair* ServerRSAKey;
+  RSAKeyPair* ServerRSAKey;
 
-    double NextDatabaseTrim = 0.0f;
-
+  double NextDatabaseTrim = 0.0f;
 };

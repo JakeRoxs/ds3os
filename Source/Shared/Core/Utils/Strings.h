@@ -1,6 +1,7 @@
 /*
- * Dark Souls 3 - Open Server
+ * Rekindled Server
  * Copyright (C) 2021 Tim Leonard
+ * Copyright (C) 2026 Jake Morgeson
  *
  * This program is free software; licensed under the MIT license.
  * You should have received a copy of the license along with this program.
@@ -25,9 +26,9 @@
 // variadic argument.
 
 #if defined(__GNUC__)
-#  define FORMAT_PRINTF(a,b) __attribute__((format(printf,a,b)))
+#define FORMAT_PRINTF(a, b) __attribute__((format(printf, a, b)))
 #else
-#  define FORMAT_PRINTF(a,b)
+#define FORMAT_PRINTF(a, b)
 #endif
 
 // Public API. Definition in Strings.cpp uses va_list/vsnprintf.

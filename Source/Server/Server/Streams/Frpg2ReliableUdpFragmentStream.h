@@ -1,6 +1,7 @@
 /*
- * Dark Souls 3 - Open Server
+ * Rekindled Server
  * Copyright (C) 2021 Tim Leonard
+ * Copyright (C) 2026 Jake Morgeson
  *
  * This program is free software; licensed under the MIT license.
  * You should have received a copy of the license along with this program.
@@ -16,45 +17,41 @@ class RSAKeyPair;
 class Cipher;
 
 class Frpg2ReliableUdpFragmentStream
-    : public Frpg2ReliableUdpPacketStream
-{
+    : public Frpg2ReliableUdpPacketStream {
 public:
-    Frpg2ReliableUdpFragmentStream(std::shared_ptr<NetConnection> Connection, const std::vector<uint8_t>& CwcKey, uint64_t AuthToken, bool AsClient = false);
+  Frpg2ReliableUdpFragmentStream(std::shared_ptr<NetConnection> Connection, const std::vector<uint8_t>& CwcKey, uint64_t AuthToken, bool AsClient = false);
 
-    // Returns true if send was successful, if false is returned the send queue
-    // is likely saturated or the packet is invalid.
-    virtual bool Send(const Frpg2ReliableUdpFragment& Fragment);
+  // Returns true if send was successful, if false is returned the send queue
+  // is likely saturated or the packet is invalid.
+  virtual bool Send(const Frpg2ReliableUdpFragment& Fragment);
 
-    // Returns true if a packet was received and stores packet in OutputPacket.
-    virtual bool Receive(Frpg2ReliableUdpFragment* Fragment);
+  // Returns true if a packet was received and stores packet in OutputPacket.
+  virtual bool Receive(Frpg2ReliableUdpFragment* Fragment);
 
-    // Overridden so we can do package retransmission/general management.
-    virtual bool Pump() override;
+  // Overridden so we can do package retransmission/general management.
+  virtual bool Pump() override;
 
-    // Diassembles a messages into a human-readable string.
-    std::string Disassemble(const Frpg2ReliableUdpFragment& Packet);
+  // Diassembles a messages into a human-readable string.
+  std::string Disassemble(const Frpg2ReliableUdpFragment& Packet);
 
 protected:
+  virtual bool ReceiveInternal(Frpg2ReliableUdpFragment* Fragment);
 
-    virtual bool ReceiveInternal(Frpg2ReliableUdpFragment* Fragment);
+  bool DecodeFragment(const Frpg2ReliableUdpPacket& Packet, Frpg2ReliableUdpFragment& Fragment);
+  bool EncodeFragment(const Frpg2ReliableUdpFragment& Fragment, Frpg2ReliableUdpPacket& Packet);
 
-    bool DecodeFragment(const Frpg2ReliableUdpPacket& Packet, Frpg2ReliableUdpFragment& Fragment);
-    bool EncodeFragment(const Frpg2ReliableUdpFragment& Fragment, Frpg2ReliableUdpPacket& Packet);
-
-    virtual void Reset() override;
+  virtual void Reset() override;
 
 private:
+  std::vector<Frpg2ReliableUdpFragment> Fragments;
+  uint32_t ReceivedFragmentLength = 0;
 
-    std::vector<Frpg2ReliableUdpFragment> Fragments;
-    uint32_t ReceivedFragmentLength = 0;
+  std::vector<Frpg2ReliableUdpFragment> ReceiveQueue;
 
-    std::vector<Frpg2ReliableUdpFragment> ReceiveQueue;
-    
-    uint32_t SentFragmentCounter = 0;
+  uint32_t SentFragmentCounter = 0;
 
-    // Includes header + compressed payload.
-    // The main game seems to allow up to 1024, so we can boost this a bit if needed.
-    const int MAX_FRAGMENT_LENGTH = 900;
-    const int MIN_SIZE_FOR_COMPRESSION = 512;
-
+  // Includes header + compressed payload.
+  // The main game seems to allow up to 1024, so we can boost this a bit if needed.
+  const int MAX_FRAGMENT_LENGTH = 900;
+  const int MIN_SIZE_FOR_COMPRESSION = 512;
 };

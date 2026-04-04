@@ -214,14 +214,13 @@ string MockCodeGenerator::GetOutputFileContent(
     const string& generator_name,
     const string& parameter,
     const FileDescriptor* file,
-    GeneratorContext *context) {
+    GeneratorContext* context) {
   vector<const FileDescriptor*> all_files;
   context->ListParsedFiles(&all_files);
   return GetOutputFileContent(
       generator_name, parameter, file->name(),
       CommaSeparatedList(all_files),
-      file->message_type_count() > 0 ?
-          file->message_type(0)->name() : "(none)");
+      file->message_type_count() > 0 ? file->message_type(0)->name() : "(none)");
 }
 
 string MockCodeGenerator::GetOutputFileContent(
@@ -231,10 +230,10 @@ string MockCodeGenerator::GetOutputFileContent(
     const string& parsed_file_list,
     const string& first_message_name) {
   return strings::Substitute("$0: $1, $2, $3, $4\n",
-      generator_name, parameter, file,
-      first_message_name, parsed_file_list);
+                             generator_name, parameter, file,
+                             first_message_name, parsed_file_list);
 }
 
-}  // namespace compiler
-}  // namespace protobuf
-}  // namespace google
+} // namespace compiler
+} // namespace protobuf
+} // namespace google

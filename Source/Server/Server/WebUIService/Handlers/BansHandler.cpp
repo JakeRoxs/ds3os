@@ -1,6 +1,7 @@
 /*
- * Dark Souls 3 - Open Server
+ * Rekindled Server
  * Copyright (C) 2021 Tim Leonard
+ * Copyright (C) 2026 Jake Morgeson
  *
  * This program is free software; licensed under the MIT license.
  * You should have received a copy of the license along with this program.
@@ -17,92 +18,81 @@
 #include "Shared/Core/Utils/Strings.h"
 
 BansHandler::BansHandler(WebUIService* InService)
-    : WebUIHandler(InService)
-{
-} 
-
-void BansHandler::Register(CivetServer* Server)
-{
-    Server->addHandler("/bans", this);
+    : WebUIHandler(InService) {
 }
 
-bool BansHandler::handleGet(CivetServer* Server, struct mg_connection* Connection)
-{
-    if (!Service->IsAuthenticated(Connection))
-    {
-        mg_send_http_error(Connection, 401, "Token invalid.");
-        return true;
-    }
+void BansHandler::Register(CivetServer* Server) {
+  Server->addHandler("/bans", this);
+}
 
-    ServerDatabase& Database = Service->GetServer()->GetDatabase();
-    std::vector<std::string> BannedSteamIds = Database.GetBannedSteamIds();
+bool BansHandler::handleGet(CivetServer* Server, struct mg_connection* Connection) {
+  if (!Service->IsAuthenticated(Connection)) {
+    mg_send_http_error(Connection, 401, "Token invalid.");
+    return true;
+  }
 
-    nlohmann::json json;
-    {
-        auto bansArray = nlohmann::json::array();
-        for (std::string& SteamId : BannedSteamIds)
-        {
-            auto banJson = nlohmann::json::object();
-            
-            uint64_t SteamId64;
-            sscanf(SteamId.c_str(), "%016llx", &SteamId64);
+  ServerDatabase& Database = Service->GetServer()->GetDatabase();
+  std::vector<std::string> BannedSteamIds = Database.GetBannedSteamIds();
 
-            banJson["steamId64"] = std::to_string(SteamId64);            
-            banJson["steamId"] = SteamId;
-            std::string reason = "Manual";
+  nlohmann::json json;
+  {
+    auto bansArray = nlohmann::json::array();
+    for (std::string& SteamId : BannedSteamIds) {
+      auto banJson = nlohmann::json::object();
 
-            std::vector<AntiCheatLog> logs = Database.GetAntiCheatLogs(SteamId);
-            if (!logs.empty())
-            {
-                reason = "";
+      uint64_t SteamId64;
+      sscanf(SteamId.c_str(), "%016llx", &SteamId64);
 
-                for (AntiCheatLog& log : logs)
-                {
-                    if (!reason.empty())
-                    {
-                        reason += "\n";
-                    }
-                    reason += StringFormat("%s: %s", log.TriggerName.c_str(), log.Extra.c_str());                    
-                }
-            }
+      banJson["steamId64"] = std::to_string(SteamId64);
+      banJson["steamId"] = SteamId;
+      std::string reason = "Manual";
 
-            banJson["reason"] = reason;
-            bansArray.push_back(banJson);
+      std::vector<AntiCheatLog> logs = Database.GetAntiCheatLogs(SteamId);
+      if (!logs.empty()) {
+        reason = "";
+
+        for (AntiCheatLog& log : logs) {
+          if (!reason.empty()) {
+            reason += "\n";
+          }
+          reason += StringFormat("%s: %s", log.TriggerName.c_str(), log.Extra.c_str());
         }
+      }
 
-        json["bans"] = bansArray;   
+      banJson["reason"] = reason;
+      bansArray.push_back(banJson);
     }
 
-    RespondJson(Connection, json);
+    json["bans"] = bansArray;
+  }
 
-    return true;
+  RespondJson(Connection, json);
+
+  return true;
 }
 
-bool BansHandler::handleDelete(CivetServer* Server, struct mg_connection* Connection)
-{
-    if (!Service->IsAuthenticated(Connection))
-    {
-        mg_send_http_error(Connection, 401, "Token invalid.");
-        return true;
-    }
-
-    nlohmann::json json;
-    if (!ReadJson(Server, Connection, json) ||
-        !json.contains("steamId"))
-    {
-        mg_send_http_error(Connection, 400, "Malformed body.");
-        return true;
-    }
-
-    std::string SteamId = json["steamId"];
-
-    ServerDatabase& Database = Service->GetServer()->GetDatabase();
-
-    LogS("WebUI", "Unbanning player: %s", SteamId.c_str());
-    Database.UnbanPlayer(SteamId);
-
-    nlohmann::json responseJson;
-    RespondJson(Connection, responseJson);
-
+bool BansHandler::handleDelete(CivetServer* Server, struct mg_connection* Connection) {
+  if (!Service->IsAuthenticated(Connection)) {
+    mg_send_http_error(Connection, 401, "Token invalid.");
     return true;
+  }
+
+  nlohmann::json json;
+  if (!ReadJson(Server, Connection, json) ||
+      !json.contains("steamId")) {
+    mg_send_http_error(Connection, 400, "Malformed body.");
+    return true;
+  }
+
+  std::string SteamId = json["steamId"];
+
+  ServerDatabase& Database = Service->GetServer()->GetDatabase();
+
+  LogS("WebUI", "Unbanning player: %s", SteamId.c_str());
+  Database.UnbanPlayer(SteamId);
+
+  nlohmann::json responseJson;
+  RespondJson(Connection, responseJson);
+
+  return true;
 }

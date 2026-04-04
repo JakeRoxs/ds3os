@@ -15,16 +15,68 @@ on:
 permissions:
   pull-requests: read
 
-jobs:
-  build:
-    name: Build and analyze
-    runs-on: ubuntu-latest
+env:
+  SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  SONAR_LOADER_PROJECT_KEY: ${{ vars.SONAR_LOADER_PROJECT_KEY }}
+  SONAR_SERVER_PROJECT_KEY: ${{ vars.SONAR_SERVER_PROJECT_KEY }}
 
+jobs:
+  sonar-loader:
+    name: SonarQube Loader (C#)
+    runs-on: ubuntu-latest
     steps:
-      - name: Show dispatch tracing info
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Validate SonarQube settings
+        shell: bash
         run: |
-          echo "Triggered on ref: ${{ github.ref }}"
-          echo "Requested branch input: ${{ github.event.inputs.branch }}"
+          [[ -n "$SONAR_HOST_URL" ]] || { echo "SONAR_HOST_URL is not set"; exit 1; }
+          [[ -n "$SONAR_TOKEN" ]] || { echo "SONAR_TOKEN is not set"; exit 1; }
+          [[ -n "$SONAR_LOADER_PROJECT_KEY" ]] || { echo "SONAR_LOADER_PROJECT_KEY is not set"; exit 1; }
+
+      - name: Restore Loader projects
+        run: |
+          dotnet restore Source/Loader/Loader.csproj -p:EnableWindowsTargeting=true
+          dotnet restore Source/Loader/Tests/Loader.Tests.csproj -p:EnableWindowsTargeting=true
+
+      - name: Install SonarScanner for .NET
+        run: |
+          dotnet tool update --global dotnet-sonarscanner
+          echo "$HOME/.dotnet/tools" >> "$GITHUB_PATH"
+
+      - name: Run SonarScanner (Loader C#)
+        run: |
+          dotnet sonarscanner begin \
+            /k:"$SONAR_LOADER_PROJECT_KEY" \
+            /n:"rekindled-server-loader" \
+            /d:sonar.host.url="$SONAR_HOST_URL" \
+            /d:sonar.login="$SONAR_TOKEN" \
+            /d:sonar.exclusions="Source/ThirdParty/**,Protobuf/**,build/**" \
+            /d:sonar.sourceEncoding="UTF-8" \
+            /d:sonar.qualitygate.wait="true"
+          dotnet build Source/Loader/Loader.csproj --configuration Release -p:EnableWindowsTargeting=true
+          dotnet build Source/Loader/Tests/Loader.Tests.csproj --configuration Release -p:EnableWindowsTargeting=true
+          dotnet test Source/Loader/Tests/Loader.Tests.csproj --configuration Release --no-build -p:EnableWindowsTargeting=true
+          dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"
+
+  sonar-server:
+    name: SonarQube Server (C++)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate SonarQube settings
+        shell: bash
+        run: |
+          [[ -n "$SONAR_SERVER_PROJECT_KEY" ]] || { echo "SONAR_SERVER_PROJECT_KEY is not set"; exit 1; }
+          [[ -n "$SONAR_TOKEN" ]] || { echo "SONAR_TOKEN is not set"; exit 1; }
+          [[ -n "$SONAR_HOST_URL" ]] || { echo "SONAR_HOST_URL is not set"; exit 1; }
 
       - uses: actions/checkout@v4
         with:
@@ -46,15 +98,12 @@ jobs:
         run: cmake -B build -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
       - uses: SonarSource/sonarqube-scan-action@v7
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         with:
           args: >
-            -Dsonar.projectKey=${{ vars.SONAR_PROJECT_KEY }}
-            -Dsonar.projectName=dsos
+            -Dsonar.projectKey=${{ env.SONAR_SERVER_PROJECT_KEY }}
+            -Dsonar.projectName=rekindled-server
             -Dsonar.sources=.
-            -Dsonar.exclusions=Source/ThirdParty/**,Protobuf/**,build/**
+            -Dsonar.exclusions=Source/ThirdParty/**,Protobuf/**,build/**,Source/Loader/**
             -Dsonar.cfamily.compile-commands=build/compile_commands.json
             -Dsonar.cfamily.threads=4
             -Dsonar.sourceEncoding=UTF-8

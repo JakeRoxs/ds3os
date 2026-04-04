@@ -46,7 +46,9 @@
 namespace google {
 namespace protobuf {
 
-namespace io { class ZeroCopyOutputStream; }
+namespace io {
+class ZeroCopyOutputStream;
+}
 class FileDescriptor;
 
 namespace compiler {
@@ -59,7 +61,7 @@ class GeneratorContext;
 // particular proto file in a particular language.  A number of these may
 // be registered with CommandLineInterface to support various languages.
 class LIBPROTOC_EXPORT CodeGenerator {
- public:
+public:
   inline CodeGenerator() {}
   virtual ~CodeGenerator();
 
@@ -79,7 +81,7 @@ class LIBPROTOC_EXPORT CodeGenerator {
                         GeneratorContext* generator_context,
                         string* error) const = 0;
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(CodeGenerator);
 };
 
@@ -88,7 +90,7 @@ class LIBPROTOC_EXPORT CodeGenerator {
 // to write and other information about the context in which the Generator
 // runs.
 class LIBPROTOC_EXPORT GeneratorContext {
- public:
+public:
   inline GeneratorContext() {}
   virtual ~GeneratorContext();
 
@@ -121,7 +123,7 @@ class LIBPROTOC_EXPORT GeneratorContext {
   // differently when compiled as a set rather than individually.
   virtual void ListParsedFiles(vector<const FileDescriptor*>* output);
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(GeneratorContext);
 };
 
@@ -136,10 +138,10 @@ typedef GeneratorContext OutputDirectory;
 // parses to the pairs:
 //   ("foo", "bar"), ("baz", ""), ("qux", "corge")
 extern void ParseGeneratorParameter(const string&,
-            vector<pair<string, string> >*);
+                                    vector<pair<string, string>>*);
 
-}  // namespace compiler
-}  // namespace protobuf
+} // namespace compiler
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_CODE_GENERATOR_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_COMPILER_CODE_GENERATOR_H__

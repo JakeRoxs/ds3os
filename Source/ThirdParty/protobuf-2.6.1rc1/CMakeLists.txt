@@ -1,6 +1,7 @@
 # ================================================================================================
-#  DS3OS
+#  Rekindled Server
 #  Copyright (C) 2021 Tim Leonard
+#  Copyright (C) 2026 Jake Morgeson
 # ================================================================================================
 
 project(libprotobuf-lite C CXX)
@@ -82,5 +83,3 @@ elseif (UNIX)
     target_compile_definitions(${PROJECT_NAME} PRIVATE -DHAVE_PTHREAD)
     target_compile_options(${PROJECT_NAME} PRIVATE "-pthread")
 endif()
-
-util_setup_folder_structure(${PROJECT_NAME} SOURCES "ThirdParty")

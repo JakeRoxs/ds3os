@@ -32,24 +32,23 @@
 #include "aes.h"
 
 #if defined(__cplusplus)
-extern "C"
-{
+extern "C" {
 #endif
 
 typedef struct
 {
-    aes_encrypt_ctx twk_ctx[1];
-    aes_encrypt_ctx enc_ctx[1];
-	aes_decrypt_ctx dec_ctx[1];
+  aes_encrypt_ctx twk_ctx[1];
+  aes_encrypt_ctx enc_ctx[1];
+  aes_decrypt_ctx dec_ctx[1];
 } xts_ctx;
 
-INT_RETURN xts_key( const unsigned char key[], int key_len, xts_ctx ctx[1] );
+INT_RETURN xts_key(const unsigned char key[], int key_len, xts_ctx ctx[1]);
 
-INT_RETURN xts_encrypt( unsigned char sector[], unsigned int sector_len_bits,
-						unsigned char sector_address[], const xts_ctx ctx[1] );
+INT_RETURN xts_encrypt(unsigned char sector[], unsigned int sector_len_bits,
+                       unsigned char sector_address[], const xts_ctx ctx[1]);
 
-INT_RETURN xts_decrypt( unsigned char sector[], unsigned int sector_len_bits,
-						unsigned char sector_address[], const xts_ctx ctx[1] );
+INT_RETURN xts_decrypt(unsigned char sector[], unsigned int sector_len_bits,
+                       unsigned char sector_address[], const xts_ctx ctx[1]);
 
 #if defined(__cplusplus)
 }

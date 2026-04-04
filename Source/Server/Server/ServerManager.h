@@ -1,6 +1,7 @@
 /*
- * Dark Souls 3 - Open Server
+ * Rekindled Server
  * Copyright (C) 2021 Tim Leonard
+ * Copyright (C) 2026 Jake Morgeson
  *
  * This program is free software; licensed under the MIT license.
  * You should have received a copy of the license along with this program.
@@ -22,48 +23,45 @@
 
 // The server manager essentially manages multiple server shards running on the same machine.
 
-class ServerManager
-{
+class ServerManager {
 public:
-    ServerManager();
-    ~ServerManager();
+  ServerManager();
+  ~ServerManager();
 
-    bool Init();
-    bool Term();
-    void RunUntilQuit();
+  bool Init();
+  bool Term();
+  void RunUntilQuit();
 
-    int GetFreeGamePort();
+  int GetFreeGamePort();
 
-    Server* GetDefaultServer();
-    Server* FindServer(const std::string& Id);
+  Server* GetDefaultServer();
+  Server* FindServer(const std::string& Id);
 
-    bool NewServer(const std::string& Name, const std::string& Password, GameType InGameType, std::string& OutServerId);
+  bool NewServer(const std::string& Name, const std::string& Password, GameType InGameType, std::string& OutServerId);
 
-    void QueueCallback(std::function<void()> callback);
-
-private:
-    bool StartServer(const std::string& ServerId, const std::string& Name = "", const std::string& Password = "", GameType InGameType = GameType::Unknown);
-    bool StopServer(const std::string& ServerId, bool Permanent = false);
-
-    void PruneOldServers();
+  void QueueCallback(std::function<void()> callback);
 
 private:
+  bool StartServer(const std::string& ServerId, const std::string& Name = "", const std::string& Password = "", GameType InGameType = GameType::Unknown);
+  bool StopServer(const std::string& ServerId, bool Permanent = false);
 
-    bool QuitReceived = false;
+  void PruneOldServers();
 
-    double NextServerPruneTime = 0.0f;
+private:
+  bool QuitReceived = false;
 
-    std::recursive_mutex m_mutex;
+  double NextServerPruneTime = 0.0f;
 
-    PlatformEvents::CtrlSignalEvent::DelegatePtr CtrlSignalHandle = nullptr;
+  std::recursive_mutex m_mutex;
 
-    std::filesystem::path SavedPath;
+  PlatformEvents::CtrlSignalEvent::DelegatePtr CtrlSignalHandle = nullptr;
 
-    std::vector<std::unique_ptr<Server>> ServerInstances;
+  std::filesystem::path SavedPath;
 
-    std::mutex CallbackMutex;
-    std::vector<std::function<void()>> Callbacks;
+  std::vector<std::unique_ptr<Server>> ServerInstances;
 
-    double LastStatsPrint = GetSeconds();
+  std::mutex CallbackMutex;
+  std::vector<std::function<void()>> Callbacks;
 
+  double LastStatsPrint = GetSeconds();
 };

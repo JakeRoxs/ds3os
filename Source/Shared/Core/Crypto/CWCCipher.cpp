@@ -1,6 +1,7 @@
 /*
- * Dark Souls 3 - Open Server
+ * Rekindled Server
  * Copyright (C) 2021 Tim Leonard
+ * Copyright (C) 2026 Jake Morgeson
  *
  * This program is free software; licensed under the MIT license.
  * You should have received a copy of the license along with this program.
@@ -17,54 +18,48 @@
 #include <cstring>
 
 CWCCipher::CWCCipher(const std::vector<uint8_t>& InKey)
-    : Key(InKey)
-{
-    cwc_init_and_key(InKey.data(), (unsigned long)InKey.size(), &CwcContext);
+    : Key(InKey) {
+  cwc_init_and_key(InKey.data(), (unsigned long)InKey.size(), &CwcContext);
 }
 
-bool CWCCipher::Encrypt(const std::vector<uint8_t>& Input, std::vector<uint8_t>& Output)
-{
-    std::vector<uint8_t> IV(11, 0);
-    std::vector<uint8_t> Tag(16, 0);
-    std::vector<uint8_t> Payload = Input;
+bool CWCCipher::Encrypt(const std::vector<uint8_t>& Input, std::vector<uint8_t>& Output) {
+  std::vector<uint8_t> IV(11, 0);
+  std::vector<uint8_t> Tag(16, 0);
+  std::vector<uint8_t> Payload = Input;
 
-    FillRandomBytes(IV);
+  FillRandomBytes(IV);
 
-    if (cwc_encrypt_message(IV.data(), 11, IV.data(), 11, (unsigned char*)Payload.data(), (unsigned long)Payload.size(), Tag.data(), 16, &CwcContext) == RETURN_ERROR)
-    {
-        return false;
-    }
+  if (cwc_encrypt_message(IV.data(), 11, IV.data(), 11, (unsigned char*)Payload.data(), (unsigned long)Payload.size(), Tag.data(), 16, &CwcContext) == RETURN_ERROR) {
+    return false;
+  }
 
-    Output.resize(Payload.size() + 11 + 16);
+  Output.resize(Payload.size() + 11 + 16);
 
-    memcpy(Output.data(), IV.data(), 11);
-    memcpy(Output.data() + 11, Tag.data(), 16);
-    memcpy(Output.data() + 11 + 16, Payload.data(), Payload.size());
+  memcpy(Output.data(), IV.data(), 11);
+  memcpy(Output.data() + 11, Tag.data(), 16);
+  memcpy(Output.data() + 11 + 16, Payload.data(), Payload.size());
 
-    return true;
+  return true;
 }
 
-bool CWCCipher::Decrypt(const std::vector<uint8_t>& Input, std::vector<uint8_t>& Output)
-{
-    std::vector<uint8_t> IV(11);
-    std::vector<uint8_t> Tag(16);
-    
-    // Actually enough data for any data?
-    if (Input.size() < 11 + 16 + 1)
-    {
-        return false;
-    }
+bool CWCCipher::Decrypt(const std::vector<uint8_t>& Input, std::vector<uint8_t>& Output) {
+  std::vector<uint8_t> IV(11);
+  std::vector<uint8_t> Tag(16);
 
-    Output.resize(Input.size() - 11 - 16);
+  // Actually enough data for any data?
+  if (Input.size() < 11 + 16 + 1) {
+    return false;
+  }
 
-    memcpy(IV.data(), Input.data(), 11);
-    memcpy(Tag.data(), Input.data() + 11, 16);
-    memcpy(Output.data(), Input.data() + 11 + 16, Output.size());
+  Output.resize(Input.size() - 11 - 16);
 
-    if (cwc_decrypt_message(IV.data(), 11, IV.data(), 11, (unsigned char*)Output.data(), (unsigned long)Output.size(), Tag.data(), 16, &CwcContext) == RETURN_ERROR)
-    {
-        return false;
-    }
+  memcpy(IV.data(), Input.data(), 11);
+  memcpy(Tag.data(), Input.data() + 11, 16);
+  memcpy(Output.data(), Input.data() + 11 + 16, Output.size());
 
-    return true;
+  if (cwc_decrypt_message(IV.data(), 11, IV.data(), 11, (unsigned char*)Output.data(), (unsigned long)Output.size(), Tag.data(), 16, &CwcContext) == RETURN_ERROR) {
+    return false;
+  }
+
+  return true;
 }

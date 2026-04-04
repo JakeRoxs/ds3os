@@ -1,7 +1,15 @@
 # ================================================================================================
-#  DS3OS
+#  Rekindled Server
 #  Copyright (C) 2021 Tim Leonard
+#  Copyright (C) 2026 Jake Morgeson
 # ================================================================================================
+
+# Prevent errors if configuring this directory standalone (e.g. IDE CMake root = Source/Loader).
+# When included via the top-level root CMakeLists, this block is skipped.
+if (CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
+    cmake_minimum_required(VERSION 3.20)
+    project(Loader LANGUAGES C CXX)
+endif()
 
 # make sure dotnet is available
 find_program(DOTNET_EXECUTABLE dotnet)
@@ -34,5 +42,3 @@ set_property(TARGET Loader PROPERTY
 )
 
 
-
-util_setup_folder_structure(Loader SOURCES "DS3OS")

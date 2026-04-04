@@ -27,24 +27,20 @@
 namespace Shared_Frpg2PlayerData {
 
 // Internal implementation detail -- do not call these.
-void  protobuf_AddDesc_Shared_5fFrpg2PlayerData_2eproto();
+void protobuf_AddDesc_Shared_5fFrpg2PlayerData_2eproto();
 void protobuf_AssignDesc_Shared_5fFrpg2PlayerData_2eproto();
 void protobuf_ShutdownFile_Shared_5fFrpg2PlayerData_2eproto();
 
+// ===================================================================
 
 // ===================================================================
 
-
 // ===================================================================
-
-
-// ===================================================================
-
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace Shared_Frpg2PlayerData
+} // namespace Shared_Frpg2PlayerData
 
 // @@protoc_insertion_point(global_scope)
 
-#endif  // PROTOBUF_Shared_5fFrpg2PlayerData_2eproto__INCLUDED
+#endif // PROTOBUF_Shared_5fFrpg2PlayerData_2eproto__INCLUDED

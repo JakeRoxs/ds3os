@@ -45,7 +45,7 @@ namespace compiler {
 namespace cpp {
 
 class EnumFieldGenerator : public FieldGenerator {
- public:
+public:
   explicit EnumFieldGenerator(const FieldDescriptor* descriptor,
                               const Options& options);
   ~EnumFieldGenerator();
@@ -63,16 +63,16 @@ class EnumFieldGenerator : public FieldGenerator {
   void GenerateSerializeWithCachedSizesToArray(io::Printer* printer) const;
   void GenerateByteSize(io::Printer* printer) const;
 
- protected:
+protected:
   const FieldDescriptor* descriptor_;
   map<string, string> variables_;
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(EnumFieldGenerator);
 };
 
 class EnumOneofFieldGenerator : public EnumFieldGenerator {
- public:
+public:
   explicit EnumOneofFieldGenerator(const FieldDescriptor* descriptor,
                                    const Options& options);
   ~EnumOneofFieldGenerator();
@@ -83,12 +83,12 @@ class EnumOneofFieldGenerator : public EnumFieldGenerator {
   void GenerateSwappingCode(io::Printer* printer) const;
   void GenerateConstructorCode(io::Printer* printer) const;
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(EnumOneofFieldGenerator);
 };
 
 class RepeatedEnumFieldGenerator : public FieldGenerator {
- public:
+public:
   explicit RepeatedEnumFieldGenerator(const FieldDescriptor* descriptor,
                                       const Options& options);
   ~RepeatedEnumFieldGenerator();
@@ -107,16 +107,16 @@ class RepeatedEnumFieldGenerator : public FieldGenerator {
   void GenerateSerializeWithCachedSizesToArray(io::Printer* printer) const;
   void GenerateByteSize(io::Printer* printer) const;
 
- private:
+private:
   const FieldDescriptor* descriptor_;
   map<string, string> variables_;
 
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(RepeatedEnumFieldGenerator);
 };
 
-}  // namespace cpp
-}  // namespace compiler
-}  // namespace protobuf
+} // namespace cpp
+} // namespace compiler
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_CPP_ENUM_FIELD_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_COMPILER_CPP_ENUM_FIELD_H__

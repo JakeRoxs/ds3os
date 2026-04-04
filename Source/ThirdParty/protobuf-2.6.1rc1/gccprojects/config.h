@@ -9,4 +9,3 @@
 #define HAVE_HASH_SET 1
 #define HASH_SET_CLASS unordered_set
 #define HASH_MAP_CLASS unordered_map
-

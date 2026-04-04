@@ -36,8 +36,8 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #ifdef _MSC_VER
-#define WIN32_LEAN_AND_MEAN  // yeah, right
-#include <windows.h>         // Find*File().  :(
+#define WIN32_LEAN_AND_MEAN // yeah, right
+#include <windows.h>        // Find*File().  :(
 #include <io.h>
 #include <direct.h>
 #else
@@ -54,7 +54,7 @@ namespace protobuf {
 // Windows doesn't have symbolic links.
 #define lstat stat
 #ifndef F_OK
-#define F_OK 00  // not defined by MSVC for whatever reason
+#define F_OK 00 // not defined by MSVC for whatever reason
 #endif
 #endif
 
@@ -65,16 +65,19 @@ bool File::Exists(const string& name) {
 bool File::ReadFileToString(const string& name, string* output) {
   char buffer[1024];
   FILE* file = fopen(name.c_str(), "rb");
-  if (file == NULL) return false;
+  if (file == NULL)
+    return false;
 
   while (true) {
     size_t n = fread(buffer, 1, sizeof(buffer), file);
-    if (n <= 0) break;
+    if (n <= 0)
+      break;
     output->append(buffer, n);
   }
 
   int error = ferror(file);
-  if (fclose(file) != 0) return false;
+  if (fclose(file) != 0)
+    return false;
   return error == 0;
 }
 
@@ -116,9 +119,11 @@ bool File::CreateDir(const string& name, int mode) {
 }
 
 bool File::RecursivelyCreateDir(const string& path, int mode) {
-  if (CreateDir(path, mode)) return true;
+  if (CreateDir(path, mode))
+    return true;
 
-  if (Exists(path)) return false;
+  if (Exists(path))
+    return false;
 
   // Try creating the parent.
   string::size_type slashpos = path.find_last_of('/');
@@ -158,7 +163,7 @@ void File::DeleteRecursively(const string& name,
         DeleteFile(path.c_str());
       }
     }
-  } while(FindNextFile(find_handle, &find_data));
+  } while (FindNextFile(find_handle, &find_data));
   FindClose(find_handle);
 
   RemoveDirectory(name.c_str());
@@ -166,14 +171,16 @@ void File::DeleteRecursively(const string& name,
   // Use opendir()!  Yay!
   // lstat = Don't follow symbolic links.
   struct stat stats;
-  if (lstat(name.c_str(), &stats) != 0) return;
+  if (lstat(name.c_str(), &stats) != 0)
+    return;
 
   if (S_ISDIR(stats.st_mode)) {
     DIR* dir = opendir(name.c_str());
     if (dir != NULL) {
       while (true) {
         struct dirent* entry = readdir(dir);
-        if (entry == NULL) break;
+        if (entry == NULL)
+          break;
         string entry_name = entry->d_name;
         if (entry_name != "." && entry_name != "..") {
           DeleteRecursively(name + "/" + entry_name, NULL, NULL);
@@ -190,5 +197,5 @@ void File::DeleteRecursively(const string& name,
 #endif
 }
 
-}  // namespace protobuf
-}  // namespace google
+} // namespace protobuf
+} // namespace google

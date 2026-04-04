@@ -1,6 +1,7 @@
 /*
- * Dark Souls 3 - Open Server
+ * Rekindled Server
  * Copyright (C) 2021 Tim Leonard
+ * Copyright (C) 2026 Jake Morgeson
  *
  * This program is free software; licensed under the MIT license.
  * You should have received a copy of the license along with this program.
@@ -21,63 +22,58 @@
 
 // Simple class for sending HTTP requests
 
-enum class NetHttpMethod
-{
-    OPTIONS,
-    GET,
-    HEAD,
-    POST,
-    PUT,
-    METHOD_DELETE,
-    TRACE,
-    CONNECT
+enum class NetHttpMethod {
+  OPTIONS,
+  GET,
+  HEAD,
+  POST,
+  PUT,
+  METHOD_DELETE,
+  TRACE,
+  CONNECT
 };
 
-class NetHttpResponse
-{
+class NetHttpResponse {
 public:
-    std::vector<uint8_t> GetBody();
-    bool GetWasSuccess();
+  std::vector<uint8_t> GetBody();
+  bool GetWasSuccess();
 
 private:
-    friend class NetHttpRequest;
+  friend class NetHttpRequest;
 
-    std::vector<uint8_t> Body;
-    bool WasSuccess = false;
-
+  std::vector<uint8_t> Body;
+  bool WasSuccess = false;
 };
 
-class NetHttpRequest
-{
+class NetHttpRequest {
 public:
-    ~NetHttpRequest();
+  ~NetHttpRequest();
 
-    void SetUrl(const std::string& Path);
-    void SetMethod(NetHttpMethod Method);
-    void SetBody(const std::string& Body);
-    void SetBody(const std::vector<uint8_t>& Body);
+  void SetUrl(const std::string& Path);
+  void SetMethod(NetHttpMethod Method);
+  void SetBody(const std::string& Body);
+  void SetBody(const std::vector<uint8_t>& Body);
 
-    bool Send();
-    bool SendAsync();
+  bool Send();
+  bool SendAsync();
 
-    bool InProgress();
+  bool InProgress();
 
-    std::shared_ptr<NetHttpResponse> GetResponse();
+  std::shared_ptr<NetHttpResponse> GetResponse();
 
 protected:
-    bool StartRequest();
-    void PollRequest();
-    bool FinishRequest();
+  bool StartRequest();
+  void PollRequest();
+  bool FinishRequest();
 
-    static size_t ReceiveBodyFunction(void* ptr, size_t size, size_t nmemb, NetHttpResponse* Response);
+  static size_t ReceiveBodyFunction(void* ptr, size_t size, size_t nmemb, NetHttpResponse* Response);
 
 private:
-    std::vector<uint8_t> Body;
-    NetHttpMethod Method = NetHttpMethod::GET;
-    std::string Url = "/";
-    std::shared_ptr<NetHttpResponse> Response;
+  std::vector<uint8_t> Body;
+  NetHttpMethod Method = NetHttpMethod::GET;
+  std::string Url = "/";
+  std::shared_ptr<NetHttpResponse> Response;
 
-    CURL* Handle = nullptr;
-    CURLM* HandleMulti = nullptr;
-
+  CURL* Handle = nullptr;
+  CURLM* HandleMulti = nullptr;
 };

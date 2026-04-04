@@ -60,7 +60,7 @@ namespace protobuf {
 #ifdef _O_BINARY
 #define O_BINARY _O_BINARY
 #else
-#define O_BINARY 0     // If this isn't defined, the platform doesn't need it.
+#define O_BINARY 0 // If this isn't defined, the platform doesn't need it.
 #endif
 #endif
 
@@ -72,8 +72,8 @@ string TestSourceDir() {
   while (!File::Exists(prefix + "/src/google/protobuf")) {
     if (!File::Exists(prefix)) {
       GOOGLE_LOG(FATAL)
-        << "Could not find protobuf source code.  Please run tests from "
-           "somewhere within the protobuf source package.";
+          << "Could not find protobuf source code.  Please run tests from "
+             "somewhere within the protobuf source package.";
     }
     prefix += "/..";
   }
@@ -96,7 +96,7 @@ string GetTemporaryDirectoryName() {
   // tmpnam() is generally not considered safe but we're only using it for
   // testing.  We cannot use tmpfile() or mkstemp() since we're creating a
   // directory.
-  char b[L_tmpnam + 1];     // HPUX multithread return 0 if s is 0
+  char b[L_tmpnam + 1]; // HPUX multithread return 0 if s is 0
   string result = tmpnam(b);
 #ifdef _WIN32
   // On Win32, tmpnam() returns a file prefixed with '\', but which is supposed
@@ -104,14 +104,14 @@ string GetTemporaryDirectoryName() {
   if (HasPrefixString(result, "\\")) {
     result.erase(0, 1);
   }
-#endif  // _WIN32
+#endif // _WIN32
   return result;
 }
 
 // Creates a temporary directory on demand and deletes it when the process
 // quits.
 class TempDirDeleter {
- public:
+public:
   TempDirDeleter() {}
   ~TempDirDeleter() {
     if (!name_.empty()) {
@@ -131,13 +131,13 @@ class TempDirDeleter {
     return name_;
   }
 
- private:
+private:
   string name_;
 };
 
 TempDirDeleter temp_dir_deleter_;
 
-}  // namespace
+} // namespace
 
 string TestTempDir() {
   return temp_dir_deleter_.GetTempDir();
@@ -249,7 +249,7 @@ struct ForceShutdown {
   }
 } force_shutdown;
 
-}  // namespace
+} // namespace
 
-}  // namespace protobuf
-}  // namespace google
+} // namespace protobuf
+} // namespace google

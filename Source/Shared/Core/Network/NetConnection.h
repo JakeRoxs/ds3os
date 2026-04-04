@@ -1,6 +1,7 @@
 /*
- * Dark Souls 3 - Open Server
+ * Rekindled Server
  * Copyright (C) 2021 Tim Leonard
+ * Copyright (C) 2026 Jake Morgeson
  *
  * This program is free software; licensed under the MIT license.
  * You should have received a copy of the license along with this program.
@@ -47,30 +48,28 @@
 
 class Cipher;
 
-class NetConnection
-{
+class NetConnection {
 public:
-    virtual ~NetConnection() {};
+  virtual ~NetConnection() {};
 
-    virtual bool Listen(int Port) = 0;
+  virtual bool Listen(int Port) = 0;
 
-    virtual std::shared_ptr<NetConnection> Accept() = 0;
+  virtual std::shared_ptr<NetConnection> Accept() = 0;
 
-    virtual bool Connect(std::string Hostname, int Port, bool ForceLastIpEntry = false) = 0;
+  virtual bool Connect(std::string Hostname, int Port, bool ForceLastIpEntry = false) = 0;
 
-    virtual bool Pump() = 0;
+  virtual bool Pump() = 0;
 
-    // Replace with std::span's when they are available.
-    virtual bool Peek(std::vector<uint8_t>& Buffer, int Offset, int Count, int& BytesReceived) = 0;
-    virtual bool Receive(std::vector<uint8_t>& Buffer, int Offset, int Count, int& BytesReceived) = 0; 
-    virtual bool Send(const std::vector<uint8_t>& Buffer, int Offset, int Count) = 0;
+  // Replace with std::span's when they are available.
+  virtual bool Peek(std::vector<uint8_t>& Buffer, int Offset, int Count, int& BytesReceived) = 0;
+  virtual bool Receive(std::vector<uint8_t>& Buffer, int Offset, int Count, int& BytesReceived) = 0;
+  virtual bool Send(const std::vector<uint8_t>& Buffer, int Offset, int Count) = 0;
 
-    virtual bool Disconnect() = 0;
+  virtual bool Disconnect() = 0;
 
-    virtual bool IsConnected() = 0;
-    virtual NetIPAddress GetAddress() = 0;
+  virtual bool IsConnected() = 0;
+  virtual NetIPAddress GetAddress() = 0;
 
-    virtual std::string GetName() = 0;
-    virtual void Rename(const std::string& Name) = 0;
-
+  virtual std::string GetName() = 0;
+  virtual void Rename(const std::string& Name) = 0;
 };

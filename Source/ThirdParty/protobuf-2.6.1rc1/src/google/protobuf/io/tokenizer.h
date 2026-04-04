@@ -45,7 +45,7 @@ namespace google {
 namespace protobuf {
 namespace io {
 
-class ZeroCopyInputStream;     // zero_copy_stream.h
+class ZeroCopyInputStream; // zero_copy_stream.h
 
 // Defined in this file.
 class ErrorCollector;
@@ -55,7 +55,7 @@ class Tokenizer;
 // during parsing.  A typical implementation might simply print the errors
 // to stdout.
 class LIBPROTOBUF_EXPORT ErrorCollector {
- public:
+public:
   inline ErrorCollector() {}
   virtual ~ErrorCollector();
 
@@ -68,9 +68,9 @@ class LIBPROTOBUF_EXPORT ErrorCollector {
   // column numbers.  The numbers are zero-based, so you may want to add
   // 1 to each before printing them.
   virtual void AddWarning(int /* line */, int /* column */,
-                          const string& /* message */) { }
+                          const string& /* message */) {}
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ErrorCollector);
 };
 
@@ -81,7 +81,7 @@ class LIBPROTOBUF_EXPORT ErrorCollector {
 // C- and C++-style comments are recognized, but other styles can be used by
 // calling set_comment_style().
 class LIBPROTOBUF_EXPORT Tokenizer {
- public:
+public:
   // Construct a Tokenizer that reads and tokenizes text from the given
   // input stream and writes errors to the given error_collector.
   // The caller keeps ownership of input and error_collector.
@@ -89,36 +89,36 @@ class LIBPROTOBUF_EXPORT Tokenizer {
   ~Tokenizer();
 
   enum TokenType {
-    TYPE_START,       // Next() has not yet been called.
-    TYPE_END,         // End of input reached.  "text" is empty.
+    TYPE_START, // Next() has not yet been called.
+    TYPE_END,   // End of input reached.  "text" is empty.
 
-    TYPE_IDENTIFIER,  // A sequence of letters, digits, and underscores, not
-                      // starting with a digit.  It is an error for a number
-                      // to be followed by an identifier with no space in
-                      // between.
-    TYPE_INTEGER,     // A sequence of digits representing an integer.  Normally
-                      // the digits are decimal, but a prefix of "0x" indicates
-                      // a hex number and a leading zero indicates octal, just
-                      // like with C numeric literals.  A leading negative sign
-                      // is NOT included in the token; it's up to the parser to
-                      // interpret the unary minus operator on its own.
-    TYPE_FLOAT,       // A floating point literal, with a fractional part and/or
-                      // an exponent.  Always in decimal.  Again, never
-                      // negative.
-    TYPE_STRING,      // A quoted sequence of escaped characters.  Either single
-                      // or double quotes can be used, but they must match.
-                      // A string literal cannot cross a line break.
-    TYPE_SYMBOL,      // Any other printable character, like '!' or '+'.
-                      // Symbols are always a single character, so "!+$%" is
-                      // four tokens.
+    TYPE_IDENTIFIER, // A sequence of letters, digits, and underscores, not
+                     // starting with a digit.  It is an error for a number
+                     // to be followed by an identifier with no space in
+                     // between.
+    TYPE_INTEGER,    // A sequence of digits representing an integer.  Normally
+                     // the digits are decimal, but a prefix of "0x" indicates
+                     // a hex number and a leading zero indicates octal, just
+                     // like with C numeric literals.  A leading negative sign
+                     // is NOT included in the token; it's up to the parser to
+                     // interpret the unary minus operator on its own.
+    TYPE_FLOAT,      // A floating point literal, with a fractional part and/or
+                     // an exponent.  Always in decimal.  Again, never
+                     // negative.
+    TYPE_STRING,     // A quoted sequence of escaped characters.  Either single
+                     // or double quotes can be used, but they must match.
+                     // A string literal cannot cross a line break.
+    TYPE_SYMBOL,     // Any other printable character, like '!' or '+'.
+                     // Symbols are always a single character, so "!+$%" is
+                     // four tokens.
   };
 
   // Structure representing a token read from the token stream.
   struct Token {
     TokenType type;
-    string text;       // The exact text of the token as it appeared in
-                       // the input.  e.g. tokens of TYPE_STRING will still
-                       // be escaped and in quotes.
+    string text; // The exact text of the token as it appeared in
+                 // the input.  e.g. tokens of TYPE_STRING will still
+                 // be escaped and in quotes.
 
     // "line" and "column" specify the position of the first character of
     // the token within the input stream.  They are zero-based.
@@ -245,20 +245,20 @@ class LIBPROTOBUF_EXPORT Tokenizer {
   static bool IsIdentifier(const string& text);
 
   // -----------------------------------------------------------------
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(Tokenizer);
 
-  Token current_;           // Returned by current().
-  Token previous_;          // Returned by previous().
+  Token current_;  // Returned by current().
+  Token previous_; // Returned by previous().
 
   ZeroCopyInputStream* input_;
   ErrorCollector* error_collector_;
 
-  char current_char_;       // == buffer_[buffer_pos_], updated by NextChar().
-  const char* buffer_;      // Current buffer returned from input_.
-  int buffer_size_;         // Size of buffer_.
-  int buffer_pos_;          // Current position within the buffer.
-  bool read_error_;         // Did we previously encounter a read error?
+  char current_char_;  // == buffer_[buffer_pos_], updated by NextChar().
+  const char* buffer_; // Current buffer returned from input_.
+  int buffer_size_;    // Size of buffer_.
+  int buffer_pos_;     // Current position within the buffer.
+  bool read_error_;    // Did we previously encounter a read error?
 
   // Line and column number of current_char_ within the whole input stream.
   int line_;
@@ -358,26 +358,26 @@ class LIBPROTOBUF_EXPORT Tokenizer {
 
   // Returns true if the current character is of the given character
   // class, but does not consume anything.
-  template<typename CharacterClass>
+  template <typename CharacterClass>
   inline bool LookingAt();
 
   // If the current character is in the given class, consume it and return
   // true.  Otherwise return false.
   // e.g. TryConsumeOne<Letter>()
-  template<typename CharacterClass>
+  template <typename CharacterClass>
   inline bool TryConsumeOne();
 
   // Like above, but try to consume the specific character indicated.
   inline bool TryConsume(char c);
 
   // Consume zero or more of the given character class.
-  template<typename CharacterClass>
+  template <typename CharacterClass>
   inline void ConsumeZeroOrMore();
 
   // Consume one or more of the given character class or log the given
   // error message.
   // e.g. ConsumeOneOrMore<Digit>("Expected digits.");
-  template<typename CharacterClass>
+  template <typename CharacterClass>
   inline void ConsumeOneOrMore(const char* error);
 };
 
@@ -395,8 +395,8 @@ inline void Tokenizer::ParseString(const string& text, string* output) {
   ParseStringAppend(text, output);
 }
 
-}  // namespace io
-}  // namespace protobuf
+} // namespace io
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_IO_TOKENIZER_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_IO_TOKENIZER_H__

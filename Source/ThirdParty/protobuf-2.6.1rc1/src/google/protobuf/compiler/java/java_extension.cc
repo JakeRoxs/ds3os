@@ -48,8 +48,8 @@ namespace java {
 
 ImmutableExtensionGenerator::ImmutableExtensionGenerator(
     const FieldDescriptor* descriptor, Context* context)
-  : descriptor_(descriptor), context_(context),
-    name_resolver_(context->GetNameResolver()) {
+    : descriptor_(descriptor), context_(context),
+      name_resolver_(context->GetNameResolver()) {
   if (descriptor_->extension_scope() != NULL) {
     scope_ = name_resolver_->GetImmutableClassName(
         descriptor_->extension_scope());
@@ -66,7 +66,7 @@ void ExtensionGenerator::InitTemplateVars(const FieldDescriptor* descriptor,
                                           bool immutable,
                                           ClassNameResolver* name_resolver,
                                           map<string, string>* vars_pointer) {
-  map<string, string> &vars = *vars_pointer;
+  map<string, string>& vars = *vars_pointer;
   vars["scope"] = scope;
   vars["name"] = UnderscoresToCamelCase(descriptor);
   vars["containing_type"] =
@@ -74,8 +74,7 @@ void ExtensionGenerator::InitTemplateVars(const FieldDescriptor* descriptor,
   vars["number"] = SimpleItoa(descriptor->number());
   vars["constant_name"] = FieldConstantName(descriptor);
   vars["index"] = SimpleItoa(descriptor->index());
-  vars["default"] = descriptor->is_repeated() ?
-      "" : DefaultValue(descriptor, immutable, name_resolver);
+  vars["default"] = descriptor->is_repeated() ? "" : DefaultValue(descriptor, immutable, name_resolver);
   vars["type_constant"] = FieldTypeName(GetType(descriptor));
   vars["packed"] = descriptor->options().packed() ? "true" : "false";
   vars["enum_map"] = "null";
@@ -84,28 +83,27 @@ void ExtensionGenerator::InitTemplateVars(const FieldDescriptor* descriptor,
   JavaType java_type = GetJavaType(descriptor);
   string singular_type;
   switch (java_type) {
-    case JAVATYPE_MESSAGE:
-      singular_type = name_resolver->GetClassName(descriptor->message_type(),
-                                                   immutable);
-      vars["prototype"] = singular_type + ".getDefaultInstance()";
-      break;
-    case JAVATYPE_ENUM:
-      singular_type = name_resolver->GetClassName(descriptor->enum_type(),
-                                                   immutable);
-      vars["enum_map"] = singular_type + ".internalGetValueMap()";
-      break;
-    case JAVATYPE_STRING:
-      singular_type = "java.lang.String";
-      break;
-    case JAVATYPE_BYTES:
-      singular_type = immutable ? "com.google.protobuf.ByteString" : "byte[]";
-      break;
-    default:
-      singular_type = BoxedPrimitiveTypeName(java_type);
-      break;
+  case JAVATYPE_MESSAGE:
+    singular_type = name_resolver->GetClassName(descriptor->message_type(),
+                                                immutable);
+    vars["prototype"] = singular_type + ".getDefaultInstance()";
+    break;
+  case JAVATYPE_ENUM:
+    singular_type = name_resolver->GetClassName(descriptor->enum_type(),
+                                                immutable);
+    vars["enum_map"] = singular_type + ".internalGetValueMap()";
+    break;
+  case JAVATYPE_STRING:
+    singular_type = "java.lang.String";
+    break;
+  case JAVATYPE_BYTES:
+    singular_type = immutable ? "com.google.protobuf.ByteString" : "byte[]";
+    break;
+  default:
+    singular_type = BoxedPrimitiveTypeName(java_type);
+    break;
   }
-  vars["type"] = descriptor->is_repeated() ?
-      "java.util.List<" + singular_type + ">" : singular_type;
+  vars["type"] = descriptor->is_repeated() ? "java.util.List<" + singular_type + ">" : singular_type;
   vars["singular_type"] = singular_type;
 }
 
@@ -115,7 +113,7 @@ void ImmutableExtensionGenerator::Generate(io::Printer* printer) {
   InitTemplateVars(descriptor_, scope_, kUseImmutableNames, name_resolver_,
                    &vars);
   printer->Print(vars,
-      "public static final int $constant_name$ = $number$;\n");
+                 "public static final int $constant_name$ = $number$;\n");
 
   WriteFieldDocComment(printer, descriptor_);
   if (HasDescriptorMethods(descriptor_->file())) {
@@ -196,12 +194,12 @@ void ImmutableExtensionGenerator::GenerateNonNestedInitializationCode(
 void ImmutableExtensionGenerator::GenerateRegistrationCode(
     io::Printer* printer) {
   printer->Print(
-    "registry.add($scope$.$name$);\n",
-    "scope", scope_,
-    "name", UnderscoresToCamelCase(descriptor_));
+      "registry.add($scope$.$name$);\n",
+      "scope", scope_,
+      "name", UnderscoresToCamelCase(descriptor_));
 }
 
-}  // namespace java
-}  // namespace compiler
-}  // namespace protobuf
-}  // namespace google
+} // namespace java
+} // namespace compiler
+} // namespace protobuf
+} // namespace google

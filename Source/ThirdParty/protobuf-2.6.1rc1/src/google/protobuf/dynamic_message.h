@@ -47,8 +47,8 @@ namespace google {
 namespace protobuf {
 
 // Defined in other files.
-class Descriptor;        // descriptor.h
-class DescriptorPool;    // descriptor.h
+class Descriptor;     // descriptor.h
+class DescriptorPool; // descriptor.h
 
 // Constructs implementations of Message which can emulate types which are not
 // known at compile-time.
@@ -68,7 +68,7 @@ class DescriptorPool;    // descriptor.h
 // from the same factory will share the same support data.  Any Descriptors
 // used with a particular factory must outlive the factory.
 class LIBPROTOBUF_EXPORT DynamicMessageFactory : public MessageFactory {
- public:
+public:
   // Construct a DynamicMessageFactory that will search for extensions in
   // the DescriptorPool in which the extendee is defined.
   DynamicMessageFactory();
@@ -113,7 +113,7 @@ class LIBPROTOBUF_EXPORT DynamicMessageFactory : public MessageFactory {
   // The method is thread-safe.
   const Message* GetPrototype(const Descriptor* type);
 
- private:
+private:
   const DescriptorPool* pool_;
   bool delegate_to_generated_factory_;
 
@@ -142,7 +142,7 @@ class LIBPROTOBUF_EXPORT DynamicMessageFactory : public MessageFactory {
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(DynamicMessageFactory);
 };
 
-}  // namespace protobuf
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_DYNAMIC_MESSAGE_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_DYNAMIC_MESSAGE_H__

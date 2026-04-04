@@ -102,23 +102,24 @@ string InitializationErrorMessage(const char* action,
 //   definitions.
 inline bool InlineMergeFromCodedStream(io::CodedInputStream* input,
                                        MessageLite* message)
-                                       GOOGLE_ATTRIBUTE_ALWAYS_INLINE;
+    GOOGLE_ATTRIBUTE_ALWAYS_INLINE;
 inline bool InlineParseFromCodedStream(io::CodedInputStream* input,
                                        MessageLite* message)
-                                       GOOGLE_ATTRIBUTE_ALWAYS_INLINE;
+    GOOGLE_ATTRIBUTE_ALWAYS_INLINE;
 inline bool InlineParsePartialFromCodedStream(io::CodedInputStream* input,
                                               MessageLite* message)
-                                              GOOGLE_ATTRIBUTE_ALWAYS_INLINE;
+    GOOGLE_ATTRIBUTE_ALWAYS_INLINE;
 inline bool InlineParseFromArray(const void* data, int size,
                                  MessageLite* message)
-                                 GOOGLE_ATTRIBUTE_ALWAYS_INLINE;
+    GOOGLE_ATTRIBUTE_ALWAYS_INLINE;
 inline bool InlineParsePartialFromArray(const void* data, int size,
                                         MessageLite* message)
-                                        GOOGLE_ATTRIBUTE_ALWAYS_INLINE;
+    GOOGLE_ATTRIBUTE_ALWAYS_INLINE;
 
 bool InlineMergeFromCodedStream(io::CodedInputStream* input,
                                 MessageLite* message) {
-  if (!message->MergePartialFromCodedStream(input)) return false;
+  if (!message->MergePartialFromCodedStream(input))
+    return false;
   if (!message->IsInitialized()) {
     GOOGLE_LOG(ERROR) << InitializationErrorMessage("parse", *message);
     return false;
@@ -151,7 +152,7 @@ bool InlineParsePartialFromArray(const void* data, int size,
          input.ConsumedEntireMessage();
 }
 
-}  // namespace
+} // namespace
 
 bool MessageLite::MergeFromCodedStream(io::CodedInputStream* input) {
   return InlineMergeFromCodedStream(input, this);
@@ -211,7 +212,6 @@ bool MessageLite::ParsePartialFromArray(const void* data, int size) {
   return InlineParsePartialFromArray(data, size, this);
 }
 
-
 // ===================================================================
 
 uint8* MessageLite::SerializeWithCachedSizesToArray(uint8* target) const {
@@ -232,7 +232,7 @@ bool MessageLite::SerializeToCodedStream(io::CodedOutputStream* output) const {
 
 bool MessageLite::SerializePartialToCodedStream(
     io::CodedOutputStream* output) const {
-  const int size = ByteSize();  // Force size to be cached.
+  const int size = ByteSize(); // Force size to be cached.
   uint8* buffer = output->GetDirectBufferForNBytesAndAdvance(size);
   if (buffer != NULL) {
     uint8* end = SerializeWithCachedSizesToArray(buffer);
@@ -304,7 +304,8 @@ bool MessageLite::SerializeToArray(void* data, int size) const {
 
 bool MessageLite::SerializePartialToArray(void* data, int size) const {
   int byte_size = ByteSize();
-  if (size < byte_size) return false;
+  if (size < byte_size)
+    return false;
   uint8* start = reinterpret_cast<uint8*>(data);
   uint8* end = SerializeWithCachedSizesToArray(start);
   if (end - start != byte_size) {
@@ -331,5 +332,5 @@ string MessageLite::SerializePartialAsString() const {
   return output;
 }
 
-}  // namespace protobuf
-}  // namespace google
+} // namespace protobuf
+} // namespace google

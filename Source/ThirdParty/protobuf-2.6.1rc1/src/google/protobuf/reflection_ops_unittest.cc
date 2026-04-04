@@ -127,17 +127,17 @@ TEST(ReflectionOpsTest, MergeExtensions) {
 
   // This field will test merging into an empty spot.
   message2.SetExtension(unittest::optional_int32_extension,
-    message.GetExtension(unittest::optional_int32_extension));
+                        message.GetExtension(unittest::optional_int32_extension));
   message.ClearExtension(unittest::optional_int32_extension);
 
   // This tests overwriting.
   message2.SetExtension(unittest::optional_string_extension,
-    message.GetExtension(unittest::optional_string_extension));
+                        message.GetExtension(unittest::optional_string_extension));
   message.SetExtension(unittest::optional_string_extension, "something else");
 
   // This tests concatenating.
   message2.AddExtension(unittest::repeated_int32_extension,
-    message.GetExtension(unittest::repeated_int32_extension, 1));
+                        message.GetExtension(unittest::repeated_int32_extension, 1));
   int32 i = message.GetExtension(unittest::repeated_int32_extension, 0);
   message.ClearExtension(unittest::repeated_int32_extension);
   message.AddExtension(unittest::repeated_int32_extension, i);
@@ -191,11 +191,11 @@ TEST(ReflectionOpsTest, MergeFromSelf) {
   unittest::TestAllTypes message;
 
   EXPECT_DEATH(
-    ReflectionOps::Merge(message, &message),
-    "&from");
+      ReflectionOps::Merge(message, &message),
+      "&from");
 }
 
-#endif  // PROTOBUF_HAS_DEATH_TEST
+#endif // PROTOBUF_HAS_DEATH_TEST
 
 TEST(ReflectionOpsTest, Clear) {
   unittest::TestAllTypes message;
@@ -235,7 +235,7 @@ TEST(ReflectionOpsTest, ClearExtensions) {
             &message.GetExtension(unittest::optional_nested_message_extension));
   EXPECT_NE(&unittest::ForeignMessage::default_instance(),
             &message.GetExtension(
-              unittest::optional_foreign_message_extension));
+                unittest::optional_foreign_message_extension));
   EXPECT_NE(&unittest_import::ImportMessage::default_instance(),
             &message.GetExtension(unittest::optional_import_message_extension));
 }
@@ -273,19 +273,21 @@ TEST(ReflectionOpsTest, DiscardUnknownFields) {
 
   // Set some unknown fields in message.
   message.mutable_unknown_fields()
-        ->AddVarint(123456, 654321);
+      ->AddVarint(123456, 654321);
   message.mutable_optional_nested_message()
-        ->mutable_unknown_fields()
-        ->AddVarint(123456, 654321);
+      ->mutable_unknown_fields()
+      ->AddVarint(123456, 654321);
   message.mutable_repeated_nested_message(0)
-        ->mutable_unknown_fields()
-        ->AddVarint(123456, 654321);
+      ->mutable_unknown_fields()
+      ->AddVarint(123456, 654321);
 
   EXPECT_EQ(1, message.unknown_fields().field_count());
   EXPECT_EQ(1, message.optional_nested_message()
-                      .unknown_fields().field_count());
+                   .unknown_fields()
+                   .field_count());
   EXPECT_EQ(1, message.repeated_nested_message(0)
-                      .unknown_fields().field_count());
+                   .unknown_fields()
+                   .field_count());
 
   // Discard them.
   ReflectionOps::DiscardUnknownFields(&message);
@@ -293,9 +295,11 @@ TEST(ReflectionOpsTest, DiscardUnknownFields) {
 
   EXPECT_EQ(0, message.unknown_fields().field_count());
   EXPECT_EQ(0, message.optional_nested_message()
-                      .unknown_fields().field_count());
+                   .unknown_fields()
+                   .field_count());
   EXPECT_EQ(0, message.repeated_nested_message(0)
-                      .unknown_fields().field_count());
+                   .unknown_fields()
+                   .field_count());
 }
 
 TEST(ReflectionOpsTest, DiscardUnknownExtensions) {
@@ -304,21 +308,23 @@ TEST(ReflectionOpsTest, DiscardUnknownExtensions) {
 
   // Set some unknown fields.
   message.mutable_unknown_fields()
-        ->AddVarint(123456, 654321);
+      ->AddVarint(123456, 654321);
   message.MutableExtension(unittest::optional_nested_message_extension)
-        ->mutable_unknown_fields()
-        ->AddVarint(123456, 654321);
+      ->mutable_unknown_fields()
+      ->AddVarint(123456, 654321);
   message.MutableExtension(unittest::repeated_nested_message_extension, 0)
-        ->mutable_unknown_fields()
-        ->AddVarint(123456, 654321);
+      ->mutable_unknown_fields()
+      ->AddVarint(123456, 654321);
 
   EXPECT_EQ(1, message.unknown_fields().field_count());
   EXPECT_EQ(1,
-    message.GetExtension(unittest::optional_nested_message_extension)
-           .unknown_fields().field_count());
+            message.GetExtension(unittest::optional_nested_message_extension)
+                .unknown_fields()
+                .field_count());
   EXPECT_EQ(1,
-    message.GetExtension(unittest::repeated_nested_message_extension, 0)
-           .unknown_fields().field_count());
+            message.GetExtension(unittest::repeated_nested_message_extension, 0)
+                .unknown_fields()
+                .field_count());
 
   // Discard them.
   ReflectionOps::DiscardUnknownFields(&message);
@@ -326,11 +332,13 @@ TEST(ReflectionOpsTest, DiscardUnknownExtensions) {
 
   EXPECT_EQ(0, message.unknown_fields().field_count());
   EXPECT_EQ(0,
-    message.GetExtension(unittest::optional_nested_message_extension)
-           .unknown_fields().field_count());
+            message.GetExtension(unittest::optional_nested_message_extension)
+                .unknown_fields()
+                .field_count());
   EXPECT_EQ(0,
-    message.GetExtension(unittest::repeated_nested_message_extension, 0)
-           .unknown_fields().field_count());
+            message.GetExtension(unittest::repeated_nested_message_extension, 0)
+                .unknown_fields()
+                .field_count());
 }
 
 TEST(ReflectionOpsTest, IsInitialized) {
@@ -469,7 +477,7 @@ TEST(ReflectionOpsTest, FindOneofInitializationErrors) {
             FindInitializationErrors(message));
 }
 
-}  // namespace
-}  // namespace internal
-}  // namespace protobuf
-}  // namespace google
+} // namespace
+} // namespace internal
+} // namespace protobuf
+} // namespace google

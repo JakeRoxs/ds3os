@@ -63,7 +63,7 @@ namespace protobuf {
 #ifdef _O_BINARY
 #define O_BINARY _O_BINARY
 #else
-#define O_BINARY 0     // If this isn't defined, the platform doesn't need it.
+#define O_BINARY 0 // If this isn't defined, the platform doesn't need it.
 #endif
 #endif
 
@@ -93,7 +93,6 @@ TEST(MessageTest, SerializeHelpers) {
   EXPECT_TRUE(temp == str1);
 
   EXPECT_TRUE(message.SerializeAsString() == str1);
-
 }
 
 TEST(MessageTest, SerializeToBrokenOstream) {
@@ -173,7 +172,7 @@ TEST(MessageTest, ParseHelpers) {
     io::ArrayInputStream stream(data.data(), data.size());
     protobuf_unittest::TestAllTypes message;
     EXPECT_FALSE(
-      message.ParseFromBoundedZeroCopyStream(&stream, data.size() + 1));
+        message.ParseFromBoundedZeroCopyStream(&stream, data.size() + 1));
   }
 }
 
@@ -205,21 +204,21 @@ TEST(MessageTest, InitializationErrorString) {
   EXPECT_EQ("a, b, c", message.InitializationErrorString());
 }
 
-#ifdef PROTOBUF_HAS_DEATH_TEST  // death tests do not work on Windows yet.
+#ifdef PROTOBUF_HAS_DEATH_TEST // death tests do not work on Windows yet.
 
 TEST(MessageTest, SerializeFailsIfNotInitialized) {
   unittest::TestRequired message;
   string data;
   EXPECT_DEBUG_DEATH(EXPECT_TRUE(message.SerializeToString(&data)),
-    "Can't serialize message of type \"protobuf_unittest.TestRequired\" because "
-    "it is missing required fields: a, b, c");
+                     "Can't serialize message of type \"protobuf_unittest.TestRequired\" because "
+                     "it is missing required fields: a, b, c");
 }
 
 TEST(MessageTest, CheckInitialized) {
   unittest::TestRequired message;
   EXPECT_DEATH(message.CheckInitialized(),
-    "Message of type \"protobuf_unittest.TestRequired\" is missing required "
-    "fields: a, b, c");
+               "Message of type \"protobuf_unittest.TestRequired\" is missing required "
+               "fields: a, b, c");
 }
 
 TEST(MessageTest, CheckOverflow) {
@@ -240,7 +239,7 @@ TEST(MessageTest, CheckOverflow) {
   EXPECT_FALSE(message.AppendToCord(&serialized));
 }
 
-#endif  // PROTOBUF_HAS_DEATH_TEST
+#endif // PROTOBUF_HAS_DEATH_TEST
 
 TEST(MessageTest, BypassInitializationCheckOnSerialize) {
   unittest::TestRequired message;
@@ -293,7 +292,7 @@ void AssignParsingMergeMessages(
   msg3->set_optional_string("hello");
 }
 
-}  // namespace
+} // namespace
 
 // Test that if an optional or required message/group field appears multiple
 // times in the input, they need to be merged.
@@ -303,10 +302,10 @@ TEST(MessageTest, ParsingMerge) {
   unittest::TestAllTypes* msg2;
   unittest::TestAllTypes* msg3;
 
-#define ASSIGN_REPEATED_FIELD(FIELD)                \
-  msg1 = generator.add_##FIELD();                   \
-  msg2 = generator.add_##FIELD();                   \
-  msg3 = generator.add_##FIELD();                   \
+#define ASSIGN_REPEATED_FIELD(FIELD) \
+  msg1 = generator.add_##FIELD();    \
+  msg2 = generator.add_##FIELD();    \
+  msg3 = generator.add_##FIELD();    \
   AssignParsingMergeMessages(msg1, msg2, msg3)
 
   ASSIGN_REPEATED_FIELD(field1);
@@ -344,7 +343,7 @@ TEST(MessageTest, ParsingMerge) {
   EXPECT_EQ(3, parsing_merge.repeated_all_types_size());
   EXPECT_EQ(3, parsing_merge.repeatedgroup_size());
   EXPECT_EQ(3, parsing_merge.ExtensionSize(
-      unittest::TestParsingMerge::repeated_ext));
+                   unittest::TestParsingMerge::repeated_ext));
 }
 
 TEST(MessageTest, MergeFrom) {
@@ -352,25 +351,25 @@ TEST(MessageTest, MergeFrom) {
   unittest::TestAllTypes dest;
 
   // Optional fields
-  source.set_optional_int32(1);  // only source
-  source.set_optional_int64(2);  // both source and dest
+  source.set_optional_int32(1); // only source
+  source.set_optional_int64(2); // both source and dest
   dest.set_optional_int64(3);
-  dest.set_optional_uint32(4);   // only dest
+  dest.set_optional_uint32(4); // only dest
 
   // Optional fields with defaults
-  source.set_default_int32(13);  // only source
-  source.set_default_int64(14);  // both source and dest
+  source.set_default_int32(13); // only source
+  source.set_default_int64(14); // both source and dest
   dest.set_default_int64(15);
-  dest.set_default_uint32(16);   // only dest
+  dest.set_default_uint32(16); // only dest
 
   // Repeated fields
-  source.add_repeated_int32(5);  // only source
+  source.add_repeated_int32(5); // only source
   source.add_repeated_int32(6);
-  source.add_repeated_int64(7);  // both source and dest
+  source.add_repeated_int64(7); // both source and dest
   source.add_repeated_int64(8);
   dest.add_repeated_int64(9);
   dest.add_repeated_int64(10);
-  dest.add_repeated_uint32(11);  // only dest
+  dest.add_repeated_uint32(11); // only dest
   dest.add_repeated_uint32(12);
 
   dest.MergeFrom(source);
@@ -378,24 +377,24 @@ TEST(MessageTest, MergeFrom) {
   // Optional fields: source overwrites dest if source is specified
   EXPECT_EQ(1, dest.optional_int32());  // only source: use source
   EXPECT_EQ(2, dest.optional_int64());  // source and dest: use source
-  EXPECT_EQ(4, dest.optional_uint32());  // only dest: use dest
-  EXPECT_EQ(0, dest.optional_uint64());  // neither: use default
+  EXPECT_EQ(4, dest.optional_uint32()); // only dest: use dest
+  EXPECT_EQ(0, dest.optional_uint64()); // neither: use default
 
   // Optional fields with defaults
   EXPECT_EQ(13, dest.default_int32());  // only source: use source
   EXPECT_EQ(14, dest.default_int64());  // source and dest: use source
-  EXPECT_EQ(16, dest.default_uint32());  // only dest: use dest
-  EXPECT_EQ(44, dest.default_uint64());  // neither: use default
+  EXPECT_EQ(16, dest.default_uint32()); // only dest: use dest
+  EXPECT_EQ(44, dest.default_uint64()); // neither: use default
 
   // Repeated fields: concatenate source onto the end of dest
   ASSERT_EQ(2, dest.repeated_int32_size());
   EXPECT_EQ(5, dest.repeated_int32(0));
   EXPECT_EQ(6, dest.repeated_int32(1));
   ASSERT_EQ(4, dest.repeated_int64_size());
-  EXPECT_EQ(9,  dest.repeated_int64(0));
+  EXPECT_EQ(9, dest.repeated_int64(0));
   EXPECT_EQ(10, dest.repeated_int64(1));
-  EXPECT_EQ(7,  dest.repeated_int64(2));
-  EXPECT_EQ(8,  dest.repeated_int64(3));
+  EXPECT_EQ(7, dest.repeated_int64(2));
+  EXPECT_EQ(8, dest.repeated_int64(3));
   ASSERT_EQ(2, dest.repeated_uint32_size());
   EXPECT_EQ(11, dest.repeated_uint32(0));
   EXPECT_EQ(12, dest.repeated_uint32(1));
@@ -404,9 +403,9 @@ TEST(MessageTest, MergeFrom) {
 
 TEST(MessageFactoryTest, GeneratedFactoryLookup) {
   EXPECT_EQ(
-    MessageFactory::generated_factory()->GetPrototype(
-      protobuf_unittest::TestAllTypes::descriptor()),
-    &protobuf_unittest::TestAllTypes::default_instance());
+      MessageFactory::generated_factory()->GetPrototype(
+          protobuf_unittest::TestAllTypes::descriptor()),
+      &protobuf_unittest::TestAllTypes::default_instance());
 }
 
 TEST(MessageFactoryTest, GeneratedFactoryUnknownType) {
@@ -419,9 +418,8 @@ TEST(MessageFactoryTest, GeneratedFactoryUnknownType) {
 
   // Trying to construct it should return NULL.
   EXPECT_TRUE(
-    MessageFactory::generated_factory()->GetPrototype(descriptor) == NULL);
+      MessageFactory::generated_factory()->GetPrototype(descriptor) == NULL);
 }
 
-
-}  // namespace protobuf
-}  // namespace google
+} // namespace protobuf
+} // namespace google

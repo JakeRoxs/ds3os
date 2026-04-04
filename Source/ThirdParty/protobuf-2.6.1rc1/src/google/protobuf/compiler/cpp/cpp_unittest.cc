@@ -80,9 +80,8 @@ namespace cpp_unittest {
 
 namespace protobuf_unittest = ::protobuf_unittest;
 
-
 class MockErrorCollector : public MultiFileErrorCollector {
- public:
+public:
   MockErrorCollector() {}
   ~MockErrorCollector() {}
 
@@ -103,7 +102,7 @@ class MockErrorCollector : public MultiFileErrorCollector {
 // compare it to the one that was produced by generated code.
 TEST(GeneratedDescriptorTest, IdenticalDescriptors) {
   const FileDescriptor* generated_descriptor =
-    unittest::TestAllTypes::descriptor()->file();
+      unittest::TestAllTypes::descriptor()->file();
 
   // Set up the Importer.
   MockErrorCollector error_collector;
@@ -113,7 +112,7 @@ TEST(GeneratedDescriptorTest, IdenticalDescriptors) {
 
   // Import (parse) unittest.proto.
   const FileDescriptor* parsed_descriptor =
-    importer.Import("google/protobuf/unittest.proto");
+      importer.Import("google/protobuf/unittest.proto");
   EXPECT_EQ("", error_collector.text_);
   ASSERT_TRUE(parsed_descriptor != NULL);
 
@@ -127,7 +126,7 @@ TEST(GeneratedDescriptorTest, IdenticalDescriptors) {
             generated_decsriptor_proto.DebugString());
 }
 
-#endif  // !PROTOBUF_TEST_NO_DESCRIPTORS
+#endif // !PROTOBUF_TEST_NO_DESCRIPTORS
 
 // ===================================================================
 
@@ -394,7 +393,6 @@ TEST(GeneratedMessageTest, StringCharStarLength) {
   EXPECT_EQ("wx", message.repeated_string(0));
 }
 
-
 TEST(GeneratedMessageTest, CopyFrom) {
   unittest::TestAllTypes message1, message2;
 
@@ -406,7 +404,6 @@ TEST(GeneratedMessageTest, CopyFrom) {
   message2.CopyFrom(message2);
   TestUtil::ExpectAllFieldsSet(message2);
 }
-
 
 TEST(GeneratedMessageTest, SwapWithEmpty) {
   unittest::TestAllTypes message1, message2;
@@ -533,10 +530,11 @@ TEST(GeneratedMessageTest, DynamicMessageCopyFrom) {
   DynamicMessageFactory factory;
   scoped_ptr<Message> message1;
   message1.reset(factory.GetPrototype(
-                     unittest::TestAllTypes::descriptor())->New());
+                            unittest::TestAllTypes::descriptor())
+                     ->New());
 
   TestUtil::ReflectionTester reflection_tester(
-    unittest::TestAllTypes::descriptor());
+      unittest::TestAllTypes::descriptor());
   reflection_tester.SetAllFieldsViaReflection(message1.get());
 
   message2.CopyFrom(*message1);
@@ -544,7 +542,7 @@ TEST(GeneratedMessageTest, DynamicMessageCopyFrom) {
   TestUtil::ExpectAllFieldsSet(message2);
 }
 
-#endif  // !PROTOBUF_TEST_NO_DESCRIPTORS
+#endif // !PROTOBUF_TEST_NO_DESCRIPTORS
 
 TEST(GeneratedMessageTest, NonEmptyMergeFrom) {
   // Test merging with a non-empty message. Code is a modified form
@@ -583,8 +581,8 @@ TEST(GeneratedMessageTest, MergeFromSelf) {
                "&from");
 }
 
-#endif  // PROTOBUF_HAS_DEATH_TEST
-#endif  // !PROTOBUF_TEST_NO_DESCRIPTORS || !GOOGLE_PROTOBUF_NO_RTTI
+#endif // PROTOBUF_HAS_DEATH_TEST
+#endif // !PROTOBUF_TEST_NO_DESCRIPTORS || !GOOGLE_PROTOBUF_NO_RTTI
 
 // Test the generated SerializeWithCachedSizesToArray(),
 TEST(GeneratedMessageTest, SerializationToArray) {
@@ -598,7 +596,6 @@ TEST(GeneratedMessageTest, SerializationToArray) {
   EXPECT_EQ(size, end - start);
   EXPECT_TRUE(message2.ParseFromString(data));
   TestUtil::ExpectAllFieldsSet(message2);
-
 }
 
 TEST(GeneratedMessageTest, PackedFieldsSerializationToArray) {
@@ -632,7 +629,6 @@ TEST(GeneratedMessageTest, SerializationToStream) {
   }
   EXPECT_TRUE(message2.ParseFromString(data));
   TestUtil::ExpectAllFieldsSet(message2);
-
 }
 
 TEST(GeneratedMessageTest, PackedFieldsSerializationToStream) {
@@ -652,7 +648,6 @@ TEST(GeneratedMessageTest, PackedFieldsSerializationToStream) {
   EXPECT_TRUE(message2.ParseFromString(data));
   TestUtil::ExpectPackedFieldsSet(message2);
 }
-
 
 TEST(GeneratedMessageTest, Required) {
   // Test that IsInitialized() returns false if required fields are missing.
@@ -699,7 +694,7 @@ TEST(GeneratedMessageTest, ForeignNested) {
   // If this compiles and runs without crashing, it must work.  We have
   // nothing more to test.
   unittest::TestAllTypes::NestedMessage* nested =
-    message.mutable_foreign_nested();
+      message.mutable_foreign_nested();
   nested->set_bb(1);
 }
 
@@ -842,7 +837,7 @@ TEST(GeneratedMessageTest, TestSpaceUsed) {
   // increase SpaceUsed(), because it cannot store the value internally.
   message1.set_optional_string(string(sizeof(string) + 1, 'x'));
   int min_expected_increase = message1.optional_string().capacity() +
-      sizeof(string);
+                              sizeof(string);
   EXPECT_LE(empty_message_size + min_expected_increase,
             message1.SpaceUsed());
 
@@ -854,7 +849,7 @@ TEST(GeneratedMessageTest, TestSpaceUsed) {
   ASSERT_EQ(sizeof(unittest::TestAllTypes::NestedMessage),
             message1.optional_nested_message().SpaceUsed());
   EXPECT_EQ(previous_size +
-            sizeof(unittest::TestAllTypes::NestedMessage),
+                sizeof(unittest::TestAllTypes::NestedMessage),
             message1.SpaceUsed());
 }
 
@@ -877,7 +872,7 @@ TEST(GeneratedMessageTest, TestOneofSpaceUsed) {
   // should increase SpaceUsed(), because it cannot store the value internally.
   message1.set_foo_string(string(sizeof(string) + 1, 'x'));
   int min_expected_increase = message1.foo_string().capacity() +
-      sizeof(string);
+                              sizeof(string);
   EXPECT_LE(empty_message_size + min_expected_increase,
             message1.SpaceUsed());
 
@@ -888,12 +883,11 @@ TEST(GeneratedMessageTest, TestOneofSpaceUsed) {
   ASSERT_EQ(sizeof(unittest::TestOneof2::NestedMessage),
             message1.foo_message().SpaceUsed());
   EXPECT_EQ(empty_message_size +
-            sizeof(unittest::TestOneof2::NestedMessage),
+                sizeof(unittest::TestOneof2::NestedMessage),
             message1.SpaceUsed());
 }
 
-#endif  // !PROTOBUF_TEST_NO_DESCRIPTORS
-
+#endif // !PROTOBUF_TEST_NO_DESCRIPTORS
 
 TEST(GeneratedMessageTest, FieldConstantValues) {
   unittest::TestRequired message;
@@ -927,21 +921,21 @@ TEST(GeneratedEnumTest, EnumValuesAsSwitchCases) {
   // Test that our nested enum values can be used as switch cases.  This test
   // doesn't actually do anything, the proof that it works is that it
   // compiles.
-  int i =0;
+  int i = 0;
   unittest::TestAllTypes::NestedEnum a = unittest::TestAllTypes::BAR;
   switch (a) {
-    case unittest::TestAllTypes::FOO:
-      i = 1;
-      break;
-    case unittest::TestAllTypes::BAR:
-      i = 2;
-      break;
-    case unittest::TestAllTypes::BAZ:
-      i = 3;
-      break;
-    case unittest::TestAllTypes::NEG:
-      i = -1;
-      break;
+  case unittest::TestAllTypes::FOO:
+    i = 1;
+    break;
+  case unittest::TestAllTypes::BAR:
+    i = 2;
+    break;
+  case unittest::TestAllTypes::BAZ:
+    i = 3;
+    break;
+  case unittest::TestAllTypes::NEG:
+    i = -1;
+    break;
     // no default case:  We want to make sure the compiler recognizes that
     //   all cases are covered.  (GCC warns if you do not cover all cases of
     //   an enum in a switch.)
@@ -989,7 +983,7 @@ TEST(GeneratedEnumTest, MinAndMax) {
   EXPECT_EQ(12589235, unittest::TestSparseEnum_ARRAYSIZE);
 
   // Make sure we can take the address of _MIN, _MAX and _ARRAYSIZE.
-  void* null_pointer = 0;  // NULL may be integer-type, not pointer-type.
+  void* null_pointer = 0; // NULL may be integer-type, not pointer-type.
   EXPECT_NE(null_pointer, &unittest::TestAllTypes::NestedEnum_MIN);
   EXPECT_NE(null_pointer, &unittest::TestAllTypes::NestedEnum_MAX);
   EXPECT_NE(null_pointer, &unittest::TestAllTypes::NestedEnum_ARRAYSIZE);
@@ -1000,11 +994,11 @@ TEST(GeneratedEnumTest, MinAndMax) {
 
   // Make sure we can use _MIN and _MAX as switch cases.
   switch (unittest::SPARSE_A) {
-    case unittest::TestSparseEnum_MIN:
-    case unittest::TestSparseEnum_MAX:
-      break;
-    default:
-      break;
+  case unittest::TestSparseEnum_MIN:
+  case unittest::TestSparseEnum_MAX:
+    break;
+  default:
+    break;
   }
 }
 
@@ -1058,7 +1052,7 @@ TEST(GeneratedEnumTest, IsProtoEnumTypeTrait) {
   EXPECT_FALSE(is_proto_enum<NonProtoEnum>::value);
 }
 
-#endif  // PROTOBUF_TEST_NO_DESCRIPTORS
+#endif // PROTOBUF_TEST_NO_DESCRIPTORS
 
 // ===================================================================
 
@@ -1066,16 +1060,16 @@ TEST(GeneratedEnumTest, IsProtoEnumTypeTrait) {
 
 // Support code for testing services.
 class GeneratedServiceTest : public testing::Test {
- protected:
+protected:
   class MockTestService : public unittest::TestService {
-   public:
+  public:
     MockTestService()
-      : called_(false),
-        method_(""),
-        controller_(NULL),
-        request_(NULL),
-        response_(NULL),
-        done_(NULL) {}
+        : called_(false),
+          method_(""),
+          controller_(NULL),
+          request_(NULL),
+          response_(NULL),
+          done_(NULL) {}
 
     ~MockTestService() {}
 
@@ -1120,18 +1114,19 @@ class GeneratedServiceTest : public testing::Test {
   };
 
   class MockRpcChannel : public RpcChannel {
-   public:
+  public:
     MockRpcChannel()
-      : called_(false),
-        method_(NULL),
-        controller_(NULL),
-        request_(NULL),
-        response_(NULL),
-        done_(NULL),
-        destroyed_(NULL) {}
+        : called_(false),
+          method_(NULL),
+          controller_(NULL),
+          request_(NULL),
+          response_(NULL),
+          done_(NULL),
+          destroyed_(NULL) {}
 
     ~MockRpcChannel() {
-      if (destroyed_ != NULL) *destroyed_ = true;
+      if (destroyed_ != NULL)
+        *destroyed_ = true;
     }
 
     void Reset() { called_ = false; }
@@ -1164,7 +1159,7 @@ class GeneratedServiceTest : public testing::Test {
   };
 
   class MockController : public RpcController {
-   public:
+  public:
     void Reset() {
       ADD_FAILURE() << "Reset() not expected during this test.";
     }
@@ -1192,11 +1187,11 @@ class GeneratedServiceTest : public testing::Test {
   };
 
   GeneratedServiceTest()
-    : descriptor_(unittest::TestService::descriptor()),
-      foo_(descriptor_->FindMethodByName("Foo")),
-      bar_(descriptor_->FindMethodByName("Bar")),
-      stub_(&mock_channel_),
-      done_(NewPermanentCallback(&DoNothing)) {}
+      : descriptor_(unittest::TestService::descriptor()),
+        foo_(descriptor_->FindMethodByName("Foo")),
+        bar_(descriptor_->FindMethodByName("Bar")),
+        stub_(&mock_channel_),
+        done_(NewPermanentCallback(&DoNothing)) {}
 
   virtual void SetUp() {
     ASSERT_TRUE(foo_ != NULL);
@@ -1254,11 +1249,11 @@ TEST_F(GeneratedServiceTest, CallMethod) {
 
   ASSERT_TRUE(mock_service_.called_);
 
-  EXPECT_EQ("Foo"            , mock_service_.method_    );
+  EXPECT_EQ("Foo", mock_service_.method_);
   EXPECT_EQ(&mock_controller_, mock_service_.controller_);
-  EXPECT_EQ(&foo_request_    , mock_service_.request_   );
-  EXPECT_EQ(&foo_response_   , mock_service_.response_  );
-  EXPECT_EQ(done_.get()      , mock_service_.done_      );
+  EXPECT_EQ(&foo_request_, mock_service_.request_);
+  EXPECT_EQ(&foo_response_, mock_service_.response_);
+  EXPECT_EQ(done_.get(), mock_service_.done_);
 
   // Try again, but call Bar() instead.
   mock_service_.Reset();
@@ -1272,18 +1267,18 @@ TEST_F(GeneratedServiceTest, CallMethod) {
 TEST_F(GeneratedServiceTest, CallMethodTypeFailure) {
   // Verify death if we call Foo() with Bar's message types.
 
-#ifdef PROTOBUF_HAS_DEATH_TEST  // death tests do not work on Windows yet
+#ifdef PROTOBUF_HAS_DEATH_TEST // death tests do not work on Windows yet
   EXPECT_DEBUG_DEATH(
-    mock_service_.CallMethod(foo_, &mock_controller_,
-                             &foo_request_, &bar_response_, done_.get()),
-    "dynamic_cast");
+      mock_service_.CallMethod(foo_, &mock_controller_,
+                               &foo_request_, &bar_response_, done_.get()),
+      "dynamic_cast");
 
   mock_service_.Reset();
   EXPECT_DEBUG_DEATH(
-    mock_service_.CallMethod(foo_, &mock_controller_,
-                             &bar_request_, &foo_response_, done_.get()),
-    "dynamic_cast");
-#endif  // PROTOBUF_HAS_DEATH_TEST
+      mock_service_.CallMethod(foo_, &mock_controller_,
+                               &bar_request_, &foo_response_, done_.get()),
+      "dynamic_cast");
+#endif // PROTOBUF_HAS_DEATH_TEST
 }
 
 TEST_F(GeneratedServiceTest, GetPrototypes) {
@@ -1308,11 +1303,11 @@ TEST_F(GeneratedServiceTest, Stub) {
 
   ASSERT_TRUE(mock_channel_.called_);
 
-  EXPECT_EQ(foo_             , mock_channel_.method_    );
+  EXPECT_EQ(foo_, mock_channel_.method_);
   EXPECT_EQ(&mock_controller_, mock_channel_.controller_);
-  EXPECT_EQ(&foo_request_    , mock_channel_.request_   );
-  EXPECT_EQ(&foo_response_   , mock_channel_.response_  );
-  EXPECT_EQ(done_.get()      , mock_channel_.done_      );
+  EXPECT_EQ(&foo_request_, mock_channel_.request_);
+  EXPECT_EQ(&foo_response_, mock_channel_.response_);
+  EXPECT_EQ(done_.get(), mock_channel_.done_);
 
   // Call Bar() via the stub.
   mock_channel_.Reset();
@@ -1328,7 +1323,7 @@ TEST_F(GeneratedServiceTest, NotImplemented) {
 
   // A service which doesn't implement any methods.
   class UnimplementedService : public unittest::TestService {
-   public:
+  public:
     UnimplementedService() {}
   };
 
@@ -1336,7 +1331,7 @@ TEST_F(GeneratedServiceTest, NotImplemented) {
 
   // And a controller which expects to get a "not implemented" error.
   class ExpectUnimplementedController : public MockController {
-   public:
+  public:
     ExpectUnimplementedController() : called_(false) {}
 
     void SetFailed(const string& reason) {
@@ -1360,32 +1355,32 @@ TEST_F(GeneratedServiceTest, NotImplemented) {
 // ===================================================================
 
 class OneofTest : public testing::Test {
- protected:
+protected:
   virtual void SetUp() {
   }
 
-  void ExpectEnumCasesWork(const unittest::TestOneof2 &message) {
+  void ExpectEnumCasesWork(const unittest::TestOneof2& message) {
     switch (message.foo_case()) {
-      case unittest::TestOneof2::kFooInt:
-        EXPECT_TRUE(message.has_foo_int());
-        break;
-      case unittest::TestOneof2::kFooString:
-        EXPECT_TRUE(message.has_foo_string());
-        break;
-      case unittest::TestOneof2::kFooBytes:
-        EXPECT_TRUE(message.has_foo_bytes());
-        break;
-      case unittest::TestOneof2::kFooEnum:
-        EXPECT_TRUE(message.has_foo_enum());
-        break;
-      case unittest::TestOneof2::kFooMessage:
-        EXPECT_TRUE(message.has_foo_message());
-        break;
-      case unittest::TestOneof2::kFoogroup:
-        EXPECT_TRUE(message.has_foogroup());
-        break;
-      case unittest::TestOneof2::FOO_NOT_SET:
-        break;
+    case unittest::TestOneof2::kFooInt:
+      EXPECT_TRUE(message.has_foo_int());
+      break;
+    case unittest::TestOneof2::kFooString:
+      EXPECT_TRUE(message.has_foo_string());
+      break;
+    case unittest::TestOneof2::kFooBytes:
+      EXPECT_TRUE(message.has_foo_bytes());
+      break;
+    case unittest::TestOneof2::kFooEnum:
+      EXPECT_TRUE(message.has_foo_enum());
+      break;
+    case unittest::TestOneof2::kFooMessage:
+      EXPECT_TRUE(message.has_foo_message());
+      break;
+    case unittest::TestOneof2::kFoogroup:
+      EXPECT_TRUE(message.has_foogroup());
+      break;
+    case unittest::TestOneof2::FOO_NOT_SET:
+      break;
     }
   }
 };
@@ -1400,7 +1395,6 @@ TEST_F(OneofTest, SettingOneFieldClearsOthers) {
   message.set_foo_string("foo");
   EXPECT_TRUE(message.has_foo_string());
   TestUtil::ExpectAtMostOneFieldSetInOneof(message);
-
 
   message.set_foo_bytes("qux");
   EXPECT_TRUE(message.has_foo_bytes());
@@ -1417,7 +1411,6 @@ TEST_F(OneofTest, SettingOneFieldClearsOthers) {
   message.mutable_foogroup()->set_a(345);
   EXPECT_TRUE(message.has_foogroup());
   TestUtil::ExpectAtMostOneFieldSetInOneof(message);
-
 
   // we repeat this because we didn't test if this properly clears other fields
   // at the beginning.
@@ -1486,7 +1479,6 @@ TEST_F(OneofTest, SetString) {
   message.clear_foo_string();
   EXPECT_FALSE(message.has_foo_string());
 
-
   message.set_foo_string("qux", 3);
   EXPECT_TRUE(message.has_foo_string());
   EXPECT_EQ(message.foo_string(), "qux");
@@ -1542,7 +1534,6 @@ TEST_F(OneofTest, SetAllocatedString) {
   EXPECT_TRUE(message.has_foo_string());
   EXPECT_EQ(kHello, message.foo_string());
 }
-
 
 TEST_F(OneofTest, SetMessage) {
   // Check that setting a message field works
@@ -1604,7 +1595,6 @@ TEST_F(OneofTest, SetAllocatedMessage) {
   EXPECT_EQ(1, message.foo_message().qux_int());
 }
 
-
 TEST_F(OneofTest, Clear) {
   unittest::TestOneof2 message;
 
@@ -1623,7 +1613,6 @@ TEST_F(OneofTest, Defaults) {
   EXPECT_FALSE(message.has_foo_string());
   EXPECT_EQ(message.foo_string(), "");
 
-
   EXPECT_FALSE(message.has_foo_bytes());
   EXPECT_EQ(message.foo_bytes(), "");
 
@@ -1636,13 +1625,11 @@ TEST_F(OneofTest, Defaults) {
   EXPECT_FALSE(message.has_foogroup());
   EXPECT_EQ(message.foogroup().a(), 0);
 
-
   EXPECT_FALSE(message.has_bar_int());
   EXPECT_EQ(message.bar_int(), 5);
 
   EXPECT_FALSE(message.has_bar_string());
   EXPECT_EQ(message.bar_string(), "STRING");
-
 
   EXPECT_FALSE(message.has_bar_bytes());
   EXPECT_EQ(message.bar_bytes(), "BYTES");
@@ -1772,7 +1759,6 @@ TEST_F(OneofTest, SerializationToArray) {
     EXPECT_EQ(message2.foo_string(), "foo");
   }
 
-
   // Bytes
   {
     unittest::TestOneof2 message1, message2;
@@ -1828,7 +1814,6 @@ TEST_F(OneofTest, SerializationToArray) {
     EXPECT_TRUE(message2.ParseFromString(data));
     EXPECT_EQ(message2.foogroup().a(), 345);
   }
-
 }
 
 // Test the generated SerializeWithCachedSizes() by forcing the buffer to write
@@ -1879,7 +1864,6 @@ TEST_F(OneofTest, SerializationToStream) {
     EXPECT_EQ(message2.foo_string(), "foo");
   }
 
-
   // Bytes
   {
     unittest::TestOneof2 message1, message2;
@@ -1963,7 +1947,6 @@ TEST_F(OneofTest, SerializationToStream) {
     EXPECT_TRUE(message2.ParseFromString(data));
     EXPECT_EQ(message2.foogroup().a(), 345);
   }
-
 }
 
 TEST_F(OneofTest, MergeFrom) {
@@ -1980,7 +1963,6 @@ TEST_F(OneofTest, MergeFrom) {
   TestUtil::ExpectAtMostOneFieldSetInOneof(message2);
   EXPECT_TRUE(message2.has_foo_string());
   EXPECT_EQ(message2.foo_string(), "foo");
-
 
   message1.set_foo_bytes("qux");
   message2.MergeFrom(message1);
@@ -2005,21 +1987,20 @@ TEST_F(OneofTest, MergeFrom) {
   TestUtil::ExpectAtMostOneFieldSetInOneof(message2);
   EXPECT_TRUE(message2.has_foogroup());
   EXPECT_EQ(message2.foogroup().a(), 345);
-
 }
 
-}  // namespace cpp_unittest
-}  // namespace cpp
-}  // namespace compiler
+} // namespace cpp_unittest
+} // namespace cpp
+} // namespace compiler
 
 namespace no_generic_services_test {
-  // Verify that no class called "TestService" was defined in
-  // unittest_no_generic_services.pb.h by defining a different type by the same
-  // name.  If such a service was generated, this will not compile.
-  struct TestService {
-    int i;
-  };
-}
+// Verify that no class called "TestService" was defined in
+// unittest_no_generic_services.pb.h by defining a different type by the same
+// name.  If such a service was generated, this will not compile.
+struct TestService {
+  int i;
+};
+} // namespace no_generic_services_test
 
 namespace compiler {
 namespace cpp {
@@ -2045,7 +2026,7 @@ TEST_F(GeneratedServiceTest, NoGenericServices) {
   EXPECT_EQ("Foo", file->service(0)->method(0)->name());
 }
 
-#endif  // !PROTOBUF_TEST_NO_DESCRIPTORS
+#endif // !PROTOBUF_TEST_NO_DESCRIPTORS
 
 // ===================================================================
 
@@ -2062,13 +2043,13 @@ TEST(DescriptorInitializationTest, Initialized) {
 #endif
 
   EXPECT_EQ(should_have_descriptors,
-    DescriptorPool::generated_pool()->InternalIsFileLoaded(
-      "google/protobuf/unittest.proto"));
+            DescriptorPool::generated_pool()->InternalIsFileLoaded(
+                "google/protobuf/unittest.proto"));
 }
 
-}  // namespace cpp_unittest
+} // namespace cpp_unittest
 
-}  // namespace cpp
-}  // namespace compiler
-}  // namespace protobuf
-}  // namespace google
+} // namespace cpp
+} // namespace compiler
+} // namespace protobuf
+} // namespace google

@@ -64,11 +64,11 @@ inline void NoBarrier_Store(volatile Atomic32* ptr, Atomic32 value) {
 
 inline void Acquire_Store(volatile Atomic32* ptr, Atomic32 value) {
   NoBarrier_AtomicExchange(ptr, value);
-              // acts as a barrier in this implementation
+  // acts as a barrier in this implementation
 }
 
 inline void Release_Store(volatile Atomic32* ptr, Atomic32 value) {
-  *ptr = value;  // works w/o barrier for current Intel chips as of June 2005
+  *ptr = value; // works w/o barrier for current Intel chips as of June 2005
   // See comments in Atomic64 version of Release_Store() below.
 }
 
@@ -101,11 +101,11 @@ inline void NoBarrier_Store(volatile Atomic64* ptr, Atomic64 value) {
 
 inline void Acquire_Store(volatile Atomic64* ptr, Atomic64 value) {
   NoBarrier_AtomicExchange(ptr, value);
-              // acts as a barrier in this implementation
+  // acts as a barrier in this implementation
 }
 
 inline void Release_Store(volatile Atomic64* ptr, Atomic64 value) {
-  *ptr = value;  // works w/o barrier for current Intel chips as of June 2005
+  *ptr = value; // works w/o barrier for current Intel chips as of June 2005
 
   // When new chips come out, check:
   //  IA-32 Intel Architecture Software Developer's Manual, Volume 3:
@@ -141,10 +141,10 @@ inline Atomic64 Release_CompareAndSwap(volatile Atomic64* ptr,
   return NoBarrier_CompareAndSwap(ptr, old_value, new_value);
 }
 
-#endif  // defined(_WIN64)
+#endif // defined(_WIN64)
 
-}  // namespace internal
-}  // namespace protobuf
-}  // namespace google
+} // namespace internal
+} // namespace protobuf
+} // namespace google
 
-#endif  // GOOGLE_PROTOBUF_ATOMICOPS_INTERNALS_X86_MSVC_H_
+#endif // GOOGLE_PROTOBUF_ATOMICOPS_INTERNALS_X86_MSVC_H_

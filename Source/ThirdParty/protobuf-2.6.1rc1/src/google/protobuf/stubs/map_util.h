@@ -46,9 +46,13 @@ namespace google {
 namespace protobuf {
 namespace internal {
 // Local implementation of RemoveConst to avoid including base/type_traits.h.
-template <class T> struct RemoveConst { typedef T type; };
-template <class T> struct RemoveConst<const T> : RemoveConst<T> {};
-}  // namespace internal
+template <class T>
+struct RemoveConst {
+  typedef T type;
+};
+template <class T>
+struct RemoveConst<const T> : RemoveConst<T> {};
+} // namespace internal
 
 //
 // Find*()
@@ -81,7 +85,7 @@ FindOrDie(const Collection& collection,
 // Same as above, but returns a non-const reference.
 template <class Collection>
 typename Collection::value_type::second_type&
-FindOrDie(Collection& collection,  // NOLINT
+FindOrDie(Collection& collection, // NOLINT
           const typename Collection::value_type::first_type& key) {
   typename Collection::iterator it = collection.find(key);
   GOOGLE_CHECK(it != collection.end()) << "Map key not found: " << key;
@@ -101,7 +105,7 @@ FindOrDieNoPrint(const Collection& collection,
 // Same as above, but returns a non-const reference.
 template <class Collection>
 typename Collection::value_type::second_type&
-FindOrDieNoPrint(Collection& collection,  // NOLINT
+FindOrDieNoPrint(Collection& collection, // NOLINT
                  const typename Collection::value_type::first_type& key) {
   typename Collection::iterator it = collection.find(key);
   GOOGLE_CHECK(it != collection.end()) << "Map key not found";
@@ -146,7 +150,7 @@ FindOrNull(const Collection& collection,
 // Same as above but returns a pointer to the non-const value.
 template <class Collection>
 typename Collection::value_type::second_type*
-FindOrNull(Collection& collection,  // NOLINT
+FindOrNull(Collection& collection, // NOLINT
            const typename Collection::value_type::first_type& key) {
   typename Collection::iterator it = collection.find(key);
   if (it == collection.end()) {
@@ -178,7 +182,7 @@ FindPtrOrNull(const Collection& collection,
 // pointee, such as boost::ptr_map.
 template <class Collection>
 typename Collection::value_type::second_type
-FindPtrOrNull(Collection& collection,  // NOLINT
+FindPtrOrNull(Collection& collection, // NOLINT
               const typename Collection::value_type::first_type& key) {
   typename Collection::iterator it = collection.find(key);
   if (it == collection.end()) {
@@ -208,7 +212,7 @@ typename Collection::value_type::second_type::element_type&
 FindLinkedPtrOrDie(const Collection& collection,
                    const typename Collection::value_type::first_type& key) {
   typename Collection::const_iterator it = collection.find(key);
-  CHECK(it != collection.end()) <<  "key not found: " << key;
+  CHECK(it != collection.end()) << "key not found: " << key;
   // Since linked_ptr::operator*() is a const member returning a non const,
   // we do not need a version of this function taking a non const collection.
   return *it->second;
@@ -444,7 +448,7 @@ typename Collection::value_type::second_type&
 LookupOrInsertNew(Collection* const collection,
                   const typename Collection::value_type::first_type& key) {
   typedef typename std::iterator_traits<
-    typename Collection::value_type::second_type>::value_type Element;
+      typename Collection::value_type::second_type>::value_type Element;
   std::pair<typename Collection::iterator, bool> ret =
       collection->insert(typename Collection::value_type(
           key,
@@ -463,7 +467,7 @@ LookupOrInsertNew(Collection* const collection,
                   const typename Collection::value_type::first_type& key,
                   const Arg& arg) {
   typedef typename std::iterator_traits<
-    typename Collection::value_type::second_type>::value_type Element;
+      typename Collection::value_type::second_type>::value_type Element;
   std::pair<typename Collection::iterator, bool> ret =
       collection->insert(typename Collection::value_type(
           key,
@@ -626,9 +630,9 @@ InsertOrReturnExisting(Collection* const collection,
                        const typename Collection::value_type& vt) {
   std::pair<typename Collection::iterator, bool> ret = collection->insert(vt);
   if (ret.second) {
-    return NULL;  // Inserted, no existing previous value.
+    return NULL; // Inserted, no existing previous value.
   } else {
-    return &ret.first->second;  // Return address of already existing value.
+    return &ret.first->second; // Return address of already existing value.
   }
 }
 
@@ -765,7 +769,7 @@ void AppendValuesFromMap(const MapContainer& map_container,
   }
 }
 
-}  // namespace protobuf
-}  // namespace google
+} // namespace protobuf
+} // namespace google
 
-#endif  // GOOGLE_PROTOBUF_STUBS_MAP_UTIL_H__
+#endif // GOOGLE_PROTOBUF_STUBS_MAP_UTIL_H__

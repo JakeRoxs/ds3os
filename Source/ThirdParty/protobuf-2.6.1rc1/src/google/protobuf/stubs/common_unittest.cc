@@ -46,7 +46,7 @@ namespace {
 
 // TODO(kenton):  More tests.
 
-#ifdef PACKAGE_VERSION  // only defined when using automake, not MSVC
+#ifdef PACKAGE_VERSION // only defined when using automake, not MSVC
 
 TEST(VersionTest, VersionMatchesConfig) {
   // Verify that the version string specified in config.h matches the one
@@ -63,7 +63,7 @@ TEST(VersionTest, VersionMatchesConfig) {
   EXPECT_EQ(version, internal::VersionString(GOOGLE_PROTOBUF_VERSION));
 }
 
-#endif  // PACKAGE_VERSION
+#endif // PACKAGE_VERSION
 
 TEST(CommonTest, IntMinMaxConstants) {
   // kint32min was declared incorrectly in the first release of protobufs.
@@ -81,32 +81,38 @@ vector<string> captured_messages_;
 void CaptureLog(LogLevel level, const char* filename, int line,
                 const string& message) {
   captured_messages_.push_back(
-    strings::Substitute("$0 $1:$2: $3",
-      implicit_cast<int>(level), filename, line, message));
+      strings::Substitute("$0 $1:$2: $3",
+                          implicit_cast<int>(level), filename, line, message));
 }
 
 TEST(LoggingTest, DefaultLogging) {
   CaptureTestStderr();
   int line = __LINE__;
-  GOOGLE_LOG(INFO   ) << "A message.";
+  GOOGLE_LOG(INFO) << "A message.";
   GOOGLE_LOG(WARNING) << "A warning.";
-  GOOGLE_LOG(ERROR  ) << "An error.";
+  GOOGLE_LOG(ERROR) << "An error.";
 
   string text = GetCapturedTestStderr();
   EXPECT_EQ(
-    "[libprotobuf INFO "__FILE__":" + SimpleItoa(line + 1) + "] A message.\n"
-    "[libprotobuf WARNING "__FILE__":" + SimpleItoa(line + 2) + "] A warning.\n"
-    "[libprotobuf ERROR "__FILE__":" + SimpleItoa(line + 3) + "] An error.\n",
-    text);
+      "[libprotobuf INFO "__FILE__
+      ":" +
+          SimpleItoa(line + 1) + "] A message.\n"
+                                 "[libprotobuf WARNING "__FILE__
+                                 ":" +
+          SimpleItoa(line + 2) + "] A warning.\n"
+                                 "[libprotobuf ERROR "__FILE__
+                                 ":" +
+          SimpleItoa(line + 3) + "] An error.\n",
+      text);
 }
 
 TEST(LoggingTest, NullLogging) {
   LogHandler* old_handler = SetLogHandler(NULL);
 
   CaptureTestStderr();
-  GOOGLE_LOG(INFO   ) << "A message.";
+  GOOGLE_LOG(INFO) << "A message.";
   GOOGLE_LOG(WARNING) << "A warning.";
-  GOOGLE_LOG(ERROR  ) << "An error.";
+  GOOGLE_LOG(ERROR) << "An error.";
 
   EXPECT_TRUE(SetLogHandler(old_handler) == NULL);
 
@@ -127,11 +133,15 @@ TEST(LoggingTest, CaptureLogging) {
 
   ASSERT_EQ(2, captured_messages_.size());
   EXPECT_EQ(
-    "2 "__FILE__":" + SimpleItoa(start_line + 1) + ": An error.",
-    captured_messages_[0]);
+      "2 "__FILE__
+      ":" +
+          SimpleItoa(start_line + 1) + ": An error.",
+      captured_messages_[0]);
   EXPECT_EQ(
-    "1 "__FILE__":" + SimpleItoa(start_line + 2) + ": A warning.",
-    captured_messages_[1]);
+      "1 "__FILE__
+      ":" +
+          SimpleItoa(start_line + 2) + ": A warning.",
+      captured_messages_[1]);
 }
 
 TEST(LoggingTest, SilenceLogging) {
@@ -139,7 +149,8 @@ TEST(LoggingTest, SilenceLogging) {
 
   LogHandler* old_handler = SetLogHandler(&CaptureLog);
 
-  int line1 = __LINE__; GOOGLE_LOG(INFO) << "Visible1";
+  int line1 = __LINE__;
+  GOOGLE_LOG(INFO) << "Visible1";
   LogSilencer* silencer1 = new LogSilencer;
   GOOGLE_LOG(INFO) << "Not visible.";
   LogSilencer* silencer2 = new LogSilencer;
@@ -147,31 +158,39 @@ TEST(LoggingTest, SilenceLogging) {
   delete silencer1;
   GOOGLE_LOG(INFO) << "Not visible.";
   delete silencer2;
-  int line2 = __LINE__; GOOGLE_LOG(INFO) << "Visible2";
+  int line2 = __LINE__;
+  GOOGLE_LOG(INFO) << "Visible2";
 
   EXPECT_TRUE(SetLogHandler(old_handler) == &CaptureLog);
 
   ASSERT_EQ(2, captured_messages_.size());
   EXPECT_EQ(
-    "0 "__FILE__":" + SimpleItoa(line1) + ": Visible1",
-    captured_messages_[0]);
+      "0 "__FILE__
+      ":" +
+          SimpleItoa(line1) + ": Visible1",
+      captured_messages_[0]);
   EXPECT_EQ(
-    "0 "__FILE__":" + SimpleItoa(line2) + ": Visible2",
-    captured_messages_[1]);
+      "0 "__FILE__
+      ":" +
+          SimpleItoa(line2) + ": Visible2",
+      captured_messages_[1]);
 }
 
 class ClosureTest : public testing::Test {
- public:
-  void SetA123Method()   { a_ = 123; }
+public:
+  void SetA123Method() { a_ = 123; }
   static void SetA123Function() { current_instance_->a_ = 123; }
 
-  void SetAMethod(int a)         { a_ = a; }
-  void SetCMethod(string c)      { c_ = c; }
+  void SetAMethod(int a) { a_ = a; }
+  void SetCMethod(string c) { c_ = c; }
 
-  static void SetAFunction(int a)         { current_instance_->a_ = a; }
-  static void SetCFunction(string c)      { current_instance_->c_ = c; }
+  static void SetAFunction(int a) { current_instance_->a_ = a; }
+  static void SetCFunction(string c) { current_instance_->c_ = c; }
 
-  void SetABMethod(int a, const char* b)  { a_ = a; b_ = b; }
+  void SetABMethod(int a, const char* b) {
+    a_ = a;
+    b_ = b;
+  }
   static void SetABFunction(int a, const char* b) {
     current_instance_->a_ = a;
     current_instance_->b_ = b;
@@ -347,11 +366,11 @@ TEST_F(ClosureTest, TestPermanentClosureMethod2) {
 }
 
 TEST_F(ClosureTest, TestPermanentClosureDeleteInCallback) {
-  permanent_closure_ = NewPermanentCallback((ClosureTest*) this,
-      &ClosureTest::DeleteClosureInCallback);
+  permanent_closure_ = NewPermanentCallback((ClosureTest*)this,
+                                            &ClosureTest::DeleteClosureInCallback);
   permanent_closure_->Run();
 }
 
-}  // anonymous namespace
-}  // namespace protobuf
-}  // namespace google
+} // anonymous namespace
+} // namespace protobuf
+} // namespace google

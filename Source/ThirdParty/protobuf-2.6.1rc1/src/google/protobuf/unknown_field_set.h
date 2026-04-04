@@ -45,19 +45,19 @@
 
 namespace google {
 namespace protobuf {
-  namespace io {
-    class CodedInputStream;         // coded_stream.h
-    class CodedOutputStream;        // coded_stream.h
-    class ZeroCopyInputStream;      // zero_copy_stream.h
-  }
-  namespace internal {
-    class WireFormat;               // wire_format.h
-    class MessageSetFieldSkipperUsingCord;
-                                    // extension_set_heavy.cc
-  }
+namespace io {
+class CodedInputStream;    // coded_stream.h
+class CodedOutputStream;   // coded_stream.h
+class ZeroCopyInputStream; // zero_copy_stream.h
+} // namespace io
+namespace internal {
+class WireFormat; // wire_format.h
+class MessageSetFieldSkipperUsingCord;
+// extension_set_heavy.cc
+} // namespace internal
 
-class Message;                      // message.h
-class UnknownField;                 // below
+class Message;      // message.h
+class UnknownField; // below
 
 // An UnknownFieldSet contains fields that were encountered while parsing a
 // message but were not defined by its type.  Keeping track of these can be
@@ -72,7 +72,7 @@ class UnknownField;                 // below
 // This class is necessarily tied to the protocol buffer wire format, unlike
 // the Reflection interface which is independent of any serialization scheme.
 class LIBPROTOBUF_EXPORT UnknownFieldSet {
- public:
+public:
   UnknownFieldSet();
   ~UnknownFieldSet();
 
@@ -141,8 +141,7 @@ class LIBPROTOBUF_EXPORT UnknownFieldSet {
     return ParseFromArray(data.data(), static_cast<int>(data.size()));
   }
 
- private:
-
+private:
   void ClearFallback();
 
   vector<UnknownField>* fields_;
@@ -152,7 +151,7 @@ class LIBPROTOBUF_EXPORT UnknownFieldSet {
 
 // Represents one field in an UnknownFieldSet.
 class LIBPROTOBUF_EXPORT UnknownField {
- public:
+public:
   enum Type {
     TYPE_VARINT,
     TYPE_FIXED32,
@@ -192,7 +191,7 @@ class LIBPROTOBUF_EXPORT UnknownField {
 
   inline int GetLengthDelimitedSize() const;
 
- private:
+private:
   friend class UnknownFieldSet;
 
   // If this UnknownField contains a pointer, delete it.
@@ -250,8 +249,9 @@ inline void UnknownFieldSet::AddLengthDelimited(
   AddLengthDelimited(number)->assign(value);
 }
 
-
-inline int UnknownField::number() const { return number_; }
+inline int UnknownField::number() const {
+  return number_;
+}
 inline UnknownField::Type UnknownField::type() const {
   return static_cast<Type>(type_);
 }
@@ -311,8 +311,7 @@ inline void UnknownField::SetType(Type type) {
   type_ = type;
 }
 
+} // namespace protobuf
 
-}  // namespace protobuf
-
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_UNKNOWN_FIELD_SET_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_UNKNOWN_FIELD_SET_H__

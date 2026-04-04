@@ -122,7 +122,7 @@ class ZeroCopyOutputStream;
 // Abstract interface similar to an input stream but designed to minimize
 // copying.
 class LIBPROTOBUF_EXPORT ZeroCopyInputStream {
- public:
+public:
   inline ZeroCopyInputStream() {}
   virtual ~ZeroCopyInputStream();
 
@@ -171,15 +171,14 @@ class LIBPROTOBUF_EXPORT ZeroCopyInputStream {
   // Returns the total number of bytes read since this object was created.
   virtual int64 ByteCount() const = 0;
 
-
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ZeroCopyInputStream);
 };
 
 // Abstract interface similar to an output stream but designed to minimize
 // copying.
 class LIBPROTOBUF_EXPORT ZeroCopyOutputStream {
- public:
+public:
   inline ZeroCopyOutputStream() {}
   virtual ~ZeroCopyOutputStream();
 
@@ -236,13 +235,12 @@ class LIBPROTOBUF_EXPORT ZeroCopyOutputStream {
   virtual bool WriteAliasedRaw(const void* data, int size);
   virtual bool AllowsAliasing() const { return false; }
 
-
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ZeroCopyOutputStream);
 };
 
-}  // namespace io
-}  // namespace protobuf
+} // namespace io
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_IO_ZERO_COPY_STREAM_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_IO_ZERO_COPY_STREAM_H__

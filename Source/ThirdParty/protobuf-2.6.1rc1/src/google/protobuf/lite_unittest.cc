@@ -82,7 +82,7 @@ void SetSomeTypesInEmptyMessageUnknownFields(
   empty_message->ParseFromString(data);
 }
 
-}  // namespace
+} // namespace
 
 int main(int argc, char* argv[]) {
   string data, data2, packed_data;
@@ -160,10 +160,10 @@ int main(int argc, char* argv[]) {
     google::protobuf::unittest::TestAllTypesLite* msg2;
     google::protobuf::unittest::TestAllTypesLite* msg3;
 
-#define ASSIGN_REPEATED_FIELD(FIELD)                \
-  msg1 = generator.add_##FIELD();                   \
-  msg2 = generator.add_##FIELD();                   \
-  msg3 = generator.add_##FIELD();                   \
+#define ASSIGN_REPEATED_FIELD(FIELD) \
+  msg1 = generator.add_##FIELD();    \
+  msg2 = generator.add_##FIELD();    \
+  msg3 = generator.add_##FIELD();    \
   AssignParsingMergeMessages(msg1, msg2, msg3)
 
     ASSIGN_REPEATED_FIELD(field1);
@@ -201,7 +201,7 @@ int main(int argc, char* argv[]) {
     GOOGLE_CHECK(parsing_merge.repeated_all_types_size() == 3);
     GOOGLE_CHECK(parsing_merge.repeatedgroup_size() == 3);
     GOOGLE_CHECK(parsing_merge.ExtensionSize(
-        google::protobuf::unittest::TestParsingMergeLite::repeated_ext) == 3);
+                     google::protobuf::unittest::TestParsingMergeLite::repeated_ext) == 3);
   }
 
   // Test unknown fields support for lite messages.

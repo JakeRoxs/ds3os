@@ -19,18 +19,13 @@ concurrency:
   group: ci-${{ github.ref_name }}-${{ github.event_name }}
   cancel-in-progress: true
 
-env:
-  # Path to the solution file relative to the root of the project.
-  SOLUTION_FILE_PATH: ./intermediate/vs2022/ds3os.sln
-  BUILD_CONFIGURATION: Release
-
 jobs:
   sonar:
     name: Trigger SonarQube workflow
     runs-on: ubuntu-latest
     steps:
       - name: Trigger sonarqube.yml via workflow dispatch
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -218,7 +213,7 @@ jobs:
           #   os: ubuntu-latest
           #   nixTarget: clang
     steps:
-      - name: Checkout repositoryres
+      - name: Checkout repository
         uses: actions/checkout@v6
         with:
           submodules: recursive
@@ -238,14 +233,19 @@ jobs:
         shell: bash
         run: |
           rm -f intermediate/make/CMakeCache.txt
+          rm -f intermediate/make/build.ninja
+          rm -f intermediate/make/cmake_install.cmake
           rm -rf intermediate/make/CMakeFiles
+          rm -rf intermediate/make/_deps/*-subbuild
+          rm -rf intermediate/make/_deps/*-tmp
+          rm -rf intermediate/make/_deps/*-build
 
       - name: Clean stale CMake cache (Windows)
         if: matrix.name == 'windows-ninja'
         shell: cmd
         run: |
-          if exist intermediate\vs2022\CMakeCache.txt del /f /q intermediate\vs2022\CMakeCache.txt
-          if exist intermediate\vs2022\CMakeFiles rmdir /s /q intermediate\vs2022\CMakeFiles
+          if exist intermediate\build\CMakeCache.txt del /f /q intermediate\build\CMakeCache.txt
+          if exist intermediate\build\CMakeFiles rmdir /s /q intermediate\build\CMakeFiles
 
       - name: Generate build files (Windows)
         if: matrix.name == 'windows-ninja'
@@ -266,14 +266,14 @@ jobs:
             )
           )
           cd "%GITHUB_WORKSPACE%\Tools"
-          "%GITHUB_WORKSPACE%\Tools\generate_vs2022.bat"
+          "%GITHUB_WORKSPACE%\Tools\generate_build.bat"
 
       - name: Report dependency fetch status (Windows)
         if: matrix.name == 'windows-ninja'
         shell: cmd
         run: |
-          if exist intermediate\vs2022\dependency-fetch-status.txt (
-            type intermediate\vs2022\dependency-fetch-status.txt
+          if exist intermediate\build\dependency-fetch-status.txt (
+            type intermediate\build\dependency-fetch-status.txt
           ) else (
             echo "(dependency-fetch-status.txt not found)"
           )
@@ -293,14 +293,29 @@ jobs:
         if: matrix.name == 'windows-ninja'
         uses: microsoft/setup-msbuild@v3
 
-      - name: Restore NuGet packages (Windows)
+      - name: Restore Loader NuGet packages
         if: matrix.name == 'windows-ninja'
-        working-directory: ${{github.workspace}}
-        run: dotnet restore ${{env.SOLUTION_FILE_PATH}}
+        run: dotnet restore Source/Loader/Loader.csproj -p:Configuration=Release
+
+      - name: Restore Loader tests NuGet packages
+        if: matrix.name == 'windows-ninja'
+        run: dotnet restore Source/Loader/Tests/Loader.Tests.csproj -p:Configuration=Release
+
+      - name: Build Loader project
+        if: matrix.name == 'windows-ninja'
+        run: dotnet build Source/Loader/Loader.csproj --configuration Release --no-restore
+
+      - name: Build Loader tests project
+        if: matrix.name == 'windows-ninja'
+        run: dotnet build Source/Loader/Tests/Loader.Tests.csproj --configuration Release --no-restore
+
+      - name: Run Loader tests
+        if: matrix.name == 'windows-ninja'
+        run: dotnet test Source/Loader/Tests/Loader.Tests.csproj --configuration Release --verbosity normal
 
       - name: Build on Windows (Ninja)
         if: matrix.name == 'windows-ninja'
-        working-directory: ${{github.workspace}}/intermediate/vs2022
+        working-directory: ${{github.workspace}}/intermediate/build
         shell: cmd
         run: |
           for /f "delims=" %%V in ('"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath') do set "VS_INSTALL_DIR=%%V"

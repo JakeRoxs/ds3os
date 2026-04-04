@@ -50,7 +50,7 @@ namespace java {
 // can do so by registering an instance of this CodeGenerator with the
 // CommandLineInterface in your main() function.
 class LIBPROTOC_EXPORT JavaGenerator : public CodeGenerator {
- public:
+public:
   JavaGenerator();
   ~JavaGenerator();
 
@@ -60,13 +60,13 @@ class LIBPROTOC_EXPORT JavaGenerator : public CodeGenerator {
                 GeneratorContext* context,
                 string* error) const;
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(JavaGenerator);
 };
 
-}  // namespace java
-}  // namespace compiler
-}  // namespace protobuf
+} // namespace java
+} // namespace compiler
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_JAVA_GENERATOR_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_COMPILER_JAVA_GENERATOR_H__

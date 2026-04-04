@@ -57,7 +57,7 @@ TEST(StringPrintfTest, Misc) {
 // MSVC and mingw does not support $ format specifier.
 #if !defined(_MSC_VER) && !defined(__MINGW32__)
   EXPECT_EQ("123hello w", StringPrintf("%3$d%2$s %1$c", 'w', "hello", 123));
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 }
 
 TEST(StringAppendFTest, Empty) {
@@ -107,10 +107,10 @@ TEST(StringPrintfTest, Multibyte) {
   // Repeat with longer string, to make sure that the dynamically
   // allocated path in StringAppendV is handled correctly.
   int n = 2048;
-  char* buf = new char[n+1];
-  memset(buf, ' ', n-3);
+  char* buf = new char[n + 1];
+  memset(buf, ' ', n - 3);
   memcpy(buf + n - 3, kInvalidCodePoint, 4);
-  value =  StringPrintf("%.*s", n, buf);
+  value = StringPrintf("%.*s", n, buf);
   // See GRTEv2 vs. GRTEv3 comment above.
   EXPECT_TRUE(value.empty() || value == buf);
   delete[] buf;
@@ -139,7 +139,7 @@ TEST(StringPrintfTest, DontOverwriteErrno) {
 TEST(StringPrintfTest, LargeBuf) {
   // Check that the large buffer is handled correctly.
   int n = 2048;
-  char* buf = new char[n+1];
+  char* buf = new char[n + 1];
   memset(buf, ' ', n);
   buf[n] = 0;
   string value = StringPrintf("%s", buf);
@@ -147,6 +147,6 @@ TEST(StringPrintfTest, LargeBuf) {
   delete[] buf;
 }
 
-}  // anonymous namespace
-}  // namespace protobuf
-}  // namespace google
+} // anonymous namespace
+} // namespace protobuf
+} // namespace google

@@ -69,14 +69,14 @@ namespace protobuf {
 namespace compiler {
 
 class ZipWriter {
- public:
+public:
   ZipWriter(io::ZeroCopyOutputStream* raw_output);
   ~ZipWriter();
 
   bool Write(const string& filename, const string& contents);
   bool WriteDirectory();
 
- private:
+private:
   struct FileInfo {
     string name;
     uint32 offset;
@@ -88,6 +88,6 @@ class ZipWriter {
   vector<FileInfo> files_;
 };
 
-}  // namespace compiler
-}  // namespace protobuf
-}  // namespace google
+} // namespace compiler
+} // namespace protobuf
+} // namespace google

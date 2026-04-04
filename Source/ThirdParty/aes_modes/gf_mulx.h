@@ -2,11 +2,10 @@
 #define _GF_MULX_H
 
 #if defined(__cplusplus)
-extern "C"
-{
+extern "C" {
 #endif
 
-void gf_mulx(void *x);
+void gf_mulx(void* x);
 
 #if defined(__cplusplus)
 }

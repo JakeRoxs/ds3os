@@ -71,14 +71,14 @@ namespace compiler {
 #define STDOUT_FILENO 1
 #endif
 #ifndef F_OK
-#define F_OK 00  // not defined by MSVC for whatever reason
+#define F_OK 00 // not defined by MSVC for whatever reason
 #endif
 #endif
 
 namespace {
 
 class CommandLineInterfaceTest : public testing::Test {
- protected:
+protected:
   virtual void SetUp();
   virtual void TearDown();
 
@@ -167,7 +167,7 @@ class CommandLineInterfaceTest : public testing::Test {
   void ReadDescriptorSet(const string& filename,
                          FileDescriptorSet* descriptor_set);
 
- private:
+private:
   // The object we are testing.
   CommandLineInterface cli_;
 
@@ -196,7 +196,7 @@ class CommandLineInterfaceTest : public testing::Test {
 };
 
 class CommandLineInterfaceTest::NullCodeGenerator : public CodeGenerator {
- public:
+public:
   NullCodeGenerator() : called_(false) {}
   ~NullCodeGenerator() {}
 
@@ -267,21 +267,21 @@ void CommandLineInterfaceTest::Run(const string& command) {
   if (!disallow_plugins_) {
     cli_.AllowPlugins("prefix-");
     const char* possible_paths[] = {
-      // When building with shared libraries, libtool hides the real executable
-      // in .libs and puts a fake wrapper in the current directory.
-      // Unfortunately, due to an apparent bug on Cygwin/MinGW, if one program
-      // wrapped in this way (e.g. protobuf-tests.exe) tries to execute another
-      // program wrapped in this way (e.g. test_plugin.exe), the latter fails
-      // with error code 127 and no explanation message.  Presumably the problem
-      // is that the wrapper for protobuf-tests.exe set some environment
-      // variables that confuse the wrapper for test_plugin.exe.  Luckily, it
-      // turns out that if we simply invoke the wrapped test_plugin.exe
-      // directly, it works -- I guess the environment variables set by the
-      // protobuf-tests.exe wrapper happen to be correct for it too.  So we do
-      // that.
-      ".libs/test_plugin.exe",  // Win32 w/autotool (Cygwin / MinGW)
-      "test_plugin.exe",        // Other Win32 (MSVC)
-      "test_plugin",            // Unix
+        // When building with shared libraries, libtool hides the real executable
+        // in .libs and puts a fake wrapper in the current directory.
+        // Unfortunately, due to an apparent bug on Cygwin/MinGW, if one program
+        // wrapped in this way (e.g. protobuf-tests.exe) tries to execute another
+        // program wrapped in this way (e.g. test_plugin.exe), the latter fails
+        // with error code 127 and no explanation message.  Presumably the problem
+        // is that the wrapper for protobuf-tests.exe set some environment
+        // variables that confuse the wrapper for test_plugin.exe.  Luckily, it
+        // turns out that if we simply invoke the wrapped test_plugin.exe
+        // directly, it works -- I guess the environment variables set by the
+        // protobuf-tests.exe wrapper happen to be correct for it too.  So we do
+        // that.
+        ".libs/test_plugin.exe", // Win32 w/autotool (Cygwin / MinGW)
+        "test_plugin.exe",       // Other Win32 (MSVC)
+        "test_plugin",           // Unix
     };
 
     string plugin_path;
@@ -301,7 +301,7 @@ void CommandLineInterfaceTest::Run(const string& command) {
     }
   }
 
-  scoped_array<const char*> argv(new const char* [args.size()]);
+  scoped_array<const char*> argv(new const char*[args.size()]);
 
   for (int i = 0; i < args.size(); i++) {
     args[i] = StringReplace(args[i], "$tmpdir", temp_directory_, true);
@@ -335,7 +335,7 @@ void CommandLineInterfaceTest::CreateTempFile(
     string dir = name.substr(0, slash_pos);
     if (!File::Exists(temp_directory_ + "/" + dir)) {
       GOOGLE_CHECK_OK(File::RecursivelyCreateDir(temp_directory_ + "/" + dir,
-                                          0777));
+                                                 0777));
     }
   }
 
@@ -346,7 +346,7 @@ void CommandLineInterfaceTest::CreateTempFile(
 
 void CommandLineInterfaceTest::CreateTempDir(const string& name) {
   GOOGLE_CHECK_OK(File::RecursivelyCreateDir(temp_directory_ + "/" + name,
-                                      0777));
+                                             0777));
 }
 
 // -------------------------------------------------------------------
@@ -451,8 +451,8 @@ TEST_F(CommandLineInterfaceTest, BasicOutput) {
   // Test that the common case works.
 
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
 
   Run("protocol_compiler --test_out=$tmpdir "
       "--proto_path=$tmpdir foo.proto");
@@ -465,8 +465,8 @@ TEST_F(CommandLineInterfaceTest, BasicPlugin) {
   // Test that basic plugins work.
 
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
 
   Run("protocol_compiler --plug_out=$tmpdir "
       "--proto_path=$tmpdir foo.proto");
@@ -479,8 +479,8 @@ TEST_F(CommandLineInterfaceTest, GeneratorAndPlugin) {
   // Invoke a generator and a plugin at the same time.
 
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
 
   Run("protocol_compiler --test_out=$tmpdir --plug_out=$tmpdir "
       "--proto_path=$tmpdir foo.proto");
@@ -494,11 +494,11 @@ TEST_F(CommandLineInterfaceTest, MultipleInputs) {
   // Test parsing multiple input files.
 
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
   CreateTempFile("bar.proto",
-    "syntax = \"proto2\";\n"
-    "message Bar {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Bar {}\n");
 
   Run("protocol_compiler --test_out=$tmpdir --plug_out=$tmpdir "
       "--proto_path=$tmpdir foo.proto bar.proto");
@@ -518,17 +518,17 @@ TEST_F(CommandLineInterfaceTest, MultipleInputsWithImport) {
   // Test parsing multiple input files with an import of a separate file.
 
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
   CreateTempFile("bar.proto",
-    "syntax = \"proto2\";\n"
-    "import \"baz.proto\";\n"
-    "message Bar {\n"
-    "  optional Baz a = 1;\n"
-    "}\n");
+                 "syntax = \"proto2\";\n"
+                 "import \"baz.proto\";\n"
+                 "message Bar {\n"
+                 "  optional Baz a = 1;\n"
+                 "}\n");
   CreateTempFile("baz.proto",
-    "syntax = \"proto2\";\n"
-    "message Baz {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Baz {}\n");
 
   Run("protocol_compiler --test_out=$tmpdir --plug_out=$tmpdir "
       "--proto_path=$tmpdir foo.proto bar.proto");
@@ -548,8 +548,8 @@ TEST_F(CommandLineInterfaceTest, CreateDirectory) {
   // Test that when we output to a sub-directory, it is created.
 
   CreateTempFile("bar/baz/foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
   CreateTempDir("out");
   CreateTempDir("plugout");
 
@@ -565,8 +565,8 @@ TEST_F(CommandLineInterfaceTest, GeneratorParameters) {
   // Test that generator parameters are correctly parsed from the command line.
 
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
 
   Run("protocol_compiler --test_out=TestParameter:$tmpdir "
       "--plug_out=TestPluginParameter:$tmpdir "
@@ -582,8 +582,8 @@ TEST_F(CommandLineInterfaceTest, ExtraGeneratorParameters) {
   // correctly passed to the code generator.
 
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
   // Create the "a" and "b" sub-directories.
   CreateTempDir("a");
   CreateTempDir("b");
@@ -607,8 +607,8 @@ TEST_F(CommandLineInterfaceTest, Insert) {
   // Test running a generator that inserts code into another's output.
 
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
 
   Run("protocol_compiler "
       "--test_out=TestParameter:$tmpdir "
@@ -632,7 +632,7 @@ TEST_F(CommandLineInterfaceTest, WindowsOutputPath) {
   // Test that the output path can be a Windows-style path.
 
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n");
+                 "syntax = \"proto2\";\n");
 
   Run("protocol_compiler --null_out=C:\\ "
       "--proto_path=$tmpdir foo.proto");
@@ -645,7 +645,7 @@ TEST_F(CommandLineInterfaceTest, WindowsOutputPathAndParameter) {
   // Test that we can have a windows-style output path and a parameter.
 
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n");
+                 "syntax = \"proto2\";\n");
 
   Run("protocol_compiler --null_out=bar:C:\\ "
       "--proto_path=$tmpdir foo.proto");
@@ -659,8 +659,8 @@ TEST_F(CommandLineInterfaceTest, TrailingBackslash) {
   // doesn't work on their system.
 
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
 
   Run("protocol_compiler --test_out=$tmpdir\\ "
       "--proto_path=$tmpdir\\ foo.proto");
@@ -669,20 +669,20 @@ TEST_F(CommandLineInterfaceTest, TrailingBackslash) {
   ExpectGenerated("test_generator", "", "foo.proto", "Foo");
 }
 
-#endif  // defined(_WIN32) || defined(__CYGWIN__)
+#endif // defined(_WIN32) || defined(__CYGWIN__)
 
 TEST_F(CommandLineInterfaceTest, PathLookup) {
   // Test that specifying multiple directories in the proto search path works.
 
   CreateTempFile("b/bar.proto",
-    "syntax = \"proto2\";\n"
-    "message Bar {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Bar {}\n");
   CreateTempFile("a/foo.proto",
-    "syntax = \"proto2\";\n"
-    "import \"bar.proto\";\n"
-    "message Foo {\n"
-    "  optional Bar a = 1;\n"
-    "}\n");
+                 "syntax = \"proto2\";\n"
+                 "import \"bar.proto\";\n"
+                 "message Foo {\n"
+                 "  optional Bar a = 1;\n"
+                 "}\n");
   CreateTempFile("b/foo.proto", "this should not be parsed\n");
 
   Run("protocol_compiler --test_out=$tmpdir "
@@ -696,14 +696,14 @@ TEST_F(CommandLineInterfaceTest, ColonDelimitedPath) {
   // Same as PathLookup, but we provide the proto_path in a single flag.
 
   CreateTempFile("b/bar.proto",
-    "syntax = \"proto2\";\n"
-    "message Bar {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Bar {}\n");
   CreateTempFile("a/foo.proto",
-    "syntax = \"proto2\";\n"
-    "import \"bar.proto\";\n"
-    "message Foo {\n"
-    "  optional Bar a = 1;\n"
-    "}\n");
+                 "syntax = \"proto2\";\n"
+                 "import \"bar.proto\";\n"
+                 "message Foo {\n"
+                 "  optional Bar a = 1;\n"
+                 "}\n");
   CreateTempFile("b/foo.proto", "this should not be parsed\n");
 
 #undef PATH_SEPARATOR
@@ -714,7 +714,7 @@ TEST_F(CommandLineInterfaceTest, ColonDelimitedPath) {
 #endif
 
   Run("protocol_compiler --test_out=$tmpdir "
-      "--proto_path=$tmpdir/a"PATH_SEPARATOR"$tmpdir/b foo.proto");
+      "--proto_path=$tmpdir/a" PATH_SEPARATOR "$tmpdir/b foo.proto");
 
 #undef PATH_SEPARATOR
 
@@ -726,8 +726,8 @@ TEST_F(CommandLineInterfaceTest, NonRootMapping) {
   // Test setting up a search path mapping a directory to a non-root location.
 
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
 
   Run("protocol_compiler --test_out=$tmpdir "
       "--proto_path=bar=$tmpdir bar/foo.proto");
@@ -741,8 +741,8 @@ TEST_F(CommandLineInterfaceTest, MultipleGenerators) {
   // each with a different output directory.
 
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
   // Create the "a" and "b" sub-directories.
   CreateTempDir("a");
   CreateTempDir("b");
@@ -762,8 +762,8 @@ TEST_F(CommandLineInterfaceTest, DisallowServicesNoServices) {
   // services.
 
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
 
   Run("protocol_compiler --disallow_services --test_out=$tmpdir "
       "--proto_path=$tmpdir foo.proto");
@@ -776,9 +776,9 @@ TEST_F(CommandLineInterfaceTest, DisallowServicesHasService) {
   // Test that --disallow_services produces an error when there are services.
 
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n"
-    "service Bar {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n"
+                 "service Bar {}\n");
 
   Run("protocol_compiler --disallow_services --test_out=$tmpdir "
       "--proto_path=$tmpdir foo.proto");
@@ -790,9 +790,9 @@ TEST_F(CommandLineInterfaceTest, AllowServicesHasService) {
   // Test that services work fine as long as --disallow_services is not used.
 
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n"
-    "service Bar {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n"
+                 "service Bar {}\n");
 
   Run("protocol_compiler --test_out=$tmpdir "
       "--proto_path=$tmpdir foo.proto");
@@ -807,8 +807,8 @@ TEST_F(CommandLineInterfaceTest, CwdRelativeInputs) {
   SetInputsAreProtoPathRelative(false);
 
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
 
   Run("protocol_compiler --test_out=$tmpdir "
       "--proto_path=$tmpdir $tmpdir/foo.proto");
@@ -819,14 +819,14 @@ TEST_F(CommandLineInterfaceTest, CwdRelativeInputs) {
 
 TEST_F(CommandLineInterfaceTest, WriteDescriptorSet) {
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
   CreateTempFile("bar.proto",
-    "syntax = \"proto2\";\n"
-    "import \"foo.proto\";\n"
-    "message Bar {\n"
-    "  optional Foo foo = 1;\n"
-    "}\n");
+                 "syntax = \"proto2\";\n"
+                 "import \"foo.proto\";\n"
+                 "message Bar {\n"
+                 "  optional Foo foo = 1;\n"
+                 "}\n");
 
   Run("protocol_compiler --descriptor_set_out=$tmpdir/descriptor_set "
       "--proto_path=$tmpdir bar.proto");
@@ -835,7 +835,8 @@ TEST_F(CommandLineInterfaceTest, WriteDescriptorSet) {
 
   FileDescriptorSet descriptor_set;
   ReadDescriptorSet("descriptor_set", &descriptor_set);
-  if (HasFatalFailure()) return;
+  if (HasFatalFailure())
+    return;
   EXPECT_EQ(1, descriptor_set.file_size());
   EXPECT_EQ("bar.proto", descriptor_set.file(0).name());
   // Descriptor set should not have source code info.
@@ -844,14 +845,14 @@ TEST_F(CommandLineInterfaceTest, WriteDescriptorSet) {
 
 TEST_F(CommandLineInterfaceTest, WriteDescriptorSetWithSourceInfo) {
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
   CreateTempFile("bar.proto",
-    "syntax = \"proto2\";\n"
-    "import \"foo.proto\";\n"
-    "message Bar {\n"
-    "  optional Foo foo = 1;\n"
-    "}\n");
+                 "syntax = \"proto2\";\n"
+                 "import \"foo.proto\";\n"
+                 "message Bar {\n"
+                 "  optional Foo foo = 1;\n"
+                 "}\n");
 
   Run("protocol_compiler --descriptor_set_out=$tmpdir/descriptor_set "
       "--include_source_info --proto_path=$tmpdir bar.proto");
@@ -860,7 +861,8 @@ TEST_F(CommandLineInterfaceTest, WriteDescriptorSetWithSourceInfo) {
 
   FileDescriptorSet descriptor_set;
   ReadDescriptorSet("descriptor_set", &descriptor_set);
-  if (HasFatalFailure()) return;
+  if (HasFatalFailure())
+    return;
   EXPECT_EQ(1, descriptor_set.file_size());
   EXPECT_EQ("bar.proto", descriptor_set.file(0).name());
   // Source code info included.
@@ -869,14 +871,14 @@ TEST_F(CommandLineInterfaceTest, WriteDescriptorSetWithSourceInfo) {
 
 TEST_F(CommandLineInterfaceTest, WriteTransitiveDescriptorSet) {
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
   CreateTempFile("bar.proto",
-    "syntax = \"proto2\";\n"
-    "import \"foo.proto\";\n"
-    "message Bar {\n"
-    "  optional Foo foo = 1;\n"
-    "}\n");
+                 "syntax = \"proto2\";\n"
+                 "import \"foo.proto\";\n"
+                 "message Bar {\n"
+                 "  optional Foo foo = 1;\n"
+                 "}\n");
 
   Run("protocol_compiler --descriptor_set_out=$tmpdir/descriptor_set "
       "--include_imports --proto_path=$tmpdir bar.proto");
@@ -885,7 +887,8 @@ TEST_F(CommandLineInterfaceTest, WriteTransitiveDescriptorSet) {
 
   FileDescriptorSet descriptor_set;
   ReadDescriptorSet("descriptor_set", &descriptor_set);
-  if (HasFatalFailure()) return;
+  if (HasFatalFailure())
+    return;
   EXPECT_EQ(2, descriptor_set.file_size());
   if (descriptor_set.file(0).name() == "bar.proto") {
     std::swap(descriptor_set.mutable_file()->mutable_data()[0],
@@ -900,14 +903,14 @@ TEST_F(CommandLineInterfaceTest, WriteTransitiveDescriptorSet) {
 
 TEST_F(CommandLineInterfaceTest, WriteTransitiveDescriptorSetWithSourceInfo) {
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
   CreateTempFile("bar.proto",
-    "syntax = \"proto2\";\n"
-    "import \"foo.proto\";\n"
-    "message Bar {\n"
-    "  optional Foo foo = 1;\n"
-    "}\n");
+                 "syntax = \"proto2\";\n"
+                 "import \"foo.proto\";\n"
+                 "message Bar {\n"
+                 "  optional Foo foo = 1;\n"
+                 "}\n");
 
   Run("protocol_compiler --descriptor_set_out=$tmpdir/descriptor_set "
       "--include_imports --include_source_info --proto_path=$tmpdir bar.proto");
@@ -916,7 +919,8 @@ TEST_F(CommandLineInterfaceTest, WriteTransitiveDescriptorSetWithSourceInfo) {
 
   FileDescriptorSet descriptor_set;
   ReadDescriptorSet("descriptor_set", &descriptor_set);
-  if (HasFatalFailure()) return;
+  if (HasFatalFailure())
+    return;
   EXPECT_EQ(2, descriptor_set.file_size());
   if (descriptor_set.file(0).name() == "bar.proto") {
     std::swap(descriptor_set.mutable_file()->mutable_data()[0],
@@ -935,14 +939,14 @@ TEST_F(CommandLineInterfaceTest, ParseErrors) {
   // Test that parse errors are reported.
 
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "badsyntax\n");
+                 "syntax = \"proto2\";\n"
+                 "badsyntax\n");
 
   Run("protocol_compiler --test_out=$tmpdir "
       "--proto_path=$tmpdir foo.proto");
 
   ExpectErrorText(
-    "foo.proto:2:1: Expected top-level statement (e.g. \"message\").\n");
+      "foo.proto:2:1: Expected top-level statement (e.g. \"message\").\n");
 }
 
 TEST_F(CommandLineInterfaceTest, ParseErrorsMultipleFiles) {
@@ -952,24 +956,24 @@ TEST_F(CommandLineInterfaceTest, ParseErrorsMultipleFiles) {
   // two ways:  Directly and through baz.proto.  bar.proto's errors should
   // only be reported once.
   CreateTempFile("bar.proto",
-    "syntax = \"proto2\";\n"
-    "badsyntax\n");
+                 "syntax = \"proto2\";\n"
+                 "badsyntax\n");
   CreateTempFile("baz.proto",
-    "syntax = \"proto2\";\n"
-    "import \"bar.proto\";\n");
+                 "syntax = \"proto2\";\n"
+                 "import \"bar.proto\";\n");
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "import \"bar.proto\";\n"
-    "import \"baz.proto\";\n");
+                 "syntax = \"proto2\";\n"
+                 "import \"bar.proto\";\n"
+                 "import \"baz.proto\";\n");
 
   Run("protocol_compiler --test_out=$tmpdir "
       "--proto_path=$tmpdir foo.proto");
 
   ExpectErrorText(
-    "bar.proto:2:1: Expected top-level statement (e.g. \"message\").\n"
-    "baz.proto: Import \"bar.proto\" was not found or had errors.\n"
-    "foo.proto: Import \"bar.proto\" was not found or had errors.\n"
-    "foo.proto: Import \"baz.proto\" was not found or had errors.\n");
+      "bar.proto:2:1: Expected top-level statement (e.g. \"message\").\n"
+      "baz.proto: Import \"bar.proto\" was not found or had errors.\n"
+      "foo.proto: Import \"bar.proto\" was not found or had errors.\n"
+      "foo.proto: Import \"baz.proto\" was not found or had errors.\n");
 }
 
 TEST_F(CommandLineInterfaceTest, InputNotFoundError) {
@@ -979,7 +983,7 @@ TEST_F(CommandLineInterfaceTest, InputNotFoundError) {
       "--proto_path=$tmpdir foo.proto");
 
   ExpectErrorText(
-    "foo.proto: File not found.\n");
+      "foo.proto: File not found.\n");
 }
 
 TEST_F(CommandLineInterfaceTest, CwdRelativeInputNotFoundError) {
@@ -992,7 +996,7 @@ TEST_F(CommandLineInterfaceTest, CwdRelativeInputNotFoundError) {
       "--proto_path=$tmpdir $tmpdir/foo.proto");
 
   ExpectErrorText(
-    "$tmpdir/foo.proto: No such file or directory\n");
+      "$tmpdir/foo.proto: No such file or directory\n");
 }
 
 TEST_F(CommandLineInterfaceTest, CwdRelativeInputNotMappedError) {
@@ -1002,8 +1006,8 @@ TEST_F(CommandLineInterfaceTest, CwdRelativeInputNotMappedError) {
   SetInputsAreProtoPathRelative(false);
 
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
 
   // Create a directory called "bar" so that we can point --proto_path at it.
   CreateTempFile("bar/dummy", "");
@@ -1012,7 +1016,7 @@ TEST_F(CommandLineInterfaceTest, CwdRelativeInputNotMappedError) {
       "--proto_path=$tmpdir/bar $tmpdir/foo.proto");
 
   ExpectErrorText(
-    "$tmpdir/foo.proto: File does not reside within any path "
+      "$tmpdir/foo.proto: File does not reside within any path "
       "specified using --proto_path (or -I).  You must specify a "
       "--proto_path which encompasses this file.  Note that the "
       "proto_path must be an exact prefix of the .proto file "
@@ -1034,7 +1038,7 @@ TEST_F(CommandLineInterfaceTest, CwdRelativeInputNotFoundAndNotMappedError) {
       "--proto_path=$tmpdir/bar $tmpdir/foo.proto");
 
   ExpectErrorText(
-    "$tmpdir/foo.proto: No such file or directory\n");
+      "$tmpdir/foo.proto: No such file or directory\n");
 }
 
 TEST_F(CommandLineInterfaceTest, CwdRelativeInputShadowedError) {
@@ -1044,21 +1048,21 @@ TEST_F(CommandLineInterfaceTest, CwdRelativeInputShadowedError) {
   SetInputsAreProtoPathRelative(false);
 
   CreateTempFile("foo/foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
   CreateTempFile("bar/foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Bar {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Bar {}\n");
 
   Run("protocol_compiler --test_out=$tmpdir "
       "--proto_path=$tmpdir/foo --proto_path=$tmpdir/bar "
       "$tmpdir/bar/foo.proto");
 
   ExpectErrorText(
-    "$tmpdir/bar/foo.proto: Input is shadowed in the --proto_path "
-    "by \"$tmpdir/foo/foo.proto\".  Either use the latter "
-    "file as your input or reorder the --proto_path so that the "
-    "former file's location comes first.\n");
+      "$tmpdir/bar/foo.proto: Input is shadowed in the --proto_path "
+      "by \"$tmpdir/foo/foo.proto\".  Either use the latter "
+      "file as your input or reorder the --proto_path so that the "
+      "former file's location comes first.\n");
 }
 
 TEST_F(CommandLineInterfaceTest, ProtoPathNotFoundError) {
@@ -1068,8 +1072,8 @@ TEST_F(CommandLineInterfaceTest, ProtoPathNotFoundError) {
       "--proto_path=$tmpdir/foo foo.proto");
 
   ExpectErrorText(
-    "$tmpdir/foo: warning: directory does not exist.\n"
-    "foo.proto: File not found.\n");
+      "$tmpdir/foo: warning: directory does not exist.\n"
+      "foo.proto: File not found.\n");
 }
 
 TEST_F(CommandLineInterfaceTest, MissingInputError) {
@@ -1083,8 +1087,8 @@ TEST_F(CommandLineInterfaceTest, MissingInputError) {
 
 TEST_F(CommandLineInterfaceTest, MissingOutputError) {
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
 
   Run("protocol_compiler --proto_path=$tmpdir foo.proto");
 
@@ -1093,8 +1097,8 @@ TEST_F(CommandLineInterfaceTest, MissingOutputError) {
 
 TEST_F(CommandLineInterfaceTest, OutputWriteError) {
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
 
   string output_file =
       MockCodeGenerator::GetOutputFileName("test_generator", "foo.proto");
@@ -1122,8 +1126,8 @@ TEST_F(CommandLineInterfaceTest, OutputWriteError) {
 
 TEST_F(CommandLineInterfaceTest, PluginOutputWriteError) {
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
 
   string output_file =
       MockCodeGenerator::GetOutputFileName("test_plugin", "foo.proto");
@@ -1146,8 +1150,8 @@ TEST_F(CommandLineInterfaceTest, PluginOutputWriteError) {
 
 TEST_F(CommandLineInterfaceTest, OutputDirectoryNotFoundError) {
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
 
   Run("protocol_compiler --test_out=$tmpdir/nosuchdir "
       "--proto_path=$tmpdir foo.proto");
@@ -1157,8 +1161,8 @@ TEST_F(CommandLineInterfaceTest, OutputDirectoryNotFoundError) {
 
 TEST_F(CommandLineInterfaceTest, PluginOutputDirectoryNotFoundError) {
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
 
   Run("protocol_compiler --plug_out=$tmpdir/nosuchdir "
       "--proto_path=$tmpdir foo.proto");
@@ -1168,8 +1172,8 @@ TEST_F(CommandLineInterfaceTest, PluginOutputDirectoryNotFoundError) {
 
 TEST_F(CommandLineInterfaceTest, OutputDirectoryIsFileError) {
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
 
   Run("protocol_compiler --test_out=$tmpdir/foo.proto "
       "--proto_path=$tmpdir foo.proto");
@@ -1186,8 +1190,8 @@ TEST_F(CommandLineInterfaceTest, OutputDirectoryIsFileError) {
 
 TEST_F(CommandLineInterfaceTest, GeneratorError) {
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message MockCodeGenerator_Error {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message MockCodeGenerator_Error {}\n");
 
   Run("protocol_compiler --test_out=$tmpdir "
       "--proto_path=$tmpdir foo.proto");
@@ -1200,8 +1204,8 @@ TEST_F(CommandLineInterfaceTest, GeneratorPluginError) {
   // Test a generator plugin that returns an error.
 
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message MockCodeGenerator_Error {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message MockCodeGenerator_Error {}\n");
 
   Run("protocol_compiler --plug_out=TestParameter:$tmpdir "
       "--proto_path=$tmpdir foo.proto");
@@ -1214,8 +1218,8 @@ TEST_F(CommandLineInterfaceTest, GeneratorPluginFail) {
   // Test a generator plugin that exits with an error code.
 
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message MockCodeGenerator_Exit {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message MockCodeGenerator_Exit {}\n");
 
   Run("protocol_compiler --plug_out=TestParameter:$tmpdir "
       "--proto_path=$tmpdir foo.proto");
@@ -1229,8 +1233,8 @@ TEST_F(CommandLineInterfaceTest, GeneratorPluginCrash) {
   // Test a generator plugin that crashes.
 
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message MockCodeGenerator_Abort {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message MockCodeGenerator_Abort {}\n");
 
   Run("protocol_compiler --plug_out=TestParameter:$tmpdir "
       "--proto_path=$tmpdir foo.proto");
@@ -1251,8 +1255,8 @@ TEST_F(CommandLineInterfaceTest, GeneratorPluginCrash) {
 
 TEST_F(CommandLineInterfaceTest, PluginReceivesSourceCodeInfo) {
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message MockCodeGenerator_HasSourceCodeInfo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message MockCodeGenerator_HasSourceCodeInfo {}\n");
 
   Run("protocol_compiler --plug_out=$tmpdir --proto_path=$tmpdir foo.proto");
 
@@ -1264,8 +1268,8 @@ TEST_F(CommandLineInterfaceTest, GeneratorPluginNotFound) {
   // Test what happens if the plugin isn't found.
 
   CreateTempFile("error.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
 
   Run("protocol_compiler --badplug_out=TestParameter:$tmpdir "
       "--plugin=prefix-gen-badplug=no_such_file "
@@ -1273,7 +1277,7 @@ TEST_F(CommandLineInterfaceTest, GeneratorPluginNotFound) {
 
 #ifdef _WIN32
   ExpectErrorSubstring("--badplug_out: prefix-gen-badplug: " +
-      Subprocess::Win32ErrorMessage(ERROR_FILE_NOT_FOUND));
+                       Subprocess::Win32ErrorMessage(ERROR_FILE_NOT_FOUND));
 #else
   // Error written to stdout by child process after exec() fails.
   ExpectErrorSubstring(
@@ -1289,8 +1293,8 @@ TEST_F(CommandLineInterfaceTest, GeneratorPluginNotAllowed) {
   // Test what happens if plugins aren't allowed.
 
   CreateTempFile("error.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
 
   DisallowPlugins();
   Run("protocol_compiler --plug_out=TestParameter:$tmpdir "
@@ -1314,28 +1318,28 @@ TEST_F(CommandLineInterfaceTest, GccFormatErrors) {
   // that it can be set explicitly).
 
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "badsyntax\n");
+                 "syntax = \"proto2\";\n"
+                 "badsyntax\n");
 
   Run("protocol_compiler --test_out=$tmpdir "
       "--proto_path=$tmpdir --error_format=gcc foo.proto");
 
   ExpectErrorText(
-    "foo.proto:2:1: Expected top-level statement (e.g. \"message\").\n");
+      "foo.proto:2:1: Expected top-level statement (e.g. \"message\").\n");
 }
 
 TEST_F(CommandLineInterfaceTest, MsvsFormatErrors) {
   // Test --error_format=msvs
 
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "badsyntax\n");
+                 "syntax = \"proto2\";\n"
+                 "badsyntax\n");
 
   Run("protocol_compiler --test_out=$tmpdir "
       "--proto_path=$tmpdir --error_format=msvs foo.proto");
 
   ExpectErrorText(
-    "$tmpdir/foo.proto(2) : error in column=1: Expected top-level statement "
+      "$tmpdir/foo.proto(2) : error in column=1: Expected top-level statement "
       "(e.g. \"message\").\n");
 }
 
@@ -1343,14 +1347,14 @@ TEST_F(CommandLineInterfaceTest, InvalidErrorFormat) {
   // Test --error_format=msvs
 
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "badsyntax\n");
+                 "syntax = \"proto2\";\n"
+                 "badsyntax\n");
 
   Run("protocol_compiler --test_out=$tmpdir "
       "--proto_path=$tmpdir --error_format=invalid foo.proto");
 
   ExpectErrorText(
-    "Unknown error format: invalid\n");
+      "Unknown error format: invalid\n");
 }
 
 // -------------------------------------------------------------------
@@ -1360,8 +1364,8 @@ TEST_F(CommandLineInterfaceTest, ParseSingleCharacterFlag) {
   // Test that a single-character flag works.
 
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
 
   Run("protocol_compiler -t$tmpdir "
       "--proto_path=$tmpdir foo.proto");
@@ -1374,8 +1378,8 @@ TEST_F(CommandLineInterfaceTest, ParseSpaceDelimitedValue) {
   // Test that separating the flag value with a space works.
 
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
 
   Run("protocol_compiler --test_out $tmpdir "
       "--proto_path=$tmpdir foo.proto");
@@ -1389,8 +1393,8 @@ TEST_F(CommandLineInterfaceTest, ParseSingleCharacterSpaceDelimitedValue) {
   // single-character flags.
 
   CreateTempFile("foo.proto",
-    "syntax = \"proto2\";\n"
-    "message Foo {}\n");
+                 "syntax = \"proto2\";\n"
+                 "message Foo {}\n");
 
   Run("protocol_compiler -t $tmpdir "
       "--proto_path=$tmpdir foo.proto");
@@ -1443,7 +1447,7 @@ TEST_F(CommandLineInterfaceTest, PrintFreeFieldNumbers) {
       "message Baz {\n"
       "  optional int32 a = 2;\n"
       "  optional int64 d = 8;\n"
-      "  extensions 15 to max;\n"  // unordered.
+      "  extensions 15 to max;\n" // unordered.
       "  extensions 13;\n"
       "  extensions 10 to 12;\n"
       "  extensions 5;\n"
@@ -1453,16 +1457,16 @@ TEST_F(CommandLineInterfaceTest, PrintFreeFieldNumbers) {
       "quz.proto",
       "syntax = \"proto2\";\n"
       "message Quz {\n"
-      "  message Foo {}\n"  // nested message
+      "  message Foo {}\n" // nested message
       "  optional int32 a = 2;\n"
       "  optional group C = 4 {\n"
       "    optional int32 d = 5;\n"
       "  }\n"
       "  extensions 8 to 10;\n"
       "  optional group E = 11 {\n"
-      "    optional int32 f = 9;\n"    // explicitly reuse extension range 8-10
-      "    optional group G = 15 {\n"  // nested group
-      "      message Foo {}\n"         // nested message inside nested group
+      "    optional int32 f = 9;\n"   // explicitly reuse extension range 8-10
+      "    optional group G = 15 {\n" // nested group
+      "      message Foo {}\n"        // nested message inside nested group
       "    }\n"
       "  }\n"
       "}\n");
@@ -1493,7 +1497,7 @@ TEST_F(CommandLineInterfaceTest, PrintFreeFieldNumbers) {
 // platforms that don't have a Bourne-compatible shell available (especially
 // Windows/MSVC).
 class EncodeDecodeTest : public testing::Test {
- protected:
+protected:
   virtual void SetUp() {
     duped_stdin_ = dup(STDIN_FILENO);
   }
@@ -1511,7 +1515,8 @@ class EncodeDecodeTest : public testing::Test {
 
   bool RedirectStdinFromFile(const string& filename) {
     int fd = open(filename.c_str(), O_RDONLY);
-    if (fd < 0) return false;
+    if (fd < 0)
+      return false;
     dup2(fd, STDIN_FILENO);
     close(fd);
     return true;
@@ -1530,8 +1535,10 @@ class EncodeDecodeTest : public testing::Test {
     return result;
   }
 
-  enum Type { TEXT, BINARY };
-  enum ReturnCode { SUCCESS, ERROR };
+  enum Type { TEXT,
+              BINARY };
+  enum ReturnCode { SUCCESS,
+                    ERROR };
 
   bool Run(const string& command) {
     vector<string> args;
@@ -1539,7 +1546,7 @@ class EncodeDecodeTest : public testing::Test {
     SplitStringUsing(command, " ", &args);
     args.push_back("--proto_path=" + TestSourceDir());
 
-    scoped_array<const char*> argv(new const char* [args.size()]);
+    scoped_array<const char*> argv(new const char*[args.size()]);
     for (int i = 0; i < args.size(); i++) {
       argv[i] = args[i].c_str();
     }
@@ -1582,7 +1589,7 @@ class EncodeDecodeTest : public testing::Test {
     EXPECT_EQ(StripCR(expected_text), StripCR(captured_stderr_));
   }
 
- private:
+private:
   int duped_stdin_;
   string captured_stdout_;
   string captured_stderr_;
@@ -1590,22 +1597,22 @@ class EncodeDecodeTest : public testing::Test {
 
 TEST_F(EncodeDecodeTest, Encode) {
   RedirectStdinFromFile(TestSourceDir() + "/google/protobuf/"
-    "testdata/text_format_unittest_data_oneof_implemented.txt");
+                                          "testdata/text_format_unittest_data_oneof_implemented.txt");
   EXPECT_TRUE(Run("google/protobuf/unittest.proto "
                   "--encode=protobuf_unittest.TestAllTypes"));
   ExpectStdoutMatchesBinaryFile(TestSourceDir() +
-    "/google/protobuf/testdata/golden_message_oneof_implemented");
+                                "/google/protobuf/testdata/golden_message_oneof_implemented");
   ExpectStderrMatchesText("");
 }
 
 TEST_F(EncodeDecodeTest, Decode) {
   RedirectStdinFromFile(TestSourceDir() +
-    "/google/protobuf/testdata/golden_message_oneof_implemented");
+                        "/google/protobuf/testdata/golden_message_oneof_implemented");
   EXPECT_TRUE(Run("google/protobuf/unittest.proto "
                   "--decode=protobuf_unittest.TestAllTypes"));
   ExpectStdoutMatchesTextFile(TestSourceDir() +
-    "/google/protobuf/"
-    "testdata/text_format_unittest_data_oneof_implemented.txt");
+                              "/google/protobuf/"
+                              "testdata/text_format_unittest_data_oneof_implemented.txt");
   ExpectStderrMatchesText("");
 }
 
@@ -1615,7 +1622,7 @@ TEST_F(EncodeDecodeTest, Partial) {
                   "--encode=protobuf_unittest.TestRequired"));
   ExpectStdoutMatchesText("");
   ExpectStderrMatchesText(
-    "warning:  Input message is missing required fields:  a, b, c\n");
+      "warning:  Input message is missing required fields:  a, b, c\n");
 }
 
 TEST_F(EncodeDecodeTest, DecodeRaw) {
@@ -1644,11 +1651,11 @@ TEST_F(EncodeDecodeTest, ProtoParseError) {
                    "--encode=NoSuchType"));
   ExpectStdoutMatchesText("");
   ExpectStderrMatchesText(
-    "google/protobuf/no_such_file.proto: File not found.\n");
+      "google/protobuf/no_such_file.proto: File not found.\n");
 }
 
-}  // anonymous namespace
+} // anonymous namespace
 
-}  // namespace compiler
-}  // namespace protobuf
-}  // namespace google
+} // namespace compiler
+} // namespace protobuf
+} // namespace google

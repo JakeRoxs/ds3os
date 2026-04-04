@@ -77,11 +77,17 @@ static inline int internalInflateInit2(
     z_stream* zcontext, GzipInputStream::Format format) {
   int windowBitsFormat = 0;
   switch (format) {
-    case GzipInputStream::GZIP: windowBitsFormat = 16; break;
-    case GzipInputStream::AUTO: windowBitsFormat = 32; break;
-    case GzipInputStream::ZLIB: windowBitsFormat = 0; break;
+  case GzipInputStream::GZIP:
+    windowBitsFormat = 16;
+    break;
+  case GzipInputStream::AUTO:
+    windowBitsFormat = 32;
+    break;
+  case GzipInputStream::ZLIB:
+    windowBitsFormat = 0;
+    break;
   }
-  return inflateInit2(zcontext, /* windowBits */15 | windowBitsFormat);
+  return inflateInit2(zcontext, /* windowBits */ 15 | windowBitsFormat);
 }
 
 int GzipInputStream::Inflate(int flush) {
@@ -121,8 +127,7 @@ void GzipInputStream::DoNextOutput(const void** data, int* size) {
 
 // implements ZeroCopyInputStream ----------------------------------
 bool GzipInputStream::Next(const void** data, int* size) {
-  bool ok = (zerror_ == Z_OK) || (zerror_ == Z_STREAM_END)
-      || (zerror_ == Z_BUF_ERROR);
+  bool ok = (zerror_ == Z_OK) || (zerror_ == Z_STREAM_END) || (zerror_ == Z_BUF_ERROR);
   if ((!ok) || (zcontext_.next_out == NULL)) {
     return false;
   }
@@ -152,8 +157,7 @@ bool GzipInputStream::Next(const void** data, int* size) {
     // The underlying stream's Next returned false inside Inflate.
     return false;
   }
-  ok = (zerror_ == Z_OK) || (zerror_ == Z_STREAM_END)
-      || (zerror_ == Z_BUF_ERROR);
+  ok = (zerror_ == Z_OK) || (zerror_ == Z_STREAM_END) || (zerror_ == Z_BUF_ERROR);
   if (!ok) {
     return false;
   }
@@ -179,7 +183,7 @@ bool GzipInputStream::Skip(int count) {
 }
 int64 GzipInputStream::ByteCount() const {
   return zcontext_.total_out +
-    (((uintptr_t)zcontext_.next_out) - ((uintptr_t)output_position_));
+         (((uintptr_t)zcontext_.next_out) - ((uintptr_t)output_position_));
 }
 
 // =========================================================================
@@ -228,8 +232,8 @@ void GzipOutputStream::Init(ZeroCopyOutputStream* sub_stream,
       &zcontext_,
       options.compression_level,
       Z_DEFLATED,
-      /* windowBits */15 | windowBitsFormat,
-      /* memLevel (default) */8,
+      /* windowBits */ 15 | windowBitsFormat,
+      /* memLevel (default) */ 8,
       options.compression_strategy);
 }
 
@@ -301,9 +305,9 @@ int64 GzipOutputStream::ByteCount() const {
 bool GzipOutputStream::Flush() {
   zerror_ = Deflate(Z_FULL_FLUSH);
   // Return true if the flush succeeded or if it was a no-op.
-  return  (zerror_ == Z_OK) ||
-      (zerror_ == Z_BUF_ERROR && zcontext_.avail_in == 0 &&
-       zcontext_.avail_out != 0);
+  return (zerror_ == Z_OK) ||
+         (zerror_ == Z_BUF_ERROR && zcontext_.avail_in == 0 &&
+          zcontext_.avail_out != 0);
 }
 
 bool GzipOutputStream::Close() {
@@ -319,8 +323,8 @@ bool GzipOutputStream::Close() {
   return ok;
 }
 
-}  // namespace io
-}  // namespace protobuf
-}  // namespace google
+} // namespace io
+} // namespace protobuf
+} // namespace google
 
-#endif  // HAVE_ZLIB
+#endif // HAVE_ZLIB

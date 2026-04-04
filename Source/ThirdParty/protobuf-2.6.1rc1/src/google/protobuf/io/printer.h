@@ -45,7 +45,7 @@ namespace google {
 namespace protobuf {
 namespace io {
 
-class ZeroCopyOutputStream;     // zero_copy_stream.h
+class ZeroCopyOutputStream; // zero_copy_stream.h
 
 // This simple utility class assists in code generation.  It basically
 // allows the caller to define a set of variables and then output some
@@ -62,7 +62,7 @@ class ZeroCopyOutputStream;     // zero_copy_stream.h
 // in the case of undefined variables in debug builds. This helps greatly in
 // debugging code which uses it.
 class LIBPROTOBUF_EXPORT Printer {
- public:
+public:
   // Create a printer that writes text to the given output stream.  Use the
   // given character as the delimiter for variables.
   Printer(ZeroCopyOutputStream* output, char variable_delimiter);
@@ -81,11 +81,11 @@ class LIBPROTOBUF_EXPORT Printer {
   void Print(const char* text, const char* variable, const string& value);
   // Like the first Print(), except the substitutions are given as parameters.
   void Print(const char* text, const char* variable1, const string& value1,
-                               const char* variable2, const string& value2);
+             const char* variable2, const string& value2);
   // Like the first Print(), except the substitutions are given as parameters.
   void Print(const char* text, const char* variable1, const string& value1,
-                               const char* variable2, const string& value2,
-                               const char* variable3, const string& value3);
+             const char* variable2, const string& value2,
+             const char* variable3, const string& value3);
   // TODO(kenton):  Overloaded versions with more variables?  Three seems
   //   to be enough.
 
@@ -115,7 +115,7 @@ class LIBPROTOBUF_EXPORT Printer {
   // error.)
   bool failed() const { return failed_; }
 
- private:
+private:
   const char variable_delimiter_;
 
   ZeroCopyOutputStream* const output_;
@@ -129,8 +129,8 @@ class LIBPROTOBUF_EXPORT Printer {
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(Printer);
 };
 
-}  // namespace io
-}  // namespace protobuf
+} // namespace io
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_IO_PRINTER_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_IO_PRINTER_H__

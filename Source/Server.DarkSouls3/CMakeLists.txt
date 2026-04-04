@@ -1,6 +1,7 @@
 # ================================================================================================
-#  DS3OS
+#  Rekindled Server
 #  Copyright (C) 2021 Tim Leonard
+#  Copyright (C) 2026 Jake Morgeson
 # ================================================================================================
 
 project(DarkSouls3 C CXX)
@@ -109,5 +110,3 @@ target_link_libraries(
     sqlite
     steam
 )
-
-util_setup_folder_structure(${PROJECT_NAME} SOURCES "Games")

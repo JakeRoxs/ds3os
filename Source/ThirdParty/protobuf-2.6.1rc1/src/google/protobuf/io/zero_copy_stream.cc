@@ -43,15 +43,14 @@ namespace io {
 ZeroCopyInputStream::~ZeroCopyInputStream() {}
 ZeroCopyOutputStream::~ZeroCopyOutputStream() {}
 
-
 bool ZeroCopyOutputStream::WriteAliasedRaw(const void* /* data */,
                                            int /* size */) {
   GOOGLE_LOG(FATAL) << "This ZeroCopyOutputStream doesn't support aliasing. "
-                "Reaching here usually means a ZeroCopyOutputStream "
-                "implementation bug.";
+                       "Reaching here usually means a ZeroCopyOutputStream "
+                       "implementation bug.";
   return false;
 }
 
-}  // namespace io
-}  // namespace protobuf
-}  // namespace google
+} // namespace io
+} // namespace protobuf
+} // namespace google

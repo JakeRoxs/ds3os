@@ -21,26 +21,24 @@ Issue Date: 20/12/2007
 #ifndef RDTSC_H
 #define RDTSC_H
 
-#if defined( _WIN32 ) || defined( _WIN64 )
+#if defined(_WIN32) || defined(_WIN64)
 
-#   include <intrin.h>
-#   pragma intrinsic( __rdtsc )
+#include <intrin.h>
+#pragma intrinsic(__rdtsc)
 
-    __inline volatile unsigned long long read_tsc(void)
-    {
-        return __rdtsc();
-    }
+__inline volatile unsigned long long read_tsc(void) {
+  return __rdtsc();
+}
 
-#elif defined( __GNUC__ )
+#elif defined(__GNUC__)
 
-    static inline volatile unsigned long long read_tsc(void)
-    {
-        unsigned long lo, hi;
-        asm volatile("cpuid; rdtsc" : "=a" (lo), "=d" (hi));
-        return (((unsigned long long)hi) << 32) + lo;
-    }
+static inline volatile unsigned long long read_tsc(void) {
+  unsigned long lo, hi;
+  asm volatile("cpuid; rdtsc" : "=a"(lo), "=d"(hi));
+  return (((unsigned long long)hi) << 32) + lo;
+}
 #else
-#   error A high resolution timer is not available
+#error A high resolution timer is not available
 #endif
 
 #endif

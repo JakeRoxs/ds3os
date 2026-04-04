@@ -43,8 +43,8 @@ namespace google {
 namespace protobuf {
 
 using unittest::ForeignMessage;
-using unittest::TestAllTypes;
 using unittest::TestAllExtensions;
+using unittest::TestAllTypes;
 
 namespace {
 
@@ -57,7 +57,6 @@ static string StrFunc(int i, int j) {
   SStringPrintf(&str, "%d", Func(i, 4));
   return str;
 }
-
 
 TEST(RepeatedFieldReflectionTest, RegularFields) {
   TestAllTypes message;
@@ -149,16 +148,16 @@ TEST(RepeatedFieldReflectionTest, RegularFields) {
   const FieldDescriptor* fd_optional_int32 =
       desc->FindFieldByName("optional_int32");
   EXPECT_DEATH(refl->GetRepeatedField<int32>(
-      message, fd_optional_int32), "requires a repeated field");
+                   message, fd_optional_int32),
+               "requires a repeated field");
   EXPECT_DEATH(refl->GetRepeatedField<double>(
-      message, fd_repeated_int32), "not the right type");
+                   message, fd_repeated_int32),
+               "not the right type");
   EXPECT_DEATH(refl->GetRepeatedPtrField<TestAllTypes>(
-      message, fd_repeated_foreign_message), "wrong submessage type");
-#endif  // PROTOBUF_HAS_DEATH_TEST
+                   message, fd_repeated_foreign_message),
+               "wrong submessage type");
+#endif // PROTOBUF_HAS_DEATH_TEST
 }
-
-
-
 
 TEST(RepeatedFieldReflectionTest, ExtensionFields) {
   TestAllExtensions extended_message;
@@ -186,10 +185,10 @@ TEST(RepeatedFieldReflectionTest, ExtensionFields) {
     EXPECT_EQ(Func(i, 1), rf_int64_extension.Get(i));
     mrf_int64_extension->Set(i, Func(i, -1));
     EXPECT_EQ(Func(i, -1),
-        extended_message.GetExtension(unittest::repeated_int64_extension, i));
+              extended_message.GetExtension(unittest::repeated_int64_extension, i));
   }
 }
 
-}  // namespace
-}  // namespace protobuf
-}  // namespace google
+} // namespace
+} // namespace protobuf
+} // namespace google

@@ -1,6 +1,7 @@
 /*
- * Dark Souls 3 - Open Server
+ * Rekindled Server
  * Copyright (C) 2021 Tim Leonard
+ * Copyright (C) 2026 Jake Morgeson
  *
  * This program is free software; licensed under the MIT license.
  * You should have received a copy of the license along with this program.
@@ -20,22 +21,20 @@ class RSAKeyPair;
 
 // Represents an individual client connected to the login service.
 
-class LoginClient 
-{
+class LoginClient {
 public:
-    LoginClient(LoginService* OwningService, std::shared_ptr<NetConnection> InConnection, RSAKeyPair* InServerRSAKey);
+  LoginClient(LoginService* OwningService, std::shared_ptr<NetConnection> InConnection, RSAKeyPair* InServerRSAKey);
 
-    // If this returns true the client is expected to be disconnected and is disposed of.
-    bool Poll();
+  // If this returns true the client is expected to be disconnected and is disposed of.
+  bool Poll();
 
-    std::string GetName();
+  std::string GetName();
 
-private:    
-    LoginService* Service;
+private:
+  LoginService* Service;
 
-    std::shared_ptr<NetConnection> Connection;
-    std::shared_ptr<Frpg2MessageStream> MessageStream;
+  std::shared_ptr<NetConnection> Connection;
+  std::shared_ptr<Frpg2MessageStream> MessageStream;
 
-    double LastMessageReceivedTime = 0.0;
-
+  double LastMessageReceivedTime = 0.0;
 };

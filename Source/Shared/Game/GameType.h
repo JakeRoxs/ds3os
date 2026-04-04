@@ -1,6 +1,7 @@
 /*
- * Dark Souls 3 - Open Server
+ * Rekindled Server
  * Copyright (C) 2021 Tim Leonard
+ * Copyright (C) 2026 Jake Morgeson
  *
  * This program is free software; licensed under the MIT license.
  * You should have received a copy of the license along with this program.
@@ -9,14 +10,13 @@
 
 #pragma once
 
-enum class GameType
-{
-    Unknown,
+enum class GameType {
+  Unknown,
 
-    DarkSouls2,
-    DarkSouls3,
+  DarkSouls2,
+  DarkSouls3,
 
-    COUNT
+  COUNT
 };
 
 inline const char* GameTypeStrings[(int)GameType::COUNT] = {

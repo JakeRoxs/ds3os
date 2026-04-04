@@ -52,7 +52,7 @@ namespace java {
 namespace {
 
 class TestGenerator : public CodeGenerator {
- public:
+public:
   TestGenerator() {}
   ~TestGenerator() {}
 
@@ -84,15 +84,15 @@ class TestGenerator : public CodeGenerator {
 // compiling the output which is a bit more than I care to do for this test.
 TEST(JavaPluginTest, PluginTest) {
   GOOGLE_CHECK_OK(File::SetContents(TestTempDir() + "/test.proto",
-                             "syntax = \"proto2\";\n"
-                             "package foo;\n"
-                             "option java_package = \"\";\n"
-                             "option java_outer_classname = \"Test\";\n"
-                             "message Bar {\n"
-                             "  message Baz {}\n"
-                             "}\n"
-                             "enum Qux { BLAH = 1; }\n",
-                             true));
+                                    "syntax = \"proto2\";\n"
+                                    "package foo;\n"
+                                    "option java_package = \"\";\n"
+                                    "option java_outer_classname = \"Test\";\n"
+                                    "message Bar {\n"
+                                    "  message Baz {}\n"
+                                    "}\n"
+                                    "enum Qux { BLAH = 1; }\n",
+                                    true));
 
   google::protobuf::compiler::CommandLineInterface cli;
   cli.SetInputsAreProtoPathRelative(true);
@@ -107,18 +107,17 @@ TEST(JavaPluginTest, PluginTest) {
   string test_out = "--test_out=" + TestTempDir();
 
   const char* argv[] = {
-    "protoc",
-    proto_path.c_str(),
-    java_out.c_str(),
-    test_out.c_str(),
-    "test.proto"
-  };
+      "protoc",
+      proto_path.c_str(),
+      java_out.c_str(),
+      test_out.c_str(),
+      "test.proto"};
 
   EXPECT_EQ(0, cli.Run(5, argv));
 }
 
-}  // namespace
-}  // namespace java
-}  // namespace compiler
-}  // namespace protobuf
-}  // namespace google
+} // namespace
+} // namespace java
+} // namespace compiler
+} // namespace protobuf
+} // namespace google

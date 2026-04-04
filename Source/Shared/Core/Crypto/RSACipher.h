@@ -1,6 +1,7 @@
 /*
- * Dark Souls 3 - Open Server
+ * Rekindled Server
  * Copyright (C) 2021 Tim Leonard
+ * Copyright (C) 2026 Jake Morgeson
  *
  * This program is free software; licensed under the MIT license.
  * You should have received a copy of the license along with this program.
@@ -15,18 +16,15 @@
 #include <vector>
 
 class RSACipher
-    : public Cipher
-{
+    : public Cipher {
 public:
+  RSACipher(RSAKeyPair* Key, RSAPaddingMode PaddingMode, bool UsePublicKeyToEncrypt);
 
-    RSACipher(RSAKeyPair* Key, RSAPaddingMode PaddingMode, bool UsePublicKeyToEncrypt);
-
-    bool Encrypt(const std::vector<uint8_t>& input, std::vector<uint8_t>& Output) override;
-    bool Decrypt(const std::vector<uint8_t>& input, std::vector<uint8_t>& Output) override;
+  bool Encrypt(const std::vector<uint8_t>& input, std::vector<uint8_t>& Output) override;
+  bool Decrypt(const std::vector<uint8_t>& input, std::vector<uint8_t>& Output) override;
 
 private:
-    RSAKeyPair* Key;
-    RSAPaddingMode PaddingMode;
-    bool UsePublicKeyToEncrypt = false;
-
+  RSAKeyPair* Key;
+  RSAPaddingMode PaddingMode;
+  bool UsePublicKeyToEncrypt = false;
 };

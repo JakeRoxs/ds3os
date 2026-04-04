@@ -1,6 +1,7 @@
 /*
- * Dark Souls 3 - Open Server
+ * Rekindled Server
  * Copyright (C) 2021 Tim Leonard
+ * Copyright (C) 2026 Jake Morgeson
  *
  * This program is free software; licensed under the MIT license.
  * You should have received a copy of the license along with this program.
@@ -9,14 +10,14 @@
 
 #pragma once
 
- // The version of protobuf we have to use to support DS3 doesn't generate
- // code that compiles without warnings under x64 (lots of size_t truncation).
- // To keep things a bit cleaner we import all the files through this header and cpp.
-#pragma warning(disable: 4267 4244 4018)
+// The version of protobuf we have to use to support DS3 doesn't generate
+// code that compiles without warnings under x64 (lots of size_t truncation).
+// To keep things a bit cleaner we import all the files through this header and cpp.
+#pragma warning(disable : 4267 4244 4018)
 
 #include "Server.DarkSouls2/Protobuf/Generated/DS2_Frpg2PlayerData.pb.h"
 #include "Server.DarkSouls2/Protobuf/Generated/DS2_Frpg2RequestMessage.pb.h"
 
 #include "Server/Protobuf/SharedProtobufs.h"
 
-#pragma warning(default: 4267 4244 4018)
+#pragma warning(default : 4267 4244 4018)

@@ -55,7 +55,7 @@ namespace internal {
 //
 // This class is really a namespace that contains only static methods.
 class LIBPROTOBUF_EXPORT ReflectionOps {
- public:
+public:
   static void Copy(const Message& from, Message* to);
   static void Merge(const Message& from, Message* to);
   static void Clear(Message* message);
@@ -69,13 +69,13 @@ class LIBPROTOBUF_EXPORT ReflectionOps {
                                        const string& prefix,
                                        vector<string>* errors);
 
- private:
+private:
   // All methods are static.  No need to construct.
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ReflectionOps);
 };
 
-}  // namespace internal
-}  // namespace protobuf
+} // namespace internal
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_REFLECTION_OPS_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_REFLECTION_OPS_H__

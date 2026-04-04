@@ -51,7 +51,7 @@ namespace java {
 // the results to avoid redundant calculation across multiple name queries.
 // Thread-safety note: This class is *not* thread-safe.
 class ClassNameResolver {
- public:
+public:
   ClassNameResolver();
   ~ClassNameResolver();
 
@@ -80,11 +80,11 @@ class ClassNameResolver {
   string GetClassName(const ServiceDescriptor* descriptor, bool immutable);
   string GetClassName(const FileDescriptor* descriptor, bool immutable);
 
-  template<class DescriptorType>
+  template <class DescriptorType>
   string GetImmutableClassName(const DescriptorType* descriptor) {
     return GetClassName(descriptor, true);
   }
-  template<class DescriptorType>
+  template <class DescriptorType>
   string GetMutableClassName(const DescriptorType* descriptor) {
     return GetClassName(descriptor, false);
   }
@@ -98,7 +98,8 @@ class ClassNameResolver {
   // For example:
   //   com.package.OuterClass$OuterMessage$InnerMessage
   string GetJavaImmutableClassName(const Descriptor* descriptor);
- private:
+
+private:
   // Get the full name of a Java class by prepending the Java package name
   // or outer class name.
   string GetClassFullName(const string& name_without_package,
@@ -116,9 +117,9 @@ class ClassNameResolver {
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ClassNameResolver);
 };
 
-}  // namespace java
-}  // namespace compiler
-}  // namespace protobuf
+} // namespace java
+} // namespace compiler
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_JAVA_NAME_RESOLVER_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_COMPILER_JAVA_NAME_RESOLVER_H__

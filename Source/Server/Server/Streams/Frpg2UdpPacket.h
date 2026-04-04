@@ -1,6 +1,7 @@
 /*
- * Dark Souls 3 - Open Server
+ * Rekindled Server
  * Copyright (C) 2021 Tim Leonard
+ * Copyright (C) 2026 Jake Morgeson
  *
  * This program is free software; licensed under the MIT license.
  * You should have received a copy of the license along with this program.
@@ -14,15 +15,12 @@
 #include <vector>
 #include <string>
 
-struct Frpg2UdpPacket
-{
+struct Frpg2UdpPacket {
 public:
+  // Length is equal to the rest of the payload minus the header.
+  std::vector<uint8_t> Payload;
 
-    // Length is equal to the rest of the payload minus the header.
-    std::vector<uint8_t> Payload;
+  std::string Disassembly;
 
-    std::string Disassembly;
-
-    bool HasConnectionPrefix = false;
-
+  bool HasConnectionPrefix = false;
 };

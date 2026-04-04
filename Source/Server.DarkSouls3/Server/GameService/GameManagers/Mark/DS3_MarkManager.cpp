@@ -1,6 +1,7 @@
 /*
- * Dark Souls 3 - Open Server
+ * Rekindled Server
  * Copyright (C) 2021 Tim Leonard
+ * Copyright (C) 2026 Jake Morgeson
  *
  * This program is free software; licensed under the MIT license.
  * You should have received a copy of the license along with this program.
@@ -20,73 +21,59 @@
 #include "Shared/Core/Utils/Logging.h"
 
 DS3_MarkManager::DS3_MarkManager(Server* InServerInstance)
-    : ServerInstance(InServerInstance)
-{
+    : ServerInstance(InServerInstance) {
 }
 
-MessageHandleResult DS3_MarkManager::OnMessageReceived(GameClient* Client, const Frpg2ReliableUdpMessage& Message)
-{
-    if (Message.Header.IsType(DS3_Frpg2ReliableUdpMessageType::RequestCreateMark))
-    {
-        return Handle_RequestCreateMark(Client, Message);
-    }
-    else if (Message.Header.IsType(DS3_Frpg2ReliableUdpMessageType::RequestRemoveMark))
-    {
-        return Handle_RequestRemoveMark(Client, Message);
-    }
-    else if (Message.Header.IsType(DS3_Frpg2ReliableUdpMessageType::RequestReentryMark))
-    {
-        return Handle_RequestReentryMark(Client, Message);
-    }
-    else if (Message.Header.IsType(DS3_Frpg2ReliableUdpMessageType::RequestGetMarkList))
-    {
-        return Handle_RequestGetMarkList(Client, Message);
-    }
+MessageHandleResult DS3_MarkManager::OnMessageReceived(GameClient* Client, const Frpg2ReliableUdpMessage& Message) {
+  if (Message.Header.IsType(DS3_Frpg2ReliableUdpMessageType::RequestCreateMark)) {
+    return Handle_RequestCreateMark(Client, Message);
+  } else if (Message.Header.IsType(DS3_Frpg2ReliableUdpMessageType::RequestRemoveMark)) {
+    return Handle_RequestRemoveMark(Client, Message);
+  } else if (Message.Header.IsType(DS3_Frpg2ReliableUdpMessageType::RequestReentryMark)) {
+    return Handle_RequestReentryMark(Client, Message);
+  } else if (Message.Header.IsType(DS3_Frpg2ReliableUdpMessageType::RequestGetMarkList)) {
+    return Handle_RequestGetMarkList(Client, Message);
+  }
 
-    return MessageHandleResult::Unhandled;
+  return MessageHandleResult::Unhandled;
 }
 
-MessageHandleResult DS3_MarkManager::Handle_RequestCreateMark(GameClient* Client, const Frpg2ReliableUdpMessage& Message)
-{
-    DS3_Frpg2RequestMessage::RequestCreateMark* Request = (DS3_Frpg2RequestMessage::RequestCreateMark*)Message.Protobuf.get();
+MessageHandleResult DS3_MarkManager::Handle_RequestCreateMark(GameClient* Client, const Frpg2ReliableUdpMessage& Message) {
+  DS3_Frpg2RequestMessage::RequestCreateMark* Request = (DS3_Frpg2RequestMessage::RequestCreateMark*)Message.Protobuf.get();
 
-    // These functions should never be called, they are cut-content.
-    Ensure(false);
+  // These functions should never be called, they are cut-content.
+  Ensure(false);
 
-    return MessageHandleResult::Handled;
+  return MessageHandleResult::Handled;
 }
 
-MessageHandleResult DS3_MarkManager::Handle_RequestRemoveMark(GameClient* Client, const Frpg2ReliableUdpMessage& Message)
-{
-    DS3_Frpg2RequestMessage::RequestRemoveMark* Request = (DS3_Frpg2RequestMessage::RequestRemoveMark*)Message.Protobuf.get();
+MessageHandleResult DS3_MarkManager::Handle_RequestRemoveMark(GameClient* Client, const Frpg2ReliableUdpMessage& Message) {
+  DS3_Frpg2RequestMessage::RequestRemoveMark* Request = (DS3_Frpg2RequestMessage::RequestRemoveMark*)Message.Protobuf.get();
 
-    // These functions should never be called, they are cut-content.
-    Ensure(false);
+  // These functions should never be called, they are cut-content.
+  Ensure(false);
 
-    return MessageHandleResult::Handled;
+  return MessageHandleResult::Handled;
 }
 
-MessageHandleResult DS3_MarkManager::Handle_RequestReentryMark(GameClient* Client, const Frpg2ReliableUdpMessage& Message)
-{
-    DS3_Frpg2RequestMessage::RequestReentryMark* Request = (DS3_Frpg2RequestMessage::RequestReentryMark*)Message.Protobuf.get();
+MessageHandleResult DS3_MarkManager::Handle_RequestReentryMark(GameClient* Client, const Frpg2ReliableUdpMessage& Message) {
+  DS3_Frpg2RequestMessage::RequestReentryMark* Request = (DS3_Frpg2RequestMessage::RequestReentryMark*)Message.Protobuf.get();
 
-    // These functions should never be called, they are cut-content.
-    Ensure(false);
+  // These functions should never be called, they are cut-content.
+  Ensure(false);
 
-    return MessageHandleResult::Handled;
+  return MessageHandleResult::Handled;
 }
 
-MessageHandleResult DS3_MarkManager::Handle_RequestGetMarkList(GameClient* Client, const Frpg2ReliableUdpMessage& Message)
-{
-    DS3_Frpg2RequestMessage::RequestGetMarkList* Request = (DS3_Frpg2RequestMessage::RequestGetMarkList*)Message.Protobuf.get();
+MessageHandleResult DS3_MarkManager::Handle_RequestGetMarkList(GameClient* Client, const Frpg2ReliableUdpMessage& Message) {
+  DS3_Frpg2RequestMessage::RequestGetMarkList* Request = (DS3_Frpg2RequestMessage::RequestGetMarkList*)Message.Protobuf.get();
 
-    // These functions should never be called, they are cut-content.
-    Ensure(false);
+  // These functions should never be called, they are cut-content.
+  Ensure(false);
 
-    return MessageHandleResult::Handled;
+  return MessageHandleResult::Handled;
 }
 
-std::string DS3_MarkManager::GetName()
-{
-    return "Mark";
+std::string DS3_MarkManager::GetName() {
+  return "Mark";
 }

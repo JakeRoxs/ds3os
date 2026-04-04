@@ -6,7 +6,7 @@ end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
 indent_style = space
-indent_size = 4
+indent_size = 2
 
 # Windows-specific files that should remain CRLF
 [*.{ps1,bat}]
@@ -55,10 +55,14 @@ csharp_prefer_braces = true:suggestion
 # prefer explicit tuple names
 csharp_style_tuple_names = true:suggestion
 
-[*.{cpp,h,hpp,c}]
+[*.{c,cc,cpp,cxx,h,hh,hpp,hxx,ipp,inl,ixx,tpp}]
 indent_style = space
-indent_size = 4
-c_brace_style = k&r
+indent_size = 2
+# Note: brace style for C/C++ is controlled by .clang-format in this repo.
+
+[{CMakeLists.txt,*.cmake,*.rst}]
+indent_size = 2
+indent_style = space
 
 [*.proto]
 indent_style = space

@@ -44,23 +44,23 @@
 
 namespace google {
 namespace protobuf {
-  namespace compiler {
-    namespace java {
-      class Context;                // context.h
-      class ClassNameResolver;      // name_resolver.h
-    }
-  }
-  namespace io {
-    class Printer;                  // printer.h
-  }
+namespace compiler {
+namespace java {
+class Context;           // context.h
+class ClassNameResolver; // name_resolver.h
+} // namespace java
+} // namespace compiler
+namespace io {
+class Printer; // printer.h
 }
+} // namespace protobuf
 
 namespace protobuf {
 namespace compiler {
 namespace java {
 
 class ImmutableFieldGenerator {
- public:
+public:
   ImmutableFieldGenerator() {}
   virtual ~ImmutableFieldGenerator();
 
@@ -86,31 +86,30 @@ class ImmutableFieldGenerator {
 
   virtual string GetBoxedType() const = 0;
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ImmutableFieldGenerator);
 };
 
-
 // Convenience class which constructs FieldGenerators for a Descriptor.
-template<typename FieldGeneratorType>
+template <typename FieldGeneratorType>
 class FieldGeneratorMap {
- public:
+public:
   explicit FieldGeneratorMap(const Descriptor* descriptor,
                              Context* context);
   ~FieldGeneratorMap();
 
   const FieldGeneratorType& get(const FieldDescriptor* field) const;
 
- private:
+private:
   const Descriptor* descriptor_;
   Context* context_;
   ClassNameResolver* name_resolver_;
-  scoped_array<scoped_ptr<FieldGeneratorType> > field_generators_;
+  scoped_array<scoped_ptr<FieldGeneratorType>> field_generators_;
 
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(FieldGeneratorMap);
 };
 
-template<typename FieldGeneratorType>
+template <typename FieldGeneratorType>
 inline const FieldGeneratorType&
 FieldGeneratorMap<FieldGeneratorType>::get(const FieldDescriptor* field) const {
   GOOGLE_CHECK_EQ(field->containing_type(), descriptor_);
@@ -118,14 +117,13 @@ FieldGeneratorMap<FieldGeneratorType>::get(const FieldDescriptor* field) const {
 }
 
 // Instantiate template for mutable and immutable maps.
-template<>
+template <>
 FieldGeneratorMap<ImmutableFieldGenerator>::
-FieldGeneratorMap(const Descriptor* descriptor,
-                  Context* context);
+    FieldGeneratorMap(const Descriptor* descriptor,
+                      Context* context);
 
-template<>
+template <>
 FieldGeneratorMap<ImmutableFieldGenerator>::~FieldGeneratorMap();
-
 
 // Field information used in FieldGeneartors.
 struct FieldGeneratorInfo {
@@ -154,9 +152,9 @@ void SetCommonOneofVariables(const FieldDescriptor* descriptor,
 void PrintExtraFieldInfo(const map<string, string>& variables,
                          io::Printer* printer);
 
-}  // namespace java
-}  // namespace compiler
-}  // namespace protobuf
+} // namespace java
+} // namespace compiler
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_JAVA_FIELD_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_COMPILER_JAVA_FIELD_H__

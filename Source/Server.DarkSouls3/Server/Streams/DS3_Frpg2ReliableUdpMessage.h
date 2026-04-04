@@ -1,6 +1,7 @@
 /*
- * Dark Souls 3 - Open Server
+ * Rekindled Server
  * Copyright (C) 2021 Tim Leonard
+ * Copyright (C) 2026 Jake Morgeson
  *
  * This program is free software; licensed under the MIT license.
  * You should have received a copy of the license along with this program.
@@ -17,14 +18,13 @@
 
 #include "Protobuf/SharedProtobufs.h"
 
-enum class DS3_Frpg2ReliableUdpMessageType : int
-{
-    Reply = 0x0,
-    Push = 0x0320,
+enum class DS3_Frpg2ReliableUdpMessageType : int {
+  Reply = 0x0,
+  Push = 0x0320,
 
-#define DEFINE_REQUEST_RESPONSE(OpCode, Type, ProtobufClass, ResponseProtobufClass)         Type = OpCode,
-#define DEFINE_MESSAGE(OpCode, Type, ProtobufClass)                                         Type = OpCode,
-#define DEFINE_PUSH_MESSAGE(OpCode, Type, ProtobufClass)                                    /* Do Nothing */
+#define DEFINE_REQUEST_RESPONSE(OpCode, Type, ProtobufClass, ResponseProtobufClass) Type = OpCode,
+#define DEFINE_MESSAGE(OpCode, Type, ProtobufClass) Type = OpCode,
+#define DEFINE_PUSH_MESSAGE(OpCode, Type, ProtobufClass) /* Do Nothing */
 #include "Server.DarkSouls3/Server/Streams/DS3_Frpg2ReliableUdpMessageTypes.inc"
 #undef DEFINE_PUSH_MESSAGE
 #undef DEFINE_MESSAGE

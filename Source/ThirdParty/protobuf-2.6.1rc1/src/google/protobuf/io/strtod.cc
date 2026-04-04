@@ -59,7 +59,7 @@ string LocalizeRadix(const char* input, const char* radix_pos) {
   char temp[16];
   int size = sprintf(temp, "%.1f", 1.5);
   GOOGLE_CHECK_EQ(temp[0], '1');
-  GOOGLE_CHECK_EQ(temp[size-1], '5');
+  GOOGLE_CHECK_EQ(temp[size - 1], '5');
   GOOGLE_CHECK_LE(size, 6);
 
   // Now replace the '.' in the input with it.
@@ -71,7 +71,7 @@ string LocalizeRadix(const char* input, const char* radix_pos) {
   return result;
 }
 
-}  // namespace
+} // namespace
 
 double NoLocaleStrtod(const char* text, char** original_endptr) {
   // We cannot simply set the locale to "C" temporarily with setlocale()
@@ -82,8 +82,10 @@ double NoLocaleStrtod(const char* text, char** original_endptr) {
 
   char* temp_endptr;
   double result = strtod(text, &temp_endptr);
-  if (original_endptr != NULL) *original_endptr = temp_endptr;
-  if (*temp_endptr != '.') return result;
+  if (original_endptr != NULL)
+    *original_endptr = temp_endptr;
+  if (*temp_endptr != '.')
+    return result;
 
   // Parsing halted on a '.'.  Perhaps we're in a different locale?  Let's
   // try to replace the '.' with a locale-specific radix character and
@@ -101,13 +103,13 @@ double NoLocaleStrtod(const char* text, char** original_endptr) {
       int size_diff = localized.size() - strlen(text);
       // const_cast is necessary to match the strtod() interface.
       *original_endptr = const_cast<char*>(
-        text + (localized_endptr - localized_cstr - size_diff));
+          text + (localized_endptr - localized_cstr - size_diff));
     }
   }
 
   return result;
 }
 
-}  // namespace io
-}  // namespace protobuf
-}  // namespace google
+} // namespace io
+} // namespace protobuf
+} // namespace google

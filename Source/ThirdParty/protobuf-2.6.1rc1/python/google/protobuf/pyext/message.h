@@ -42,7 +42,6 @@
 #endif
 #include <string>
 
-
 namespace google {
 namespace protobuf {
 
@@ -216,59 +215,58 @@ int SetOwner(CMessage* self, const shared_ptr<Message>& new_owner);
 
 int AssureWritable(CMessage* self);
 
-}  // namespace cmessage
+} // namespace cmessage
 
 /* Is 64bit */
 #define IS_64BIT (SIZEOF_LONG == 8)
 
 #define FIELD_BELONGS_TO_MESSAGE(field_descriptor, message) \
-    ((message)->GetDescriptor() == (field_descriptor)->containing_type())
+  ((message)->GetDescriptor() == (field_descriptor)->containing_type())
 
-#define FIELD_IS_REPEATED(field_descriptor)                 \
-    ((field_descriptor)->label() == google::protobuf::FieldDescriptor::LABEL_REPEATED)
+#define FIELD_IS_REPEATED(field_descriptor) \
+  ((field_descriptor)->label() == google::protobuf::FieldDescriptor::LABEL_REPEATED)
 
-#define GOOGLE_CHECK_GET_INT32(arg, value, err)                        \
-    int32 value;                                            \
-    if (!CheckAndGetInteger(arg, &value, kint32min_py, kint32max_py)) { \
-      return err;                                          \
-    }
+#define GOOGLE_CHECK_GET_INT32(arg, value, err)                       \
+  int32 value;                                                        \
+  if (!CheckAndGetInteger(arg, &value, kint32min_py, kint32max_py)) { \
+    return err;                                                       \
+  }
 
-#define GOOGLE_CHECK_GET_INT64(arg, value, err)                        \
-    int64 value;                                            \
-    if (!CheckAndGetInteger(arg, &value, kint64min_py, kint64max_py)) { \
-      return err;                                          \
-    }
+#define GOOGLE_CHECK_GET_INT64(arg, value, err)                       \
+  int64 value;                                                        \
+  if (!CheckAndGetInteger(arg, &value, kint64min_py, kint64max_py)) { \
+    return err;                                                       \
+  }
 
-#define GOOGLE_CHECK_GET_UINT32(arg, value, err)                       \
-    uint32 value;                                           \
-    if (!CheckAndGetInteger(arg, &value, kPythonZero, kuint32max_py)) { \
-      return err;                                          \
-    }
+#define GOOGLE_CHECK_GET_UINT32(arg, value, err)                      \
+  uint32 value;                                                       \
+  if (!CheckAndGetInteger(arg, &value, kPythonZero, kuint32max_py)) { \
+    return err;                                                       \
+  }
 
-#define GOOGLE_CHECK_GET_UINT64(arg, value, err)                       \
-    uint64 value;                                           \
-    if (!CheckAndGetInteger(arg, &value, kPythonZero, kuint64max_py)) { \
-      return err;                                          \
-    }
+#define GOOGLE_CHECK_GET_UINT64(arg, value, err)                      \
+  uint64 value;                                                       \
+  if (!CheckAndGetInteger(arg, &value, kPythonZero, kuint64max_py)) { \
+    return err;                                                       \
+  }
 
-#define GOOGLE_CHECK_GET_FLOAT(arg, value, err)                        \
-    float value;                                            \
-    if (!CheckAndGetFloat(arg, &value)) {                   \
-      return err;                                          \
-    }                                                       \
+#define GOOGLE_CHECK_GET_FLOAT(arg, value, err) \
+  float value;                                  \
+  if (!CheckAndGetFloat(arg, &value)) {         \
+    return err;                                 \
+  }
 
-#define GOOGLE_CHECK_GET_DOUBLE(arg, value, err)                       \
-    double value;                                           \
-    if (!CheckAndGetDouble(arg, &value)) {                  \
-      return err;                                          \
-    }
+#define GOOGLE_CHECK_GET_DOUBLE(arg, value, err) \
+  double value;                                  \
+  if (!CheckAndGetDouble(arg, &value)) {         \
+    return err;                                  \
+  }
 
-#define GOOGLE_CHECK_GET_BOOL(arg, value, err)                         \
-    bool value;                                             \
-    if (!CheckAndGetBool(arg, &value)) {                    \
-      return err;                                          \
-    }
-
+#define GOOGLE_CHECK_GET_BOOL(arg, value, err) \
+  bool value;                                  \
+  if (!CheckAndGetBool(arg, &value)) {         \
+    return err;                                \
+  }
 
 extern PyObject* kPythonZero;
 extern PyObject* kint32min_py;
@@ -281,7 +279,7 @@ extern PyObject* kuint64max_py;
 #define C(str) const_cast<char*>(str)
 
 void FormatTypeError(PyObject* arg, char* expected_types);
-template<class T>
+template <class T>
 bool CheckAndGetInteger(
     PyObject* arg, T* value, PyObject* min, PyObject* max);
 bool CheckAndGetDouble(PyObject* arg, double* value);
@@ -298,8 +296,8 @@ PyObject* ToStringObject(
 
 extern PyObject* PickleError_class;
 
-}  // namespace python
-}  // namespace protobuf
+} // namespace python
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_PYTHON_CPP_MESSAGE_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_PYTHON_CPP_MESSAGE_H__

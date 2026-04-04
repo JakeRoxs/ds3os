@@ -13,18 +13,18 @@
 
 typedef struct
 {
-    aes_encrypt_ctx ctx[1];
-    uint8_t         block[AES_BLOCK_SIZE];
-    uint8_t         prev[AES_BLOCK_SIZE];
-    uint8_t         lu[2][AES_BLOCK_SIZE];
-    uint32_t        buflen;
+  aes_encrypt_ctx ctx[1];
+  uint8_t block[AES_BLOCK_SIZE];
+  uint8_t prev[AES_BLOCK_SIZE];
+  uint8_t lu[2][AES_BLOCK_SIZE];
+  uint32_t buflen;
 } omac_state;
 
-int omac_init( const unsigned char key[], unsigned long key_len, omac_state omac[1] );
-int omac_process( const unsigned char in[], unsigned long in_len, omac_state omac[1] );
-int omac_done( unsigned char out[], unsigned long *out_len, omac_state omac[1] );
-int omac_memory( const unsigned char key[], unsigned long key_len,
-                 const unsigned char in[], unsigned long in_len,
-                 unsigned char out[], unsigned long *out_len );
+int omac_init(const unsigned char key[], unsigned long key_len, omac_state omac[1]);
+int omac_process(const unsigned char in[], unsigned long in_len, omac_state omac[1]);
+int omac_done(unsigned char out[], unsigned long* out_len, omac_state omac[1]);
+int omac_memory(const unsigned char key[], unsigned long key_len,
+                const unsigned char in[], unsigned long in_len,
+                unsigned char out[], unsigned long* out_len);
 
 #endif

@@ -49,7 +49,6 @@ namespace google {
 namespace protobuf {
 namespace internal {
 
-
 // Annotation for the compiler to emit a deprecation message if a field marked
 // with option 'deprecated=true' is used in the code, or for other things in
 // generated code which are deprecated.
@@ -58,7 +57,6 @@ namespace internal {
 // there.
 #undef DEPRECATED_PROTOBUF_FIELD
 #define PROTOBUF_DEPRECATED
-
 
 // Constants for special floating point values.
 LIBPROTOBUF_EXPORT double Infinity();
@@ -74,7 +72,6 @@ LIBPROTOBUF_EXPORT double NaN();
 LIBPROTOBUF_EXPORT extern const ::std::string* empty_string_;
 LIBPROTOBUF_EXPORT extern ProtobufOnceType empty_string_once_init_;
 LIBPROTOBUF_EXPORT void InitEmptyString();
-
 
 LIBPROTOBUF_EXPORT inline const ::std::string& GetEmptyStringAlreadyInited() {
   assert(empty_string_ != NULL);
@@ -93,21 +90,22 @@ LIBPROTOBUF_EXPORT inline const ::std::string& GetEmptyString() {
 // get the declaration from this file.
 LIBPROTOBUF_EXPORT int StringSpaceUsedExcludingSelf(const string& str);
 
-
 // True if IsInitialized() is true for all elements of t.  Type is expected
 // to be a RepeatedPtrField<some message type>.  It's useful to have this
 // helper here to keep the protobuf compiler from ever having to emit loops in
 // IsInitialized() methods.  We want the C++ compiler to inline this or not
 // as it sees fit.
-template <class Type> bool AllAreInitialized(const Type& t) {
-  for (int i = t.size(); --i >= 0; ) {
-    if (!t.Get(i).IsInitialized()) return false;
+template <class Type>
+bool AllAreInitialized(const Type& t) {
+  for (int i = t.size(); --i >= 0;) {
+    if (!t.Get(i).IsInitialized())
+      return false;
   }
   return true;
 }
 
-}  // namespace internal
-}  // namespace protobuf
+} // namespace internal
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_GENERATED_MESSAGE_UTIL_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_GENERATED_MESSAGE_UTIL_H__

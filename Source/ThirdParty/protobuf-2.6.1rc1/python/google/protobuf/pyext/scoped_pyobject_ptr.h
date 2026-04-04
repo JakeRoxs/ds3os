@@ -37,10 +37,10 @@
 
 namespace google {
 class ScopedPyObjectPtr {
- public:
+public:
   // Constructor.  Defaults to intializing with NULL.
   // There is no way to create an uninitialized ScopedPyObjectPtr.
-  explicit ScopedPyObjectPtr(PyObject* p = NULL) : ptr_(p) { }
+  explicit ScopedPyObjectPtr(PyObject* p = NULL) : ptr_(p) {}
 
   // Destructor.  If there is a PyObject object, delete it.
   ~ScopedPyObjectPtr() {
@@ -67,7 +67,7 @@ class ScopedPyObjectPtr {
 
   operator PyObject*() { return ptr_; }
 
-  PyObject* operator->() const  {
+  PyObject* operator->() const {
     assert(ptr_ != NULL);
     return ptr_;
   }
@@ -85,11 +85,11 @@ class ScopedPyObjectPtr {
   bool operator==(const PyObject* p) const { return ptr_ == p; }
   bool operator!=(const PyObject* p) const { return ptr_ != p; }
 
- private:
+private:
   PyObject* ptr_;
 
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ScopedPyObjectPtr);
 };
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_PYTHON_CPP_SCOPED_PYOBJECT_PTR_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_PYTHON_CPP_SCOPED_PYOBJECT_PTR_H__

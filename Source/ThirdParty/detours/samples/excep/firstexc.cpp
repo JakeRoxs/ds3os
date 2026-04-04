@@ -16,19 +16,19 @@
 #include "firstexc.h"
 
 #if _MSC_VER > 1000
-#pragma warning(disable: 4740)
+#pragma warning(disable : 4740)
 #endif
 
 //////////////////////////////////////////////////////////////////////////////
 //
-static BOOL                         s_bExceptionDetourInstalled = FALSE;
+static BOOL s_bExceptionDetourInstalled = FALSE;
 static LPTOP_LEVEL_EXCEPTION_FILTER s_pFirstChanceFilter = NULL;
 
-ULONG (NTAPI *Real_NtContinue)(IN PCONTEXT ContextRecord,
-                             IN BOOLEAN TestAlerts) = NULL;
+ULONG(NTAPI* Real_NtContinue)(IN PCONTEXT ContextRecord,
+                              IN BOOLEAN TestAlerts) = NULL;
 
-VOID (NTAPI *Real_KiUserExceptionDispatcher)(IN PEXCEPTION_RECORD ExceptionRecord,
-                                        IN PCONTEXT ContextFrame) = NULL;
+VOID(NTAPI* Real_KiUserExceptionDispatcher)(IN PEXCEPTION_RECORD ExceptionRecord,
+                                            IN PCONTEXT ContextFrame) = NULL;
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -36,32 +36,30 @@ VOID (NTAPI *Real_KiUserExceptionDispatcher)(IN PEXCEPTION_RECORD ExceptionRecor
 //  stack.  It forces all exceptions to be treated as unhandled exceptions.
 //
 #pragma warning(push)
-#pragma warning(disable: 4733)
-static VOID WINAPI RemoveAllExceptionHandlers(VOID)
-{
-    // The basic, OS defined exception frame
-    struct EXCEPTION_REGISTRATION
-    {
-        EXCEPTION_REGISTRATION* prev;
-        FARPROC handler;
-    };
+#pragma warning(disable : 4733)
+static VOID WINAPI RemoveAllExceptionHandlers(VOID) {
+  // The basic, OS defined exception frame
+  struct EXCEPTION_REGISTRATION {
+    EXCEPTION_REGISTRATION* prev;
+    FARPROC handler;
+  };
 
-    EXCEPTION_REGISTRATION * pVCExcRec = NULL;
-    EXCEPTION_REGISTRATION * pLastGood = NULL;
+  EXCEPTION_REGISTRATION* pVCExcRec = NULL;
+  EXCEPTION_REGISTRATION* pLastGood = NULL;
 
-    __asm mov eax, FS:[0];
-    __asm mov [pVCExcRec], eax;
+  __asm mov eax, FS : [0];
+  __asm mov[pVCExcRec], eax;
 
-    for (pLastGood = pVCExcRec; (ULONG)pVCExcRec != ~0ul; ) {
-        if ((ULONG)pVCExcRec >= 0x30000000)
-            break;
+  for (pLastGood = pVCExcRec; (ULONG)pVCExcRec != ~0ul;) {
+    if ((ULONG)pVCExcRec >= 0x30000000)
+      break;
 
-        pLastGood = pVCExcRec;
-        pVCExcRec = (EXCEPTION_REGISTRATION *)(pVCExcRec->prev);
-    }
+    pLastGood = pVCExcRec;
+    pVCExcRec = (EXCEPTION_REGISTRATION*)(pVCExcRec->prev);
+  }
 
-    __asm mov eax, [pLastGood];
-    __asm mov FS:[0], eax;
+  __asm mov eax, [pLastGood];
+  __asm mov FS : [0], eax;
 }
 #pragma warning(pop)
 
@@ -85,43 +83,42 @@ static VOID WINAPI RemoveAllExceptionHandlers(VOID)
 //
 static VOID __declspec(naked) NTAPI
 Detour_KiUserExceptionDispatcher(PEXCEPTION_RECORD pExceptRec,
-                                 CONTEXT *pContext)
-{
-    __asm {
+                                 CONTEXT* pContext) {
+  __asm {
         xor     eax, eax                ; // Create fake return address on stack.
         push    eax                     ; // (Generally, we are called by the kernel.)
 
         push    ebp                     ; // Prolog
         mov     ebp, esp                ;
         sub     esp, __LOCAL_SIZE       ;
-    }
+  }
 
-    LPTOP_LEVEL_EXCEPTION_FILTER pFirstChanceFilter;
-    EXCEPTION_POINTERS ep;
-    DWORD dwReturn;
-    DWORD dwError;
+  LPTOP_LEVEL_EXCEPTION_FILTER pFirstChanceFilter;
+  EXCEPTION_POINTERS ep;
+  DWORD dwReturn;
+  DWORD dwError;
 
-    ep.ExceptionRecord = pExceptRec;
-    ep.ContextRecord = pContext;
-    pFirstChanceFilter = s_pFirstChanceFilter;
-    dwReturn = EXCEPTION_CONTINUE_SEARCH;
-    dwError = 0;
+  ep.ExceptionRecord = pExceptRec;
+  ep.ContextRecord = pContext;
+  pFirstChanceFilter = s_pFirstChanceFilter;
+  dwReturn = EXCEPTION_CONTINUE_SEARCH;
+  dwError = 0;
 
-    if (s_pFirstChanceFilter) {
-        dwReturn = pFirstChanceFilter(&ep);
-    }
+  if (s_pFirstChanceFilter) {
+    dwReturn = pFirstChanceFilter(&ep);
+  }
 
-    if (dwReturn == EXCEPTION_CONTINUE_EXECUTION) {
-        dwError = Real_NtContinue(pContext, 0);
-        // This call should *NEVER* return.  If it does, we want to fail to the debugger.
-        RemoveAllExceptionHandlers();
-    }
+  if (dwReturn == EXCEPTION_CONTINUE_EXECUTION) {
+    dwError = Real_NtContinue(pContext, 0);
+    // This call should *NEVER* return.  If it does, we want to fail to the debugger.
+    RemoveAllExceptionHandlers();
+  }
 
-    if (dwReturn == EXCEPTION_EXECUTE_HANDLER) {        // Special: Call debugger.
-        RemoveAllExceptionHandlers();
-    }
+  if (dwReturn == EXCEPTION_EXECUTE_HANDLER) { // Special: Call debugger.
+    RemoveAllExceptionHandlers();
+  }
 
-    __asm {
+  __asm {
         mov     ebx, pExceptRec         ;
         mov     ecx, pContext           ;
         push    ecx                     ;
@@ -136,7 +133,7 @@ Detour_KiUserExceptionDispatcher(PEXCEPTION_RECORD pExceptRec,
         mov     esp, ebp                ; // Epilog
         pop     ebp                     ;
         ret                             ;
-    }
+  }
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -165,27 +162,26 @@ Detour_KiUserExceptionDispatcher(PEXCEPTION_RECORD pExceptRec,
 //        (i.e. Give the user a chance to invoke the debugger.)
 //
 LPTOP_LEVEL_EXCEPTION_FILTER WINAPI
-DetourFirstChanceExceptionFilter(LPTOP_LEVEL_EXCEPTION_FILTER pNewFirstChanceFilter)
-{
-    if (!s_bExceptionDetourInstalled) {
-        s_bExceptionDetourInstalled = TRUE;
+DetourFirstChanceExceptionFilter(LPTOP_LEVEL_EXCEPTION_FILTER pNewFirstChanceFilter) {
+  if (!s_bExceptionDetourInstalled) {
+    s_bExceptionDetourInstalled = TRUE;
 
-        Real_NtContinue = (ULONG (NTAPI *)(IN PCONTEXT, IN BOOLEAN))
-            DetourFindFunction("ntdll.dll", "NtContinue");
-        Real_KiUserExceptionDispatcher =
-            (VOID (NTAPI *)(IN PEXCEPTION_RECORD, IN PCONTEXT))
+    Real_NtContinue = (ULONG(NTAPI*)(IN PCONTEXT, IN BOOLEAN))
+        DetourFindFunction("ntdll.dll", "NtContinue");
+    Real_KiUserExceptionDispatcher =
+        (VOID(NTAPI*)(IN PEXCEPTION_RECORD, IN PCONTEXT))
             DetourFindFunction("ntdll.dll", "KiUserExceptionDispatcher");
 
-        DetourTransactionBegin();
-        DetourUpdateThread(GetCurrentThread());
-        DetourAttach(&(PVOID&)Real_KiUserExceptionDispatcher,
-                       Detour_KiUserExceptionDispatcher);
-        DetourTransactionCommit();
-    }
+    DetourTransactionBegin();
+    DetourUpdateThread(GetCurrentThread());
+    DetourAttach(&(PVOID&)Real_KiUserExceptionDispatcher,
+                 Detour_KiUserExceptionDispatcher);
+    DetourTransactionCommit();
+  }
 
-    LPTOP_LEVEL_EXCEPTION_FILTER pOldFirstChanceFilter = s_pFirstChanceFilter;
-    s_pFirstChanceFilter = pNewFirstChanceFilter;
-    return pOldFirstChanceFilter;
+  LPTOP_LEVEL_EXCEPTION_FILTER pOldFirstChanceFilter = s_pFirstChanceFilter;
+  s_pFirstChanceFilter = pNewFirstChanceFilter;
+  return pOldFirstChanceFilter;
 }
 //
 ///////////////////////////////////////////////////////////////// End of File.

@@ -43,17 +43,17 @@
 
 namespace google {
 namespace protobuf {
-  class FileDescriptor;        // descriptor.h
-  namespace compiler {
-    class GeneratorContext;    // code_generator.h
-    namespace java {
-      class ClassNameResolver;       // name_resolver.h
-    }
-  }
-  namespace io {
-    class Printer;             // printer.h
-  }
+class FileDescriptor; // descriptor.h
+namespace compiler {
+class GeneratorContext; // code_generator.h
+namespace java {
+class ClassNameResolver; // name_resolver.h
 }
+} // namespace compiler
+namespace io {
+class Printer; // printer.h
+}
+} // namespace protobuf
 
 namespace protobuf {
 namespace compiler {
@@ -62,7 +62,7 @@ namespace java {
 // A generator that generates code that are shared between immutable API
 // and mutable API. Currently only descriptors are shared.
 class SharedCodeGenerator {
- public:
+public:
   explicit SharedCodeGenerator(const FileDescriptor* file);
   ~SharedCodeGenerator();
 
@@ -70,7 +70,7 @@ class SharedCodeGenerator {
                 vector<string>* file_list);
   void GenerateDescriptors(io::Printer* printer);
 
- private:
+private:
   // Returns whether the dependency should be included in the output file.
   // Always returns true for opensource, but used internally at Google to help
   // improve compatibility with version 1 of protocol buffers.
@@ -81,10 +81,9 @@ class SharedCodeGenerator {
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(SharedCodeGenerator);
 };
 
+} // namespace java
+} // namespace compiler
+} // namespace protobuf
 
-}  // namespace java
-}  // namespace compiler
-}  // namespace protobuf
-
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_JAVA_SHARED_CODE_GENERATOR_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_COMPILER_JAVA_SHARED_CODE_GENERATOR_H__

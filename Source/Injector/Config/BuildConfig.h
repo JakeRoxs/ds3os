@@ -1,6 +1,7 @@
 /*
- * Dark Souls 3 - Open Server
+ * Rekindled Server
  * Copyright (C) 2021 Tim Leonard
+ * Copyright (C) 2026 Jake Morgeson
  *
  * This program is free software; licensed under the MIT license.
  * You should have received a copy of the license along with this program.
@@ -12,32 +13,29 @@
 #include <vector>
 #include <string>
 
-// Abstract class that just holds various build-time 
+// Abstract class that just holds various build-time
 // configuration variables. Might be worth dumping this
-// into a json file at some point in future so it can 
+// into a json file at some point in future so it can
 // be changed.
-class BuildConfig
-{
+class BuildConfig {
 public:
-    
-    BuildConfig() = delete;
+  BuildConfig() = delete;
 
-    // Turns off redirectly to custom server, goes to retail instead.
-    // (WARNING: This may get you banned, don't touch unless you know what you are doing).
-    inline static const bool DO_NOT_REDIRECT = false;
+  // Turns off redirectly to custom server, goes to retail instead.
+  // (WARNING: This may get you banned, don't touch unless you know what you are doing).
+  inline static const bool DO_NOT_REDIRECT = false;
 
-    // Writes out all protobufs to a temporary folder
-    inline static const bool WRITE_OUT_PROTOBUFS = false;
+  // Writes out all protobufs to a temporary folder
+  inline static const bool WRITE_OUT_PROTOBUFS = false;
 
 #ifdef _DEBUG
-    // Writes out all the decoded format of all protobufs encountered so far.
-    inline static const bool WRITE_OUT_DECODED_PROTOBUFS = true;
+  // Writes out all the decoded format of all protobufs encountered so far.
+  inline static const bool WRITE_OUT_DECODED_PROTOBUFS = true;
 #else
-    // Writes out all the decoded format of all protobufs encountered so far.
-    inline static const bool WRITE_OUT_DECODED_PROTOBUFS = false;
+  // Writes out all the decoded format of all protobufs encountered so far.
+  inline static const bool WRITE_OUT_DECODED_PROTOBUFS = false;
 #endif
 
-    // Writes out all protobufs to a temporary folder
-    inline static const char* TEMP_LOG_FOLDER = "D:\\Temp\\";
-
+  // Writes out all protobufs to a temporary folder
+  inline static const char* TEMP_LOG_FOLDER = "D:\\Temp\\";
 };

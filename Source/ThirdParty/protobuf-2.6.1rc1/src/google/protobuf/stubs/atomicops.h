@@ -154,15 +154,15 @@ void Release_Store(volatile Atomic64* ptr, Atomic64 value);
 Atomic64 NoBarrier_Load(volatile const Atomic64* ptr);
 Atomic64 Acquire_Load(volatile const Atomic64* ptr);
 Atomic64 Release_Load(volatile const Atomic64* ptr);
-#endif  // GOOGLE_PROTOBUF_ARCH_64_BIT
+#endif // GOOGLE_PROTOBUF_ARCH_64_BIT
 
-}  // namespace internal
-}  // namespace protobuf
-}  // namespace google
+} // namespace internal
+} // namespace protobuf
+} // namespace google
 
 // Include our platform specific implementation.
 #define GOOGLE_PROTOBUF_ATOMICOPS_ERROR \
-#error "Atomic operations are not supported on your platform"
+  #error "Atomic operations are not supported on your platform"
 
 // ThreadSanitizer, http://clang.llvm.org/docs/ThreadSanitizer.html.
 #if defined(THREAD_SANITIZER)
@@ -222,6 +222,6 @@ GOOGLE_PROTOBUF_ATOMICOPS_ERROR
 
 #undef GOOGLE_PROTOBUF_ATOMICOPS_ERROR
 
-#endif  // GOOGLE_PROTOBUF_NO_THREAD_SAFETY
+#endif // GOOGLE_PROTOBUF_NO_THREAD_SAFETY
 
-#endif  // GOOGLE_PROTOBUF_ATOMICOPS_H_
+#endif // GOOGLE_PROTOBUF_ATOMICOPS_H_

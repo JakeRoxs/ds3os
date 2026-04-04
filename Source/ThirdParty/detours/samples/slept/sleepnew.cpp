@@ -13,24 +13,23 @@
 
 #include "verify.cpp"
 
-int __cdecl main(void)
-{
-    printf("sleepnew.exe: Starting.\n");
-    Verify("SleepEx", (PBYTE)SleepEx);
-    printf("\n");
-    fflush(stdout);
+int __cdecl main(void) {
+  printf("sleepnew.exe: Starting.\n");
+  Verify("SleepEx", (PBYTE)SleepEx);
+  printf("\n");
+  fflush(stdout);
 
-    printf("sleepnew.exe: Calling Sleep for 1 second.\n");
-    Sleep(1000);
-    printf("sleepnew.exe: Calling SleepEx for 1 second.\n");
-    SleepEx(1000, true);
-    printf("sleepnew.exe: Calling Sleep again for 1 second.\n");
-    Sleep(1000);
-    printf("sleepnew.exe: Calling TimedSleep for 1 second.\n");
-    TimedSleepEx(1000, FALSE);
-    printf("sleepnew.exe: Calling UntimedSleep for 1 second.\n");
-    UntimedSleepEx(1000, FALSE);
-    printf("sleepnew.exe: Done sleeping.\n\n");
+  printf("sleepnew.exe: Calling Sleep for 1 second.\n");
+  Sleep(1000);
+  printf("sleepnew.exe: Calling SleepEx for 1 second.\n");
+  SleepEx(1000, true);
+  printf("sleepnew.exe: Calling Sleep again for 1 second.\n");
+  Sleep(1000);
+  printf("sleepnew.exe: Calling TimedSleep for 1 second.\n");
+  TimedSleepEx(1000, FALSE);
+  printf("sleepnew.exe: Calling UntimedSleep for 1 second.\n");
+  UntimedSleepEx(1000, FALSE);
+  printf("sleepnew.exe: Done sleeping.\n\n");
 
 #if 0
     // This code enumerates the virtual address space and attempts to reserve
@@ -69,8 +68,8 @@ int __cdecl main(void)
     }
 #endif
 
-    printf("sleepnew.exe: GetSleptTicks() = %d\n\n", GetSleptTicks());
-    return 0;
+  printf("sleepnew.exe: GetSleptTicks() = %d\n\n", GetSleptTicks());
+  return 0;
 }
 //
 ///////////////////////////////////////////////////////////////// End of File.

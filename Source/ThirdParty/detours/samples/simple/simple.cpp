@@ -15,61 +15,59 @@
 #include "detours.h"
 
 static LONG dwSlept = 0;
-static DWORD (WINAPI * TrueSleepEx)(DWORD dwMilliseconds, BOOL bAlertable) = SleepEx;
+static DWORD(WINAPI* TrueSleepEx)(DWORD dwMilliseconds, BOOL bAlertable) = SleepEx;
 
-DWORD WINAPI TimedSleepEx(DWORD dwMilliseconds, BOOL bAlertable)
-{
-    DWORD dwBeg = GetTickCount();
-    DWORD ret = TrueSleepEx(dwMilliseconds, bAlertable);
-    DWORD dwEnd = GetTickCount();
+DWORD WINAPI TimedSleepEx(DWORD dwMilliseconds, BOOL bAlertable) {
+  DWORD dwBeg = GetTickCount();
+  DWORD ret = TrueSleepEx(dwMilliseconds, bAlertable);
+  DWORD dwEnd = GetTickCount();
 
-    InterlockedExchangeAdd(&dwSlept, dwEnd - dwBeg);
+  InterlockedExchangeAdd(&dwSlept, dwEnd - dwBeg);
 
-    return ret;
+  return ret;
 }
 
-BOOL WINAPI DllMain(HINSTANCE hinst, DWORD dwReason, LPVOID reserved)
-{
-    LONG error;
-    (void)hinst;
-    (void)reserved;
+BOOL WINAPI DllMain(HINSTANCE hinst, DWORD dwReason, LPVOID reserved) {
+  LONG error;
+  (void)hinst;
+  (void)reserved;
 
-    if (DetourIsHelperProcess()) {
-        return TRUE;
-    }
-
-    if (dwReason == DLL_PROCESS_ATTACH) {
-        DetourRestoreAfterWith();
-
-        printf("simple" DETOURS_STRINGIFY(DETOURS_BITS) ".dll:"
-               " Starting.\n");
-        fflush(stdout);
-
-        DetourTransactionBegin();
-        DetourUpdateThread(GetCurrentThread());
-        DetourAttach(&(PVOID&)TrueSleepEx, TimedSleepEx);
-        error = DetourTransactionCommit();
-
-        if (error == NO_ERROR) {
-            printf("simple" DETOURS_STRINGIFY(DETOURS_BITS) ".dll:"
-                   " Detoured SleepEx().\n");
-        }
-        else {
-            printf("simple" DETOURS_STRINGIFY(DETOURS_BITS) ".dll:"
-                   " Error detouring SleepEx(): %d\n", error);
-        }
-    }
-    else if (dwReason == DLL_PROCESS_DETACH) {
-        DetourTransactionBegin();
-        DetourUpdateThread(GetCurrentThread());
-        DetourDetach(&(PVOID&)TrueSleepEx, TimedSleepEx);
-        error = DetourTransactionCommit();
-
-        printf("simple" DETOURS_STRINGIFY(DETOURS_BITS) ".dll:"
-               " Removed SleepEx() (result=%d), slept %d ticks.\n", error, dwSlept);
-        fflush(stdout);
-    }
+  if (DetourIsHelperProcess()) {
     return TRUE;
+  }
+
+  if (dwReason == DLL_PROCESS_ATTACH) {
+    DetourRestoreAfterWith();
+
+    printf("simple" DETOURS_STRINGIFY(DETOURS_BITS) ".dll:"
+                                                    " Starting.\n");
+    fflush(stdout);
+
+    DetourTransactionBegin();
+    DetourUpdateThread(GetCurrentThread());
+    DetourAttach(&(PVOID&)TrueSleepEx, TimedSleepEx);
+    error = DetourTransactionCommit();
+
+    if (error == NO_ERROR) {
+      printf("simple" DETOURS_STRINGIFY(DETOURS_BITS) ".dll:"
+                                                      " Detoured SleepEx().\n");
+    } else {
+      printf("simple" DETOURS_STRINGIFY(DETOURS_BITS) ".dll:"
+                                                      " Error detouring SleepEx(): %d\n",
+             error);
+    }
+  } else if (dwReason == DLL_PROCESS_DETACH) {
+    DetourTransactionBegin();
+    DetourUpdateThread(GetCurrentThread());
+    DetourDetach(&(PVOID&)TrueSleepEx, TimedSleepEx);
+    error = DetourTransactionCommit();
+
+    printf("simple" DETOURS_STRINGIFY(DETOURS_BITS) ".dll:"
+                                                    " Removed SleepEx() (result=%d), slept %d ticks.\n",
+           error, dwSlept);
+    fflush(stdout);
+  }
+  return TRUE;
 }
 
 //

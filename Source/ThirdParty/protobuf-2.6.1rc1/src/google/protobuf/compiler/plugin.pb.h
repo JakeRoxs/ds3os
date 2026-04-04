@@ -43,7 +43,7 @@ class CodeGeneratorResponse_File;
 // ===================================================================
 
 class LIBPROTOC_EXPORT CodeGeneratorRequest : public ::google::protobuf::Message {
- public:
+public:
   CodeGeneratorRequest();
   virtual ~CodeGeneratorRequest();
 
@@ -84,11 +84,13 @@ class LIBPROTOC_EXPORT CodeGeneratorRequest : public ::google::protobuf::Message
       ::google::protobuf::io::CodedOutputStream* output) const;
   ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::google::protobuf::Metadata GetMetadata() const;
 
   // nested types ----------------------------------------------------
@@ -108,8 +110,8 @@ class LIBPROTOC_EXPORT CodeGeneratorRequest : public ::google::protobuf::Message
   inline void add_file_to_generate(const ::std::string& value);
   inline void add_file_to_generate(const char* value);
   inline void add_file_to_generate(const char* value, size_t size);
-  inline const ::google::protobuf::RepeatedPtrField< ::std::string>& file_to_generate() const;
-  inline ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_file_to_generate();
+  inline const ::google::protobuf::RepeatedPtrField<::std::string>& file_to_generate() const;
+  inline ::google::protobuf::RepeatedPtrField<::std::string>* mutable_file_to_generate();
 
   // optional string parameter = 2;
   inline bool has_parameter() const;
@@ -130,13 +132,13 @@ class LIBPROTOC_EXPORT CodeGeneratorRequest : public ::google::protobuf::Message
   inline const ::google::protobuf::FileDescriptorProto& proto_file(int index) const;
   inline ::google::protobuf::FileDescriptorProto* mutable_proto_file(int index);
   inline ::google::protobuf::FileDescriptorProto* add_proto_file();
-  inline const ::google::protobuf::RepeatedPtrField< ::google::protobuf::FileDescriptorProto >&
-      proto_file() const;
-  inline ::google::protobuf::RepeatedPtrField< ::google::protobuf::FileDescriptorProto >*
-      mutable_proto_file();
+  inline const ::google::protobuf::RepeatedPtrField<::google::protobuf::FileDescriptorProto>&
+  proto_file() const;
+  inline ::google::protobuf::RepeatedPtrField<::google::protobuf::FileDescriptorProto>*
+  mutable_proto_file();
 
   // @@protoc_insertion_point(class_scope:google.protobuf.compiler.CodeGeneratorRequest)
- private:
+private:
   inline void set_has_parameter();
   inline void clear_has_parameter();
 
@@ -144,9 +146,9 @@ class LIBPROTOC_EXPORT CodeGeneratorRequest : public ::google::protobuf::Message
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedPtrField< ::std::string> file_to_generate_;
+  ::google::protobuf::RepeatedPtrField<::std::string> file_to_generate_;
   ::std::string* parameter_;
-  ::google::protobuf::RepeatedPtrField< ::google::protobuf::FileDescriptorProto > proto_file_;
+  ::google::protobuf::RepeatedPtrField<::google::protobuf::FileDescriptorProto> proto_file_;
   friend void LIBPROTOC_EXPORT protobuf_AddDesc_google_2fprotobuf_2fcompiler_2fplugin_2eproto();
   friend void protobuf_AssignDesc_google_2fprotobuf_2fcompiler_2fplugin_2eproto();
   friend void protobuf_ShutdownFile_google_2fprotobuf_2fcompiler_2fplugin_2eproto();
@@ -157,7 +159,7 @@ class LIBPROTOC_EXPORT CodeGeneratorRequest : public ::google::protobuf::Message
 // -------------------------------------------------------------------
 
 class LIBPROTOC_EXPORT CodeGeneratorResponse_File : public ::google::protobuf::Message {
- public:
+public:
   CodeGeneratorResponse_File();
   virtual ~CodeGeneratorResponse_File();
 
@@ -198,11 +200,13 @@ class LIBPROTOC_EXPORT CodeGeneratorResponse_File : public ::google::protobuf::M
       ::google::protobuf::io::CodedOutputStream* output) const;
   ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::google::protobuf::Metadata GetMetadata() const;
 
   // nested types ----------------------------------------------------
@@ -246,7 +250,7 @@ class LIBPROTOC_EXPORT CodeGeneratorResponse_File : public ::google::protobuf::M
   inline void set_allocated_content(::std::string* content);
 
   // @@protoc_insertion_point(class_scope:google.protobuf.compiler.CodeGeneratorResponse.File)
- private:
+private:
   inline void set_has_name();
   inline void clear_has_name();
   inline void set_has_insertion_point();
@@ -271,7 +275,7 @@ class LIBPROTOC_EXPORT CodeGeneratorResponse_File : public ::google::protobuf::M
 // -------------------------------------------------------------------
 
 class LIBPROTOC_EXPORT CodeGeneratorResponse : public ::google::protobuf::Message {
- public:
+public:
   CodeGeneratorResponse();
   virtual ~CodeGeneratorResponse();
 
@@ -312,11 +316,13 @@ class LIBPROTOC_EXPORT CodeGeneratorResponse : public ::google::protobuf::Messag
       ::google::protobuf::io::CodedOutputStream* output) const;
   ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::google::protobuf::Metadata GetMetadata() const;
 
   // nested types ----------------------------------------------------
@@ -344,13 +350,13 @@ class LIBPROTOC_EXPORT CodeGeneratorResponse : public ::google::protobuf::Messag
   inline const ::google::protobuf::compiler::CodeGeneratorResponse_File& file(int index) const;
   inline ::google::protobuf::compiler::CodeGeneratorResponse_File* mutable_file(int index);
   inline ::google::protobuf::compiler::CodeGeneratorResponse_File* add_file();
-  inline const ::google::protobuf::RepeatedPtrField< ::google::protobuf::compiler::CodeGeneratorResponse_File >&
-      file() const;
-  inline ::google::protobuf::RepeatedPtrField< ::google::protobuf::compiler::CodeGeneratorResponse_File >*
-      mutable_file();
+  inline const ::google::protobuf::RepeatedPtrField<::google::protobuf::compiler::CodeGeneratorResponse_File>&
+  file() const;
+  inline ::google::protobuf::RepeatedPtrField<::google::protobuf::compiler::CodeGeneratorResponse_File>*
+  mutable_file();
 
   // @@protoc_insertion_point(class_scope:google.protobuf.compiler.CodeGeneratorResponse)
- private:
+private:
   inline void set_has_error();
   inline void clear_has_error();
 
@@ -359,7 +365,7 @@ class LIBPROTOC_EXPORT CodeGeneratorResponse : public ::google::protobuf::Messag
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
   ::std::string* error_;
-  ::google::protobuf::RepeatedPtrField< ::google::protobuf::compiler::CodeGeneratorResponse_File > file_;
+  ::google::protobuf::RepeatedPtrField<::google::protobuf::compiler::CodeGeneratorResponse_File> file_;
   friend void LIBPROTOC_EXPORT protobuf_AddDesc_google_2fprotobuf_2fcompiler_2fplugin_2eproto();
   friend void protobuf_AssignDesc_google_2fprotobuf_2fcompiler_2fplugin_2eproto();
   friend void protobuf_ShutdownFile_google_2fprotobuf_2fcompiler_2fplugin_2eproto();
@@ -368,7 +374,6 @@ class LIBPROTOC_EXPORT CodeGeneratorResponse : public ::google::protobuf::Messag
   static CodeGeneratorResponse* default_instance_;
 };
 // ===================================================================
-
 
 // ===================================================================
 
@@ -399,7 +404,7 @@ inline void CodeGeneratorRequest::set_file_to_generate(int index, const char* va
 }
 inline void CodeGeneratorRequest::set_file_to_generate(int index, const char* value, size_t size) {
   file_to_generate_.Mutable(index)->assign(
-    reinterpret_cast<const char*>(value), size);
+      reinterpret_cast<const char*>(value), size);
   // @@protoc_insertion_point(field_set_pointer:google.protobuf.compiler.CodeGeneratorRequest.file_to_generate)
 }
 inline ::std::string* CodeGeneratorRequest::add_file_to_generate() {
@@ -417,12 +422,12 @@ inline void CodeGeneratorRequest::add_file_to_generate(const char* value, size_t
   file_to_generate_.Add()->assign(reinterpret_cast<const char*>(value), size);
   // @@protoc_insertion_point(field_add_pointer:google.protobuf.compiler.CodeGeneratorRequest.file_to_generate)
 }
-inline const ::google::protobuf::RepeatedPtrField< ::std::string>&
+inline const ::google::protobuf::RepeatedPtrField<::std::string>&
 CodeGeneratorRequest::file_to_generate() const {
   // @@protoc_insertion_point(field_list:google.protobuf.compiler.CodeGeneratorRequest.file_to_generate)
   return file_to_generate_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::std::string>*
+inline ::google::protobuf::RepeatedPtrField<::std::string>*
 CodeGeneratorRequest::mutable_file_to_generate() {
   // @@protoc_insertion_point(field_mutable_list:google.protobuf.compiler.CodeGeneratorRequest.file_to_generate)
   return &file_to_generate_;
@@ -486,7 +491,7 @@ inline ::std::string* CodeGeneratorRequest::release_parameter() {
     return NULL;
   } else {
     ::std::string* temp = parameter_;
-    parameter_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    parameter_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -499,7 +504,7 @@ inline void CodeGeneratorRequest::set_allocated_parameter(::std::string* paramet
     parameter_ = parameter;
   } else {
     clear_has_parameter();
-    parameter_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    parameter_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:google.protobuf.compiler.CodeGeneratorRequest.parameter)
 }
@@ -523,12 +528,12 @@ inline ::google::protobuf::FileDescriptorProto* CodeGeneratorRequest::add_proto_
   // @@protoc_insertion_point(field_add:google.protobuf.compiler.CodeGeneratorRequest.proto_file)
   return proto_file_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::google::protobuf::FileDescriptorProto >&
+inline const ::google::protobuf::RepeatedPtrField<::google::protobuf::FileDescriptorProto>&
 CodeGeneratorRequest::proto_file() const {
   // @@protoc_insertion_point(field_list:google.protobuf.compiler.CodeGeneratorRequest.proto_file)
   return proto_file_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::google::protobuf::FileDescriptorProto >*
+inline ::google::protobuf::RepeatedPtrField<::google::protobuf::FileDescriptorProto>*
 CodeGeneratorRequest::mutable_proto_file() {
   // @@protoc_insertion_point(field_mutable_list:google.protobuf.compiler.CodeGeneratorRequest.proto_file)
   return &proto_file_;
@@ -596,7 +601,7 @@ inline ::std::string* CodeGeneratorResponse_File::release_name() {
     return NULL;
   } else {
     ::std::string* temp = name_;
-    name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    name_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -609,7 +614,7 @@ inline void CodeGeneratorResponse_File::set_allocated_name(::std::string* name) 
     name_ = name;
   } else {
     clear_has_name();
-    name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    name_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:google.protobuf.compiler.CodeGeneratorResponse.File.name)
 }
@@ -672,7 +677,7 @@ inline ::std::string* CodeGeneratorResponse_File::release_insertion_point() {
     return NULL;
   } else {
     ::std::string* temp = insertion_point_;
-    insertion_point_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    insertion_point_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -685,7 +690,7 @@ inline void CodeGeneratorResponse_File::set_allocated_insertion_point(::std::str
     insertion_point_ = insertion_point;
   } else {
     clear_has_insertion_point();
-    insertion_point_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    insertion_point_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:google.protobuf.compiler.CodeGeneratorResponse.File.insertion_point)
 }
@@ -748,7 +753,7 @@ inline ::std::string* CodeGeneratorResponse_File::release_content() {
     return NULL;
   } else {
     ::std::string* temp = content_;
-    content_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    content_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -761,7 +766,7 @@ inline void CodeGeneratorResponse_File::set_allocated_content(::std::string* con
     content_ = content;
   } else {
     clear_has_content();
-    content_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    content_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:google.protobuf.compiler.CodeGeneratorResponse.File.content)
 }
@@ -828,7 +833,7 @@ inline ::std::string* CodeGeneratorResponse::release_error() {
     return NULL;
   } else {
     ::std::string* temp = error_;
-    error_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    error_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -841,7 +846,7 @@ inline void CodeGeneratorResponse::set_allocated_error(::std::string* error) {
     error_ = error;
   } else {
     clear_has_error();
-    error_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    error_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:google.protobuf.compiler.CodeGeneratorResponse.error)
 }
@@ -865,33 +870,31 @@ inline ::google::protobuf::compiler::CodeGeneratorResponse_File* CodeGeneratorRe
   // @@protoc_insertion_point(field_add:google.protobuf.compiler.CodeGeneratorResponse.file)
   return file_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::google::protobuf::compiler::CodeGeneratorResponse_File >&
+inline const ::google::protobuf::RepeatedPtrField<::google::protobuf::compiler::CodeGeneratorResponse_File>&
 CodeGeneratorResponse::file() const {
   // @@protoc_insertion_point(field_list:google.protobuf.compiler.CodeGeneratorResponse.file)
   return file_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::google::protobuf::compiler::CodeGeneratorResponse_File >*
+inline ::google::protobuf::RepeatedPtrField<::google::protobuf::compiler::CodeGeneratorResponse_File>*
 CodeGeneratorResponse::mutable_file() {
   // @@protoc_insertion_point(field_mutable_list:google.protobuf.compiler.CodeGeneratorResponse.file)
   return &file_;
 }
 
-
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace compiler
-}  // namespace protobuf
-}  // namespace google
+} // namespace compiler
+} // namespace protobuf
+} // namespace google
 
 #ifndef SWIG
 namespace google {
 namespace protobuf {
 
-
-}  // namespace google
-}  // namespace protobuf
-#endif  // SWIG
+} // namespace protobuf
+} // namespace google
+#endif // SWIG
 
 // @@protoc_insertion_point(global_scope)
 
-#endif  // PROTOBUF_google_2fprotobuf_2fcompiler_2fplugin_2eproto__INCLUDED
+#endif // PROTOBUF_google_2fprotobuf_2fcompiler_2fplugin_2eproto__INCLUDED

@@ -55,12 +55,12 @@ namespace {
 void SchedYield() {
 #ifdef _WIN32
   Sleep(0);
-#else  // POSIX
+#else // POSIX
   sched_yield();
 #endif
 }
 
-}  // namespace
+} // namespace
 
 void GoogleOnceInitImpl(ProtobufOnceType* once, Closure* closure) {
   internal::AtomicWord state = internal::Acquire_Load(once);
@@ -93,7 +93,7 @@ void GoogleOnceInitImpl(ProtobufOnceType* once, Closure* closure) {
   }
 }
 
-}  // namespace protobuf
-}  // namespace google
+} // namespace protobuf
+} // namespace google
 
-#endif  // GOOGLE_PROTOBUF_NO_THREAD_SAFETY
+#endif // GOOGLE_PROTOBUF_NO_THREAD_SAFETY

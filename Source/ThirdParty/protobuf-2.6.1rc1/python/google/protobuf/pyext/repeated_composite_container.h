@@ -43,7 +43,6 @@
 #include <string>
 #include <vector>
 
-
 namespace google {
 namespace protobuf {
 
@@ -164,9 +163,9 @@ void ReleaseLastTo(const FieldDescriptor* field,
                    Message* message,
                    CMessage* cmessage);
 
-}  // namespace repeated_composite_container
-}  // namespace python
-}  // namespace protobuf
+} // namespace repeated_composite_container
+} // namespace python
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_PYTHON_CPP_REPEATED_COMPOSITE_CONTAINER_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_PYTHON_CPP_REPEATED_COMPOSITE_CONTAINER_H__

@@ -56,7 +56,7 @@ bool CppGenerator::Generate(const FileDescriptor* file,
                             const string& parameter,
                             GeneratorContext* generator_context,
                             string* error) const {
-  vector<pair<string, string> > options;
+  vector<pair<string, string>> options;
   ParseGeneratorParameter(parameter, &options);
 
   // -----------------------------------------------------------------
@@ -94,7 +94,6 @@ bool CppGenerator::Generate(const FileDescriptor* file,
 
   // -----------------------------------------------------------------
 
-
   string basename = StripProto(file->name());
   basename.append(".pb");
 
@@ -119,7 +118,7 @@ bool CppGenerator::Generate(const FileDescriptor* file,
   return true;
 }
 
-}  // namespace cpp
-}  // namespace compiler
-}  // namespace protobuf
-}  // namespace google
+} // namespace cpp
+} // namespace compiler
+} // namespace protobuf
+} // namespace google

@@ -47,16 +47,15 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/unknown_field_set.h>
 
-
 namespace google {
 namespace upb {
 namespace google_opensource {
 class GMR_Handlers;
-}  // namespace google_opensource
-}  // namespace upb
+} // namespace google_opensource
+} // namespace upb
 
 namespace protobuf {
-  class DescriptorPool;
+class DescriptorPool;
 }
 
 namespace protobuf {
@@ -67,7 +66,7 @@ class DefaultEmptyOneof;
 class GeneratedMessageReflection;
 
 // Defined in other files.
-class ExtensionSet;             // extension_set.h
+class ExtensionSet; // extension_set.h
 
 // THIS CLASS IS NOT INTENDED FOR DIRECT USE.  It is intended for use
 // by generated code.  This class is just a big hack that reduces code
@@ -94,7 +93,7 @@ class ExtensionSet;             // extension_set.h
 //    Messages use RepeatedPtrFields while everything else uses
 //    RepeatedFields.
 class LIBPROTOBUF_EXPORT GeneratedMessageReflection : public Reflection {
- public:
+public:
   // Constructs a GeneratedMessageReflection.
   // Parameters:
   //   descriptor:    The descriptor for the message type being implemented.
@@ -196,20 +195,20 @@ class LIBPROTOBUF_EXPORT GeneratedMessageReflection : public Reflection {
   void ListFields(const Message& message,
                   vector<const FieldDescriptor*>* output) const;
 
-  int32  GetInt32 (const Message& message,
-                   const FieldDescriptor* field) const;
-  int64  GetInt64 (const Message& message,
-                   const FieldDescriptor* field) const;
+  int32 GetInt32(const Message& message,
+                 const FieldDescriptor* field) const;
+  int64 GetInt64(const Message& message,
+                 const FieldDescriptor* field) const;
   uint32 GetUInt32(const Message& message,
                    const FieldDescriptor* field) const;
   uint64 GetUInt64(const Message& message,
                    const FieldDescriptor* field) const;
-  float  GetFloat (const Message& message,
-                   const FieldDescriptor* field) const;
+  float GetFloat(const Message& message,
+                 const FieldDescriptor* field) const;
   double GetDouble(const Message& message,
                    const FieldDescriptor* field) const;
-  bool   GetBool  (const Message& message,
-                   const FieldDescriptor* field) const;
+  bool GetBool(const Message& message,
+               const FieldDescriptor* field) const;
   string GetString(const Message& message,
                    const FieldDescriptor* field) const;
   const string& GetStringReference(const Message& message,
@@ -225,26 +224,26 @@ class LIBPROTOBUF_EXPORT GeneratedMessageReflection : public Reflection {
       const Message& message,
       const OneofDescriptor* oneof_descriptor) const;
 
- public:
-  void SetInt32 (Message* message,
-                 const FieldDescriptor* field, int32  value) const;
-  void SetInt64 (Message* message,
-                 const FieldDescriptor* field, int64  value) const;
+public:
+  void SetInt32(Message* message,
+                const FieldDescriptor* field, int32 value) const;
+  void SetInt64(Message* message,
+                const FieldDescriptor* field, int64 value) const;
   void SetUInt32(Message* message,
                  const FieldDescriptor* field, uint32 value) const;
   void SetUInt64(Message* message,
                  const FieldDescriptor* field, uint64 value) const;
-  void SetFloat (Message* message,
-                 const FieldDescriptor* field, float  value) const;
+  void SetFloat(Message* message,
+                const FieldDescriptor* field, float value) const;
   void SetDouble(Message* message,
                  const FieldDescriptor* field, double value) const;
-  void SetBool  (Message* message,
-                 const FieldDescriptor* field, bool   value) const;
+  void SetBool(Message* message,
+               const FieldDescriptor* field, bool value) const;
   void SetString(Message* message,
                  const FieldDescriptor* field,
                  const string& value) const;
-  void SetEnum  (Message* message, const FieldDescriptor* field,
-                 const EnumValueDescriptor* value) const;
+  void SetEnum(Message* message, const FieldDescriptor* field,
+               const EnumValueDescriptor* value) const;
   Message* MutableMessage(Message* message, const FieldDescriptor* field,
                           MessageFactory* factory = NULL) const;
   void SetAllocatedMessage(Message* message,
@@ -253,20 +252,20 @@ class LIBPROTOBUF_EXPORT GeneratedMessageReflection : public Reflection {
   Message* ReleaseMessage(Message* message, const FieldDescriptor* field,
                           MessageFactory* factory = NULL) const;
 
-  int32  GetRepeatedInt32 (const Message& message,
-                           const FieldDescriptor* field, int index) const;
-  int64  GetRepeatedInt64 (const Message& message,
-                           const FieldDescriptor* field, int index) const;
+  int32 GetRepeatedInt32(const Message& message,
+                         const FieldDescriptor* field, int index) const;
+  int64 GetRepeatedInt64(const Message& message,
+                         const FieldDescriptor* field, int index) const;
   uint32 GetRepeatedUInt32(const Message& message,
                            const FieldDescriptor* field, int index) const;
   uint64 GetRepeatedUInt64(const Message& message,
                            const FieldDescriptor* field, int index) const;
-  float  GetRepeatedFloat (const Message& message,
-                           const FieldDescriptor* field, int index) const;
+  float GetRepeatedFloat(const Message& message,
+                         const FieldDescriptor* field, int index) const;
   double GetRepeatedDouble(const Message& message,
                            const FieldDescriptor* field, int index) const;
-  bool   GetRepeatedBool  (const Message& message,
-                           const FieldDescriptor* field, int index) const;
+  bool GetRepeatedBool(const Message& message,
+                       const FieldDescriptor* field, int index) const;
   string GetRepeatedString(const Message& message,
                            const FieldDescriptor* field, int index) const;
   const string& GetRepeatedStringReference(const Message& message,
@@ -280,20 +279,20 @@ class LIBPROTOBUF_EXPORT GeneratedMessageReflection : public Reflection {
                                     int index) const;
 
   // Set the value of a field.
-  void SetRepeatedInt32 (Message* message,
-                         const FieldDescriptor* field, int index, int32  value) const;
-  void SetRepeatedInt64 (Message* message,
-                         const FieldDescriptor* field, int index, int64  value) const;
+  void SetRepeatedInt32(Message* message,
+                        const FieldDescriptor* field, int index, int32 value) const;
+  void SetRepeatedInt64(Message* message,
+                        const FieldDescriptor* field, int index, int64 value) const;
   void SetRepeatedUInt32(Message* message,
                          const FieldDescriptor* field, int index, uint32 value) const;
   void SetRepeatedUInt64(Message* message,
                          const FieldDescriptor* field, int index, uint64 value) const;
-  void SetRepeatedFloat (Message* message,
-                         const FieldDescriptor* field, int index, float  value) const;
+  void SetRepeatedFloat(Message* message,
+                        const FieldDescriptor* field, int index, float value) const;
   void SetRepeatedDouble(Message* message,
                          const FieldDescriptor* field, int index, double value) const;
-  void SetRepeatedBool  (Message* message,
-                         const FieldDescriptor* field, int index, bool   value) const;
+  void SetRepeatedBool(Message* message,
+                       const FieldDescriptor* field, int index, bool value) const;
   void SetRepeatedString(Message* message,
                          const FieldDescriptor* field, int index,
                          const string& value) const;
@@ -304,20 +303,20 @@ class LIBPROTOBUF_EXPORT GeneratedMessageReflection : public Reflection {
                                   const FieldDescriptor* field,
                                   int index) const;
 
-  void AddInt32 (Message* message,
-                 const FieldDescriptor* field, int32  value) const;
-  void AddInt64 (Message* message,
-                 const FieldDescriptor* field, int64  value) const;
+  void AddInt32(Message* message,
+                const FieldDescriptor* field, int32 value) const;
+  void AddInt64(Message* message,
+                const FieldDescriptor* field, int64 value) const;
   void AddUInt32(Message* message,
                  const FieldDescriptor* field, uint32 value) const;
   void AddUInt64(Message* message,
                  const FieldDescriptor* field, uint64 value) const;
-  void AddFloat (Message* message,
-                 const FieldDescriptor* field, float  value) const;
+  void AddFloat(Message* message,
+                const FieldDescriptor* field, float value) const;
   void AddDouble(Message* message,
                  const FieldDescriptor* field, double value) const;
-  void AddBool  (Message* message,
-                 const FieldDescriptor* field, bool   value) const;
+  void AddBool(Message* message,
+               const FieldDescriptor* field, bool value) const;
   void AddString(Message* message,
                  const FieldDescriptor* field, const string& value) const;
   void AddEnum(Message* message,
@@ -329,12 +328,12 @@ class LIBPROTOBUF_EXPORT GeneratedMessageReflection : public Reflection {
   const FieldDescriptor* FindKnownExtensionByName(const string& name) const;
   const FieldDescriptor* FindKnownExtensionByNumber(int number) const;
 
- protected:
+protected:
   virtual void* MutableRawRepeatedField(
       Message* message, const FieldDescriptor* field, FieldDescriptor::CppType,
       int ctype, const Descriptor* desc) const;
 
- private:
+private:
   friend class GeneratedMessage;
 
   // To parse directly into a proto2 generated class, the class GMR_Handlers
@@ -454,16 +453,15 @@ class LIBPROTOBUF_EXPORT GeneratedMessageReflection : public Reflection {
 // just use zero, GCC complains about dereferencing a NULL pointer.  We
 // choose 16 rather than some other number just in case the compiler would
 // be confused by an unaligned pointer.
-#define GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TYPE, FIELD)    \
-  static_cast<int>(                                           \
-      reinterpret_cast<const char*>(                          \
-          &reinterpret_cast<const TYPE*>(16)->FIELD) -        \
+#define GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TYPE, FIELD) \
+  static_cast<int>(                                                 \
+      reinterpret_cast<const char*>(                                \
+          &reinterpret_cast<const TYPE*>(16)->FIELD) -              \
       reinterpret_cast<const char*>(16))
 
-#define PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET(ONEOF, FIELD)     \
-  static_cast<int>(                                                   \
-      reinterpret_cast<const char*>(&(ONEOF->FIELD))                  \
-      - reinterpret_cast<const char*>(ONEOF))
+#define PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET(ONEOF, FIELD) \
+  static_cast<int>(                                               \
+      reinterpret_cast<const char*>(&(ONEOF->FIELD)) - reinterpret_cast<const char*>(ONEOF))
 
 // There are some places in proto2 where dynamic_cast would be useful as an
 // optimization.  For example, take Message::MergeFrom(const Message& other).
@@ -488,17 +486,17 @@ class LIBPROTOBUF_EXPORT GeneratedMessageReflection : public Reflection {
 //
 // If you need to compile without RTTI, simply #define GOOGLE_PROTOBUF_NO_RTTI.
 // On MSVC, this should be detected automatically.
-template<typename To, typename From>
+template <typename To, typename From>
 inline To dynamic_cast_if_available(From from) {
-#if defined(GOOGLE_PROTOBUF_NO_RTTI) || (defined(_MSC_VER)&&!defined(_CPPRTTI))
+#if defined(GOOGLE_PROTOBUF_NO_RTTI) || (defined(_MSC_VER) && !defined(_CPPRTTI))
   return NULL;
 #else
   return dynamic_cast<To>(from);
 #endif
 }
 
-}  // namespace internal
-}  // namespace protobuf
+} // namespace internal
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_GENERATED_MESSAGE_REFLECTION_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_GENERATED_MESSAGE_REFLECTION_H__

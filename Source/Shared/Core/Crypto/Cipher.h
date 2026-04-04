@@ -1,6 +1,7 @@
 /*
- * Dark Souls 3 - Open Server
+ * Rekindled Server
  * Copyright (C) 2021 Tim Leonard
+ * Copyright (C) 2026 Jake Morgeson
  *
  * This program is free software; licensed under the MIT license.
  * You should have received a copy of the license along with this program.
@@ -12,13 +13,10 @@
 #include <cstdint>
 #include <vector>
 
-class Cipher
-{
+class Cipher {
 public:
+  virtual ~Cipher() {}
 
-    virtual ~Cipher() { }
-
-    virtual bool Encrypt(const std::vector<uint8_t>& input, std::vector<uint8_t>& Output) = 0;
-    virtual bool Decrypt(const std::vector<uint8_t>& input, std::vector<uint8_t>& Output) = 0;
-
+  virtual bool Encrypt(const std::vector<uint8_t>& input, std::vector<uint8_t>& Output) = 0;
+  virtual bool Decrypt(const std::vector<uint8_t>& input, std::vector<uint8_t>& Output) = 0;
 };

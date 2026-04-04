@@ -1,6 +1,7 @@
 /*
- * Dark Souls 3 - Open Server
+ * Rekindled Server
  * Copyright (C) 2021 Tim Leonard
+ * Copyright (C) 2026 Jake Morgeson
  *
  * This program is free software; licensed under the MIT license.
  * You should have received a copy of the license along with this program.
@@ -24,39 +25,37 @@ class GameService;
 // Placing and retrieving summon signs.
 
 class DS2_SignManager
-    : public GameManager
-{
-public:    
-    DS2_SignManager(Server* InServerInstance, GameService* InGameServiceInstance);
+    : public GameManager {
+public:
+  DS2_SignManager(Server* InServerInstance, GameService* InGameServiceInstance);
 
-    virtual MessageHandleResult OnMessageReceived(GameClient* Client, const Frpg2ReliableUdpMessage& Message) override;
+  virtual MessageHandleResult OnMessageReceived(GameClient* Client, const Frpg2ReliableUdpMessage& Message) override;
 
-    virtual std::string GetName() override;
-    virtual void Poll() override;
+  virtual std::string GetName() override;
+  virtual void Poll() override;
 
-    virtual void OnLostPlayer(GameClient* Client) override;
+  virtual void OnLostPlayer(GameClient* Client) override;
 
-    size_t GetLiveCount() { return LiveCache.GetTotalEntries(); }
+  size_t GetLiveCount() { return LiveCache.GetTotalEntries(); }
 
 protected:
-    bool CanMatchWith(const DS2_Frpg2RequestMessage::MatchingParameter& Client, const DS2_Frpg2RequestMessage::MatchingParameter& Match, uint32_t SignType);
+  bool CanMatchWith(const DS2_Frpg2RequestMessage::MatchingParameter& Client, const DS2_Frpg2RequestMessage::MatchingParameter& Match, uint32_t SignType);
 
-    void RemoveSignAndNotifyAware(const std::shared_ptr<SummonSign>& Sign);
+  void RemoveSignAndNotifyAware(const std::shared_ptr<SummonSign>& Sign);
 
-    MessageHandleResult Handle_RequestGetSignList(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestCreateSign(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestRemoveSign(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestUpdateSign(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestSummonSign(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestRejectSign(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
-    MessageHandleResult Handle_RequestGetRightMatchingArea(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestGetSignList(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestCreateSign(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestRemoveSign(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestUpdateSign(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestSummonSign(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestRejectSign(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
+  MessageHandleResult Handle_RequestGetRightMatchingArea(GameClient* Client, const Frpg2ReliableUdpMessage& Message);
 
 private:
-    Server* ServerInstance;
-    GameService* GameServiceInstance;
+  Server* ServerInstance;
+  GameService* GameServiceInstance;
 
-    OnlineAreaPool<DS2_CellAndAreaId, SummonSign> LiveCache;
+  OnlineAreaPool<DS2_CellAndAreaId, SummonSign> LiveCache;
 
-    uint32_t NextSignId = 1000;
-
+  uint32_t NextSignId = 1000;
 };

@@ -70,8 +70,7 @@ ServiceGenerator* ImmutableGeneratorFactory::NewServiceGenerator(
   return new ImmutableServiceGenerator(descriptor, context_);
 }
 
-
-}  // namespace java
-}  // namespace compiler
-}  // namespace protobuf
-}  // namespace google
+} // namespace java
+} // namespace compiler
+} // namespace protobuf
+} // namespace google

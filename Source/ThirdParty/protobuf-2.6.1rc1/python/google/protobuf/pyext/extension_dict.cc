@@ -201,7 +201,7 @@ int ass_subscript(ExtensionDict* self, PyObject* key, PyObject* value) {
   if (descriptor->label() != FieldDescriptor::LABEL_OPTIONAL ||
       descriptor->cpp_type() == FieldDescriptor::CPPTYPE_MESSAGE) {
     PyErr_SetString(PyExc_TypeError, "Extension is repeated and/or composite "
-                    "type");
+                                     "type");
     return -1;
   }
   cmessage::AssureWritable(self->parent);
@@ -277,62 +277,60 @@ void dealloc(ExtensionDict* self) {
 }
 
 static PyMappingMethods MpMethods = {
-  (lenfunc)len,               /* mp_length */
-  (binaryfunc)subscript,      /* mp_subscript */
-  (objobjargproc)ass_subscript,/* mp_ass_subscript */
+    (lenfunc)len,                 /* mp_length */
+    (binaryfunc)subscript,        /* mp_subscript */
+    (objobjargproc)ass_subscript, /* mp_ass_subscript */
 };
 
-#define EDMETHOD(name, args, doc) { #name, (PyCFunction)name, args, doc }
+#define EDMETHOD(name, args, doc) {#name, (PyCFunction)name, args, doc}
 static PyMethodDef Methods[] = {
-  EDMETHOD(ClearExtension, METH_O, "Clears an extension from the object."),
-  EDMETHOD(HasExtension, METH_O, "Checks if the object has an extension."),
-  EDMETHOD(_FindExtensionByName, METH_O,
-           "Finds an extension by name."),
-  { NULL, NULL }
-};
+    EDMETHOD(ClearExtension, METH_O, "Clears an extension from the object."),
+    EDMETHOD(HasExtension, METH_O, "Checks if the object has an extension."),
+    EDMETHOD(_FindExtensionByName, METH_O,
+             "Finds an extension by name."),
+    {NULL, NULL}};
 
-}  // namespace extension_dict
+} // namespace extension_dict
 
 PyTypeObject ExtensionDict_Type = {
-  PyVarObject_HEAD_INIT(&PyType_Type, 0)
-  "google.protobuf.internal."
-  "cpp._message.ExtensionDict",        // tp_name
-  sizeof(ExtensionDict),               // tp_basicsize
-  0,                                   //  tp_itemsize
-  (destructor)extension_dict::dealloc,  //  tp_dealloc
-  0,                                   //  tp_print
-  0,                                   //  tp_getattr
-  0,                                   //  tp_setattr
-  0,                                   //  tp_compare
-  0,                                   //  tp_repr
-  0,                                   //  tp_as_number
-  0,                                   //  tp_as_sequence
-  &extension_dict::MpMethods,          //  tp_as_mapping
-  0,                                   //  tp_hash
-  0,                                   //  tp_call
-  0,                                   //  tp_str
-  0,                                   //  tp_getattro
-  0,                                   //  tp_setattro
-  0,                                   //  tp_as_buffer
-  Py_TPFLAGS_DEFAULT,                  //  tp_flags
-  "An extension dict",                 //  tp_doc
-  0,                                   //  tp_traverse
-  0,                                   //  tp_clear
-  0,                                   //  tp_richcompare
-  0,                                   //  tp_weaklistoffset
-  0,                                   //  tp_iter
-  0,                                   //  tp_iternext
-  extension_dict::Methods,             //  tp_methods
-  0,                                   //  tp_members
-  0,                                   //  tp_getset
-  0,                                   //  tp_base
-  0,                                   //  tp_dict
-  0,                                   //  tp_descr_get
-  0,                                   //  tp_descr_set
-  0,                                   //  tp_dictoffset
-  (initproc)extension_dict::init,      //  tp_init
+    PyVarObject_HEAD_INIT(&PyType_Type, 0) "google.protobuf.internal."
+                                           "cpp._message.ExtensionDict", // tp_name
+    sizeof(ExtensionDict),                                               // tp_basicsize
+    0,                                                                   //  tp_itemsize
+    (destructor)extension_dict::dealloc,                                 //  tp_dealloc
+    0,                                                                   //  tp_print
+    0,                                                                   //  tp_getattr
+    0,                                                                   //  tp_setattr
+    0,                                                                   //  tp_compare
+    0,                                                                   //  tp_repr
+    0,                                                                   //  tp_as_number
+    0,                                                                   //  tp_as_sequence
+    &extension_dict::MpMethods,                                          //  tp_as_mapping
+    0,                                                                   //  tp_hash
+    0,                                                                   //  tp_call
+    0,                                                                   //  tp_str
+    0,                                                                   //  tp_getattro
+    0,                                                                   //  tp_setattro
+    0,                                                                   //  tp_as_buffer
+    Py_TPFLAGS_DEFAULT,                                                  //  tp_flags
+    "An extension dict",                                                 //  tp_doc
+    0,                                                                   //  tp_traverse
+    0,                                                                   //  tp_clear
+    0,                                                                   //  tp_richcompare
+    0,                                                                   //  tp_weaklistoffset
+    0,                                                                   //  tp_iter
+    0,                                                                   //  tp_iternext
+    extension_dict::Methods,                                             //  tp_methods
+    0,                                                                   //  tp_members
+    0,                                                                   //  tp_getset
+    0,                                                                   //  tp_base
+    0,                                                                   //  tp_dict
+    0,                                                                   //  tp_descr_get
+    0,                                                                   //  tp_descr_set
+    0,                                                                   //  tp_dictoffset
+    (initproc)extension_dict::init,                                      //  tp_init
 };
 
-}  // namespace python
-}  // namespace protobuf
-}  // namespace google
+} // namespace python
+} // namespace protobuf
+} // namespace google

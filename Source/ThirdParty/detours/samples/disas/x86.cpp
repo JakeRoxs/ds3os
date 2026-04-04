@@ -9,13 +9,12 @@
 
 static int value = 0;
 
-extern "C" void __declspec(naked) TestCodes()
-{
-    __asm {
-// Each instruction is proceeded by an "int 3".
+extern "C" void __declspec(naked) TestCodes() {
+  __asm {
+    // Each instruction is proceeded by an "int 3".
       faraway:
         int 3;
-        nop;        // 1-byte NOP.
+        nop; // 1-byte NOP.
         int 3;
         _emit 0x66; // 2-byte NOP.
         _emit 0x90;
@@ -175,10 +174,9 @@ extern "C" void __declspec(naked) TestCodes()
         int 3
         jg      faraway                                 ; 0f8fxx
 
-// The list is terminated by two "int 3" in a row.
+    // The list is terminated by two "int 3" in a row.
         int 3;
         int 3;
         ret;
-    }
+  }
 }
-

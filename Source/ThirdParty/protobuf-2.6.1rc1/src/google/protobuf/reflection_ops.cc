@@ -46,7 +46,8 @@ namespace protobuf {
 namespace internal {
 
 void ReflectionOps::Copy(const Message& from, Message* to) {
-  if (&from == to) return;
+  if (&from == to)
+    return;
   Clear(to);
   Merge(from, to);
 }
@@ -56,9 +57,9 @@ void ReflectionOps::Merge(const Message& from, Message* to) {
 
   const Descriptor* descriptor = from.GetDescriptor();
   GOOGLE_CHECK_EQ(to->GetDescriptor(), descriptor)
-    << "Tried to merge messages of different types "
-    << "(merge " << descriptor->full_name()
-    << " to " << to->GetDescriptor()->full_name() << ")";
+      << "Tried to merge messages of different types "
+      << "(merge " << descriptor->full_name()
+      << " to " << to->GetDescriptor()->full_name() << ")";
 
   const Reflection* from_reflection = from.GetReflection();
   const Reflection* to_reflection = to->GetReflection();
@@ -72,58 +73,58 @@ void ReflectionOps::Merge(const Message& from, Message* to) {
       int count = from_reflection->FieldSize(from, field);
       for (int j = 0; j < count; j++) {
         switch (field->cpp_type()) {
-#define HANDLE_TYPE(CPPTYPE, METHOD)                                     \
-          case FieldDescriptor::CPPTYPE_##CPPTYPE:                       \
-            to_reflection->Add##METHOD(to, field,                        \
-              from_reflection->GetRepeated##METHOD(from, field, j));     \
-            break;
+#define HANDLE_TYPE(CPPTYPE, METHOD)                                                  \
+  case FieldDescriptor::CPPTYPE_##CPPTYPE:                                            \
+    to_reflection->Add##METHOD(to, field,                                             \
+                               from_reflection->GetRepeated##METHOD(from, field, j)); \
+    break;
 
-          HANDLE_TYPE(INT32 , Int32 );
-          HANDLE_TYPE(INT64 , Int64 );
+          HANDLE_TYPE(INT32, Int32);
+          HANDLE_TYPE(INT64, Int64);
           HANDLE_TYPE(UINT32, UInt32);
           HANDLE_TYPE(UINT64, UInt64);
-          HANDLE_TYPE(FLOAT , Float );
+          HANDLE_TYPE(FLOAT, Float);
           HANDLE_TYPE(DOUBLE, Double);
-          HANDLE_TYPE(BOOL  , Bool  );
+          HANDLE_TYPE(BOOL, Bool);
           HANDLE_TYPE(STRING, String);
-          HANDLE_TYPE(ENUM  , Enum  );
+          HANDLE_TYPE(ENUM, Enum);
 #undef HANDLE_TYPE
 
-          case FieldDescriptor::CPPTYPE_MESSAGE:
-            to_reflection->AddMessage(to, field)->MergeFrom(
+        case FieldDescriptor::CPPTYPE_MESSAGE:
+          to_reflection->AddMessage(to, field)->MergeFrom(
               from_reflection->GetRepeatedMessage(from, field, j));
-            break;
+          break;
         }
       }
     } else {
       switch (field->cpp_type()) {
-#define HANDLE_TYPE(CPPTYPE, METHOD)                                        \
-        case FieldDescriptor::CPPTYPE_##CPPTYPE:                            \
-          to_reflection->Set##METHOD(to, field,                             \
-            from_reflection->Get##METHOD(from, field));                     \
-          break;
+#define HANDLE_TYPE(CPPTYPE, METHOD)                                       \
+  case FieldDescriptor::CPPTYPE_##CPPTYPE:                                 \
+    to_reflection->Set##METHOD(to, field,                                  \
+                               from_reflection->Get##METHOD(from, field)); \
+    break;
 
-        HANDLE_TYPE(INT32 , Int32 );
-        HANDLE_TYPE(INT64 , Int64 );
+        HANDLE_TYPE(INT32, Int32);
+        HANDLE_TYPE(INT64, Int64);
         HANDLE_TYPE(UINT32, UInt32);
         HANDLE_TYPE(UINT64, UInt64);
-        HANDLE_TYPE(FLOAT , Float );
+        HANDLE_TYPE(FLOAT, Float);
         HANDLE_TYPE(DOUBLE, Double);
-        HANDLE_TYPE(BOOL  , Bool  );
+        HANDLE_TYPE(BOOL, Bool);
         HANDLE_TYPE(STRING, String);
-        HANDLE_TYPE(ENUM  , Enum  );
+        HANDLE_TYPE(ENUM, Enum);
 #undef HANDLE_TYPE
 
-        case FieldDescriptor::CPPTYPE_MESSAGE:
-          to_reflection->MutableMessage(to, field)->MergeFrom(
+      case FieldDescriptor::CPPTYPE_MESSAGE:
+        to_reflection->MutableMessage(to, field)->MergeFrom(
             from_reflection->GetMessage(from, field));
-          break;
+        break;
       }
     }
   }
 
   to_reflection->MutableUnknownFields(to)->MergeFrom(
-    from_reflection->GetUnknownFields(from));
+      from_reflection->GetUnknownFields(from));
 }
 
 void ReflectionOps::Clear(Message* message) {
@@ -163,7 +164,7 @@ bool ReflectionOps::IsInitialized(const Message& message) {
 
         for (int j = 0; j < size; j++) {
           if (!reflection->GetRepeatedMessage(message, field, j)
-                          .IsInitialized()) {
+                   .IsInitialized()) {
             return false;
           }
         }
@@ -192,7 +193,7 @@ void ReflectionOps::DiscardUnknownFields(Message* message) {
         int size = reflection->FieldSize(*message, field);
         for (int j = 0; j < size; j++) {
           reflection->MutableRepeatedMessage(message, field, j)
-                    ->DiscardUnknownFields();
+              ->DiscardUnknownFields();
         }
       } else {
         reflection->MutableMessage(message, field)->DiscardUnknownFields();
@@ -249,7 +250,7 @@ void ReflectionOps::FindInitializationErrors(
 
         for (int j = 0; j < size; j++) {
           const Message& sub_message =
-            reflection->GetRepeatedMessage(message, field, j);
+              reflection->GetRepeatedMessage(message, field, j);
           FindInitializationErrors(sub_message,
                                    SubMessagePrefix(prefix, field, j),
                                    errors);
@@ -264,6 +265,6 @@ void ReflectionOps::FindInitializationErrors(
   }
 }
 
-}  // namespace internal
-}  // namespace protobuf
-}  // namespace google
+} // namespace internal
+} // namespace protobuf
+} // namespace google

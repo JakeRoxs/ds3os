@@ -1,6 +1,7 @@
 /*
- * Dark Souls 3 - Open Server
+ * Rekindled Server
  * Copyright (C) 2021 Tim Leonard
+ * Copyright (C) 2026 Jake Morgeson
  *
  * This program is free software; licensed under the MIT license.
  * You should have received a copy of the license along with this program.
@@ -8,7 +9,7 @@
  */
 
 // This file contains any platform specific function declarations.
-// The actual definitions of the functions are in the platform 
+// The actual definitions of the functions are in the platform
 // specific sub-folders.
 
 #pragma once
@@ -27,22 +28,21 @@ bool PlatformInit();
 bool PlatformTerm();
 
 // ========================================================================
-// Abstract class contains an assortment of events that we bubble 
+// Abstract class contains an assortment of events that we bubble
 // up from the the platform we are running on.
 // ========================================================================
 
-class PlatformEvents 
-{
+class PlatformEvents {
 public:
-    ~PlatformEvents() = delete;
+  ~PlatformEvents() = delete;
 
-    // Broadcast when the user uses ctrl+c in the console (or one of the other
-    // system control events occurs - shutdown/logoff/etc).
+  // Broadcast when the user uses ctrl+c in the console (or one of the other
+  // system control events occurs - shutdown/logoff/etc).
 
-    using CtrlSignalDelegate = Delegate<>;
-    using CtrlSignalEvent = Event<CtrlSignalDelegate>;
+  using CtrlSignalDelegate = Delegate<>;
+  using CtrlSignalEvent = Event<CtrlSignalDelegate>;
 
-    static inline CtrlSignalEvent OnCtrlSignal;
+  static inline CtrlSignalEvent OnCtrlSignal;
 
 }; // namespace PlatformEvents
 
@@ -51,15 +51,14 @@ public:
 // ========================================================================
 
 // Defines the color to use when writing to the console.
-enum class ConsoleColor
-{
-    Red,
-    Yellow,
-    Green,
-    White,
-    Grey,
+enum class ConsoleColor {
+  Red,
+  Yellow,
+  Green,
+  White,
+  Grey,
 
-    Count
+  Count
 };
 
 void WriteToConsole(ConsoleColor Color, const char* Message);
@@ -82,22 +81,19 @@ double GetHighResolutionSeconds();
 // Debug functionality.
 // ========================================================================
 
-struct Callstack
-{
-    struct Frame
-    {
-        size_t Address;
-        std::string Module;
-        std::string Function;
-        std::string Filename;
-        size_t Line;
-    };
+struct Callstack {
+  struct Frame {
+    size_t Address;
+    std::string Module;
+    std::string Function;
+    std::string Filename;
+    size_t Line;
+  };
 
-    std::vector<Frame> Frames;
+  std::vector<Frame> Frames;
 };
 
-
-// Loads symbols files if they are available. The symbols will be used for resolving 
+// Loads symbols files if they are available. The symbols will be used for resolving
 // function names and similar for functions like db_capture_callstack.
 bool LoadSymbols();
 

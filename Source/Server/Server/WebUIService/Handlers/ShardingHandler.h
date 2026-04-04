@@ -1,6 +1,7 @@
 /*
- * Dark Souls 3 - Open Server
+ * Rekindled Server
  * Copyright (C) 2021 Tim Leonard
+ * Copyright (C) 2026 Jake Morgeson
  *
  * This program is free software; licensed under the MIT license.
  * You should have received a copy of the license along with this program.
@@ -20,16 +21,14 @@
 //		params: name, password
 //		returns: server username/password/weburi-login, or 401 if not valid
 
-class ShardingHandler : public WebUIHandler
-{
+class ShardingHandler : public WebUIHandler {
 public:
-	ShardingHandler(WebUIService* InService);
+  ShardingHandler(WebUIService* InService);
 
-	virtual bool handlePost(CivetServer* Server, struct mg_connection* Connection) override;
+  virtual bool handlePost(CivetServer* Server, struct mg_connection* Connection) override;
 
-	virtual void Register(CivetServer* Server) override;
+  virtual void Register(CivetServer* Server) override;
 
 protected:
-    std::unordered_map<std::string, std::string> RequestHashToServerId;
-
+  std::unordered_map<std::string, std::string> RequestHashToServerId;
 };

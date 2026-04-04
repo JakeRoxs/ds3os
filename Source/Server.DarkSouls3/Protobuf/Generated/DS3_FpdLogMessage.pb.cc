@@ -62,7 +62,8 @@ void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl() {
 #else
 void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto() {
   static bool already_here = false;
-  if (already_here) return;
+  if (already_here)
+    return;
   already_here = true;
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -148,7 +149,7 @@ void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto() {
 GOOGLE_PROTOBUF_DECLARE_ONCE(protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_once_);
 void protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto() {
   ::google::protobuf::GoogleOnceInit(&protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_once_,
-                 &protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl);
+                                     &protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto_impl);
 }
 #else
 // Force AddDescriptors() to be called at static initialization time.
@@ -165,10 +166,10 @@ struct StaticDescriptorInitializer_DS3_5fFpdLogMessage_2eproto {
 const int Vector::kXFieldNumber;
 const int Vector::kYFieldNumber;
 const int Vector::kZFieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 Vector::Vector()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.Vector)
 }
@@ -177,7 +178,7 @@ void Vector::InitAsDefaultInstance() {
 }
 
 Vector::Vector(const Vector& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.Vector)
@@ -197,11 +198,11 @@ Vector::~Vector() {
 }
 
 void Vector::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -214,7 +215,8 @@ const Vector& Vector::default_instance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -226,14 +228,15 @@ Vector* Vector::New() const {
 }
 
 void Vector::Clear() {
-#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(      \
-  &reinterpret_cast<Vector*>(16)->f) - \
-   reinterpret_cast<char*>(16))
+#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(                 \
+                                 &reinterpret_cast<Vector*>(16)->f) - \
+                             reinterpret_cast<char*>(16))
 
-#define ZR_(first, last) do {                              \
-    size_t f = OFFSET_OF_FIELD_(first);                    \
-    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last);  \
-    ::memset(&first, 0, n);                                \
+#define ZR_(first, last)                                  \
+  do {                                                    \
+    size_t f = OFFSET_OF_FIELD_(first);                   \
+    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last); \
+    ::memset(&first, 0, n);                               \
   } while (0)
 
   ZR_(x_, z_);
@@ -247,7 +250,9 @@ void Vector::Clear() {
 
 bool Vector::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -255,65 +260,69 @@ bool Vector::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.Vector)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required float x = 1;
-      case 1: {
-        if (tag == 13) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
-                 input, &x_)));
-          set_has_x();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(21)) goto parse_y;
-        break;
+    // required float x = 1;
+    case 1: {
+      if (tag == 13) {
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+            input, &x_)));
+        set_has_x();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(21))
+        goto parse_y;
+      break;
+    }
 
-      // required float y = 2;
-      case 2: {
-        if (tag == 21) {
-         parse_y:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
-                 input, &y_)));
-          set_has_y();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(29)) goto parse_z;
-        break;
+    // required float y = 2;
+    case 2: {
+      if (tag == 21) {
+      parse_y:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+            input, &y_)));
+        set_has_y();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(29))
+        goto parse_z;
+      break;
+    }
 
-      // required float z = 3;
-      case 3: {
-        if (tag == 29) {
-         parse_z:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
-                 input, &z_)));
-          set_has_z();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // required float z = 3;
+    case 3: {
+      if (tag == 29) {
+      parse_z:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+            input, &z_)));
+        set_has_z();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -366,7 +375,6 @@ int Vector::ByteSize() const {
     if (has_z()) {
       total_size += 1 + 4;
     }
-
   }
   total_size += unknown_fields().size();
 
@@ -398,13 +406,15 @@ void Vector::MergeFrom(const Vector& from) {
 }
 
 void Vector::CopyFrom(const Vector& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool Vector::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000007) != 0x00000007) return false;
+  if ((_has_bits_[0] & 0x00000007) != 0x00000007)
+    return false;
 
   return true;
 }
@@ -424,15 +434,14 @@ void Vector::Swap(Vector* other) {
   return "DS3_FpdLogMessage.Vector";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
 const int GlobalEventLog::kValuesFieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 GlobalEventLog::GlobalEventLog()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.GlobalEventLog)
 }
@@ -441,7 +450,7 @@ void GlobalEventLog::InitAsDefaultInstance() {
 }
 
 GlobalEventLog::GlobalEventLog(const GlobalEventLog& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.GlobalEventLog)
@@ -458,11 +467,11 @@ GlobalEventLog::~GlobalEventLog() {
 }
 
 void GlobalEventLog::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -475,7 +484,8 @@ const GlobalEventLog& GlobalEventLog::default_instance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -494,7 +504,9 @@ void GlobalEventLog::Clear() {
 
 bool GlobalEventLog::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -502,40 +514,43 @@ bool GlobalEventLog::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.GlobalEventLog)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated uint32 values = 1;
-      case 1: {
-        if (tag == 8) {
-         parse_values:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 1, 8, input, this->mutable_values())));
-        } else if (tag == 10) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitiveNoInline<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, this->mutable_values())));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(8)) goto parse_values;
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // repeated uint32 values = 1;
+    case 1: {
+      if (tag == 8) {
+      parse_values:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            1, 8, input, this->mutable_values())));
+      } else if (tag == 10) {
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitiveNoInline<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, this->mutable_values())));
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(8))
+        goto parse_values;
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -553,7 +568,7 @@ void GlobalEventLog::SerializeWithCachedSizes(
   // repeated uint32 values = 1;
   for (int i = 0; i < this->values_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(
-      1, this->values(i), output);
+        1, this->values(i), output);
   }
 
   output->WriteRaw(unknown_fields().data(),
@@ -569,7 +584,7 @@ int GlobalEventLog::ByteSize() const {
     int data_size = 0;
     for (int i = 0; i < this->values_size(); i++) {
       data_size += ::google::protobuf::internal::WireFormatLite::
-        UInt32Size(this->values(i));
+          UInt32Size(this->values(i));
     }
     total_size += 1 * this->values_size() + data_size;
   }
@@ -594,7 +609,8 @@ void GlobalEventLog::MergeFrom(const GlobalEventLog& from) {
 }
 
 void GlobalEventLog::CopyFrom(const GlobalEventLog& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
@@ -617,7 +633,6 @@ void GlobalEventLog::Swap(GlobalEventLog* other) {
   return "DS3_FpdLogMessage.GlobalEventLog";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
@@ -626,10 +641,10 @@ const int SystemOptionLog_Game_option_setting::kAutoTargetFieldNumber;
 const int SystemOptionLog_Game_option_setting::kManualAttackAimingFieldNumber;
 const int SystemOptionLog_Game_option_setting::kUnknown5FieldNumber;
 const int SystemOptionLog_Game_option_setting::kVibrationLevelFieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 SystemOptionLog_Game_option_setting::SystemOptionLog_Game_option_setting()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.SystemOptionLog.Game_option_setting)
 }
@@ -638,7 +653,7 @@ void SystemOptionLog_Game_option_setting::InitAsDefaultInstance() {
 }
 
 SystemOptionLog_Game_option_setting::SystemOptionLog_Game_option_setting(const SystemOptionLog_Game_option_setting& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.SystemOptionLog.Game_option_setting)
@@ -660,11 +675,11 @@ SystemOptionLog_Game_option_setting::~SystemOptionLog_Game_option_setting() {
 }
 
 void SystemOptionLog_Game_option_setting::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -677,7 +692,8 @@ const SystemOptionLog_Game_option_setting& SystemOptionLog_Game_option_setting::
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -689,14 +705,15 @@ SystemOptionLog_Game_option_setting* SystemOptionLog_Game_option_setting::New() 
 }
 
 void SystemOptionLog_Game_option_setting::Clear() {
-#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(      \
-  &reinterpret_cast<SystemOptionLog_Game_option_setting*>(16)->f) - \
-   reinterpret_cast<char*>(16))
+#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(                                              \
+                                 &reinterpret_cast<SystemOptionLog_Game_option_setting*>(16)->f) - \
+                             reinterpret_cast<char*>(16))
 
-#define ZR_(first, last) do {                              \
-    size_t f = OFFSET_OF_FIELD_(first);                    \
-    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last);  \
-    ::memset(&first, 0, n);                                \
+#define ZR_(first, last)                                  \
+  do {                                                    \
+    size_t f = OFFSET_OF_FIELD_(first);                   \
+    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last); \
+    ::memset(&first, 0, n);                               \
   } while (0)
 
   if (_has_bits_[0 / 32] & 31) {
@@ -712,7 +729,9 @@ void SystemOptionLog_Game_option_setting::Clear() {
 
 bool SystemOptionLog_Game_option_setting::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -720,95 +739,101 @@ bool SystemOptionLog_Game_option_setting::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.SystemOptionLog.Game_option_setting)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required uint32 toggle_auto_lock_on = 2;
-      case 2: {
-        if (tag == 16) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &toggle_auto_lock_on_)));
-          set_has_toggle_auto_lock_on();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(24)) goto parse_auto_target;
-        break;
+    // required uint32 toggle_auto_lock_on = 2;
+    case 2: {
+      if (tag == 16) {
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &toggle_auto_lock_on_)));
+        set_has_toggle_auto_lock_on();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(24))
+        goto parse_auto_target;
+      break;
+    }
 
-      // required uint32 auto_target = 3;
-      case 3: {
-        if (tag == 24) {
-         parse_auto_target:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &auto_target_)));
-          set_has_auto_target();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(32)) goto parse_manual_attack_aiming;
-        break;
+    // required uint32 auto_target = 3;
+    case 3: {
+      if (tag == 24) {
+      parse_auto_target:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &auto_target_)));
+        set_has_auto_target();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(32))
+        goto parse_manual_attack_aiming;
+      break;
+    }
 
-      // required uint32 manual_attack_aiming = 4;
-      case 4: {
-        if (tag == 32) {
-         parse_manual_attack_aiming:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &manual_attack_aiming_)));
-          set_has_manual_attack_aiming();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(40)) goto parse_unknown_5;
-        break;
+    // required uint32 manual_attack_aiming = 4;
+    case 4: {
+      if (tag == 32) {
+      parse_manual_attack_aiming:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &manual_attack_aiming_)));
+        set_has_manual_attack_aiming();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(40))
+        goto parse_unknown_5;
+      break;
+    }
 
-      // required uint32 unknown_5 = 5;
-      case 5: {
-        if (tag == 40) {
-         parse_unknown_5:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_5_)));
-          set_has_unknown_5();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(48)) goto parse_vibration_level;
-        break;
+    // required uint32 unknown_5 = 5;
+    case 5: {
+      if (tag == 40) {
+      parse_unknown_5:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_5_)));
+        set_has_unknown_5();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(48))
+        goto parse_vibration_level;
+      break;
+    }
 
-      // required uint32 vibration_level = 6;
-      case 6: {
-        if (tag == 48) {
-         parse_vibration_level:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &vibration_level_)));
-          set_has_vibration_level();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // required uint32 vibration_level = 6;
+    case 6: {
+      if (tag == 48) {
+      parse_vibration_level:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &vibration_level_)));
+        set_has_vibration_level();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -860,38 +885,37 @@ int SystemOptionLog_Game_option_setting::ByteSize() const {
     // required uint32 toggle_auto_lock_on = 2;
     if (has_toggle_auto_lock_on()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->toggle_auto_lock_on());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->toggle_auto_lock_on());
     }
 
     // required uint32 auto_target = 3;
     if (has_auto_target()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->auto_target());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->auto_target());
     }
 
     // required uint32 manual_attack_aiming = 4;
     if (has_manual_attack_aiming()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->manual_attack_aiming());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->manual_attack_aiming());
     }
 
     // required uint32 unknown_5 = 5;
     if (has_unknown_5()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_5());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_5());
     }
 
     // required uint32 vibration_level = 6;
     if (has_vibration_level()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->vibration_level());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->vibration_level());
     }
-
   }
   total_size += unknown_fields().size();
 
@@ -929,13 +953,15 @@ void SystemOptionLog_Game_option_setting::MergeFrom(const SystemOptionLog_Game_o
 }
 
 void SystemOptionLog_Game_option_setting::CopyFrom(const SystemOptionLog_Game_option_setting& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool SystemOptionLog_Game_option_setting::IsInitialized() const {
-  if ((_has_bits_[0] & 0x0000001f) != 0x0000001f) return false;
+  if ((_has_bits_[0] & 0x0000001f) != 0x0000001f)
+    return false;
 
   return true;
 }
@@ -957,7 +983,6 @@ void SystemOptionLog_Game_option_setting::Swap(SystemOptionLog_Game_option_setti
   return "DS3_FpdLogMessage.SystemOptionLog.Game_option_setting";
 }
 
-
 // -------------------------------------------------------------------
 
 #ifndef _MSC_VER
@@ -967,10 +992,10 @@ const int SystemOptionLog_Network_setting::kRestrictSummonSignVisibilityFieldNum
 const int SystemOptionLog_Network_setting::kAllowVoiceChatFieldNumber;
 const int SystemOptionLog_Network_setting::kUnknown12FieldNumber;
 const int SystemOptionLog_Network_setting::kStartOfflineFieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 SystemOptionLog_Network_setting::SystemOptionLog_Network_setting()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.SystemOptionLog.Network_setting)
 }
@@ -979,7 +1004,7 @@ void SystemOptionLog_Network_setting::InitAsDefaultInstance() {
 }
 
 SystemOptionLog_Network_setting::SystemOptionLog_Network_setting(const SystemOptionLog_Network_setting& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.SystemOptionLog.Network_setting)
@@ -1002,11 +1027,11 @@ SystemOptionLog_Network_setting::~SystemOptionLog_Network_setting() {
 }
 
 void SystemOptionLog_Network_setting::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -1019,7 +1044,8 @@ const SystemOptionLog_Network_setting& SystemOptionLog_Network_setting::default_
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -1031,14 +1057,15 @@ SystemOptionLog_Network_setting* SystemOptionLog_Network_setting::New() const {
 }
 
 void SystemOptionLog_Network_setting::Clear() {
-#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(      \
-  &reinterpret_cast<SystemOptionLog_Network_setting*>(16)->f) - \
-   reinterpret_cast<char*>(16))
+#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(                                          \
+                                 &reinterpret_cast<SystemOptionLog_Network_setting*>(16)->f) - \
+                             reinterpret_cast<char*>(16))
 
-#define ZR_(first, last) do {                              \
-    size_t f = OFFSET_OF_FIELD_(first);                    \
-    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last);  \
-    ::memset(&first, 0, n);                                \
+#define ZR_(first, last)                                  \
+  do {                                                    \
+    size_t f = OFFSET_OF_FIELD_(first);                   \
+    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last); \
+    ::memset(&first, 0, n);                               \
   } while (0)
 
   if (_has_bits_[0 / 32] & 63) {
@@ -1054,7 +1081,9 @@ void SystemOptionLog_Network_setting::Clear() {
 
 bool SystemOptionLog_Network_setting::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -1062,110 +1091,117 @@ bool SystemOptionLog_Network_setting::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.SystemOptionLog.Network_setting)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required uint32 allow_cross_region_play = 8;
-      case 8: {
-        if (tag == 64) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &allow_cross_region_play_)));
-          set_has_allow_cross_region_play();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(72)) goto parse_has_password;
-        break;
+    // required uint32 allow_cross_region_play = 8;
+    case 8: {
+      if (tag == 64) {
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &allow_cross_region_play_)));
+        set_has_allow_cross_region_play();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(72))
+        goto parse_has_password;
+      break;
+    }
 
-      // required uint32 has_password = 9;
-      case 9: {
-        if (tag == 72) {
-         parse_has_password:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &has_password_)));
-          set_has_has_password();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(80)) goto parse_restrict_summon_sign_visibility;
-        break;
+    // required uint32 has_password = 9;
+    case 9: {
+      if (tag == 72) {
+      parse_has_password:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &has_password_)));
+        set_has_has_password();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(80))
+        goto parse_restrict_summon_sign_visibility;
+      break;
+    }
 
-      // required uint32 restrict_summon_sign_visibility = 10;
-      case 10: {
-        if (tag == 80) {
-         parse_restrict_summon_sign_visibility:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &restrict_summon_sign_visibility_)));
-          set_has_restrict_summon_sign_visibility();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(88)) goto parse_allow_voice_chat;
-        break;
+    // required uint32 restrict_summon_sign_visibility = 10;
+    case 10: {
+      if (tag == 80) {
+      parse_restrict_summon_sign_visibility:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &restrict_summon_sign_visibility_)));
+        set_has_restrict_summon_sign_visibility();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(88))
+        goto parse_allow_voice_chat;
+      break;
+    }
 
-      // required uint32 allow_voice_chat = 11;
-      case 11: {
-        if (tag == 88) {
-         parse_allow_voice_chat:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &allow_voice_chat_)));
-          set_has_allow_voice_chat();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(96)) goto parse_unknown_12;
-        break;
+    // required uint32 allow_voice_chat = 11;
+    case 11: {
+      if (tag == 88) {
+      parse_allow_voice_chat:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &allow_voice_chat_)));
+        set_has_allow_voice_chat();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(96))
+        goto parse_unknown_12;
+      break;
+    }
 
-      // required uint32 unknown_12 = 12;
-      case 12: {
-        if (tag == 96) {
-         parse_unknown_12:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_12_)));
-          set_has_unknown_12();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(104)) goto parse_start_offline;
-        break;
+    // required uint32 unknown_12 = 12;
+    case 12: {
+      if (tag == 96) {
+      parse_unknown_12:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_12_)));
+        set_has_unknown_12();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(104))
+        goto parse_start_offline;
+      break;
+    }
 
-      // required uint32 start_offline = 13;
-      case 13: {
-        if (tag == 104) {
-         parse_start_offline:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &start_offline_)));
-          set_has_start_offline();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // required uint32 start_offline = 13;
+    case 13: {
+      if (tag == 104) {
+      parse_start_offline:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &start_offline_)));
+        set_has_start_offline();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -1222,45 +1258,44 @@ int SystemOptionLog_Network_setting::ByteSize() const {
     // required uint32 allow_cross_region_play = 8;
     if (has_allow_cross_region_play()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->allow_cross_region_play());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->allow_cross_region_play());
     }
 
     // required uint32 has_password = 9;
     if (has_has_password()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->has_password());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->has_password());
     }
 
     // required uint32 restrict_summon_sign_visibility = 10;
     if (has_restrict_summon_sign_visibility()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->restrict_summon_sign_visibility());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->restrict_summon_sign_visibility());
     }
 
     // required uint32 allow_voice_chat = 11;
     if (has_allow_voice_chat()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->allow_voice_chat());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->allow_voice_chat());
     }
 
     // required uint32 unknown_12 = 12;
     if (has_unknown_12()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_12());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_12());
     }
 
     // required uint32 start_offline = 13;
     if (has_start_offline()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->start_offline());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->start_offline());
     }
-
   }
   total_size += unknown_fields().size();
 
@@ -1301,13 +1336,15 @@ void SystemOptionLog_Network_setting::MergeFrom(const SystemOptionLog_Network_se
 }
 
 void SystemOptionLog_Network_setting::CopyFrom(const SystemOptionLog_Network_setting& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool SystemOptionLog_Network_setting::IsInitialized() const {
-  if ((_has_bits_[0] & 0x0000003f) != 0x0000003f) return false;
+  if ((_has_bits_[0] & 0x0000003f) != 0x0000003f)
+    return false;
 
   return true;
 }
@@ -1330,37 +1367,36 @@ void SystemOptionLog_Network_setting::Swap(SystemOptionLog_Network_setting* othe
   return "DS3_FpdLogMessage.SystemOptionLog.Network_setting";
 }
 
-
 // -------------------------------------------------------------------
 
 #ifndef _MSC_VER
 const int SystemOptionLog::kGameSettingsFieldNumber;
 const int SystemOptionLog::kNetworkSettingsFieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 SystemOptionLog::SystemOptionLog()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.SystemOptionLog)
 }
 
 void SystemOptionLog::InitAsDefaultInstance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  game_settings_ = const_cast< ::DS3_FpdLogMessage::SystemOptionLog_Game_option_setting*>(
+  game_settings_ = const_cast<::DS3_FpdLogMessage::SystemOptionLog_Game_option_setting*>(
       ::DS3_FpdLogMessage::SystemOptionLog_Game_option_setting::internal_default_instance());
 #else
-  game_settings_ = const_cast< ::DS3_FpdLogMessage::SystemOptionLog_Game_option_setting*>(&::DS3_FpdLogMessage::SystemOptionLog_Game_option_setting::default_instance());
+  game_settings_ = const_cast<::DS3_FpdLogMessage::SystemOptionLog_Game_option_setting*>(&::DS3_FpdLogMessage::SystemOptionLog_Game_option_setting::default_instance());
 #endif
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  network_settings_ = const_cast< ::DS3_FpdLogMessage::SystemOptionLog_Network_setting*>(
+  network_settings_ = const_cast<::DS3_FpdLogMessage::SystemOptionLog_Network_setting*>(
       ::DS3_FpdLogMessage::SystemOptionLog_Network_setting::internal_default_instance());
 #else
-  network_settings_ = const_cast< ::DS3_FpdLogMessage::SystemOptionLog_Network_setting*>(&::DS3_FpdLogMessage::SystemOptionLog_Network_setting::default_instance());
+  network_settings_ = const_cast<::DS3_FpdLogMessage::SystemOptionLog_Network_setting*>(&::DS3_FpdLogMessage::SystemOptionLog_Network_setting::default_instance());
 #endif
 }
 
 SystemOptionLog::SystemOptionLog(const SystemOptionLog& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.SystemOptionLog)
@@ -1379,11 +1415,11 @@ SystemOptionLog::~SystemOptionLog() {
 }
 
 void SystemOptionLog::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
     delete game_settings_;
     delete network_settings_;
   }
@@ -1398,7 +1434,8 @@ const SystemOptionLog& SystemOptionLog::default_instance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -1412,10 +1449,12 @@ SystemOptionLog* SystemOptionLog::New() const {
 void SystemOptionLog::Clear() {
   if (_has_bits_[0 / 32] & 3) {
     if (has_game_settings()) {
-      if (game_settings_ != NULL) game_settings_->::DS3_FpdLogMessage::SystemOptionLog_Game_option_setting::Clear();
+      if (game_settings_ != NULL)
+        game_settings_->::DS3_FpdLogMessage::SystemOptionLog_Game_option_setting::Clear();
     }
     if (has_network_settings()) {
-      if (network_settings_ != NULL) network_settings_->::DS3_FpdLogMessage::SystemOptionLog_Network_setting::Clear();
+      if (network_settings_ != NULL)
+        network_settings_->::DS3_FpdLogMessage::SystemOptionLog_Network_setting::Clear();
     }
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -1424,7 +1463,9 @@ void SystemOptionLog::Clear() {
 
 bool SystemOptionLog::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -1432,46 +1473,49 @@ bool SystemOptionLog::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.SystemOptionLog)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required .DS3_FpdLogMessage.SystemOptionLog.Game_option_setting game_settings = 1;
-      case 1: {
-        if (tag == 10) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-               input, mutable_game_settings()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(58)) goto parse_network_settings;
-        break;
+    // required .DS3_FpdLogMessage.SystemOptionLog.Game_option_setting game_settings = 1;
+    case 1: {
+      if (tag == 10) {
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+            input, mutable_game_settings()));
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(58))
+        goto parse_network_settings;
+      break;
+    }
 
-      // required .DS3_FpdLogMessage.SystemOptionLog.Network_setting network_settings = 7;
-      case 7: {
-        if (tag == 58) {
-         parse_network_settings:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-               input, mutable_network_settings()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // required .DS3_FpdLogMessage.SystemOptionLog.Network_setting network_settings = 7;
+    case 7: {
+      if (tag == 58) {
+      parse_network_settings:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+            input, mutable_network_settings()));
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -1489,13 +1533,13 @@ void SystemOptionLog::SerializeWithCachedSizes(
   // required .DS3_FpdLogMessage.SystemOptionLog.Game_option_setting game_settings = 1;
   if (has_game_settings()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
-      1, this->game_settings(), output);
+        1, this->game_settings(), output);
   }
 
   // required .DS3_FpdLogMessage.SystemOptionLog.Network_setting network_settings = 7;
   if (has_network_settings()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
-      7, this->network_settings(), output);
+        7, this->network_settings(), output);
   }
 
   output->WriteRaw(unknown_fields().data(),
@@ -1510,17 +1554,16 @@ int SystemOptionLog::ByteSize() const {
     // required .DS3_FpdLogMessage.SystemOptionLog.Game_option_setting game_settings = 1;
     if (has_game_settings()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->game_settings());
+                    ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+                        this->game_settings());
     }
 
     // required .DS3_FpdLogMessage.SystemOptionLog.Network_setting network_settings = 7;
     if (has_network_settings()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->network_settings());
+                    ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+                        this->network_settings());
     }
-
   }
   total_size += unknown_fields().size();
 
@@ -1549,19 +1592,23 @@ void SystemOptionLog::MergeFrom(const SystemOptionLog& from) {
 }
 
 void SystemOptionLog::CopyFrom(const SystemOptionLog& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool SystemOptionLog::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
+  if ((_has_bits_[0] & 0x00000003) != 0x00000003)
+    return false;
 
   if (has_game_settings()) {
-    if (!this->game_settings().IsInitialized()) return false;
+    if (!this->game_settings().IsInitialized())
+      return false;
   }
   if (has_network_settings()) {
-    if (!this->network_settings().IsInitialized()) return false;
+    if (!this->network_settings().IsInitialized())
+      return false;
   }
   return true;
 }
@@ -1580,17 +1627,16 @@ void SystemOptionLog::Swap(SystemOptionLog* other) {
   return "DS3_FpdLogMessage.SystemOptionLog";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
 const int UseItemLog_Use_item_info_list::kItemIdFieldNumber;
 const int UseItemLog_Use_item_info_list::kCountFieldNumber;
 const int UseItemLog_Use_item_info_list::kUnknown4FieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 UseItemLog_Use_item_info_list::UseItemLog_Use_item_info_list()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.UseItemLog.Use_item_info_list)
 }
@@ -1599,7 +1645,7 @@ void UseItemLog_Use_item_info_list::InitAsDefaultInstance() {
 }
 
 UseItemLog_Use_item_info_list::UseItemLog_Use_item_info_list(const UseItemLog_Use_item_info_list& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.UseItemLog.Use_item_info_list)
@@ -1619,11 +1665,11 @@ UseItemLog_Use_item_info_list::~UseItemLog_Use_item_info_list() {
 }
 
 void UseItemLog_Use_item_info_list::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -1636,7 +1682,8 @@ const UseItemLog_Use_item_info_list& UseItemLog_Use_item_info_list::default_inst
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -1648,14 +1695,15 @@ UseItemLog_Use_item_info_list* UseItemLog_Use_item_info_list::New() const {
 }
 
 void UseItemLog_Use_item_info_list::Clear() {
-#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(      \
-  &reinterpret_cast<UseItemLog_Use_item_info_list*>(16)->f) - \
-   reinterpret_cast<char*>(16))
+#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(                                        \
+                                 &reinterpret_cast<UseItemLog_Use_item_info_list*>(16)->f) - \
+                             reinterpret_cast<char*>(16))
 
-#define ZR_(first, last) do {                              \
-    size_t f = OFFSET_OF_FIELD_(first);                    \
-    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last);  \
-    ::memset(&first, 0, n);                                \
+#define ZR_(first, last)                                  \
+  do {                                                    \
+    size_t f = OFFSET_OF_FIELD_(first);                   \
+    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last); \
+    ::memset(&first, 0, n);                               \
   } while (0)
 
   ZR_(item_id_, unknown_4_);
@@ -1669,7 +1717,9 @@ void UseItemLog_Use_item_info_list::Clear() {
 
 bool UseItemLog_Use_item_info_list::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -1677,65 +1727,69 @@ bool UseItemLog_Use_item_info_list::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.UseItemLog.Use_item_info_list)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required uint32 item_id = 2;
-      case 2: {
-        if (tag == 16) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &item_id_)));
-          set_has_item_id();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(24)) goto parse_count;
-        break;
+    // required uint32 item_id = 2;
+    case 2: {
+      if (tag == 16) {
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &item_id_)));
+        set_has_item_id();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(24))
+        goto parse_count;
+      break;
+    }
 
-      // required uint32 count = 3;
-      case 3: {
-        if (tag == 24) {
-         parse_count:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &count_)));
-          set_has_count();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(32)) goto parse_unknown_4;
-        break;
+    // required uint32 count = 3;
+    case 3: {
+      if (tag == 24) {
+      parse_count:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &count_)));
+        set_has_count();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(32))
+        goto parse_unknown_4;
+      break;
+    }
 
-      // required uint32 unknown_4 = 4;
-      case 4: {
-        if (tag == 32) {
-         parse_unknown_4:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_4_)));
-          set_has_unknown_4();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // required uint32 unknown_4 = 4;
+    case 4: {
+      if (tag == 32) {
+      parse_unknown_4:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_4_)));
+        set_has_unknown_4();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -1777,24 +1831,23 @@ int UseItemLog_Use_item_info_list::ByteSize() const {
     // required uint32 item_id = 2;
     if (has_item_id()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->item_id());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->item_id());
     }
 
     // required uint32 count = 3;
     if (has_count()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->count());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->count());
     }
 
     // required uint32 unknown_4 = 4;
     if (has_unknown_4()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_4());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_4());
     }
-
   }
   total_size += unknown_fields().size();
 
@@ -1826,13 +1879,15 @@ void UseItemLog_Use_item_info_list::MergeFrom(const UseItemLog_Use_item_info_lis
 }
 
 void UseItemLog_Use_item_info_list::CopyFrom(const UseItemLog_Use_item_info_list& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool UseItemLog_Use_item_info_list::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000007) != 0x00000007) return false;
+  if ((_has_bits_[0] & 0x00000007) != 0x00000007)
+    return false;
 
   return true;
 }
@@ -1852,32 +1907,31 @@ void UseItemLog_Use_item_info_list::Swap(UseItemLog_Use_item_info_list* other) {
   return "DS3_FpdLogMessage.UseItemLog.Use_item_info_list";
 }
 
-
 // -------------------------------------------------------------------
 
 #ifndef _MSC_VER
 const int UseItemLog::kUseItemInfoListFieldNumber;
 const int UseItemLog::kUnknown5FieldNumber;
 const int UseItemLog::kLocationFieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 UseItemLog::UseItemLog()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.UseItemLog)
 }
 
 void UseItemLog::InitAsDefaultInstance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  location_ = const_cast< ::DS3_FpdLogMessage::Vector*>(
+  location_ = const_cast<::DS3_FpdLogMessage::Vector*>(
       ::DS3_FpdLogMessage::Vector::internal_default_instance());
 #else
-  location_ = const_cast< ::DS3_FpdLogMessage::Vector*>(&::DS3_FpdLogMessage::Vector::default_instance());
+  location_ = const_cast<::DS3_FpdLogMessage::Vector*>(&::DS3_FpdLogMessage::Vector::default_instance());
 #endif
 }
 
 UseItemLog::UseItemLog(const UseItemLog& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.UseItemLog)
@@ -1896,11 +1950,11 @@ UseItemLog::~UseItemLog() {
 }
 
 void UseItemLog::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
     delete location_;
   }
 }
@@ -1914,7 +1968,8 @@ const UseItemLog& UseItemLog::default_instance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -1929,7 +1984,8 @@ void UseItemLog::Clear() {
   if (_has_bits_[0 / 32] & 6) {
     unknown_5_ = 0u;
     if (has_location()) {
-      if (location_ != NULL) location_->::DS3_FpdLogMessage::Vector::Clear();
+      if (location_ != NULL)
+        location_->::DS3_FpdLogMessage::Vector::Clear();
     }
   }
   use_item_info_list_.Clear();
@@ -1939,7 +1995,9 @@ void UseItemLog::Clear() {
 
 bool UseItemLog::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -1947,63 +2005,68 @@ bool UseItemLog::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.UseItemLog)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated group Use_item_info_list = 1 {
-      case 1: {
-        if (tag == 11) {
-         parse_use_item_info_list:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadGroupNoVirtual(
-                1, input, add_use_item_info_list()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(11)) goto parse_use_item_info_list;
-        if (input->ExpectTag(40)) goto parse_unknown_5;
-        break;
+    // repeated group Use_item_info_list = 1 {
+    case 1: {
+      if (tag == 11) {
+      parse_use_item_info_list:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadGroupNoVirtual(
+            1, input, add_use_item_info_list()));
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(11))
+        goto parse_use_item_info_list;
+      if (input->ExpectTag(40))
+        goto parse_unknown_5;
+      break;
+    }
 
-      // required uint32 unknown_5 = 5;
-      case 5: {
-        if (tag == 40) {
-         parse_unknown_5:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_5_)));
-          set_has_unknown_5();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(50)) goto parse_location;
-        break;
+    // required uint32 unknown_5 = 5;
+    case 5: {
+      if (tag == 40) {
+      parse_unknown_5:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_5_)));
+        set_has_unknown_5();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(50))
+        goto parse_location;
+      break;
+    }
 
-      // required .DS3_FpdLogMessage.Vector location = 6;
-      case 6: {
-        if (tag == 50) {
-         parse_location:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-               input, mutable_location()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // required .DS3_FpdLogMessage.Vector location = 6;
+    case 6: {
+      if (tag == 50) {
+      parse_location:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+            input, mutable_location()));
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -2021,7 +2084,7 @@ void UseItemLog::SerializeWithCachedSizes(
   // repeated group Use_item_info_list = 1 {
   for (int i = 0; i < this->use_item_info_list_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteGroup(
-      1, this->use_item_info_list(i), output);
+        1, this->use_item_info_list(i), output);
   }
 
   // required uint32 unknown_5 = 5;
@@ -2032,7 +2095,7 @@ void UseItemLog::SerializeWithCachedSizes(
   // required .DS3_FpdLogMessage.Vector location = 6;
   if (has_location()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
-      6, this->location(), output);
+        6, this->location(), output);
   }
 
   output->WriteRaw(unknown_fields().data(),
@@ -2047,24 +2110,23 @@ int UseItemLog::ByteSize() const {
     // required uint32 unknown_5 = 5;
     if (has_unknown_5()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_5());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_5());
     }
 
     // required .DS3_FpdLogMessage.Vector location = 6;
     if (has_location()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->location());
+                    ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+                        this->location());
     }
-
   }
   // repeated group Use_item_info_list = 1 {
   total_size += 2 * this->use_item_info_list_size();
   for (int i = 0; i < this->use_item_info_list_size(); i++) {
     total_size +=
-      ::google::protobuf::internal::WireFormatLite::GroupSizeNoVirtual(
-        this->use_item_info_list(i));
+        ::google::protobuf::internal::WireFormatLite::GroupSizeNoVirtual(
+            this->use_item_info_list(i));
   }
 
   total_size += unknown_fields().size();
@@ -2095,17 +2157,21 @@ void UseItemLog::MergeFrom(const UseItemLog& from) {
 }
 
 void UseItemLog::CopyFrom(const UseItemLog& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool UseItemLog::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000006) != 0x00000006) return false;
+  if ((_has_bits_[0] & 0x00000006) != 0x00000006)
+    return false;
 
-  if (!::google::protobuf::internal::AllAreInitialized(this->use_item_info_list())) return false;
+  if (!::google::protobuf::internal::AllAreInitialized(this->use_item_info_list()))
+    return false;
   if (has_location()) {
-    if (!this->location().IsInitialized()) return false;
+    if (!this->location().IsInitialized())
+      return false;
   }
   return true;
 }
@@ -2125,7 +2191,6 @@ void UseItemLog::Swap(UseItemLog* other) {
   return "DS3_FpdLogMessage.UseItemLog";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
@@ -2137,25 +2202,25 @@ const int GetItemLog_Get_item_info_list::kCountFieldNumber;
 const int GetItemLog_Get_item_info_list::kUnknown7FieldNumber;
 const int GetItemLog_Get_item_info_list::kUnknown8FieldNumber;
 const int GetItemLog_Get_item_info_list::kUnknown9FieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 GetItemLog_Get_item_info_list::GetItemLog_Get_item_info_list()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.GetItemLog.Get_item_info_list)
 }
 
 void GetItemLog_Get_item_info_list::InitAsDefaultInstance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  location_ = const_cast< ::DS3_FpdLogMessage::Vector*>(
+  location_ = const_cast<::DS3_FpdLogMessage::Vector*>(
       ::DS3_FpdLogMessage::Vector::internal_default_instance());
 #else
-  location_ = const_cast< ::DS3_FpdLogMessage::Vector*>(&::DS3_FpdLogMessage::Vector::default_instance());
+  location_ = const_cast<::DS3_FpdLogMessage::Vector*>(&::DS3_FpdLogMessage::Vector::default_instance());
 #endif
 }
 
 GetItemLog_Get_item_info_list::GetItemLog_Get_item_info_list(const GetItemLog_Get_item_info_list& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.GetItemLog.Get_item_info_list)
@@ -2180,11 +2245,11 @@ GetItemLog_Get_item_info_list::~GetItemLog_Get_item_info_list() {
 }
 
 void GetItemLog_Get_item_info_list::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
     delete location_;
   }
 }
@@ -2198,7 +2263,8 @@ const GetItemLog_Get_item_info_list& GetItemLog_Get_item_info_list::default_inst
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -2210,20 +2276,22 @@ GetItemLog_Get_item_info_list* GetItemLog_Get_item_info_list::New() const {
 }
 
 void GetItemLog_Get_item_info_list::Clear() {
-#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(      \
-  &reinterpret_cast<GetItemLog_Get_item_info_list*>(16)->f) - \
-   reinterpret_cast<char*>(16))
+#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(                                        \
+                                 &reinterpret_cast<GetItemLog_Get_item_info_list*>(16)->f) - \
+                             reinterpret_cast<char*>(16))
 
-#define ZR_(first, last) do {                              \
-    size_t f = OFFSET_OF_FIELD_(first);                    \
-    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last);  \
-    ::memset(&first, 0, n);                                \
+#define ZR_(first, last)                                  \
+  do {                                                    \
+    size_t f = OFFSET_OF_FIELD_(first);                   \
+    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last); \
+    ::memset(&first, 0, n);                               \
   } while (0)
 
   if (_has_bits_[0 / 32] & 255) {
     ZR_(unknown_2_, unknown_9_);
     if (has_location()) {
-      if (location_ != NULL) location_->::DS3_FpdLogMessage::Vector::Clear();
+      if (location_ != NULL)
+        location_->::DS3_FpdLogMessage::Vector::Clear();
     }
   }
 
@@ -2236,7 +2304,9 @@ void GetItemLog_Get_item_info_list::Clear() {
 
 bool GetItemLog_Get_item_info_list::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -2244,138 +2314,147 @@ bool GetItemLog_Get_item_info_list::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.GetItemLog.Get_item_info_list)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required uint32 unknown_2 = 2;
-      case 2: {
-        if (tag == 16) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_2_)));
-          set_has_unknown_2();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(26)) goto parse_location;
-        break;
+    // required uint32 unknown_2 = 2;
+    case 2: {
+      if (tag == 16) {
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_2_)));
+        set_has_unknown_2();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(26))
+        goto parse_location;
+      break;
+    }
 
-      // required .DS3_FpdLogMessage.Vector location = 3;
-      case 3: {
-        if (tag == 26) {
-         parse_location:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-               input, mutable_location()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(32)) goto parse_unknown_4;
-        break;
+    // required .DS3_FpdLogMessage.Vector location = 3;
+    case 3: {
+      if (tag == 26) {
+      parse_location:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+            input, mutable_location()));
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(32))
+        goto parse_unknown_4;
+      break;
+    }
 
-      // required uint32 unknown_4 = 4;
-      case 4: {
-        if (tag == 32) {
-         parse_unknown_4:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_4_)));
-          set_has_unknown_4();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(40)) goto parse_item_id;
-        break;
+    // required uint32 unknown_4 = 4;
+    case 4: {
+      if (tag == 32) {
+      parse_unknown_4:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_4_)));
+        set_has_unknown_4();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(40))
+        goto parse_item_id;
+      break;
+    }
 
-      // required uint32 item_id = 5;
-      case 5: {
-        if (tag == 40) {
-         parse_item_id:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &item_id_)));
-          set_has_item_id();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(48)) goto parse_count;
-        break;
+    // required uint32 item_id = 5;
+    case 5: {
+      if (tag == 40) {
+      parse_item_id:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &item_id_)));
+        set_has_item_id();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(48))
+        goto parse_count;
+      break;
+    }
 
-      // required uint32 count = 6;
-      case 6: {
-        if (tag == 48) {
-         parse_count:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &count_)));
-          set_has_count();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(56)) goto parse_unknown_7;
-        break;
+    // required uint32 count = 6;
+    case 6: {
+      if (tag == 48) {
+      parse_count:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &count_)));
+        set_has_count();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(56))
+        goto parse_unknown_7;
+      break;
+    }
 
-      // required uint32 unknown_7 = 7;
-      case 7: {
-        if (tag == 56) {
-         parse_unknown_7:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_7_)));
-          set_has_unknown_7();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(64)) goto parse_unknown_8;
-        break;
+    // required uint32 unknown_7 = 7;
+    case 7: {
+      if (tag == 56) {
+      parse_unknown_7:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_7_)));
+        set_has_unknown_7();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(64))
+        goto parse_unknown_8;
+      break;
+    }
 
-      // required uint32 unknown_8 = 8;
-      case 8: {
-        if (tag == 64) {
-         parse_unknown_8:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_8_)));
-          set_has_unknown_8();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(72)) goto parse_unknown_9;
-        break;
+    // required uint32 unknown_8 = 8;
+    case 8: {
+      if (tag == 64) {
+      parse_unknown_8:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_8_)));
+        set_has_unknown_8();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(72))
+        goto parse_unknown_9;
+      break;
+    }
 
-      // required uint32 unknown_9 = 9;
-      case 9: {
-        if (tag == 72) {
-         parse_unknown_9:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_9_)));
-          set_has_unknown_9();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // required uint32 unknown_9 = 9;
+    case 9: {
+      if (tag == 72) {
+      parse_unknown_9:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_9_)));
+        set_has_unknown_9();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -2398,7 +2477,7 @@ void GetItemLog_Get_item_info_list::SerializeWithCachedSizes(
   // required .DS3_FpdLogMessage.Vector location = 3;
   if (has_location()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
-      3, this->location(), output);
+        3, this->location(), output);
   }
 
   // required uint32 unknown_4 = 4;
@@ -2443,59 +2522,58 @@ int GetItemLog_Get_item_info_list::ByteSize() const {
     // required uint32 unknown_2 = 2;
     if (has_unknown_2()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_2());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_2());
     }
 
     // required .DS3_FpdLogMessage.Vector location = 3;
     if (has_location()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->location());
+                    ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+                        this->location());
     }
 
     // required uint32 unknown_4 = 4;
     if (has_unknown_4()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_4());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_4());
     }
 
     // required uint32 item_id = 5;
     if (has_item_id()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->item_id());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->item_id());
     }
 
     // required uint32 count = 6;
     if (has_count()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->count());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->count());
     }
 
     // required uint32 unknown_7 = 7;
     if (has_unknown_7()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_7());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_7());
     }
 
     // required uint32 unknown_8 = 8;
     if (has_unknown_8()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_8());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_8());
     }
 
     // required uint32 unknown_9 = 9;
     if (has_unknown_9()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_9());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_9());
     }
-
   }
   total_size += unknown_fields().size();
 
@@ -2542,16 +2620,19 @@ void GetItemLog_Get_item_info_list::MergeFrom(const GetItemLog_Get_item_info_lis
 }
 
 void GetItemLog_Get_item_info_list::CopyFrom(const GetItemLog_Get_item_info_list& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool GetItemLog_Get_item_info_list::IsInitialized() const {
-  if ((_has_bits_[0] & 0x000000ff) != 0x000000ff) return false;
+  if ((_has_bits_[0] & 0x000000ff) != 0x000000ff)
+    return false;
 
   if (has_location()) {
-    if (!this->location().IsInitialized()) return false;
+    if (!this->location().IsInitialized())
+      return false;
   }
   return true;
 }
@@ -2576,15 +2657,14 @@ void GetItemLog_Get_item_info_list::Swap(GetItemLog_Get_item_info_list* other) {
   return "DS3_FpdLogMessage.GetItemLog.Get_item_info_list";
 }
 
-
 // -------------------------------------------------------------------
 
 #ifndef _MSC_VER
 const int GetItemLog::kGetItemInfoListFieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 GetItemLog::GetItemLog()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.GetItemLog)
 }
@@ -2593,7 +2673,7 @@ void GetItemLog::InitAsDefaultInstance() {
 }
 
 GetItemLog::GetItemLog(const GetItemLog& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.GetItemLog)
@@ -2610,11 +2690,11 @@ GetItemLog::~GetItemLog() {
 }
 
 void GetItemLog::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -2627,7 +2707,8 @@ const GetItemLog& GetItemLog::default_instance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -2646,7 +2727,9 @@ void GetItemLog::Clear() {
 
 bool GetItemLog::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -2654,35 +2737,38 @@ bool GetItemLog::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.GetItemLog)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated group Get_item_info_list = 1 {
-      case 1: {
-        if (tag == 11) {
-         parse_get_item_info_list:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadGroupNoVirtual(
-                1, input, add_get_item_info_list()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(11)) goto parse_get_item_info_list;
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // repeated group Get_item_info_list = 1 {
+    case 1: {
+      if (tag == 11) {
+      parse_get_item_info_list:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadGroupNoVirtual(
+            1, input, add_get_item_info_list()));
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(11))
+        goto parse_get_item_info_list;
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -2700,7 +2786,7 @@ void GetItemLog::SerializeWithCachedSizes(
   // repeated group Get_item_info_list = 1 {
   for (int i = 0; i < this->get_item_info_list_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteGroup(
-      1, this->get_item_info_list(i), output);
+        1, this->get_item_info_list(i), output);
   }
 
   output->WriteRaw(unknown_fields().data(),
@@ -2715,8 +2801,8 @@ int GetItemLog::ByteSize() const {
   total_size += 2 * this->get_item_info_list_size();
   for (int i = 0; i < this->get_item_info_list_size(); i++) {
     total_size +=
-      ::google::protobuf::internal::WireFormatLite::GroupSizeNoVirtual(
-        this->get_item_info_list(i));
+        ::google::protobuf::internal::WireFormatLite::GroupSizeNoVirtual(
+            this->get_item_info_list(i));
   }
 
   total_size += unknown_fields().size();
@@ -2739,14 +2825,16 @@ void GetItemLog::MergeFrom(const GetItemLog& from) {
 }
 
 void GetItemLog::CopyFrom(const GetItemLog& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool GetItemLog::IsInitialized() const {
 
-  if (!::google::protobuf::internal::AllAreInitialized(this->get_item_info_list())) return false;
+  if (!::google::protobuf::internal::AllAreInitialized(this->get_item_info_list()))
+    return false;
   return true;
 }
 
@@ -2763,16 +2851,15 @@ void GetItemLog::Swap(GetItemLog* other) {
   return "DS3_FpdLogMessage.GetItemLog";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
 const int ActGestureLog_Use_gesture_info_list::kGuestureIdFieldNumber;
 const int ActGestureLog_Use_gesture_info_list::kCountFieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 ActGestureLog_Use_gesture_info_list::ActGestureLog_Use_gesture_info_list()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.ActGestureLog.Use_gesture_info_list)
 }
@@ -2781,7 +2868,7 @@ void ActGestureLog_Use_gesture_info_list::InitAsDefaultInstance() {
 }
 
 ActGestureLog_Use_gesture_info_list::ActGestureLog_Use_gesture_info_list(const ActGestureLog_Use_gesture_info_list& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.ActGestureLog.Use_gesture_info_list)
@@ -2800,11 +2887,11 @@ ActGestureLog_Use_gesture_info_list::~ActGestureLog_Use_gesture_info_list() {
 }
 
 void ActGestureLog_Use_gesture_info_list::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -2817,7 +2904,8 @@ const ActGestureLog_Use_gesture_info_list& ActGestureLog_Use_gesture_info_list::
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -2829,14 +2917,15 @@ ActGestureLog_Use_gesture_info_list* ActGestureLog_Use_gesture_info_list::New() 
 }
 
 void ActGestureLog_Use_gesture_info_list::Clear() {
-#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(      \
-  &reinterpret_cast<ActGestureLog_Use_gesture_info_list*>(16)->f) - \
-   reinterpret_cast<char*>(16))
+#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(                                              \
+                                 &reinterpret_cast<ActGestureLog_Use_gesture_info_list*>(16)->f) - \
+                             reinterpret_cast<char*>(16))
 
-#define ZR_(first, last) do {                              \
-    size_t f = OFFSET_OF_FIELD_(first);                    \
-    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last);  \
-    ::memset(&first, 0, n);                                \
+#define ZR_(first, last)                                  \
+  do {                                                    \
+    size_t f = OFFSET_OF_FIELD_(first);                   \
+    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last); \
+    ::memset(&first, 0, n);                               \
   } while (0)
 
   ZR_(guesture_id_, count_);
@@ -2850,7 +2939,9 @@ void ActGestureLog_Use_gesture_info_list::Clear() {
 
 bool ActGestureLog_Use_gesture_info_list::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -2858,50 +2949,53 @@ bool ActGestureLog_Use_gesture_info_list::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.ActGestureLog.Use_gesture_info_list)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required uint32 guesture_id = 2;
-      case 2: {
-        if (tag == 16) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &guesture_id_)));
-          set_has_guesture_id();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(24)) goto parse_count;
-        break;
+    // required uint32 guesture_id = 2;
+    case 2: {
+      if (tag == 16) {
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &guesture_id_)));
+        set_has_guesture_id();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(24))
+        goto parse_count;
+      break;
+    }
 
-      // required uint32 count = 3;
-      case 3: {
-        if (tag == 24) {
-         parse_count:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &count_)));
-          set_has_count();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // required uint32 count = 3;
+    case 3: {
+      if (tag == 24) {
+      parse_count:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &count_)));
+        set_has_count();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -2938,17 +3032,16 @@ int ActGestureLog_Use_gesture_info_list::ByteSize() const {
     // required uint32 guesture_id = 2;
     if (has_guesture_id()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->guesture_id());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->guesture_id());
     }
 
     // required uint32 count = 3;
     if (has_count()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->count());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->count());
     }
-
   }
   total_size += unknown_fields().size();
 
@@ -2977,13 +3070,15 @@ void ActGestureLog_Use_gesture_info_list::MergeFrom(const ActGestureLog_Use_gest
 }
 
 void ActGestureLog_Use_gesture_info_list::CopyFrom(const ActGestureLog_Use_gesture_info_list& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool ActGestureLog_Use_gesture_info_list::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
+  if ((_has_bits_[0] & 0x00000003) != 0x00000003)
+    return false;
 
   return true;
 }
@@ -3002,32 +3097,31 @@ void ActGestureLog_Use_gesture_info_list::Swap(ActGestureLog_Use_gesture_info_li
   return "DS3_FpdLogMessage.ActGestureLog.Use_gesture_info_list";
 }
 
-
 // -------------------------------------------------------------------
 
 #ifndef _MSC_VER
 const int ActGestureLog::kUseGestureInfoListFieldNumber;
 const int ActGestureLog::kUnknown4FieldNumber;
 const int ActGestureLog::kUnknown5FieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 ActGestureLog::ActGestureLog()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.ActGestureLog)
 }
 
 void ActGestureLog::InitAsDefaultInstance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  unknown_5_ = const_cast< ::DS3_FpdLogMessage::Vector*>(
+  unknown_5_ = const_cast<::DS3_FpdLogMessage::Vector*>(
       ::DS3_FpdLogMessage::Vector::internal_default_instance());
 #else
-  unknown_5_ = const_cast< ::DS3_FpdLogMessage::Vector*>(&::DS3_FpdLogMessage::Vector::default_instance());
+  unknown_5_ = const_cast<::DS3_FpdLogMessage::Vector*>(&::DS3_FpdLogMessage::Vector::default_instance());
 #endif
 }
 
 ActGestureLog::ActGestureLog(const ActGestureLog& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.ActGestureLog)
@@ -3046,11 +3140,11 @@ ActGestureLog::~ActGestureLog() {
 }
 
 void ActGestureLog::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
     delete unknown_5_;
   }
 }
@@ -3064,7 +3158,8 @@ const ActGestureLog& ActGestureLog::default_instance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -3079,7 +3174,8 @@ void ActGestureLog::Clear() {
   if (_has_bits_[0 / 32] & 6) {
     unknown_4_ = 0u;
     if (has_unknown_5()) {
-      if (unknown_5_ != NULL) unknown_5_->::DS3_FpdLogMessage::Vector::Clear();
+      if (unknown_5_ != NULL)
+        unknown_5_->::DS3_FpdLogMessage::Vector::Clear();
     }
   }
   use_gesture_info_list_.Clear();
@@ -3089,7 +3185,9 @@ void ActGestureLog::Clear() {
 
 bool ActGestureLog::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -3097,63 +3195,68 @@ bool ActGestureLog::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.ActGestureLog)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated group Use_gesture_info_list = 1 {
-      case 1: {
-        if (tag == 11) {
-         parse_use_gesture_info_list:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadGroupNoVirtual(
-                1, input, add_use_gesture_info_list()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(11)) goto parse_use_gesture_info_list;
-        if (input->ExpectTag(32)) goto parse_unknown_4;
-        break;
+    // repeated group Use_gesture_info_list = 1 {
+    case 1: {
+      if (tag == 11) {
+      parse_use_gesture_info_list:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadGroupNoVirtual(
+            1, input, add_use_gesture_info_list()));
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(11))
+        goto parse_use_gesture_info_list;
+      if (input->ExpectTag(32))
+        goto parse_unknown_4;
+      break;
+    }
 
-      // required uint32 unknown_4 = 4;
-      case 4: {
-        if (tag == 32) {
-         parse_unknown_4:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_4_)));
-          set_has_unknown_4();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(42)) goto parse_unknown_5;
-        break;
+    // required uint32 unknown_4 = 4;
+    case 4: {
+      if (tag == 32) {
+      parse_unknown_4:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_4_)));
+        set_has_unknown_4();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(42))
+        goto parse_unknown_5;
+      break;
+    }
 
-      // required .DS3_FpdLogMessage.Vector unknown_5 = 5;
-      case 5: {
-        if (tag == 42) {
-         parse_unknown_5:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-               input, mutable_unknown_5()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // required .DS3_FpdLogMessage.Vector unknown_5 = 5;
+    case 5: {
+      if (tag == 42) {
+      parse_unknown_5:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+            input, mutable_unknown_5()));
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -3171,7 +3274,7 @@ void ActGestureLog::SerializeWithCachedSizes(
   // repeated group Use_gesture_info_list = 1 {
   for (int i = 0; i < this->use_gesture_info_list_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteGroup(
-      1, this->use_gesture_info_list(i), output);
+        1, this->use_gesture_info_list(i), output);
   }
 
   // required uint32 unknown_4 = 4;
@@ -3182,7 +3285,7 @@ void ActGestureLog::SerializeWithCachedSizes(
   // required .DS3_FpdLogMessage.Vector unknown_5 = 5;
   if (has_unknown_5()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
-      5, this->unknown_5(), output);
+        5, this->unknown_5(), output);
   }
 
   output->WriteRaw(unknown_fields().data(),
@@ -3197,24 +3300,23 @@ int ActGestureLog::ByteSize() const {
     // required uint32 unknown_4 = 4;
     if (has_unknown_4()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_4());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_4());
     }
 
     // required .DS3_FpdLogMessage.Vector unknown_5 = 5;
     if (has_unknown_5()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->unknown_5());
+                    ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+                        this->unknown_5());
     }
-
   }
   // repeated group Use_gesture_info_list = 1 {
   total_size += 2 * this->use_gesture_info_list_size();
   for (int i = 0; i < this->use_gesture_info_list_size(); i++) {
     total_size +=
-      ::google::protobuf::internal::WireFormatLite::GroupSizeNoVirtual(
-        this->use_gesture_info_list(i));
+        ::google::protobuf::internal::WireFormatLite::GroupSizeNoVirtual(
+            this->use_gesture_info_list(i));
   }
 
   total_size += unknown_fields().size();
@@ -3245,17 +3347,21 @@ void ActGestureLog::MergeFrom(const ActGestureLog& from) {
 }
 
 void ActGestureLog::CopyFrom(const ActGestureLog& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool ActGestureLog::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000006) != 0x00000006) return false;
+  if ((_has_bits_[0] & 0x00000006) != 0x00000006)
+    return false;
 
-  if (!::google::protobuf::internal::AllAreInitialized(this->use_gesture_info_list())) return false;
+  if (!::google::protobuf::internal::AllAreInitialized(this->use_gesture_info_list()))
+    return false;
   if (has_unknown_5()) {
-    if (!this->unknown_5().IsInitialized()) return false;
+    if (!this->unknown_5().IsInitialized())
+      return false;
   }
   return true;
 }
@@ -3275,16 +3381,15 @@ void ActGestureLog::Swap(ActGestureLog* other) {
   return "DS3_FpdLogMessage.ActGestureLog";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
 const int UseMagicLog_Use_magic_info_list::kSpellIdFieldNumber;
 const int UseMagicLog_Use_magic_info_list::kCountFieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 UseMagicLog_Use_magic_info_list::UseMagicLog_Use_magic_info_list()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.UseMagicLog.Use_magic_info_list)
 }
@@ -3293,7 +3398,7 @@ void UseMagicLog_Use_magic_info_list::InitAsDefaultInstance() {
 }
 
 UseMagicLog_Use_magic_info_list::UseMagicLog_Use_magic_info_list(const UseMagicLog_Use_magic_info_list& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.UseMagicLog.Use_magic_info_list)
@@ -3312,11 +3417,11 @@ UseMagicLog_Use_magic_info_list::~UseMagicLog_Use_magic_info_list() {
 }
 
 void UseMagicLog_Use_magic_info_list::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -3329,7 +3434,8 @@ const UseMagicLog_Use_magic_info_list& UseMagicLog_Use_magic_info_list::default_
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -3341,14 +3447,15 @@ UseMagicLog_Use_magic_info_list* UseMagicLog_Use_magic_info_list::New() const {
 }
 
 void UseMagicLog_Use_magic_info_list::Clear() {
-#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(      \
-  &reinterpret_cast<UseMagicLog_Use_magic_info_list*>(16)->f) - \
-   reinterpret_cast<char*>(16))
+#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(                                          \
+                                 &reinterpret_cast<UseMagicLog_Use_magic_info_list*>(16)->f) - \
+                             reinterpret_cast<char*>(16))
 
-#define ZR_(first, last) do {                              \
-    size_t f = OFFSET_OF_FIELD_(first);                    \
-    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last);  \
-    ::memset(&first, 0, n);                                \
+#define ZR_(first, last)                                  \
+  do {                                                    \
+    size_t f = OFFSET_OF_FIELD_(first);                   \
+    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last); \
+    ::memset(&first, 0, n);                               \
   } while (0)
 
   ZR_(spell_id_, count_);
@@ -3362,7 +3469,9 @@ void UseMagicLog_Use_magic_info_list::Clear() {
 
 bool UseMagicLog_Use_magic_info_list::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -3370,50 +3479,53 @@ bool UseMagicLog_Use_magic_info_list::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.UseMagicLog.Use_magic_info_list)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required uint32 spell_id = 2;
-      case 2: {
-        if (tag == 16) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &spell_id_)));
-          set_has_spell_id();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(24)) goto parse_count;
-        break;
+    // required uint32 spell_id = 2;
+    case 2: {
+      if (tag == 16) {
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &spell_id_)));
+        set_has_spell_id();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(24))
+        goto parse_count;
+      break;
+    }
 
-      // required uint32 count = 3;
-      case 3: {
-        if (tag == 24) {
-         parse_count:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &count_)));
-          set_has_count();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // required uint32 count = 3;
+    case 3: {
+      if (tag == 24) {
+      parse_count:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &count_)));
+        set_has_count();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -3450,17 +3562,16 @@ int UseMagicLog_Use_magic_info_list::ByteSize() const {
     // required uint32 spell_id = 2;
     if (has_spell_id()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->spell_id());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->spell_id());
     }
 
     // required uint32 count = 3;
     if (has_count()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->count());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->count());
     }
-
   }
   total_size += unknown_fields().size();
 
@@ -3489,13 +3600,15 @@ void UseMagicLog_Use_magic_info_list::MergeFrom(const UseMagicLog_Use_magic_info
 }
 
 void UseMagicLog_Use_magic_info_list::CopyFrom(const UseMagicLog_Use_magic_info_list& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool UseMagicLog_Use_magic_info_list::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
+  if ((_has_bits_[0] & 0x00000003) != 0x00000003)
+    return false;
 
   return true;
 }
@@ -3514,32 +3627,31 @@ void UseMagicLog_Use_magic_info_list::Swap(UseMagicLog_Use_magic_info_list* othe
   return "DS3_FpdLogMessage.UseMagicLog.Use_magic_info_list";
 }
 
-
 // -------------------------------------------------------------------
 
 #ifndef _MSC_VER
 const int UseMagicLog::kUseMagicInfoListFieldNumber;
 const int UseMagicLog::kUnknown4FieldNumber;
 const int UseMagicLog::kLocationFieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 UseMagicLog::UseMagicLog()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.UseMagicLog)
 }
 
 void UseMagicLog::InitAsDefaultInstance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  location_ = const_cast< ::DS3_FpdLogMessage::Vector*>(
+  location_ = const_cast<::DS3_FpdLogMessage::Vector*>(
       ::DS3_FpdLogMessage::Vector::internal_default_instance());
 #else
-  location_ = const_cast< ::DS3_FpdLogMessage::Vector*>(&::DS3_FpdLogMessage::Vector::default_instance());
+  location_ = const_cast<::DS3_FpdLogMessage::Vector*>(&::DS3_FpdLogMessage::Vector::default_instance());
 #endif
 }
 
 UseMagicLog::UseMagicLog(const UseMagicLog& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.UseMagicLog)
@@ -3558,11 +3670,11 @@ UseMagicLog::~UseMagicLog() {
 }
 
 void UseMagicLog::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
     delete location_;
   }
 }
@@ -3576,7 +3688,8 @@ const UseMagicLog& UseMagicLog::default_instance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -3591,7 +3704,8 @@ void UseMagicLog::Clear() {
   if (_has_bits_[0 / 32] & 6) {
     unknown_4_ = 0u;
     if (has_location()) {
-      if (location_ != NULL) location_->::DS3_FpdLogMessage::Vector::Clear();
+      if (location_ != NULL)
+        location_->::DS3_FpdLogMessage::Vector::Clear();
     }
   }
   use_magic_info_list_.Clear();
@@ -3601,7 +3715,9 @@ void UseMagicLog::Clear() {
 
 bool UseMagicLog::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -3609,63 +3725,68 @@ bool UseMagicLog::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.UseMagicLog)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated group Use_magic_info_list = 1 {
-      case 1: {
-        if (tag == 11) {
-         parse_use_magic_info_list:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadGroupNoVirtual(
-                1, input, add_use_magic_info_list()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(11)) goto parse_use_magic_info_list;
-        if (input->ExpectTag(32)) goto parse_unknown_4;
-        break;
+    // repeated group Use_magic_info_list = 1 {
+    case 1: {
+      if (tag == 11) {
+      parse_use_magic_info_list:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadGroupNoVirtual(
+            1, input, add_use_magic_info_list()));
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(11))
+        goto parse_use_magic_info_list;
+      if (input->ExpectTag(32))
+        goto parse_unknown_4;
+      break;
+    }
 
-      // required uint32 unknown_4 = 4;
-      case 4: {
-        if (tag == 32) {
-         parse_unknown_4:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_4_)));
-          set_has_unknown_4();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(42)) goto parse_location;
-        break;
+    // required uint32 unknown_4 = 4;
+    case 4: {
+      if (tag == 32) {
+      parse_unknown_4:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_4_)));
+        set_has_unknown_4();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(42))
+        goto parse_location;
+      break;
+    }
 
-      // required .DS3_FpdLogMessage.Vector location = 5;
-      case 5: {
-        if (tag == 42) {
-         parse_location:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-               input, mutable_location()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // required .DS3_FpdLogMessage.Vector location = 5;
+    case 5: {
+      if (tag == 42) {
+      parse_location:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+            input, mutable_location()));
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -3683,7 +3804,7 @@ void UseMagicLog::SerializeWithCachedSizes(
   // repeated group Use_magic_info_list = 1 {
   for (int i = 0; i < this->use_magic_info_list_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteGroup(
-      1, this->use_magic_info_list(i), output);
+        1, this->use_magic_info_list(i), output);
   }
 
   // required uint32 unknown_4 = 4;
@@ -3694,7 +3815,7 @@ void UseMagicLog::SerializeWithCachedSizes(
   // required .DS3_FpdLogMessage.Vector location = 5;
   if (has_location()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
-      5, this->location(), output);
+        5, this->location(), output);
   }
 
   output->WriteRaw(unknown_fields().data(),
@@ -3709,24 +3830,23 @@ int UseMagicLog::ByteSize() const {
     // required uint32 unknown_4 = 4;
     if (has_unknown_4()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_4());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_4());
     }
 
     // required .DS3_FpdLogMessage.Vector location = 5;
     if (has_location()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->location());
+                    ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+                        this->location());
     }
-
   }
   // repeated group Use_magic_info_list = 1 {
   total_size += 2 * this->use_magic_info_list_size();
   for (int i = 0; i < this->use_magic_info_list_size(); i++) {
     total_size +=
-      ::google::protobuf::internal::WireFormatLite::GroupSizeNoVirtual(
-        this->use_magic_info_list(i));
+        ::google::protobuf::internal::WireFormatLite::GroupSizeNoVirtual(
+            this->use_magic_info_list(i));
   }
 
   total_size += unknown_fields().size();
@@ -3757,17 +3877,21 @@ void UseMagicLog::MergeFrom(const UseMagicLog& from) {
 }
 
 void UseMagicLog::CopyFrom(const UseMagicLog& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool UseMagicLog::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000006) != 0x00000006) return false;
+  if ((_has_bits_[0] & 0x00000006) != 0x00000006)
+    return false;
 
-  if (!::google::protobuf::internal::AllAreInitialized(this->use_magic_info_list())) return false;
+  if (!::google::protobuf::internal::AllAreInitialized(this->use_magic_info_list()))
+    return false;
   if (has_location()) {
-    if (!this->location().IsInitialized()) return false;
+    if (!this->location().IsInitialized())
+      return false;
   }
   return true;
 }
@@ -3787,7 +3911,6 @@ void UseMagicLog::Swap(UseMagicLog* other) {
   return "DS3_FpdLogMessage.UseMagicLog";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
@@ -3796,25 +3919,25 @@ const int PurchaseItemLog_Purchase_item_info_list::kLocationFieldNumber;
 const int PurchaseItemLog_Purchase_item_info_list::kItemIdFieldNumber;
 const int PurchaseItemLog_Purchase_item_info_list::kUnknown6FieldNumber;
 const int PurchaseItemLog_Purchase_item_info_list::kCountFieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 PurchaseItemLog_Purchase_item_info_list::PurchaseItemLog_Purchase_item_info_list()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.PurchaseItemLog.Purchase_item_info_list)
 }
 
 void PurchaseItemLog_Purchase_item_info_list::InitAsDefaultInstance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  location_ = const_cast< ::DS3_FpdLogMessage::Vector*>(
+  location_ = const_cast<::DS3_FpdLogMessage::Vector*>(
       ::DS3_FpdLogMessage::Vector::internal_default_instance());
 #else
-  location_ = const_cast< ::DS3_FpdLogMessage::Vector*>(&::DS3_FpdLogMessage::Vector::default_instance());
+  location_ = const_cast<::DS3_FpdLogMessage::Vector*>(&::DS3_FpdLogMessage::Vector::default_instance());
 #endif
 }
 
 PurchaseItemLog_Purchase_item_info_list::PurchaseItemLog_Purchase_item_info_list(const PurchaseItemLog_Purchase_item_info_list& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.PurchaseItemLog.Purchase_item_info_list)
@@ -3836,11 +3959,11 @@ PurchaseItemLog_Purchase_item_info_list::~PurchaseItemLog_Purchase_item_info_lis
 }
 
 void PurchaseItemLog_Purchase_item_info_list::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
     delete location_;
   }
 }
@@ -3854,7 +3977,8 @@ const PurchaseItemLog_Purchase_item_info_list& PurchaseItemLog_Purchase_item_inf
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -3866,20 +3990,22 @@ PurchaseItemLog_Purchase_item_info_list* PurchaseItemLog_Purchase_item_info_list
 }
 
 void PurchaseItemLog_Purchase_item_info_list::Clear() {
-#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(      \
-  &reinterpret_cast<PurchaseItemLog_Purchase_item_info_list*>(16)->f) - \
-   reinterpret_cast<char*>(16))
+#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(                                                  \
+                                 &reinterpret_cast<PurchaseItemLog_Purchase_item_info_list*>(16)->f) - \
+                             reinterpret_cast<char*>(16))
 
-#define ZR_(first, last) do {                              \
-    size_t f = OFFSET_OF_FIELD_(first);                    \
-    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last);  \
-    ::memset(&first, 0, n);                                \
+#define ZR_(first, last)                                  \
+  do {                                                    \
+    size_t f = OFFSET_OF_FIELD_(first);                   \
+    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last); \
+    ::memset(&first, 0, n);                               \
   } while (0)
 
   if (_has_bits_[0 / 32] & 31) {
     ZR_(unknown_2_, count_);
     if (has_location()) {
-      if (location_ != NULL) location_->::DS3_FpdLogMessage::Vector::Clear();
+      if (location_ != NULL)
+        location_->::DS3_FpdLogMessage::Vector::Clear();
     }
   }
 
@@ -3892,7 +4018,9 @@ void PurchaseItemLog_Purchase_item_info_list::Clear() {
 
 bool PurchaseItemLog_Purchase_item_info_list::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -3900,93 +4028,99 @@ bool PurchaseItemLog_Purchase_item_info_list::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.PurchaseItemLog.Purchase_item_info_list)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required uint32 unknown_2 = 2;
-      case 2: {
-        if (tag == 16) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_2_)));
-          set_has_unknown_2();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(26)) goto parse_location;
-        break;
+    // required uint32 unknown_2 = 2;
+    case 2: {
+      if (tag == 16) {
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_2_)));
+        set_has_unknown_2();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(26))
+        goto parse_location;
+      break;
+    }
 
-      // required .DS3_FpdLogMessage.Vector location = 3;
-      case 3: {
-        if (tag == 26) {
-         parse_location:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-               input, mutable_location()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(40)) goto parse_item_id;
-        break;
+    // required .DS3_FpdLogMessage.Vector location = 3;
+    case 3: {
+      if (tag == 26) {
+      parse_location:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+            input, mutable_location()));
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(40))
+        goto parse_item_id;
+      break;
+    }
 
-      // required uint32 item_id = 5;
-      case 5: {
-        if (tag == 40) {
-         parse_item_id:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &item_id_)));
-          set_has_item_id();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(48)) goto parse_unknown_6;
-        break;
+    // required uint32 item_id = 5;
+    case 5: {
+      if (tag == 40) {
+      parse_item_id:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &item_id_)));
+        set_has_item_id();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(48))
+        goto parse_unknown_6;
+      break;
+    }
 
-      // required uint32 unknown_6 = 6;
-      case 6: {
-        if (tag == 48) {
-         parse_unknown_6:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_6_)));
-          set_has_unknown_6();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(56)) goto parse_count;
-        break;
+    // required uint32 unknown_6 = 6;
+    case 6: {
+      if (tag == 48) {
+      parse_unknown_6:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_6_)));
+        set_has_unknown_6();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(56))
+        goto parse_count;
+      break;
+    }
 
-      // required uint32 count = 7;
-      case 7: {
-        if (tag == 56) {
-         parse_count:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &count_)));
-          set_has_count();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // required uint32 count = 7;
+    case 7: {
+      if (tag == 56) {
+      parse_count:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &count_)));
+        set_has_count();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -4009,7 +4143,7 @@ void PurchaseItemLog_Purchase_item_info_list::SerializeWithCachedSizes(
   // required .DS3_FpdLogMessage.Vector location = 3;
   if (has_location()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
-      3, this->location(), output);
+        3, this->location(), output);
   }
 
   // required uint32 item_id = 5;
@@ -4039,38 +4173,37 @@ int PurchaseItemLog_Purchase_item_info_list::ByteSize() const {
     // required uint32 unknown_2 = 2;
     if (has_unknown_2()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_2());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_2());
     }
 
     // required .DS3_FpdLogMessage.Vector location = 3;
     if (has_location()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->location());
+                    ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+                        this->location());
     }
 
     // required uint32 item_id = 5;
     if (has_item_id()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->item_id());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->item_id());
     }
 
     // required uint32 unknown_6 = 6;
     if (has_unknown_6()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_6());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_6());
     }
 
     // required uint32 count = 7;
     if (has_count()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->count());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->count());
     }
-
   }
   total_size += unknown_fields().size();
 
@@ -4108,16 +4241,19 @@ void PurchaseItemLog_Purchase_item_info_list::MergeFrom(const PurchaseItemLog_Pu
 }
 
 void PurchaseItemLog_Purchase_item_info_list::CopyFrom(const PurchaseItemLog_Purchase_item_info_list& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool PurchaseItemLog_Purchase_item_info_list::IsInitialized() const {
-  if ((_has_bits_[0] & 0x0000001f) != 0x0000001f) return false;
+  if ((_has_bits_[0] & 0x0000001f) != 0x0000001f)
+    return false;
 
   if (has_location()) {
-    if (!this->location().IsInitialized()) return false;
+    if (!this->location().IsInitialized())
+      return false;
   }
   return true;
 }
@@ -4139,15 +4275,14 @@ void PurchaseItemLog_Purchase_item_info_list::Swap(PurchaseItemLog_Purchase_item
   return "DS3_FpdLogMessage.PurchaseItemLog.Purchase_item_info_list";
 }
 
-
 // -------------------------------------------------------------------
 
 #ifndef _MSC_VER
 const int PurchaseItemLog::kPurchaseItemInfoListFieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 PurchaseItemLog::PurchaseItemLog()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.PurchaseItemLog)
 }
@@ -4156,7 +4291,7 @@ void PurchaseItemLog::InitAsDefaultInstance() {
 }
 
 PurchaseItemLog::PurchaseItemLog(const PurchaseItemLog& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.PurchaseItemLog)
@@ -4173,11 +4308,11 @@ PurchaseItemLog::~PurchaseItemLog() {
 }
 
 void PurchaseItemLog::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -4190,7 +4325,8 @@ const PurchaseItemLog& PurchaseItemLog::default_instance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -4209,7 +4345,9 @@ void PurchaseItemLog::Clear() {
 
 bool PurchaseItemLog::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -4217,35 +4355,38 @@ bool PurchaseItemLog::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.PurchaseItemLog)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated group Purchase_item_info_list = 1 {
-      case 1: {
-        if (tag == 11) {
-         parse_purchase_item_info_list:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadGroupNoVirtual(
-                1, input, add_purchase_item_info_list()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(11)) goto parse_purchase_item_info_list;
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // repeated group Purchase_item_info_list = 1 {
+    case 1: {
+      if (tag == 11) {
+      parse_purchase_item_info_list:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadGroupNoVirtual(
+            1, input, add_purchase_item_info_list()));
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(11))
+        goto parse_purchase_item_info_list;
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -4263,7 +4404,7 @@ void PurchaseItemLog::SerializeWithCachedSizes(
   // repeated group Purchase_item_info_list = 1 {
   for (int i = 0; i < this->purchase_item_info_list_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteGroup(
-      1, this->purchase_item_info_list(i), output);
+        1, this->purchase_item_info_list(i), output);
   }
 
   output->WriteRaw(unknown_fields().data(),
@@ -4278,8 +4419,8 @@ int PurchaseItemLog::ByteSize() const {
   total_size += 2 * this->purchase_item_info_list_size();
   for (int i = 0; i < this->purchase_item_info_list_size(); i++) {
     total_size +=
-      ::google::protobuf::internal::WireFormatLite::GroupSizeNoVirtual(
-        this->purchase_item_info_list(i));
+        ::google::protobuf::internal::WireFormatLite::GroupSizeNoVirtual(
+            this->purchase_item_info_list(i));
   }
 
   total_size += unknown_fields().size();
@@ -4302,14 +4443,16 @@ void PurchaseItemLog::MergeFrom(const PurchaseItemLog& from) {
 }
 
 void PurchaseItemLog::CopyFrom(const PurchaseItemLog& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool PurchaseItemLog::IsInitialized() const {
 
-  if (!::google::protobuf::internal::AllAreInitialized(this->purchase_item_info_list())) return false;
+  if (!::google::protobuf::internal::AllAreInitialized(this->purchase_item_info_list()))
+    return false;
   return true;
 }
 
@@ -4326,7 +4469,6 @@ void PurchaseItemLog::Swap(PurchaseItemLog* other) {
   return "DS3_FpdLogMessage.PurchaseItemLog";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
@@ -4335,25 +4477,25 @@ const int DropItemLog_Throw_away_item_list::kLocationFieldNumber;
 const int DropItemLog_Throw_away_item_list::kUnknown4FieldNumber;
 const int DropItemLog_Throw_away_item_list::kItemIdFieldNumber;
 const int DropItemLog_Throw_away_item_list::kCountFieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 DropItemLog_Throw_away_item_list::DropItemLog_Throw_away_item_list()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.DropItemLog.Throw_away_item_list)
 }
 
 void DropItemLog_Throw_away_item_list::InitAsDefaultInstance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  location_ = const_cast< ::DS3_FpdLogMessage::Vector*>(
+  location_ = const_cast<::DS3_FpdLogMessage::Vector*>(
       ::DS3_FpdLogMessage::Vector::internal_default_instance());
 #else
-  location_ = const_cast< ::DS3_FpdLogMessage::Vector*>(&::DS3_FpdLogMessage::Vector::default_instance());
+  location_ = const_cast<::DS3_FpdLogMessage::Vector*>(&::DS3_FpdLogMessage::Vector::default_instance());
 #endif
 }
 
 DropItemLog_Throw_away_item_list::DropItemLog_Throw_away_item_list(const DropItemLog_Throw_away_item_list& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.DropItemLog.Throw_away_item_list)
@@ -4375,11 +4517,11 @@ DropItemLog_Throw_away_item_list::~DropItemLog_Throw_away_item_list() {
 }
 
 void DropItemLog_Throw_away_item_list::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
     delete location_;
   }
 }
@@ -4393,7 +4535,8 @@ const DropItemLog_Throw_away_item_list& DropItemLog_Throw_away_item_list::defaul
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -4405,20 +4548,22 @@ DropItemLog_Throw_away_item_list* DropItemLog_Throw_away_item_list::New() const 
 }
 
 void DropItemLog_Throw_away_item_list::Clear() {
-#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(      \
-  &reinterpret_cast<DropItemLog_Throw_away_item_list*>(16)->f) - \
-   reinterpret_cast<char*>(16))
+#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(                                           \
+                                 &reinterpret_cast<DropItemLog_Throw_away_item_list*>(16)->f) - \
+                             reinterpret_cast<char*>(16))
 
-#define ZR_(first, last) do {                              \
-    size_t f = OFFSET_OF_FIELD_(first);                    \
-    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last);  \
-    ::memset(&first, 0, n);                                \
+#define ZR_(first, last)                                  \
+  do {                                                    \
+    size_t f = OFFSET_OF_FIELD_(first);                   \
+    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last); \
+    ::memset(&first, 0, n);                               \
   } while (0)
 
   if (_has_bits_[0 / 32] & 31) {
     ZR_(unknown_2_, count_);
     if (has_location()) {
-      if (location_ != NULL) location_->::DS3_FpdLogMessage::Vector::Clear();
+      if (location_ != NULL)
+        location_->::DS3_FpdLogMessage::Vector::Clear();
     }
   }
 
@@ -4431,7 +4576,9 @@ void DropItemLog_Throw_away_item_list::Clear() {
 
 bool DropItemLog_Throw_away_item_list::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -4439,93 +4586,99 @@ bool DropItemLog_Throw_away_item_list::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.DropItemLog.Throw_away_item_list)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required uint32 unknown_2 = 2;
-      case 2: {
-        if (tag == 16) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_2_)));
-          set_has_unknown_2();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(26)) goto parse_location;
-        break;
+    // required uint32 unknown_2 = 2;
+    case 2: {
+      if (tag == 16) {
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_2_)));
+        set_has_unknown_2();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(26))
+        goto parse_location;
+      break;
+    }
 
-      // required .DS3_FpdLogMessage.Vector location = 3;
-      case 3: {
-        if (tag == 26) {
-         parse_location:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-               input, mutable_location()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(32)) goto parse_unknown_4;
-        break;
+    // required .DS3_FpdLogMessage.Vector location = 3;
+    case 3: {
+      if (tag == 26) {
+      parse_location:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+            input, mutable_location()));
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(32))
+        goto parse_unknown_4;
+      break;
+    }
 
-      // required uint32 unknown_4 = 4;
-      case 4: {
-        if (tag == 32) {
-         parse_unknown_4:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_4_)));
-          set_has_unknown_4();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(40)) goto parse_item_id;
-        break;
+    // required uint32 unknown_4 = 4;
+    case 4: {
+      if (tag == 32) {
+      parse_unknown_4:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_4_)));
+        set_has_unknown_4();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(40))
+        goto parse_item_id;
+      break;
+    }
 
-      // required uint32 item_id = 5;
-      case 5: {
-        if (tag == 40) {
-         parse_item_id:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &item_id_)));
-          set_has_item_id();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(48)) goto parse_count;
-        break;
+    // required uint32 item_id = 5;
+    case 5: {
+      if (tag == 40) {
+      parse_item_id:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &item_id_)));
+        set_has_item_id();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(48))
+        goto parse_count;
+      break;
+    }
 
-      // required uint32 count = 6;
-      case 6: {
-        if (tag == 48) {
-         parse_count:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &count_)));
-          set_has_count();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // required uint32 count = 6;
+    case 6: {
+      if (tag == 48) {
+      parse_count:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &count_)));
+        set_has_count();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -4548,7 +4701,7 @@ void DropItemLog_Throw_away_item_list::SerializeWithCachedSizes(
   // required .DS3_FpdLogMessage.Vector location = 3;
   if (has_location()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
-      3, this->location(), output);
+        3, this->location(), output);
   }
 
   // required uint32 unknown_4 = 4;
@@ -4578,38 +4731,37 @@ int DropItemLog_Throw_away_item_list::ByteSize() const {
     // required uint32 unknown_2 = 2;
     if (has_unknown_2()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_2());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_2());
     }
 
     // required .DS3_FpdLogMessage.Vector location = 3;
     if (has_location()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->location());
+                    ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+                        this->location());
     }
 
     // required uint32 unknown_4 = 4;
     if (has_unknown_4()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_4());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_4());
     }
 
     // required uint32 item_id = 5;
     if (has_item_id()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->item_id());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->item_id());
     }
 
     // required uint32 count = 6;
     if (has_count()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->count());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->count());
     }
-
   }
   total_size += unknown_fields().size();
 
@@ -4647,16 +4799,19 @@ void DropItemLog_Throw_away_item_list::MergeFrom(const DropItemLog_Throw_away_it
 }
 
 void DropItemLog_Throw_away_item_list::CopyFrom(const DropItemLog_Throw_away_item_list& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool DropItemLog_Throw_away_item_list::IsInitialized() const {
-  if ((_has_bits_[0] & 0x0000001f) != 0x0000001f) return false;
+  if ((_has_bits_[0] & 0x0000001f) != 0x0000001f)
+    return false;
 
   if (has_location()) {
-    if (!this->location().IsInitialized()) return false;
+    if (!this->location().IsInitialized())
+      return false;
   }
   return true;
 }
@@ -4678,15 +4833,14 @@ void DropItemLog_Throw_away_item_list::Swap(DropItemLog_Throw_away_item_list* ot
   return "DS3_FpdLogMessage.DropItemLog.Throw_away_item_list";
 }
 
-
 // -------------------------------------------------------------------
 
 #ifndef _MSC_VER
 const int DropItemLog::kThrowAwayItemListFieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 DropItemLog::DropItemLog()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.DropItemLog)
 }
@@ -4695,7 +4849,7 @@ void DropItemLog::InitAsDefaultInstance() {
 }
 
 DropItemLog::DropItemLog(const DropItemLog& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.DropItemLog)
@@ -4712,11 +4866,11 @@ DropItemLog::~DropItemLog() {
 }
 
 void DropItemLog::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -4729,7 +4883,8 @@ const DropItemLog& DropItemLog::default_instance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -4748,7 +4903,9 @@ void DropItemLog::Clear() {
 
 bool DropItemLog::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -4756,35 +4913,38 @@ bool DropItemLog::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.DropItemLog)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated group Throw_away_item_list = 1 {
-      case 1: {
-        if (tag == 11) {
-         parse_throw_away_item_list:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadGroupNoVirtual(
-                1, input, add_throw_away_item_list()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(11)) goto parse_throw_away_item_list;
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // repeated group Throw_away_item_list = 1 {
+    case 1: {
+      if (tag == 11) {
+      parse_throw_away_item_list:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadGroupNoVirtual(
+            1, input, add_throw_away_item_list()));
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(11))
+        goto parse_throw_away_item_list;
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -4802,7 +4962,7 @@ void DropItemLog::SerializeWithCachedSizes(
   // repeated group Throw_away_item_list = 1 {
   for (int i = 0; i < this->throw_away_item_list_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteGroup(
-      1, this->throw_away_item_list(i), output);
+        1, this->throw_away_item_list(i), output);
   }
 
   output->WriteRaw(unknown_fields().data(),
@@ -4817,8 +4977,8 @@ int DropItemLog::ByteSize() const {
   total_size += 2 * this->throw_away_item_list_size();
   for (int i = 0; i < this->throw_away_item_list_size(); i++) {
     total_size +=
-      ::google::protobuf::internal::WireFormatLite::GroupSizeNoVirtual(
-        this->throw_away_item_list(i));
+        ::google::protobuf::internal::WireFormatLite::GroupSizeNoVirtual(
+            this->throw_away_item_list(i));
   }
 
   total_size += unknown_fields().size();
@@ -4841,14 +5001,16 @@ void DropItemLog::MergeFrom(const DropItemLog& from) {
 }
 
 void DropItemLog::CopyFrom(const DropItemLog& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool DropItemLog::IsInitialized() const {
 
-  if (!::google::protobuf::internal::AllAreInitialized(this->throw_away_item_list())) return false;
+  if (!::google::protobuf::internal::AllAreInitialized(this->throw_away_item_list()))
+    return false;
   return true;
 }
 
@@ -4865,7 +5027,6 @@ void DropItemLog::Swap(DropItemLog* other) {
   return "DS3_FpdLogMessage.DropItemLog";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
@@ -4874,25 +5035,25 @@ const int LeaveItemLog_Set_item_info_list::kLocationFieldNumber;
 const int LeaveItemLog_Set_item_info_list::kUnknown4FieldNumber;
 const int LeaveItemLog_Set_item_info_list::kItemIdFieldNumber;
 const int LeaveItemLog_Set_item_info_list::kCountFieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 LeaveItemLog_Set_item_info_list::LeaveItemLog_Set_item_info_list()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.LeaveItemLog.Set_item_info_list)
 }
 
 void LeaveItemLog_Set_item_info_list::InitAsDefaultInstance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  location_ = const_cast< ::DS3_FpdLogMessage::Vector*>(
+  location_ = const_cast<::DS3_FpdLogMessage::Vector*>(
       ::DS3_FpdLogMessage::Vector::internal_default_instance());
 #else
-  location_ = const_cast< ::DS3_FpdLogMessage::Vector*>(&::DS3_FpdLogMessage::Vector::default_instance());
+  location_ = const_cast<::DS3_FpdLogMessage::Vector*>(&::DS3_FpdLogMessage::Vector::default_instance());
 #endif
 }
 
 LeaveItemLog_Set_item_info_list::LeaveItemLog_Set_item_info_list(const LeaveItemLog_Set_item_info_list& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.LeaveItemLog.Set_item_info_list)
@@ -4914,11 +5075,11 @@ LeaveItemLog_Set_item_info_list::~LeaveItemLog_Set_item_info_list() {
 }
 
 void LeaveItemLog_Set_item_info_list::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
     delete location_;
   }
 }
@@ -4932,7 +5093,8 @@ const LeaveItemLog_Set_item_info_list& LeaveItemLog_Set_item_info_list::default_
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -4944,20 +5106,22 @@ LeaveItemLog_Set_item_info_list* LeaveItemLog_Set_item_info_list::New() const {
 }
 
 void LeaveItemLog_Set_item_info_list::Clear() {
-#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(      \
-  &reinterpret_cast<LeaveItemLog_Set_item_info_list*>(16)->f) - \
-   reinterpret_cast<char*>(16))
+#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(                                          \
+                                 &reinterpret_cast<LeaveItemLog_Set_item_info_list*>(16)->f) - \
+                             reinterpret_cast<char*>(16))
 
-#define ZR_(first, last) do {                              \
-    size_t f = OFFSET_OF_FIELD_(first);                    \
-    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last);  \
-    ::memset(&first, 0, n);                                \
+#define ZR_(first, last)                                  \
+  do {                                                    \
+    size_t f = OFFSET_OF_FIELD_(first);                   \
+    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last); \
+    ::memset(&first, 0, n);                               \
   } while (0)
 
   if (_has_bits_[0 / 32] & 31) {
     ZR_(unknown_2_, count_);
     if (has_location()) {
-      if (location_ != NULL) location_->::DS3_FpdLogMessage::Vector::Clear();
+      if (location_ != NULL)
+        location_->::DS3_FpdLogMessage::Vector::Clear();
     }
   }
 
@@ -4970,7 +5134,9 @@ void LeaveItemLog_Set_item_info_list::Clear() {
 
 bool LeaveItemLog_Set_item_info_list::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -4978,93 +5144,99 @@ bool LeaveItemLog_Set_item_info_list::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.LeaveItemLog.Set_item_info_list)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required uint32 unknown_2 = 2;
-      case 2: {
-        if (tag == 16) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_2_)));
-          set_has_unknown_2();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(26)) goto parse_location;
-        break;
+    // required uint32 unknown_2 = 2;
+    case 2: {
+      if (tag == 16) {
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_2_)));
+        set_has_unknown_2();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(26))
+        goto parse_location;
+      break;
+    }
 
-      // required .DS3_FpdLogMessage.Vector location = 3;
-      case 3: {
-        if (tag == 26) {
-         parse_location:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-               input, mutable_location()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(32)) goto parse_unknown_4;
-        break;
+    // required .DS3_FpdLogMessage.Vector location = 3;
+    case 3: {
+      if (tag == 26) {
+      parse_location:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+            input, mutable_location()));
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(32))
+        goto parse_unknown_4;
+      break;
+    }
 
-      // required uint32 unknown_4 = 4;
-      case 4: {
-        if (tag == 32) {
-         parse_unknown_4:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_4_)));
-          set_has_unknown_4();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(40)) goto parse_item_id;
-        break;
+    // required uint32 unknown_4 = 4;
+    case 4: {
+      if (tag == 32) {
+      parse_unknown_4:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_4_)));
+        set_has_unknown_4();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(40))
+        goto parse_item_id;
+      break;
+    }
 
-      // required uint32 item_id = 5;
-      case 5: {
-        if (tag == 40) {
-         parse_item_id:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &item_id_)));
-          set_has_item_id();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(48)) goto parse_count;
-        break;
+    // required uint32 item_id = 5;
+    case 5: {
+      if (tag == 40) {
+      parse_item_id:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &item_id_)));
+        set_has_item_id();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(48))
+        goto parse_count;
+      break;
+    }
 
-      // required uint32 count = 6;
-      case 6: {
-        if (tag == 48) {
-         parse_count:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &count_)));
-          set_has_count();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // required uint32 count = 6;
+    case 6: {
+      if (tag == 48) {
+      parse_count:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &count_)));
+        set_has_count();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -5087,7 +5259,7 @@ void LeaveItemLog_Set_item_info_list::SerializeWithCachedSizes(
   // required .DS3_FpdLogMessage.Vector location = 3;
   if (has_location()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
-      3, this->location(), output);
+        3, this->location(), output);
   }
 
   // required uint32 unknown_4 = 4;
@@ -5117,38 +5289,37 @@ int LeaveItemLog_Set_item_info_list::ByteSize() const {
     // required uint32 unknown_2 = 2;
     if (has_unknown_2()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_2());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_2());
     }
 
     // required .DS3_FpdLogMessage.Vector location = 3;
     if (has_location()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->location());
+                    ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+                        this->location());
     }
 
     // required uint32 unknown_4 = 4;
     if (has_unknown_4()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_4());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_4());
     }
 
     // required uint32 item_id = 5;
     if (has_item_id()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->item_id());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->item_id());
     }
 
     // required uint32 count = 6;
     if (has_count()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->count());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->count());
     }
-
   }
   total_size += unknown_fields().size();
 
@@ -5186,16 +5357,19 @@ void LeaveItemLog_Set_item_info_list::MergeFrom(const LeaveItemLog_Set_item_info
 }
 
 void LeaveItemLog_Set_item_info_list::CopyFrom(const LeaveItemLog_Set_item_info_list& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool LeaveItemLog_Set_item_info_list::IsInitialized() const {
-  if ((_has_bits_[0] & 0x0000001f) != 0x0000001f) return false;
+  if ((_has_bits_[0] & 0x0000001f) != 0x0000001f)
+    return false;
 
   if (has_location()) {
-    if (!this->location().IsInitialized()) return false;
+    if (!this->location().IsInitialized())
+      return false;
   }
   return true;
 }
@@ -5217,15 +5391,14 @@ void LeaveItemLog_Set_item_info_list::Swap(LeaveItemLog_Set_item_info_list* othe
   return "DS3_FpdLogMessage.LeaveItemLog.Set_item_info_list";
 }
 
-
 // -------------------------------------------------------------------
 
 #ifndef _MSC_VER
 const int LeaveItemLog::kSetItemInfoListFieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 LeaveItemLog::LeaveItemLog()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.LeaveItemLog)
 }
@@ -5234,7 +5407,7 @@ void LeaveItemLog::InitAsDefaultInstance() {
 }
 
 LeaveItemLog::LeaveItemLog(const LeaveItemLog& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.LeaveItemLog)
@@ -5251,11 +5424,11 @@ LeaveItemLog::~LeaveItemLog() {
 }
 
 void LeaveItemLog::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -5268,7 +5441,8 @@ const LeaveItemLog& LeaveItemLog::default_instance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -5287,7 +5461,9 @@ void LeaveItemLog::Clear() {
 
 bool LeaveItemLog::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -5295,35 +5471,38 @@ bool LeaveItemLog::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.LeaveItemLog)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated group Set_item_info_list = 1 {
-      case 1: {
-        if (tag == 11) {
-         parse_set_item_info_list:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadGroupNoVirtual(
-                1, input, add_set_item_info_list()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(11)) goto parse_set_item_info_list;
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // repeated group Set_item_info_list = 1 {
+    case 1: {
+      if (tag == 11) {
+      parse_set_item_info_list:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadGroupNoVirtual(
+            1, input, add_set_item_info_list()));
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(11))
+        goto parse_set_item_info_list;
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -5341,7 +5520,7 @@ void LeaveItemLog::SerializeWithCachedSizes(
   // repeated group Set_item_info_list = 1 {
   for (int i = 0; i < this->set_item_info_list_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteGroup(
-      1, this->set_item_info_list(i), output);
+        1, this->set_item_info_list(i), output);
   }
 
   output->WriteRaw(unknown_fields().data(),
@@ -5356,8 +5535,8 @@ int LeaveItemLog::ByteSize() const {
   total_size += 2 * this->set_item_info_list_size();
   for (int i = 0; i < this->set_item_info_list_size(); i++) {
     total_size +=
-      ::google::protobuf::internal::WireFormatLite::GroupSizeNoVirtual(
-        this->set_item_info_list(i));
+        ::google::protobuf::internal::WireFormatLite::GroupSizeNoVirtual(
+            this->set_item_info_list(i));
   }
 
   total_size += unknown_fields().size();
@@ -5380,14 +5559,16 @@ void LeaveItemLog::MergeFrom(const LeaveItemLog& from) {
 }
 
 void LeaveItemLog::CopyFrom(const LeaveItemLog& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool LeaveItemLog::IsInitialized() const {
 
-  if (!::google::protobuf::internal::AllAreInitialized(this->set_item_info_list())) return false;
+  if (!::google::protobuf::internal::AllAreInitialized(this->set_item_info_list()))
+    return false;
   return true;
 }
 
@@ -5404,7 +5585,6 @@ void LeaveItemLog::Swap(LeaveItemLog* other) {
   return "DS3_FpdLogMessage.LeaveItemLog";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
@@ -5413,25 +5593,25 @@ const int SaleItemLog_Sale_item_info_list::kLocationFieldNumber;
 const int SaleItemLog_Sale_item_info_list::kUnknown4FieldNumber;
 const int SaleItemLog_Sale_item_info_list::kItemIdFieldNumber;
 const int SaleItemLog_Sale_item_info_list::kCountFieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 SaleItemLog_Sale_item_info_list::SaleItemLog_Sale_item_info_list()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.SaleItemLog.Sale_item_info_list)
 }
 
 void SaleItemLog_Sale_item_info_list::InitAsDefaultInstance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  location_ = const_cast< ::DS3_FpdLogMessage::Vector*>(
+  location_ = const_cast<::DS3_FpdLogMessage::Vector*>(
       ::DS3_FpdLogMessage::Vector::internal_default_instance());
 #else
-  location_ = const_cast< ::DS3_FpdLogMessage::Vector*>(&::DS3_FpdLogMessage::Vector::default_instance());
+  location_ = const_cast<::DS3_FpdLogMessage::Vector*>(&::DS3_FpdLogMessage::Vector::default_instance());
 #endif
 }
 
 SaleItemLog_Sale_item_info_list::SaleItemLog_Sale_item_info_list(const SaleItemLog_Sale_item_info_list& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.SaleItemLog.Sale_item_info_list)
@@ -5453,11 +5633,11 @@ SaleItemLog_Sale_item_info_list::~SaleItemLog_Sale_item_info_list() {
 }
 
 void SaleItemLog_Sale_item_info_list::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
     delete location_;
   }
 }
@@ -5471,7 +5651,8 @@ const SaleItemLog_Sale_item_info_list& SaleItemLog_Sale_item_info_list::default_
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -5483,20 +5664,22 @@ SaleItemLog_Sale_item_info_list* SaleItemLog_Sale_item_info_list::New() const {
 }
 
 void SaleItemLog_Sale_item_info_list::Clear() {
-#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(      \
-  &reinterpret_cast<SaleItemLog_Sale_item_info_list*>(16)->f) - \
-   reinterpret_cast<char*>(16))
+#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(                                          \
+                                 &reinterpret_cast<SaleItemLog_Sale_item_info_list*>(16)->f) - \
+                             reinterpret_cast<char*>(16))
 
-#define ZR_(first, last) do {                              \
-    size_t f = OFFSET_OF_FIELD_(first);                    \
-    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last);  \
-    ::memset(&first, 0, n);                                \
+#define ZR_(first, last)                                  \
+  do {                                                    \
+    size_t f = OFFSET_OF_FIELD_(first);                   \
+    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last); \
+    ::memset(&first, 0, n);                               \
   } while (0)
 
   if (_has_bits_[0 / 32] & 31) {
     ZR_(unknown_2_, count_);
     if (has_location()) {
-      if (location_ != NULL) location_->::DS3_FpdLogMessage::Vector::Clear();
+      if (location_ != NULL)
+        location_->::DS3_FpdLogMessage::Vector::Clear();
     }
   }
 
@@ -5509,7 +5692,9 @@ void SaleItemLog_Sale_item_info_list::Clear() {
 
 bool SaleItemLog_Sale_item_info_list::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -5517,93 +5702,99 @@ bool SaleItemLog_Sale_item_info_list::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.SaleItemLog.Sale_item_info_list)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required uint32 unknown_2 = 2;
-      case 2: {
-        if (tag == 16) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_2_)));
-          set_has_unknown_2();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(26)) goto parse_location;
-        break;
+    // required uint32 unknown_2 = 2;
+    case 2: {
+      if (tag == 16) {
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_2_)));
+        set_has_unknown_2();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(26))
+        goto parse_location;
+      break;
+    }
 
-      // required .DS3_FpdLogMessage.Vector location = 3;
-      case 3: {
-        if (tag == 26) {
-         parse_location:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-               input, mutable_location()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(32)) goto parse_unknown_4;
-        break;
+    // required .DS3_FpdLogMessage.Vector location = 3;
+    case 3: {
+      if (tag == 26) {
+      parse_location:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+            input, mutable_location()));
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(32))
+        goto parse_unknown_4;
+      break;
+    }
 
-      // required uint32 unknown_4 = 4;
-      case 4: {
-        if (tag == 32) {
-         parse_unknown_4:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_4_)));
-          set_has_unknown_4();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(40)) goto parse_item_id;
-        break;
+    // required uint32 unknown_4 = 4;
+    case 4: {
+      if (tag == 32) {
+      parse_unknown_4:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_4_)));
+        set_has_unknown_4();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(40))
+        goto parse_item_id;
+      break;
+    }
 
-      // required uint32 item_id = 5;
-      case 5: {
-        if (tag == 40) {
-         parse_item_id:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &item_id_)));
-          set_has_item_id();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(48)) goto parse_count;
-        break;
+    // required uint32 item_id = 5;
+    case 5: {
+      if (tag == 40) {
+      parse_item_id:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &item_id_)));
+        set_has_item_id();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(48))
+        goto parse_count;
+      break;
+    }
 
-      // required uint32 count = 6;
-      case 6: {
-        if (tag == 48) {
-         parse_count:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &count_)));
-          set_has_count();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // required uint32 count = 6;
+    case 6: {
+      if (tag == 48) {
+      parse_count:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &count_)));
+        set_has_count();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -5626,7 +5817,7 @@ void SaleItemLog_Sale_item_info_list::SerializeWithCachedSizes(
   // required .DS3_FpdLogMessage.Vector location = 3;
   if (has_location()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
-      3, this->location(), output);
+        3, this->location(), output);
   }
 
   // required uint32 unknown_4 = 4;
@@ -5656,38 +5847,37 @@ int SaleItemLog_Sale_item_info_list::ByteSize() const {
     // required uint32 unknown_2 = 2;
     if (has_unknown_2()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_2());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_2());
     }
 
     // required .DS3_FpdLogMessage.Vector location = 3;
     if (has_location()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->location());
+                    ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+                        this->location());
     }
 
     // required uint32 unknown_4 = 4;
     if (has_unknown_4()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_4());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_4());
     }
 
     // required uint32 item_id = 5;
     if (has_item_id()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->item_id());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->item_id());
     }
 
     // required uint32 count = 6;
     if (has_count()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->count());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->count());
     }
-
   }
   total_size += unknown_fields().size();
 
@@ -5725,16 +5915,19 @@ void SaleItemLog_Sale_item_info_list::MergeFrom(const SaleItemLog_Sale_item_info
 }
 
 void SaleItemLog_Sale_item_info_list::CopyFrom(const SaleItemLog_Sale_item_info_list& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool SaleItemLog_Sale_item_info_list::IsInitialized() const {
-  if ((_has_bits_[0] & 0x0000001f) != 0x0000001f) return false;
+  if ((_has_bits_[0] & 0x0000001f) != 0x0000001f)
+    return false;
 
   if (has_location()) {
-    if (!this->location().IsInitialized()) return false;
+    if (!this->location().IsInitialized())
+      return false;
   }
   return true;
 }
@@ -5756,15 +5949,14 @@ void SaleItemLog_Sale_item_info_list::Swap(SaleItemLog_Sale_item_info_list* othe
   return "DS3_FpdLogMessage.SaleItemLog.Sale_item_info_list";
 }
 
-
 // -------------------------------------------------------------------
 
 #ifndef _MSC_VER
 const int SaleItemLog::kSaleItemInfoListFieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 SaleItemLog::SaleItemLog()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.SaleItemLog)
 }
@@ -5773,7 +5965,7 @@ void SaleItemLog::InitAsDefaultInstance() {
 }
 
 SaleItemLog::SaleItemLog(const SaleItemLog& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.SaleItemLog)
@@ -5790,11 +5982,11 @@ SaleItemLog::~SaleItemLog() {
 }
 
 void SaleItemLog::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -5807,7 +5999,8 @@ const SaleItemLog& SaleItemLog::default_instance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -5826,7 +6019,9 @@ void SaleItemLog::Clear() {
 
 bool SaleItemLog::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -5834,35 +6029,38 @@ bool SaleItemLog::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.SaleItemLog)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated group Sale_item_info_list = 1 {
-      case 1: {
-        if (tag == 11) {
-         parse_sale_item_info_list:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadGroupNoVirtual(
-                1, input, add_sale_item_info_list()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(11)) goto parse_sale_item_info_list;
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // repeated group Sale_item_info_list = 1 {
+    case 1: {
+      if (tag == 11) {
+      parse_sale_item_info_list:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadGroupNoVirtual(
+            1, input, add_sale_item_info_list()));
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(11))
+        goto parse_sale_item_info_list;
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -5880,7 +6078,7 @@ void SaleItemLog::SerializeWithCachedSizes(
   // repeated group Sale_item_info_list = 1 {
   for (int i = 0; i < this->sale_item_info_list_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteGroup(
-      1, this->sale_item_info_list(i), output);
+        1, this->sale_item_info_list(i), output);
   }
 
   output->WriteRaw(unknown_fields().data(),
@@ -5895,8 +6093,8 @@ int SaleItemLog::ByteSize() const {
   total_size += 2 * this->sale_item_info_list_size();
   for (int i = 0; i < this->sale_item_info_list_size(); i++) {
     total_size +=
-      ::google::protobuf::internal::WireFormatLite::GroupSizeNoVirtual(
-        this->sale_item_info_list(i));
+        ::google::protobuf::internal::WireFormatLite::GroupSizeNoVirtual(
+            this->sale_item_info_list(i));
   }
 
   total_size += unknown_fields().size();
@@ -5919,14 +6117,16 @@ void SaleItemLog::MergeFrom(const SaleItemLog& from) {
 }
 
 void SaleItemLog::CopyFrom(const SaleItemLog& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool SaleItemLog::IsInitialized() const {
 
-  if (!::google::protobuf::internal::AllAreInitialized(this->sale_item_info_list())) return false;
+  if (!::google::protobuf::internal::AllAreInitialized(this->sale_item_info_list()))
+    return false;
   return true;
 }
 
@@ -5943,16 +6143,15 @@ void SaleItemLog::Swap(SaleItemLog* other) {
   return "DS3_FpdLogMessage.SaleItemLog";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
 const int StrengthenWeaponLog_Strengthen_weapon_info_list::kFromItemIdFieldNumber;
 const int StrengthenWeaponLog_Strengthen_weapon_info_list::kToItemIdFieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 StrengthenWeaponLog_Strengthen_weapon_info_list::StrengthenWeaponLog_Strengthen_weapon_info_list()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.StrengthenWeaponLog.Strengthen_weapon_info_list)
 }
@@ -5961,7 +6160,7 @@ void StrengthenWeaponLog_Strengthen_weapon_info_list::InitAsDefaultInstance() {
 }
 
 StrengthenWeaponLog_Strengthen_weapon_info_list::StrengthenWeaponLog_Strengthen_weapon_info_list(const StrengthenWeaponLog_Strengthen_weapon_info_list& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.StrengthenWeaponLog.Strengthen_weapon_info_list)
@@ -5980,11 +6179,11 @@ StrengthenWeaponLog_Strengthen_weapon_info_list::~StrengthenWeaponLog_Strengthen
 }
 
 void StrengthenWeaponLog_Strengthen_weapon_info_list::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -5997,7 +6196,8 @@ const StrengthenWeaponLog_Strengthen_weapon_info_list& StrengthenWeaponLog_Stren
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -6009,14 +6209,15 @@ StrengthenWeaponLog_Strengthen_weapon_info_list* StrengthenWeaponLog_Strengthen_
 }
 
 void StrengthenWeaponLog_Strengthen_weapon_info_list::Clear() {
-#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(      \
-  &reinterpret_cast<StrengthenWeaponLog_Strengthen_weapon_info_list*>(16)->f) - \
-   reinterpret_cast<char*>(16))
+#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(                                                          \
+                                 &reinterpret_cast<StrengthenWeaponLog_Strengthen_weapon_info_list*>(16)->f) - \
+                             reinterpret_cast<char*>(16))
 
-#define ZR_(first, last) do {                              \
-    size_t f = OFFSET_OF_FIELD_(first);                    \
-    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last);  \
-    ::memset(&first, 0, n);                                \
+#define ZR_(first, last)                                  \
+  do {                                                    \
+    size_t f = OFFSET_OF_FIELD_(first);                   \
+    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last); \
+    ::memset(&first, 0, n);                               \
   } while (0)
 
   ZR_(from_item_id_, to_item_id_);
@@ -6030,7 +6231,9 @@ void StrengthenWeaponLog_Strengthen_weapon_info_list::Clear() {
 
 bool StrengthenWeaponLog_Strengthen_weapon_info_list::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -6038,50 +6241,53 @@ bool StrengthenWeaponLog_Strengthen_weapon_info_list::MergePartialFromCodedStrea
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.StrengthenWeaponLog.Strengthen_weapon_info_list)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required uint32 from_item_id = 2;
-      case 2: {
-        if (tag == 16) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &from_item_id_)));
-          set_has_from_item_id();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(24)) goto parse_to_item_id;
-        break;
+    // required uint32 from_item_id = 2;
+    case 2: {
+      if (tag == 16) {
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &from_item_id_)));
+        set_has_from_item_id();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(24))
+        goto parse_to_item_id;
+      break;
+    }
 
-      // required uint32 to_item_id = 3;
-      case 3: {
-        if (tag == 24) {
-         parse_to_item_id:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &to_item_id_)));
-          set_has_to_item_id();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // required uint32 to_item_id = 3;
+    case 3: {
+      if (tag == 24) {
+      parse_to_item_id:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &to_item_id_)));
+        set_has_to_item_id();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -6118,17 +6324,16 @@ int StrengthenWeaponLog_Strengthen_weapon_info_list::ByteSize() const {
     // required uint32 from_item_id = 2;
     if (has_from_item_id()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->from_item_id());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->from_item_id());
     }
 
     // required uint32 to_item_id = 3;
     if (has_to_item_id()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->to_item_id());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->to_item_id());
     }
-
   }
   total_size += unknown_fields().size();
 
@@ -6157,13 +6362,15 @@ void StrengthenWeaponLog_Strengthen_weapon_info_list::MergeFrom(const Strengthen
 }
 
 void StrengthenWeaponLog_Strengthen_weapon_info_list::CopyFrom(const StrengthenWeaponLog_Strengthen_weapon_info_list& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool StrengthenWeaponLog_Strengthen_weapon_info_list::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
+  if ((_has_bits_[0] & 0x00000003) != 0x00000003)
+    return false;
 
   return true;
 }
@@ -6182,15 +6389,14 @@ void StrengthenWeaponLog_Strengthen_weapon_info_list::Swap(StrengthenWeaponLog_S
   return "DS3_FpdLogMessage.StrengthenWeaponLog.Strengthen_weapon_info_list";
 }
 
-
 // -------------------------------------------------------------------
 
 #ifndef _MSC_VER
 const int StrengthenWeaponLog::kStrengthenWeaponInfoListFieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 StrengthenWeaponLog::StrengthenWeaponLog()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.StrengthenWeaponLog)
 }
@@ -6199,7 +6405,7 @@ void StrengthenWeaponLog::InitAsDefaultInstance() {
 }
 
 StrengthenWeaponLog::StrengthenWeaponLog(const StrengthenWeaponLog& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.StrengthenWeaponLog)
@@ -6216,11 +6422,11 @@ StrengthenWeaponLog::~StrengthenWeaponLog() {
 }
 
 void StrengthenWeaponLog::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -6233,7 +6439,8 @@ const StrengthenWeaponLog& StrengthenWeaponLog::default_instance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -6252,7 +6459,9 @@ void StrengthenWeaponLog::Clear() {
 
 bool StrengthenWeaponLog::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -6260,35 +6469,38 @@ bool StrengthenWeaponLog::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.StrengthenWeaponLog)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated group Strengthen_weapon_info_list = 1 {
-      case 1: {
-        if (tag == 11) {
-         parse_strengthen_weapon_info_list:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadGroupNoVirtual(
-                1, input, add_strengthen_weapon_info_list()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(11)) goto parse_strengthen_weapon_info_list;
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // repeated group Strengthen_weapon_info_list = 1 {
+    case 1: {
+      if (tag == 11) {
+      parse_strengthen_weapon_info_list:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadGroupNoVirtual(
+            1, input, add_strengthen_weapon_info_list()));
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(11))
+        goto parse_strengthen_weapon_info_list;
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -6306,7 +6518,7 @@ void StrengthenWeaponLog::SerializeWithCachedSizes(
   // repeated group Strengthen_weapon_info_list = 1 {
   for (int i = 0; i < this->strengthen_weapon_info_list_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteGroup(
-      1, this->strengthen_weapon_info_list(i), output);
+        1, this->strengthen_weapon_info_list(i), output);
   }
 
   output->WriteRaw(unknown_fields().data(),
@@ -6321,8 +6533,8 @@ int StrengthenWeaponLog::ByteSize() const {
   total_size += 2 * this->strengthen_weapon_info_list_size();
   for (int i = 0; i < this->strengthen_weapon_info_list_size(); i++) {
     total_size +=
-      ::google::protobuf::internal::WireFormatLite::GroupSizeNoVirtual(
-        this->strengthen_weapon_info_list(i));
+        ::google::protobuf::internal::WireFormatLite::GroupSizeNoVirtual(
+            this->strengthen_weapon_info_list(i));
   }
 
   total_size += unknown_fields().size();
@@ -6345,14 +6557,16 @@ void StrengthenWeaponLog::MergeFrom(const StrengthenWeaponLog& from) {
 }
 
 void StrengthenWeaponLog::CopyFrom(const StrengthenWeaponLog& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool StrengthenWeaponLog::IsInitialized() const {
 
-  if (!::google::protobuf::internal::AllAreInitialized(this->strengthen_weapon_info_list())) return false;
+  if (!::google::protobuf::internal::AllAreInitialized(this->strengthen_weapon_info_list()))
+    return false;
   return true;
 }
 
@@ -6369,7 +6583,6 @@ void StrengthenWeaponLog::Swap(StrengthenWeaponLog* other) {
   return "DS3_FpdLogMessage.StrengthenWeaponLog";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
@@ -6378,25 +6591,25 @@ const int VisitResultLog::kLocationFieldNumber;
 const int VisitResultLog::kOnlineAreaIdSourceFieldNumber;
 const int VisitResultLog::kOnlineAreaIdDestinationFieldNumber;
 const int VisitResultLog::kUnknown2FieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 VisitResultLog::VisitResultLog()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.VisitResultLog)
 }
 
 void VisitResultLog::InitAsDefaultInstance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  location_ = const_cast< ::DS3_FpdLogMessage::Vector*>(
+  location_ = const_cast<::DS3_FpdLogMessage::Vector*>(
       ::DS3_FpdLogMessage::Vector::internal_default_instance());
 #else
-  location_ = const_cast< ::DS3_FpdLogMessage::Vector*>(&::DS3_FpdLogMessage::Vector::default_instance());
+  location_ = const_cast<::DS3_FpdLogMessage::Vector*>(&::DS3_FpdLogMessage::Vector::default_instance());
 #endif
 }
 
 VisitResultLog::VisitResultLog(const VisitResultLog& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.VisitResultLog)
@@ -6418,11 +6631,11 @@ VisitResultLog::~VisitResultLog() {
 }
 
 void VisitResultLog::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
     delete location_;
   }
 }
@@ -6436,7 +6649,8 @@ const VisitResultLog& VisitResultLog::default_instance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -6448,20 +6662,22 @@ VisitResultLog* VisitResultLog::New() const {
 }
 
 void VisitResultLog::Clear() {
-#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(      \
-  &reinterpret_cast<VisitResultLog*>(16)->f) - \
-   reinterpret_cast<char*>(16))
+#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(                         \
+                                 &reinterpret_cast<VisitResultLog*>(16)->f) - \
+                             reinterpret_cast<char*>(16))
 
-#define ZR_(first, last) do {                              \
-    size_t f = OFFSET_OF_FIELD_(first);                    \
-    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last);  \
-    ::memset(&first, 0, n);                                \
+#define ZR_(first, last)                                  \
+  do {                                                    \
+    size_t f = OFFSET_OF_FIELD_(first);                   \
+    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last); \
+    ::memset(&first, 0, n);                               \
   } while (0)
 
   if (_has_bits_[0 / 32] & 31) {
     ZR_(map_id_, unknown_2_);
     if (has_location()) {
-      if (location_ != NULL) location_->::DS3_FpdLogMessage::Vector::Clear();
+      if (location_ != NULL)
+        location_->::DS3_FpdLogMessage::Vector::Clear();
     }
   }
 
@@ -6474,7 +6690,9 @@ void VisitResultLog::Clear() {
 
 bool VisitResultLog::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -6482,93 +6700,99 @@ bool VisitResultLog::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.VisitResultLog)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required uint32 map_id = 1;
-      case 1: {
-        if (tag == 8) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &map_id_)));
-          set_has_map_id();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(18)) goto parse_location;
-        break;
+    // required uint32 map_id = 1;
+    case 1: {
+      if (tag == 8) {
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &map_id_)));
+        set_has_map_id();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(18))
+        goto parse_location;
+      break;
+    }
 
-      // required .DS3_FpdLogMessage.Vector location = 2;
-      case 2: {
-        if (tag == 18) {
-         parse_location:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-               input, mutable_location()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(24)) goto parse_online_area_id_source;
-        break;
+    // required .DS3_FpdLogMessage.Vector location = 2;
+    case 2: {
+      if (tag == 18) {
+      parse_location:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+            input, mutable_location()));
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(24))
+        goto parse_online_area_id_source;
+      break;
+    }
 
-      // required uint32 online_area_id_source = 3;
-      case 3: {
-        if (tag == 24) {
-         parse_online_area_id_source:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &online_area_id_source_)));
-          set_has_online_area_id_source();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(32)) goto parse_online_area_id_destination;
-        break;
+    // required uint32 online_area_id_source = 3;
+    case 3: {
+      if (tag == 24) {
+      parse_online_area_id_source:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &online_area_id_source_)));
+        set_has_online_area_id_source();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(32))
+        goto parse_online_area_id_destination;
+      break;
+    }
 
-      // required uint32 online_area_id_destination = 4;
-      case 4: {
-        if (tag == 32) {
-         parse_online_area_id_destination:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &online_area_id_destination_)));
-          set_has_online_area_id_destination();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(40)) goto parse_unknown_2;
-        break;
+    // required uint32 online_area_id_destination = 4;
+    case 4: {
+      if (tag == 32) {
+      parse_online_area_id_destination:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &online_area_id_destination_)));
+        set_has_online_area_id_destination();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(40))
+        goto parse_unknown_2;
+      break;
+    }
 
-      // required uint32 unknown_2 = 5;
-      case 5: {
-        if (tag == 40) {
-         parse_unknown_2:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_2_)));
-          set_has_unknown_2();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // required uint32 unknown_2 = 5;
+    case 5: {
+      if (tag == 40) {
+      parse_unknown_2:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_2_)));
+        set_has_unknown_2();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -6591,7 +6815,7 @@ void VisitResultLog::SerializeWithCachedSizes(
   // required .DS3_FpdLogMessage.Vector location = 2;
   if (has_location()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
-      2, this->location(), output);
+        2, this->location(), output);
   }
 
   // required uint32 online_area_id_source = 3;
@@ -6621,38 +6845,37 @@ int VisitResultLog::ByteSize() const {
     // required uint32 map_id = 1;
     if (has_map_id()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->map_id());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->map_id());
     }
 
     // required .DS3_FpdLogMessage.Vector location = 2;
     if (has_location()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->location());
+                    ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+                        this->location());
     }
 
     // required uint32 online_area_id_source = 3;
     if (has_online_area_id_source()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->online_area_id_source());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->online_area_id_source());
     }
 
     // required uint32 online_area_id_destination = 4;
     if (has_online_area_id_destination()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->online_area_id_destination());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->online_area_id_destination());
     }
 
     // required uint32 unknown_2 = 5;
     if (has_unknown_2()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_2());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_2());
     }
-
   }
   total_size += unknown_fields().size();
 
@@ -6690,16 +6913,19 @@ void VisitResultLog::MergeFrom(const VisitResultLog& from) {
 }
 
 void VisitResultLog::CopyFrom(const VisitResultLog& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool VisitResultLog::IsInitialized() const {
-  if ((_has_bits_[0] & 0x0000001f) != 0x0000001f) return false;
+  if ((_has_bits_[0] & 0x0000001f) != 0x0000001f)
+    return false;
 
   if (has_location()) {
-    if (!this->location().IsInitialized()) return false;
+    if (!this->location().IsInitialized())
+      return false;
   }
   return true;
 }
@@ -6721,7 +6947,6 @@ void VisitResultLog::Swap(VisitResultLog* other) {
   return "DS3_FpdLogMessage.VisitResultLog";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
@@ -6734,10 +6959,10 @@ const int QuickMatchResultLog::kUnknown6FieldNumber;
 const int QuickMatchResultLog::kUnknown7FieldNumber;
 const int QuickMatchResultLog::kUnknown8FieldNumber;
 const int QuickMatchResultLog::kUnknown9FieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 QuickMatchResultLog::QuickMatchResultLog()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.QuickMatchResultLog)
 }
@@ -6746,7 +6971,7 @@ void QuickMatchResultLog::InitAsDefaultInstance() {
 }
 
 QuickMatchResultLog::QuickMatchResultLog(const QuickMatchResultLog& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.QuickMatchResultLog)
@@ -6772,11 +6997,11 @@ QuickMatchResultLog::~QuickMatchResultLog() {
 }
 
 void QuickMatchResultLog::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -6789,7 +7014,8 @@ const QuickMatchResultLog& QuickMatchResultLog::default_instance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -6801,14 +7027,15 @@ QuickMatchResultLog* QuickMatchResultLog::New() const {
 }
 
 void QuickMatchResultLog::Clear() {
-#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(      \
-  &reinterpret_cast<QuickMatchResultLog*>(16)->f) - \
-   reinterpret_cast<char*>(16))
+#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(                              \
+                                 &reinterpret_cast<QuickMatchResultLog*>(16)->f) - \
+                             reinterpret_cast<char*>(16))
 
-#define ZR_(first, last) do {                              \
-    size_t f = OFFSET_OF_FIELD_(first);                    \
-    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last);  \
-    ::memset(&first, 0, n);                                \
+#define ZR_(first, last)                                  \
+  do {                                                    \
+    size_t f = OFFSET_OF_FIELD_(first);                   \
+    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last); \
+    ::memset(&first, 0, n);                               \
   } while (0)
 
   if (_has_bits_[0 / 32] & 255) {
@@ -6825,7 +7052,9 @@ void QuickMatchResultLog::Clear() {
 
 bool QuickMatchResultLog::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -6833,155 +7062,165 @@ bool QuickMatchResultLog::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.QuickMatchResultLog)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required uint32 unknown_1 = 1;
-      case 1: {
-        if (tag == 8) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_1_)));
-          set_has_unknown_1();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(16)) goto parse_unknown_2;
-        break;
+    // required uint32 unknown_1 = 1;
+    case 1: {
+      if (tag == 8) {
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_1_)));
+        set_has_unknown_1();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(16))
+        goto parse_unknown_2;
+      break;
+    }
 
-      // required uint32 unknown_2 = 2;
-      case 2: {
-        if (tag == 16) {
-         parse_unknown_2:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_2_)));
-          set_has_unknown_2();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(24)) goto parse_unknown_3;
-        break;
+    // required uint32 unknown_2 = 2;
+    case 2: {
+      if (tag == 16) {
+      parse_unknown_2:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_2_)));
+        set_has_unknown_2();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(24))
+        goto parse_unknown_3;
+      break;
+    }
 
-      // required uint32 unknown_3 = 3;
-      case 3: {
-        if (tag == 24) {
-         parse_unknown_3:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_3_)));
-          set_has_unknown_3();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(32)) goto parse_unknown_4;
-        break;
+    // required uint32 unknown_3 = 3;
+    case 3: {
+      if (tag == 24) {
+      parse_unknown_3:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_3_)));
+        set_has_unknown_3();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(32))
+        goto parse_unknown_4;
+      break;
+    }
 
-      // required uint32 unknown_4 = 4;
-      case 4: {
-        if (tag == 32) {
-         parse_unknown_4:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_4_)));
-          set_has_unknown_4();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(40)) goto parse_unknown_5;
-        break;
+    // required uint32 unknown_4 = 4;
+    case 4: {
+      if (tag == 32) {
+      parse_unknown_4:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_4_)));
+        set_has_unknown_4();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(40))
+        goto parse_unknown_5;
+      break;
+    }
 
-      // required uint32 unknown_5 = 5;
-      case 5: {
-        if (tag == 40) {
-         parse_unknown_5:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_5_)));
-          set_has_unknown_5();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(48)) goto parse_unknown_6;
-        break;
+    // required uint32 unknown_5 = 5;
+    case 5: {
+      if (tag == 40) {
+      parse_unknown_5:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_5_)));
+        set_has_unknown_5();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(48))
+        goto parse_unknown_6;
+      break;
+    }
 
-      // required uint32 unknown_6 = 6;
-      case 6: {
-        if (tag == 48) {
-         parse_unknown_6:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_6_)));
-          set_has_unknown_6();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(56)) goto parse_unknown_7;
-        break;
+    // required uint32 unknown_6 = 6;
+    case 6: {
+      if (tag == 48) {
+      parse_unknown_6:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_6_)));
+        set_has_unknown_6();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(56))
+        goto parse_unknown_7;
+      break;
+    }
 
-      // required uint32 unknown_7 = 7;
-      case 7: {
-        if (tag == 56) {
-         parse_unknown_7:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_7_)));
-          set_has_unknown_7();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(64)) goto parse_unknown_8;
-        break;
+    // required uint32 unknown_7 = 7;
+    case 7: {
+      if (tag == 56) {
+      parse_unknown_7:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_7_)));
+        set_has_unknown_7();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(64))
+        goto parse_unknown_8;
+      break;
+    }
 
-      // required uint32 unknown_8 = 8;
-      case 8: {
-        if (tag == 64) {
-         parse_unknown_8:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_8_)));
-          set_has_unknown_8();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(72)) goto parse_unknown_9;
-        break;
+    // required uint32 unknown_8 = 8;
+    case 8: {
+      if (tag == 64) {
+      parse_unknown_8:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_8_)));
+        set_has_unknown_8();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(72))
+        goto parse_unknown_9;
+      break;
+    }
 
-      // required uint32 unknown_9 = 9;
-      case 9: {
-        if (tag == 72) {
-         parse_unknown_9:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_9_)));
-          set_has_unknown_9();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // required uint32 unknown_9 = 9;
+    case 9: {
+      if (tag == 72) {
+      parse_unknown_9:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_9_)));
+        set_has_unknown_9();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -7053,68 +7292,66 @@ int QuickMatchResultLog::ByteSize() const {
     // required uint32 unknown_1 = 1;
     if (has_unknown_1()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_1());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_1());
     }
 
     // required uint32 unknown_2 = 2;
     if (has_unknown_2()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_2());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_2());
     }
 
     // required uint32 unknown_3 = 3;
     if (has_unknown_3()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_3());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_3());
     }
 
     // required uint32 unknown_4 = 4;
     if (has_unknown_4()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_4());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_4());
     }
 
     // required uint32 unknown_5 = 5;
     if (has_unknown_5()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_5());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_5());
     }
 
     // required uint32 unknown_6 = 6;
     if (has_unknown_6()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_6());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_6());
     }
 
     // required uint32 unknown_7 = 7;
     if (has_unknown_7()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_7());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_7());
     }
 
     // required uint32 unknown_8 = 8;
     if (has_unknown_8()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_8());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_8());
     }
-
   }
   if (_has_bits_[8 / 32] & (0xffu << (8 % 32))) {
     // required uint32 unknown_9 = 9;
     if (has_unknown_9()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_9());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_9());
     }
-
   }
   total_size += unknown_fields().size();
 
@@ -7166,13 +7403,15 @@ void QuickMatchResultLog::MergeFrom(const QuickMatchResultLog& from) {
 }
 
 void QuickMatchResultLog::CopyFrom(const QuickMatchResultLog& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool QuickMatchResultLog::IsInitialized() const {
-  if ((_has_bits_[0] & 0x000001ff) != 0x000001ff) return false;
+  if ((_has_bits_[0] & 0x000001ff) != 0x000001ff)
+    return false;
 
   return true;
 }
@@ -7198,7 +7437,6 @@ void QuickMatchResultLog::Swap(QuickMatchResultLog* other) {
   return "DS3_FpdLogMessage.QuickMatchResultLog";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
@@ -7208,10 +7446,10 @@ const int QuickMatchEndLog::kUnknown3FieldNumber;
 const int QuickMatchEndLog::kUnknown4FieldNumber;
 const int QuickMatchEndLog::kUnknown5FieldNumber;
 const int QuickMatchEndLog::kUnknown6FieldNumber;
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 QuickMatchEndLog::QuickMatchEndLog()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.QuickMatchEndLog)
 }
@@ -7220,7 +7458,7 @@ void QuickMatchEndLog::InitAsDefaultInstance() {
 }
 
 QuickMatchEndLog::QuickMatchEndLog(const QuickMatchEndLog& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.QuickMatchEndLog)
@@ -7243,11 +7481,11 @@ QuickMatchEndLog::~QuickMatchEndLog() {
 }
 
 void QuickMatchEndLog::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -7260,7 +7498,8 @@ const QuickMatchEndLog& QuickMatchEndLog::default_instance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -7272,14 +7511,15 @@ QuickMatchEndLog* QuickMatchEndLog::New() const {
 }
 
 void QuickMatchEndLog::Clear() {
-#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(      \
-  &reinterpret_cast<QuickMatchEndLog*>(16)->f) - \
-   reinterpret_cast<char*>(16))
+#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(                           \
+                                 &reinterpret_cast<QuickMatchEndLog*>(16)->f) - \
+                             reinterpret_cast<char*>(16))
 
-#define ZR_(first, last) do {                              \
-    size_t f = OFFSET_OF_FIELD_(first);                    \
-    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last);  \
-    ::memset(&first, 0, n);                                \
+#define ZR_(first, last)                                  \
+  do {                                                    \
+    size_t f = OFFSET_OF_FIELD_(first);                   \
+    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last); \
+    ::memset(&first, 0, n);                               \
   } while (0)
 
   if (_has_bits_[0 / 32] & 63) {
@@ -7295,7 +7535,9 @@ void QuickMatchEndLog::Clear() {
 
 bool QuickMatchEndLog::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -7303,110 +7545,117 @@ bool QuickMatchEndLog::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.QuickMatchEndLog)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required uint32 unknown_1 = 1;
-      case 1: {
-        if (tag == 8) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_1_)));
-          set_has_unknown_1();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(16)) goto parse_unknown_2;
-        break;
+    // required uint32 unknown_1 = 1;
+    case 1: {
+      if (tag == 8) {
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_1_)));
+        set_has_unknown_1();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(16))
+        goto parse_unknown_2;
+      break;
+    }
 
-      // required uint32 unknown_2 = 2;
-      case 2: {
-        if (tag == 16) {
-         parse_unknown_2:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_2_)));
-          set_has_unknown_2();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(24)) goto parse_unknown_3;
-        break;
+    // required uint32 unknown_2 = 2;
+    case 2: {
+      if (tag == 16) {
+      parse_unknown_2:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_2_)));
+        set_has_unknown_2();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(24))
+        goto parse_unknown_3;
+      break;
+    }
 
-      // required uint32 unknown_3 = 3;
-      case 3: {
-        if (tag == 24) {
-         parse_unknown_3:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_3_)));
-          set_has_unknown_3();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(32)) goto parse_unknown_4;
-        break;
+    // required uint32 unknown_3 = 3;
+    case 3: {
+      if (tag == 24) {
+      parse_unknown_3:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_3_)));
+        set_has_unknown_3();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(32))
+        goto parse_unknown_4;
+      break;
+    }
 
-      // required uint32 unknown_4 = 4;
-      case 4: {
-        if (tag == 32) {
-         parse_unknown_4:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_4_)));
-          set_has_unknown_4();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(40)) goto parse_unknown_5;
-        break;
+    // required uint32 unknown_4 = 4;
+    case 4: {
+      if (tag == 32) {
+      parse_unknown_4:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_4_)));
+        set_has_unknown_4();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(40))
+        goto parse_unknown_5;
+      break;
+    }
 
-      // required uint32 unknown_5 = 5;
-      case 5: {
-        if (tag == 40) {
-         parse_unknown_5:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_5_)));
-          set_has_unknown_5();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(48)) goto parse_unknown_6;
-        break;
+    // required uint32 unknown_5 = 5;
+    case 5: {
+      if (tag == 40) {
+      parse_unknown_5:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_5_)));
+        set_has_unknown_5();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectTag(48))
+        goto parse_unknown_6;
+      break;
+    }
 
-      // required uint32 unknown_6 = 6;
-      case 6: {
-        if (tag == 48) {
-         parse_unknown_6:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &unknown_6_)));
-          set_has_unknown_6();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectAtEnd()) goto success;
-        break;
+    // required uint32 unknown_6 = 6;
+    case 6: {
+      if (tag == 48) {
+      parse_unknown_6:
+        DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+             ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+            input, &unknown_6_)));
+        set_has_unknown_6();
+      } else {
+        goto handle_unusual;
       }
+      if (input->ExpectAtEnd())
+        goto success;
+      break;
+    }
 
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
-        break;
+    default: {
+    handle_unusual:
+      if (tag == 0 ||
+          ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+              ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        goto success;
       }
+      DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+          input, tag, &unknown_fields_stream));
+      break;
+    }
     }
   }
 success:
@@ -7463,45 +7712,44 @@ int QuickMatchEndLog::ByteSize() const {
     // required uint32 unknown_1 = 1;
     if (has_unknown_1()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_1());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_1());
     }
 
     // required uint32 unknown_2 = 2;
     if (has_unknown_2()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_2());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_2());
     }
 
     // required uint32 unknown_3 = 3;
     if (has_unknown_3()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_3());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_3());
     }
 
     // required uint32 unknown_4 = 4;
     if (has_unknown_4()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_4());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_4());
     }
 
     // required uint32 unknown_5 = 5;
     if (has_unknown_5()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_5());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_5());
     }
 
     // required uint32 unknown_6 = 6;
     if (has_unknown_6()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->unknown_6());
+                    ::google::protobuf::internal::WireFormatLite::UInt32Size(
+                        this->unknown_6());
     }
-
   }
   total_size += unknown_fields().size();
 
@@ -7542,13 +7790,15 @@ void QuickMatchEndLog::MergeFrom(const QuickMatchEndLog& from) {
 }
 
 void QuickMatchEndLog::CopyFrom(const QuickMatchEndLog& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
 
 bool QuickMatchEndLog::IsInitialized() const {
-  if ((_has_bits_[0] & 0x0000003f) != 0x0000003f) return false;
+  if ((_has_bits_[0] & 0x0000003f) != 0x0000003f)
+    return false;
 
   return true;
 }
@@ -7571,14 +7821,13 @@ void QuickMatchEndLog::Swap(QuickMatchEndLog* other) {
   return "DS3_FpdLogMessage.QuickMatchEndLog";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 ConvertSaveDataLog::ConvertSaveDataLog()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.ConvertSaveDataLog)
 }
@@ -7587,7 +7836,7 @@ void ConvertSaveDataLog::InitAsDefaultInstance() {
 }
 
 ConvertSaveDataLog::ConvertSaveDataLog(const ConvertSaveDataLog& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.ConvertSaveDataLog)
@@ -7604,11 +7853,11 @@ ConvertSaveDataLog::~ConvertSaveDataLog() {
 }
 
 void ConvertSaveDataLog::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -7621,7 +7870,8 @@ const ConvertSaveDataLog& ConvertSaveDataLog::default_instance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -7639,7 +7889,9 @@ void ConvertSaveDataLog::Clear() {
 
 bool ConvertSaveDataLog::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -7647,13 +7899,14 @@ bool ConvertSaveDataLog::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.ConvertSaveDataLog)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
   handle_unusual:
     if (tag == 0 ||
         ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-        ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
       goto success;
     }
     DO_(::google::protobuf::internal::WireFormatLite::SkipField(
@@ -7698,7 +7951,8 @@ void ConvertSaveDataLog::MergeFrom(const ConvertSaveDataLog& from) {
 }
 
 void ConvertSaveDataLog::CopyFrom(const ConvertSaveDataLog& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
@@ -7719,14 +7973,13 @@ void ConvertSaveDataLog::Swap(ConvertSaveDataLog* other) {
   return "DS3_FpdLogMessage.ConvertSaveDataLog";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 AccessWarehouseLog_Access_warehouse_info_list::AccessWarehouseLog_Access_warehouse_info_list()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.AccessWarehouseLog.Access_warehouse_info_list)
 }
@@ -7735,7 +7988,7 @@ void AccessWarehouseLog_Access_warehouse_info_list::InitAsDefaultInstance() {
 }
 
 AccessWarehouseLog_Access_warehouse_info_list::AccessWarehouseLog_Access_warehouse_info_list(const AccessWarehouseLog_Access_warehouse_info_list& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.AccessWarehouseLog.Access_warehouse_info_list)
@@ -7752,11 +8005,11 @@ AccessWarehouseLog_Access_warehouse_info_list::~AccessWarehouseLog_Access_wareho
 }
 
 void AccessWarehouseLog_Access_warehouse_info_list::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -7769,7 +8022,8 @@ const AccessWarehouseLog_Access_warehouse_info_list& AccessWarehouseLog_Access_w
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -7787,7 +8041,9 @@ void AccessWarehouseLog_Access_warehouse_info_list::Clear() {
 
 bool AccessWarehouseLog_Access_warehouse_info_list::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -7795,13 +8051,14 @@ bool AccessWarehouseLog_Access_warehouse_info_list::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.AccessWarehouseLog.Access_warehouse_info_list)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
   handle_unusual:
     if (tag == 0 ||
         ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-        ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
       goto success;
     }
     DO_(::google::protobuf::internal::WireFormatLite::SkipField(
@@ -7846,7 +8103,8 @@ void AccessWarehouseLog_Access_warehouse_info_list::MergeFrom(const AccessWareho
 }
 
 void AccessWarehouseLog_Access_warehouse_info_list::CopyFrom(const AccessWarehouseLog_Access_warehouse_info_list& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
@@ -7867,14 +8125,13 @@ void AccessWarehouseLog_Access_warehouse_info_list::Swap(AccessWarehouseLog_Acce
   return "DS3_FpdLogMessage.AccessWarehouseLog.Access_warehouse_info_list";
 }
 
-
 // -------------------------------------------------------------------
 
 #ifndef _MSC_VER
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 AccessWarehouseLog::AccessWarehouseLog()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.AccessWarehouseLog)
 }
@@ -7883,7 +8140,7 @@ void AccessWarehouseLog::InitAsDefaultInstance() {
 }
 
 AccessWarehouseLog::AccessWarehouseLog(const AccessWarehouseLog& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.AccessWarehouseLog)
@@ -7900,11 +8157,11 @@ AccessWarehouseLog::~AccessWarehouseLog() {
 }
 
 void AccessWarehouseLog::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -7917,7 +8174,8 @@ const AccessWarehouseLog& AccessWarehouseLog::default_instance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -7935,7 +8193,9 @@ void AccessWarehouseLog::Clear() {
 
 bool AccessWarehouseLog::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -7943,13 +8203,14 @@ bool AccessWarehouseLog::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.AccessWarehouseLog)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
   handle_unusual:
     if (tag == 0 ||
         ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-        ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
       goto success;
     }
     DO_(::google::protobuf::internal::WireFormatLite::SkipField(
@@ -7994,7 +8255,8 @@ void AccessWarehouseLog::MergeFrom(const AccessWarehouseLog& from) {
 }
 
 void AccessWarehouseLog::CopyFrom(const AccessWarehouseLog& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
@@ -8015,14 +8277,13 @@ void AccessWarehouseLog::Swap(AccessWarehouseLog* other) {
   return "DS3_FpdLogMessage.AccessWarehouseLog";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 RepairEquipmentLog_Repair_equipment_info_list::RepairEquipmentLog_Repair_equipment_info_list()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.RepairEquipmentLog.Repair_equipment_info_list)
 }
@@ -8031,7 +8292,7 @@ void RepairEquipmentLog_Repair_equipment_info_list::InitAsDefaultInstance() {
 }
 
 RepairEquipmentLog_Repair_equipment_info_list::RepairEquipmentLog_Repair_equipment_info_list(const RepairEquipmentLog_Repair_equipment_info_list& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.RepairEquipmentLog.Repair_equipment_info_list)
@@ -8048,11 +8309,11 @@ RepairEquipmentLog_Repair_equipment_info_list::~RepairEquipmentLog_Repair_equipm
 }
 
 void RepairEquipmentLog_Repair_equipment_info_list::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -8065,7 +8326,8 @@ const RepairEquipmentLog_Repair_equipment_info_list& RepairEquipmentLog_Repair_e
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -8083,7 +8345,9 @@ void RepairEquipmentLog_Repair_equipment_info_list::Clear() {
 
 bool RepairEquipmentLog_Repair_equipment_info_list::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -8091,13 +8355,14 @@ bool RepairEquipmentLog_Repair_equipment_info_list::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.RepairEquipmentLog.Repair_equipment_info_list)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
   handle_unusual:
     if (tag == 0 ||
         ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-        ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
       goto success;
     }
     DO_(::google::protobuf::internal::WireFormatLite::SkipField(
@@ -8142,7 +8407,8 @@ void RepairEquipmentLog_Repair_equipment_info_list::MergeFrom(const RepairEquipm
 }
 
 void RepairEquipmentLog_Repair_equipment_info_list::CopyFrom(const RepairEquipmentLog_Repair_equipment_info_list& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
@@ -8163,14 +8429,13 @@ void RepairEquipmentLog_Repair_equipment_info_list::Swap(RepairEquipmentLog_Repa
   return "DS3_FpdLogMessage.RepairEquipmentLog.Repair_equipment_info_list";
 }
 
-
 // -------------------------------------------------------------------
 
 #ifndef _MSC_VER
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 RepairEquipmentLog::RepairEquipmentLog()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.RepairEquipmentLog)
 }
@@ -8179,7 +8444,7 @@ void RepairEquipmentLog::InitAsDefaultInstance() {
 }
 
 RepairEquipmentLog::RepairEquipmentLog(const RepairEquipmentLog& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.RepairEquipmentLog)
@@ -8196,11 +8461,11 @@ RepairEquipmentLog::~RepairEquipmentLog() {
 }
 
 void RepairEquipmentLog::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -8213,7 +8478,8 @@ const RepairEquipmentLog& RepairEquipmentLog::default_instance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -8231,7 +8497,9 @@ void RepairEquipmentLog::Clear() {
 
 bool RepairEquipmentLog::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -8239,13 +8507,14 @@ bool RepairEquipmentLog::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.RepairEquipmentLog)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
   handle_unusual:
     if (tag == 0 ||
         ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-        ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
       goto success;
     }
     DO_(::google::protobuf::internal::WireFormatLite::SkipField(
@@ -8290,7 +8559,8 @@ void RepairEquipmentLog::MergeFrom(const RepairEquipmentLog& from) {
 }
 
 void RepairEquipmentLog::CopyFrom(const RepairEquipmentLog& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
@@ -8311,14 +8581,13 @@ void RepairEquipmentLog::Swap(RepairEquipmentLog* other) {
   return "DS3_FpdLogMessage.RepairEquipmentLog";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 LevelUpLog::LevelUpLog()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.LevelUpLog)
 }
@@ -8327,7 +8596,7 @@ void LevelUpLog::InitAsDefaultInstance() {
 }
 
 LevelUpLog::LevelUpLog(const LevelUpLog& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.LevelUpLog)
@@ -8344,11 +8613,11 @@ LevelUpLog::~LevelUpLog() {
 }
 
 void LevelUpLog::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -8361,7 +8630,8 @@ const LevelUpLog& LevelUpLog::default_instance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -8379,7 +8649,9 @@ void LevelUpLog::Clear() {
 
 bool LevelUpLog::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -8387,13 +8659,14 @@ bool LevelUpLog::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.LevelUpLog)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
   handle_unusual:
     if (tag == 0 ||
         ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-        ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
       goto success;
     }
     DO_(::google::protobuf::internal::WireFormatLite::SkipField(
@@ -8438,7 +8711,8 @@ void LevelUpLog::MergeFrom(const LevelUpLog& from) {
 }
 
 void LevelUpLog::CopyFrom(const LevelUpLog& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
@@ -8459,14 +8733,13 @@ void LevelUpLog::Swap(LevelUpLog* other) {
   return "DS3_FpdLogMessage.LevelUpLog";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 BrokenEquipmentLog::BrokenEquipmentLog()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.BrokenEquipmentLog)
 }
@@ -8475,7 +8748,7 @@ void BrokenEquipmentLog::InitAsDefaultInstance() {
 }
 
 BrokenEquipmentLog::BrokenEquipmentLog(const BrokenEquipmentLog& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.BrokenEquipmentLog)
@@ -8492,11 +8765,11 @@ BrokenEquipmentLog::~BrokenEquipmentLog() {
 }
 
 void BrokenEquipmentLog::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -8509,7 +8782,8 @@ const BrokenEquipmentLog& BrokenEquipmentLog::default_instance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -8527,7 +8801,9 @@ void BrokenEquipmentLog::Clear() {
 
 bool BrokenEquipmentLog::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -8535,13 +8811,14 @@ bool BrokenEquipmentLog::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.BrokenEquipmentLog)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
   handle_unusual:
     if (tag == 0 ||
         ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-        ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
       goto success;
     }
     DO_(::google::protobuf::internal::WireFormatLite::SkipField(
@@ -8586,7 +8863,8 @@ void BrokenEquipmentLog::MergeFrom(const BrokenEquipmentLog& from) {
 }
 
 void BrokenEquipmentLog::CopyFrom(const BrokenEquipmentLog& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
@@ -8607,14 +8885,13 @@ void BrokenEquipmentLog::Swap(BrokenEquipmentLog* other) {
   return "DS3_FpdLogMessage.BrokenEquipmentLog";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 EquipMagicLog::EquipMagicLog()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.EquipMagicLog)
 }
@@ -8623,7 +8900,7 @@ void EquipMagicLog::InitAsDefaultInstance() {
 }
 
 EquipMagicLog::EquipMagicLog(const EquipMagicLog& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.EquipMagicLog)
@@ -8640,11 +8917,11 @@ EquipMagicLog::~EquipMagicLog() {
 }
 
 void EquipMagicLog::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -8657,7 +8934,8 @@ const EquipMagicLog& EquipMagicLog::default_instance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -8675,7 +8953,9 @@ void EquipMagicLog::Clear() {
 
 bool EquipMagicLog::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -8683,13 +8963,14 @@ bool EquipMagicLog::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.EquipMagicLog)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
   handle_unusual:
     if (tag == 0 ||
         ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-        ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
       goto success;
     }
     DO_(::google::protobuf::internal::WireFormatLite::SkipField(
@@ -8734,7 +9015,8 @@ void EquipMagicLog::MergeFrom(const EquipMagicLog& from) {
 }
 
 void EquipMagicLog::CopyFrom(const EquipMagicLog& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
@@ -8755,14 +9037,13 @@ void EquipMagicLog::Swap(EquipMagicLog* other) {
   return "DS3_FpdLogMessage.EquipMagicLog";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 ChaneEstusFlaskNumLog::ChaneEstusFlaskNumLog()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.ChaneEstusFlaskNumLog)
 }
@@ -8771,7 +9052,7 @@ void ChaneEstusFlaskNumLog::InitAsDefaultInstance() {
 }
 
 ChaneEstusFlaskNumLog::ChaneEstusFlaskNumLog(const ChaneEstusFlaskNumLog& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.ChaneEstusFlaskNumLog)
@@ -8788,11 +9069,11 @@ ChaneEstusFlaskNumLog::~ChaneEstusFlaskNumLog() {
 }
 
 void ChaneEstusFlaskNumLog::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -8805,7 +9086,8 @@ const ChaneEstusFlaskNumLog& ChaneEstusFlaskNumLog::default_instance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -8823,7 +9105,9 @@ void ChaneEstusFlaskNumLog::Clear() {
 
 bool ChaneEstusFlaskNumLog::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -8831,13 +9115,14 @@ bool ChaneEstusFlaskNumLog::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.ChaneEstusFlaskNumLog)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
   handle_unusual:
     if (tag == 0 ||
         ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-        ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
       goto success;
     }
     DO_(::google::protobuf::internal::WireFormatLite::SkipField(
@@ -8882,7 +9167,8 @@ void ChaneEstusFlaskNumLog::MergeFrom(const ChaneEstusFlaskNumLog& from) {
 }
 
 void ChaneEstusFlaskNumLog::CopyFrom(const ChaneEstusFlaskNumLog& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
@@ -8903,14 +9189,13 @@ void ChaneEstusFlaskNumLog::Swap(ChaneEstusFlaskNumLog* other) {
   return "DS3_FpdLogMessage.ChaneEstusFlaskNumLog";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 CreateBloodMessageLog::CreateBloodMessageLog()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.CreateBloodMessageLog)
 }
@@ -8919,7 +9204,7 @@ void CreateBloodMessageLog::InitAsDefaultInstance() {
 }
 
 CreateBloodMessageLog::CreateBloodMessageLog(const CreateBloodMessageLog& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.CreateBloodMessageLog)
@@ -8936,11 +9221,11 @@ CreateBloodMessageLog::~CreateBloodMessageLog() {
 }
 
 void CreateBloodMessageLog::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -8953,7 +9238,8 @@ const CreateBloodMessageLog& CreateBloodMessageLog::default_instance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -8971,7 +9257,9 @@ void CreateBloodMessageLog::Clear() {
 
 bool CreateBloodMessageLog::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -8979,13 +9267,14 @@ bool CreateBloodMessageLog::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.CreateBloodMessageLog)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
   handle_unusual:
     if (tag == 0 ||
         ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-        ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
       goto success;
     }
     DO_(::google::protobuf::internal::WireFormatLite::SkipField(
@@ -9030,7 +9319,8 @@ void CreateBloodMessageLog::MergeFrom(const CreateBloodMessageLog& from) {
 }
 
 void CreateBloodMessageLog::CopyFrom(const CreateBloodMessageLog& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
@@ -9051,14 +9341,13 @@ void CreateBloodMessageLog::Swap(CreateBloodMessageLog* other) {
   return "DS3_FpdLogMessage.CreateBloodMessageLog";
 }
 
-
 // ===================================================================
 
 #ifndef _MSC_VER
-#endif  // !_MSC_VER
+#endif // !_MSC_VER
 
 EvaluateBloodMessageLog::EvaluateBloodMessageLog()
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:DS3_FpdLogMessage.EvaluateBloodMessageLog)
 }
@@ -9067,7 +9356,7 @@ void EvaluateBloodMessageLog::InitAsDefaultInstance() {
 }
 
 EvaluateBloodMessageLog::EvaluateBloodMessageLog(const EvaluateBloodMessageLog& from)
-  : ::google::protobuf::MessageLite() {
+    : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:DS3_FpdLogMessage.EvaluateBloodMessageLog)
@@ -9084,11 +9373,11 @@ EvaluateBloodMessageLog::~EvaluateBloodMessageLog() {
 }
 
 void EvaluateBloodMessageLog::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   if (this != &default_instance()) {
-  #else
+#else
   if (this != default_instance_) {
-  #endif
+#endif
   }
 }
 
@@ -9101,7 +9390,8 @@ const EvaluateBloodMessageLog& EvaluateBloodMessageLog::default_instance() {
 #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #else
-  if (default_instance_ == NULL) protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
+  if (default_instance_ == NULL)
+    protobuf_AddDesc_DS3_5fFpdLogMessage_2eproto();
 #endif
   return *default_instance_;
 }
@@ -9119,7 +9409,9 @@ void EvaluateBloodMessageLog::Clear() {
 
 bool EvaluateBloodMessageLog::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) \
+  if (!(EXPRESSION))    \
+  goto failure
   ::google::protobuf::uint32 tag;
   ::google::protobuf::io::StringOutputStream unknown_fields_string(
       mutable_unknown_fields());
@@ -9127,13 +9419,14 @@ bool EvaluateBloodMessageLog::MergePartialFromCodedStream(
       &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:DS3_FpdLogMessage.EvaluateBloodMessageLog)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
-    if (!p.second) goto handle_unusual;
+    if (!p.second)
+      goto handle_unusual;
   handle_unusual:
     if (tag == 0 ||
         ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-        ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
       goto success;
     }
     DO_(::google::protobuf::internal::WireFormatLite::SkipField(
@@ -9178,7 +9471,8 @@ void EvaluateBloodMessageLog::MergeFrom(const EvaluateBloodMessageLog& from) {
 }
 
 void EvaluateBloodMessageLog::CopyFrom(const EvaluateBloodMessageLog& from) {
-  if (&from == this) return;
+  if (&from == this)
+    return;
   Clear();
   MergeFrom(from);
 }
@@ -9199,9 +9493,8 @@ void EvaluateBloodMessageLog::Swap(EvaluateBloodMessageLog* other) {
   return "DS3_FpdLogMessage.EvaluateBloodMessageLog";
 }
 
-
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace DS3_FpdLogMessage
+} // namespace DS3_FpdLogMessage
 
 // @@protoc_insertion_point(global_scope)

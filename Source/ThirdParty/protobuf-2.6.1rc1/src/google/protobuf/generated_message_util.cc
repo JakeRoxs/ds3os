@@ -59,7 +59,6 @@ void InitEmptyString() {
   OnShutdown(&DeleteEmptyString);
 }
 
-
-}  // namespace internal
-}  // namespace protobuf
-}  // namespace google
+} // namespace internal
+} // namespace protobuf
+} // namespace google

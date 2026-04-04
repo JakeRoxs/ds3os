@@ -41,20 +41,20 @@
 
 namespace google {
 namespace protobuf {
-  namespace compiler {
-    namespace java {
-      class Context;            // context.h
-      class ClassNameResolver;  // name_resolver.h
-    }
-  }
-}
+namespace compiler {
+namespace java {
+class Context;           // context.h
+class ClassNameResolver; // name_resolver.h
+} // namespace java
+} // namespace compiler
+} // namespace protobuf
 
 namespace protobuf {
 namespace compiler {
 namespace java {
 
 class ImmutableEnumFieldGenerator : public ImmutableFieldGenerator {
- public:
+public:
   explicit ImmutableEnumFieldGenerator(
       const FieldDescriptor* descriptor, int messageBitIndex,
       int builderBitIndex, Context* context);
@@ -80,7 +80,7 @@ class ImmutableEnumFieldGenerator : public ImmutableFieldGenerator {
 
   string GetBoxedType() const;
 
- protected:
+protected:
   const FieldDescriptor* descriptor_;
   map<string, string> variables_;
   const int messageBitIndex_;
@@ -88,12 +88,12 @@ class ImmutableEnumFieldGenerator : public ImmutableFieldGenerator {
   Context* context_;
   ClassNameResolver* name_resolver_;
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ImmutableEnumFieldGenerator);
 };
 
 class ImmutableEnumOneofFieldGenerator : public ImmutableEnumFieldGenerator {
- public:
+public:
   ImmutableEnumOneofFieldGenerator(
       const FieldDescriptor* descriptor, int messageBitIndex,
       int builderBitIndex, Context* context);
@@ -107,12 +107,12 @@ class ImmutableEnumOneofFieldGenerator : public ImmutableEnumFieldGenerator {
   void GenerateSerializationCode(io::Printer* printer) const;
   void GenerateSerializedSizeCode(io::Printer* printer) const;
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ImmutableEnumOneofFieldGenerator);
 };
 
 class RepeatedImmutableEnumFieldGenerator : public ImmutableFieldGenerator {
- public:
+public:
   explicit RepeatedImmutableEnumFieldGenerator(
       const FieldDescriptor* descriptor, int messageBitIndex,
       int builderBitIndex, Context* context);
@@ -139,7 +139,7 @@ class RepeatedImmutableEnumFieldGenerator : public ImmutableFieldGenerator {
 
   string GetBoxedType() const;
 
- private:
+private:
   const FieldDescriptor* descriptor_;
   map<string, string> variables_;
   const int messageBitIndex_;
@@ -150,9 +150,9 @@ class RepeatedImmutableEnumFieldGenerator : public ImmutableFieldGenerator {
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(RepeatedImmutableEnumFieldGenerator);
 };
 
-}  // namespace java
-}  // namespace compiler
-}  // namespace protobuf
+} // namespace java
+} // namespace compiler
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_JAVA_ENUM_FIELD_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_COMPILER_JAVA_ENUM_FIELD_H__

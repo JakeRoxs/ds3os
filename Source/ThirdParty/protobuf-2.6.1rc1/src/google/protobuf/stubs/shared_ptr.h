@@ -35,7 +35,7 @@
 
 #include <google/protobuf/stubs/atomicops.h>
 
-#include <algorithm>  // for swap
+#include <algorithm> // for swap
 #include <stddef.h>
 #include <memory>
 
@@ -62,19 +62,21 @@ using std::shared_ptr;
 using std::static_pointer_cast;
 using std::weak_ptr;
 
-#else  // below, UTIL_GTL_USE_STD_SHARED_PTR not set or set to 0.
+#else // below, UTIL_GTL_USE_STD_SHARED_PTR not set or set to 0.
 
 // For everything else there is the google3 implementation.
-inline bool RefCountDec(volatile Atomic32 *ptr) {
+inline bool RefCountDec(volatile Atomic32* ptr) {
   return Barrier_AtomicIncrement(ptr, -1) != 0;
 }
 
-inline void RefCountInc(volatile Atomic32 *ptr) {
+inline void RefCountInc(volatile Atomic32* ptr) {
   NoBarrier_AtomicIncrement(ptr, 1);
 }
 
-template <typename T> class shared_ptr;
-template <typename T> class weak_ptr;
+template <typename T>
+class shared_ptr;
+template <typename T>
+class weak_ptr;
 
 // This class is an internal implementation detail for shared_ptr. If two
 // shared_ptrs point to the same object, they also share a control block.
@@ -91,21 +93,27 @@ template <typename T> class weak_ptr;
 // only deleted once, so we need to make sure that at most one
 // object sees the weak count decremented from 1 to 0.
 class SharedPtrControlBlock {
-  template <typename T> friend class shared_ptr;
-  template <typename T> friend class weak_ptr;
- private:
-  SharedPtrControlBlock() : refcount_(1), weak_count_(1) { }
+  template <typename T>
+  friend class shared_ptr;
+  template <typename T>
+  friend class weak_ptr;
+
+private:
+  SharedPtrControlBlock() : refcount_(1), weak_count_(1) {}
   Atomic32 refcount_;
   Atomic32 weak_count_;
 };
 
 // Forward declaration. The class is defined below.
-template <typename T> class enable_shared_from_this;
+template <typename T>
+class enable_shared_from_this;
 
 template <typename T>
 class shared_ptr {
-  template <typename U> friend class weak_ptr;
- public:
+  template <typename U>
+  friend class weak_ptr;
+
+public:
   typedef T element_type;
 
   shared_ptr() : ptr_(NULL), control_block_(NULL) {}
@@ -138,7 +146,7 @@ class shared_ptr {
   template <typename U>
   shared_ptr<T>& operator=(const shared_ptr<U>& ptr) {
     if (ptr_ != ptr.ptr_) {
-      shared_ptr<T> me(ptr);   // will hold our previous state to be destroyed.
+      shared_ptr<T> me(ptr); // will hold our previous state to be destroyed.
       swap(me);
     }
     return *this;
@@ -147,7 +155,7 @@ class shared_ptr {
   // Need non-templated version to prevent the compiler-generated default
   shared_ptr<T>& operator=(const shared_ptr<T>& ptr) {
     if (ptr_ != ptr.ptr_) {
-      shared_ptr<T> me(ptr);   // will hold our previous state to be destroyed.
+      shared_ptr<T> me(ptr); // will hold our previous state to be destroyed.
       swap(me);
     }
     return *this;
@@ -199,7 +207,7 @@ class shared_ptr {
   // supports more efficient swapping since it eliminates the need for a
   // temporary shared_ptr object.
   void swap(shared_ptr<T>& r) {
-    using std::swap;  // http://go/using-std-swap
+    using std::swap; // http://go/using-std-swap
     swap(ptr_, r.ptr_);
     swap(control_block_, r.control_block_);
   }
@@ -227,7 +235,7 @@ class shared_ptr {
     return use_count() == 1;
   }
 
- private:
+private:
   // If r is non-empty, initialize *this to share ownership with r,
   // increasing the underlying reference count.
   // If r is empty, *this remains empty.
@@ -260,7 +268,7 @@ class shared_ptr {
   // do, so this function is trivial and inline. The other version is declared
   // out of line, after the class definition of enable_shared_from_this.
   void MaybeSetupWeakThis(enable_shared_from_this<T>* ptr);
-  void MaybeSetupWeakThis(...) { }
+  void MaybeSetupWeakThis(...) {}
 
   T* ptr_;
   SharedPtrControlBlock* control_block_;
@@ -275,7 +283,8 @@ class shared_ptr {
 };
 
 // Matches the interface of std::swap as an aid to generic programming.
-template <typename T> void swap(shared_ptr<T>& r, shared_ptr<T>& s) {
+template <typename T>
+void swap(shared_ptr<T>& r, shared_ptr<T>& s) {
   r.swap(s);
 }
 
@@ -291,18 +300,21 @@ shared_ptr<T> static_pointer_cast(const shared_ptr<U>& rhs) {
 // latest draft is N2914) for the detailed specification.
 template <typename T>
 class weak_ptr {
-  template <typename U> friend class weak_ptr;
- public:
+  template <typename U>
+  friend class weak_ptr;
+
+public:
   typedef T element_type;
 
   // Create an empty (i.e. already expired) weak_ptr.
-  weak_ptr() : ptr_(NULL), control_block_(NULL) { }
+  weak_ptr() : ptr_(NULL), control_block_(NULL) {}
 
   // Create a weak_ptr that observes the same object that ptr points
   // to.  Note that there is no race condition here: we know that the
   // control block can't disappear while we're looking at it because
   // it is owned by at least one shared_ptr, ptr.
-  template <typename U> weak_ptr(const shared_ptr<U>& ptr) {
+  template <typename U>
+  weak_ptr(const shared_ptr<U>& ptr) {
     CopyFrom(ptr.ptr_, ptr.control_block_);
   }
 
@@ -310,7 +322,8 @@ class weak_ptr {
   // don't care: we're only working with the control block, and it can't
   // disappear while we're looking at because it's owned by at least one
   // weak_ptr, ptr.
-  template <typename U> weak_ptr(const weak_ptr<U>& ptr) {
+  template <typename U>
+  weak_ptr(const weak_ptr<U>& ptr) {
     CopyFrom(ptr.ptr_, ptr.control_block_);
   }
 
@@ -339,19 +352,21 @@ class weak_ptr {
     }
     return *this;
   }
-  template <typename U> weak_ptr& operator=(const weak_ptr<U>& ptr) {
+  template <typename U>
+  weak_ptr& operator=(const weak_ptr<U>& ptr) {
     weak_ptr tmp(ptr);
     tmp.swap(*this);
     return *this;
   }
-  template <typename U> weak_ptr& operator=(const shared_ptr<U>& ptr) {
+  template <typename U>
+  weak_ptr& operator=(const shared_ptr<U>& ptr) {
     weak_ptr tmp(ptr);
     tmp.swap(*this);
     return *this;
   }
 
   void swap(weak_ptr& ptr) {
-    using std::swap;  // http://go/using-std-swap
+    using std::swap; // http://go/using-std-swap
     swap(ptr_, ptr.ptr_);
     swap(control_block_, ptr.control_block_);
   }
@@ -397,7 +412,7 @@ class weak_ptr {
     return result;
   }
 
- private:
+private:
   void CopyFrom(T* ptr, SharedPtrControlBlock* control_block) {
     ptr_ = ptr;
     control_block_ = control_block;
@@ -405,12 +420,13 @@ class weak_ptr {
       RefCountInc(&control_block_->weak_count_);
   }
 
- private:
+private:
   element_type* ptr_;
   SharedPtrControlBlock* control_block_;
 };
 
-template <typename T> void swap(weak_ptr<T>& r, weak_ptr<T>& s) {
+template <typename T>
+void swap(weak_ptr<T>& r, weak_ptr<T>& s) {
   r.swap(s);
 }
 
@@ -420,7 +436,8 @@ template <typename T> void swap(weak_ptr<T>& r, weak_ptr<T>& s) {
 template <typename T>
 class enable_shared_from_this {
   friend class shared_ptr<T>;
- public:
+
+public:
   // Precondition: there must be a shared_ptr that owns *this and that was
   // created, directly or indirectly, from a raw pointer of type T*. (The
   // latter part of the condition is technical but not quite redundant; it
@@ -436,15 +453,15 @@ class enable_shared_from_this {
     return weak_this_.lock();
   }
 
- protected:
-  enable_shared_from_this() { }
-  enable_shared_from_this(const enable_shared_from_this& other) { }
+protected:
+  enable_shared_from_this() {}
+  enable_shared_from_this(const enable_shared_from_this& other) {}
   enable_shared_from_this& operator=(const enable_shared_from_this& other) {
     return *this;
   }
-  ~enable_shared_from_this() { }
+  ~enable_shared_from_this() {}
 
- private:
+private:
   weak_ptr<T> weak_this_;
 };
 
@@ -453,7 +470,7 @@ class enable_shared_from_this {
 // weak_this_ so that shared_from_this works correctly. If T does not inherit
 // from weak_this we get a different overload, defined inline, which does
 // nothing.
-template<typename T>
+template <typename T>
 void shared_ptr<T>::MaybeSetupWeakThis(enable_shared_from_this<T>* ptr) {
   if (ptr) {
     CHECK(ptr->weak_this_.expired()) << "Object already owned by a shared_ptr";
@@ -461,10 +478,10 @@ void shared_ptr<T>::MaybeSetupWeakThis(enable_shared_from_this<T>* ptr) {
   }
 }
 
-#endif  // UTIL_GTL_USE_STD_SHARED_PTR
+#endif // UTIL_GTL_USE_STD_SHARED_PTR
 
-}  // internal
-}  // namespace protobuf
-}  // namespace google
+} // namespace internal
+} // namespace protobuf
+} // namespace google
 
-#endif  // GOOGLE_PROTOBUF_STUBS_SHARED_PTR_H__
+#endif // GOOGLE_PROTOBUF_STUBS_SHARED_PTR_H__

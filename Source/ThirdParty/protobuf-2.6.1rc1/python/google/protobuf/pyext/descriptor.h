@@ -51,8 +51,8 @@ namespace python {
 typedef struct CFieldDescriptor {
   PyObject_HEAD
 
-  // The proto2 descriptor that this object represents.
-  const google::protobuf::FieldDescriptor* descriptor;
+      // The proto2 descriptor that this object represents.
+      const google::protobuf::FieldDescriptor* descriptor;
 
   // Reference to the original field object in the Python DESCRIPTOR.
   PyObject* descriptor_field;
@@ -61,7 +61,7 @@ typedef struct CFieldDescriptor {
 typedef struct {
   PyObject_HEAD
 
-  const google::protobuf::DescriptorPool* pool;
+      const google::protobuf::DescriptorPool* pool;
 } CDescriptorPool;
 
 extern PyTypeObject CFieldDescriptor_Type;
@@ -82,15 +82,15 @@ PyObject* FindFieldByName(CDescriptorPool* self, PyObject* name);
 // Returns a new reference.
 PyObject* FindExtensionByName(CDescriptorPool* self, PyObject* arg);
 
-}  // namespace cdescriptor_pool
+} // namespace cdescriptor_pool
 
 PyObject* Python_NewCDescriptorPool(PyObject* ignored, PyObject* args);
 PyObject* Python_BuildFile(PyObject* ignored, PyObject* args);
 bool InitDescriptor();
 google::protobuf::DescriptorPool* GetDescriptorPool();
 
-}  // namespace python
-}  // namespace protobuf
+} // namespace python
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_PYTHON_CPP_DESCRIPTOR_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_PYTHON_CPP_DESCRIPTOR_H__

@@ -39,20 +39,19 @@
 #include <google/protobuf/compiler/cpp/cpp_options.h>
 #include <google/protobuf/descriptor.h>
 
-
 namespace google {
 namespace protobuf {
-  namespace io {
-    class Printer;             // printer.h
-  }
+namespace io {
+class Printer; // printer.h
 }
+} // namespace protobuf
 
 namespace protobuf {
 namespace compiler {
 namespace cpp {
 
 class EnumGenerator {
- public:
+public:
   // See generator.cc for the meaning of dllexport_decl.
   explicit EnumGenerator(const EnumDescriptor* descriptor,
                          const Options& options);
@@ -85,7 +84,7 @@ class EnumGenerator {
   // Goes in the .cc file.
   void GenerateMethods(io::Printer* printer);
 
- private:
+private:
   const EnumDescriptor* descriptor_;
   string classname_;
   Options options_;
@@ -95,9 +94,9 @@ class EnumGenerator {
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(EnumGenerator);
 };
 
-}  // namespace cpp
-}  // namespace compiler
-}  // namespace protobuf
+} // namespace cpp
+} // namespace compiler
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_CPP_ENUM_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_COMPILER_CPP_ENUM_H__

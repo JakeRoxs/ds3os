@@ -4,10 +4,9 @@
 void RunHookManagerTests();
 void RunInjectorInitTests();
 
-int main()
-{
-    RunHookManagerTests();
-    RunInjectorInitTests();
+int main() {
+  RunHookManagerTests();
+  RunInjectorInitTests();
 
-    return 0;
+  return 0;
 }

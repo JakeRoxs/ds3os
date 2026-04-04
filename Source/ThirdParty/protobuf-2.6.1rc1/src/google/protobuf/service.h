@@ -112,10 +112,10 @@ class RpcController;
 class RpcChannel;
 
 // Defined in other files.
-class Descriptor;            // descriptor.h
-class ServiceDescriptor;     // descriptor.h
-class MethodDescriptor;      // descriptor.h
-class Message;               // message.h
+class Descriptor;        // descriptor.h
+class ServiceDescriptor; // descriptor.h
+class MethodDescriptor;  // descriptor.h
+class Message;           // message.h
 
 // Abstract base interface for protocol-buffer-based RPC services.  Services
 // themselves are abstract interfaces (implemented either by servers or as
@@ -123,7 +123,7 @@ class Message;               // message.h
 // interface can be used to call the methods of the Service without knowing
 // its exact type at compile time (analogous to Reflection).
 class LIBPROTOBUF_EXPORT Service {
- public:
+public:
   inline Service() {}
   virtual ~Service();
 
@@ -183,11 +183,11 @@ class LIBPROTOBUF_EXPORT Service {
   //   request->ParseFromString(input);
   //   service->CallMethod(method, *request, response, callback);
   virtual const Message& GetRequestPrototype(
-    const MethodDescriptor* method) const = 0;
+      const MethodDescriptor* method) const = 0;
   virtual const Message& GetResponsePrototype(
-    const MethodDescriptor* method) const = 0;
+      const MethodDescriptor* method) const = 0;
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(Service);
 };
 
@@ -200,7 +200,7 @@ class LIBPROTOBUF_EXPORT Service {
 // implementations to support.  Specific implementations may provide more
 // advanced features (e.g. deadline propagation).
 class LIBPROTOBUF_EXPORT RpcController {
- public:
+public:
   inline RpcController() {}
   virtual ~RpcController();
 
@@ -253,7 +253,7 @@ class LIBPROTOBUF_EXPORT RpcController {
   // NotifyOnCancel() must be called no more than once per request.
   virtual void NotifyOnCancel(Closure* callback) = 0;
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(RpcController);
 };
 
@@ -266,7 +266,7 @@ class LIBPROTOBUF_EXPORT RpcController {
 //   MyService* service = new MyService::Stub(channel);
 //   service->MyMethod(request, &response, callback);
 class LIBPROTOBUF_EXPORT RpcChannel {
- public:
+public:
   inline RpcChannel() {}
   virtual ~RpcChannel();
 
@@ -281,11 +281,11 @@ class LIBPROTOBUF_EXPORT RpcChannel {
                           Message* response,
                           Closure* done) = 0;
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(RpcChannel);
 };
 
-}  // namespace protobuf
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_SERVICE_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_SERVICE_H__

@@ -41,12 +41,12 @@ namespace protobuf {
 namespace io {
 
 Printer::Printer(ZeroCopyOutputStream* output, char variable_delimiter)
-  : variable_delimiter_(variable_delimiter),
-    output_(output),
-    buffer_(NULL),
-    buffer_size_(0),
-    at_start_of_line_(true),
-    failed_(false) {
+    : variable_delimiter_(variable_delimiter),
+      output_(output),
+      buffer_(NULL),
+      buffer_size_(0),
+      at_start_of_line_(true),
+      failed_(false) {
 }
 
 Printer::~Printer() {
@@ -58,7 +58,7 @@ Printer::~Printer() {
 
 void Printer::Print(const map<string, string>& variables, const char* text) {
   int size = strlen(text);
-  int pos = 0;  // The number of bytes we've written so far.
+  int pos = 0; // The number of bytes we've written so far.
 
   for (int i = 0; i < size; i++) {
     if (text[i] == '\n') {
@@ -160,19 +160,23 @@ void Printer::PrintRaw(const string& data) {
 }
 
 void Printer::PrintRaw(const char* data) {
-  if (failed_) return;
+  if (failed_)
+    return;
   WriteRaw(data, strlen(data));
 }
 
 void Printer::WriteRaw(const char* data, int size) {
-  if (failed_) return;
-  if (size == 0) return;
+  if (failed_)
+    return;
+  if (size == 0)
+    return;
 
   if (at_start_of_line_ && (size > 0) && (data[0] != '\n')) {
     // Insert an indent.
     at_start_of_line_ = false;
     WriteRaw(indent_.data(), indent_.size());
-    if (failed_) return;
+    if (failed_)
+      return;
   }
 
   while (size > buffer_size_) {
@@ -183,7 +187,8 @@ void Printer::WriteRaw(const char* data, int size) {
     size -= buffer_size_;
     void* void_buffer;
     failed_ = !output_->Next(&void_buffer, &buffer_size_);
-    if (failed_) return;
+    if (failed_)
+      return;
     buffer_ = reinterpret_cast<char*>(void_buffer);
   }
 
@@ -193,6 +198,6 @@ void Printer::WriteRaw(const char* data, int size) {
   buffer_size_ -= size;
 }
 
-}  // namespace io
-}  // namespace protobuf
-}  // namespace google
+} // namespace io
+} // namespace protobuf
+} // namespace google

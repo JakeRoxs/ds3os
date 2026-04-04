@@ -1,6 +1,7 @@
 /*
- * Dark Souls 3 - Open Server
+ * Rekindled Server
  * Copyright (C) 2021 Tim Leonard
+ * Copyright (C) 2026 Jake Morgeson
  *
  * This program is free software; licensed under the MIT license.
  * You should have received a copy of the license along with this program.
@@ -17,50 +18,46 @@
 class Cipher;
 class NetConnection;
 
-class Frpg2UdpPacketStream
-{
+class Frpg2UdpPacketStream {
 public:
-    Frpg2UdpPacketStream(std::shared_ptr<NetConnection> Connection, const std::vector<uint8_t>& CwcKey, uint64_t AuthToken, bool AsClient = false);
+  Frpg2UdpPacketStream(std::shared_ptr<NetConnection> Connection, const std::vector<uint8_t>& CwcKey, uint64_t AuthToken, bool AsClient = false);
 
-    // Returns true if send was successful, if false is returned the send queue
-    // is likely saturated or the packet is invalid.
-    bool Send(const Frpg2UdpPacket& Packet);
+  // Returns true if send was successful, if false is returned the send queue
+  // is likely saturated or the packet is invalid.
+  bool Send(const Frpg2UdpPacket& Packet);
 
-    // Returns true if a packet was received and stores packet in OutputPacket.
-    bool Receive(Frpg2UdpPacket* Packet);
+  // Returns true if a packet was received and stores packet in OutputPacket.
+  bool Receive(Frpg2UdpPacket* Packet);
 
-    // Gets the last timestamp where we received packets from the remote system, can be used for timeouts etc.
-    double GetLastActivityTime() { return LastActivityTime; }
+  // Gets the last timestamp where we received packets from the remote system, can be used for timeouts etc.
+  double GetLastActivityTime() { return LastActivityTime; }
 
-    // Sends and receives packets in this stream. If this function
-    // returns true the stream is considered to be in an error state
-    // and the client this stream goes to should be disconnected.
-    virtual bool Pump();
-
-protected:
-
-    bool BytesToPacket(const std::vector<uint8_t>& Buffer, Frpg2UdpPacket& Packet);
-    bool PacketToBytes(const Frpg2UdpPacket& Packet, std::vector<uint8_t>& Buffer);
+  // Sends and receives packets in this stream. If this function
+  // returns true the stream is considered to be in an error state
+  // and the client this stream goes to should be disconnected.
+  virtual bool Pump();
 
 protected:
+  bool BytesToPacket(const std::vector<uint8_t>& Buffer, Frpg2UdpPacket& Packet);
+  bool PacketToBytes(const Frpg2UdpPacket& Packet, std::vector<uint8_t>& Buffer);
 
-    std::shared_ptr<NetConnection> Connection;
+protected:
+  std::shared_ptr<NetConnection> Connection;
 
-    std::vector<uint8_t> CwcKey;
-    uint64_t AuthToken;
+  std::vector<uint8_t> CwcKey;
+  uint64_t AuthToken;
 
-    bool InErrorState = false;
+  bool InErrorState = false;
 
-    bool IsClient = false;
+  bool IsClient = false;
 
 private:
-    
-    double LastActivityTime;
+  double LastActivityTime;
 
-    std::vector<Frpg2UdpPacket> ReceiveQueue;
+  std::vector<Frpg2UdpPacket> ReceiveQueue;
 
-    std::vector<uint8_t> ReceiveBuffer;
+  std::vector<uint8_t> ReceiveBuffer;
 
-    std::shared_ptr<Cipher> EncryptionCipher;
-    std::shared_ptr<Cipher> DecryptionCipher;
+  std::shared_ptr<Cipher> EncryptionCipher;
+  std::shared_ptr<Cipher> DecryptionCipher;
 };

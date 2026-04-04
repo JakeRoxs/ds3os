@@ -1,6 +1,7 @@
 /*
- * Dark Souls 3 - Open Server
+ * Rekindled Server
  * Copyright (C) 2021 Tim Leonard
+ * Copyright (C) 2026 Jake Morgeson
  *
  * This program is free software; licensed under the MIT license.
  * You should have received a copy of the license along with this program.
@@ -18,19 +19,16 @@
 //
 //		GET	- Gets some general debug statistics about the server.
 
-class DebugStatisticsHandler : public WebUIHandler
-{
+class DebugStatisticsHandler : public WebUIHandler {
 public:
-	DebugStatisticsHandler(WebUIService* InService);
+  DebugStatisticsHandler(WebUIService* InService);
 
-	virtual bool handleGet(CivetServer* Server, struct mg_connection* Connection) override;
+  virtual bool handleGet(CivetServer* Server, struct mg_connection* Connection) override;
 
-	virtual void Register(CivetServer* Server) override;
+  virtual void Register(CivetServer* Server) override;
 
-	virtual void GatherData() override;
+  virtual void GatherData() override;
 
 protected:
-
-	std::mutex DataMutex;
-
+  std::mutex DataMutex;
 };

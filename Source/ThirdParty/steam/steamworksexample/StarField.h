@@ -13,34 +13,31 @@
 
 #define STARFIELD_STAR_COUNT 600
 
-struct StarVertex_t
-{
-	float x, y;
-	DWORD color;
+struct StarVertex_t {
+  float x, y;
+  DWORD color;
 };
 
-class CStarField
-{
+class CStarField {
 public:
-	// Constructor
-	CStarField( IGameEngine *pGameEngine );
+  // Constructor
+  CStarField(IGameEngine* pGameEngine);
 
-	// Render the star field
-	void Render();
+  // Render the star field
+  void Render();
 
 private:
-	
-	void Init();
-	
+  void Init();
+
 private:
-	int m_nWidth;
-	int m_nHeight;
+  int m_nWidth;
+  int m_nHeight;
 
-	// Game engine instance we are running under
-	IGameEngine *m_pGameEngine;
+  // Game engine instance we are running under
+  IGameEngine* m_pGameEngine;
 
-	// Vector for starfield data
-	std::vector<StarVertex_t> m_VecStars;
+  // Vector for starfield data
+  std::vector<StarVertex_t> m_VecStars;
 };
 
 #endif // STARFIELD_H

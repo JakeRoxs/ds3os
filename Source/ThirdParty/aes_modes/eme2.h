@@ -31,23 +31,23 @@
 #include "aes.h"
 
 #if defined(__cplusplus)
-extern "C"
-{
+extern "C" {
 #endif
 
 typedef struct
-{   unsigned char adt_key[AES_BLOCK_SIZE];
-    unsigned char ecb_key[AES_BLOCK_SIZE];
-    unsigned char aes_key[2 * AES_BLOCK_SIZE];
+{
+  unsigned char adt_key[AES_BLOCK_SIZE];
+  unsigned char ecb_key[AES_BLOCK_SIZE];
+  unsigned char aes_key[2 * AES_BLOCK_SIZE];
 } eme2_key;
 
-INT_RETURN eme2_encrypt( const unsigned char pt_buf[], unsigned char ct_buf[], unsigned int pt_len,
-                         const unsigned char ad_buf[], unsigned int ad_len,
-                         const eme2_key key[1], unsigned int key_len);
+INT_RETURN eme2_encrypt(const unsigned char pt_buf[], unsigned char ct_buf[], unsigned int pt_len,
+                        const unsigned char ad_buf[], unsigned int ad_len,
+                        const eme2_key key[1], unsigned int key_len);
 
-INT_RETURN eme2_decrypt( const unsigned char ct_buf[], unsigned char pt_buf[], unsigned int pt_len,
-                         const unsigned char ad_buf[], unsigned int ad_len,
-                         const eme2_key key[1], unsigned int key_len);
+INT_RETURN eme2_decrypt(const unsigned char ct_buf[], unsigned char pt_buf[], unsigned int pt_len,
+                        const unsigned char ad_buf[], unsigned int ad_len,
+                        const eme2_key key[1], unsigned int key_len);
 
 #if defined(__cplusplus)
 }

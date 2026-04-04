@@ -14,27 +14,30 @@ namespace Loader.Services
 
     public bool IsQueryInProgress => _currentQueryTask != null && !_currentQueryTask.IsCompleted;
 
-    public virtual Task<List<ServerConfig>?> QueryServersFromMasterAsync(CancellationToken cancellationToken)
+    public virtual Task<List<ServerConfig>?> QueryServersFromHubAsync(CancellationToken cancellationToken)
     {
-      // MasterServerApi.ListServers can return null on failure.
-      return Task.Run(() => MasterServerApi.ListServers(), cancellationToken);
+      // HubApi.ListServers can return null on failure.
+      return Task.Run(() => HubApi.ListServers(), cancellationToken);
     }
 
     public async Task<List<ServerConfig>?> QueryServersAsync(CancellationToken cancellationToken)
     {
-      Debug.WriteLine("Querying master server ...");
+      Debug.WriteLine("Querying hub server ...");
 
       if (IsQueryInProgress)
       {
         return null;
       }
 
-      _internalCts?.Cancel();
-      _internalCts?.Dispose();
+      if (_internalCts != null)
+      {
+        await _internalCts.CancelAsync();
+        _internalCts.Dispose();
+      }
       _internalCts = new CancellationTokenSource();
 
       using var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, _internalCts.Token);
-      _currentQueryTask = QueryServersFromMasterAsync(linkedCts.Token);
+      _currentQueryTask = QueryServersFromHubAsync(linkedCts.Token);
 
       try
       {
@@ -60,17 +63,25 @@ namespace Loader.Services
 
     public void Dispose()
     {
+      Dispose(true);
+      GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
       if (_disposed)
       {
         return;
       }
 
-      _internalCts?.Cancel();
-      _internalCts?.Dispose();
-      _internalCts = null;
+      if (disposing)
+      {
+        _internalCts?.Cancel();
+        _internalCts?.Dispose();
+        _internalCts = null;
+      }
 
       _disposed = true;
-      GC.SuppressFinalize(this);
     }
   }
 }

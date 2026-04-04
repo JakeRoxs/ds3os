@@ -47,7 +47,7 @@ namespace unittest = ::protobuf_unittest;
 namespace unittest_import = protobuf_unittest_import;
 
 class TestUtil {
- public:
+public:
   // Set every field in the message to a unique value.
   static void SetAllFields(unittest::TestAllTypes* message);
   static void SetOptionalFields(unittest::TestAllTypes* message);
@@ -129,11 +129,11 @@ class TestUtil {
       const unittest::TestAllExtensions& message);
 
   static void ExpectAtMostOneFieldSetInOneof(
-      const unittest::TestOneof2 &message);
+      const unittest::TestOneof2& message);
 
   // Like above, but use the reflection interface.
   class ReflectionTester {
-   public:
+  public:
     // base_descriptor must be a descriptor for TestAllTypes or
     // TestAllExtensions.  In the former case, ReflectionTester fetches from
     // it the FieldDescriptors needed to use the reflection interface.  In
@@ -174,7 +174,7 @@ class TestUtil {
     static void SetOneofViaReflection(Message* message);
     static void ExpectOneofSetViaReflection(const Message& message);
 
-   private:
+  private:
     const FieldDescriptor* F(const string& name);
 
     const Descriptor* base_descriptor_;
@@ -205,11 +205,11 @@ class TestUtil {
     GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ReflectionTester);
   };
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(TestUtil);
 };
 
-}  // namespace protobuf
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_TEST_UTIL_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_TEST_UTIL_H__

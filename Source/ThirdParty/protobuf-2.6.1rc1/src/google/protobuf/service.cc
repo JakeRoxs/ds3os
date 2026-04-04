@@ -41,6 +41,6 @@ Service::~Service() {}
 RpcChannel::~RpcChannel() {}
 RpcController::~RpcController() {}
 
-}  // namespace protobuf
+} // namespace protobuf
 
-}  // namespace google
+} // namespace google

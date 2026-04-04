@@ -45,11 +45,11 @@ namespace google {
 namespace protobuf {
 
 namespace io {
-  class CodedInputStream;
-  class CodedOutputStream;
-  class ZeroCopyInputStream;
-  class ZeroCopyOutputStream;
-}
+class CodedInputStream;
+class CodedOutputStream;
+class ZeroCopyInputStream;
+class ZeroCopyOutputStream;
+} // namespace io
 
 // Interface to light weight protocol messages.
 //
@@ -75,7 +75,7 @@ namespace io {
 // into your binary, in which case the size of the protocol buffers
 // runtime itself is the biggest problem.
 class LIBPROTOBUF_EXPORT MessageLite {
- public:
+public:
   inline MessageLite() {}
   virtual ~MessageLite();
 
@@ -144,7 +144,6 @@ class LIBPROTOBUF_EXPORT MessageLite {
   // required fields.
   bool ParsePartialFromArray(const void* data, int size);
 
-
   // Reads a protocol buffer from the stream and merges it into this
   // Message.  Singular fields read from the input overwrite what is
   // already in the Message and repeated fields are appended to those
@@ -164,7 +163,6 @@ class LIBPROTOBUF_EXPORT MessageLite {
   // MergeFromCodedStream() is just implemented as MergePartialFromCodedStream()
   // followed by IsInitialized().
   virtual bool MergePartialFromCodedStream(io::CodedInputStream* input) = 0;
-
 
   // Serialization ---------------------------------------------------
   // Methods for serializing in protocol buffer format.  Most of these
@@ -237,11 +235,11 @@ class LIBPROTOBUF_EXPORT MessageLite {
   // method.)
   virtual int GetCachedSize() const = 0;
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(MessageLite);
 };
 
-}  // namespace protobuf
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_MESSAGE_LITE_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_MESSAGE_LITE_H__

@@ -14,11 +14,11 @@
 #define CCM_ENCRYPT 0
 #define CCM_DECRYPT 1
 
-int ccm_memory( const unsigned char key[], unsigned long key_len,
-                const unsigned char nonce[], unsigned long nonce_len,
-                const unsigned char hdr[], unsigned long hdr_len,
-                unsigned char pt[], unsigned long pt_len,
-                unsigned char ct[],
-                unsigned char tag[], unsigned long tag_len,
-                int dir, int *stat);
+int ccm_memory(const unsigned char key[], unsigned long key_len,
+               const unsigned char nonce[], unsigned long nonce_len,
+               const unsigned char hdr[], unsigned long hdr_len,
+               unsigned char pt[], unsigned long pt_len,
+               unsigned char ct[],
+               unsigned char tag[], unsigned long tag_len,
+               int dir, int* stat);
 #endif

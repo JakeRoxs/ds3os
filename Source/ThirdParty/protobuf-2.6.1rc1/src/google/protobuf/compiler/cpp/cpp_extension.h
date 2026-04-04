@@ -41,11 +41,11 @@
 
 namespace google {
 namespace protobuf {
-  class FieldDescriptor;       // descriptor.h
-  namespace io {
-    class Printer;             // printer.h
-  }
+class FieldDescriptor; // descriptor.h
+namespace io {
+class Printer; // printer.h
 }
+} // namespace protobuf
 
 namespace protobuf {
 namespace compiler {
@@ -55,7 +55,7 @@ namespace cpp {
 // message or may be at file scope.  This is much simpler than FieldGenerator
 // since extensions are just simple identifiers with interesting types.
 class ExtensionGenerator {
- public:
+public:
   // See generator.cc for the meaning of dllexport_decl.
   explicit ExtensionGenerator(const FieldDescriptor* desycriptor,
                               const Options& options);
@@ -70,7 +70,7 @@ class ExtensionGenerator {
   // Generate code to register the extension.
   void GenerateRegistration(io::Printer* printer);
 
- private:
+private:
   const FieldDescriptor* descriptor_;
   string type_traits_;
   Options options_;
@@ -78,9 +78,9 @@ class ExtensionGenerator {
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ExtensionGenerator);
 };
 
-}  // namespace cpp
-}  // namespace compiler
-}  // namespace protobuf
+} // namespace cpp
+} // namespace compiler
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_CPP_MESSAGE_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_COMPILER_CPP_MESSAGE_H__

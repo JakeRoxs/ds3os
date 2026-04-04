@@ -28,7 +28,7 @@
 namespace DS2_Frpg2PlayerData {
 
 // Internal implementation detail -- do not call these.
-void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
+void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
 void protobuf_AssignDesc_DS2_5fFrpg2PlayerData_2eproto();
 void protobuf_ShutdownFile_DS2_5fFrpg2PlayerData_2eproto();
 
@@ -52,7 +52,7 @@ class WeaponStatus;
 // ===================================================================
 
 class AllStatus : public ::google::protobuf::MessageLite {
- public:
+public:
   AllStatus();
   virtual ~AllStatus();
 
@@ -73,7 +73,7 @@ class AllStatus : public ::google::protobuf::MessageLite {
 
   static const AllStatus& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -81,7 +81,7 @@ class AllStatus : public ::google::protobuf::MessageLite {
   static inline const AllStatus* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(AllStatus* other);
 
@@ -101,11 +101,13 @@ class AllStatus : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -203,7 +205,7 @@ class AllStatus : public ::google::protobuf::MessageLite {
   inline void set_allocated_equipment_info(::DS2_Frpg2PlayerData::EquipmentInfo* equipment_info);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2PlayerData.AllStatus)
- private:
+private:
   inline void set_has_player_location();
   inline void clear_has_player_location();
   inline void set_has_player_status();
@@ -239,11 +241,11 @@ class AllStatus : public ::google::protobuf::MessageLite {
   ::DS2_Frpg2PlayerData::ArmorStatus* armor_status_;
   ::DS2_Frpg2PlayerData::ServerSideStatus* server_side_status_;
   ::DS2_Frpg2PlayerData::EquipmentInfo* equipment_info_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2PlayerData_2eproto();
 
@@ -253,7 +255,7 @@ class AllStatus : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class ArmorStatus : public ::google::protobuf::MessageLite {
- public:
+public:
   ArmorStatus();
   virtual ~ArmorStatus();
 
@@ -274,7 +276,7 @@ class ArmorStatus : public ::google::protobuf::MessageLite {
 
   static const ArmorStatus& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -282,7 +284,7 @@ class ArmorStatus : public ::google::protobuf::MessageLite {
   static inline const ArmorStatus* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(ArmorStatus* other);
 
@@ -302,11 +304,13 @@ class ArmorStatus : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -342,7 +346,7 @@ class ArmorStatus : public ::google::protobuf::MessageLite {
   inline void set_poise(float value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2PlayerData.ArmorStatus)
- private:
+private:
   inline void set_has_strike_def();
   inline void clear_has_strike_def();
   inline void set_has_slash_def();
@@ -360,11 +364,11 @@ class ArmorStatus : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 slash_def_;
   ::google::protobuf::uint32 thrust_def_;
   float poise_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2PlayerData_2eproto();
 
@@ -374,7 +378,7 @@ class ArmorStatus : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class DateTime : public ::google::protobuf::MessageLite {
- public:
+public:
   DateTime();
   virtual ~DateTime();
 
@@ -395,7 +399,7 @@ class DateTime : public ::google::protobuf::MessageLite {
 
   static const DateTime& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -403,7 +407,7 @@ class DateTime : public ::google::protobuf::MessageLite {
   static inline const DateTime* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(DateTime* other);
 
@@ -423,11 +427,13 @@ class DateTime : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -484,7 +490,7 @@ class DateTime : public ::google::protobuf::MessageLite {
   inline void set_tzdiff(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2PlayerData.DateTime)
- private:
+private:
   inline void set_has_year();
   inline void clear_has_year();
   inline void set_has_month();
@@ -511,11 +517,11 @@ class DateTime : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 minutes_;
   ::google::protobuf::uint32 seconds_;
   ::google::protobuf::uint32 tzdiff_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2PlayerData_2eproto();
 
@@ -525,7 +531,7 @@ class DateTime : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class EquipmentInfo : public ::google::protobuf::MessageLite {
- public:
+public:
   EquipmentInfo();
   virtual ~EquipmentInfo();
 
@@ -546,7 +552,7 @@ class EquipmentInfo : public ::google::protobuf::MessageLite {
 
   static const EquipmentInfo& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -554,7 +560,7 @@ class EquipmentInfo : public ::google::protobuf::MessageLite {
   static inline const EquipmentInfo* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(EquipmentInfo* other);
 
@@ -574,11 +580,13 @@ class EquipmentInfo : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -628,7 +636,7 @@ class EquipmentInfo : public ::google::protobuf::MessageLite {
   inline void set_spell_slots(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2PlayerData.EquipmentInfo)
- private:
+private:
   inline void set_has_weapon_slots();
   inline void clear_has_weapon_slots();
   inline void set_has_armor_slots();
@@ -652,11 +660,11 @@ class EquipmentInfo : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 ammunition_slots_;
   ::google::protobuf::uint32 belt_slots_;
   ::google::protobuf::uint32 spell_slots_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2PlayerData_2eproto();
 
@@ -666,7 +674,7 @@ class EquipmentInfo : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class ItemUsingInfo : public ::google::protobuf::MessageLite {
- public:
+public:
   ItemUsingInfo();
   virtual ~ItemUsingInfo();
 
@@ -687,7 +695,7 @@ class ItemUsingInfo : public ::google::protobuf::MessageLite {
 
   static const ItemUsingInfo& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -695,7 +703,7 @@ class ItemUsingInfo : public ::google::protobuf::MessageLite {
   static inline const ItemUsingInfo* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(ItemUsingInfo* other);
 
@@ -715,11 +723,13 @@ class ItemUsingInfo : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -783,7 +793,7 @@ class ItemUsingInfo : public ::google::protobuf::MessageLite {
   inline void set_unknown_8(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2PlayerData.ItemUsingInfo)
- private:
+private:
   inline void set_has_named_ring_god();
   inline void clear_has_named_ring_god();
   inline void set_has_using_dried_fingers();
@@ -813,11 +823,11 @@ class ItemUsingInfo : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 crest_of_the_rat_;
   ::google::protobuf::uint32 unknown_7_;
   ::google::protobuf::uint32 unknown_8_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2PlayerData_2eproto();
 
@@ -827,7 +837,7 @@ class ItemUsingInfo : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class LevelStatus : public ::google::protobuf::MessageLite {
- public:
+public:
   LevelStatus();
   virtual ~LevelStatus();
 
@@ -848,7 +858,7 @@ class LevelStatus : public ::google::protobuf::MessageLite {
 
   static const LevelStatus& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -856,7 +866,7 @@ class LevelStatus : public ::google::protobuf::MessageLite {
   static inline const LevelStatus* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(LevelStatus* other);
 
@@ -876,11 +886,13 @@ class LevelStatus : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -951,7 +963,7 @@ class LevelStatus : public ::google::protobuf::MessageLite {
   inline void set_adaptability(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2PlayerData.LevelStatus)
- private:
+private:
   inline void set_has_vigor();
   inline void clear_has_vigor();
   inline void set_has_endurance();
@@ -984,11 +996,11 @@ class LevelStatus : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 intelligence_;
   ::google::protobuf::uint32 faith_;
   ::google::protobuf::uint32 adaptability_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2PlayerData_2eproto();
 
@@ -998,7 +1010,7 @@ class LevelStatus : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class PhantomTypeCount : public ::google::protobuf::MessageLite {
- public:
+public:
   PhantomTypeCount();
   virtual ~PhantomTypeCount();
 
@@ -1019,7 +1031,7 @@ class PhantomTypeCount : public ::google::protobuf::MessageLite {
 
   static const PhantomTypeCount& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1027,7 +1039,7 @@ class PhantomTypeCount : public ::google::protobuf::MessageLite {
   static inline const PhantomTypeCount* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PhantomTypeCount* other);
 
@@ -1047,11 +1059,13 @@ class PhantomTypeCount : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -1073,7 +1087,7 @@ class PhantomTypeCount : public ::google::protobuf::MessageLite {
   inline void set_unknown_2(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2PlayerData.PhantomTypeCount)
- private:
+private:
   inline void set_has_unknown_1();
   inline void clear_has_unknown_1();
   inline void set_has_unknown_2();
@@ -1085,11 +1099,11 @@ class PhantomTypeCount : public ::google::protobuf::MessageLite {
   mutable int _cached_size_;
   ::google::protobuf::uint32 unknown_1_;
   ::google::protobuf::uint32 unknown_2_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2PlayerData_2eproto();
 
@@ -1099,7 +1113,7 @@ class PhantomTypeCount : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class PhysicalStatus : public ::google::protobuf::MessageLite {
- public:
+public:
   PhysicalStatus();
   virtual ~PhysicalStatus();
 
@@ -1120,7 +1134,7 @@ class PhysicalStatus : public ::google::protobuf::MessageLite {
 
   static const PhysicalStatus& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1128,7 +1142,7 @@ class PhysicalStatus : public ::google::protobuf::MessageLite {
   static inline const PhysicalStatus* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PhysicalStatus* other);
 
@@ -1148,11 +1162,13 @@ class PhysicalStatus : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -1328,7 +1344,7 @@ class PhysicalStatus : public ::google::protobuf::MessageLite {
   inline void set_poise(float value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2PlayerData.PhysicalStatus)
- private:
+private:
   inline void set_has_health();
   inline void clear_has_health();
   inline void set_has_stamina();
@@ -1406,11 +1422,11 @@ class PhysicalStatus : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 curse_resist_;
   ::google::protobuf::uint32 agility_;
   float poise_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2PlayerData_2eproto();
 
@@ -1420,7 +1436,7 @@ class PhysicalStatus : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class PlayerLocation : public ::google::protobuf::MessageLite {
- public:
+public:
   PlayerLocation();
   virtual ~PlayerLocation();
 
@@ -1441,7 +1457,7 @@ class PlayerLocation : public ::google::protobuf::MessageLite {
 
   static const PlayerLocation& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1449,7 +1465,7 @@ class PlayerLocation : public ::google::protobuf::MessageLite {
   static inline const PlayerLocation* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PlayerLocation* other);
 
@@ -1469,11 +1485,13 @@ class PlayerLocation : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -1518,7 +1536,7 @@ class PlayerLocation : public ::google::protobuf::MessageLite {
   inline void set_unknown_5(float value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2PlayerData.PlayerLocation)
- private:
+private:
   inline void set_has_online_area_id();
   inline void clear_has_online_area_id();
   inline void set_has_cell_id();
@@ -1539,11 +1557,11 @@ class PlayerLocation : public ::google::protobuf::MessageLite {
   ::DS2_Frpg2PlayerData::Vector* position_;
   ::google::protobuf::uint32 online_activity_area_id_;
   float unknown_5_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2PlayerData_2eproto();
 
@@ -1553,7 +1571,7 @@ class PlayerLocation : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class PlayerStatus_Phantom_leave_at : public ::google::protobuf::MessageLite {
- public:
+public:
   PlayerStatus_Phantom_leave_at();
   virtual ~PlayerStatus_Phantom_leave_at();
 
@@ -1574,7 +1592,7 @@ class PlayerStatus_Phantom_leave_at : public ::google::protobuf::MessageLite {
 
   static const PlayerStatus_Phantom_leave_at& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1582,7 +1600,7 @@ class PlayerStatus_Phantom_leave_at : public ::google::protobuf::MessageLite {
   static inline const PlayerStatus_Phantom_leave_at* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PlayerStatus_Phantom_leave_at* other);
 
@@ -1602,11 +1620,13 @@ class PlayerStatus_Phantom_leave_at : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -1630,7 +1650,7 @@ class PlayerStatus_Phantom_leave_at : public ::google::protobuf::MessageLite {
   inline void set_allocated_datetime(::DS2_Frpg2PlayerData::DateTime* datetime);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2PlayerData.PlayerStatus_Phantom_leave_at)
- private:
+private:
   inline void set_has_unknown_1();
   inline void clear_has_unknown_1();
   inline void set_has_datetime();
@@ -1642,11 +1662,11 @@ class PlayerStatus_Phantom_leave_at : public ::google::protobuf::MessageLite {
   mutable int _cached_size_;
   ::DS2_Frpg2PlayerData::DateTime* datetime_;
   ::google::protobuf::uint32 unknown_1_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2PlayerData_2eproto();
 
@@ -1656,7 +1676,7 @@ class PlayerStatus_Phantom_leave_at : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class PlayerStatus : public ::google::protobuf::MessageLite {
- public:
+public:
   PlayerStatus();
   virtual ~PlayerStatus();
 
@@ -1677,7 +1697,7 @@ class PlayerStatus : public ::google::protobuf::MessageLite {
 
   static const PlayerStatus& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1685,7 +1705,7 @@ class PlayerStatus : public ::google::protobuf::MessageLite {
   static inline const PlayerStatus* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(PlayerStatus* other);
 
@@ -1705,11 +1725,13 @@ class PlayerStatus : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -1807,10 +1829,10 @@ class PlayerStatus : public ::google::protobuf::MessageLite {
   inline ::google::protobuf::uint32 played_areas(int index) const;
   inline void set_played_areas(int index, ::google::protobuf::uint32 value);
   inline void add_played_areas(::google::protobuf::uint32 value);
-  inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
-      played_areas() const;
-  inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
-      mutable_played_areas();
+  inline const ::google::protobuf::RepeatedField<::google::protobuf::uint32>&
+  played_areas() const;
+  inline ::google::protobuf::RepeatedField<::google::protobuf::uint32>*
+  mutable_played_areas();
 
   // optional uint32 unknown_13 = 13;
   inline bool has_unknown_13() const;
@@ -1881,7 +1903,7 @@ class PlayerStatus : public ::google::protobuf::MessageLite {
   inline void set_allocated_unknown_21(::std::string* unknown_21);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2PlayerData.PlayerStatus)
- private:
+private:
   inline void set_has_name();
   inline void clear_has_name();
   inline void set_has_archetype();
@@ -1937,7 +1959,7 @@ class PlayerStatus : public ::google::protobuf::MessageLite {
   ::DS2_Frpg2PlayerData::PlayerStatus_Phantom_leave_at* phantom_leave_at_;
   ::google::protobuf::uint32 disable_cross_region_play_;
   ::google::protobuf::uint32 character_id_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > played_areas_;
+  ::google::protobuf::RepeatedField<::google::protobuf::uint32> played_areas_;
   ::google::protobuf::uint32 human_effigy_burnt_;
   ::google::protobuf::uint32 unknown_13_;
   ::google::protobuf::uint32 unknown_14_;
@@ -1948,11 +1970,11 @@ class PlayerStatus : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 soul_memory_;
   ::std::string* unknown_21_;
   ::google::protobuf::uint32 unknown_20_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2PlayerData_2eproto();
 
@@ -1962,7 +1984,7 @@ class PlayerStatus : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class ServerSideStatus : public ::google::protobuf::MessageLite {
- public:
+public:
   ServerSideStatus();
   virtual ~ServerSideStatus();
 
@@ -1983,7 +2005,7 @@ class ServerSideStatus : public ::google::protobuf::MessageLite {
 
   static const ServerSideStatus& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -1991,7 +2013,7 @@ class ServerSideStatus : public ::google::protobuf::MessageLite {
   static inline const ServerSideStatus* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(ServerSideStatus* other);
 
@@ -2011,11 +2033,13 @@ class ServerSideStatus : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -2030,7 +2054,7 @@ class ServerSideStatus : public ::google::protobuf::MessageLite {
   inline void set_unknown_1(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2PlayerData.ServerSideStatus)
- private:
+private:
   inline void set_has_unknown_1();
   inline void clear_has_unknown_1();
 
@@ -2039,11 +2063,11 @@ class ServerSideStatus : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
   ::google::protobuf::uint32 unknown_1_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2PlayerData_2eproto();
 
@@ -2053,7 +2077,7 @@ class ServerSideStatus : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class StatsInfo_Bonfire_levels : public ::google::protobuf::MessageLite {
- public:
+public:
   StatsInfo_Bonfire_levels();
   virtual ~StatsInfo_Bonfire_levels();
 
@@ -2074,7 +2098,7 @@ class StatsInfo_Bonfire_levels : public ::google::protobuf::MessageLite {
 
   static const StatsInfo_Bonfire_levels& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -2082,7 +2106,7 @@ class StatsInfo_Bonfire_levels : public ::google::protobuf::MessageLite {
   static inline const StatsInfo_Bonfire_levels* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(StatsInfo_Bonfire_levels* other);
 
@@ -2102,11 +2126,13 @@ class StatsInfo_Bonfire_levels : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -2128,7 +2154,7 @@ class StatsInfo_Bonfire_levels : public ::google::protobuf::MessageLite {
   inline void set_bonfire_level(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2PlayerData.StatsInfo_Bonfire_levels)
- private:
+private:
   inline void set_has_bonfire_id();
   inline void clear_has_bonfire_id();
   inline void set_has_bonfire_level();
@@ -2140,11 +2166,11 @@ class StatsInfo_Bonfire_levels : public ::google::protobuf::MessageLite {
   mutable int _cached_size_;
   ::google::protobuf::uint32 bonfire_id_;
   ::google::protobuf::uint32 bonfire_level_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2PlayerData_2eproto();
 
@@ -2154,7 +2180,7 @@ class StatsInfo_Bonfire_levels : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class StatsInfo : public ::google::protobuf::MessageLite {
- public:
+public:
   StatsInfo();
   virtual ~StatsInfo();
 
@@ -2175,7 +2201,7 @@ class StatsInfo : public ::google::protobuf::MessageLite {
 
   static const StatsInfo& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -2183,7 +2209,7 @@ class StatsInfo : public ::google::protobuf::MessageLite {
   static inline const StatsInfo* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(StatsInfo* other);
 
@@ -2203,11 +2229,13 @@ class StatsInfo : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -2242,10 +2270,10 @@ class StatsInfo : public ::google::protobuf::MessageLite {
   inline const ::DS2_Frpg2PlayerData::StatsInfo_Bonfire_levels& bonfire_levels(int index) const;
   inline ::DS2_Frpg2PlayerData::StatsInfo_Bonfire_levels* mutable_bonfire_levels(int index);
   inline ::DS2_Frpg2PlayerData::StatsInfo_Bonfire_levels* add_bonfire_levels();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2PlayerData::StatsInfo_Bonfire_levels >&
-      bonfire_levels() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2PlayerData::StatsInfo_Bonfire_levels >*
-      mutable_bonfire_levels();
+  inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2PlayerData::StatsInfo_Bonfire_levels>&
+  bonfire_levels() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2PlayerData::StatsInfo_Bonfire_levels>*
+  mutable_bonfire_levels();
 
   // optional uint32 unknown_5 = 5;
   inline bool has_unknown_5() const;
@@ -2261,10 +2289,10 @@ class StatsInfo : public ::google::protobuf::MessageLite {
   inline const ::DS2_Frpg2PlayerData::PhantomTypeCount& phantom_type_count_6(int index) const;
   inline ::DS2_Frpg2PlayerData::PhantomTypeCount* mutable_phantom_type_count_6(int index);
   inline ::DS2_Frpg2PlayerData::PhantomTypeCount* add_phantom_type_count_6();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2PlayerData::PhantomTypeCount >&
-      phantom_type_count_6() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2PlayerData::PhantomTypeCount >*
-      mutable_phantom_type_count_6();
+  inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2PlayerData::PhantomTypeCount>&
+  phantom_type_count_6() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2PlayerData::PhantomTypeCount>*
+  mutable_phantom_type_count_6();
 
   // repeated .DS2_Frpg2PlayerData.PhantomTypeCount phantom_type_count_7 = 7;
   inline int phantom_type_count_7_size() const;
@@ -2273,10 +2301,10 @@ class StatsInfo : public ::google::protobuf::MessageLite {
   inline const ::DS2_Frpg2PlayerData::PhantomTypeCount& phantom_type_count_7(int index) const;
   inline ::DS2_Frpg2PlayerData::PhantomTypeCount* mutable_phantom_type_count_7(int index);
   inline ::DS2_Frpg2PlayerData::PhantomTypeCount* add_phantom_type_count_7();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2PlayerData::PhantomTypeCount >&
-      phantom_type_count_7() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2PlayerData::PhantomTypeCount >*
-      mutable_phantom_type_count_7();
+  inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2PlayerData::PhantomTypeCount>&
+  phantom_type_count_7() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2PlayerData::PhantomTypeCount>*
+  mutable_phantom_type_count_7();
 
   // repeated .DS2_Frpg2PlayerData.PhantomTypeCount phantom_type_count_8 = 8;
   inline int phantom_type_count_8_size() const;
@@ -2285,10 +2313,10 @@ class StatsInfo : public ::google::protobuf::MessageLite {
   inline const ::DS2_Frpg2PlayerData::PhantomTypeCount& phantom_type_count_8(int index) const;
   inline ::DS2_Frpg2PlayerData::PhantomTypeCount* mutable_phantom_type_count_8(int index);
   inline ::DS2_Frpg2PlayerData::PhantomTypeCount* add_phantom_type_count_8();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2PlayerData::PhantomTypeCount >&
-      phantom_type_count_8() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2PlayerData::PhantomTypeCount >*
-      mutable_phantom_type_count_8();
+  inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2PlayerData::PhantomTypeCount>&
+  phantom_type_count_8() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2PlayerData::PhantomTypeCount>*
+  mutable_phantom_type_count_8();
 
   // repeated .DS2_Frpg2PlayerData.PhantomTypeCount phantom_type_count_9 = 9;
   inline int phantom_type_count_9_size() const;
@@ -2297,10 +2325,10 @@ class StatsInfo : public ::google::protobuf::MessageLite {
   inline const ::DS2_Frpg2PlayerData::PhantomTypeCount& phantom_type_count_9(int index) const;
   inline ::DS2_Frpg2PlayerData::PhantomTypeCount* mutable_phantom_type_count_9(int index);
   inline ::DS2_Frpg2PlayerData::PhantomTypeCount* add_phantom_type_count_9();
-  inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2PlayerData::PhantomTypeCount >&
-      phantom_type_count_9() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2PlayerData::PhantomTypeCount >*
-      mutable_phantom_type_count_9();
+  inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2PlayerData::PhantomTypeCount>&
+  phantom_type_count_9() const;
+  inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2PlayerData::PhantomTypeCount>*
+  mutable_phantom_type_count_9();
 
   // optional uint32 unknown_10 = 10;
   inline bool has_unknown_10() const;
@@ -2316,10 +2344,10 @@ class StatsInfo : public ::google::protobuf::MessageLite {
   inline ::google::protobuf::uint32 unknown_11(int index) const;
   inline void set_unknown_11(int index, ::google::protobuf::uint32 value);
   inline void add_unknown_11(::google::protobuf::uint32 value);
-  inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
-      unknown_11() const;
-  inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
-      mutable_unknown_11();
+  inline const ::google::protobuf::RepeatedField<::google::protobuf::uint32>&
+  unknown_11() const;
+  inline ::google::protobuf::RepeatedField<::google::protobuf::uint32>*
+  mutable_unknown_11();
 
   // optional uint32 unknown_12 = 12;
   inline bool has_unknown_12() const;
@@ -2379,10 +2407,10 @@ class StatsInfo : public ::google::protobuf::MessageLite {
   inline ::google::protobuf::uint32 unlocked_bonfires(int index) const;
   inline void set_unlocked_bonfires(int index, ::google::protobuf::uint32 value);
   inline void add_unlocked_bonfires(::google::protobuf::uint32 value);
-  inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
-      unlocked_bonfires() const;
-  inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
-      mutable_unlocked_bonfires();
+  inline const ::google::protobuf::RepeatedField<::google::protobuf::uint32>&
+  unlocked_bonfires() const;
+  inline ::google::protobuf::RepeatedField<::google::protobuf::uint32>*
+  mutable_unlocked_bonfires();
 
   // optional uint32 unknown_20 = 20;
   inline bool has_unknown_20() const;
@@ -2398,13 +2426,13 @@ class StatsInfo : public ::google::protobuf::MessageLite {
   inline ::google::protobuf::uint32 unknown_21(int index) const;
   inline void set_unknown_21(int index, ::google::protobuf::uint32 value);
   inline void add_unknown_21(::google::protobuf::uint32 value);
-  inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
-      unknown_21() const;
-  inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
-      mutable_unknown_21();
+  inline const ::google::protobuf::RepeatedField<::google::protobuf::uint32>&
+  unknown_21() const;
+  inline ::google::protobuf::RepeatedField<::google::protobuf::uint32>*
+  mutable_unknown_21();
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2PlayerData.StatsInfo)
- private:
+private:
   inline void set_has_unknown_1();
   inline void clear_has_unknown_1();
   inline void set_has_unknown_2();
@@ -2438,14 +2466,14 @@ class StatsInfo : public ::google::protobuf::MessageLite {
   mutable int _cached_size_;
   ::google::protobuf::uint32 unknown_1_;
   ::google::protobuf::uint32 unknown_2_;
-  ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2PlayerData::StatsInfo_Bonfire_levels > bonfire_levels_;
+  ::google::protobuf::RepeatedPtrField<::DS2_Frpg2PlayerData::StatsInfo_Bonfire_levels> bonfire_levels_;
   ::google::protobuf::uint32 sinner_points_;
   ::google::protobuf::uint32 unknown_5_;
-  ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2PlayerData::PhantomTypeCount > phantom_type_count_6_;
-  ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2PlayerData::PhantomTypeCount > phantom_type_count_7_;
-  ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2PlayerData::PhantomTypeCount > phantom_type_count_8_;
-  ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2PlayerData::PhantomTypeCount > phantom_type_count_9_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > unknown_11_;
+  ::google::protobuf::RepeatedPtrField<::DS2_Frpg2PlayerData::PhantomTypeCount> phantom_type_count_6_;
+  ::google::protobuf::RepeatedPtrField<::DS2_Frpg2PlayerData::PhantomTypeCount> phantom_type_count_7_;
+  ::google::protobuf::RepeatedPtrField<::DS2_Frpg2PlayerData::PhantomTypeCount> phantom_type_count_8_;
+  ::google::protobuf::RepeatedPtrField<::DS2_Frpg2PlayerData::PhantomTypeCount> phantom_type_count_9_;
+  ::google::protobuf::RepeatedField<::google::protobuf::uint32> unknown_11_;
   ::google::protobuf::uint32 unknown_10_;
   ::google::protobuf::uint32 unknown_12_;
   ::google::protobuf::uint32 unknown_13_;
@@ -2453,15 +2481,15 @@ class StatsInfo : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 unknown_15_;
   ::google::protobuf::uint32 unknown_16_;
   ::DS2_Frpg2PlayerData::DateTime* datetime_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > unlocked_bonfires_;
+  ::google::protobuf::RepeatedField<::google::protobuf::uint32> unlocked_bonfires_;
   ::google::protobuf::uint32 unknown_18_;
   ::google::protobuf::uint32 unknown_20_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > unknown_21_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
-  #endif
+  ::google::protobuf::RepeatedField<::google::protobuf::uint32> unknown_21_;
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2PlayerData_2eproto();
 
@@ -2471,7 +2499,7 @@ class StatsInfo : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class Vector : public ::google::protobuf::MessageLite {
- public:
+public:
   Vector();
   virtual ~Vector();
 
@@ -2492,7 +2520,7 @@ class Vector : public ::google::protobuf::MessageLite {
 
   static const Vector& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -2500,7 +2528,7 @@ class Vector : public ::google::protobuf::MessageLite {
   static inline const Vector* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(Vector* other);
 
@@ -2520,11 +2548,13 @@ class Vector : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -2553,7 +2583,7 @@ class Vector : public ::google::protobuf::MessageLite {
   inline void set_z(float value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2PlayerData.Vector)
- private:
+private:
   inline void set_has_x();
   inline void clear_has_x();
   inline void set_has_y();
@@ -2568,11 +2598,11 @@ class Vector : public ::google::protobuf::MessageLite {
   float x_;
   float y_;
   float z_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2PlayerData_2eproto();
 
@@ -2582,7 +2612,7 @@ class Vector : public ::google::protobuf::MessageLite {
 // -------------------------------------------------------------------
 
 class WeaponStatus : public ::google::protobuf::MessageLite {
- public:
+public:
   WeaponStatus();
   virtual ~WeaponStatus();
 
@@ -2603,7 +2633,7 @@ class WeaponStatus : public ::google::protobuf::MessageLite {
 
   static const WeaponStatus& default_instance();
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
   // Returns the internal default instance pointer. This function can
   // return NULL thus should not be used by the user. This is intended
   // for Protobuf internal code. Please use default_instance() declared
@@ -2611,7 +2641,7 @@ class WeaponStatus : public ::google::protobuf::MessageLite {
   static inline const WeaponStatus* internal_default_instance() {
     return default_instance_;
   }
-  #endif
+#endif
 
   void Swap(WeaponStatus* other);
 
@@ -2631,11 +2661,13 @@ class WeaponStatus : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedOutputStream* output) const;
   void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
-  private:
+
+private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  public:
+
+public:
   ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
@@ -2685,7 +2717,7 @@ class WeaponStatus : public ::google::protobuf::MessageLite {
   inline void set_right_ar_3(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:DS2_Frpg2PlayerData.WeaponStatus)
- private:
+private:
   inline void set_has_left_ar_1();
   inline void clear_has_left_ar_1();
   inline void set_has_left_ar_2();
@@ -2709,11 +2741,11 @@ class WeaponStatus : public ::google::protobuf::MessageLite {
   ::google::protobuf::uint32 right_ar_1_;
   ::google::protobuf::uint32 right_ar_2_;
   ::google::protobuf::uint32 right_ar_3_;
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
-  #else
-  friend void  protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
-  #endif
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto_impl();
+#else
+  friend void protobuf_AddDesc_DS2_5fFrpg2PlayerData_2eproto();
+#endif
   friend void protobuf_AssignDesc_DS2_5fFrpg2PlayerData_2eproto();
   friend void protobuf_ShutdownFile_DS2_5fFrpg2PlayerData_2eproto();
 
@@ -2721,7 +2753,6 @@ class WeaponStatus : public ::google::protobuf::MessageLite {
   static WeaponStatus* default_instance_;
 };
 // ===================================================================
-
 
 // ===================================================================
 
@@ -2738,7 +2769,8 @@ inline void AllStatus::clear_has_player_location() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void AllStatus::clear_player_location() {
-  if (player_location_ != NULL) player_location_->::DS2_Frpg2PlayerData::PlayerLocation::Clear();
+  if (player_location_ != NULL)
+    player_location_->::DS2_Frpg2PlayerData::PlayerLocation::Clear();
   clear_has_player_location();
 }
 inline const ::DS2_Frpg2PlayerData::PlayerLocation& AllStatus::player_location() const {
@@ -2751,7 +2783,8 @@ inline const ::DS2_Frpg2PlayerData::PlayerLocation& AllStatus::player_location()
 }
 inline ::DS2_Frpg2PlayerData::PlayerLocation* AllStatus::mutable_player_location() {
   set_has_player_location();
-  if (player_location_ == NULL) player_location_ = new ::DS2_Frpg2PlayerData::PlayerLocation;
+  if (player_location_ == NULL)
+    player_location_ = new ::DS2_Frpg2PlayerData::PlayerLocation;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2PlayerData.AllStatus.player_location)
   return player_location_;
 }
@@ -2783,7 +2816,8 @@ inline void AllStatus::clear_has_player_status() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void AllStatus::clear_player_status() {
-  if (player_status_ != NULL) player_status_->::DS2_Frpg2PlayerData::PlayerStatus::Clear();
+  if (player_status_ != NULL)
+    player_status_->::DS2_Frpg2PlayerData::PlayerStatus::Clear();
   clear_has_player_status();
 }
 inline const ::DS2_Frpg2PlayerData::PlayerStatus& AllStatus::player_status() const {
@@ -2796,7 +2830,8 @@ inline const ::DS2_Frpg2PlayerData::PlayerStatus& AllStatus::player_status() con
 }
 inline ::DS2_Frpg2PlayerData::PlayerStatus* AllStatus::mutable_player_status() {
   set_has_player_status();
-  if (player_status_ == NULL) player_status_ = new ::DS2_Frpg2PlayerData::PlayerStatus;
+  if (player_status_ == NULL)
+    player_status_ = new ::DS2_Frpg2PlayerData::PlayerStatus;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2PlayerData.AllStatus.player_status)
   return player_status_;
 }
@@ -2828,7 +2863,8 @@ inline void AllStatus::clear_has_item_using_info() {
   _has_bits_[0] &= ~0x00000004u;
 }
 inline void AllStatus::clear_item_using_info() {
-  if (item_using_info_ != NULL) item_using_info_->::DS2_Frpg2PlayerData::ItemUsingInfo::Clear();
+  if (item_using_info_ != NULL)
+    item_using_info_->::DS2_Frpg2PlayerData::ItemUsingInfo::Clear();
   clear_has_item_using_info();
 }
 inline const ::DS2_Frpg2PlayerData::ItemUsingInfo& AllStatus::item_using_info() const {
@@ -2841,7 +2877,8 @@ inline const ::DS2_Frpg2PlayerData::ItemUsingInfo& AllStatus::item_using_info() 
 }
 inline ::DS2_Frpg2PlayerData::ItemUsingInfo* AllStatus::mutable_item_using_info() {
   set_has_item_using_info();
-  if (item_using_info_ == NULL) item_using_info_ = new ::DS2_Frpg2PlayerData::ItemUsingInfo;
+  if (item_using_info_ == NULL)
+    item_using_info_ = new ::DS2_Frpg2PlayerData::ItemUsingInfo;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2PlayerData.AllStatus.item_using_info)
   return item_using_info_;
 }
@@ -2873,7 +2910,8 @@ inline void AllStatus::clear_has_stats_info() {
   _has_bits_[0] &= ~0x00000008u;
 }
 inline void AllStatus::clear_stats_info() {
-  if (stats_info_ != NULL) stats_info_->::DS2_Frpg2PlayerData::StatsInfo::Clear();
+  if (stats_info_ != NULL)
+    stats_info_->::DS2_Frpg2PlayerData::StatsInfo::Clear();
   clear_has_stats_info();
 }
 inline const ::DS2_Frpg2PlayerData::StatsInfo& AllStatus::stats_info() const {
@@ -2886,7 +2924,8 @@ inline const ::DS2_Frpg2PlayerData::StatsInfo& AllStatus::stats_info() const {
 }
 inline ::DS2_Frpg2PlayerData::StatsInfo* AllStatus::mutable_stats_info() {
   set_has_stats_info();
-  if (stats_info_ == NULL) stats_info_ = new ::DS2_Frpg2PlayerData::StatsInfo;
+  if (stats_info_ == NULL)
+    stats_info_ = new ::DS2_Frpg2PlayerData::StatsInfo;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2PlayerData.AllStatus.stats_info)
   return stats_info_;
 }
@@ -2918,7 +2957,8 @@ inline void AllStatus::clear_has_attributes() {
   _has_bits_[0] &= ~0x00000010u;
 }
 inline void AllStatus::clear_attributes() {
-  if (attributes_ != NULL) attributes_->::DS2_Frpg2PlayerData::LevelStatus::Clear();
+  if (attributes_ != NULL)
+    attributes_->::DS2_Frpg2PlayerData::LevelStatus::Clear();
   clear_has_attributes();
 }
 inline const ::DS2_Frpg2PlayerData::LevelStatus& AllStatus::attributes() const {
@@ -2931,7 +2971,8 @@ inline const ::DS2_Frpg2PlayerData::LevelStatus& AllStatus::attributes() const {
 }
 inline ::DS2_Frpg2PlayerData::LevelStatus* AllStatus::mutable_attributes() {
   set_has_attributes();
-  if (attributes_ == NULL) attributes_ = new ::DS2_Frpg2PlayerData::LevelStatus;
+  if (attributes_ == NULL)
+    attributes_ = new ::DS2_Frpg2PlayerData::LevelStatus;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2PlayerData.AllStatus.attributes)
   return attributes_;
 }
@@ -2963,7 +3004,8 @@ inline void AllStatus::clear_has_physical_status() {
   _has_bits_[0] &= ~0x00000020u;
 }
 inline void AllStatus::clear_physical_status() {
-  if (physical_status_ != NULL) physical_status_->::DS2_Frpg2PlayerData::PhysicalStatus::Clear();
+  if (physical_status_ != NULL)
+    physical_status_->::DS2_Frpg2PlayerData::PhysicalStatus::Clear();
   clear_has_physical_status();
 }
 inline const ::DS2_Frpg2PlayerData::PhysicalStatus& AllStatus::physical_status() const {
@@ -2976,7 +3018,8 @@ inline const ::DS2_Frpg2PlayerData::PhysicalStatus& AllStatus::physical_status()
 }
 inline ::DS2_Frpg2PlayerData::PhysicalStatus* AllStatus::mutable_physical_status() {
   set_has_physical_status();
-  if (physical_status_ == NULL) physical_status_ = new ::DS2_Frpg2PlayerData::PhysicalStatus;
+  if (physical_status_ == NULL)
+    physical_status_ = new ::DS2_Frpg2PlayerData::PhysicalStatus;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2PlayerData.AllStatus.physical_status)
   return physical_status_;
 }
@@ -3008,7 +3051,8 @@ inline void AllStatus::clear_has_weapon_status() {
   _has_bits_[0] &= ~0x00000040u;
 }
 inline void AllStatus::clear_weapon_status() {
-  if (weapon_status_ != NULL) weapon_status_->::DS2_Frpg2PlayerData::WeaponStatus::Clear();
+  if (weapon_status_ != NULL)
+    weapon_status_->::DS2_Frpg2PlayerData::WeaponStatus::Clear();
   clear_has_weapon_status();
 }
 inline const ::DS2_Frpg2PlayerData::WeaponStatus& AllStatus::weapon_status() const {
@@ -3021,7 +3065,8 @@ inline const ::DS2_Frpg2PlayerData::WeaponStatus& AllStatus::weapon_status() con
 }
 inline ::DS2_Frpg2PlayerData::WeaponStatus* AllStatus::mutable_weapon_status() {
   set_has_weapon_status();
-  if (weapon_status_ == NULL) weapon_status_ = new ::DS2_Frpg2PlayerData::WeaponStatus;
+  if (weapon_status_ == NULL)
+    weapon_status_ = new ::DS2_Frpg2PlayerData::WeaponStatus;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2PlayerData.AllStatus.weapon_status)
   return weapon_status_;
 }
@@ -3053,7 +3098,8 @@ inline void AllStatus::clear_has_armor_status() {
   _has_bits_[0] &= ~0x00000080u;
 }
 inline void AllStatus::clear_armor_status() {
-  if (armor_status_ != NULL) armor_status_->::DS2_Frpg2PlayerData::ArmorStatus::Clear();
+  if (armor_status_ != NULL)
+    armor_status_->::DS2_Frpg2PlayerData::ArmorStatus::Clear();
   clear_has_armor_status();
 }
 inline const ::DS2_Frpg2PlayerData::ArmorStatus& AllStatus::armor_status() const {
@@ -3066,7 +3112,8 @@ inline const ::DS2_Frpg2PlayerData::ArmorStatus& AllStatus::armor_status() const
 }
 inline ::DS2_Frpg2PlayerData::ArmorStatus* AllStatus::mutable_armor_status() {
   set_has_armor_status();
-  if (armor_status_ == NULL) armor_status_ = new ::DS2_Frpg2PlayerData::ArmorStatus;
+  if (armor_status_ == NULL)
+    armor_status_ = new ::DS2_Frpg2PlayerData::ArmorStatus;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2PlayerData.AllStatus.armor_status)
   return armor_status_;
 }
@@ -3098,7 +3145,8 @@ inline void AllStatus::clear_has_server_side_status() {
   _has_bits_[0] &= ~0x00000100u;
 }
 inline void AllStatus::clear_server_side_status() {
-  if (server_side_status_ != NULL) server_side_status_->::DS2_Frpg2PlayerData::ServerSideStatus::Clear();
+  if (server_side_status_ != NULL)
+    server_side_status_->::DS2_Frpg2PlayerData::ServerSideStatus::Clear();
   clear_has_server_side_status();
 }
 inline const ::DS2_Frpg2PlayerData::ServerSideStatus& AllStatus::server_side_status() const {
@@ -3111,7 +3159,8 @@ inline const ::DS2_Frpg2PlayerData::ServerSideStatus& AllStatus::server_side_sta
 }
 inline ::DS2_Frpg2PlayerData::ServerSideStatus* AllStatus::mutable_server_side_status() {
   set_has_server_side_status();
-  if (server_side_status_ == NULL) server_side_status_ = new ::DS2_Frpg2PlayerData::ServerSideStatus;
+  if (server_side_status_ == NULL)
+    server_side_status_ = new ::DS2_Frpg2PlayerData::ServerSideStatus;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2PlayerData.AllStatus.server_side_status)
   return server_side_status_;
 }
@@ -3143,7 +3192,8 @@ inline void AllStatus::clear_has_equipment_info() {
   _has_bits_[0] &= ~0x00000200u;
 }
 inline void AllStatus::clear_equipment_info() {
-  if (equipment_info_ != NULL) equipment_info_->::DS2_Frpg2PlayerData::EquipmentInfo::Clear();
+  if (equipment_info_ != NULL)
+    equipment_info_->::DS2_Frpg2PlayerData::EquipmentInfo::Clear();
   clear_has_equipment_info();
 }
 inline const ::DS2_Frpg2PlayerData::EquipmentInfo& AllStatus::equipment_info() const {
@@ -3156,7 +3206,8 @@ inline const ::DS2_Frpg2PlayerData::EquipmentInfo& AllStatus::equipment_info() c
 }
 inline ::DS2_Frpg2PlayerData::EquipmentInfo* AllStatus::mutable_equipment_info() {
   set_has_equipment_info();
-  if (equipment_info_ == NULL) equipment_info_ = new ::DS2_Frpg2PlayerData::EquipmentInfo;
+  if (equipment_info_ == NULL)
+    equipment_info_ = new ::DS2_Frpg2PlayerData::EquipmentInfo;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2PlayerData.AllStatus.equipment_info)
   return equipment_info_;
 }
@@ -4732,7 +4783,8 @@ inline void PlayerLocation::clear_has_position() {
   _has_bits_[0] &= ~0x00000008u;
 }
 inline void PlayerLocation::clear_position() {
-  if (position_ != NULL) position_->::DS2_Frpg2PlayerData::Vector::Clear();
+  if (position_ != NULL)
+    position_->::DS2_Frpg2PlayerData::Vector::Clear();
   clear_has_position();
 }
 inline const ::DS2_Frpg2PlayerData::Vector& PlayerLocation::position() const {
@@ -4745,7 +4797,8 @@ inline const ::DS2_Frpg2PlayerData::Vector& PlayerLocation::position() const {
 }
 inline ::DS2_Frpg2PlayerData::Vector* PlayerLocation::mutable_position() {
   set_has_position();
-  if (position_ == NULL) position_ = new ::DS2_Frpg2PlayerData::Vector;
+  if (position_ == NULL)
+    position_ = new ::DS2_Frpg2PlayerData::Vector;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2PlayerData.PlayerLocation.position)
   return position_;
 }
@@ -4829,7 +4882,8 @@ inline void PlayerStatus_Phantom_leave_at::clear_has_datetime() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void PlayerStatus_Phantom_leave_at::clear_datetime() {
-  if (datetime_ != NULL) datetime_->::DS2_Frpg2PlayerData::DateTime::Clear();
+  if (datetime_ != NULL)
+    datetime_->::DS2_Frpg2PlayerData::DateTime::Clear();
   clear_has_datetime();
 }
 inline const ::DS2_Frpg2PlayerData::DateTime& PlayerStatus_Phantom_leave_at::datetime() const {
@@ -4842,7 +4896,8 @@ inline const ::DS2_Frpg2PlayerData::DateTime& PlayerStatus_Phantom_leave_at::dat
 }
 inline ::DS2_Frpg2PlayerData::DateTime* PlayerStatus_Phantom_leave_at::mutable_datetime() {
   set_has_datetime();
-  if (datetime_ == NULL) datetime_ = new ::DS2_Frpg2PlayerData::DateTime;
+  if (datetime_ == NULL)
+    datetime_ = new ::DS2_Frpg2PlayerData::DateTime;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2PlayerData.PlayerStatus_Phantom_leave_at.datetime)
   return datetime_;
 }
@@ -4925,7 +4980,7 @@ inline ::std::string* PlayerStatus::release_name() {
     return NULL;
   } else {
     ::std::string* temp = name_;
-    name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    name_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -4938,7 +4993,7 @@ inline void PlayerStatus::set_allocated_name(::std::string* name) {
     name_ = name;
   } else {
     clear_has_name();
-    name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    name_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2PlayerData.PlayerStatus.name)
 }
@@ -5098,7 +5153,8 @@ inline void PlayerStatus::clear_has_phantom_leave_at() {
   _has_bits_[0] &= ~0x00000080u;
 }
 inline void PlayerStatus::clear_phantom_leave_at() {
-  if (phantom_leave_at_ != NULL) phantom_leave_at_->::DS2_Frpg2PlayerData::PlayerStatus_Phantom_leave_at::Clear();
+  if (phantom_leave_at_ != NULL)
+    phantom_leave_at_->::DS2_Frpg2PlayerData::PlayerStatus_Phantom_leave_at::Clear();
   clear_has_phantom_leave_at();
 }
 inline const ::DS2_Frpg2PlayerData::PlayerStatus_Phantom_leave_at& PlayerStatus::phantom_leave_at() const {
@@ -5111,7 +5167,8 @@ inline const ::DS2_Frpg2PlayerData::PlayerStatus_Phantom_leave_at& PlayerStatus:
 }
 inline ::DS2_Frpg2PlayerData::PlayerStatus_Phantom_leave_at* PlayerStatus::mutable_phantom_leave_at() {
   set_has_phantom_leave_at();
-  if (phantom_leave_at_ == NULL) phantom_leave_at_ = new ::DS2_Frpg2PlayerData::PlayerStatus_Phantom_leave_at;
+  if (phantom_leave_at_ == NULL)
+    phantom_leave_at_ = new ::DS2_Frpg2PlayerData::PlayerStatus_Phantom_leave_at;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2PlayerData.PlayerStatus.phantom_leave_at)
   return phantom_leave_at_;
 }
@@ -5223,12 +5280,12 @@ inline void PlayerStatus::add_played_areas(::google::protobuf::uint32 value) {
   played_areas_.Add(value);
   // @@protoc_insertion_point(field_add:DS2_Frpg2PlayerData.PlayerStatus.played_areas)
 }
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+inline const ::google::protobuf::RepeatedField<::google::protobuf::uint32>&
 PlayerStatus::played_areas() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2PlayerData.PlayerStatus.played_areas)
   return played_areas_;
 }
-inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+inline ::google::protobuf::RepeatedField<::google::protobuf::uint32>*
 PlayerStatus::mutable_played_areas() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2PlayerData.PlayerStatus.played_areas)
   return &played_areas_;
@@ -5484,7 +5541,7 @@ inline ::std::string* PlayerStatus::release_unknown_21() {
     return NULL;
   } else {
     ::std::string* temp = unknown_21_;
-    unknown_21_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    unknown_21_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
@@ -5497,7 +5554,7 @@ inline void PlayerStatus::set_allocated_unknown_21(::std::string* unknown_21) {
     unknown_21_ = unknown_21;
   } else {
     clear_has_unknown_21();
-    unknown_21_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    unknown_21_ = const_cast<::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:DS2_Frpg2PlayerData.PlayerStatus.unknown_21)
 }
@@ -5677,12 +5734,12 @@ inline ::DS2_Frpg2PlayerData::StatsInfo_Bonfire_levels* StatsInfo::add_bonfire_l
   // @@protoc_insertion_point(field_add:DS2_Frpg2PlayerData.StatsInfo.bonfire_levels)
   return bonfire_levels_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2PlayerData::StatsInfo_Bonfire_levels >&
+inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2PlayerData::StatsInfo_Bonfire_levels>&
 StatsInfo::bonfire_levels() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2PlayerData.StatsInfo.bonfire_levels)
   return bonfire_levels_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2PlayerData::StatsInfo_Bonfire_levels >*
+inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2PlayerData::StatsInfo_Bonfire_levels>*
 StatsInfo::mutable_bonfire_levels() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2PlayerData.StatsInfo.bonfire_levels)
   return &bonfire_levels_;
@@ -5731,12 +5788,12 @@ inline ::DS2_Frpg2PlayerData::PhantomTypeCount* StatsInfo::add_phantom_type_coun
   // @@protoc_insertion_point(field_add:DS2_Frpg2PlayerData.StatsInfo.phantom_type_count_6)
   return phantom_type_count_6_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2PlayerData::PhantomTypeCount >&
+inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2PlayerData::PhantomTypeCount>&
 StatsInfo::phantom_type_count_6() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2PlayerData.StatsInfo.phantom_type_count_6)
   return phantom_type_count_6_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2PlayerData::PhantomTypeCount >*
+inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2PlayerData::PhantomTypeCount>*
 StatsInfo::mutable_phantom_type_count_6() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2PlayerData.StatsInfo.phantom_type_count_6)
   return &phantom_type_count_6_;
@@ -5761,12 +5818,12 @@ inline ::DS2_Frpg2PlayerData::PhantomTypeCount* StatsInfo::add_phantom_type_coun
   // @@protoc_insertion_point(field_add:DS2_Frpg2PlayerData.StatsInfo.phantom_type_count_7)
   return phantom_type_count_7_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2PlayerData::PhantomTypeCount >&
+inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2PlayerData::PhantomTypeCount>&
 StatsInfo::phantom_type_count_7() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2PlayerData.StatsInfo.phantom_type_count_7)
   return phantom_type_count_7_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2PlayerData::PhantomTypeCount >*
+inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2PlayerData::PhantomTypeCount>*
 StatsInfo::mutable_phantom_type_count_7() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2PlayerData.StatsInfo.phantom_type_count_7)
   return &phantom_type_count_7_;
@@ -5791,12 +5848,12 @@ inline ::DS2_Frpg2PlayerData::PhantomTypeCount* StatsInfo::add_phantom_type_coun
   // @@protoc_insertion_point(field_add:DS2_Frpg2PlayerData.StatsInfo.phantom_type_count_8)
   return phantom_type_count_8_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2PlayerData::PhantomTypeCount >&
+inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2PlayerData::PhantomTypeCount>&
 StatsInfo::phantom_type_count_8() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2PlayerData.StatsInfo.phantom_type_count_8)
   return phantom_type_count_8_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2PlayerData::PhantomTypeCount >*
+inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2PlayerData::PhantomTypeCount>*
 StatsInfo::mutable_phantom_type_count_8() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2PlayerData.StatsInfo.phantom_type_count_8)
   return &phantom_type_count_8_;
@@ -5821,12 +5878,12 @@ inline ::DS2_Frpg2PlayerData::PhantomTypeCount* StatsInfo::add_phantom_type_coun
   // @@protoc_insertion_point(field_add:DS2_Frpg2PlayerData.StatsInfo.phantom_type_count_9)
   return phantom_type_count_9_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2PlayerData::PhantomTypeCount >&
+inline const ::google::protobuf::RepeatedPtrField<::DS2_Frpg2PlayerData::PhantomTypeCount>&
 StatsInfo::phantom_type_count_9() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2PlayerData.StatsInfo.phantom_type_count_9)
   return phantom_type_count_9_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::DS2_Frpg2PlayerData::PhantomTypeCount >*
+inline ::google::protobuf::RepeatedPtrField<::DS2_Frpg2PlayerData::PhantomTypeCount>*
 StatsInfo::mutable_phantom_type_count_9() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2PlayerData.StatsInfo.phantom_type_count_9)
   return &phantom_type_count_9_;
@@ -5875,12 +5932,12 @@ inline void StatsInfo::add_unknown_11(::google::protobuf::uint32 value) {
   unknown_11_.Add(value);
   // @@protoc_insertion_point(field_add:DS2_Frpg2PlayerData.StatsInfo.unknown_11)
 }
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+inline const ::google::protobuf::RepeatedField<::google::protobuf::uint32>&
 StatsInfo::unknown_11() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2PlayerData.StatsInfo.unknown_11)
   return unknown_11_;
 }
-inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+inline ::google::protobuf::RepeatedField<::google::protobuf::uint32>*
 StatsInfo::mutable_unknown_11() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2PlayerData.StatsInfo.unknown_11)
   return &unknown_11_;
@@ -6017,7 +6074,8 @@ inline void StatsInfo::clear_has_datetime() {
   _has_bits_[0] &= ~0x00010000u;
 }
 inline void StatsInfo::clear_datetime() {
-  if (datetime_ != NULL) datetime_->::DS2_Frpg2PlayerData::DateTime::Clear();
+  if (datetime_ != NULL)
+    datetime_->::DS2_Frpg2PlayerData::DateTime::Clear();
   clear_has_datetime();
 }
 inline const ::DS2_Frpg2PlayerData::DateTime& StatsInfo::datetime() const {
@@ -6030,7 +6088,8 @@ inline const ::DS2_Frpg2PlayerData::DateTime& StatsInfo::datetime() const {
 }
 inline ::DS2_Frpg2PlayerData::DateTime* StatsInfo::mutable_datetime() {
   set_has_datetime();
-  if (datetime_ == NULL) datetime_ = new ::DS2_Frpg2PlayerData::DateTime;
+  if (datetime_ == NULL)
+    datetime_ = new ::DS2_Frpg2PlayerData::DateTime;
   // @@protoc_insertion_point(field_mutable:DS2_Frpg2PlayerData.StatsInfo.datetime)
   return datetime_;
 }
@@ -6094,12 +6153,12 @@ inline void StatsInfo::add_unlocked_bonfires(::google::protobuf::uint32 value) {
   unlocked_bonfires_.Add(value);
   // @@protoc_insertion_point(field_add:DS2_Frpg2PlayerData.StatsInfo.unlocked_bonfires)
 }
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+inline const ::google::protobuf::RepeatedField<::google::protobuf::uint32>&
 StatsInfo::unlocked_bonfires() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2PlayerData.StatsInfo.unlocked_bonfires)
   return unlocked_bonfires_;
 }
-inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+inline ::google::protobuf::RepeatedField<::google::protobuf::uint32>*
 StatsInfo::mutable_unlocked_bonfires() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2PlayerData.StatsInfo.unlocked_bonfires)
   return &unlocked_bonfires_;
@@ -6148,12 +6207,12 @@ inline void StatsInfo::add_unknown_21(::google::protobuf::uint32 value) {
   unknown_21_.Add(value);
   // @@protoc_insertion_point(field_add:DS2_Frpg2PlayerData.StatsInfo.unknown_21)
 }
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+inline const ::google::protobuf::RepeatedField<::google::protobuf::uint32>&
 StatsInfo::unknown_21() const {
   // @@protoc_insertion_point(field_list:DS2_Frpg2PlayerData.StatsInfo.unknown_21)
   return unknown_21_;
 }
-inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+inline ::google::protobuf::RepeatedField<::google::protobuf::uint32>*
 StatsInfo::mutable_unknown_21() {
   // @@protoc_insertion_point(field_mutable_list:DS2_Frpg2PlayerData.StatsInfo.unknown_21)
   return &unknown_21_;
@@ -6383,11 +6442,10 @@ inline void WeaponStatus::set_right_ar_3(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:DS2_Frpg2PlayerData.WeaponStatus.right_ar_3)
 }
 
-
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace DS2_Frpg2PlayerData
+} // namespace DS2_Frpg2PlayerData
 
 // @@protoc_insertion_point(global_scope)
 
-#endif  // PROTOBUF_DS2_5fFrpg2PlayerData_2eproto__INCLUDED
+#endif // PROTOBUF_DS2_5fFrpg2PlayerData_2eproto__INCLUDED

@@ -69,14 +69,14 @@ bool IsConflicting(const FieldDescriptor* field1, const string& name1,
       // field1 is repeated, and field2 is not.
       if (name1 + "Count" == name2) {
         *info = "both repeated field \"" + field1->name() + "\" and singular " +
-            "field \"" + field2->name() + "\" generates the method \"" +
-            "get" + name1 + "Count()\"";
+                "field \"" + field2->name() + "\" generates the method \"" +
+                "get" + name1 + "Count()\"";
         return true;
       }
       if (name1 + "List" == name2) {
         *info = "both repeated field \"" + field1->name() + "\" and singular " +
-            "field \"" + field2->name() + "\" generates the method \"" +
-            "get" + name1 + "List()\"";
+                "field \"" + field2->name() + "\" generates the method \"" +
+                "get" + name1 + "List()\"";
         return true;
       }
       // Well, there are obviously many more conflicting cases, but it probably
@@ -95,7 +95,7 @@ bool IsConflicting(const FieldDescriptor* field1, const string& name1,
     }
   }
 }
-}  // namespace
+} // namespace
 
 void Context::InitializeFieldGeneratorInfo(const FileDescriptor* file) {
   for (int i = 0; i < file->message_type_count(); ++i) {
@@ -148,7 +148,7 @@ void Context::InitializeFieldGeneratorInfoForFields(
     }
     if (is_conflict[i]) {
       GOOGLE_LOG(WARNING) << "field \"" << field->full_name() << "\" is conflicting "
-                   << "with another field: " << conflict_reason[i];
+                          << "with another field: " << conflict_reason[i];
     }
   }
   for (int i = 0; i < fields.size(); ++i) {
@@ -173,7 +173,7 @@ const FieldGeneratorInfo* Context::GetFieldGeneratorInfo(
       FindOrNull(field_generator_info_map_, field);
   if (result == NULL) {
     GOOGLE_LOG(FATAL) << "Can not find FieldGeneratorInfo for field: "
-               << field->full_name();
+                      << field->full_name();
   }
   return result;
 }
@@ -184,12 +184,12 @@ const OneofGeneratorInfo* Context::GetOneofGeneratorInfo(
       FindOrNull(oneof_generator_info_map_, oneof);
   if (result == NULL) {
     GOOGLE_LOG(FATAL) << "Can not find OneofGeneratorInfo for oneof: "
-               << oneof->name();
+                      << oneof->name();
   }
   return result;
 }
 
-}  // namespace java
-}  // namespace compiler
-}  // namespace protobuf
-}  // namespace google
+} // namespace java
+} // namespace compiler
+} // namespace protobuf
+} // namespace google

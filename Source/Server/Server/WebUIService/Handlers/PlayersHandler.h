@@ -1,6 +1,7 @@
 /*
- * Dark Souls 3 - Open Server
+ * Rekindled Server
  * Copyright (C) 2021 Tim Leonard
+ * Copyright (C) 2026 Jake Morgeson
  *
  * This program is free software; licensed under the MIT license.
  * You should have received a copy of the license along with this program.
@@ -20,44 +21,40 @@ class GameClient;
 //
 //		GET	- Gets a list of players and their current states.
 
-class PlayersHandler : public WebUIHandler
-{
+class PlayersHandler : public WebUIHandler {
 public:
-	PlayersHandler(WebUIService* InService);
+  PlayersHandler(WebUIService* InService);
 
-	virtual bool handleGet(CivetServer* Server, struct mg_connection* Connection) override;
-	virtual bool handleDelete(CivetServer* Server, struct mg_connection* Connection) override;
+  virtual bool handleGet(CivetServer* Server, struct mg_connection* Connection) override;
+  virtual bool handleDelete(CivetServer* Server, struct mg_connection* Connection) override;
 
-	virtual void Register(CivetServer* Server) override;
+  virtual void Register(CivetServer* Server) override;
 
-	virtual void GatherData() override;
+  virtual void GatherData() override;
 
 protected:
+  struct PlayerInfo {
+    // PlayerState State;
 
-	struct PlayerInfo
-	{
-		//PlayerState State; 
+    std::string SteamId;
+    uint32_t PlayerId;
+    std::string CharacterName;
+    size_t DeathCount;
+    size_t MultiplayCount;
+    size_t SoulLevel;
+    size_t Souls;
+    size_t SoulMemory;
+    std::string CovenantState;
+    uint32_t OnlineArea;
+    std::string Status;
+    double PlayTime;
+    double AntiCheatScore;
 
-		std::string SteamId;
-		uint32_t PlayerId;
-		std::string CharacterName;
-		size_t DeathCount;
-		size_t MultiplayCount;
-		size_t SoulLevel;
-		size_t Souls;
-		size_t SoulMemory;
-		std::string CovenantState;
-		uint32_t OnlineArea;
-		std::string Status;
-		double PlayTime;
-		double AntiCheatScore;
+    double ConnectionDuration;
+  };
 
-		double ConnectionDuration;
-	};
+  void GatherPlayerInfo(PlayerInfo& Info, std::shared_ptr<GameClient> Client);
 
-	void GatherPlayerInfo(PlayerInfo& Info, std::shared_ptr<GameClient> Client);
-
-	std::mutex DataMutex;
-	std::vector<PlayerInfo> PlayerInfos;
-
+  std::mutex DataMutex;
+  std::vector<PlayerInfo> PlayerInfos;
 };

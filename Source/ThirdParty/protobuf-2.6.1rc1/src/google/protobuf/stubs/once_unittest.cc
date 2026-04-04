@@ -46,7 +46,7 @@ namespace protobuf {
 namespace {
 
 class OnceInitTest : public testing::Test {
- protected:
+protected:
   void SetUp() {
     state_ = INIT_NOT_STARTED;
     current_test_ = this;
@@ -71,7 +71,7 @@ class OnceInitTest : public testing::Test {
   void UnblockInit() { init_blocker_.Unlock(); }
 
   class TestThread {
-   public:
+  public:
     TestThread(Closure* callback)
         : done_(false), joined_(false), callback_(callback) {
 #ifdef _WIN32
@@ -81,7 +81,8 @@ class OnceInitTest : public testing::Test {
 #endif
     }
     ~TestThread() {
-      if (!joined_) Join();
+      if (!joined_)
+        Join();
     }
 
     bool IsDone() {
@@ -98,7 +99,7 @@ class OnceInitTest : public testing::Test {
 #endif
     }
 
-   private:
+  private:
 #ifdef _WIN32
     HANDLE thread_;
 #else
@@ -111,68 +112,73 @@ class OnceInitTest : public testing::Test {
     Closure* callback_;
 
 #ifdef _WIN32
-    static DWORD WINAPI Start(LPVOID arg) {
+    static DWORD WINAPI Start(LPVOID arg){
 #else
     static void* Start(void* arg) {
 #endif
-      reinterpret_cast<TestThread*>(arg)->Run();
-      return 0;
-    }
-
-    void Run() {
-      callback_->Run();
-      MutexLock lock(&done_mutex_);
-      done_ = true;
-    }
-  };
-
-  TestThread* RunInitOnceInNewThread() {
-    return new TestThread(NewCallback(this, &OnceInitTest::InitOnce));
-  }
-  TestThread* RunInitRecursiveOnceInNewThread() {
-    return new TestThread(NewCallback(this, &OnceInitTest::InitRecursiveOnce));
+        reinterpret_cast<TestThread*>(arg) -> Run();
+    return 0;
   }
 
-  enum State {
-    INIT_NOT_STARTED,
-    INIT_STARTED,
-    INIT_DONE
-  };
-  State CurrentState() {
-    MutexLock lock(&mutex_);
-    return state_;
+  void
+  Run() {
+    callback_->Run();
+    MutexLock lock(&done_mutex_);
+    done_ = true;
   }
+};
 
-  void WaitABit() {
+TestThread* RunInitOnceInNewThread() {
+  return new TestThread(NewCallback(this, &OnceInitTest::InitOnce));
+}
+TestThread* RunInitRecursiveOnceInNewThread() {
+  return new TestThread(NewCallback(this, &OnceInitTest::InitRecursiveOnce));
+}
+
+enum State {
+  INIT_NOT_STARTED,
+  INIT_STARTED,
+  INIT_DONE
+};
+State CurrentState() {
+  MutexLock lock(&mutex_);
+  return state_;
+}
+
+void WaitABit() {
 #ifdef _WIN32
-    Sleep(1000);
+  Sleep(1000);
 #else
     sleep(1);
 #endif
-  }
+}
 
- private:
-  Mutex mutex_;
-  Mutex init_blocker_;
-  State state_;
-  ProtobufOnceType* once_;
-  ProtobufOnceType* recursive_once_;
+private:
+Mutex mutex_;
+Mutex init_blocker_;
+State state_;
+ProtobufOnceType* once_;
+ProtobufOnceType* recursive_once_;
 
-  void Init() {
-    MutexLock lock(&mutex_);
-    EXPECT_EQ(INIT_NOT_STARTED, state_);
-    state_ = INIT_STARTED;
-    mutex_.Unlock();
-    init_blocker_.Lock();
-    init_blocker_.Unlock();
-    mutex_.Lock();
-    state_ = INIT_DONE;
-  }
+void Init() {
+  MutexLock lock(&mutex_);
+  EXPECT_EQ(INIT_NOT_STARTED, state_);
+  state_ = INIT_STARTED;
+  mutex_.Unlock();
+  init_blocker_.Lock();
+  init_blocker_.Unlock();
+  mutex_.Lock();
+  state_ = INIT_DONE;
+}
 
-  static OnceInitTest* current_test_;
-  static void InitStatic() { current_test_->Init(); }
-  static void InitRecursiveStatic() { current_test_->InitOnce(); }
-};
+static OnceInitTest* current_test_;
+static void InitStatic() {
+  current_test_->Init();
+}
+static void InitRecursiveStatic() {
+  current_test_->InitOnce();
+}
+}; // namespace
 
 OnceInitTest* OnceInitTest::current_test_ = NULL;
 
@@ -248,6 +254,6 @@ TEST_F(OnceInitTest, MultipleThreadsBlocked) {
   EXPECT_EQ(INIT_DONE, CurrentState());
 }
 
-}  // anonymous namespace
-}  // namespace protobuf
-}  // namespace google
+} // namespace protobuf
+} // namespace google
+} // namespace google

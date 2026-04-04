@@ -41,23 +41,23 @@
 
 namespace google {
 namespace protobuf {
-  namespace compiler {
-    namespace java {
-      class Context;           // context.h
-      class ClassNameResolver; // name_resolver.h
-    }
-  }
-  namespace io {
-    class Printer;             // printer.h
-  }
+namespace compiler {
+namespace java {
+class Context;           // context.h
+class ClassNameResolver; // name_resolver.h
+} // namespace java
+} // namespace compiler
+namespace io {
+class Printer; // printer.h
 }
+} // namespace protobuf
 
 namespace protobuf {
 namespace compiler {
 namespace java {
 
 class EnumGenerator {
- public:
+public:
   explicit EnumGenerator(const EnumDescriptor* descriptor,
                          bool immutable_api,
                          Context* context);
@@ -65,7 +65,7 @@ class EnumGenerator {
 
   void Generate(io::Printer* printer);
 
- private:
+private:
   const EnumDescriptor* descriptor_;
 
   // The proto language allows multiple enum constants to have the same numeric
@@ -91,9 +91,9 @@ class EnumGenerator {
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(EnumGenerator);
 };
 
-}  // namespace java
-}  // namespace compiler
-}  // namespace protobuf
+} // namespace java
+} // namespace compiler
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_JAVA_ENUM_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_COMPILER_JAVA_ENUM_H__

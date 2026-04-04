@@ -53,9 +53,9 @@ using internal::WireFormat;
 using internal::WireFormatLite;
 
 const char kThickSeparator[] =
-  "// ===================================================================\n";
+    "// ===================================================================\n";
 const char kThinSeparator[] =
-  "// -------------------------------------------------------------------\n";
+    "// -------------------------------------------------------------------\n";
 
 namespace {
 
@@ -65,10 +65,11 @@ const char* kDefaultPackage = "";
 // Using them will cause the compiler to generate accessors whose names are
 // colliding with methods defined in base classes.
 const char* kForbiddenWordList[] = {
-  // message base class:
-  "cached_size", "serialized_size",
-  // java.lang.Object:
-  "class",
+    // message base class:
+    "cached_size",
+    "serialized_size",
+    // java.lang.Object:
+    "class",
 };
 
 bool IsForbidden(const string& field_name) {
@@ -98,8 +99,7 @@ string FieldName(const FieldDescriptor* field) {
   return field_name;
 }
 
-
-}  // namespace
+} // namespace
 
 string UnderscoresToCamelCase(const string& input, bool cap_next_letter) {
   string result;
@@ -173,7 +173,8 @@ string FileJavaPackage(const FileDescriptor* file, bool immutable) {
   } else {
     result = kDefaultPackage;
     if (!file->package().empty()) {
-      if (!result.empty()) result += '.';
+      if (!result.empty())
+        result += '.';
       result += file->package();
     }
   }
@@ -183,8 +184,9 @@ string FileJavaPackage(const FileDescriptor* file, bool immutable) {
 
 string JavaPackageToDir(string package_name) {
   string package_dir =
-    StringReplace(package_name, ".", "/", true);
-  if (!package_dir.empty()) package_dir += "/";
+      StringReplace(package_name, ".", "/", true);
+  if (!package_dir.empty())
+    package_dir += "/";
   return package_dir;
 }
 
@@ -232,25 +234,21 @@ string ClassName(const FileDescriptor* descriptor) {
 }
 
 string ExtraMessageInterfaces(const Descriptor* descriptor) {
-  string interfaces = "// @@protoc_insertion_point(message_implements:"
-      + descriptor->full_name() + ")";
+  string interfaces = "// @@protoc_insertion_point(message_implements:" + descriptor->full_name() + ")";
   return interfaces;
 }
 
-
 string ExtraBuilderInterfaces(const Descriptor* descriptor) {
-  string interfaces = "// @@protoc_insertion_point(builder_implements:"
-      + descriptor->full_name() + ")";
+  string interfaces = "// @@protoc_insertion_point(builder_implements:" + descriptor->full_name() + ")";
   return interfaces;
 }
 
 string ExtraMessageOrBuilderInterfaces(const Descriptor* descriptor) {
-  string interfaces = "// @@protoc_insertion_point(interface_extends:"
-      + descriptor->full_name() + ")";
+  string interfaces = "// @@protoc_insertion_point(interface_extends:" + descriptor->full_name() + ")";
   return interfaces;
 }
 
-string FieldConstantName(const FieldDescriptor *field) {
+string FieldConstantName(const FieldDescriptor* field) {
   string name = field->name() + "_FIELD_NUMBER";
   UpperString(&name);
   return name;
@@ -262,41 +260,41 @@ FieldDescriptor::Type GetType(const FieldDescriptor* field) {
 
 JavaType GetJavaType(const FieldDescriptor* field) {
   switch (GetType(field)) {
-    case FieldDescriptor::TYPE_INT32:
-    case FieldDescriptor::TYPE_UINT32:
-    case FieldDescriptor::TYPE_SINT32:
-    case FieldDescriptor::TYPE_FIXED32:
-    case FieldDescriptor::TYPE_SFIXED32:
-      return JAVATYPE_INT;
+  case FieldDescriptor::TYPE_INT32:
+  case FieldDescriptor::TYPE_UINT32:
+  case FieldDescriptor::TYPE_SINT32:
+  case FieldDescriptor::TYPE_FIXED32:
+  case FieldDescriptor::TYPE_SFIXED32:
+    return JAVATYPE_INT;
 
-    case FieldDescriptor::TYPE_INT64:
-    case FieldDescriptor::TYPE_UINT64:
-    case FieldDescriptor::TYPE_SINT64:
-    case FieldDescriptor::TYPE_FIXED64:
-    case FieldDescriptor::TYPE_SFIXED64:
-      return JAVATYPE_LONG;
+  case FieldDescriptor::TYPE_INT64:
+  case FieldDescriptor::TYPE_UINT64:
+  case FieldDescriptor::TYPE_SINT64:
+  case FieldDescriptor::TYPE_FIXED64:
+  case FieldDescriptor::TYPE_SFIXED64:
+    return JAVATYPE_LONG;
 
-    case FieldDescriptor::TYPE_FLOAT:
-      return JAVATYPE_FLOAT;
+  case FieldDescriptor::TYPE_FLOAT:
+    return JAVATYPE_FLOAT;
 
-    case FieldDescriptor::TYPE_DOUBLE:
-      return JAVATYPE_DOUBLE;
+  case FieldDescriptor::TYPE_DOUBLE:
+    return JAVATYPE_DOUBLE;
 
-    case FieldDescriptor::TYPE_BOOL:
-      return JAVATYPE_BOOLEAN;
+  case FieldDescriptor::TYPE_BOOL:
+    return JAVATYPE_BOOLEAN;
 
-    case FieldDescriptor::TYPE_STRING:
-      return JAVATYPE_STRING;
+  case FieldDescriptor::TYPE_STRING:
+    return JAVATYPE_STRING;
 
-    case FieldDescriptor::TYPE_BYTES:
-      return JAVATYPE_BYTES;
+  case FieldDescriptor::TYPE_BYTES:
+    return JAVATYPE_BYTES;
 
-    case FieldDescriptor::TYPE_ENUM:
-      return JAVATYPE_ENUM;
+  case FieldDescriptor::TYPE_ENUM:
+    return JAVATYPE_ENUM;
 
-    case FieldDescriptor::TYPE_GROUP:
-    case FieldDescriptor::TYPE_MESSAGE:
-      return JAVATYPE_MESSAGE;
+  case FieldDescriptor::TYPE_GROUP:
+  case FieldDescriptor::TYPE_MESSAGE:
+    return JAVATYPE_MESSAGE;
 
     // No default because we want the compiler to complain if any new
     // types are added.
@@ -308,15 +306,24 @@ JavaType GetJavaType(const FieldDescriptor* field) {
 
 const char* BoxedPrimitiveTypeName(JavaType type) {
   switch (type) {
-    case JAVATYPE_INT    : return "java.lang.Integer";
-    case JAVATYPE_LONG   : return "java.lang.Long";
-    case JAVATYPE_FLOAT  : return "java.lang.Float";
-    case JAVATYPE_DOUBLE : return "java.lang.Double";
-    case JAVATYPE_BOOLEAN: return "java.lang.Boolean";
-    case JAVATYPE_STRING : return "java.lang.String";
-    case JAVATYPE_BYTES  : return "com.google.protobuf.ByteString";
-    case JAVATYPE_ENUM   : return NULL;
-    case JAVATYPE_MESSAGE: return NULL;
+  case JAVATYPE_INT:
+    return "java.lang.Integer";
+  case JAVATYPE_LONG:
+    return "java.lang.Long";
+  case JAVATYPE_FLOAT:
+    return "java.lang.Float";
+  case JAVATYPE_DOUBLE:
+    return "java.lang.Double";
+  case JAVATYPE_BOOLEAN:
+    return "java.lang.Boolean";
+  case JAVATYPE_STRING:
+    return "java.lang.String";
+  case JAVATYPE_BYTES:
+    return "com.google.protobuf.ByteString";
+  case JAVATYPE_ENUM:
+    return NULL;
+  case JAVATYPE_MESSAGE:
+    return NULL;
 
     // No default because we want the compiler to complain if any new
     // JavaTypes are added.
@@ -328,24 +335,42 @@ const char* BoxedPrimitiveTypeName(JavaType type) {
 
 const char* FieldTypeName(FieldDescriptor::Type field_type) {
   switch (field_type) {
-    case FieldDescriptor::TYPE_INT32   : return "INT32";
-    case FieldDescriptor::TYPE_UINT32  : return "UINT32";
-    case FieldDescriptor::TYPE_SINT32  : return "SINT32";
-    case FieldDescriptor::TYPE_FIXED32 : return "FIXED32";
-    case FieldDescriptor::TYPE_SFIXED32: return "SFIXED32";
-    case FieldDescriptor::TYPE_INT64   : return "INT64";
-    case FieldDescriptor::TYPE_UINT64  : return "UINT64";
-    case FieldDescriptor::TYPE_SINT64  : return "SINT64";
-    case FieldDescriptor::TYPE_FIXED64 : return "FIXED64";
-    case FieldDescriptor::TYPE_SFIXED64: return "SFIXED64";
-    case FieldDescriptor::TYPE_FLOAT   : return "FLOAT";
-    case FieldDescriptor::TYPE_DOUBLE  : return "DOUBLE";
-    case FieldDescriptor::TYPE_BOOL    : return "BOOL";
-    case FieldDescriptor::TYPE_STRING  : return "STRING";
-    case FieldDescriptor::TYPE_BYTES   : return "BYTES";
-    case FieldDescriptor::TYPE_ENUM    : return "ENUM";
-    case FieldDescriptor::TYPE_GROUP   : return "GROUP";
-    case FieldDescriptor::TYPE_MESSAGE : return "MESSAGE";
+  case FieldDescriptor::TYPE_INT32:
+    return "INT32";
+  case FieldDescriptor::TYPE_UINT32:
+    return "UINT32";
+  case FieldDescriptor::TYPE_SINT32:
+    return "SINT32";
+  case FieldDescriptor::TYPE_FIXED32:
+    return "FIXED32";
+  case FieldDescriptor::TYPE_SFIXED32:
+    return "SFIXED32";
+  case FieldDescriptor::TYPE_INT64:
+    return "INT64";
+  case FieldDescriptor::TYPE_UINT64:
+    return "UINT64";
+  case FieldDescriptor::TYPE_SINT64:
+    return "SINT64";
+  case FieldDescriptor::TYPE_FIXED64:
+    return "FIXED64";
+  case FieldDescriptor::TYPE_SFIXED64:
+    return "SFIXED64";
+  case FieldDescriptor::TYPE_FLOAT:
+    return "FLOAT";
+  case FieldDescriptor::TYPE_DOUBLE:
+    return "DOUBLE";
+  case FieldDescriptor::TYPE_BOOL:
+    return "BOOL";
+  case FieldDescriptor::TYPE_STRING:
+    return "STRING";
+  case FieldDescriptor::TYPE_BYTES:
+    return "BYTES";
+  case FieldDescriptor::TYPE_ENUM:
+    return "ENUM";
+  case FieldDescriptor::TYPE_GROUP:
+    return "GROUP";
+  case FieldDescriptor::TYPE_MESSAGE:
+    return "MESSAGE";
 
     // No default because we want the compiler to complain if any new
     // types are added.
@@ -369,71 +394,71 @@ string DefaultValue(const FieldDescriptor* field, bool immutable,
   // Switch on CppType since we need to know which default_value_* method
   // of FieldDescriptor to call.
   switch (field->cpp_type()) {
-    case FieldDescriptor::CPPTYPE_INT32:
-      return SimpleItoa(field->default_value_int32());
-    case FieldDescriptor::CPPTYPE_UINT32:
-      // Need to print as a signed int since Java has no unsigned.
-      return SimpleItoa(static_cast<int32>(field->default_value_uint32()));
-    case FieldDescriptor::CPPTYPE_INT64:
-      return SimpleItoa(field->default_value_int64()) + "L";
-    case FieldDescriptor::CPPTYPE_UINT64:
-      return SimpleItoa(static_cast<int64>(field->default_value_uint64())) +
-             "L";
-    case FieldDescriptor::CPPTYPE_DOUBLE: {
-      double value = field->default_value_double();
-      if (value == numeric_limits<double>::infinity()) {
-        return "Double.POSITIVE_INFINITY";
-      } else if (value == -numeric_limits<double>::infinity()) {
-        return "Double.NEGATIVE_INFINITY";
-      } else if (value != value) {
-        return "Double.NaN";
-      } else {
-        return SimpleDtoa(value) + "D";
-      }
+  case FieldDescriptor::CPPTYPE_INT32:
+    return SimpleItoa(field->default_value_int32());
+  case FieldDescriptor::CPPTYPE_UINT32:
+    // Need to print as a signed int since Java has no unsigned.
+    return SimpleItoa(static_cast<int32>(field->default_value_uint32()));
+  case FieldDescriptor::CPPTYPE_INT64:
+    return SimpleItoa(field->default_value_int64()) + "L";
+  case FieldDescriptor::CPPTYPE_UINT64:
+    return SimpleItoa(static_cast<int64>(field->default_value_uint64())) +
+           "L";
+  case FieldDescriptor::CPPTYPE_DOUBLE: {
+    double value = field->default_value_double();
+    if (value == numeric_limits<double>::infinity()) {
+      return "Double.POSITIVE_INFINITY";
+    } else if (value == -numeric_limits<double>::infinity()) {
+      return "Double.NEGATIVE_INFINITY";
+    } else if (value != value) {
+      return "Double.NaN";
+    } else {
+      return SimpleDtoa(value) + "D";
     }
-    case FieldDescriptor::CPPTYPE_FLOAT: {
-      float value = field->default_value_float();
-      if (value == numeric_limits<float>::infinity()) {
-        return "Float.POSITIVE_INFINITY";
-      } else if (value == -numeric_limits<float>::infinity()) {
-        return "Float.NEGATIVE_INFINITY";
-      } else if (value != value) {
-        return "Float.NaN";
-      } else {
-        return SimpleFtoa(value) + "F";
-      }
+  }
+  case FieldDescriptor::CPPTYPE_FLOAT: {
+    float value = field->default_value_float();
+    if (value == numeric_limits<float>::infinity()) {
+      return "Float.POSITIVE_INFINITY";
+    } else if (value == -numeric_limits<float>::infinity()) {
+      return "Float.NEGATIVE_INFINITY";
+    } else if (value != value) {
+      return "Float.NaN";
+    } else {
+      return SimpleFtoa(value) + "F";
     }
-    case FieldDescriptor::CPPTYPE_BOOL:
-      return field->default_value_bool() ? "true" : "false";
-    case FieldDescriptor::CPPTYPE_STRING:
-      if (GetType(field) == FieldDescriptor::TYPE_BYTES) {
-        if (field->has_default_value()) {
-          // See comments in Internal.java for gory details.
-          return strings::Substitute(
+  }
+  case FieldDescriptor::CPPTYPE_BOOL:
+    return field->default_value_bool() ? "true" : "false";
+  case FieldDescriptor::CPPTYPE_STRING:
+    if (GetType(field) == FieldDescriptor::TYPE_BYTES) {
+      if (field->has_default_value()) {
+        // See comments in Internal.java for gory details.
+        return strings::Substitute(
             "com.google.protobuf.Internal.bytesDefaultValue(\"$0\")",
             CEscape(field->default_value_string()));
-        } else {
-          return "com.google.protobuf.ByteString.EMPTY";
-        }
       } else {
-        if (AllAscii(field->default_value_string())) {
-          // All chars are ASCII.  In this case CEscape() works fine.
-          return "\"" + CEscape(field->default_value_string()) + "\"";
-        } else {
-          // See comments in Internal.java for gory details.
-          return strings::Substitute(
-              "com.google.protobuf.Internal.stringDefaultValue(\"$0\")",
-              CEscape(field->default_value_string()));
-        }
+        return "com.google.protobuf.ByteString.EMPTY";
       }
+    } else {
+      if (AllAscii(field->default_value_string())) {
+        // All chars are ASCII.  In this case CEscape() works fine.
+        return "\"" + CEscape(field->default_value_string()) + "\"";
+      } else {
+        // See comments in Internal.java for gory details.
+        return strings::Substitute(
+            "com.google.protobuf.Internal.stringDefaultValue(\"$0\")",
+            CEscape(field->default_value_string()));
+      }
+    }
 
-    case FieldDescriptor::CPPTYPE_ENUM:
-      return name_resolver->GetClassName(field->enum_type(), immutable) + "." +
-          field->default_value_enum()->name();
+  case FieldDescriptor::CPPTYPE_ENUM:
+    return name_resolver->GetClassName(field->enum_type(), immutable) + "." +
+           field->default_value_enum()->name();
 
-    case FieldDescriptor::CPPTYPE_MESSAGE:
-      return name_resolver->GetClassName(field->message_type(), immutable) +
-          ".getDefaultInstance()";
+  case FieldDescriptor::CPPTYPE_MESSAGE:
+    return name_resolver->GetClassName(field->message_type(), immutable) +
+           ".getDefaultInstance()";
 
     // No default because we want the compiler to complain if any new
     // types are added.
@@ -447,25 +472,25 @@ bool IsDefaultValueJavaDefault(const FieldDescriptor* field) {
   // Switch on CppType since we need to know which default_value_* method
   // of FieldDescriptor to call.
   switch (field->cpp_type()) {
-    case FieldDescriptor::CPPTYPE_INT32:
-      return field->default_value_int32() == 0;
-    case FieldDescriptor::CPPTYPE_UINT32:
-      return field->default_value_uint32() == 0;
-    case FieldDescriptor::CPPTYPE_INT64:
-      return field->default_value_int64() == 0L;
-    case FieldDescriptor::CPPTYPE_UINT64:
-      return field->default_value_uint64() == 0L;
-    case FieldDescriptor::CPPTYPE_DOUBLE:
-      return field->default_value_double() == 0.0;
-    case FieldDescriptor::CPPTYPE_FLOAT:
-      return field->default_value_float() == 0.0;
-    case FieldDescriptor::CPPTYPE_BOOL:
-      return field->default_value_bool() == false;
+  case FieldDescriptor::CPPTYPE_INT32:
+    return field->default_value_int32() == 0;
+  case FieldDescriptor::CPPTYPE_UINT32:
+    return field->default_value_uint32() == 0;
+  case FieldDescriptor::CPPTYPE_INT64:
+    return field->default_value_int64() == 0L;
+  case FieldDescriptor::CPPTYPE_UINT64:
+    return field->default_value_uint64() == 0L;
+  case FieldDescriptor::CPPTYPE_DOUBLE:
+    return field->default_value_double() == 0.0;
+  case FieldDescriptor::CPPTYPE_FLOAT:
+    return field->default_value_float() == 0.0;
+  case FieldDescriptor::CPPTYPE_BOOL:
+    return field->default_value_bool() == false;
 
-    case FieldDescriptor::CPPTYPE_STRING:
-    case FieldDescriptor::CPPTYPE_ENUM:
-    case FieldDescriptor::CPPTYPE_MESSAGE:
-      return false;
+  case FieldDescriptor::CPPTYPE_STRING:
+  case FieldDescriptor::CPPTYPE_ENUM:
+  case FieldDescriptor::CPPTYPE_MESSAGE:
+    return false;
 
     // No default because we want the compiler to complain if any new
     // types are added.
@@ -476,41 +501,41 @@ bool IsDefaultValueJavaDefault(const FieldDescriptor* field) {
 }
 
 const char* bit_masks[] = {
-  "0x00000001",
-  "0x00000002",
-  "0x00000004",
-  "0x00000008",
-  "0x00000010",
-  "0x00000020",
-  "0x00000040",
-  "0x00000080",
+    "0x00000001",
+    "0x00000002",
+    "0x00000004",
+    "0x00000008",
+    "0x00000010",
+    "0x00000020",
+    "0x00000040",
+    "0x00000080",
 
-  "0x00000100",
-  "0x00000200",
-  "0x00000400",
-  "0x00000800",
-  "0x00001000",
-  "0x00002000",
-  "0x00004000",
-  "0x00008000",
+    "0x00000100",
+    "0x00000200",
+    "0x00000400",
+    "0x00000800",
+    "0x00001000",
+    "0x00002000",
+    "0x00004000",
+    "0x00008000",
 
-  "0x00010000",
-  "0x00020000",
-  "0x00040000",
-  "0x00080000",
-  "0x00100000",
-  "0x00200000",
-  "0x00400000",
-  "0x00800000",
+    "0x00010000",
+    "0x00020000",
+    "0x00040000",
+    "0x00080000",
+    "0x00100000",
+    "0x00200000",
+    "0x00400000",
+    "0x00800000",
 
-  "0x01000000",
-  "0x02000000",
-  "0x04000000",
-  "0x08000000",
-  "0x10000000",
-  "0x20000000",
-  "0x40000000",
-  "0x80000000",
+    "0x01000000",
+    "0x02000000",
+    "0x04000000",
+    "0x08000000",
+    "0x10000000",
+    "0x20000000",
+    "0x40000000",
+    "0x80000000",
 };
 
 string GetBitFieldName(int index) {
@@ -544,7 +569,7 @@ string GenerateSetBitInternal(const string& prefix, int bitIndex) {
   return result;
 }
 
-}  // namespace
+} // namespace
 
 string GenerateGetBit(int bitIndex) {
   return GenerateGetBitInternal("", bitIndex);
@@ -581,15 +606,24 @@ string GenerateSetBitMutableLocal(int bitIndex) {
 
 bool IsReferenceType(JavaType type) {
   switch (type) {
-    case JAVATYPE_INT    : return false;
-    case JAVATYPE_LONG   : return false;
-    case JAVATYPE_FLOAT  : return false;
-    case JAVATYPE_DOUBLE : return false;
-    case JAVATYPE_BOOLEAN: return false;
-    case JAVATYPE_STRING : return true;
-    case JAVATYPE_BYTES  : return true;
-    case JAVATYPE_ENUM   : return true;
-    case JAVATYPE_MESSAGE: return true;
+  case JAVATYPE_INT:
+    return false;
+  case JAVATYPE_LONG:
+    return false;
+  case JAVATYPE_FLOAT:
+    return false;
+  case JAVATYPE_DOUBLE:
+    return false;
+  case JAVATYPE_BOOLEAN:
+    return false;
+  case JAVATYPE_STRING:
+    return true;
+  case JAVATYPE_BYTES:
+    return true;
+  case JAVATYPE_ENUM:
+    return true;
+  case JAVATYPE_MESSAGE:
+    return true;
 
     // No default because we want the compiler to complain if any new
     // JavaTypes are added.
@@ -601,26 +635,43 @@ bool IsReferenceType(JavaType type) {
 
 const char* GetCapitalizedType(const FieldDescriptor* field, bool immutable) {
   switch (GetType(field)) {
-    case FieldDescriptor::TYPE_INT32   : return "Int32";
-    case FieldDescriptor::TYPE_UINT32  : return "UInt32";
-    case FieldDescriptor::TYPE_SINT32  : return "SInt32";
-    case FieldDescriptor::TYPE_FIXED32 : return "Fixed32";
-    case FieldDescriptor::TYPE_SFIXED32: return "SFixed32";
-    case FieldDescriptor::TYPE_INT64   : return "Int64";
-    case FieldDescriptor::TYPE_UINT64  : return "UInt64";
-    case FieldDescriptor::TYPE_SINT64  : return "SInt64";
-    case FieldDescriptor::TYPE_FIXED64 : return "Fixed64";
-    case FieldDescriptor::TYPE_SFIXED64: return "SFixed64";
-    case FieldDescriptor::TYPE_FLOAT   : return "Float";
-    case FieldDescriptor::TYPE_DOUBLE  : return "Double";
-    case FieldDescriptor::TYPE_BOOL    : return "Bool";
-    case FieldDescriptor::TYPE_STRING  : return "String";
-    case FieldDescriptor::TYPE_BYTES   : {
-      return "Bytes";
-    }
-    case FieldDescriptor::TYPE_ENUM    : return "Enum";
-    case FieldDescriptor::TYPE_GROUP   : return "Group";
-    case FieldDescriptor::TYPE_MESSAGE : return "Message";
+  case FieldDescriptor::TYPE_INT32:
+    return "Int32";
+  case FieldDescriptor::TYPE_UINT32:
+    return "UInt32";
+  case FieldDescriptor::TYPE_SINT32:
+    return "SInt32";
+  case FieldDescriptor::TYPE_FIXED32:
+    return "Fixed32";
+  case FieldDescriptor::TYPE_SFIXED32:
+    return "SFixed32";
+  case FieldDescriptor::TYPE_INT64:
+    return "Int64";
+  case FieldDescriptor::TYPE_UINT64:
+    return "UInt64";
+  case FieldDescriptor::TYPE_SINT64:
+    return "SInt64";
+  case FieldDescriptor::TYPE_FIXED64:
+    return "Fixed64";
+  case FieldDescriptor::TYPE_SFIXED64:
+    return "SFixed64";
+  case FieldDescriptor::TYPE_FLOAT:
+    return "Float";
+  case FieldDescriptor::TYPE_DOUBLE:
+    return "Double";
+  case FieldDescriptor::TYPE_BOOL:
+    return "Bool";
+  case FieldDescriptor::TYPE_STRING:
+    return "String";
+  case FieldDescriptor::TYPE_BYTES: {
+    return "Bytes";
+  }
+  case FieldDescriptor::TYPE_ENUM:
+    return "Enum";
+  case FieldDescriptor::TYPE_GROUP:
+    return "Group";
+  case FieldDescriptor::TYPE_MESSAGE:
+    return "Message";
 
     // No default because we want the compiler to complain if any new
     // types are added.
@@ -634,26 +685,44 @@ const char* GetCapitalizedType(const FieldDescriptor* field, bool immutable) {
 // returns -1.
 int FixedSize(FieldDescriptor::Type type) {
   switch (type) {
-    case FieldDescriptor::TYPE_INT32   : return -1;
-    case FieldDescriptor::TYPE_INT64   : return -1;
-    case FieldDescriptor::TYPE_UINT32  : return -1;
-    case FieldDescriptor::TYPE_UINT64  : return -1;
-    case FieldDescriptor::TYPE_SINT32  : return -1;
-    case FieldDescriptor::TYPE_SINT64  : return -1;
-    case FieldDescriptor::TYPE_FIXED32 : return WireFormatLite::kFixed32Size;
-    case FieldDescriptor::TYPE_FIXED64 : return WireFormatLite::kFixed64Size;
-    case FieldDescriptor::TYPE_SFIXED32: return WireFormatLite::kSFixed32Size;
-    case FieldDescriptor::TYPE_SFIXED64: return WireFormatLite::kSFixed64Size;
-    case FieldDescriptor::TYPE_FLOAT   : return WireFormatLite::kFloatSize;
-    case FieldDescriptor::TYPE_DOUBLE  : return WireFormatLite::kDoubleSize;
+  case FieldDescriptor::TYPE_INT32:
+    return -1;
+  case FieldDescriptor::TYPE_INT64:
+    return -1;
+  case FieldDescriptor::TYPE_UINT32:
+    return -1;
+  case FieldDescriptor::TYPE_UINT64:
+    return -1;
+  case FieldDescriptor::TYPE_SINT32:
+    return -1;
+  case FieldDescriptor::TYPE_SINT64:
+    return -1;
+  case FieldDescriptor::TYPE_FIXED32:
+    return WireFormatLite::kFixed32Size;
+  case FieldDescriptor::TYPE_FIXED64:
+    return WireFormatLite::kFixed64Size;
+  case FieldDescriptor::TYPE_SFIXED32:
+    return WireFormatLite::kSFixed32Size;
+  case FieldDescriptor::TYPE_SFIXED64:
+    return WireFormatLite::kSFixed64Size;
+  case FieldDescriptor::TYPE_FLOAT:
+    return WireFormatLite::kFloatSize;
+  case FieldDescriptor::TYPE_DOUBLE:
+    return WireFormatLite::kDoubleSize;
 
-    case FieldDescriptor::TYPE_BOOL    : return WireFormatLite::kBoolSize;
-    case FieldDescriptor::TYPE_ENUM    : return -1;
+  case FieldDescriptor::TYPE_BOOL:
+    return WireFormatLite::kBoolSize;
+  case FieldDescriptor::TYPE_ENUM:
+    return -1;
 
-    case FieldDescriptor::TYPE_STRING  : return -1;
-    case FieldDescriptor::TYPE_BYTES   : return -1;
-    case FieldDescriptor::TYPE_GROUP   : return -1;
-    case FieldDescriptor::TYPE_MESSAGE : return -1;
+  case FieldDescriptor::TYPE_STRING:
+    return -1;
+  case FieldDescriptor::TYPE_BYTES:
+    return -1;
+  case FieldDescriptor::TYPE_GROUP:
+    return -1;
+  case FieldDescriptor::TYPE_MESSAGE:
+    return -1;
 
     // No default because we want the compiler to complain if any new
     // types are added.
@@ -666,7 +735,7 @@ int FixedSize(FieldDescriptor::Type type) {
 // and return it. The caller should delete the returned array.
 const FieldDescriptor** SortFieldsByNumber(const Descriptor* descriptor) {
   const FieldDescriptor** fields =
-    new const FieldDescriptor*[descriptor->field_count()];
+      new const FieldDescriptor*[descriptor->field_count()];
   for (int i = 0; i < descriptor->field_count(); i++) {
     fields[i] = descriptor->field(i);
   }
@@ -699,7 +768,8 @@ bool HasRequiredFields(
   // If the type has extensions, an extension with message type could contain
   // required fields, so we have to be conservative and assume such an
   // extension exists.
-  if (type->extension_range_count() > 0) return true;
+  if (type->extension_range_count() > 0)
+    return true;
 
   for (int i = 0; i < type->field_count(); i++) {
     const FieldDescriptor* field = type->field(i);
@@ -731,7 +801,7 @@ bool HasRepeatedFields(const Descriptor* descriptor) {
   return false;
 }
 
-}  // namespace java
-}  // namespace compiler
-}  // namespace protobuf
-}  // namespace google
+} // namespace java
+} // namespace compiler
+} // namespace protobuf
+} // namespace google

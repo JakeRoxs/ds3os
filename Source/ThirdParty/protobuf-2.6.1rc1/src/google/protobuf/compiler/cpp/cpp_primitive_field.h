@@ -45,7 +45,7 @@ namespace compiler {
 namespace cpp {
 
 class PrimitiveFieldGenerator : public FieldGenerator {
- public:
+public:
   explicit PrimitiveFieldGenerator(const FieldDescriptor* descriptor,
                                    const Options& options);
   ~PrimitiveFieldGenerator();
@@ -63,16 +63,16 @@ class PrimitiveFieldGenerator : public FieldGenerator {
   void GenerateSerializeWithCachedSizesToArray(io::Printer* printer) const;
   void GenerateByteSize(io::Printer* printer) const;
 
- protected:
+protected:
   const FieldDescriptor* descriptor_;
   map<string, string> variables_;
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(PrimitiveFieldGenerator);
 };
 
 class PrimitiveOneofFieldGenerator : public PrimitiveFieldGenerator {
- public:
+public:
   explicit PrimitiveOneofFieldGenerator(const FieldDescriptor* descriptor,
                                         const Options& options);
   ~PrimitiveOneofFieldGenerator();
@@ -84,12 +84,12 @@ class PrimitiveOneofFieldGenerator : public PrimitiveFieldGenerator {
   void GenerateConstructorCode(io::Printer* printer) const;
   void GenerateMergeFromCodedStream(io::Printer* printer) const;
 
- private:
+private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(PrimitiveOneofFieldGenerator);
 };
 
 class RepeatedPrimitiveFieldGenerator : public FieldGenerator {
- public:
+public:
   explicit RepeatedPrimitiveFieldGenerator(const FieldDescriptor* descriptor,
                                            const Options& options);
   ~RepeatedPrimitiveFieldGenerator();
@@ -108,16 +108,16 @@ class RepeatedPrimitiveFieldGenerator : public FieldGenerator {
   void GenerateSerializeWithCachedSizesToArray(io::Printer* printer) const;
   void GenerateByteSize(io::Printer* printer) const;
 
- private:
+private:
   const FieldDescriptor* descriptor_;
   map<string, string> variables_;
 
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(RepeatedPrimitiveFieldGenerator);
 };
 
-}  // namespace cpp
-}  // namespace compiler
-}  // namespace protobuf
+} // namespace cpp
+} // namespace compiler
+} // namespace protobuf
 
-}  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_CPP_PRIMITIVE_FIELD_H__
+} // namespace google
+#endif // GOOGLE_PROTOBUF_COMPILER_CPP_PRIMITIVE_FIELD_H__
