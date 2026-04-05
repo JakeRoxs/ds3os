@@ -78,6 +78,8 @@ namespace Loader
     {
       queryService.Cancel();
       _updateServerIpCts?.Cancel();
+      _updateServerIpCts?.Dispose();
+      _updateServerIpCts = null;
     }
 
 

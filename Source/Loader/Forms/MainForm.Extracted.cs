@@ -140,6 +140,7 @@ namespace Loader
       ValidateUI();
 
       _updateServerIpCts?.Cancel();
+      _updateServerIpCts?.Dispose();
       _updateServerIpCts = new CancellationTokenSource();
 
       if (CurrentServerConfig != null)
