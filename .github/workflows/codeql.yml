@@ -122,7 +122,7 @@ jobs:
 
       - name: Setup .NET SDK for C#
         if: matrix.language == 'csharp' && matrix.build-mode == 'manual'
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v5
         with:
           dotnet-version: "10.0.x"
 

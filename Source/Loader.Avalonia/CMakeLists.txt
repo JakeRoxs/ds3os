@@ -24,11 +24,15 @@ include_external_msproject(
 # keep restore/build artifacts under the CMake binary tree.
 set(_loader_avalonia_platform "$<IF:$<BOOL:${CMAKE_GENERATOR_PLATFORM}>,${CMAKE_GENERATOR_PLATFORM},AnyCPU>")
 
-set_property(TARGET LoaderAvalonia PROPERTY
-    VS_GLOBAL_BaseIntermediateOutputPath
-    "${CMAKE_BINARY_DIR}/Intermediate/${_loader_avalonia_platform}$<CONFIG>"
-)
+if (TARGET LoaderAvalonia)
+    set_property(TARGET LoaderAvalonia PROPERTY
+        VS_GLOBAL_BaseIntermediateOutputPath
+        "${CMAKE_BINARY_DIR}/Intermediate/${_loader_avalonia_platform}$<CONFIG>"
+    )
 
-set_property(TARGET LoaderAvalonia PROPERTY
-    VS_GLOBAL_RestorePackagesOnBuild true
-)
+    set_property(TARGET LoaderAvalonia PROPERTY
+        VS_GLOBAL_RestorePackagesOnBuild true
+    )
+else()
+    message(STATUS "LoaderAvalonia target was not created by include_external_msproject for generator '${CMAKE_GENERATOR}'; skipping VS_GLOBAL properties.")
+endif()

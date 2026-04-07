@@ -294,6 +294,12 @@ jobs:
         if: matrix.name == 'windows-ninja'
         uses: microsoft/setup-msbuild@v3
 
+      - name: Setup .NET SDK
+        if: matrix.name == 'windows-ninja' || matrix.name == 'linux-ninja'
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: "10.0.x"
+
       - name: Restore Loader NuGet packages
         if: matrix.name == 'windows-ninja'
         run: dotnet restore Source/Loader/Loader.csproj -p:Configuration=Release
@@ -302,6 +308,10 @@ jobs:
         if: matrix.name == 'windows-ninja'
         run: dotnet restore Source/Loader/Tests/Loader.Tests.csproj -p:Configuration=Release
 
+      - name: Restore Loader.Avalonia NuGet packages
+        if: matrix.name == 'windows-ninja'
+        run: dotnet restore Source/Loader.Avalonia/Loader.Avalonia.csproj -p:Configuration=Release
+
       - name: Build Loader project
         if: matrix.name == 'windows-ninja'
         run: dotnet build Source/Loader/Loader.csproj --configuration Release --no-restore
@@ -309,6 +319,10 @@ jobs:
       - name: Build Loader tests project
         if: matrix.name == 'windows-ninja'
         run: dotnet build Source/Loader/Tests/Loader.Tests.csproj --configuration Release --no-restore
+
+      - name: Build Loader.Avalonia project
+        if: matrix.name == 'windows-ninja'
+        run: dotnet build Source/Loader.Avalonia/Loader.Avalonia.csproj --configuration Release --no-restore
 
       - name: Run Loader tests
         if: matrix.name == 'windows-ninja'
@@ -350,6 +364,14 @@ jobs:
           sudo apt-get install -y cmake ninja-build libssl-dev zlib1g-dev libsqlite3-dev pkg-config
           # UUID is used by the project; different distros name it differently.
           sudo apt-get install -y uuid-dev || sudo apt-get install -y libuuid-dev
+
+      - name: Restore Loader.Avalonia NuGet packages (Linux)
+        if: matrix.name == 'linux-ninja'
+        run: dotnet restore Source/Loader.Avalonia/Loader.Avalonia.csproj -p:Configuration=Release
+
+      - name: Build Loader.Avalonia project (Linux)
+        if: matrix.name == 'linux-ninja'
+        run: dotnet build Source/Loader.Avalonia/Loader.Avalonia.csproj --configuration Release --no-restore
 
       - name: Generate Solution (Linux)
         if: matrix.name == 'linux-ninja'
