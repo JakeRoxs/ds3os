@@ -161,7 +161,7 @@ jobs:
             -Dsonar.projectKey=JakeRoxs_server_9178fbff-b3bf-4c2c-9c34-efc7eb852932
             -Dsonar.projectName=rekindled-server
             -Dsonar.sources=.
-            -Dsonar.exclusions=Source/ThirdParty/**,Protobuf/**,build/**,Source/Loader/**
+            -Dsonar.exclusions=Source/ThirdParty/**,Protobuf/**,build/**,Source/Loader/**,Resources/**
             -Dsonar.cfamily.compile-commands=build/compile_commands.json
             -Dsonar.cfamily.threads=4
             -Dsonar.sourceEncoding=UTF-8
