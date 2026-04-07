@@ -92,7 +92,7 @@ jobs:
             /n:"rekindled-server-loader" \
             /d:sonar.host.url="$SONAR_HOST_URL" \
             /d:sonar.login="$SONAR_TOKEN" \
-            /d:sonar.exclusions="Source/Loader.Avalonia/**,Source/ThirdParty/**,Protobuf/**,build/**" \
+            /d:sonar.exclusions="Source/Loader.Avalonia/**,Source/ThirdParty/**,Protobuf/**,build/**,Resources/**,Tools/**,*.dockerfile" \
             /d:sonar.sourceEncoding="UTF-8" \
             /d:sonar.qualitygate.wait="true"
           dotnet build Source/Loader/Loader.csproj --configuration Release --no-restore -p:EnableWindowsTargeting=true
@@ -109,7 +109,7 @@ jobs:
             /n:"rekindled-server-loader-avalonia" \
             /d:sonar.host.url="$SONAR_HOST_URL" \
             /d:sonar.login="$SONAR_TOKEN" \
-            /d:sonar.exclusions="Source/Loader/**,Source/ThirdParty/**,Protobuf/**,build/**" \
+            /d:sonar.exclusions="Source/Loader/**,Source/ThirdParty/**,Protobuf/**,build/**,Resources/**,Tools/**,*.dockerfile" \
             /d:sonar.sourceEncoding="UTF-8" \
             /d:sonar.qualitygate.wait="true"
           dotnet build Source/Loader.Avalonia/Loader.Avalonia.csproj --configuration Release --no-restore
