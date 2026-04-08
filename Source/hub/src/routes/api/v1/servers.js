@@ -259,7 +259,9 @@ function validateWebAddress(value) {
     parsed.password = "";
     return parsed.toString();
   } catch (err) {
-    console.warn("Invalid WebAddress provided:", url, err);
+    const safeUrl = sanitizeForLog(url, 256);
+    const safeError = sanitizeForLog(err?.message ?? String(err), 512);
+    console.warn(`Invalid WebAddress provided: ${safeUrl} | ${safeError}`);
     return "";
   }
 }
@@ -490,8 +492,10 @@ function removeTimedOutServers() {
 
   for (const [id, server] of activeServers.entries()) {
     if (server.UpdatedTime < timeoutThreshold) {
+      const safeId = sanitizeForLog(id, 128);
+      const safeIpAddress = sanitizeForLog(server.IpAddress, 128);
       console.log(
-        `Removing server that timed out: id=${id} ip=${server.IpAddress}`,
+        `Removing server that timed out: id=${safeId} ip=${safeIpAddress}`,
       );
       activeServers.delete(id);
       timeoutOccurred = true;

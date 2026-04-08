@@ -412,116 +412,152 @@ namespace Loader
 
     public static string getObjectTypeName(SYSTEM_HANDLE_INFORMATION shHandle, Process process)
     {
-      IntPtr m_ipProcessHwnd = WinAPI.OpenProcess(ProcessAccessFlags.All, false, process.Id);
-      IntPtr ipHandle = IntPtr.Zero;
-      var objBasic = new OBJECT_BASIC_INFORMATION();
-      IntPtr ipBasic = IntPtr.Zero;
-      var objObjectType = new OBJECT_TYPE_INFORMATION();
-      IntPtr ipObjectType;
-      string strObjectTypeName = "";
-      int nLength = 0;
-
-      if (!WinAPI.DuplicateHandle(
-          m_ipProcessHwnd,
-          shHandle.Handle,
-          WinAPI.GetCurrentProcess(),
-          out ipHandle,
-          0,
-          false,
-          DUPLICATE_SAME_ACCESS))
+      IntPtr m_ipProcessHwnd = WinAPI.OpenProcess(ProcessAccessFlags.DupHandle, false, process.Id);
+      if (m_ipProcessHwnd == IntPtr.Zero)
       {
         return null;
       }
 
-      ipBasic = Marshal.AllocHGlobal(Marshal.SizeOf(objBasic));
-      WinAPI.NtQueryObject(
-          ipHandle,
-          (int)ObjectInformationClass.ObjectBasicInformation,
-          ipBasic,
-          Marshal.SizeOf(objBasic),
-          ref nLength);
-      objBasic = (OBJECT_BASIC_INFORMATION)Marshal.PtrToStructure(ipBasic, objBasic.GetType());
-      Marshal.FreeHGlobal(ipBasic);
-
-      ipObjectType = Marshal.AllocHGlobal(objBasic.TypeInformationLength);
-      nLength = objBasic.TypeInformationLength;
-      // The managed API surface does not expose kernel object type/name query for arbitrary handles.
-      // NtQueryObject is required here to resolve the object type information for the duplicated handle.
-      while ((uint)WinAPI.NtQueryObject(
-                      ipHandle,
-                      (int)ObjectInformationClass.ObjectTypeInformation,
-                      ipObjectType,
-                      nLength,
-                      ref nLength) == STATUS_INFO_LENGTH_MISMATCH)
+      IntPtr ipHandle = IntPtr.Zero;
+      IntPtr ipBasic = IntPtr.Zero;
+      IntPtr ipObjectType = IntPtr.Zero;
+      try
       {
-        Marshal.FreeHGlobal(ipObjectType);
-        ipObjectType = Marshal.AllocHGlobal(nLength);
+        if (!WinAPI.DuplicateHandle(
+            m_ipProcessHwnd,
+            shHandle.Handle,
+            WinAPI.GetCurrentProcess(),
+            out ipHandle,
+            0,
+            false,
+            DUPLICATE_SAME_ACCESS))
+        {
+          return null;
+        }
+
+        var objBasic = new OBJECT_BASIC_INFORMATION();
+        int nLength = 0;
+        ipBasic = Marshal.AllocHGlobal(Marshal.SizeOf(objBasic));
+        WinAPI.NtQueryObject(
+            ipHandle,
+            (int)ObjectInformationClass.ObjectBasicInformation,
+            ipBasic,
+            Marshal.SizeOf(objBasic),
+            ref nLength);
+        objBasic = (OBJECT_BASIC_INFORMATION)Marshal.PtrToStructure(ipBasic, objBasic.GetType());
+        Marshal.FreeHGlobal(ipBasic);
+        ipBasic = IntPtr.Zero;
+
+        ipObjectType = Marshal.AllocHGlobal(objBasic.TypeInformationLength);
+        nLength = objBasic.TypeInformationLength;
+        while ((uint)WinAPI.NtQueryObject(
+                        ipHandle,
+                        (int)ObjectInformationClass.ObjectTypeInformation,
+                        ipObjectType,
+                        nLength,
+                        ref nLength) == STATUS_INFO_LENGTH_MISMATCH)
+        {
+          Marshal.FreeHGlobal(ipObjectType);
+          ipObjectType = Marshal.AllocHGlobal(nLength);
+        }
+
+        var objObjectType = Marshal.PtrToStructure<OBJECT_TYPE_INFORMATION>(ipObjectType);
+        return objObjectType.Name.Buffer;
       }
+      finally
+      {
+        if (ipObjectType != IntPtr.Zero)
+        {
+          Marshal.FreeHGlobal(ipObjectType);
+        }
 
-      objObjectType = Marshal.PtrToStructure<OBJECT_TYPE_INFORMATION>(ipObjectType);
-      strObjectTypeName = objObjectType.Name.Buffer;
+        if (ipBasic != IntPtr.Zero)
+        {
+          Marshal.FreeHGlobal(ipBasic);
+        }
 
-      Marshal.FreeHGlobal(ipObjectType);
-      WinAPI.CloseHandle(ipHandle);
+        if (ipHandle != IntPtr.Zero)
+        {
+          WinAPI.CloseHandle(ipHandle);
+        }
 
-      return strObjectTypeName;
+        WinAPI.CloseHandle(m_ipProcessHwnd);
+      }
     }
 
     public static string getObjectName(SYSTEM_HANDLE_INFORMATION shHandle, Process process)
     {
-      IntPtr m_ipProcessHwnd = WinAPI.OpenProcess(ProcessAccessFlags.All, false, process.Id);
-      IntPtr ipHandle = IntPtr.Zero;
-      var objBasic = new OBJECT_BASIC_INFORMATION();
-      IntPtr ipBasic = IntPtr.Zero;
-      var objObjectName = new OBJECT_NAME_INFORMATION();
-      IntPtr ipObjectName;
-      int nLength = 0;
-
-      if (!WinAPI.DuplicateHandle(
-              m_ipProcessHwnd,
-              shHandle.Handle,
-              WinAPI.GetCurrentProcess(),
-              out ipHandle,
-              0,
-              false,
-              DUPLICATE_SAME_ACCESS))
+      IntPtr m_ipProcessHwnd = WinAPI.OpenProcess(ProcessAccessFlags.DupHandle, false, process.Id);
+      if (m_ipProcessHwnd == IntPtr.Zero)
       {
         return null;
       }
 
-      ipBasic = Marshal.AllocHGlobal(Marshal.SizeOf(objBasic));
-      WinAPI.NtQueryObject(
-          ipHandle,
-          (int)ObjectInformationClass.ObjectBasicInformation,
-          ipBasic,
-          Marshal.SizeOf(objBasic),
-          ref nLength);
-      objBasic = (OBJECT_BASIC_INFORMATION)Marshal.PtrToStructure(ipBasic, objBasic.GetType());
-      Marshal.FreeHGlobal(ipBasic);
-
-      nLength = objBasic.NameInformationLength;
-
-      ipObjectName = Marshal.AllocHGlobal(nLength);
-      // The managed API surface does not provide arbitrary object name resolution for duplicated handles.
-      // NtQueryObject is required here to query the kernel object name entry for the handle.
-      while ((uint)WinAPI.NtQueryObject(
-               ipHandle,
-               (int)ObjectInformationClass.ObjectNameInformation,
-               ipObjectName,
-               nLength,
-               ref nLength) == STATUS_INFO_LENGTH_MISMATCH)
+      IntPtr ipHandle = IntPtr.Zero;
+      IntPtr ipBasic = IntPtr.Zero;
+      IntPtr ipObjectName = IntPtr.Zero;
+      try
       {
-        Marshal.FreeHGlobal(ipObjectName);
+        if (!WinAPI.DuplicateHandle(
+                m_ipProcessHwnd,
+                shHandle.Handle,
+                WinAPI.GetCurrentProcess(),
+                out ipHandle,
+                0,
+                false,
+                DUPLICATE_SAME_ACCESS))
+        {
+          return null;
+        }
+
+        var objBasic = new OBJECT_BASIC_INFORMATION();
+        int nLength = 0;
+        ipBasic = Marshal.AllocHGlobal(Marshal.SizeOf(objBasic));
+        WinAPI.NtQueryObject(
+            ipHandle,
+            (int)ObjectInformationClass.ObjectBasicInformation,
+            ipBasic,
+            Marshal.SizeOf(objBasic),
+            ref nLength);
+        objBasic = (OBJECT_BASIC_INFORMATION)Marshal.PtrToStructure(ipBasic, objBasic.GetType());
+        Marshal.FreeHGlobal(ipBasic);
+        ipBasic = IntPtr.Zero;
+
+        nLength = objBasic.NameInformationLength;
         ipObjectName = Marshal.AllocHGlobal(nLength);
+        while ((uint)WinAPI.NtQueryObject(
+                 ipHandle,
+                 (int)ObjectInformationClass.ObjectNameInformation,
+                 ipObjectName,
+                 nLength,
+                 ref nLength) == STATUS_INFO_LENGTH_MISMATCH)
+        {
+          Marshal.FreeHGlobal(ipObjectName);
+          ipObjectName = Marshal.AllocHGlobal(nLength);
+        }
+
+        var objObjectName = Marshal.PtrToStructure<OBJECT_NAME_INFORMATION>(ipObjectName);
+        return objObjectName.Name.Buffer;
       }
-      objObjectName = (OBJECT_NAME_INFORMATION)Marshal.PtrToStructure(ipObjectName, objObjectName.GetType());
+      finally
+      {
+        if (ipObjectName != IntPtr.Zero)
+        {
+          Marshal.FreeHGlobal(ipObjectName);
+        }
 
-      string result = objObjectName.Name.Buffer;
+        if (ipBasic != IntPtr.Zero)
+        {
+          Marshal.FreeHGlobal(ipBasic);
+        }
 
-      Marshal.FreeHGlobal(ipObjectName);
-      WinAPI.CloseHandle(ipHandle);
+        if (ipHandle != IntPtr.Zero)
+        {
+          WinAPI.CloseHandle(ipHandle);
+        }
 
-      return result;
+        WinAPI.CloseHandle(m_ipProcessHwnd);
+      }
     }
 
     public static List<SYSTEM_HANDLE_INFORMATION> GetHandles(Process process = null, string IN_strObjectTypeName = null, string IN_strObjectName = null)
@@ -559,37 +595,47 @@ namespace Loader
       SYSTEM_HANDLE_INFORMATION shHandle;
       List<SYSTEM_HANDLE_INFORMATION> lstHandles = new List<SYSTEM_HANDLE_INFORMATION>();
 
-      for (long lIndex = 0; lIndex < lHandleCount; lIndex++)
+      try
       {
-        shHandle = new SYSTEM_HANDLE_INFORMATION();
-        if (Is64Bits())
+        for (long lIndex = 0; lIndex < lHandleCount; lIndex++)
         {
-          shHandle = (SYSTEM_HANDLE_INFORMATION)Marshal.PtrToStructure(ipHandle, shHandle.GetType());
-          ipHandle = new IntPtr(ipHandle.ToInt64() + Marshal.SizeOf(shHandle) + 8);
-        }
-        else
-        {
-          ipHandle = new IntPtr(ipHandle.ToInt64() + Marshal.SizeOf(shHandle));
-          shHandle = (SYSTEM_HANDLE_INFORMATION)Marshal.PtrToStructure(ipHandle, shHandle.GetType());
-        }
+          shHandle = new SYSTEM_HANDLE_INFORMATION();
+          if (Is64Bits())
+          {
+            shHandle = (SYSTEM_HANDLE_INFORMATION)Marshal.PtrToStructure(ipHandle, shHandle.GetType());
+            ipHandle = new IntPtr(ipHandle.ToInt64() + Marshal.SizeOf(shHandle) + 8);
+          }
+          else
+          {
+            ipHandle = new IntPtr(ipHandle.ToInt64() + Marshal.SizeOf(shHandle));
+            shHandle = (SYSTEM_HANDLE_INFORMATION)Marshal.PtrToStructure(ipHandle, shHandle.GetType());
+          }
 
-        if (process != null && shHandle.ProcessID != process.Id) continue;
+          if (process != null && shHandle.ProcessID != process.Id) continue;
 
         string strObjectTypeName = "";
+        using var remoteProcess = Process.GetProcessById(shHandle.ProcessID);
+
         if (IN_strObjectTypeName != null)
         {
-          strObjectTypeName = getObjectTypeName(shHandle, Process.GetProcessById(shHandle.ProcessID));
+          strObjectTypeName = getObjectTypeName(shHandle, remoteProcess);
           if (strObjectTypeName != IN_strObjectTypeName) continue;
         }
 
         string strObjectName = "";
         if (IN_strObjectName != null)
         {
-          strObjectName = getObjectName(shHandle, Process.GetProcessById(shHandle.ProcessID));
+          strObjectName = getObjectName(shHandle, remoteProcess);
           if (strObjectName != IN_strObjectName) continue;
         }
 
         lstHandles.Add(shHandle);
+      }
+
+      }
+      finally
+      {
+        Marshal.FreeHGlobal(ipHandlePointer);
       }
 
       return lstHandles;
@@ -613,8 +659,9 @@ namespace Loader
         foreach (var handle in handles)
         {
           IntPtr ipHandle = IntPtr.Zero;
+          using var sourceProcess = Process.GetProcessById(handle.ProcessID);
           if (WinAPI.DuplicateHandle(
-                  Process.GetProcessById(handle.ProcessID).Handle,
+                  sourceProcess.Handle,
                   handle.Handle,
                   WinAPI.GetCurrentProcess(),
                   out ipHandle,
