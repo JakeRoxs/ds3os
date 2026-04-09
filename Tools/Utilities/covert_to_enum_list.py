@@ -1,5 +1,3 @@
-import os
-
 input = "data.txt"
 
 unknown_count = 1

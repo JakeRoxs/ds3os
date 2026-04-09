@@ -64,7 +64,7 @@ namespace Loader.Services
       File.WriteAllText(appIdFile, loadConfig.SteamAppId.ToString());
 
       STARTUPINFO startupInfo = new STARTUPINFO();
-      PROCESS_INFORMATION processInfo = new PROCESS_INFORMATION();
+      PROCESS_INFORMATION processInfo;
 
       bool result = WinAPI.CreateProcess(
           null,

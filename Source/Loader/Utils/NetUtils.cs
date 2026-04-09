@@ -45,15 +45,9 @@ namespace Loader
     {
       try
       {
-        if (GetPublicAddress)
-        {
-          // synchronous call for simplicity
-          return PublicIpClient.GetStringAsync(ResolvePublicIpServiceUrl()).GetAwaiter().GetResult();
-        }
-        else
-        {
-          return HostnameToIPv4(Dns.GetHostName());
-        }
+        return GetPublicAddress
+          ? PublicIpClient.GetStringAsync(ResolvePublicIpServiceUrl()).GetAwaiter().GetResult()
+          : HostnameToIPv4(Dns.GetHostName());
       }
       catch (HttpRequestException)
       {
