@@ -251,12 +251,34 @@ namespace Loader.Tests
 
       public string GetFileName(string path)
       {
-        return Path.GetFileName(path);
+        return GetWindowsFileName(path);
       }
 
       public string? GetDirectoryName(string path)
       {
-        return Path.GetDirectoryName(path);
+        return GetWindowsDirectoryName(path);
+      }
+
+      private static string GetWindowsFileName(string path)
+      {
+        if (string.IsNullOrEmpty(path))
+        {
+          return string.Empty;
+        }
+
+        int lastSlash = path.LastIndexOfAny(new[] {'\\', '/'});
+        return lastSlash < 0 ? path : path.Substring(lastSlash + 1);
+      }
+
+      private static string? GetWindowsDirectoryName(string path)
+      {
+        if (string.IsNullOrEmpty(path))
+        {
+          return null;
+        }
+
+        int lastSlash = path.LastIndexOfAny(new[] {'\\', '/'});
+        return lastSlash < 0 ? null : path.Substring(0, lastSlash);
       }
 
       public string GetExeSimpleHash(string exePath)

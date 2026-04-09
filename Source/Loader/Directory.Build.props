@@ -1,15 +1,11 @@
 <Project>
   <PropertyGroup>
     <!--
-      Resolve repository root independent of whether a solution file is being
-      used.  ``$(SolutionDir)`` is only defined when building from a .sln; the
-      dotnet CLI builds individual projects directly and leaves it empty, which
-      previously caused the output path to collapse into the drive root
-      (hence "C:\Bin\_Debug").  Fall back to the project directory when
-      SolutionDir is missing.
+      Resolve repository root from the location of this Directory.Build.props file.
+      This avoids depending on SolutionDir or project directory depth, and keeps
+      output under the repository-level Bin and Intermediate directories.
     -->
-    <RepoRoot Condition="'$(SolutionDir)' == ''">$(MSBuildProjectDirectory)\..\..</RepoRoot>
-    <RepoRoot Condition="'$(SolutionDir)' != ''">$(SolutionDir)\..</RepoRoot>
+    <RepoRoot>$(MSBuildThisFileDirectory)\..\..</RepoRoot>
 
     <!--
       Include project name to avoid assets-file collisions between different SDK-style
