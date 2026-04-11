@@ -167,17 +167,17 @@ jobs:
       - name: Publish Loader (Windows)
         if: matrix.name == 'windows-ninja'
         run: |
-          dotnet publish ${{ env.LOADER_PROJECT_PATH }} --configuration Release --runtime win-x64 --self-contained true --no-build -p:Platform=x64 -p:UseAppHost=true -p:PublishSingleFile=false -o ${{ github.workspace }}/intermediate/publish/windows/Loader
+          dotnet publish ${{ env.LOADER_PROJECT_PATH }} --configuration Release --runtime win-x64 --self-contained true -p:Platform=x64 -p:UseAppHost=true -p:PublishSingleFile=false -o ${{ github.workspace }}/intermediate/publish/windows/Loader
 
       - name: Publish Loader.Avalonia (Windows)
         if: matrix.name == 'windows-ninja'
         run: |
-          dotnet publish ${{ env.LOADER_AVALONIA_PROJECT_PATH }} --configuration Release --runtime win-x64 --self-contained true --no-build -p:Platform=x64 -p:UseAppHost=true -p:PublishSingleFile=false -o ${{ github.workspace }}/intermediate/publish/windows/Loader.Avalonia
+          dotnet publish ${{ env.LOADER_AVALONIA_PROJECT_PATH }} --configuration Release --runtime win-x64 --self-contained true -p:Platform=x64 -p:UseAppHost=true -p:PublishSingleFile=false -o ${{ github.workspace }}/intermediate/publish/windows/Loader.Avalonia
 
       - name: Publish Loader.Avalonia (Linux)
         if: matrix.name == 'linux-ninja'
         run: |
-          dotnet publish ${{ env.LOADER_AVALONIA_PROJECT_PATH }} --configuration Release --runtime linux-x64 --self-contained true --no-build -p:Platform=x64 -p:UseAppHost=true -p:PublishSingleFile=false -o ${{ github.workspace }}/intermediate/publish/linux/Loader.Avalonia
+          dotnet publish ${{ env.LOADER_AVALONIA_PROJECT_PATH }} --configuration Release --runtime linux-x64 --self-contained true -p:Platform=x64 -p:UseAppHost=true -p:PublishSingleFile=false -o ${{ github.workspace }}/intermediate/publish/linux/Loader.Avalonia
 
       - name: Build on Windows (Ninja)
         if: matrix.name == 'windows-ninja'
