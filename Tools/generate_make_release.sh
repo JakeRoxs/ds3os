@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-ScriptPath=$PWD
-RootPath="$ScriptPath"/../
-BuildPath="$ScriptPath"/../intermediate/make/
-CMakeExePath="$ScriptPath"/Build/cmake/linux/bin/cmake
+ScriptPath="$PWD"
+RootPath="$ScriptPath/../"
+BuildPath="$ScriptPath/../intermediate/make/"
+CMakeExePath="$ScriptPath/Build/cmake/linux/bin/cmake"
 
 if [ ! -x "$CMakeExePath" ]; then
   CMakeExePath="$(command -v cmake || true)"
@@ -21,8 +21,12 @@ echo "$CMakeExePath -S $RootPath -B $BuildPath"
 GENERATOR="${GENERATOR:-Ninja}"
 echo "$CMakeExePath -S $RootPath -B $BuildPath -G \"$GENERATOR\""
 
-$CMakeExePath -S $RootPath -B $BuildPath -G "$GENERATOR" \
-  -DCMAKE_BUILD_TYPE=Release
+if [ "$#" -gt 0 ]; then
+  echo "Pass additional CMake args: $*"
+fi
+
+$CMakeExePath -S "$RootPath" -B "$BuildPath" -G "$GENERATOR" \
+  -DCMAKE_BUILD_TYPE=Release "$@"
 
 # Ensure the solution file uses the renamed branding.
 if [ -f "$BuildPath/rekindled-server.sln" ]; then

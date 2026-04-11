@@ -12,7 +12,7 @@ COPY ./ /build
 WORKDIR /build/Tools
 # strip any CRLF bytes from script; host may check out with Windows endings
 RUN sed -i 's/\r$//' ./generate_make_release.sh && \
-    ./generate_make_release.sh
+    ./generate_make_release.sh -DBUILD_LOADER_AVALONIA=OFF
 WORKDIR /build
 RUN cd intermediate/make && (if [ -f build.ninja ]; then ninja -j$(nproc || echo 4); else make -j$(nproc || echo 4); fi)
 

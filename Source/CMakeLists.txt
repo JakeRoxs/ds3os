@@ -6,12 +6,18 @@
 
 add_subdirectory(ThirdParty)
 
-    if (WIN32)
-        add_subdirectory(Loader)
-            add_subdirectory(Injector)
-                endif()
-                    add_subdirectory(Loader.Avalonia)
-                    add_subdirectory(Server)
-                        add_subdirectory(Server.DarkSouls3)
-                            add_subdirectory(Server.DarkSouls2)
-                                add_subdirectory(Shared)
+option(BUILD_LOADER_AVALONIA "Build the Avalonia loader project" ON)
+
+if (WIN32)
+    add_subdirectory(Loader)
+    add_subdirectory(Injector)
+endif()
+
+if (BUILD_LOADER_AVALONIA)
+    add_subdirectory(Loader.Avalonia)
+endif()
+
+add_subdirectory(Server)
+add_subdirectory(Server.DarkSouls3)
+add_subdirectory(Server.DarkSouls2)
+add_subdirectory(Shared)
