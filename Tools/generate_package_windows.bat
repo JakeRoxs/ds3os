@@ -66,6 +66,34 @@ if exist "%OUTPUT_ROOT%\Server.pdb" (
     set ERR=1
 )
 
+if exist "%OUTPUT_ROOT%\Loader.exe" (
+    xcopy /s "%OUTPUT_ROOT%\Loader.exe" rekindled-server\Loader\
+) else if exist "Source\Loader\bin\Release\net10.0-windows\Loader.exe" (
+    xcopy /s "Source\Loader\bin\Release\net10.0-windows\*" rekindled-server\Loader\
+) else if exist "Source\Loader\bin\Release\net10.0\Loader.exe" (
+    xcopy /s "Source\Loader\bin\Release\net10.0\*" rekindled-server\Loader\
+) else (
+    echo WARNING: Loader.exe not found in %OUTPUT_ROOT% or Source\Loader bin output
+    set ERR=1
+)
+if exist "%OUTPUT_ROOT%\Loader.Avalonia.exe" (
+    xcopy /s "%OUTPUT_ROOT%\Loader.Avalonia.exe" rekindled-server\Loader\
+) else if exist "Source\Loader.Avalonia\bin\Release\net10.0\Loader.Avalonia.exe" (
+    xcopy /s "Source\Loader.Avalonia\bin\Release\net10.0\*" rekindled-server\Loader\
+) else (
+    echo WARNING: Loader.Avalonia.exe not found in %OUTPUT_ROOT% or Source\Loader.Avalonia bin output
+    set ERR=1
+)
+
+if exist "%OUTPUT_ROOT%\Loader.Avalonia.pdb" (
+    xcopy /s "%OUTPUT_ROOT%\Loader.Avalonia.pdb" rekindled-server\Loader\
+) else if exist "Source\Loader.Avalonia\bin\Release\net10.0\Loader.Avalonia.pdb" (
+    xcopy /s "Source\Loader.Avalonia\bin\Release\net10.0\*" rekindled-server\Loader\
+) else (
+    echo WARNING: Loader.Avalonia.pdb not found in %OUTPUT_ROOT% or Source\Loader.Avalonia bin output
+    set ERR=1
+)
+
 if exist "%OUTPUT_ROOT%\Injector.pdb" (
     xcopy /s "%OUTPUT_ROOT%\Injector.pdb" rekindled-server\Loader\
 ) else if exist "intermediate\build\Source\Injector\Injector.pdb" (

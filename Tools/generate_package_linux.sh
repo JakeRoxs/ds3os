@@ -67,6 +67,19 @@ else
   ERR=1
 fi
 
+mkdir -p rekindled-server/Loader
+if [ -f "$OUTPUT_ROOT/Loader.Avalonia" ]; then
+  cp "$OUTPUT_ROOT/Loader.Avalonia" rekindled-server/Loader/
+  cp "$OUTPUT_ROOT/Loader.Avalonia.pdb" rekindled-server/Loader/ 2>/dev/null || true
+elif [ -d "Source/Loader.Avalonia/bin/Release/net10.0" ]; then
+  cp -R "Source/Loader.Avalonia/bin/Release/net10.0/" rekindled-server/Loader/
+elif [ -d "Source/Loader.Avalonia/bin/Release/net10.0-windows" ]; then
+  cp -R "Source/Loader.Avalonia/bin/Release/net10.0-windows/" rekindled-server/Loader/
+else
+  echo "WARNING: Loader.Avalonia output not found in $OUTPUT_ROOT or Source/Loader.Avalonia/bin/Release"
+  ERR=1
+fi
+
 if [ "$ERR" -eq 1 ]; then
   echo "ERROR: One or more required files were missing. Check build output path and CMake configuration."
   ls -la "$OUTPUT_ROOT"
