@@ -164,6 +164,21 @@ jobs:
         if: matrix.name == 'windows-ninja' || matrix.name == 'linux-ninja'
         run: dotnet test ${{ env.LOADER_AVALONIA_TESTS_PROJECT_PATH }} --configuration Release --no-build --no-restore --verbosity normal -p:Platform=x64
 
+      - name: Publish Loader (Windows)
+        if: matrix.name == 'windows-ninja'
+        run: |
+          dotnet publish ${{ env.LOADER_PROJECT_PATH }} --configuration Release --runtime win-x64 --self-contained true --no-build -p:Platform=x64 -p:UseAppHost=true -p:PublishSingleFile=false -o ${{ github.workspace }}/intermediate/publish/windows/Loader
+
+      - name: Publish Loader.Avalonia (Windows)
+        if: matrix.name == 'windows-ninja'
+        run: |
+          dotnet publish ${{ env.LOADER_AVALONIA_PROJECT_PATH }} --configuration Release --runtime win-x64 --self-contained true --no-build -p:Platform=x64 -p:UseAppHost=true -p:PublishSingleFile=false -o ${{ github.workspace }}/intermediate/publish/windows/Loader.Avalonia
+
+      - name: Publish Loader.Avalonia (Linux)
+        if: matrix.name == 'linux-ninja'
+        run: |
+          dotnet publish ${{ env.LOADER_AVALONIA_PROJECT_PATH }} --configuration Release --runtime linux-x64 --self-contained true --no-build -p:Platform=x64 -p:UseAppHost=true -p:PublishSingleFile=false -o ${{ github.workspace }}/intermediate/publish/linux/Loader.Avalonia
+
       - name: Build on Windows (Ninja)
         if: matrix.name == 'windows-ninja'
         working-directory: ${{ github.workspace }}/intermediate/build
@@ -215,6 +230,9 @@ jobs:
       - name: Package Release (Windows)
         if: matrix.platform == 'windows'
         shell: pwsh
+        env:
+          LOADER_WINDOWS_PUBLISH_DIR: ${{ github.workspace }}/intermediate/publish/windows/Loader
+          LOADER_AVALONIA_WINDOWS_PUBLISH_DIR: ${{ github.workspace }}/intermediate/publish/windows/Loader.Avalonia
         run: |
           cd "${{ github.workspace }}"
           ./Tools/generate_package_windows.bat
@@ -222,6 +240,8 @@ jobs:
       - name: Package Release (Linux)
         if: matrix.platform == 'linux'
         shell: bash
+        env:
+          LOADER_AVALONIA_LINUX_PUBLISH_DIR: ${{ github.workspace }}/intermediate/publish/linux/Loader.Avalonia
         run: |
           cd "${{ github.workspace }}"
           "${{ github.workspace }}/Tools/generate_package_linux.sh"

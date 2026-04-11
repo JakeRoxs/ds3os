@@ -34,6 +34,7 @@ mkdir -p rekindled-server/Server
 cp Resources/ReadMe.txt rekindled-server/ReadMe.txt
 
 ERR=0
+LOADER_AVALONIA_LINUX_PUBLISH_DIR="${LOADER_AVALONIA_LINUX_PUBLISH_DIR:-}"
 
 if [ -f "$OUTPUT_ROOT/steam_appid.txt" ]; then
   cp "$OUTPUT_ROOT/steam_appid.txt" rekindled-server/Server/
@@ -75,21 +76,28 @@ fi
 
 mkdir -p rekindled-server/Loader
 loader_output_dir=""
-for candidate in \
-  "$OUTPUT_ROOT/Loader.Avalonia" \
-  "$OUTPUT_ROOT/x64/Release/net10.0" \
-  "$OUTPUT_ROOT/Loader.Avalonia.dll" \
-  "Source/Loader.Avalonia/bin/Release/net10.0" \
-  "Source/Loader.Avalonia/bin/Release/net10.0-windows" \
-  "Source/Loader.Avalonia/bin/Release/net10.0/linux-x64" \
-  "Source/Loader.Avalonia/bin/Release/net10.0-windows/linux-x64" \
-  "Source/Loader.Avalonia/bin/Release/net10.0/" \
-  "Source/Loader.Avalonia/bin/Release/net10.0-windows/"; do
-  if [ -e "$candidate" ]; then
-    loader_output_dir="$candidate"
-    break
-  fi
-done
+
+if [ -n "$LOADER_AVALONIA_LINUX_PUBLISH_DIR" ] && [ -x "$LOADER_AVALONIA_LINUX_PUBLISH_DIR/Loader.Avalonia" ]; then
+  loader_output_dir="$LOADER_AVALONIA_LINUX_PUBLISH_DIR"
+fi
+
+if [ -z "$loader_output_dir" ]; then
+  for candidate in \
+    "$OUTPUT_ROOT/Loader.Avalonia" \
+    "$OUTPUT_ROOT/x64/Release/net10.0" \
+    "$OUTPUT_ROOT/Loader.Avalonia.dll" \
+    "Source/Loader.Avalonia/bin/Release/net10.0" \
+    "Source/Loader.Avalonia/bin/Release/net10.0-windows" \
+    "Source/Loader.Avalonia/bin/Release/net10.0/linux-x64" \
+    "Source/Loader.Avalonia/bin/Release/net10.0-windows/linux-x64" \
+    "Source/Loader.Avalonia/bin/Release/net10.0/" \
+    "Source/Loader.Avalonia/bin/Release/net10.0-windows/"; do
+    if [ -e "$candidate" ]; then
+      loader_output_dir="$candidate"
+      break
+    fi
+  done
+fi
 
 if [ -n "$loader_output_dir" ]; then
   if [ -d "$loader_output_dir" ]; then
