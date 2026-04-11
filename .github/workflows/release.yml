@@ -41,10 +41,14 @@ jobs:
             os: windows-latest
             generator: Ninja
             platform: windows
+            loader_avalonia_runtime: win-x64
+            loader_avalonia_publish_dir: intermediate/publish/windows/Loader.Avalonia
           - name: linux-ninja
             os: ubuntu-latest
             generator: Ninja
             platform: linux
+            loader_avalonia_runtime: linux-x64
+            loader_avalonia_publish_dir: intermediate/publish/linux/Loader.Avalonia
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -169,15 +173,10 @@ jobs:
         run: |
           dotnet publish ${{ env.LOADER_PROJECT_PATH }} --configuration Release --runtime win-x64 --self-contained true -p:Platform=x64 -p:UseAppHost=true -p:PublishSingleFile=false -o ${{ github.workspace }}/intermediate/publish/windows/Loader
 
-      - name: Publish Loader.Avalonia (Windows)
-        if: matrix.name == 'windows-ninja'
+      - name: Publish Loader.Avalonia
+        if: matrix.name == 'windows-ninja' || matrix.name == 'linux-ninja'
         run: |
-          dotnet publish ${{ env.LOADER_AVALONIA_PROJECT_PATH }} --configuration Release --runtime win-x64 --self-contained true -p:Platform=x64 -p:UseAppHost=true -p:PublishSingleFile=false -o ${{ github.workspace }}/intermediate/publish/windows/Loader.Avalonia
-
-      - name: Publish Loader.Avalonia (Linux)
-        if: matrix.name == 'linux-ninja'
-        run: |
-          dotnet publish ${{ env.LOADER_AVALONIA_PROJECT_PATH }} --configuration Release --runtime linux-x64 --self-contained true -p:Platform=x64 -p:UseAppHost=true -p:PublishSingleFile=false -o ${{ github.workspace }}/intermediate/publish/linux/Loader.Avalonia
+          dotnet publish ${{ env.LOADER_AVALONIA_PROJECT_PATH }} --configuration Release --runtime ${{ matrix.loader_avalonia_runtime }} --self-contained true -p:Platform=x64 -p:UseAppHost=true -p:PublishSingleFile=false -o ${{ github.workspace }}/${{ matrix.loader_avalonia_publish_dir }}
 
       - name: Build on Windows (Ninja)
         if: matrix.name == 'windows-ninja'
